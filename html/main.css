@@ -1,0 +1,280 @@
+/**
+ * Layout
+ */
+
+
+/**
+ * Typography
+ */
+ @font-face {
+    font-family: 'glacial_cl';
+    src: url('fonts/glacialindifference-regular-webfont.woff2') format('woff2'),
+    url('fonts/glacialindifference-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+html,
+body {
+    font-family: 'glacial_cl', sans-serif;
+    font-size: 105%;
+    background: #fff;
+    color: #222;
+}
+h1, h2, h3, h4 {
+    font-weight: normal;
+}
+.text-muted {
+    color: #878d96 !important;
+}
+
+/**
+ * Colours
+ */
+ .white {
+    background-color: #fff;
+}
+.pink {
+    background-color: #fd97cd;
+}
+.pink {
+    background-color: #eb0089;
+}
+.red {
+    background-color: #fe1216;
+}
+.orange {
+    background-color: #ff954f;
+}
+.orange {
+    background-color: #ee5f00;
+}
+.yellow {
+    background-color: #ffff9b;
+}
+.yellow {
+    background-color: #daa702;
+}
+.green {
+    background-color: #5ceb92;
+}
+.green {
+    background-color: #01aa42;
+}
+.blue {
+    background-color: #399ecc;
+}
+.blue-two {
+    background-color: #0042d1;
+}
+.grey {
+    background-color: #222;
+}
+
+/**
+ * Logo
+ */
+.logo {
+    text-transform: uppercase;
+}
+.logo .logotype {
+    display: inline-block;
+    vertical-align: bottom;
+}
+.logo .logotype span {
+    display: block;
+    font-size: 1.45rem;
+    letter-spacing: 0.25rem;
+}
+.logo .logotype span:first-child {
+    font-size: 1.25rem;
+    letter-spacing: 0;
+}
+.logo .grid {
+    position: relative;
+    top: -3px;
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 0;
+}
+.logo .row {
+    display: block;
+    margin: 0 0 3.5px 0;
+}
+.logo .cell {
+    display: inline-block;
+    background-color: #222;
+    width: 14px;
+    height: 14px;
+    margin: 0 3px 0 0;
+}
+.logo .row:nth-child(1) .cell:nth-child(1) {
+    animation: pulse 37s infinite;
+    animation-delay: 1.5s;
+}
+.logo .row:nth-child(1) .cell:nth-child(2) {
+    animation: pulse 22s infinite;
+    animation-delay: 0.5s;
+}
+.logo .row:nth-child(1) .cell:nth-child(3) {
+    animation: pulse 39s infinite;
+    animation-delay: 6s;
+}
+.logo .row:nth-child(1) .cell:nth-child(4) {
+    animation: pulse 25s infinite;
+    animation-delay: 10s;
+}
+.logo .row:nth-child(2) .cell:nth-child(1) {
+    animation: pulse 24s infinite;
+    animation-delay: 7s;
+}
+.logo .row:nth-child(2) .cell:nth-child(2) {
+    animation: pulse 38s infinite;
+    animation-delay: 9s;
+}
+.logo .row:nth-child(2) .cell:nth-child(3) {
+    animation: pulse 21s infinite;
+    animation-delay: 5s;
+}
+.logo .row:nth-child(2) .cell:nth-child(4) {
+    animation: pulse 36s infinite;
+    animation-delay: 4.5s;
+}
+.logo .row:nth-child(3) .cell:nth-child(1) {
+    animation: pulse 22s infinite;
+    animation-delay: 3.5s;
+}
+.logo .row:nth-child(3) .cell:nth-child(2) {
+    animation: pulse 39s infinite;
+    animation-delay: 5.5s;
+}
+.logo .row:nth-child(3) .cell:nth-child(3) {
+    animation: pulse 25s infinite;
+    animation-delay: 4s;
+}
+.logo .row:nth-child(3) .cell:nth-child(4) {
+    animation: pulse 24s infinite;
+    animation-delay: 17s;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        background-color: #0042d1;
+    }
+    15% {
+        background-color: #0042d1;
+    }
+    17% {
+        background-color: #eb0089;
+    }
+    30% {
+        background-color: #eb0089;
+    }
+    32% {
+        background-color: #daa702;
+    }
+    45% {
+        background-color: #daa702;
+    }
+    47% {
+        background-color: #01aa42;
+    }
+    60% {
+        background-color: #01aa42;
+    }
+    62% {
+        background-color: #ee5f00;
+    }
+    75% {
+        background-color: #ee5f00;
+    }
+    77% {
+        background-color: #222;
+    }
+    90% {
+        background-color: #222;
+    }
+    92% {
+        background-color: #0042d1;
+    }
+}
+
+/**
+ * Content
+ */
+img {
+    display: inline-block;
+    max-width: 100%;
+}
+.offscreen-text {
+    overflow: hidden;
+    text-indent: -999px;
+}
+
+/**
+ * Carousel
+ */
+.carousel {
+    position: relative;
+}
+.carousel-control {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1em;
+}
+.carousel-control.next {
+    right: 0;
+}
+.carousel-control.back {
+    left: 0;
+}
+.carousel-content {
+    padding: 0;
+    list-style: none;
+}
+.carousel-content li {
+    display: none;
+    text-align: center;
+}
+.carousel-content li.active {
+    display: block;
+}
+
+/**
+ * Logos
+ */
+.logo-list {
+    text-align: center;
+    padding: 0;
+    list-style: none;
+}
+.logo-list li {
+    display: inline-block;
+    width: 10em;
+    padding: 0 1em;
+    vertical-align: middle;
+}
+.logo-list li:first-child {
+    width: 4em;
+}
+
+/**
+ * Data categories
+ */
+.data-category-list li {
+    list-style: none;
+    display: inline-block;
+    vertical-align: bottom;
+    width: 9em;
+    height: 9em;
+    margin: 0.5em;
+    padding: 0.1em;
+}
+.data-category-list .category {
+    text-align: center;
+    font-size: 1.5em;
+}
+.data-category-list .description {
+    text-align: center;
+    font-size: 1em;
+}
