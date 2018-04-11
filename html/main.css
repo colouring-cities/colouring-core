@@ -1,7 +1,9 @@
 /**
  * Layout
  */
-
+html, body {
+    margin: 0;
+}
 
 /**
  * Typography
@@ -33,48 +35,55 @@ h1, h2, h3, h4 {
  .white {
     background-color: #fff;
 }
-.pink {
-    background-color: #fd97cd;
+.bold-yellow {
+    background-color: #ffad00;
 }
-.pink {
-    background-color: #eb0089;
+.bright-yellow {
+    background-color: #f0d106;
+}
+.bold-orange {
+    background-color: #eb7905;
 }
 .red {
-    background-color: #fe1216;
+    background-color: #e96762;
 }
-.orange {
-    background-color: #ff954f;
+.pastel-pink {
+    background-color: #e099c1;
 }
-.orange {
-    background-color: #ee5f00;
+.pastel-purple {
+    background-color: #7d6f94;
 }
-.yellow {
-    background-color: #ffff9b;
+.blue-grey {
+    background-color: #6f879c;
 }
-.yellow {
-    background-color: #daa702;
+.bright-green {
+    background-color: #5ec233;
 }
-.green {
-    background-color: #5ceb92;
+.pastel-green {
+    background-color: #72b889;
 }
-.green {
-    background-color: #01aa42;
+.bright-blue {
+    background-color: #72b2fe;
 }
-.blue {
-    background-color: #399ecc;
+.pale-grey {
+    background-color: #a6a6a7;
 }
-.blue-two {
-    background-color: #0042d1;
-}
-.grey {
-    background-color: #222;
+.pale-brown {
+    background-color: #918e6e;
 }
 
 /**
  * Logo
  */
 .logo {
+    display: block;
+    font-size: 2em;
+    width: 6em;
+    margin: 0 auto;
+    padding: 0.5em 0 1em;
     text-transform: uppercase;
+    color: #000;
+    text-decoration: none;
 }
 .logo .logotype {
     display: inline-block;
@@ -82,119 +91,149 @@ h1, h2, h3, h4 {
 }
 .logo .logotype span {
     display: block;
-    font-size: 1.45rem;
-    letter-spacing: 0.25rem;
+    font-size: 0.75em;
+    letter-spacing: 0.15em;
 }
 .logo .logotype span:first-child {
-    font-size: 1.25rem;
+    font-size: 0.625em;
     letter-spacing: 0;
 }
 .logo .grid {
     position: relative;
-    top: -3px;
+    top: -1px;
     display: inline-block;
     vertical-align: bottom;
     font-size: 0;
 }
 .logo .row {
     display: block;
-    margin: 0 0 3.5px 0;
+    margin: 0 0 5px 0;
 }
 .logo .cell {
     display: inline-block;
     background-color: #222;
-    width: 14px;
-    height: 14px;
+    width: 15px;
+    height: 15px;
     margin: 0 3px 0 0;
 }
 .logo .row:nth-child(1) .cell:nth-child(1) {
-    animation: pulse 37s infinite;
+    animation: pulse 47s infinite;
     animation-delay: 1.5s;
 }
 .logo .row:nth-child(1) .cell:nth-child(2) {
-    animation: pulse 22s infinite;
+    animation: pulse 32s infinite;
     animation-delay: 0.5s;
 }
 .logo .row:nth-child(1) .cell:nth-child(3) {
-    animation: pulse 39s infinite;
+    animation: pulse 49s infinite;
     animation-delay: 6s;
 }
 .logo .row:nth-child(1) .cell:nth-child(4) {
-    animation: pulse 25s infinite;
+    animation: pulse 35s infinite;
     animation-delay: 10s;
 }
 .logo .row:nth-child(2) .cell:nth-child(1) {
-    animation: pulse 24s infinite;
+    animation: pulse 34s infinite;
     animation-delay: 7s;
 }
 .logo .row:nth-child(2) .cell:nth-child(2) {
-    animation: pulse 38s infinite;
+    animation: pulse 48s infinite;
     animation-delay: 9s;
 }
 .logo .row:nth-child(2) .cell:nth-child(3) {
-    animation: pulse 21s infinite;
+    animation: pulse 31s infinite;
     animation-delay: 5s;
 }
 .logo .row:nth-child(2) .cell:nth-child(4) {
-    animation: pulse 36s infinite;
+    animation: pulse 46s infinite;
     animation-delay: 4.5s;
 }
 .logo .row:nth-child(3) .cell:nth-child(1) {
-    animation: pulse 22s infinite;
+    animation: pulse 32s infinite;
     animation-delay: 3.5s;
 }
 .logo .row:nth-child(3) .cell:nth-child(2) {
-    animation: pulse 39s infinite;
+    animation: pulse 49s infinite;
     animation-delay: 5.5s;
 }
 .logo .row:nth-child(3) .cell:nth-child(3) {
-    animation: pulse 25s infinite;
+    animation: pulse 35s infinite;
     animation-delay: 4s;
 }
 .logo .row:nth-child(3) .cell:nth-child(4) {
-    animation: pulse 24s infinite;
+    animation: pulse 34s infinite;
     animation-delay: 17s;
 }
 
 @keyframes pulse {
     0%, 100% {
-        background-color: #0042d1;
+        background-color: #ffad00;
     }
-    15% {
-        background-color: #0042d1;
+    8% {
+        background-color: #ffad00;
     }
-    17% {
-        background-color: #eb0089;
+    10% {
+        background-color: #f0d106;
     }
-    30% {
-        background-color: #eb0089;
+    16% {
+        background-color: #f0d106;
+    }
+    18% {
+        background-color: #eb7905;
+    }
+    24% {
+        background-color: #eb7905;
+    }
+    26% {
+        background-color: #e96762;
     }
     32% {
-        background-color: #daa702;
+        background-color: #e96762;
     }
-    45% {
-        background-color: #daa702;
+    34% {
+        background-color: #e099c1;
     }
-    47% {
-        background-color: #01aa42;
+    40% {
+        background-color: #e099c1;
     }
-    60% {
-        background-color: #01aa42;
+    42% {
+        background-color: #7d6f94;
     }
-    62% {
-        background-color: #ee5f00;
+    48% {
+        background-color: #7d6f94;
     }
-    75% {
-        background-color: #ee5f00;
+    50% {
+        background-color: #5ec233;
     }
-    77% {
-        background-color: #222;
+    56% {
+        background-color: #5ec233;
+    }
+    58% {
+        background-color: #72b889;
+    }
+    64% {
+        background-color: #72b889;
+    }
+    66% {
+        background-color: #72b2fe;
+    }
+    72% {
+        background-color: #72b2fe;
+    }
+    74% {
+        background-color: #a6a6a7;
+    }
+    80% {
+        background-color: #a6a6a7;
+    }
+    82% {
+        background-color: #918e6e;
+    }
+    88% {
+        background-color: #918e6e;
     }
     90% {
-        background-color: #222;
-    }
-    92% {
-        background-color: #0042d1;
+        background-color: #ffad00;
     }
 }
 
@@ -261,8 +300,12 @@ img {
 /**
  * Data categories
  */
-.data-category-list li {
+.data-category-list {
+    padding: 0;
+    text-align: center;
     list-style: none;
+}
+.data-category-list li {
     display: inline-block;
     vertical-align: bottom;
     width: 9em;
@@ -273,8 +316,10 @@ img {
 .data-category-list .category {
     text-align: center;
     font-size: 1.5em;
+    margin: 1.4em 0 0.5em;
 }
 .data-category-list .description {
     text-align: center;
     font-size: 1em;
+    margin: 0;
 }
