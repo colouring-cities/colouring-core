@@ -30,6 +30,17 @@ h1, h2, h3, h4 {
 }
 
 /**
+ * Form
+ */
+input[type="text"],
+input[type="email"] {
+    display: block;
+    width: 100%;
+    border: 1px solid #222;
+    padding: 0.5em 0.25em;
+}
+
+/**
  * Colours
  */
  .white {
@@ -41,14 +52,23 @@ h1, h2, h3, h4 {
 .bright-yellow {
     background-color: #f0d106;
 }
+.pale-yellow {
+    background-color: #fff021;
+}
 .bold-orange {
     background-color: #eb7905;
+}
+.pale-orange {
+    background-color: #ffc04e;
 }
 .red {
     background-color: #e96762;
 }
 .pastel-pink {
     background-color: #e099c1;
+}
+.pale-pink {
+    background-color: #ffcde5;
 }
 .pastel-purple {
     background-color: #7d6f94;
@@ -61,6 +81,9 @@ h1, h2, h3, h4 {
 }
 .pastel-green {
     background-color: #72b889;
+}
+.pale-green {
+    background-color: #73ebaf;
 }
 .bright-blue {
     background-color: #72b2fe;
@@ -86,6 +109,8 @@ h1, h2, h3, h4 {
     text-decoration: none;
 }
 .logo .logotype {
+    font-size: 1em;
+    margin: 0;
     display: inline-block;
     vertical-align: bottom;
 }
@@ -257,9 +282,13 @@ img {
 }
 .carousel-control {
     position: absolute;
+    display: none;
     top: 0;
     bottom: 0;
     width: 1em;
+}
+.carousel.active .carousel-control {
+    display: block;
 }
 .carousel-control.next {
     right: 0;
@@ -272,10 +301,12 @@ img {
     list-style: none;
 }
 .carousel-content li {
-    display: none;
     text-align: center;
 }
-.carousel-content li.active {
+.carousel.active .carousel-content li {
+    display: none;
+}
+.carousel.active .carousel-content li.current {
     display: block;
 }
 
