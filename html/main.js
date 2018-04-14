@@ -1,6 +1,14 @@
-
-carousel = (function(){
+/**
+ * Simple carousel
+ *
+ * Based on example code by Christian Heilmann
+ * http://christianheilmann.com/2015/04/08/keeping-it-simple-coding-a-carousel/
+ */
+carousel = function(){
     var box = document.querySelector('.carousel');
+    if (!box) {
+        return
+    }
     var next = box.querySelector('.next');
     var prev = box.querySelector('.back');
     // Define the global counter, the items and the
@@ -33,4 +41,12 @@ carousel = (function(){
     // show the first element
     // (when direction is 0 counter doesn't change)
     navigate(0);
-})();
+}
+
+/**
+ * "Cut the mustard" and setup page
+ */
+if('querySelector' in document
+   && 'addEventListener' in window) {
+    carousel();
+}
