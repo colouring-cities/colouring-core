@@ -219,58 +219,57 @@ form .btn {
 }
 .logo .cell {
     display: inline-block;
-    background-color: #222;
     width: 15px;
     height: 15px;
     margin: 0 3px 0 0;
 }
 .logo .row:nth-child(1) .cell:nth-child(1) {
     animation: pulse 47s infinite;
-    animation-delay: 1.5s;
+    animation-delay: -1.5s;
 }
 .logo .row:nth-child(1) .cell:nth-child(2) {
     animation: pulse 32s infinite;
-    animation-delay: 0.5s;
+    animation-delay: -0.5s;
 }
 .logo .row:nth-child(1) .cell:nth-child(3) {
     animation: pulse 49s infinite;
-    animation-delay: 6s;
+    animation-delay: -6s;
 }
 .logo .row:nth-child(1) .cell:nth-child(4) {
     animation: pulse 35s infinite;
-    animation-delay: 10s;
+    animation-delay: -10s;
 }
 .logo .row:nth-child(2) .cell:nth-child(1) {
     animation: pulse 34s infinite;
-    animation-delay: 7s;
+    animation-delay: -7.2s;
 }
 .logo .row:nth-child(2) .cell:nth-child(2) {
-    animation: pulse 48s infinite;
-    animation-delay: 9s;
+    animation: pulse 58s infinite;
+    animation-delay: -15s;
 }
 .logo .row:nth-child(2) .cell:nth-child(3) {
     animation: pulse 31s infinite;
-    animation-delay: 5s;
+    animation-delay: -5s;
 }
 .logo .row:nth-child(2) .cell:nth-child(4) {
     animation: pulse 46s infinite;
-    animation-delay: 4.5s;
+    animation-delay: -4.5s;
 }
 .logo .row:nth-child(3) .cell:nth-child(1) {
     animation: pulse 32s infinite;
-    animation-delay: 3.5s;
+    animation-delay: -3.5s;
 }
 .logo .row:nth-child(3) .cell:nth-child(2) {
     animation: pulse 49s infinite;
-    animation-delay: 5.5s;
+    animation-delay: -8.5s;
 }
 .logo .row:nth-child(3) .cell:nth-child(3) {
     animation: pulse 35s infinite;
-    animation-delay: 4s;
+    animation-delay: -4s;
 }
 .logo .row:nth-child(3) .cell:nth-child(4) {
     animation: pulse 34s infinite;
-    animation-delay: 17s;
+    animation-delay: -17s;
 }
 
 @keyframes pulse {
