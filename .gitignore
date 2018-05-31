@@ -1,0 +1,5 @@
+# Packages
+node_modules
+
+# Config, data
+config.json
