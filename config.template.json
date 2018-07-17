@@ -1,0 +1,10 @@
+{
+    "comment": "Copy this file and edit to provide scripts with details",
+    "database": {
+        "host": "localhost",
+        "port": 5432,
+        "database": "",
+        "user": "",
+        "password": ""
+    }
+}
