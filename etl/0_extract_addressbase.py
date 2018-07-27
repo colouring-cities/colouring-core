@@ -37,7 +37,7 @@ def read_addresses(source_dir):
                 r = csv.reader(fh)
                 for line in r:
                     uprn = line[0]
-                    toid = line[1]
+                    # toid = line[1]  # skip - we do our own matching to geometries
                     easting = line[16]
                     northing = line[17]
                     lat = line[18]
