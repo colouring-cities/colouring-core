@@ -1,0 +1,14 @@
+<Map minimum-version="2.0.0">
+  <Style name="polygon">
+      <Rule>
+          <PolygonSymbolizer fill="#4682B477" />
+          <LineSymbolizer stroke="white" stroke-width="0.3" />
+      </Rule>
+  </Style>
+  <Style name="highlight">
+      <Rule>
+          <PolygonSymbolizer fill="#4682B4ff" />
+          <LineSymbolizer stroke="white" stroke-width="0.3" />
+      </Rule>
+  </Style>
+</Map>
