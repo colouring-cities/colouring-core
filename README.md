@@ -20,6 +20,17 @@ This repository will contain open-source code for the project which:
 Building attribute data collected as part of the project will be made available
 for download under a liberal open data license (likely ODbL).
 
+## Setup and run
+
+1. Provision database (see `migrations`)
+1. Install apps/dependencies (`npm i`)
+1. Load buildings and geometries to database (see `etl`)
+1. Fill out details in `config.json` (see `config.template.json`)
+1. Run express apps:
+  - tileserver `PGHOST={host} node index.js`
+  - apiserver `PGHOST={host} node index.js`
+  - frontend `http-server -a localhost -p 8080`
+
 ## A note from our sponsors
 
 Colouring London is being designed and built by the Centre for Advanced Spatial
