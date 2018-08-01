@@ -25,12 +25,20 @@ def main(source_dir, config_path):
 
     source_files = glob.glob("{}/*.geojson".format(source_dir))
 
+    loaded = {}
     for source_file in source_files:
         with fiona.open(source_file, 'r') as source:
             with conn.cursor() as cur:
                 for feature in source:
-                    save_feature(cur, feature)
+                    fid = feature['properties']['fid']
+                    if fid not in loaded:
+                        save_feature(cur, feature)
+                        loaded[fid] = True
+                    else:
+                        print("Skipping", fid)
                 conn.commit()
+    conn.close()
+
 
 
 def save_feature(cur, feature):
@@ -44,7 +52,7 @@ def save_feature(cur, feature):
         )
         VALUES
         (
-            %s,
+            %s::jsonb,
             ST_SetSRID(%s::geometry, %s)
         )
         """, (
