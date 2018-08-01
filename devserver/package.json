@@ -1,5 +1,5 @@
 {
-  "name": "cl-devserver",
+  "name": "colouring-london-devserver",
   "version": "1.0.0",
   "description": "Development server to proxy",
   "private": true,
