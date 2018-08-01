@@ -18,16 +18,17 @@ def main(source_file, config_path, transform_config_path):
     """Load config, read files and save features to the database
     """
     conf = read_config(config_path)
+    transform_config = read_config(transform_config_path)
     data_mapping = [
         # from_fieldname, to_fieldname, mapping(old_val, source_val)->new_val
         (from_, to_, eval(transform))
-        for from_, to_, transform in read_config(transform_config_path)
+        for from_, to_, transform in transform_config['mapping']
     ]
     dbconf = conf['database']
     conn = psycopg2.connect(**dbconf)
 
     with fiona.open(source_file, 'r') as source:
-        epsg_code = int(source.crs['init'].replace("epsg:",""))
+        epsg_code = transform_config['crs']
 
         with conn.cursor() as cur:
             for feature in source:
@@ -47,9 +48,9 @@ def save_data(cur, props, data_conf, geometry_id):
     cur.execute(
         """SELECT building_id, building_doc FROM buildings
         WHERE
-        geometry_id = %
+        geometry_id = %s
         """, (
-            geometry_id
+            geometry_id,
         )
     )
     building = cur.fetchone()
@@ -81,7 +82,7 @@ def save_data(cur, props, data_conf, geometry_id):
             WHERE
             building_id = %s
             """, (
-                doc,
+                json.dumps(doc),
                 building_id
             )
         )
@@ -94,7 +95,10 @@ def find_geom(cur, feature, epsg_code):
         """SELECT geometry_id FROM geometries
         WHERE
         ST_Intersects(
-            ST_SetSRID(%s::geometry, %s),
+            ST_Transform(
+                ST_SetSRID(%s::geometry, %s),
+                3857
+            ),
             geometry_geom
         )
         """, (
@@ -131,7 +135,7 @@ def read_config(config_path):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         print(
             "Usage: {} ./path/to/source/file.csv ./path/to/dbconfig.json ./path/to/mapping.json".format(
             os.path.basename(__file__)
