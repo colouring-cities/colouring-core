@@ -32,11 +32,41 @@ function map(){
         doubleClickZoom: false,
     });
     
+    // Controls
     var attr = L.control.attribution({prefix: ""});
     attr.addAttribution("Contains OS data © Crown copyright: OS Maps baselayers and building outlines. Building attribute data is © Colouring London contributors");
     attr.addTo(map);
     L.control.zoom({position: 'topright'}).addTo(map);
     L.control.layers(baseMaps, {}, {position: 'topright'}).addTo(map);
+
+    // Rendered layer
+    var outline_layer = L.tileLayer('/tiles/outline/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        minZoom: 14
+    })
+    outline_layer.addTo(map);
+
+    var highlight_layer = L.tileLayer('/tiles/highlight/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        minZoom: 14
+    })
+    highlight_layer.addTo(map);
+
+    // Query for building on click
+    map.on('click', function(e){
+        var lat = e.latlng.lat
+        var lng = e.latlng.lng
+        fetch(
+            '/api/buildings?lat='+lat+'&lng='+lng
+        ).then(function(response){
+            return response.json()
+        }).then(function(data){
+            if (data.geometry_id){
+                highlight_layer.setUrl('/tiles/highlight/{z}/{x}/{y}.png?highlight='+data.geometry_id)
+            }
+        })
+    })
+
 }
 
 /**
