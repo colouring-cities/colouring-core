@@ -1,14 +1,19 @@
-"""Load OS MasterMap from GeoJSON to Postgres
+"""Load geometries from GeoJSON to Postgres
 
-Use `fid` as source_id
+  - create 'geometry' record with {
+        id: <polygon-guid>,
+        doc: {source_id: <toid>},
+        geom: <geom-wkb_hex>
+    }
 """
-import json
 import glob
+import json
 import os
 import sys
 
+import fiona
 import psycopg2
-import shapely.geometry
+from shapely.geometry import shape
 
 
 def main(source_dir, config_path):
@@ -18,15 +23,12 @@ def main(source_dir, config_path):
     dbconf = conf['database']
     conn = psycopg2.connect(**dbconf)
 
-    files = glob.glob(os.path.join(source_dir, '*.geojson'))
-    n = len(files)
+    source_files = glob.glob("{}/*.geojson".format(source_dir))
 
-    for i, filename in enumerate(files):
-        print("Processing {} ({} of {})".format(filename, i+1, n))
-        with open(filename, 'r') as fh:
-            data = json.load(fh)
+    for source_file in source_files:
+        with fiona.open(source_file, 'r') as source:
             with conn.cursor() as cur:
-                for feature in data['features']:
+                for feature in source:
                     save_feature(cur, feature)
                 conn.commit()
 
@@ -34,7 +36,8 @@ def main(source_dir, config_path):
 def save_feature(cur, feature):
     """Save a feature with geometry and source id
     """
-    cur.execute("""INSERT INTO geometries
+    cur.execute(
+        """INSERT INTO geometries
         (
             geometry_doc,
             geometry_geom
@@ -48,7 +51,7 @@ def save_feature(cur, feature):
             json.dumps({
                 'source_id': feature['properties']['fid']
             }),
-            shapely.geometry.shape(feature['geometry']).wkb_hex,
+            shape(feature['geometry']).wkb_hex,
             3857
         )
     )
@@ -57,8 +60,8 @@ def save_feature(cur, feature):
 def read_config(config_path):
     """Read a JSON config file containing database connection details
     """
-    with open(config_path, 'r') as fh:
-        conf = json.load(fh)
+    with open(config_path, 'r') as conf_fh:
+        conf = json.load(conf_fh)
     return conf
 
 
