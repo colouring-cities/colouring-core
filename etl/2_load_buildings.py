@@ -25,10 +25,11 @@ def main(source_file, config_path):
     with conn.cursor() as cur:
         with open(source_file, 'r') as source_fh:
             reader = csv.reader(source_fh)
+            next(reader)
             for uprn, _, _, lat, lng in reader:
-                geometry_id = find_geom(cur, lat, lng)
+                geometry_id = find_geom(cur, float(lat), float(lng))
                 if geometry_id is not None:
-                    save_building(cur, uprn, geometry_id)
+                    save_building(cur, int(uprn), geometry_id)
                 else:
                     print("No geometry for", uprn)
         conn.commit()
@@ -41,18 +42,22 @@ def find_geom(cur, lat, lng):
     cur.execute(
         """SELECT geometry_id FROM geometries
         WHERE
-        ST_Intersects(
-            ST_SetSRID(ST_Point(%s, %s), 4326),
+        ST_Within(
+            ST_Transform(
+                ST_SetSRID(ST_Point(%s, %s), 4326),
+                3857
+            ),
             geometry_geom
         )
         """, (
-            lat,
-            lng
+            lng,
+            lat
         )
     )
     result = cur.fetchone()
     if result is not None:
-        return result[0]
+        id_, = result
+        return id_
     else:
         return result
 
@@ -63,12 +68,12 @@ def save_building(cur, uprn, geometry_id):
     cur.execute(
         """SELECT building_id FROM buildings
         WHERE
-        geometry_id = %
+        geometry_id = %s
         """, (
-            geometry_id
+            geometry_id,
         )
     )
-    building = cur.fetchone()
+    building = cur.fetchone()    
     if building is None:
         cur.execute(
             """INSERT INTO buildings
@@ -96,7 +101,7 @@ def save_building(cur, uprn, geometry_id):
             building_doc = jsonb_insert(
                 building_doc,
                 '{uprns, -1}',  -- insert at end of 'uprns' array
-                %s::jsonb,
+                '%s'::jsonb,
                 true            -- insert after location
             )
             WHERE
