@@ -130,8 +130,6 @@ app.get('/date_year/:z/:x/:y.png', function(req, res) {
             buildings as b
         WHERE 
             g.geometry_id = b.geometry_id
-        AND
-            b.building_doc ? 'date_year'
     ) as outline`
     const style_def = ['date_year']
     render_tile(bbox, table_def, style_def, function(err, im) {

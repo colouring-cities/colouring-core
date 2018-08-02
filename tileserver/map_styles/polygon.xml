@@ -112,5 +112,10 @@
           <PolygonSymbolizer fill="#4c0073" />
           <LineSymbolizer stroke="white" stroke-width="0.3" />
       </Rule>
+      <Rule>
+          <ElseFilter />
+          <PolygonSymbolizer fill="#00000000" />
+          <LineSymbolizer stroke="black" stroke-width="0.3" />
+      </Rule>
   </Style>
 </Map>
