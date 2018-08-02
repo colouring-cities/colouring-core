@@ -50,7 +50,7 @@ function map(){
         maxZoom: 20,
         minZoom: 14
     })
-    highlight_layer.addTo(map);
+    var highlight_layer_added = false;
 
     // Query for building on click
     map.on('click', function(e){
@@ -63,6 +63,9 @@ function map(){
         }).then(function(data){
             if (data.geometry_id){
                 highlight_layer.setUrl('/tiles/highlight/{z}/{x}/{y}.png?highlight='+data.geometry_id)
+            }
+            if (!highlight_layer_added && data.geometry_id){
+                highlight_layer.addTo(map);
             }
         })
     })
