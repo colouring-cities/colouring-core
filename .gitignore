@@ -4,3 +4,4 @@ node_modules
 # Config, data
 *config.json
 *.log
+ecosystem.config.js
