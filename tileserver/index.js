@@ -114,4 +114,32 @@ app.get('/highlight/:z/:x/:y.png', function(req, res) {
     })
 });
 
+// date_year choropleth
+app.get('/date_year/:z/:x/:y.png', function(req, res) {
+    const bbox = get_bbox(req.params)
+    // const table_def = 'geometries'
+    const table_def = `(
+        SELECT 
+            cast(
+                b.building_doc->>'date_year'
+                as integer
+            ) as date_year,
+            g.geometry_geom
+        FROM 
+            geometries as g, 
+            buildings as b
+        WHERE 
+            g.geometry_id = b.geometry_id
+        AND
+            b.building_doc ? 'date_year'
+    ) as outline`
+    const style_def = ['date_year']
+    render_tile(bbox, table_def, style_def, function(err, im) {
+        if (err) throw err
+
+        res.writeHead(200, {'Content-Type': 'image/png'})
+        res.end(im.encodeSync('png'))
+    })
+});
+
 app.listen(8082, () => console.log('Tile server listening on port 8082'))
