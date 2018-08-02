@@ -13,24 +13,34 @@ const app = express()
 app.get('/buildings', function(req, res){
     const { lng, lat } = req.query
     db.query(
-        `SELECT geometry_id
-        FROM geometries
+        `SELECT 
+        b.building_id as id, 
+        b.building_doc as doc, 
+        g.geometry_id as geometry_id
+        FROM buildings as b, geometries as g
         WHERE
+        b.geometry_id = g.geometry_id
+        AND
         ST_Intersects(
             ST_Transform(
                 ST_SetSRID(ST_Point($1, $2), 4326),
                 3857
             ),
-            geometries.geometry_geom
+            g.geometry_geom
         )
+        LIMIT 1
         `,
         [lng, lat]
     ).then(function(data){
         const rows = data.rows
         if (rows.length){
+            const id = rows[0].id
+            const doc = rows[0].doc
             const geometry_id = rows[0].geometry_id
-            console.log(lng, lat, geometry_id)
-            res.send({geometry_id: geometry_id})
+            console.log(lng, lat, id)
+            doc.id = id
+            doc.geometry_id = geometry_id
+            res.send(doc)
         } else {
             console.log(lng, lat, undefined)
             res.status(404).send({error:'Not Found'})
