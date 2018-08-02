@@ -27,8 +27,8 @@ function map(){
         attributionControl: false,
         maxZoom: 18,
         minZoom: 7,
-        center: ([51.507222, -0.1275]),
-        zoom: 14,
+        center: ([51.5245255, -0.1338422]),
+        zoom: 16,
         doubleClickZoom: false,
     });
     
@@ -37,19 +37,24 @@ function map(){
     attr.addAttribution("Contains OS data © Crown copyright: OS Maps baselayers and building outlines. Building attribute data is © Colouring London contributors");
     attr.addTo(map);
     L.control.zoom({position: 'topright'}).addTo(map);
-    L.control.layers(baseMaps, {}, {position: 'topright'}).addTo(map);
+    L.control.layers(baseMaps, {}, {
+        position: 'topright',
+        autoZIndex: false
+    }).addTo(map);
 
     // Rendered layer
-    var outline_layer = L.tileLayer('/tiles/outline/{z}/{x}/{y}.png', {
+    var outline_layer = L.tileLayer('/tiles/date_year/{z}/{x}/{y}.png', {
         maxZoom: 20,
         minZoom: 14
     })
+    outline_layer.setZIndex(10);
     outline_layer.addTo(map);
 
     var highlight_layer = L.tileLayer('/tiles/highlight/{z}/{x}/{y}.png', {
         maxZoom: 20,
         minZoom: 14
     })
+    highlight_layer.setZIndex(20);
     var highlight_layer_added = false;
 
     // Query for building on click
