@@ -29,7 +29,9 @@ body {
 p {
     font-size: 1.1rem;
 }
-
+pre {
+    white-space: pre-wrap;
+}
 /**
  * Main Layout
  */

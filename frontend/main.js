@@ -68,13 +68,21 @@ function map(){
         }).then(function(data){
             if (data.geometry_id){
                 highlight_layer.setUrl('/tiles/highlight/{z}/{x}/{y}.png?highlight='+data.geometry_id)
+            } else {
+                map.removeLayer(highlight_layer)
+                highlight_layer_added = false
             }
             if (!highlight_layer_added && data.geometry_id){
                 highlight_layer.addTo(map);
             }
+            var preview_el = document.getElementById('building-detail');
+            if (data.error){
+                preview_el.textContent = 'Click a building to see data';
+            } else {
+                preview_el.textContent = JSON.stringify(data, ["id", "date_year", "date_source", "uprns"], 2);
+            }
         })
     })
-
 }
 
 /**
