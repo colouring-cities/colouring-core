@@ -31,7 +31,7 @@ function map(){
         zoom: 16,
         doubleClickZoom: false,
     });
-    
+
     // Controls
     var attr = L.control.attribution({prefix: ""});
     attr.addAttribution("Contains OS data © Crown copyright: OS Maps baselayers and building outlines. Building attribute data is © Colouring London contributors");
@@ -43,12 +43,39 @@ function map(){
     }).addTo(map);
 
     // Rendered layer
-    var outline_layer = L.tileLayer('/tiles/date_year/{z}/{x}/{y}.png', {
+    var data_layers = {}
+    data_layers.size_storeys = L.tileLayer('/tiles/size_storeys/{z}/{x}/{y}.png', {
         maxZoom: 20,
         minZoom: 14
     })
-    outline_layer.setZIndex(10);
-    outline_layer.addTo(map);
+    data_layers.size_storeys.setZIndex(10);
+
+    data_layers.date_year = L.tileLayer('/tiles/date_year/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        minZoom: 14
+    })
+    data_layers.date_year.setZIndex(10);
+
+    data_layers.date_year.addTo(map);
+    var active_data_layer = "date_year"
+
+    var year_el = document.querySelector('li[data-map="date_year"]')
+    year_el.addEventListener("click", function(e){
+        if (active_data_layer !== "date_year"){
+            map.removeLayer(data_layers.size_storeys)
+            data_layers.date_year.addTo(map)
+            active_data_layer = "date_year"
+        }
+    })
+    var storey_el = document.querySelector('li[data-map="size_storeys"]')
+    storey_el.addEventListener("click", function(e){
+        if (active_data_layer !== "size_storeys"){
+            map.removeLayer(data_layers.date_year)
+            data_layers.size_storeys.addTo(map)
+            active_data_layer = "size_storeys"
+        }
+    })
+
 
     var highlight_layer = L.tileLayer('/tiles/highlight/{z}/{x}/{y}.png', {
         maxZoom: 20,
@@ -79,7 +106,7 @@ function map(){
             if (data.error){
                 preview_el.textContent = 'Click a building to see data';
             } else {
-                preview_el.textContent = JSON.stringify(data, ["id", "date_year", "date_source", "uprns"], 2);
+                preview_el.textContent = JSON.stringify(data, ["id", "date_year", "date_source", "size_storeys", "uprns"], 2);
             }
         })
     })
