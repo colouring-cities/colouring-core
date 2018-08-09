@@ -44,38 +44,33 @@ function map(){
 
     // Rendered layer
     var data_layers = {}
-    data_layers.size_storeys = L.tileLayer('/tiles/size_storeys/{z}/{x}/{y}.png', {
-        maxZoom: 20,
-        minZoom: 14
-    })
-    data_layers.size_storeys.setZIndex(10);
-
-    data_layers.date_year = L.tileLayer('/tiles/date_year/{z}/{x}/{y}.png', {
-        maxZoom: 20,
-        minZoom: 14
-    })
-    data_layers.date_year.setZIndex(10);
-
-    data_layers.date_year.addTo(map);
+    var data_layer_names = ["size_storeys", "date_year"]
     var active_data_layer = "date_year"
+    var name;
+    for (var index = 0; index < data_layer_names.length; index++) {
+        name = data_layer_names[index];
 
-    var year_el = document.querySelector('li[data-map="date_year"]')
-    year_el.addEventListener("click", function(e){
-        if (active_data_layer !== "date_year"){
-            map.removeLayer(data_layers.size_storeys)
-            data_layers.date_year.addTo(map)
-            active_data_layer = "date_year"
-        }
-    })
-    var storey_el = document.querySelector('li[data-map="size_storeys"]')
-    storey_el.addEventListener("click", function(e){
-        if (active_data_layer !== "size_storeys"){
-            map.removeLayer(data_layers.date_year)
-            data_layers.size_storeys.addTo(map)
-            active_data_layer = "size_storeys"
-        }
-    })
+        data_layers[name] = L.tileLayer('/tiles/'+name+'/{z}/{x}/{y}.png', {
+            maxZoom: 20,
+            minZoom: 14
+        })
+        data_layers[name].setZIndex(10);
 
+        var el = document.querySelector('li[data-map="'+name+'"]')
+        if (!el){
+            continue;
+        }
+        el.addEventListener("click", function(e){
+            e.preventDefault();
+            var layer = e.target.dataset.map
+            if (active_data_layer !== layer){
+                map.removeLayer(data_layers[active_data_layer])
+                data_layers[layer].addTo(map)
+                active_data_layer = layer
+            }
+        })
+    }
+    data_layers[active_data_layer].addTo(map);
 
     var highlight_layer = L.tileLayer('/tiles/highlight/{z}/{x}/{y}.png', {
         maxZoom: 20,
@@ -118,7 +113,7 @@ function map(){
  * Based on example code by Christian Heilmann
  * http://christianheilmann.com/2015/04/08/keeping-it-simple-coding-a-carousel/
  */
-carousel = function(){
+function carousel(){
     var box = document.querySelector('.carousel');
     if (!box) {
         return
@@ -158,10 +153,42 @@ carousel = function(){
 }
 
 /**
+ * Intro interactions
+ */
+function intro(){
+    var welcome = document.querySelector('.welcome-float')
+    var info = document.querySelector('.info-container')
+    var links = document.querySelectorAll('a[href="maps.html"]')
+    if(!welcome || !info || !links){
+        return;
+    }
+    function from_intro_to_maps(e){
+        e.preventDefault()
+        welcome.classList.add('offscreen')
+        window.setTimeout(function(){
+            welcome.classList.add('remove')
+            info.classList.remove('offscreen')
+            window.history.pushState({}, 'Maps', 'maps.html')
+
+            for (let index = 0; index < links.length; index++) {
+                const link = links[index];
+                link.classList.add('active')
+            }
+        }, 400)
+    }
+    for (let index = 0; index < links.length; index++) {
+        const link = links[index];
+        link.addEventListener("click", from_intro_to_maps)
+    }
+
+}
+
+/**
  * "Cut the mustard" and setup page
  */
 if('querySelector' in document
    && 'addEventListener' in window) {
     carousel();
     map();
+    intro();
 }
