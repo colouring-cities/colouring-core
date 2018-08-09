@@ -10,7 +10,6 @@
 }
 html,
 body {
-    font-family: 'glacial_cl', sans-serif;
     background: #fff;
     color: #222;
     min-width: 40em; /* jumbotron */
@@ -18,7 +17,6 @@ body {
 .h2 {
     font-family: 'glacial_cl', sans-serif;
     font-weight: normal;
-    padding: 0.1em 0 0.2em;
     margin: 0;
 }
 .h3, .h4, .h5 {
@@ -55,7 +53,7 @@ main.beta {
     left: 0;
     width: 20em;
     bottom: 0;
-    padding: 1em;
+    padding: 0.25em 0.75em;
     background: #fff;
     z-index: 1000;
     overflow-y: auto;
@@ -71,39 +69,9 @@ main.beta {
 }
 
 /**
- * Legend
- */
-.maps-list {
-    list-style: none;
-    padding-left: 17px;
-}
-.maps-list li {
-    position: relative;
-}
-.maps-list li:before {
-    display: block;
-    position: absolute;
-    left: -15px;
-    top: 7px;
-    width: 10px;
-    height: 10px;
-    background-color: #000;
-    content: ' ';
-}
-.maps-list li:nth-child(1)::before {
-    background-color: #ffad00;
-}
-.maps-list li:nth-child(2)::before {
-    background-color: #72b2fe;
-}
-.maps-list li:nth-child(3)::before {
-        background-color: #e96762;
-}
-
-/**
  * Text pages
  */
-section {
+.main-col section {
     overflow: hidden;
     margin: 2.25em 0 4em;
     padding: 2em 0 4em;
@@ -174,8 +142,9 @@ hr {
     text-decoration: none;
 }
 .logo .logotype {
+    font-family: 'glacial_cl', sans-serif;
     font-size: 1em;
-    margin: 0 0 -3px 0;;
+    margin: 0 0 0 0;;
     display: inline-block;
     vertical-align: bottom;
 }
@@ -375,7 +344,7 @@ p a.btn:active {
 
 
 input {
-    font-family: 'glacial_cl', sans-serif;
+
 }
 h1, h2, h3, h4 {
     font-weight: normal;
@@ -405,40 +374,76 @@ small {
 }
 
 /**
- * Form
+ * View/edit, maps legend
+ */
+.maps-list {
+    list-style: none;
+    padding-left: 17px;
+}
+.bullet-prefix {
+    position: relative;
+    padding-left: 1.5rem;
+}
+.bullet-prefix:before {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    background-color: #7d7d7d;
+    content: ' ';
+}
+.data-section {
+}
+.data-section .h3 {
+    margin: 0;
+}
+.data-list {
+    margin: 0.5rem 0 1rem;
+    padding-left: 1.5rem;
+}
+.data-list dt,
+.data-section label {
+    margin: 0;
+    font-size: 0.8333rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #555;
+}
+.data-list dd,
+.data-list input {
+    margin: 0 0 0.5rem;
+    line-height: 1.5;
+}
+.data-list .no-data {
+    color: #999;
+}
+
+/**
+ * Forms
  */
 input[type="text"],
+input[type="number"],
 input[type="email"] {
-    display: block;
-    width: 100%;
-    border: 1px solid #222;
-    padding: 0.5em 0.25em;
-    margin: 0 0 0.5em;
+    border-color: #999;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0;
+}
+input[type="number"] {
+    padding-right: 0.25rem;
+}
+.form-check {
+    padding-left: 0;
 }
 label {
     margin: 0.5em 0 0;
 }
+.buttons-container {
+    margin-bottom: 0.75rem;
+}
 form .btn {
     margin-top: 1em;
-}
-.btn {
-    background: #cecfd3;
-    border: 0;
-    border-radius: 1em;
-    margin: 0.5em 0;
-    padding: 0.5em 1em;
-    width: 100%;
-    font-size: 1em;
-    text-align: center;
-    display: inline-block;
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-.btn:hover,
-.btn:focus,
-.btn:active {
-    background-color: #bcbec0;
 }
 .btn.btn-half {
     width: 49%;
