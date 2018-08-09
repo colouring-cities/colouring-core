@@ -22,7 +22,7 @@ function map(){
     };
 
     var map = L.map('map', {
-        layers: light,
+        layers: night,
         zoomControl: false,
         attributionControl: false,
         maxZoom: 18,
