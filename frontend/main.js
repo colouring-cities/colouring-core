@@ -26,7 +26,7 @@ function map(){
         zoomControl: false,
         attributionControl: false,
         maxZoom: 18,
-        minZoom: 7,
+        minZoom: 14,
         center: ([51.5245255, -0.1338422]),
         zoom: 16,
         doubleClickZoom: false,
