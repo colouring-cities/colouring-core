@@ -454,14 +454,20 @@ small {
     background-color: #7d7d7d;
     content: ' ';
 }
-.data-section {
-}
 .data-section .h3 {
     margin: 0;
 }
 .data-list {
     margin: 0.5rem 0 1rem;
     padding-left: 1.5rem;
+}
+.data-list a {
+    color: #555;
+}
+.data-list a:focus,
+.data-list a:active,
+.data-list a:hover {
+    color: #222;
 }
 .data-list dt,
 .data-section label {
@@ -478,6 +484,16 @@ small {
 }
 .data-list .no-data {
     color: #999;
+}
+.data-legend {
+    list-style: none;
+    padding: 0;
+}
+.data-legend .key {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    overflow: hidden;
 }
 
 /**

@@ -58,11 +58,132 @@
   <div id="map"></div>
   <div id="legend" class="info-container">
     <h2 class="h2">Maps</h2>
-    <ul class="maps-list">
-      <li class="bullet-prefix age" data-map="date_year">Year Built</li>
-      <li class="bullet-prefix size" data-map="size_storeys">Number of storeys</li>
+    <div class="data-section">
+      <h3 class="h3 bullet-prefix age">Age</h3>
+      <dl class="data-list">
+        <dt><a href="/maps/date_year" data-map="date_year">Year Built</a></dt>
+        <dd>
+          <ul class="data-legend">
+            <li>
+              <span class="key" style="background: #fcfcb8">-</span>
+              &gt;=2000
+            </li>
+            <li>
+              <span class="key" style="background: #fee9a5">-</span>
+              1980-2000
+            </li>
+            <li>
+              <span class="key" style="background: #fec580">-</span>
+              1960-1980
+            </li>
+            <li>
+              <span class="key" style="background: #ffb63c">-</span>
+              1940-1960
+            </li>
+            <li>
+              <span class="key" style="background: #ff7e3e">-</span>
+              1920-1940
+            </li>
+            <li>
+              <span class="key" style="background: #ff5353">-</span>
+              1900-1920
+            </li>
+            <li>
+              <span class="key" style="background: #df73ff">-</span>
+              1880-1900
+            </li>
+            <li>
+              <span class="key" style="background: #b81ae7">-</span>
+              1860-1880
+            </li>
+            <li>
+              <span class="key" style="background: #8400a8">-</span>
+              1840-1860
+            </li>
+            <li>
+              <span class="key" style="background: #73ffdf">-</span>
+              1820-1840
+            </li>
+            <li>
+              <span class="key" style="background: #00ffc5">-</span>
+              1800-1820
+            </li>
+            <li>
+              <span class="key" style="background: #00c5ff">-</span>
+              1780-1800
+            </li>
+            <li>
+              <span class="key" style="background: #73b2ff">-</span>
+              1760-1780
+            </li>
+            <li>
+              <span class="key" style="background: #00a9e6">-</span>
+              1740-1760
+            </li>
+            <li>
+              <span class="key" style="background: #0070ff">-</span>
+              1720-1740
+            </li>
+            <li>
+              <span class="key" style="background: #004da8">-</span>
+              1700-1720
+            </li>
+            <li>
+              <span class="key" style="background: #897044">-</span>
+              1680-1700
+            </li>
+            <li>
+              <span class="key" style="background: #894444">-</span>
+              1660-1680
+            </li>
+            <li>
+              <span class="key" style="background: #4c0073">-</span>
+              &lt;1660
+            </li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+    <div class="data-section">
+      <h3 class="h3 bullet-prefix size">Size</h3>
+      <dl class="data-list">
+        <dt><a href="/maps/size_storeys" data-map="size_storeys">Number of storeys</a></dt>
+        <dd>
+          <ul class="data-legend">
+              <li>
+                <span class="key" style="background: #ffc584">-</span>
+                &gt;20
+              </li>
+              <li>
+                <span class="key" style="background: #f46259">-</span>
+                10-20
+              </li>
+              <li>
+                <span class="key" style="background: #da456a">-</span>
+                5-10
+              </li>
+              <li>
+                <span class="key" style="background: #a8327d">-</span>
+                4
+              </li>
+              <li>
+                <span class="key" style="background: #7c2383">-</span>
+                3
+              </li>
+              <li>
+                <span class="key" style="background: #5b167f">-</span>
+                2
+              </li>
+              <li>
+                <span class="key" style="background: #360f69">-</span>
+                1
+              </li>
+
+          </ul>
+        </dd>
+      </dl>
     </ul>
-    <h3 class="h3">Building</h3>
+    <h2 class="h2">Building</h2>
     <pre id="building-detail">
 Click a building to see data.
     </pre>

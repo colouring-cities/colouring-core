@@ -56,7 +56,7 @@ function map(){
         })
         data_layers[name].setZIndex(10);
 
-        var el = document.querySelector('li[data-map="'+name+'"]')
+        var el = document.querySelector('a[data-map="'+name+'"]')
         if (!el){
             continue;
         }
@@ -84,7 +84,7 @@ function map(){
         var lat = e.latlng.lat
         var lng = e.latlng.lng
         fetch(
-            '/api/buildings?lat='+lat+'&lng='+lng
+            '/api/buildings?lat='+lat+'&lng='+lng+'&field='+active_data_layer
         ).then(function(response){
             return response.json()
         }).then(function(data){
@@ -101,7 +101,7 @@ function map(){
             if (data.error){
                 preview_el.textContent = 'Click a building to see data';
             } else {
-                preview_el.textContent = JSON.stringify(data, ["id", "date_year", "date_source", "size_storeys", "uprns"], 2);
+                preview_el.textContent = JSON.stringify(data, ["id", active_data_layer], 2);
             }
         })
     })
