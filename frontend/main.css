@@ -118,7 +118,7 @@ main.beta {
 /**
  * Text pages
  */
-.main-col section {
+article section {
     overflow: hidden;
     margin: 2.25em 0 4em;
     padding: 2em 0 4em;
@@ -390,9 +390,6 @@ p a.btn:active {
 }
 
 
-input {
-
-}
 h1, h2, h3, h4 {
     font-weight: normal;
 }
@@ -492,13 +489,16 @@ label {
 form .btn {
     margin-top: 1em;
 }
+.buttons-container.btn-center {
+    text-align: center;
+}
 .btn.btn-half {
     width: 49%;
     margin-left: 0;
     margin-right: 2%;
     min-width: 11.45em;
 }
-.btn.btn-half:nth-child(2n+1) {
+.btn.btn-half:nth-child(2n) {
     margin-right: 0;
 }
 
