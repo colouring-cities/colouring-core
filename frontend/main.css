@@ -442,9 +442,10 @@ small {
 }
 .bullet-prefix {
     position: relative;
-    padding-left: 1.5rem;
+    padding: 0rem 0.5rem 0.5rem 1.5rem;
+    cursor: pointer;
 }
-.bullet-prefix:before {
+.bullet-prefix::before {
     display: block;
     position: absolute;
     left: 0px;
@@ -453,12 +454,17 @@ small {
     height: 10px;
     background-color: #7d7d7d;
     content: ' ';
+    transition: background-color 0.2s;
+}
+.bullet-prefix:hover::before,
+.bullet-prefix.toggled-on::before {
+    background-color: #222;
 }
 .data-section .h3 {
     margin: 0;
 }
 .data-list {
-    margin: 0.5rem 0 1rem;
+    margin: 0rem 0 1rem;
     padding-left: 1.5rem;
 }
 .data-list a {

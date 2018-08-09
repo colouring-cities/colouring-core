@@ -60,8 +60,11 @@
     <h2 class="h2">Edit building data</h2>
     <form action="building-view.html" method="GET">
       <fieldset class="data-section">
-        <legend class="h3 bullet-prefix location">Location</legend>
-        <div class="data-list">
+        <legend
+            class="h3 bullet-prefix location toggled-on"
+            data-toggle="collapse"
+            data-target="#data-list-location">Location</legend>
+        <div id="data-list-location" class="data-list collapse show">
           <label for="">Building name</label>
           <input class="form-control" type="text" value="">
           <label for="">Building number</label>
@@ -77,8 +80,11 @@
         </div>
       </fieldset>
       <fieldset class="data-section">
-        <legend class="h3 bullet-prefix age">Age</legend>
-        <div class="data-list">
+        <legend
+            class="h3 bullet-prefix age"
+            data-toggle="collapse"
+            data-target="#data-list-age">Age</legend>
+        <div id="data-list-age" class="data-list collapse">
           <label for="">Year built (best estimate)</label>
           <input class="form-control" type="number" step="1" value="2018">
           <label for="">Year built (upper estimate)</label>
@@ -92,8 +98,11 @@
         </div>
       </fieldset>
       <fieldset class="data-section">
-        <legend class="h3 bullet-prefix size">Size</legend>
-        <div class="data-list">
+        <legend
+            class="h3 bullet-prefix size"
+            data-toggle="collapse"
+            data-target="#data-list-size">Size</legend>
+        <div id="data-list-size" class="data-list collapse">
           <label for="">Attic storeys</label>
           <input class="form-control" type="number" step="1" value="0">
           <label for="">Core storeys</label>
@@ -103,8 +112,11 @@
         </div>
       </fieldset>
       <fieldset class="data-section">
-        <legend class="h3 bullet-prefix like">Like Me!</legend>
-        <div class="data-list">
+        <legend
+            class="h3 bullet-prefix like"
+            data-toggle="collapse"
+            data-target="#data-list-like">Like Me!</legend>
+        <div id="data-list-like" class="data-list collapse">
           <label for="">Like this building?</label>
           <div class="form-check">
             <input class="form-check-input position-static" type="checkbox" checked>

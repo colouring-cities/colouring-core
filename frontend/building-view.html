@@ -59,8 +59,10 @@
   <div id="legend" class="info-container">
     <h2 class="h2">Building data</h2>
     <section class="data-section">
-      <h3 class="h3 bullet-prefix location">Location</h3>
-      <dl class="data-list">
+      <h3 class="h3 bullet-prefix location toggled-on"
+          data-toggle="collapse"
+          data-target="#data-list-location">Location</h3>
+      <dl id="data-list-location" class="data-list collapse show">
         <dt>Building Name</dt>
         <dd><span class="no-data">no data</span></dd>
         <dt>Building Number</dt>
@@ -76,8 +78,10 @@
       </dl>
     </section>
     <section class="data-section">
-      <h3 class="h3 bullet-prefix age">Age</h3>
-      <dl class="data-list">
+      <h3 class="h3 bullet-prefix age"
+          data-toggle="collapse"
+          data-target="#data-list-age">Age</h3>
+      <dl id="data-list-age" class="data-list collapse">
         <dt>Year built (best estimate)</dt>
         <dd>2018</dd>
         <dt>Year built (lower estimate)</dt>
@@ -91,8 +95,10 @@
       </dl>
     </section>
     <section class="data-section">
-      <h3 class="h3 bullet-prefix size">Size</h3>
-      <dl class="data-list">
+      <h3 class="h3 bullet-prefix size"
+          data-toggle="collapse"
+          data-target="#data-list-size">Size</h3>
+      <dl id="data-list-size" class="data-list collapse">
         <dt>Attic storeys</dt>
         <dd>0</dd>
         <dt>Core storeys</dt>
@@ -102,8 +108,10 @@
       </dl>
     </section>
     <section class="data-section">
-      <h3 class="h3 bullet-prefix like">Like Me!</h3>
-      <dl class="data-list">
+      <h3 class="h3 bullet-prefix like"
+          data-toggle="collapse"
+          data-target="#data-list-like">Like Me!</h3>
+      <dl id="data-list-like" class="data-list collapse">
         <dt>Likes</dt>
         <dd> 25</dd>
       </dl>

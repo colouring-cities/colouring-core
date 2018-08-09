@@ -59,9 +59,13 @@
   <div id="legend" class="info-container">
     <h2 class="h2">Maps</h2>
     <div class="data-section">
-      <h3 class="h3 bullet-prefix age">Age</h3>
-      <dl class="data-list">
-        <dt><a href="/maps/date_year" data-map="date_year">Year Built</a></dt>
+      <h3 class="h3 bullet-prefix age toggled-on"
+          data-toggle="collapse"
+          data-target="#data-list-age">Age</h3>
+      <dl id="data-list-age" class="data-list collapse show">
+        <dt>
+          <a href="/maps/date_year"
+             data-map="date_year">Year Built</a></dt>
         <dd>
           <ul class="data-legend">
             <li>
@@ -145,9 +149,13 @@
       </dl>
     </div>
     <div class="data-section">
-      <h3 class="h3 bullet-prefix size">Size</h3>
-      <dl class="data-list">
-        <dt><a href="/maps/size_storeys" data-map="size_storeys">Number of storeys</a></dt>
+      <h3 class="h3 bullet-prefix size"
+          data-toggle="collapse"
+          data-target="#data-list-size">Size</h3>
+      <dl id="data-list-size" class="data-list collapse">
+        <dt>
+          <a href="/maps/size_storeys"
+          data-map="size_storeys">Number of storeys</a></dt>
         <dd>
           <ul class="data-legend">
               <li>

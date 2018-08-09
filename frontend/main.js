@@ -153,13 +153,48 @@ function carousel(){
 }
 
 /**
+ * Expand/collapse
+ *
+ * Create a toggle with:
+ *   - data-toggle="collapse"
+ *   - data-target="<CSS-selector>"
+ * E.g.
+ *   <button data-toggle="collapse" data-target="#section1">Toggle 1<button>
+ *   <div id="section1">...</div>
+ */
+function collapse(){
+    var toggles = document.querySelectorAll('[data-toggle="collapse"]')
+    if(!toggles.length){
+        return
+    }
+    function toggle_collapse(e){
+        e.preventDefault()
+        var toggle = e.target
+        var targets = document.querySelectorAll(toggle.dataset.target)
+        for (let index = 0; index < targets.length; index++) {
+            const target = targets[index];
+            const now_showing = target.classList.toggle('show')
+            if (now_showing){
+                toggle.classList.add('toggled-on')
+            } else {
+                toggle.classList.remove('toggled-on')
+            }
+        }
+    }
+    for (let index = 0; index < toggles.length; index++) {
+        const toggle = toggles[index];
+        toggle.addEventListener("click", toggle_collapse)
+    }
+}
+
+/**
  * Intro interactions
  */
 function intro(){
     var welcome = document.querySelector('.welcome-float')
     var info = document.querySelector('.info-container')
     var links = document.querySelectorAll('a[href="maps.html"]')
-    if(!welcome || !info || !links){
+    if(!welcome || !info || !links.length){
         return;
     }
     function from_intro_to_maps(e){
@@ -191,4 +226,5 @@ if('querySelector' in document
     carousel();
     map();
     intro();
+    collapse();
 }
