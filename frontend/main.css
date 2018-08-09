@@ -530,6 +530,10 @@ form .btn {
 .buttons-container.btn-center {
     text-align: center;
 }
+.btn.btn-half {
+    width: 100%;
+    margin-bottom: 0.25rem;
+}
 @media (min-width: 768px) {
     .btn.btn-half {
         width: 49%;
