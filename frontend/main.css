@@ -56,14 +56,46 @@ main.beta {
 }
 #legend {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
-    width: 20em;
-    bottom: 0;
+    right: 0;
+    bottom: 3rem;
     padding: 0.25em 0.75em;
     background: #fff;
+    background-color: rgba(255,255,255,0.95);
     z-index: 1000;
     overflow-y: auto;
+}
+.leaflet-container .leaflet-control-attribution {
+    width: 100%;
+    height: 3rem;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.95);
+}
+.leaflet-right{
+    left: 0;
+}
+@media (min-width: 380px){
+    #legend {
+        bottom: 2rem;
+    }
+    .leaflet-container .leaflet-control-attribution {
+        height: 2rem;
+    }
+}
+@media (min-width: 768px){
+    #legend {
+        top: 0;
+        left: 0;
+        width: 20rem;
+        bottom: 0;
+    }
+    .leaflet-right{
+        left: 20rem;
+    }
+    .leaflet-container .leaflet-control-attribution {
+        height: auto;
+    }
 }
 .welcome-float {
     position: absolute;
@@ -71,6 +103,7 @@ main.beta {
     top: 0;
     width: 100%;
     border-radius: 0;
+    background: #fff;
     background-color: rgba(255,255,255,0.95);
 }
 @media (min-width: 768px){

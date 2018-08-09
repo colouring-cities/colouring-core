@@ -34,7 +34,7 @@ function map(){
 
     // Controls
     var attr = L.control.attribution({prefix: ""});
-    attr.addAttribution("Contains OS data © Crown copyright: OS Maps baselayers and building outlines. Building attribute data is © Colouring London contributors");
+    attr.addAttribution("Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. Building attribute data is © Colouring London contributors");
     attr.addTo(map);
     L.control.zoom({position: 'topright'}).addTo(map);
     L.control.layers(baseMaps, {}, {
