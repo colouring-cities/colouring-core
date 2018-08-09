@@ -530,16 +530,16 @@ form .btn {
 .buttons-container.btn-center {
     text-align: center;
 }
-.btn.btn-half {
-    width: 49%;
-    margin-left: 0;
-    margin-right: 2%;
-    min-width: 11.45em;
+@media (min-width: 768px) {
+    .btn.btn-half {
+        width: 49%;
+        margin-left: 0;
+        margin-right: 2%;
+    }
+    .btn.btn-half:nth-child(2n) {
+        margin-right: 0;
+    }
 }
-.btn.btn-half:nth-child(2n) {
-    margin-right: 0;
-}
-
 /**
  * Colours
  */
