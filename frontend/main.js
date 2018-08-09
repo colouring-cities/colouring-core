@@ -25,7 +25,7 @@ function map(){
         layers: night,
         zoomControl: false,
         attributionControl: false,
-        maxZoom: 18,
+        maxZoom: 20,
         minZoom: 14,
         center: ([51.5245255, -0.1338422]),
         zoom: 16,
