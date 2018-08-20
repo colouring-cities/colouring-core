@@ -55,97 +55,97 @@
     <Style name="date_year">
         <Rule>
             <Filter>[date_year] &gt;= 2000</Filter>
-            <PolygonSymbolizer fill="#fcfcb8" />
+            <PolygonSymbolizer fill="#f0eaba" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1980 and [date_year] &lt; 2000</Filter>
-            <PolygonSymbolizer fill="#fee9a5" />
+            <PolygonSymbolizer fill="#fae269" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1960 and [date_year] &lt; 1980</Filter>
-            <PolygonSymbolizer fill="#fec580" />
+            <PolygonSymbolizer fill="#fbaf27" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1940 and [date_year] &lt; 1960</Filter>
-            <PolygonSymbolizer fill="#ffb63c" />
+            <PolygonSymbolizer fill="#e6711d" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1920 and [date_year] &lt; 1940</Filter>
-            <PolygonSymbolizer fill="#ff7e3e" />
+            <PolygonSymbolizer fill="#d73d3a" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1900 and [date_year] &lt; 1920</Filter>
-            <PolygonSymbolizer fill="#ff5353" />
+            <PolygonSymbolizer fill="#ba221c" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1880 and [date_year] &lt; 1900</Filter>
-            <PolygonSymbolizer fill="#df73ff" />
+            <PolygonSymbolizer fill="#bb859b" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1860 and [date_year] &lt; 1880</Filter>
-            <PolygonSymbolizer fill="#b81ae7" />
+            <PolygonSymbolizer fill="#8b3654" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1840 and [date_year] &lt; 1860</Filter>
-            <PolygonSymbolizer fill="#8400a8" />
+            <PolygonSymbolizer fill="#8f5385" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1820 and [date_year] &lt; 1840</Filter>
-            <PolygonSymbolizer fill="#73ffdf" />
+            <PolygonSymbolizer fill="#56619b" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1800 and [date_year] &lt; 1820</Filter>
-            <PolygonSymbolizer fill="#00ffc5" />
+            <PolygonSymbolizer fill="#6793b2" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1780 and [date_year] &lt; 1800</Filter>
-            <PolygonSymbolizer fill="#00c5ff" />
+            <PolygonSymbolizer fill="#83c3b3" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1760 and [date_year] &lt; 1780</Filter>
-            <PolygonSymbolizer fill="#73b2ff" />
+            <PolygonSymbolizer fill="#adc88f" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1740 and [date_year] &lt; 1760</Filter>
-            <PolygonSymbolizer fill="#00a9e6" />
+            <PolygonSymbolizer fill="#83a663" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1720 and [date_year] &lt; 1740</Filter>
-            <PolygonSymbolizer fill="#0070ff" />
+            <PolygonSymbolizer fill="#77852d" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1700 and [date_year] &lt; 1720</Filter>
-            <PolygonSymbolizer fill="#004da8" />
+            <PolygonSymbolizer fill="#69814e" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1680 and [date_year] &lt; 1700</Filter>
-            <PolygonSymbolizer fill="#897044" />
+            <PolygonSymbolizer fill="#d0c291" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1660 and [date_year] &lt; 1680</Filter>
-            <PolygonSymbolizer fill="#894444" />
+            <PolygonSymbolizer fill="#918158" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
             <Filter>[date_year] &lt; 1660</Filter>
-            <PolygonSymbolizer fill="#4c0073" />
+            <PolygonSymbolizer fill="#7a5732" />
             <LineSymbolizer stroke="white" stroke-width="0.3" />
         </Rule>
         <Rule>
