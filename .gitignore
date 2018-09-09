@@ -1,7 +1,12 @@
 # Packages
 node_modules
 
-# Config, data
+# Config
 *config.json
 *.log
 ecosystem.config.js
+
+# Data
+etl/cache/*
+etl/images/*
+etl/*.geojson
