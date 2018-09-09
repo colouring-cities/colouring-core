@@ -91,8 +91,22 @@ def save_data(cur, props, data_conf, geometry_id):
 def find_geom(cur, feature, epsg_code):
     """Find a building geometry
     """
+    # match on TOID
+
+    # match on best intersection
+    wkb_hex = shape(feature['geometry']).wkb_hex
     cur.execute(
-        """SELECT geometry_id FROM geometries
+        """SELECT geometry_id,
+        ST_Area(
+            ST_Intersection(
+                ST_Transform(
+                    ST_SetSRID(%s::geometry, %s),
+                    3857
+                ),
+                geometry_geom
+            )
+        ) as intersection_area
+        FROM geometries
         WHERE
         ST_Intersects(
             ST_Transform(
@@ -101,16 +115,20 @@ def find_geom(cur, feature, epsg_code):
             ),
             geometry_geom
         )
+        ORDER BY intersection_area DESC
         """, (
-            shape(feature['geometry']).wkb_hex,
+            wkb_hex,
+            epsg_code,
+            wkb_hex,
             epsg_code
         )
     )
-    result = cur.fetchone()
-    if result is not None:
-        return result[0]
+    results = cur.fetchall()
+    if results:
+        # print(feature['properties']['fid'], "matched", len(results))
+        return results[0]
     else:
-        return result
+        return results
 
 
 def update_from_props(doc, props, mapping):
