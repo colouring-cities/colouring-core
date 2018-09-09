@@ -51,7 +51,7 @@ app.get('/buildings', function(req, res){
     })
 })
 
-app.post('/user', function(req, res){
+app.post('/register', function(req, res){
     db.query(
         `INSERT
         INTO users (
@@ -63,20 +63,28 @@ app.post('/user', function(req, res){
             gen_random_uuid(),
             %s,
             %s,
-            crypt(%s, gen_salt('bf')); -- hash (max password input length is 72)
+            crypt(%s, gen_salt('bf')) -- hash (max password input length is 72)
         )
-        `
+        `,
+        username,
+        email,
+        password
     )
 })
 
-app.get('/user', function(req, res){
+app.get('/login', function(req, res){
     db.query(
         `SELECT
+            user_id,
             (
-                hash = crypt(%s, pass)
-            ) AS authenticated
-        FROM;
-        `
+                pass = crypt(%s, pass)
+            ) AS auth_ok
+        FROM users
+        WHERE
+        username = %s
+        `,
+        password,
+        username
     )
 })
 
