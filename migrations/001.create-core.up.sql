@@ -44,13 +44,27 @@ CREATE TABLE users (
     -- username for login (required)
     username varchar(30) UNIQUE NOT NULL,
     -- email address for password reset (optional)
-    email varchar(50),
+    email varchar(50) UNIQUE,
     -- password - as generated from hash(salt+password) via pgcrypto
-    pass varchar(60)
+    pass varchar(60),
+    -- date registered
+    registered timestamp default NOW()
 );
 
 CREATE INDEX user_username_idx ON users ( username );
 CREATE INDEX user_email_idx ON users ( email );
+
+--
+-- User session table
+--
+--
+CREATE TABLE user_sessions (
+    sid varchar PRIMARY KEY,
+    sess json NOT NULL,
+    expire timestamp(6) NOT NULL
+);
+
+CREATE INDEX user_sessions_expire_idx on user_sessions ( expire );
 
 --
 -- Log table
