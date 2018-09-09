@@ -5,6 +5,11 @@
         doc: {source_id: <toid>},
         geom: <geom-wkb_hex>
     }
+  - create corresponding 'building' record with {
+        id: <building-guid>,
+        doc: {},
+        geom_id: <polygon-guid>
+    }
 """
 import glob
 import json
@@ -55,12 +60,30 @@ def save_feature(cur, feature):
             %s::jsonb,
             ST_SetSRID(%s::geometry, %s)
         )
+        RETURNING geometry_id
         """, (
             json.dumps({
                 'source_id': feature['properties']['fid']
             }),
             shape(feature['geometry']).wkb_hex,
             3857
+        )
+    )
+    geom_id, = cur.fetchone()
+    cur.execute(
+        """INSERT INTO buildings
+        (
+            building_doc,
+            geometry_id
+        )
+        VALUES
+        (
+            %s::jsonb,
+            %s
+        )
+        """, (
+            json.dumps({}),
+            geom_id
         )
     )
 
