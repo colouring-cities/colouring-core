@@ -1,0 +1,5 @@
+# Python packages for etl
+fiona==1.7.13
+osmnx==0.8.1
+psycopg2==2.7.5
+shapely==1.6.4
