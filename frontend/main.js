@@ -2,46 +2,6 @@
  * Background map
  */
 function map(){
-    var OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
-
-    var light = L.tileLayer('https://api2.ordnancesurvey.co.uk/mapping_api/v1/service/zxy/{tilematrixSet}/{layer}/{z}/{x}/{y}.png?key={key}', {
-        key: OS_API_KEY,
-        tilematrixSet: 'EPSG:3857',
-        layer: 'Light 3857'
-    });
-
-    var night = L.tileLayer('https://api2.ordnancesurvey.co.uk/mapping_api/v1/service/zxy/{tilematrixSet}/{layer}/{z}/{x}/{y}.png?key={key}', {
-        key: OS_API_KEY,
-        tilematrixSet: 'EPSG:3857',
-        layer: 'Night 3857'
-    });
-
-    var baseMaps = {
-        "Light": light,
-        "Dark": night
-    };
-
-    var map = L.map('map', {
-        layers: night,
-        zoomControl: false,
-        attributionControl: false,
-        maxZoom: 20,
-        minZoom: 14,
-        center: ([51.5245255, -0.1338422]),
-        zoom: 16,
-        doubleClickZoom: false,
-    });
-
-    // Controls
-    var attr = L.control.attribution({prefix: ""});
-    attr.addAttribution("Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. Building attribute data is © Colouring London contributors");
-    attr.addTo(map);
-    L.control.zoom({position: 'topright'}).addTo(map);
-    L.control.layers(baseMaps, {}, {
-        position: 'topright',
-        autoZIndex: false
-    }).addTo(map);
-
     // Rendered layer
     var data_layers = {}
     var data_layer_names = ["size_storeys", "date_year"]
