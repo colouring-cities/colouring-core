@@ -1,5 +1,6 @@
 """Download and load a small open dataset for testing
 """
+# -*- coding: utf-8 -*-
 import os
 import osmnx
 
@@ -15,16 +16,15 @@ dist = 612
 gdf = osmnx.buildings_from_point(point=point, distance=dist)
 
 # preview image
-gdf_proj = osmnx.project_gdf(gdf)
-bbox = osmnx.bbox_from_point(point=point, distance=dist, project_utm=True)
+gdf_proj = osmnx.project_gdf(gdf, to_crs={'init': 'epsg:3857'})
 fig, ax = osmnx.plot_buildings(gdf_proj, bgcolor='#333333', color='w', figsize=(4,4),
-                               bbox=bbox, save=True, show=False, close=True,
-                               filename='test_buildings_preview', dpi=90)
+                               save=True, show=False, close=True,
+                               filename='test_buildings_preview', dpi=600)
 
 # save as geojson
 test_data_file = os.path.join(os.path.dirname(__file__), 'test_buildings.geojson')
 
-gdf_to_save = gdf.reset_index(
+gdf_to_save = gdf_proj.reset_index(
 )[
     ['index', 'geometry']
 ]
