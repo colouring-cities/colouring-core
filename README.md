@@ -18,8 +18,8 @@ This repository will contain open-source code for the project which:
 - allows site visitors to download the collected building attribute data
 
 Building attribute data collected as part of the project will be made available
-for download under a liberal open data license (
-[ODbL](https://opendatacommons.org/licenses/odbl/1.0/)).
+for download under a liberal open data license
+([ODbL](https://opendatacommons.org/licenses/odbl/1.0/)).
 
 ## Setup and run
 
