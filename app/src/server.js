@@ -3,6 +3,7 @@ import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
 import serialize from 'serialize-javascript';
+import pathToRegexp from 'path-to-regexp';
 
 const bodyParser = require('body-parser')
 const session = require('express-session')
@@ -37,6 +38,7 @@ const sess = {
     tableName : 'user_sessions'
   }),
   secret: process.env.APP_COOKIE_SECRET,
+  saveUninitialized: false,
   resave: false,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 };
@@ -53,25 +55,34 @@ server.get('/*.html', frontendRoute);
 server.get('/', frontendRoute);
 
 function frontendRoute(req, res) {
-    const context = {};
     const data = {};
+    var re = pathToRegexp('/buildings/:building.html')
+    var matches = re.exec(req.url)
+
+    var building_id = undefined;
+    if (matches && matches.length === 2) {
+        building_id = matches[1]
+    }
+    console.log(`Building: ${building_id}`)
+
     if (req.session.user_id) {
         getUserById(req.session.user_id).then(function(user){
             data.user = user;
-            console.log(user);
-            renderHTML(context, data, req, res)
+            renderHTML(data, req, res)
         }).catch(function(){
-            renderHTML(context, data, req, res);
+            renderHTML(data, req, res);
         });
     } else {
-        renderHTML(context, data, req, res);
+        // getBuildingById() TODO load data server-side
+        renderHTML(data, req, res);
     }
 }
 
-function renderHTML(context, data, req, res){
+function renderHTML(data, req, res){
+    const context = {};
     const markup = renderToString(
       <StaticRouter context={context} location={req.url}>
-        <App user={data.user} />
+        <App user={data.user} building={data.building} />
       </StaticRouter>
     );
 
@@ -122,7 +133,7 @@ server.use('/tiles', tileserver);
 
 
 // GET building at point
-server.get('/buildings', function(req, res){
+server.get('/buildings.json', function(req, res){
   const { lng, lat } = req.query
   queryBuildingAtPoint(lng, lat).then(function(result){
       if (result) {
