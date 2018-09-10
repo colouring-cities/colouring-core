@@ -23,16 +23,18 @@ class ColouringMap extends Component {
         const layer = 'Night 3857'  // alternatively 'Light 3857'
         const url = `https://api2.ordnancesurvey.co.uk/mapping_api/v1/service/zxy/${tilematrixSet}/${layer}/{z}/{x}/{y}.png?key=${key}`
         const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines.'
+        const outline = '/tiles/outline/{z}/{x}/{y}.png'
         return (
             <Map
                 center={position}
                 zoom={this.state.zoom}
-                minZoom={12}
+                minZoom={10}
                 maxZoom={18}
                 doubleClickZoom={false}
                 zoomControl={false}
                 attributionControl={false}>
-                <TileLayer url={url} attribution={attribution}/>
+                <TileLayer url={url} attribution={attribution} />
+                <TileLayer url={outline} />
                 <ZoomControl position="topright" />
                 <AttributionControl prefix="" />
             </Map>

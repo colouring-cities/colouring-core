@@ -12,6 +12,7 @@ import App from './frontend/app';
 import { pool } from './db';
 import { authUser, createUser, getUserById } from './user';
 import { queryBuildingAtPoint } from './building';
+import tileserver from './tileserver';
 
 // create server
 const server = express();
@@ -115,6 +116,9 @@ function renderHTML(context, data, req, res){
       );
     }
 }
+
+// GET tiles
+server.use('/tiles', tileserver);
 
 
 // GET building at point
