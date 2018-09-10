@@ -8,6 +8,7 @@ import Login from './login';
 import ColouringMap from './map';
 import SignUp from './signup';
 import Welcome from './welcome';
+import Legend from './legend';
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './main.css'
@@ -37,21 +38,32 @@ class App extends React.Component {
                 <BetaBanner />
                 <Header user={this.state.user} />
                 <main className="beta">
-                <Switch>
-                    <Route exact path="/" component={Welcome} />
-                    <Route exact path="/about.html" component={AboutPage} />
-                    <Route exact path="/maps.html" component={ColouringMap} />
-                    <Route exact path="/login.html">
-                        <Login user={this.state.user} login={this.login} />
-                    </Route>
-                    <Route exact path="/sign-up.html">
-                        <SignUp user={this.state.user} login={this.login} />
-                    </Route>
-                    <Route exact path="/my-account.html">
-                        <MyAccountPage user={this.state.user} logout={this.logout} />
-                    </Route>
-                    <Route component={NotFound} />
-                </Switch>
+                    <Switch>
+                        <Route exact path="/(maps.html)?">
+                            <Fragment>
+                                <Switch>
+                                    <Route exact path="/">
+                                        <Welcome />
+                                    </Route>
+                                    <Route exact path="/maps.html">
+                                        <Legend />
+                                    </Route>
+                                </Switch>
+                                <ColouringMap />
+                            </Fragment>
+                        </Route>
+                        <Route exact path="/about.html" component={AboutPage} />
+                        <Route exact path="/login.html">
+                            <Login user={this.state.user} login={this.login} />
+                        </Route>
+                        <Route exact path="/sign-up.html">
+                            <SignUp user={this.state.user} login={this.login} />
+                        </Route>
+                        <Route exact path="/my-account.html">
+                            <MyAccountPage user={this.state.user} logout={this.logout} />
+                        </Route>
+                        <Route component={NotFound} />
+                    </Switch>
                 </main>
             </Fragment>
         );
