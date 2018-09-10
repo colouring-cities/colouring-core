@@ -26,7 +26,7 @@ class ColouringMap extends Component {
         var lat = e.latlng.lat
         var lng = e.latlng.lng
         fetch(
-            '/buildings?lat='+lat+'&lng='+lng+'&field=' // +active_data_layer
+            '/buildings?lat='+lat+'&lng='+lng
         ).then(
             (res) => res.json()
         ).then(function(data){
@@ -36,27 +36,31 @@ class ColouringMap extends Component {
             } else {
                 this.setState({highlight: undefined});
             }
-            // var preview_el = document.getElementById('building-detail');
-            // if (data.error){
-            //     preview_el.textContent = 'Click a building to see data';
-            // } else {
-            //     preview_el.textContent = JSON.stringify(data, ["id", active_data_layer], 2);
-            // }
         }.bind(this))
     }
 
     render() {
+
+        var data_layer = undefined;
+        if (this.props.match && this.props.match.params && this.props.match.params[1]) {
+            data_layer = this.props.match.params[1].replace("/", "");
+        } else {
+            data_layer = 'outline';
+        }
+
         const position = [this.state.lat, this.state.lng];
         const key = OS_API_KEY
         const tilematrixSet = 'EPSG:3857'
-        const layer = 'Night 3857'  // alternatively 'Light 3857'
+        const layer = 'Light 3857'  // alternatively 'Night 3857'
         const url = `https://api2.ordnancesurvey.co.uk/mapping_api/v1/service/zxy/${tilematrixSet}/${layer}/{z}/{x}/{y}.png?key=${key}`
         const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines.'
-        const outline = '/tiles/outline/{z}/{x}/{y}.png'
+
+        const colour = `/tiles/${data_layer}/{z}/{x}/{y}.png`;
         const highlight = `/tiles/highlight/{z}/{x}/{y}.png?highlight=${this.state.highlight}`
         const highlightLayer = this.state.highlight ? (
             <TileLayer key={this.state.highlight} url={highlight} />
         ) : null;
+
         return (
             <Map
                 center={position}
@@ -69,7 +73,7 @@ class ColouringMap extends Component {
                 onClick={this.handleClick}
                 >
                 <TileLayer url={url} attribution={attribution} />
-                <TileLayer url={outline} />
+                <TileLayer url={colour} />
                 { highlightLayer }
                 <ZoomControl position="topright" />
                 <AttributionControl prefix="" />

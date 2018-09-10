@@ -39,17 +39,17 @@ class App extends React.Component {
                 <Header user={this.state.user} />
                 <main className="beta">
                     <Switch>
-                        <Route path="/(maps)?(/:map.html)?">
+                        <Route path="/(maps)?(/\w+)?(.html)?" render={props => (
                             <Fragment>
                                 <Switch>
                                     <Route exact path="/">
                                         <Welcome />
                                     </Route>
-                                    <Route path="/maps/:map.html" component={Legend} />
+                                    <Route exact path="/maps/:map.html" component={Legend} />
                                 </Switch>
-                                <ColouringMap />
+                                <ColouringMap {...props} />
                             </Fragment>
-                        </Route>
+                        ) } />
                         <Route exact path="/about.html" component={AboutPage} />
                         <Route exact path="/login.html">
                             <Login user={this.state.user} login={this.login} />
