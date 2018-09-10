@@ -7,6 +7,7 @@
     </Style>
     <Style name="highlight">
         <Rule>
+            <PolygonSymbolizer fill="#4682B455" />
             <LineSymbolizer stroke="white" stroke-width="3" />
         </Rule>
     </Style>
