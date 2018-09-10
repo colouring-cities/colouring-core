@@ -213,7 +213,7 @@ const AboutPage = () => (
 
     <form id="sign-up" action="https://tinyletter.com/colouringlondon" method="post"
           target="popupwindow"
-          onsubmit="window.open(
+          onSubmit="window.open(
                     'https://tinyletter.com/colouringlondon',
                     'popupwindow',
                     'scrollbars=yes,width=800,height=600'); return true">
@@ -226,7 +226,7 @@ const AboutPage = () => (
         target="_blank" rel="noopener noreferrer">newsletter archive</a>.
 
         </p>
-        <label for="tlemail">Enter your email address:</label>
+        <label htmlFor="tlemail">Enter your email address:</label>
         <input className="form-control" type="email" name="email" id="tlemail" placeholder="name@example.com" />
         <input type="hidden" value="1" name="embed"/>
         <small className="form-text text-muted">

@@ -39,15 +39,13 @@ class App extends React.Component {
                 <Header user={this.state.user} />
                 <main className="beta">
                     <Switch>
-                        <Route exact path="/(maps.html)?">
+                        <Route path="/(maps)?(/:map.html)?">
                             <Fragment>
                                 <Switch>
                                     <Route exact path="/">
                                         <Welcome />
                                     </Route>
-                                    <Route exact path="/maps.html">
-                                        <Legend />
-                                    </Route>
+                                    <Route path="/maps/:map.html" component={Legend} />
                                 </Switch>
                                 <ColouringMap />
                             </Fragment>
