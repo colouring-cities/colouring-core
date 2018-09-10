@@ -3,33 +3,43 @@ import { Route, Switch } from 'react-router-dom';
 
 import AboutPage from './about';
 import BetaBanner from './beta-banner';
-import Header from './header';
-import Login from './login';
+import BuildingEdit from './building-edit';
+import BuildingView from './building-view';
 import ColouringMap from './map';
+import Header from './header';
+import Legend from './legend';
+import Login from './login';
+import MyAccountPage from './my-account';
 import SignUp from './signup';
 import Welcome from './welcome';
-import Legend from './legend';
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './main.css'
-import MyAccountPage from './my-account';
 
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { user: props.user };
+        this.state = {
+            user: props.user,
+            building: props.building,
+        };
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
+        this.selectBuilding = this.selectBuilding.bind(this);
     }
 
     login(user) {
-        console.log(user)
         this.setState({user: user});
     }
 
-    logout(user) {
+    logout() {
         this.setState({user: undefined});
+    }
+
+    selectBuilding(building) {
+        console.log(building)
+        this.setState({building: building})
     }
 
     render() {
@@ -39,15 +49,23 @@ class App extends React.Component {
                 <Header user={this.state.user} />
                 <main className="beta">
                     <Switch>
-                        <Route path="/(maps)?(/\w+)?(.html)?" render={props => (
+                        <Route path="/(map|building)?(/\w+)?(.html)?" render={props => (
                             <Fragment>
                                 <Switch>
                                     <Route exact path="/">
                                         <Welcome />
                                     </Route>
-                                    <Route exact path="/maps/:map.html" component={Legend} />
+                                    <Route exact path="/map/:map.html" component={Legend} />
+                                    <Route exact path="/building/:building.html">
+                                        <BuildingView {...this.state.building} />
+                                    </Route>
+                                    <Route exact path="/building/:building/edit.html">
+                                        <BuildingEdit {...this.state.building} />
+                                    </Route>
                                 </Switch>
-                                <ColouringMap {...props} />
+                                <ColouringMap {...props}
+                                              building={this.state.building}
+                                              selectBuilding={this.selectBuilding} />
                             </Fragment>
                         ) } />
                         <Route exact path="/about.html" component={AboutPage} />

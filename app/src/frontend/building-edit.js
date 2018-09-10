@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const BuildingEdit = () => (
+const BuildingEdit = (props) => (
   <div id="legend" className="info-container">
     <h2 className="h2">Edit building data</h2>
     <form action="building-view.html" method="GET">
@@ -10,17 +11,17 @@ const BuildingEdit = () => (
                 data-toggle="collapse"
                 data-target="#data-list-location">Location</legend>
             <div id="data-list-location" className="data-list collapse show">
-                <label for="">Building name</label>
+                <label htmlFor="">Building name</label>
                 <input className="form-control" type="text" value="" />
-                <label for="">Building number</label>
+                <label htmlFor="">Building number</label>
                 <input className="form-control" type="text" value="" />
-                <label for="">Street</label>
+                <label htmlFor="">Street</label>
                 <input className="form-control" type="text" value="" />
-                <label for="">Address line 2</label>
+                <label htmlFor="">Address line 2</label>
                 <input className="form-control" type="text" value="" />
-                <label for="">Town</label>
+                <label htmlFor="">Town</label>
                 <input className="form-control" type="text" value="" />
-                <label for="">Postcode</label>
+                <label htmlFor="">Postcode</label>
                 <input className="form-control" type="text" value="" />
             </div>
         </fieldset>
@@ -30,15 +31,15 @@ const BuildingEdit = () => (
                 data-toggle="collapse"
                 data-target="#data-list-age">Age</legend>
             <div id="data-list-age" className="data-list collapse">
-                <label for="">Year built (best estimate)</label>
+                <label htmlFor="">Year built (best estimate)</label>
                 <input className="form-control" type="number" step="1" value="2018" />
-                <label for="">Year built (upper estimate)</label>
+                <label htmlFor="">Year built (upper estimate)</label>
                 <input className="form-control" type="number" step="1" value="2018" />
-                <label for="">Year built (lower estimate)</label>
+                <label htmlFor="">Year built (lower estimate)</label>
                 <input className="form-control" type="number" step="1" value="2018" />
-                <label for="">Facade date</label>
+                <label htmlFor="">Facade date</label>
                 <input className="form-control" type="number" step="1" value="" />
-                <label for="">Source</label>
+                <label htmlFor="">Source</label>
                 <input className="form-control" type="text" />
             </div>
         </fieldset>
@@ -48,11 +49,11 @@ const BuildingEdit = () => (
                 data-toggle="collapse"
                 data-target="#data-list-size">Size</legend>
             <div id="data-list-size" className="data-list collapse">
-                <label for="">Attic storeys</label>
+                <label htmlFor="">Attic storeys</label>
                 <input className="form-control" type="number" step="1" value="0" />
-                <label for="">Core storeys</label>
+                <label htmlFor="">Core storeys</label>
                 <input className="form-control" type="number" step="1" value="3" />
-                <label for="">Basement storeys</label>
+                <label htmlFor="">Basement storeys</label>
                 <input className="form-control" type="number" step="1" value="1" />
             </div>
         </fieldset>
@@ -62,14 +63,14 @@ const BuildingEdit = () => (
                 data-toggle="collapse"
                 data-target="#data-list-like">Like Me!</legend>
             <div id="data-list-like" className="data-list collapse">
-                <label for="">Like this building?</label>
+                <label htmlFor="">Like this building?</label>
                 <div className="form-check">
                 <input className="form-check-input position-static" type="checkbox" checked />
                 </div>
             </div>
         </fieldset>
         <div className="buttons-container">
-            <a href="/building/id" className="btn btn-secondary">Cancel</a>
+            <Link to={`/building/${props.id}.html`} className="btn btn-secondary">Cancel</Link>
             <button type="submit" className="btn btn-primary">Save</button>
         </div>
     </form>

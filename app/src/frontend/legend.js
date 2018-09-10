@@ -64,7 +64,7 @@ const LegendItem = (props) => (
 const LegendSection = (props) => (
     <Fragment>
         <dt>
-            <Link to={`/maps/${ props.slug }.html`}>{ props.label }</Link>
+            <Link to={`/map/${ props.slug }.html`}>{ props.label }</Link>
         </dt>
         <dd>
             <ul className="data-legend">
@@ -76,7 +76,7 @@ const LegendSection = (props) => (
 
 const LegendGroup = (props) => (
     <div className="data-section">
-        <Link to={`/maps/${ props.slug }.html`}>
+        <Link to={`/map/${ props.slug }.html`}>
             <h3 className={`h3 bullet-prefix ${ props.slug }`}>{ props.label }</h3>
         </Link>
         <dl className="data-list">
@@ -97,15 +97,15 @@ class Legend extends Component {
                 <h2 className="h2">Maps</h2>
                 {
                     data_map.map((data_group) => (
-                        <LegendGroup {...data_group}>
+                        <LegendGroup {...data_group} key={data_group.slug}>
                             {
                                 ( data_layer.match(data_group.slug) )
                                 ? data_group.elements.map((data_section) => (
-                                    <LegendSection {...data_section}>
+                                    <LegendSection {...data_section} key={data_section.slug}>
                                         {
                                             ( data_layer.match(data_section.slug) )
                                             ? data_section.elements.map((data_item) => (
-                                                <LegendItem {...data_item} />
+                                                <LegendItem {...data_item} key={data_item.color} />
                                             ))
                                             : null
                                         }

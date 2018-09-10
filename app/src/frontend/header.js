@@ -15,7 +15,7 @@ function Header(props) {
                     <Logo />
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <NavLink to="/maps/date_year.html" className="nav-link">View Maps</NavLink>
+                            <NavLink to="/map/date_year.html" className="nav-link">View Maps</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/about.html" className="nav-link">About</NavLink>
@@ -34,7 +34,7 @@ function Header(props) {
                     <Logo />
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <NavLink to="/maps.html" className="nav-link">View Maps</NavLink>
+                            <NavLink to="/map/date_year.html" className="nav-link">View Maps</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/about.html" className="nav-link">About</NavLink>

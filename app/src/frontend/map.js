@@ -16,8 +16,7 @@ class ColouringMap extends Component {
         this.state = {
             lat: 51.5245255,
             lng: -0.1338422,
-            zoom: 16,
-            highlight: undefined
+            zoom: 16
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -26,26 +25,34 @@ class ColouringMap extends Component {
         var lat = e.latlng.lat
         var lng = e.latlng.lng
         fetch(
-            '/buildings?lat='+lat+'&lng='+lng
+            '/buildings.json?lat='+lat+'&lng='+lng
         ).then(
             (res) => res.json()
         ).then(function(data){
-            console.log(data)
-            if (data.geometry_id){
-                this.setState({highlight: data.geometry_id});
+            if (data.geometry_id && data.id){
+                this.props.history.push(`/building/${data.id}.html`);
+                this.props.selectBuilding(data);
             } else {
-                this.setState({highlight: undefined});
+                // this.props.selectBuilding(undefined);
             }
-        }.bind(this))
+        }.bind(this)).catch(
+            (err) => console.error(err)
+        )
     }
 
     render() {
+        var map_type = undefined;
+        if (this.props.match && this.props.match.params && this.props.match.params[0]) {
+            map_type = this.props.match.params[0].replace("/", "");
+        } else {
+            map_type = 'maps';
+        }
 
         var data_layer = undefined;
         if (this.props.match && this.props.match.params && this.props.match.params[1]) {
             data_layer = this.props.match.params[1].replace("/", "");
         } else {
-            data_layer = 'outline';
+            data_layer = 'date_year';
         }
 
         const position = [this.state.lat, this.state.lng];
@@ -56,9 +63,11 @@ class ColouringMap extends Component {
         const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines.'
 
         const colour = `/tiles/${data_layer}/{z}/{x}/{y}.png`;
-        const highlight = `/tiles/highlight/{z}/{x}/{y}.png?highlight=${this.state.highlight}`
-        const highlightLayer = this.state.highlight ? (
-            <TileLayer key={this.state.highlight} url={highlight} />
+
+        const geometry_id = (this.props.building) ? this.props.building.geometry_id : undefined;
+        const highlight = `/tiles/highlight/{z}/{x}/{y}.png?highlight=${geometry_id}`
+        const highlightLayer = this.props.building ? (
+            <TileLayer key={data_layer} url={highlight} />
         ) : null;
 
         return (
