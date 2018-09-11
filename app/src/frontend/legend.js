@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
+import Sidebar from './sidebar';
+
 const data_map = [
     {
         slug: 'date_year',
@@ -93,8 +95,7 @@ class Legend extends Component {
         }
 
         return (
-            <div id="legend" className="info-container">
-                <h2 className="h2">Maps</h2>
+            <Sidebar title="Maps">
                 {
                     data_map.map((data_group) => (
                         <LegendGroup {...data_group} key={data_group.slug}>
@@ -116,7 +117,7 @@ class Legend extends Component {
                         </LegendGroup>
                     ))
                 }
-            </div>
+            </Sidebar>
         );
     }
 }

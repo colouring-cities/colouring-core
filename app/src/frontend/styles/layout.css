@@ -1,0 +1,42 @@
+
+/**
+ * Main Layout
+ */
+ main.beta {
+    position: relative;
+    min-height: 35rem;
+}
+@media (min-width: 768px){
+    main.beta {
+        position: absolute;
+        top: 117px; /* 32px banner + 82px header + 3px border */
+        bottom: 0;
+        left: 0;
+        right: 0;
+        min-height: auto;
+    }
+}
+
+/**
+ * Text pages
+ */
+article section {
+    overflow: hidden;
+    margin: 2.25em 0 4em;
+    padding: 2em 0 4em;
+}
+.main-col {
+    max-width: 40em;
+    margin: 0 auto;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    background: #000;
+    width: 100%;
+    margin: 2em 0;
+    padding: 0;
+}

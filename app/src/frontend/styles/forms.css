@@ -1,0 +1,48 @@
+/**
+ * Forms
+ */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"] {
+    border-color: #999;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0;
+}
+input[type="number"] {
+    padding-right: 0.25rem;
+}
+.form-check {
+    padding-left: 0;
+}
+label {
+    margin: 0.5em 0 0;
+}
+.buttons-container {
+    margin-bottom: 0.75rem;
+}
+.buttons-container .btn {
+    margin-bottom: 0.25rem;
+    margin-right: 0.25rem;
+}
+form .btn {
+    margin-top: 1em;
+}
+.buttons-container.btn-center {
+    margin-right: 0;
+    text-align: center;
+}
+.btn.btn-half {
+    width: 100%;
+    margin-bottom: 0.25rem;
+}
+@media (min-width: 768px) {
+    .btn.btn-half {
+        width: 49%;
+        margin-left: 0;
+        margin-right: 2%;
+    }
+    .btn.btn-half:nth-child(2n) {
+        margin-right: 0;
+    }
+}
