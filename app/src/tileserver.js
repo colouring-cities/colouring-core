@@ -25,8 +25,18 @@ router.get('/highlight/:z/:x/:y.png', function(req, res) {
     if(!geometry_id) res.status(400).send({error:'Bad parameter'})
     const bbox = get_bbox(req.params)
     const table_def = `(
-        select * from geometries
-        where geometry_id = ${geometry_id}
+        SELECT
+            (g.geometry_id = ${geometry_id}) as focus,
+            cast(
+                b.building_doc->>'location_number'
+                as text
+            ) as location_number,
+            g.geometry_geom
+        FROM
+            geometries as g,
+            buildings as b
+        WHERE
+            g.geometry_id = b.geometry_id
     ) as highlight`
     const style_def = ['highlight']
     render_tile(bbox, table_def, style_def, function(err, im) {

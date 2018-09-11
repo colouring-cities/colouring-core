@@ -7,8 +7,19 @@
     </Style>
     <Style name="highlight">
         <Rule>
-            <PolygonSymbolizer fill="#4682B455" />
+            <Filter>[focus] = true</Filter>
+            <LineSymbolizer stroke="black" stroke-width="5" stroke-opacity="0.5" />
             <LineSymbolizer stroke="white" stroke-width="3" />
+            <TextSymbolizer face-name="DejaVu Sans Condensed Bold">
+                [location_number]
+            </TextSymbolizer>
+        </Rule>
+        <Rule>
+            <ElseFilter />
+            <LineSymbolizer stroke="black" stroke-width="0.3" />
+            <TextSymbolizer face-name="DejaVu Sans Condensed Bold">
+                [location_number]
+            </TextSymbolizer>
         </Rule>
     </Style>
     <Style name="size_storeys">

@@ -21,7 +21,7 @@ const PROJ4_STRING = '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x
 
 // register datasource adapters for mapnik
 if (mapnik.register_default_input_plugins) mapnik.register_default_input_plugins();
-
+mapnik.register_default_fonts();
 
 const mercator = new SphericalMercator({
     size: TILE_SIZE
