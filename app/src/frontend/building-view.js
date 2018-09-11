@@ -1,15 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import Sidebar from './sidebar';
+import Tooltip from './tooltip';
+
 const BuildingView = (props) => (
-    <div id="legend" className="info-container">
-        <h2 className="h2">Building data</h2>
+    <Sidebar title="Building data">
         <section className="data-section">
-            <h3 className="h3 bullet-prefix location toggled-on"
-                data-toggle="collapse"
-                data-target="#data-list-location">
-                Location
-            </h3>
+            <h3 className="h3 bullet-prefix location">Location</h3>
             <p className="data-intro">
 
                 Section introduction of up to roughly 100 characters will take
@@ -18,78 +16,61 @@ const BuildingView = (props) => (
                 <a href="#">Read more</a>.
             </p>
             <dl id="data-list-location" className="data-list collapse show">
-            <dt>
-                Building Name
-
-                <span className="tooltip-hook" data-toggle="tooltip">
-                    ?
-                    <div className="tooltip bs-tooltip-bottom">
-                        <div className="arrow"></div>
-                        <div className="tooltip-inner">
-
-                        Hint tooltip content should be ~40 chars.
-
-                        </div>
-                    </div>
-                </span>
-            </dt>
-            <dd><span className="no-data">no data</span></dd>
-            <dt>Building Number</dt>
-            <dd><span className="no-data">no data</span></dd>
-            <dt>Street</dt>
-            <dd><span className="no-data">no data</span></dd>
-            <dt>Address line 2</dt>
-            <dd><span className="no-data">no data</span></dd>
-            <dt>Town</dt>
-            <dd><span className="no-data">no data</span></dd>
-            <dt>Postcode</dt>
-            <dd><span className="no-data">no data</span></dd>
+                <dt>
+                    Building Name
+                    <Tooltip text="Hint tooltip content should be ~40 chars." />
+                </dt>
+                <dd>{props.location_name ? props.location_name : '-'}</dd>
+                <dt>Building Number</dt>
+                <dd>{props.location_number ? props.location_number : '-'}</dd>
+                <dt>Street</dt>
+                <dd>{props.location_street ? props.location_street : '-'}</dd>
+                <dt>Address line 2</dt>
+                <dd>{props.location_line_two ? props.location_line_two : '-'}</dd>
+                <dt>Town</dt>
+                <dd>{props.location_town ? props.location_town : '-'}</dd>
+                <dt>Postcode</dt>
+                <dd>{props.location_postcode ? props.location_postcode : '-'}</dd>
             </dl>
         </section>
         <section className="data-section">
-            <h3 className="h3 bullet-prefix age"
-                data-toggle="collapse"
-                data-target="#data-list-age">Age</h3>
-            <dl id="data-list-age" className="data-list collapse">
-            <dt>Year built (best estimate)</dt>
-            <dd>2018</dd>
-            <dt>Year built (lower estimate)</dt>
-            <dd>2018</dd>
-            <dt>Year built (upper estimate)</dt>
-            <dd>2018</dd>
-            <dt>Date Source</dt>
-            <dd>Pevsner</dd>
-            <dt>Facade date</dt>
-            <dd>2018</dd>
+            <h3 className="h3 bullet-prefix age">Age</h3>
+            <dl className="data-list">
+                <dt>Year built (best estimate)</dt>
+                <dd>{props.date_year? props.date_year : '-'}</dd>
+                <dt>Year built (lower estimate)</dt>
+                <dd>{props.date_lower? props.date_lower : '-'}</dd>
+                <dt>Year built (upper estimate)</dt>
+                <dd>{props.date_upper? props.date_upper : '-'}</dd>
+                <dt>Date Source</dt>
+                <dd>{props.date_source? props.date_source : '-'}</dd>
+                <dt>Facade date</dt>
+                <dd>{props.date_facade? props.date_facade : '-'}</dd>
             </dl>
         </section>
         <section className="data-section">
-            <h3 className="h3 bullet-prefix size"
-                data-toggle="collapse"
-                data-target="#data-list-size">Size</h3>
-            <dl id="data-list-size" className="data-list collapse">
-            <dt>Attic storeys</dt>
-            <dd>0</dd>
-            <dt>Core storeys</dt>
-            <dd>3</dd>
-            <dt>Basement storeys</dt>
-            <dd>1</dd>
+            <h3 className="h3 bullet-prefix size">Size</h3>
+            <dl className="data-list">
+                <dt>Attic storeys</dt>
+                <dd>{props.size_attic? props.size_attic : '-'}</dd>
+                <dt>Core storeys</dt>
+                <dd>{props.size_core? props.size_core : '-'}</dd>
+                <dt>Basement storeys</dt>
+                <dd>{props.size_basement? props.size_basement : '-'}</dd>
             </dl>
         </section>
         <section className="data-section">
-            <h3 className="h3 bullet-prefix like"
-                data-toggle="collapse"
-                data-target="#data-list-like">Like Me!</h3>
-            <dl id="data-list-like" className="data-list collapse">
-            <dt>Likes</dt>
-            <dd> 25</dd>
+            <h3 className="h3 bullet-prefix like">Like Me!</h3>
+            <dl className="data-list">
+                <dt>Likes</dt>
+                <dd>{props.likes ? props.likes.length : 0}</dd>
             </dl>
         </section>
         <div className="buttons-container">
             <Link to="/map/date_year.html" className="btn btn-secondary">Back to maps</Link>
             <Link to={`/building/${props.id}/edit.html`} className="btn btn-primary">Edit data</Link>
         </div>
-    </div>
+    </Sidebar>
 );
 
 export default BuildingView;
