@@ -33,7 +33,7 @@ class ColouringMap extends Component {
                 this.props.history.push(`/building/${data.id}.html`);
                 this.props.selectBuilding(data);
             } else {
-                // this.props.selectBuilding(undefined);
+                // this.props.selectBuilding(undefined);  // TODO follow through back to maps
             }
         }.bind(this)).catch(
             (err) => console.error(err)
@@ -41,19 +41,10 @@ class ColouringMap extends Component {
     }
 
     render() {
-        var map_type = undefined;
-        if (this.props.match && this.props.match.params && this.props.match.params[0]) {
-            map_type = this.props.match.params[0].replace("/", "");
-        } else {
-            map_type = 'maps';
-        }
-
-        var data_layer = undefined;
-        if (this.props.match && this.props.match.params && this.props.match.params[1]) {
-            data_layer = this.props.match.params[1].replace("/", "");
-        } else {
-            data_layer = 'date_year';
-        }
+        const data_layer = (
+            this.props.match && this.props.match.params && this.props.match.params[1]
+        )? this.props.match.params[1].replace("/", "")
+        : 'date_year';
 
         const position = [this.state.lat, this.state.lng];
         const key = OS_API_KEY

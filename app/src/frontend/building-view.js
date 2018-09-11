@@ -5,7 +5,7 @@ import Sidebar from './sidebar';
 import Tooltip from './tooltip';
 
 const BuildingView = (props) => (
-    <Sidebar title="Building data">
+    <Sidebar title={`Building ${props.id}`}>
         <section className="data-section">
             <h3 className="h3 bullet-prefix location">Location</h3>
             <p className="data-intro">

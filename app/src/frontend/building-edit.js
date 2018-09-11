@@ -5,6 +5,7 @@ import Sidebar from './sidebar';
 class BuildingEdit extends Component {
     constructor(props) {
         super(props);
+        const user = props.user || {};
         this.state = {
             location_name: props.location_name,
             location_number: props.location_number,
@@ -20,7 +21,7 @@ class BuildingEdit extends Component {
             size_core: props.size_core,
             size_basement: props.size_basement,
             likes: props.likes || [],
-            liked: this.user_likes(props.user_id, props.likes)
+            liked: this.user_likes(user.id, props.likes)
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -47,12 +48,12 @@ class BuildingEdit extends Component {
         const likes = this.state.likes || [];
         if (liked) {
             this.setState({
-                likes: likes.concat([this.props.user_id]),
+                likes: likes.concat([this.props.user.id]),
                 liked: true
             });
         } else {
             this.setState({
-                likes: likes.filter(id => id !== this.props.user_id),
+                likes: likes.filter(id => id !== this.props.user.id),
                 liked: false
             });
         }
@@ -60,7 +61,7 @@ class BuildingEdit extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch(`/building/${this.props.id}`, {
+        fetch(`/building/${this.props.id}.json`, {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers:{
@@ -72,7 +73,7 @@ class BuildingEdit extends Component {
             if (res.error) {
                 console.error(res.error);  // tell user
             } else {
-                console.log(res);  // redirect back
+                this.props.selectBuilding(this.state);
             }
         }).catch(
             err => console.error(err)
@@ -81,7 +82,7 @@ class BuildingEdit extends Component {
 
     render() {
         return (
-            <Sidebar title="Edit building data">
+            <Sidebar title={`Building ${this.props.id}`}>
                 <form action="building-view.html" method="GET" onSubmit={this.handleSubmit}>
                     <fieldset className="data-section">
                         <legend className="h3 bullet-prefix location toggled-on">Location</legend>

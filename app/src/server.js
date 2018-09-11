@@ -12,7 +12,7 @@ const pgSession = require('connect-pg-simple')(session);
 import App from './frontend/app';
 import { pool } from './db';
 import { authUser, createUser, getUserById } from './user';
-import { queryBuildingAtPoint } from './building';
+import { queryBuildingAtPoint, getBuildingById, saveBuilding } from './building';
 import tileserver from './tileserver';
 
 // create server
@@ -56,26 +56,28 @@ server.get('/', frontendRoute);
 
 function frontendRoute(req, res) {
     const data = {};
-    var re = pathToRegexp('/buildings/:building.html')
-    var matches = re.exec(req.url)
 
-    var building_id = undefined;
+    const building_id = parseBuildingURL(req.url);
+
+    Promise.all([
+        req.session.user_id? getUserById(req.session.user_id) : undefined,
+        building_id? getBuildingById(building_id) : undefined
+    ]).then(function(values){
+        const user = values[0];
+        const building = values[1];
+        data.user = user;
+        data.building = building;
+        renderHTML(data, req, res)
+    })
+}
+
+function parseBuildingURL(url){
+    const re = pathToRegexp('/building/:building.html')
+    const matches = re.exec(url)
     if (matches && matches.length === 2) {
-        building_id = matches[1]
+        return matches[1]
     }
-    console.log(`Building: ${building_id}`)
-
-    if (req.session.user_id) {
-        getUserById(req.session.user_id).then(function(user){
-            data.user = user;
-            renderHTML(data, req, res)
-        }).catch(function(){
-            renderHTML(data, req, res);
-        });
-    } else {
-        // getBuildingById() TODO load data server-side
-        renderHTML(data, req, res);
-    }
+    return undefined;
 }
 
 function renderHTML(data, req, res){
@@ -145,6 +147,31 @@ server.get('/buildings.json', function(req, res){
       res.send({error:'Database error'})
   })
 })
+
+// Building routes
+server.route('/building/:building_id.json')
+    .get(function (req, res) {
+        const { building_id } = req.params;
+        getBuildingById(building_id).then(function(result){
+            if (result) {
+                res.send(result)
+            } else {
+                res.status(404).send({error:'Not Found'})
+            }
+        }).catch(function(error){
+            res.send({error:'Database error'})
+        })
+    })
+    .post(function (req, res) {
+        const { building_id } = req.params;
+        const building = req.body;
+        saveBuilding(building_id, building).then(
+            () => res.send({success: true})
+        ).catch(
+            () => res.send({error:'Database error'})
+        )
+    })
+
 
 // POST new user
 server.post('/users', function(req, res){

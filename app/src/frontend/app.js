@@ -38,7 +38,6 @@ class App extends React.Component {
     }
 
     selectBuilding(building) {
-        console.log(building)
         this.setState({building: building})
     }
 
@@ -57,15 +56,22 @@ class App extends React.Component {
                                     </Route>
                                     <Route exact path="/map/:map.html" component={Legend} />
                                     <Route exact path="/building/:building.html">
-                                        <BuildingView {...this.state.building} />
+                                        <BuildingView {...this.state.building}
+                                                      user={this.state.user}
+                                                      selectBuilding={this.selectBuilding}
+                                                      />
                                     </Route>
                                     <Route exact path="/building/:building/edit.html">
-                                        <BuildingEdit {...this.state.building} />
+                                        <BuildingEdit {...this.state.building}
+                                                      user={this.state.user}
+                                                      selectBuilding={this.selectBuilding}
+                                                      />
                                     </Route>
                                 </Switch>
                                 <ColouringMap {...props}
                                               building={this.state.building}
-                                              selectBuilding={this.selectBuilding} />
+                                              selectBuilding={this.selectBuilding}
+                                              />
                             </Fragment>
                         ) } />
                         <Route exact path="/about.html" component={AboutPage} />
