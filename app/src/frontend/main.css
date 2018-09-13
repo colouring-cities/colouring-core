@@ -76,3 +76,44 @@
     height: 10px;
     overflow: hidden;
 }
+
+/**
+ * Animations for welcome-float and sidebar
+ */
+.fade-enter {
+    opacity: 0;
+    z-index: 1001;
+}
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: 500ms;
+}
+
+/**
+ * Sidebar could slide in, hard to make it natural if navigating between views with sidebars
+ */
+.info-container.fade-enter {
+    /* transform: translateX(-100%); */
+    opacity: 0;
+    z-index: 1001;
+}
+.info-container.fade-enter.fade-enter-active {
+    /* transform: translateX(0); */
+    opacity: 1;
+    transition: transform opacity 300ms;
+}
+.info-container.fade-exit {
+    opacity: 1;
+}
+.info-container.fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: 400ms;
+    transition-delay: 100ms;
+}

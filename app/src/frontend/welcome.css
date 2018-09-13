@@ -7,16 +7,10 @@
     top: 0;
     width: 100%;
     border-radius: 0;
+}
+.welcome-float.jumbotron {
     background: #fff;
     background-color: rgba(255,255,255,0.95);
-    opacity: 1;
-    transition: opacity 0.4s;
-}
-.welcome-float.offscreen {
-    opacity: 0;
-}
-.welcome-float.remove {
-    display: none;
 }
 @media (min-width: 768px){
     .welcome-float {

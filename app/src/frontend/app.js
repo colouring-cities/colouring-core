@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import AboutPage from './about';
 import BetaBanner from './beta-banner';
@@ -50,26 +51,30 @@ class App extends React.Component {
                 <Header user={this.state.user} />
                 <main className="beta">
                     <Switch>
-                        <Route path="/(map|building)?(/\w+)?(.html)?" render={props => (
+                        <Route path="/(map|building)?(/\w+)?(.html)?" render={(props) => (
                             <Fragment>
-                                <Switch>
-                                    <Route exact path="/">
-                                        <Welcome />
-                                    </Route>
-                                    <Route exact path="/map/:map.html" component={Legend} />
-                                    <Route exact path="/building/:building.html">
-                                        <BuildingView {...this.state.building}
-                                                      user={this.state.user}
-                                                      selectBuilding={this.selectBuilding}
-                                                      />
-                                    </Route>
-                                    <Route exact path="/building/:building/edit.html">
-                                        <BuildingEdit {...this.state.building}
-                                                      user={this.state.user}
-                                                      selectBuilding={this.selectBuilding}
-                                                      />
-                                    </Route>
-                                </Switch>
+                                <TransitionGroup>
+                                    <CSSTransition timeout={3000} classNames='fade' key={props.location.key}>
+                                        <Switch location={props.location}>
+                                            <Route exact path="/">
+                                                <Welcome />
+                                            </Route>
+                                            <Route exact path="/map/:map.html" component={Legend} />
+                                            <Route exact path="/building/:building.html">
+                                                <BuildingView {...this.state.building}
+                                                            user={this.state.user}
+                                                            selectBuilding={this.selectBuilding}
+                                                            />
+                                            </Route>
+                                            <Route exact path="/building/:building/edit.html">
+                                                <BuildingEdit {...this.state.building}
+                                                            user={this.state.user}
+                                                            selectBuilding={this.selectBuilding}
+                                                            />
+                                            </Route>
+                                        </Switch>
+                                    </CSSTransition>
+                                </TransitionGroup>
                                 <ColouringMap {...props}
                                               building={this.state.building}
                                               selectBuilding={this.selectBuilding}

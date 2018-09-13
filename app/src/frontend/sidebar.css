@@ -9,11 +9,6 @@
     background-color: rgba(255,255,255,0.95);
     z-index: 1000;
     overflow-y: auto;
-    transform: translateX(0);
-    transition: transform 0.4s;
-}
-.info-container.offscreen {
-    transform: translateX(-100%);
 }
 .leaflet-container .leaflet-control-attribution {
     width: 100%;
@@ -38,9 +33,6 @@
         left: 0;
         width: 20rem;
         bottom: 0;
-    }
-    .info-container.offscreen {
-        transform: translateX(-20rem);
     }
     .leaflet-right{
         left: 20rem;
