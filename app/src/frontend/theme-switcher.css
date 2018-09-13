@@ -1,10 +1,22 @@
 .theme-switcher {
     z-index: 1000;
     position: absolute;
-    bottom: 30px;
+    bottom: 55px;
     right: 10px;
     float: right;
     background: white;
+    border-radius: 4px;
+}
+
+@media (min-width: 380px){
+    .theme-switcher {
+        bottom: 40px;
+    }
+}
+@media (min-width: 1020px){
+    .theme-switcher {
+        bottom: 24px;
+    }
 }
 .theme-switcher .btn {
     margin: 0;

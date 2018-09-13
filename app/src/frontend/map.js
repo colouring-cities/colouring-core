@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Map, TileLayer, ZoomControl, AttributionControl } from 'react-leaflet-universal';
 
 import '../../node_modules/leaflet/dist/leaflet.css'
@@ -71,23 +71,25 @@ class ColouringMap extends Component {
         ) : null;
 
         return (
-            <Map
-                center={position}
-                zoom={this.state.zoom}
-                minZoom={10}
-                maxZoom={18}
-                doubleClickZoom={false}
-                zoomControl={false}
-                attributionControl={false}
-                onClick={this.handleClick}
-                >
-                <TileLayer url={url} attribution={attribution} />
-                <TileLayer url={colour} />
-                { highlightLayer }
-                <ZoomControl position="topright" />
-                <AttributionControl prefix="" />
+            <Fragment>
+                <Map
+                    center={position}
+                    zoom={this.state.zoom}
+                    minZoom={10}
+                    maxZoom={18}
+                    doubleClickZoom={false}
+                    zoomControl={false}
+                    attributionControl={false}
+                    onClick={this.handleClick}
+                    >
+                    <TileLayer url={url} attribution={attribution} />
+                    <TileLayer url={colour} />
+                    { highlightLayer }
+                    <ZoomControl position="topright" />
+                    <AttributionControl prefix="" />
+                </Map>
                 <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
-            </Map>
+            </Fragment>
         );
     }
 };
