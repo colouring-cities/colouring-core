@@ -8,7 +8,7 @@ const data = window.__PRELOADED_STATE__;
 
 hydrate(
   <BrowserRouter>
-    <App user={data.user} />
+    <App user={data.user} building={data.building} />
   </BrowserRouter>,
   document.getElementById('root')
 );

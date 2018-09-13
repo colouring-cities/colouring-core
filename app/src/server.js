@@ -56,24 +56,33 @@ server.get('/*.html', frontendRoute);
 server.get('/', frontendRoute);
 
 function frontendRoute(req, res) {
+    const context = {};
     const data = {};
+    context.status = 200;
 
     const building_id = parseBuildingURL(req.url);
+    if (isNaN(building_id)){
+        context.status = 404;
+    }
+    const is_building = (typeof(building_id) !== "undefined")
+
 
     Promise.all([
         req.session.user_id? getUserById(req.session.user_id) : undefined,
-        building_id? getBuildingById(building_id) : undefined
+        is_building? getBuildingById(building_id) : undefined
     ]).then(function(values){
         const user = values[0];
         const building = values[1];
+        if (is_building && typeof(building) === "undefined"){
+            context.status = 404
+        }
         data.user = user;
         data.building = building;
-        renderHTML(data, req, res)
+        renderHTML(context, data, req, res)
     })
 }
 
-function renderHTML(data, req, res){
-    const context = {};
+function renderHTML(context, data, req, res){
     const markup = renderToString(
       <StaticRouter context={context} location={req.url}>
         <App user={data.user} building={data.building} />
@@ -83,7 +92,7 @@ function renderHTML(data, req, res){
     if (context.url) {
       res.redirect(context.url);
     } else {
-      res.status(200).send(
+      res.status(context.status).send(
         `<!doctype html>
     <html lang="">
     <head>

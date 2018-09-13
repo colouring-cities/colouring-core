@@ -31,10 +31,10 @@ function queryBuildingAtPoint(lng, lat) {
             doc.geometry_id = geometry_id
             return doc
         }
-        return null;
+        return undefined;
     }).catch(function(error){
         console.error(error);
-        return null;
+        return undefined;
     });
 }
 
@@ -61,10 +61,10 @@ function getBuildingById(id) {
             doc.geometry_id = geometry_id
             return doc
         }
-        return null;
+        return undefined;
     }).catch(function(error){
         console.error(error);
-        return null;
+        return undefined;
     });
 }
 
@@ -84,7 +84,7 @@ function saveBuilding(id, building_doc) {
         [ id, building_doc ]
     ).catch(function(error){
         console.error(error);
-        return null;
+        return undefined;
     });
 }
 

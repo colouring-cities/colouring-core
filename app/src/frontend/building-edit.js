@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import ErrorBox from './error-box';
+import InfoBox from './info-box';
 import Sidebar from './sidebar';
 
 class BuildingEdit extends Component {
@@ -86,6 +87,16 @@ class BuildingEdit extends Component {
     }
 
     render() {
+        if (!this.props.id){
+            return (
+                <Sidebar title="Building Not Found">
+                    <InfoBox msg="We can't find that one anywhere - try the map again?" />
+                    <div className="buttons-container">
+                        <Link to="/map/date_year.html" className="btn btn-secondary">Back to maps</Link>
+                    </div>
+                </Sidebar>
+            );
+        }
         return (
             <Sidebar title={`Building ${this.props.id}`}>
                 <form action="building-view.html" method="GET" onSubmit={this.handleSubmit}>

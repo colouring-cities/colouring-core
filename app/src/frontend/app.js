@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 
 import AboutPage from './about';
 import BetaBanner from './beta-banner';
@@ -96,7 +96,13 @@ class App extends React.Component {
 const NotFound = () => (
     <article>
         <section className="main-col">
-            <h1>Not found&hellip;</h1>
+            <h1 class="h1">Page not found</h1>
+            <p className="lead">
+
+            We can't find that one anywhere.
+
+            </p>
+            <Link className="btn btn-outline-dark" to="/">Back home</Link>
         </section>
     </article>
 );

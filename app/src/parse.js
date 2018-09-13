@@ -15,10 +15,11 @@ function strictParseInt(value) {
 
 
 function parseBuildingURL(url){
-    const re = /^\/building\/([1-9][0-9]+).html$/;
+    const re = /^\/building\/(.*)\/edit?.html$/;
+
     const matches = re.exec(url);
     if (matches && matches.length === 2) {
-        return parseInt(matches[1])
+        return strictParseInt(matches[1])
     }
     return undefined;
 }
