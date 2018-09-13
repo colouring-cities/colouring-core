@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import ErrorBox from './error-box';
 import InfoBox from './info-box';
@@ -87,6 +87,9 @@ class BuildingEdit extends Component {
     }
 
     render() {
+        if (!this.props.user){
+            return <Redirect to="/sign-up.html" />
+        }
         if (!this.props.id){
             return (
                 <Sidebar title="Building Not Found">
