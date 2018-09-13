@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
 import ErrorBox from './error-box';
+import InfoBox from './info-box';
 
 class SignUp extends Component {
     constructor(props) {
@@ -67,6 +68,8 @@ class SignUp extends Component {
             <article>
                 <section className="main-col">
                     <h1 className="h2">Sign up</h1>
+                    <InfoBox msg="Colouring London is under active development - at the moment, user accounts
+                                and data may be deleted without notice. Caveat visitor!" />
                     <p>
                         Create an account to start colouring in.
                     </p>

@@ -33,10 +33,12 @@ class ColouringMap extends Component {
             (res) => res.json()
         ).then(function(data){
             if (data.geometry_id && data.id){
-                this.props.history.push(`/building/${data.id}.html`);
                 this.props.selectBuilding(data);
+                this.props.history.push(`/building/${data.id}.html`);
             } else {
-                // this.props.selectBuilding(undefined);  // TODO follow through back to maps
+                // should deselect but keep/return to expected colour theme
+                // this.props.selectBuilding(undefined);
+                // this.props.history.push(`/map/date_year.html`);
             }
         }.bind(this)).catch(
             (err) => console.error(err)

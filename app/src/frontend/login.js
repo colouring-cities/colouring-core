@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
 import ErrorBox from './error-box';
+import InfoBox from './info-box';
 
 class Login extends Component {
     constructor(props) {
@@ -64,6 +65,8 @@ class Login extends Component {
             <article>
                 <section className="main-col">
                     <h1 className="h2">Log in</h1>
+                    <InfoBox msg="Colouring London is under active development - at the moment, user accounts
+                                and data may be deleted without notice. Caveat visitor!" />
                     <ErrorBox msg={this.state.error} />
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="username">Username*</label>

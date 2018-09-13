@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
+import { Link, Redirect } from 'react-router-dom';
 
 import ErrorBox from './error-box';
 
@@ -36,7 +36,15 @@ class MyAccountPage extends Component {
             return (
                 <article>
                     <section className="main-col">
-                        <h1 className="h3">Welcome, {this.props.user.username}</h1>
+                        <h1 className="h1">Welcome, {this.props.user.username}!</h1>
+                        <p className="lead">
+
+                        Colouring London is under active development, please report any
+                        bugs on <a href="http://github.com/tomalrussell/colouring-london/issues">
+                        GitHub</a>.
+
+                        </p>
+                        <Link to="/map/date_year.html" className="btn btn-primary">Start colouring</Link>
                         <ErrorBox msg={this.state.error} />
                         <form method="POST" action="/logout" onSubmit={this.handleSubmit}>
                             <input className="btn btn-secondary" type="submit" value="Log out"/>

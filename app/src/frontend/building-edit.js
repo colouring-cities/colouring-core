@@ -81,8 +81,8 @@ class BuildingEdit extends Component {
             if (res.error) {
                 this.setState({error: res.error})
             } else {
-                this.props.selectBuilding(this.state);
-                this.props.history.push(`/building/${this.props.id}.html`)
+                this.props.selectBuilding(this.state);  // could use server response?
+                this.props.history.push(`/building/${this.state.id}.html`);
             }
         }.bind(this)).catch(
             (err) => this.setState({error: err})
