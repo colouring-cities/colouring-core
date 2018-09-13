@@ -87,8 +87,16 @@ class Login extends Component {
                             <label htmlFor="show_password">Show password?</label>
                         </div>
 
-                        <input type="submit" value="Log In" className="btn btn-primary" />
-                        <Link to="sign-up.html">Sign Up</Link>
+                        <div className="buttons-container">
+                            <input type="submit" value="Log In" className="btn btn-primary" />
+                        </div>
+
+                        Would you like to create an account?
+
+                        <div className="buttons-container">
+                            <Link to="sign-up.html" className="btn btn-outline-dark">Sign Up</Link>
+                        </div>
+
                     </form>
                 </section>
             </article>

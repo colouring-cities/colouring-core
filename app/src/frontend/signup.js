@@ -115,8 +115,16 @@ class SignUp extends Component {
                             </label>
                         </div>
 
-                        <input type="submit" value="Sign Up" className="btn btn-primary" />
-                        <Link to="login.html">Log in</Link>
+                        <div className="buttons-container">
+                            <input type="submit" value="Sign Up" className="btn btn-primary" />
+                        </div>
+
+                        Do you already have an account?
+
+                        <div className="buttons-container">
+                            <Link to="login.html" className="btn btn-outline-dark">Log in</Link>
+                        </div>
+
                     </form>
                 </section>
             </article>
