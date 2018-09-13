@@ -2,6 +2,8 @@ import path from 'path';
 import mapnik from 'mapnik';
 import SphericalMercator from '@mapbox/sphericalmercator';
 
+import { strictParseInt } from './parse';
+
 // config file with connection details
 const config = require('../../config.json')
 const DATASOURCE_CONFIG = {
@@ -29,11 +31,11 @@ const mercator = new SphericalMercator({
 
 function get_bbox(params){
     const { z, x, y } = params
-    const int_z = parseInt(z);
-    const int_x = parseInt(x);
-    const int_y = parseInt(y);
+    const int_z = strictParseInt(z);
+    const int_x = strictParseInt(x);
+    const int_y = strictParseInt(y);
 
-    if (!int_x || !int_y || !int_z){
+    if (isNaN(int_x) || isNaN(int_y) || isNaN(int_z)){
         console.error("Missing x or y or z")
         return {error:'Bad parameter'}
     }

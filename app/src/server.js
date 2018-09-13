@@ -3,7 +3,6 @@ import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
 import serialize from 'serialize-javascript';
-import pathToRegexp from 'path-to-regexp';
 
 import bodyParser  from 'body-parser';
 import session from 'express-session';
@@ -14,6 +13,7 @@ import { pool } from './db';
 import { authUser, createUser, getUserById } from './user';
 import { queryBuildingAtPoint, getBuildingById, saveBuilding } from './building';
 import tileserver from './tileserver';
+import { parseBuildingURL } from './parse';
 
 // create server
 const server = express();
@@ -70,15 +70,6 @@ function frontendRoute(req, res) {
         data.building = building;
         renderHTML(data, req, res)
     })
-}
-
-function parseBuildingURL(url){
-    const re = pathToRegexp('/building/:building.html')
-    const matches = re.exec(url)
-    if (matches && matches.length === 2) {
-        return matches[1]
-    }
-    return undefined;
 }
 
 function renderHTML(data, req, res){
