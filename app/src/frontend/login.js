@@ -29,6 +29,8 @@ class Login extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.setState({error: undefined})
+
         fetch('/login', {
             method: 'POST',
             body: JSON.stringify(this.state),
@@ -41,7 +43,6 @@ class Login extends Component {
             if (res.error) {
                 this.setState({error: res.error})
             } else {
-                this.setState({error: undefined})
                 fetch('/users/me').then(
                     (res) => res.json()
                 ).then(

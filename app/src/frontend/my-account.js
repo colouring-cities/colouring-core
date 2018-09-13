@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 
+import ErrorBox from './error-box';
+
 class MyAccountPage extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            error: undefined
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(event) {
-        const logout = this.props.logout;
         event.preventDefault();
+        this.setState({error: undefined});
+
         fetch('/logout', {
             method: 'POST'
         }).then(
             res => res.json()
         ).then(function(res){
             if (res.error) {
-                console.error(res.error);  // tell user
+                this.setState({error: res.error})
             } else {
-                logout();
-                console.log(res);  // redirect back
+                this.props.logout();
             }
-        }).catch(
-            err => console.error(err)
+        }.bind(this)).catch(
+            (err) => this.setState({error: err})
         );
     }
 
@@ -32,6 +37,7 @@ class MyAccountPage extends Component {
                 <article>
                     <section className="main-col">
                         <h1 className="h3">Welcome, {this.props.user.username}</h1>
+                        <ErrorBox msg={this.state.error} />
                         <form method="POST" action="/logout" onSubmit={this.handleSubmit}>
                             <input className="btn btn-secondary" type="submit" value="Log out"/>
                         </form>

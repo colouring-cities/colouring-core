@@ -32,6 +32,8 @@ class SignUp extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.setState({error: undefined})
+
         fetch('/users', {
             method: 'POST',
             body: JSON.stringify(this.state),
@@ -44,7 +46,6 @@ class SignUp extends Component {
             if (res.error) {
                 this.setState({error: res.error})
             } else {
-                this.setState({error: undefined})
                 fetch('/users/me').then(
                     (res) => res.json()
                 ).then(
