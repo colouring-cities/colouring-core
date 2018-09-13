@@ -3,6 +3,7 @@ import { Map, TileLayer, ZoomControl, AttributionControl } from 'react-leaflet-u
 
 import '../../node_modules/leaflet/dist/leaflet.css'
 import './map.css'
+import ThemeSwitcher from './theme-switcher';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
@@ -14,11 +15,13 @@ class ColouringMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            theme: 'light',
             lat: 51.5245255,
             lng: -0.1338422,
             zoom: 16
         };
         this.handleClick = this.handleClick.bind(this);
+        this.themeSwitch = this.themeSwitch.bind(this);
     }
 
     handleClick(e) {
@@ -40,6 +43,12 @@ class ColouringMap extends Component {
         )
     }
 
+    themeSwitch(e) {
+        e.preventDefault();
+        const newTheme = (this.state.theme === 'light')? 'night' : 'light';
+        this.setState({theme: newTheme});
+    }
+
     render() {
         const data_layer = (
             this.props.match && this.props.match.params && this.props.match.params[1]
@@ -49,7 +58,7 @@ class ColouringMap extends Component {
         const position = [this.state.lat, this.state.lng];
         const key = OS_API_KEY
         const tilematrixSet = 'EPSG:3857'
-        const layer = 'Light 3857'  // alternatively 'Night 3857'
+        const layer = (this.state.theme === 'light')? 'Light 3857' : 'Night 3857';
         const url = `https://api2.ordnancesurvey.co.uk/mapping_api/v1/service/zxy/${tilematrixSet}/${layer}/{z}/{x}/{y}.png?key=${key}`
         const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines.'
 
@@ -77,6 +86,7 @@ class ColouringMap extends Component {
                 { highlightLayer }
                 <ZoomControl position="topright" />
                 <AttributionControl prefix="" />
+                <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
             </Map>
         );
     }
