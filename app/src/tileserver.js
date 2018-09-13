@@ -1,6 +1,7 @@
 import express from 'express';
 
 import { get_bbox, render_tile } from './tile';
+import { strictParseInt } from './parse';
 
 // tiles router
 const router = express.Router()
@@ -21,8 +22,11 @@ router.get('/outline/:z/:x/:y.png', function(req, res) {
 // highlight single geometry
 router.get('/highlight/:z/:x/:y.png', function(req, res) {
     const { highlight } = req.query
-    const geometry_id = parseInt(highlight);
-    if(!geometry_id) res.status(400).send({error:'Bad parameter'})
+    const geometry_id = strictParseInt(highlight);
+    if(isNaN(geometry_id)){
+        res.status(400).send({error:'Bad parameter'})
+        return
+    }
     const bbox = get_bbox(req.params)
     const table_def = `(
         SELECT
@@ -54,7 +58,7 @@ router.get('/date_year/:z/:x/:y.png', function(req, res) {
     const table_def = `(
         SELECT
             cast(
-                b.building_doc->>'date_year'
+                NULLIF(b.building_doc->>'date_year', '')
                 as integer
             ) as date_year,
             g.geometry_geom
@@ -80,9 +84,14 @@ router.get('/size_storeys/:z/:x/:y.png', function(req, res) {
     const table_def = `(
         SELECT
             cast(
-                b.building_doc->>'size_storeys'
+                NULLIF(b.building_doc->>'size_attic', '')
                 as integer
-            ) as size_storeys,
+            ) +
+            cast(
+                NULLIF(b.building_doc->>'size_core', '')
+                as integer
+            )
+            as size_storeys,
             g.geometry_geom
         FROM
             geometries as g,

@@ -56,22 +56,30 @@ function render_tile(bbox, table_def, style_def, cb){
     const layer = new mapnik.Layer('tile', PROJ4_STRING);
     const conf = Object.assign({table: table_def}, DATASOURCE_CONFIG)
 
-    const postgis = new mapnik.Datasource(conf);
-    layer.datasource = postgis;
-    layer.styles = style_def
+    var postgis;
+    try {
+        postgis = new mapnik.Datasource(conf);
+        layer.datasource = postgis;
+        layer.styles = style_def
 
-    map.load(
-        path.join(__dirname, '..', 'map_styles', 'polygon.xml'),
-        { strict: true },
-        function(err, map){
-            if (err) throw err
+        map.load(
+            path.join(__dirname, '..', 'map_styles', 'polygon.xml'),
+            { strict: true },
+            function(err, map){
+                if (err) {
+                    console.error(err);
+                    return
+                }
 
-            map.add_layer(layer)
-            const im = new mapnik.Image(map.width, map.height)
-            map.extent = bbox
-            map.render(im, cb);
-        }
-    )
+                map.add_layer(layer)
+                const im = new mapnik.Image(map.width, map.height)
+                map.extent = bbox
+                map.render(im, cb);
+            }
+        )
+    } catch(err) {
+        console.error(err);
+    }
 }
 
 export { get_bbox, render_tile };

@@ -1,7 +1,8 @@
 /**
  * Logo
  */
- .logo {
+.logo,
+.logo.navbar-brand {
     display: block;
     width: 6em;
     padding: 0;

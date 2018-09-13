@@ -11,6 +11,8 @@ class BuildingEdit extends Component {
         const user = props.user || {};
         this.state = {
             error: undefined,
+            id: props.id,
+            geometry_id: props.geometry_id,
             location_name: props.location_name,
             location_number: props.location_number,
             location_line_two: props.location_line_two,
@@ -80,6 +82,7 @@ class BuildingEdit extends Component {
                 this.setState({error: res.error})
             } else {
                 this.props.selectBuilding(this.state);
+                this.props.history.push(`/building/${this.props.id}.html`)
             }
         }.bind(this)).catch(
             (err) => this.setState({error: err})

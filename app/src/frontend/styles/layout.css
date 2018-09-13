@@ -9,7 +9,7 @@
 @media (min-width: 768px){
     main.beta {
         position: absolute;
-        top: 117px; /* 32px banner + 82px header + 3px border */
+        top: 114px; /* 32px banner + 82px header */
         bottom: 0;
         left: 0;
         right: 0;

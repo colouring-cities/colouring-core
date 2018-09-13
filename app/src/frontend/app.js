@@ -61,24 +61,28 @@ class App extends React.Component {
                                             </Route>
                                             <Route exact path="/map/:map.html" component={Legend} />
                                             <Route exact path="/building/:building.html">
-                                                <BuildingView {...this.state.building}
-                                                            user={this.state.user}
-                                                            selectBuilding={this.selectBuilding}
-                                                            />
+                                                <BuildingView
+                                                    {...this.state.building}
+                                                    user={this.state.user}
+                                                    selectBuilding={this.selectBuilding}
+                                                    />
                                             </Route>
                                             <Route exact path="/building/:building/edit.html">
-                                                <BuildingEdit {...this.state.building}
-                                                            user={this.state.user}
-                                                            selectBuilding={this.selectBuilding}
-                                                            />
+                                                <BuildingEdit
+                                                    {...this.state.building}
+                                                    {...props} // includes route history/match
+                                                    user={this.state.user}
+                                                    selectBuilding={this.selectBuilding}
+                                                    />
                                             </Route>
                                         </Switch>
                                     </CSSTransition>
                                 </TransitionGroup>
-                                <ColouringMap {...props}
-                                              building={this.state.building}
-                                              selectBuilding={this.selectBuilding}
-                                              />
+                                <ColouringMap
+                                    {...props}
+                                    building={this.state.building}
+                                    selectBuilding={this.selectBuilding}
+                                    />
                             </Fragment>
                         ) } />
                         <Route exact path="/about.html" component={AboutPage} />

@@ -15,10 +15,10 @@ function strictParseInt(value) {
 
 
 function parseBuildingURL(url){
-    const re = /^\/building\/(.*)\/edit?.html$/;
-
+    const re = /^\/building\/([^\/]+)(\/edit)?.html$/;
     const matches = re.exec(url);
-    if (matches && matches.length === 2) {
+
+    if (matches && matches.length >= 2) {
         return strictParseInt(matches[1])
     }
     return undefined;
