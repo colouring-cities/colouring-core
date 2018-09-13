@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+import ErrorBox from './error-box';
 import Sidebar from './sidebar';
 
 class BuildingEdit extends Component {
@@ -7,6 +9,7 @@ class BuildingEdit extends Component {
         super(props);
         const user = props.user || {};
         this.state = {
+            error: undefined,
             location_name: props.location_name,
             location_number: props.location_number,
             location_line_two: props.location_line_two,
@@ -61,6 +64,8 @@ class BuildingEdit extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.setState({error: undefined})
+
         fetch(`/building/${this.props.id}.json`, {
             method: 'POST',
             body: JSON.stringify(this.state),
@@ -71,12 +76,12 @@ class BuildingEdit extends Component {
             res => res.json()
         ).then(function(res){
             if (res.error) {
-                console.error(res.error);  // tell user
+                this.setState({error: res.error})
             } else {
                 this.props.selectBuilding(this.state);
             }
-        }).catch(
-            err => console.error(err)
+        }.bind(this)).catch(
+            (err) => this.setState({error: err})
         );
     }
 
@@ -84,6 +89,9 @@ class BuildingEdit extends Component {
         return (
             <Sidebar title={`Building ${this.props.id}`}>
                 <form action="building-view.html" method="GET" onSubmit={this.handleSubmit}>
+
+                    <ErrorBox msg={this.state.error} />
+
                     <fieldset className="data-section">
                         <legend className="h3 bullet-prefix location toggled-on">Location</legend>
                         <div id="data-list-location" className="data-list">
