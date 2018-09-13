@@ -13,7 +13,7 @@ const BuildingView = (props) => (
                 Section introduction of up to roughly 100 characters will take
                 approx&shy;imately this much space.
 
-                <a href="#">Read more</a>.
+                <a href="/">Read more</a>.
             </p>
             <dl id="data-list-location" className="data-list collapse show">
                 <dt>
