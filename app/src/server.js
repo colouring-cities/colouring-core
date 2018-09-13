@@ -5,9 +5,9 @@ import { renderToString } from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import pathToRegexp from 'path-to-regexp';
 
-const bodyParser = require('body-parser')
-const session = require('express-session')
-const pgSession = require('connect-pg-simple')(session);
+import bodyParser  from 'body-parser';
+import session from 'express-session';
+import pgConnect from 'connect-pg-simple';
 
 import App from './frontend/app';
 import { pool } from './db';
@@ -31,6 +31,7 @@ server.use(express.static(process.env.RAZZLE_PUBLIC_DIR));
 server.use(bodyParser.json());
 
 // handle user sessions
+const pgSession = pgConnect(session);
 const sess = {
   name: 'cl.session',
   store: new pgSession({
