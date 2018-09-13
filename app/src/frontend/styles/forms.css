@@ -12,8 +12,8 @@ input[type="email"] {
 input[type="number"] {
     padding-right: 0.25rem;
 }
-.form-check {
-    padding-left: 0;
+.form-check-input {
+    margin-top: 0.6rem;
 }
 label {
     margin: 0.5em 0 0;

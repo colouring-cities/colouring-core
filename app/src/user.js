@@ -2,6 +2,12 @@ import { query } from './db';
 
 
 function createUser(user) {
+    if (!user.password || user.password.length < 8) {
+        return Promise.reject({error: 'Password must be at least 8 characters'})
+    }
+    if (user.password.length > 70) {
+        return Promise.reject({error: 'Password must be at most 70 characters'})
+    }
     return query(
         `INSERT
         INTO users (
@@ -52,14 +58,14 @@ function authUser(username, password) {
         ]
     ).then(function(data){
         const user = data.rows[0];
-        if (user.auth_ok) {
+        if (user && user.auth_ok) {
             return {user_id: user.user_id}
         } else {
-            return {error: 'Authentication failed'}
+            return {error: 'Username or password not recognised'}
         }
     }).catch(function(err){
         console.error(err);
-        return {error: 'Database error'};
+        return {error: 'Username or password not recognised'};
     })
 }
 

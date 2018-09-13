@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
+import ErrorBox from './error-box';
+
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
             password: '',
-            show_password: ''
+            show_password: '',
+            error: undefined
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -26,7 +29,6 @@ class Login extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const login = this.props.login
         fetch('/login', {
             method: 'POST',
             body: JSON.stringify(this.state),
@@ -37,20 +39,19 @@ class Login extends Component {
             res => res.json()
         ).then(function(res){
             if (res.error) {
-                console.error(res.error);  // tell user
+                this.setState({error: res.error})
             } else {
-                console.log(res);  // redirect back
+                this.setState({error: undefined})
                 fetch('/users/me').then(
                     (res) => res.json()
-                ).then(function(user){
-                    console.log(user)
-                    login(user);
-                }).catch(function(err){
-                    console.error(err);
-                })
+                ).then(
+                    (user) => this.props.login(user)
+                ).catch(
+                    (err) => this.setState({error: err})
+                )
             }
-        }).catch(
-            err => console.error(err)
+        }.bind(this)).catch(
+            (err) => this.setState({error: err})
         );
     }
 
@@ -62,6 +63,7 @@ class Login extends Component {
             <article>
                 <section className="main-col">
                     <h1 className="h2">Log in</h1>
+                    <ErrorBox msg={this.state.error} />
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="username">Username*</label>
                         <input name="username" id="username"
@@ -80,18 +82,18 @@ class Login extends Component {
 
                         <div className="form-check">
                             <input id="show_password" name="show_password"
-                                   className="position-static" type="checkbox"
+                                   className="form-check-input" type="checkbox"
                                    checked={this.state.show_password}
                                    onChange={this.handleChange}
                                    />
-                            <label htmlFor="show_password">Show password?</label>
+                            <label htmlFor="show_password" className="form-check-label">Show password?</label>
                         </div>
 
                         <div className="buttons-container">
                             <input type="submit" value="Log In" className="btn btn-primary" />
                         </div>
 
-                        Would you like to create an account?
+                        Would you like to create an account instead?
 
                         <div className="buttons-container">
                             <Link to="sign-up.html" className="btn btn-outline-dark">Sign Up</Link>

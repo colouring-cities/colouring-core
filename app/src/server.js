@@ -178,11 +178,13 @@ server.post('/users', function(req, res){
     const user = req.body;
     if (req.session.user_id) {
         res.send({error: 'Already signed in'});
+        return
     }
 
     if (user.email){
         if (user.email != user.confirm_email) {
           res.send({error: "Email did not match confirmation."});
+          return
         }
     } else {
         user.email = null;
@@ -198,7 +200,7 @@ server.post('/users', function(req, res){
         }
     }).catch(function(err){
         console.error(err);
-        res.send({error: 'Server error'})
+        res.send(err)
     });
 });
 

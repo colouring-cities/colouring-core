@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
+import ErrorBox from './error-box';
+
 class SignUp extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +12,8 @@ class SignUp extends Component {
             confirm_email: '',
             password: '',
             show_password: '',
-            confirm_conditions: false
+            confirm_conditions: false,
+            error: undefined
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -39,17 +42,19 @@ class SignUp extends Component {
             res => res.json()
         ).then(function(res){
             if (res.error) {
-                console.error(res.error);  // tell user
+                this.setState({error: res.error})
             } else {
-                console.log(res);  // redirect back
-                fetch('/users/me').then(function(user){
-                    this.props.login(user);
-                }).catch(function(err){
-                    console.error(err);
-                })
+                this.setState({error: undefined})
+                fetch('/users/me').then(
+                    (res) => res.json()
+                ).then(
+                    (user) => this.props.login(user)
+                ).catch(
+                    (err) => this.setState({error: err})
+                )
             }
-        }).catch(
-            err => console.error(err)
+        }.bind(this)).catch(
+            (err) => this.setState({error: err})
         );
     }
 
@@ -64,6 +69,7 @@ class SignUp extends Component {
                     <p>
                         Create an account to start colouring in.
                     </p>
+                    <ErrorBox msg={this.state.error} />
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="username">Username*</label>
                         <input name="username" id="username"
@@ -95,20 +101,22 @@ class SignUp extends Component {
 
                         <div className="form-check">
                             <input id="show_password" name="show_password"
-                                   className="position-static" type="checkbox"
+                                   className="form-check-input" type="checkbox"
                                    checked={this.state.show_password}
                                    onChange={this.handleChange}
                                    />
-                            <label htmlFor="show_password">Show password?</label>
+                            <label className="form-check-label" htmlFor="show_password">
+                                Show password?
+                            </label>
                         </div>
 
                         <div className="form-check">
                             <input id="confirm_conditions" name="confirm_conditions"
-                                   className="position-static" type="checkbox"
+                                   className="form-check-input" type="checkbox"
                                    checked={this.state.confirm_conditions}
                                    onChange={this.handleChange}
                                    required />
-                            <label htmlFor="confirm_conditions">
+                            <label className="form-check-label" htmlFor="confirm_conditions">
                                 I confirm that I have read and agree to the <a
                                 href="/privacy-policy">privacy policy</a> and <a
                                 href="/user-agreement">contributor agreement</a>.

@@ -30,6 +30,8 @@ class App extends React.Component {
     }
 
     login(user) {
+        console.log("Logging in")
+        console.log(user)
         this.setState({user: user});
     }
 
