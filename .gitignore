@@ -5,6 +5,7 @@ node_modules
 *config.json
 *.log
 ecosystem.config.js
+app/start.sh
 
 # Data
 etl/cache/*

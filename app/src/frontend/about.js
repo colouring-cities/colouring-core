@@ -1,10 +1,11 @@
 import React from 'react';
 
+import SupporterLogos from './supporter-logos';
 import './about.css';
 
 const AboutPage = () => (
     <article>
-    <div className="main-col">
+    <section className="main-col">
         <h1 className="h2">
         Can you help us capture information on every building in London?
         </h1>
@@ -45,9 +46,9 @@ const AboutPage = () => (
                href="files/colouring-london-online-exhibition.pdf">
                View online exhibition</a>
         </div>
-    </div>
+    </section>
     <hr/>
-    <div className="main-col">
+    <section className="main-col">
         <p>
 
         Colouring London is being designed and built by the Centre for Advanced Spatial
@@ -57,39 +58,8 @@ const AboutPage = () => (
         will launch in 2019.
 
         </p>
-        <ul className="logo-list">
-            <li>
-                <a href="https://www.ucl.ac.uk/bartlett/casa/">
-                    <img src="images/logo-casa.png"
-                         alt="Centre for Advanced Spatial Analysis (CASA)" />
-                </a>
-            </li>
-            <li>
-                <a href="https://www.ucl.ac.uk/">
-                    <img src="images/logo-ucl.png"
-                         alt="University College London" />
-                </a>
-            </li>
-            <li>
-                <a href="https://www.historicengland.org.uk/">
-                    <img src="images/logo-he.png"
-                         alt="Historic England" />
-                </a>
-            </li>
-            <li>
-                <a href="https://www.ordnancesurvey.co.uk/">
-                    <img src="images/logo-os.png"
-                         alt="Ordnance Survey" />
-                </a>
-            </li>
-            <li>
-                <a href="https://www.london.gov.uk/">
-                    <img src="images/logo-gla.png"
-                         alt="Supported by the Mayor of London" />
-                </a>
-            </li>
-        </ul>
-    </div>
+        <SupporterLogos />
+    </section>
     <hr/>
     <div className="main-col">
         <h2 className="h1">Data Categories</h2>
@@ -156,7 +126,7 @@ const AboutPage = () => (
     <div className="main-col">
         <h2 className="h1">Once built, our platform will allow you to:</h2>
     </div>
-    <section className="pale-pink">
+    <section className="pale-pink color-block">
         <div className="main-col">
             <h3 className="h2">View maps</h3>
             <p>
@@ -169,7 +139,7 @@ const AboutPage = () => (
                  alt="Preview of view maps page" />
         </div>
     </section>
-    <section className="pale-yellow">
+    <section className="pale-yellow color-block">
         <div className="main-col">
             <h3 className="h2">Add and edit data</h3>
             <p>
@@ -181,7 +151,7 @@ const AboutPage = () => (
                  alt="Preview of add/edit data page" />
         </div>
     </section>
-    <section className="pale-orange">
+    <section className="pale-orange color-block">
         <div className="main-col">
             <h3 className="h2">See how people are using our data</h3>
             <p>
@@ -196,7 +166,7 @@ const AboutPage = () => (
         </div>
     </section>
 
-    <section className="pale-green">
+    <section className="pale-green color-block">
         <div className="main-col">
             <h3 className="h2">Download, remix and reuse</h3>
             <p>

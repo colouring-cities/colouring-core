@@ -23,11 +23,16 @@
 article section {
     overflow: hidden;
     margin: 2.25em 0 4em;
+}
+article .color-block {
     padding: 2em 0 4em;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .main-col {
-    max-width: 40em;
-    margin: 0 auto;
+    max-width: 48em;
+    margin-left: auto;
+    margin-right: auto;
     padding-left: 1em;
     padding-right: 1em;
 }

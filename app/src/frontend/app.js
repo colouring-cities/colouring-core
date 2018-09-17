@@ -2,6 +2,9 @@ import React, { Fragment } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './main.css';
+
 import AboutPage from './about';
 import BetaBanner from './beta-banner';
 import BuildingEdit from './building-edit';
@@ -14,8 +17,6 @@ import MyAccountPage from './my-account';
 import SignUp from './signup';
 import Welcome from './welcome';
 
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import './main.css'
 
 
 class App extends React.Component {

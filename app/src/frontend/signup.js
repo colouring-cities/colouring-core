@@ -3,6 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 
 import ErrorBox from './error-box';
 import InfoBox from './info-box';
+import SupporterLogos from './supporter-logos';
 
 class SignUp extends Component {
     constructor(props) {
@@ -138,6 +139,10 @@ class SignUp extends Component {
                         </div>
 
                     </form>
+                </section>
+                <hr />
+                <section className="main-col">
+                    <SupporterLogos />
                 </section>
             </article>
         )

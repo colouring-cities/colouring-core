@@ -54,24 +54,6 @@
 }
 
 /**
- * Logos
- */
-.logo-list {
-    text-align: center;
-    padding: 0;
-    list-style: none;
-}
-.logo-list li {
-    display: inline-block;
-    width: 8em;
-    padding: 0 0.25em;
-    vertical-align: middle;
-}
-.logo-list li:first-child {
-    width: 4em;
-}
-
-/**
  * Data categories
  */
 .data-category-list {

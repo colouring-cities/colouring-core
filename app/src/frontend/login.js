@@ -3,6 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 
 import ErrorBox from './error-box';
 import InfoBox from './info-box';
+import SupporterLogos from './supporter-logos';
 
 class Login extends Component {
     constructor(props) {
@@ -104,6 +105,10 @@ class Login extends Component {
                         </div>
 
                     </form>
+                </section>
+                <hr />
+                <section className="main-col">
+                    <SupporterLogos />
                 </section>
             </article>
         )
