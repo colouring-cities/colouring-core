@@ -7,7 +7,7 @@ import './beta-banner.css';
 const BetaBanner = () => (
     <p className="beta-banner" role="alert" >
 
-    Welcome to the prototype (beta) site for Colouring London. <a
+    Welcome to the test site for Colouring London&mdash; officially launching Spring 2019. <a
     href="http://colouringlondon.org">Find out more about the project.</a>
 
     </p>
