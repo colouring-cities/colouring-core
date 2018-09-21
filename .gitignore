@@ -11,3 +11,4 @@ app/start.sh
 etl/cache/*
 etl/images/*
 etl/*.geojson
+etl/*.txt
