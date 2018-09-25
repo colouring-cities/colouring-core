@@ -85,11 +85,11 @@ CREATE TABLE user_sessions (
 CREATE INDEX user_sessions_expire_idx on user_sessions ( expire );
 
 --
--- Log table
+-- Logs table
 --
 -- To store all changes to building data, recording users and change in data
 -- over time.
-CREATE TABLE log (
+CREATE TABLE logs (
     -- integer for internal unique id
     log_id bigserial PRIMARY KEY,
     -- default timestamp to time now
