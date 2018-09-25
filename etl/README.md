@@ -22,4 +22,6 @@ The scripts should be run in the following order:
 1. filter_transform_mastermap_for_loading.sh
 1. load_geometries.sh
 1. create_building_records.sh
+1. (SQL migration) psql < ../migrations/002.index-geometries.sql
 1. load_uprns.py
+1. (SQL migration) psql < ../migrations/002.index-buildings.sql

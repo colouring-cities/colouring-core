@@ -20,6 +20,8 @@ CREATE TABLE geometries (
 CREATE TABLE buildings (
     -- internal unique id
     building_id serial PRIMARY KEY,
+    -- unique property reference number
+    uprn bigint,
     -- jsonb document for all data, attributes to be specified in application
     building_doc jsonb,
     -- reference to geometry, aiming to decouple from geometry provider
@@ -104,6 +106,6 @@ CREATE TABLE logs (
     building_id integer REFERENCES buildings
 );
 
-CREATE INDEX log_timestamp_idx ON log ( log_timestamp );
-CREATE INDEX log_user_idx ON log ( user_id );
-CREATE INDEX log_building_idx ON log ( building_id );
+CREATE INDEX log_timestamp_idx ON logs ( log_timestamp );
+CREATE INDEX log_user_idx ON logs ( user_id );
+CREATE INDEX log_building_idx ON logs ( building_id );
