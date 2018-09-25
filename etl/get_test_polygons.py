@@ -8,6 +8,8 @@ Then run:
 """
 # -*- coding: utf-8 -*-
 import os
+import subprocess
+
 import osmnx
 
 # configure logging/caching
@@ -28,7 +30,9 @@ fig, ax = osmnx.plot_buildings(gdf_proj, bgcolor='#333333', color='w', figsize=(
                                filename='test_buildings_preview', dpi=600)
 
 # save
-test_data_file = os.path.join(os.path.dirname(__file__), 'test_buildings.csv')
+test_dir = os.path.dirname(__file__)
+test_data_geojson = str(os.path.join(test_dir, 'test_buildings.geojson'))
+subprocess.run(["rm", test_data_geojson])
 
 gdf_to_save = gdf_proj.reset_index(
 )[
@@ -38,5 +42,13 @@ gdf_to_save = gdf_proj.reset_index(
 gdf_to_save.rename(
     columns={'index': 'fid'}
 ).to_file(
-    test_data_file, driver='CSV'
+    test_data_geojson, driver='GeoJSON'
 )
+
+# convert to CSV
+test_data_csv = str(os.path.join(test_dir, 'test_buildings.csv'))
+subprocess.run(["rm", test_data_csv])
+subprocess.run(["ogr2ogr", "-f", "CSV", test_data_csv, test_data_geojson, "-lco", "GEOMETRY=AS_WKT"])
+
+# add SRID for ease of loading to PostgreSQL
+subprocess.run(["sed", "-i", "s/^\"POLYGON/\"SRID=3857;POLYGON/", test_data_csv])
