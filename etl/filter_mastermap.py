@@ -25,7 +25,7 @@ def main(ab_path, mm_path):
     zipped_paths = zip(mm_paths, toid_paths)
 
     # parallel map over tiles
-    with Pool(4) as p:
+    with Pool() as p:
         p.starmap(filter, zipped_paths)
 
 def filter(mm_path, toid_path):
