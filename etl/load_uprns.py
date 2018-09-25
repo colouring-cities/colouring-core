@@ -73,7 +73,7 @@ def save_building(cur, uprn, geometry_id):
             geometry_id,
         )
     )
-    building = cur.fetchone()    
+    building = cur.fetchone()
     if building is None:
         cur.execute(
             """INSERT INTO buildings
@@ -122,8 +122,8 @@ def read_config(config_path):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
-        print("Usage: {} ./path/to/source/file.csv ./path/to/dbconfig.json".format(
+    if len(sys.argv) != 2:
+        print("Usage: {} ./path/to/source/file.csv".format(
             os.path.basename(__file__)
         ))
         exit()

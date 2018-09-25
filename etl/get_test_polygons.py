@@ -1,4 +1,10 @@
 """Download and load a small open dataset for testing
+
+Run this to create a CSV of buildings geometries.
+
+Then run:
+- load_geometries.sh (loading geometries to the database)
+- create_buildings.sh (creating empty building records for each geometry)
 """
 # -*- coding: utf-8 -*-
 import os
@@ -21,8 +27,8 @@ fig, ax = osmnx.plot_buildings(gdf_proj, bgcolor='#333333', color='w', figsize=(
                                save=True, show=False, close=True,
                                filename='test_buildings_preview', dpi=600)
 
-# save as geojson
-test_data_file = os.path.join(os.path.dirname(__file__), 'test_buildings.geojson')
+# save
+test_data_file = os.path.join(os.path.dirname(__file__), 'test_buildings.csv')
 
 gdf_to_save = gdf_proj.reset_index(
 )[
@@ -32,5 +38,5 @@ gdf_to_save = gdf_proj.reset_index(
 gdf_to_save.rename(
     columns={'index': 'fid'}
 ).to_file(
-    test_data_file, driver='GeoJSON'
+    test_data_file, driver='CSV'
 )

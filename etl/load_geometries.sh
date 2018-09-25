@@ -30,11 +30,3 @@ psql -c "DELETE FROM geometries a USING (
 ) b
 WHERE a.source_id = b.source_id
 AND a.ctid <> b.ctid;"
-
-#
-# Create corresponding 'building' record with
-#     id: <building-guid>,
-#     doc: {},
-#     geom_id: <polygon-guid>
-#
-psql -c "INSERT INTO buildings ( geometry_id ) SELECT geometry_id from geometries;"
