@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
 #
+# Extract MasterMap
+#
+
+: ${1?"Usage: $0 ./path/to/mastermap/dir"}
+
+data_dir=$1
+
+#
 # Extract buildings from *.gz to CSV
 #
 # Features where::
@@ -9,11 +17,13 @@
 # Use `fid` as source ID, aka TOID.
 #
 
-: ${1?"Usage: $0 ./path/to/data/dir"}
-
-data_dir=$1
-
 find $data_dir -type f -name '*.gz' -printf "%f\n" | \
+parallel \
+gunzip $data_dir/{} -k -S gml
+
+rename 's/$/.gml/' $data_dir/*[^gzt]
+
+find $data_dir -type f -name '*.gml' -printf "%f\n" | \
 parallel \
 ogr2ogr \
     -select fid,descriptiveGroup \
@@ -22,9 +32,4 @@ ogr2ogr \
     TopographicArea \
     -lco GEOMETRY=AS_WKT
 
-# then filter
-# -where "\"descriptiveGroup='(1:Building)'\"" \
-# OR toid in addressbase_toids
-
-# finally load
-# -t_srs "EPSG:3857" \
+rm $data_dir/*.gfs

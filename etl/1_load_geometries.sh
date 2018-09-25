@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+#
+# Load geometries from GeoJSON to Postgres
+# - assume postgres connection details are set in the environment using PGUSER, PGHOST etc.
+#
+: ${1?"Usage: $0 ./path/to/mastermap/dir"}
+
+mastermap_dir=$1
+
+#
+# Create 'geometry' record with
+#     id: <polygon-guid>,
+#     source_id: <toid>,
+#     geom: <geom>
+#
+find $mastermap_dir -type f -name '*.3857.csv' \
+-printf "COPY geometries ( geometry_geom, source_id ) FROM '$mastermap_dir/%f' WITH CSV HEADER;\n" | \
+parallel \
+psql -c {}
+
+#
+# Delete any duplicated geometries (by TOID)
+#
+psql -c "DELETE FROM geometries a USING (
+    SELECT MIN(ctid) as ctid, source_id
+    FROM geometries
+    GROUP BY source_id
+    HAVING COUNT(*) > 1
+) b
+WHERE a.source_id = b.source_id
+AND a.ctid <> b.ctid;"
+
+#
+# Create corresponding 'building' record with
+#     id: <building-guid>,
+#     doc: {},
+#     geom_id: <polygon-guid>
+#
+psql -c "INSERT INTO buildings ( geometry_id ) SELECT geometry_id from geometries;"

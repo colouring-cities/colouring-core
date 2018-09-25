@@ -12,10 +12,12 @@ data_dir=$1
 # Unzip to GML
 #
 
-# find $data_dir -name '*.zip' -print0 | xargs -0 -P 4 -n 1 unzip
+find $data_dir -type f -name '*.zip' -printf "%f\n" | \
+parallel \
+unzip -u $data_dir/{} -d $data_dir
 
 #
-# Extract (subset) to CSV
+# Extract to CSV
 #
 # Relevant fields:
 # WKT
@@ -26,15 +28,17 @@ data_dir=$1
 # logicalStatus: 1 (one) is approved (otherwise historical, provisional)
 #
 
-# find $data_dir -type f -name '*.gml' -printf "%f\n"  | \
-# parallel \
-# ogr2ogr -f CSV \
-#     -select crossReference,source,uprn,parentUPRN,logicalStatus \
-#     {}.csv {} BasicLandPropertyUnit \
-#     -lco GEOMETRY=AS_WKT
-
-rm $data_dir/*.gml
-
-find $data_dir -type f -name '*.gml.csv' -printf "$data_dir%f\n"  | \
+find $data_dir -type f -name '*.gml' -printf "%f\n"  | \
 parallel \
-python filter_addressbase_csv.py {}
+ogr2ogr -f CSV \
+    -select crossReference,source,uprn,parentUPRN,logicalStatus \
+    $data_dir/{}.csv $data_dir/{} BasicLandPropertyUnit \
+    -lco GEOMETRY=AS_WKT
+
+#
+# Filter, grouping by TOID
+#
+
+find $data_dir -type f -name '*.gml.csv' -printf "%f\n"  | \
+parallel \
+python filter_addressbase_csv.py $data_dir/{}
