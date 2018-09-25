@@ -1,64 +1,40 @@
-# Database details
+# Database setup
 
-Initial setup, on first connection (replacing hostname and username):
+Initial setup, on first connection (replacing hostname, username, port, dbname as required):
 
 ```bash
-$ psql "host={hostname} user={username} port=5432 sslmode=require dbname=postgres"
+$ psql "host={hostname} user={username} port={port} sslmode=require dbname=postgres"
 > create database colouringlondon;
 > \c colouringlondon
 > create extension postgis;
 > create extension pgcrypto;
 > \q
-$ psql "host={hostname} user={username} port=5432 sslmode=require dbname=colouringlondon" < 001.create-core.up.sql
+$ psql "host={hostname} user={username} port={port} sslmode=require dbname=colouringlondon" < 001.create-core.up.sql
 ```
 
-Create app users
+Create an app user:
 
 ```sql
 -- role for server-side of front end (HTTP POST)
-CREATE ROLE frontend WITH LOGIN;
+CREATE ROLE appusername WITH LOGIN;
 -- create/update, authenticate and authorise users
-GRANT SELECT, UPDATE, INSERT ON TABLE users TO frontend;
+GRANT SELECT, UPDATE, INSERT, DELETE ON TABLE users TO appusername;
+-- join users against categories and access levels
+GRANT SELECT ON TABLE user_access_levels, user_categories TO appusername;
 -- read/write building data
-GRANT SELECT, UPDATE, INSERT ON TABLE buildings TO frontend;
+GRANT SELECT, UPDATE ON TABLE buildings TO appusername;
 -- read geometry data
-GRANT SELECT ON TABLE geometries TO frontend;
+GRANT SELECT ON TABLE geometries TO appusername;
 -- read/append to logs
-GRANT SELECT, INSERT ON TABLE log to frontend;
+GRANT SELECT, INSERT ON TABLE logs to appusername;
 -- use id sequences
-GRANT USAGE ON ALL SEQUENCES IN SCHEMA public to frontend;
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA public to appusername;
 -- use postgis/pgcrypto functions
-GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO frontend;
-
--- role for /api routes (may be AJAX from web client, or 3rd-party client with key)
-CREATE ROLE apiserver WITH LOGIN;
--- need to authenticate and authorize users
-GRANT SELECT ON TABLE users TO apiserver;
--- read/write building data
-GRANT SELECT, UPDATE, INSERT ON TABLE buildings TO apiserver;
--- read geometry data
-GRANT SELECT ON TABLE geometries TO apiserver;
--- read/append to logs
-GRANT SELECT, INSERT ON TABLE log to apiserver;
--- use id sequences
-GRANT USAGE ON ALL SEQUENCES IN SCHEMA public to apiserver;
--- use postgis/pgcrypto functions
-GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO apiserver;
-
--- role for /tiles routes
-CREATE ROLE tileserver WITH LOGIN;
--- read building and geometry data
-GRANT SELECT ON TABLE geometries, buildings TO tileserver;
--- use id sequences
-GRANT USAGE ON ALL SEQUENCES IN SCHEMA public to tileserver;
--- use postgis functions
-GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO tileserver;
+GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO appusername;
 ```
 
-Set or update passwords
+Set or update passwords:
 
 ```bash
-psql -c "ALTER USER frontend WITH PASSWORD 'longsecurerandompassword1';"
-psql -c "ALTER USER apiserver WITH PASSWORD 'longsecurerandompassword2';"
-psql -c "ALTER USER tileserver WITH PASSWORD 'longsecurerandompassword3';"
+psql -c "ALTER USER appusername WITH PASSWORD 'longsecurerandompassword';"
 ```

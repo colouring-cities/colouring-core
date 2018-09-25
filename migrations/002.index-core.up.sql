@@ -1,4 +1,4 @@
-
+-- Create indexes after bulk loading geometries and building records
 
 -- Spatial index over building outlines
 CREATE INDEX geometries_idx ON geometries USING GIST ( geometry_geom );
