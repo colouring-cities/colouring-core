@@ -4,17 +4,13 @@
 -- To store building outlines.
 -- Geometries form the backbone, expected to be provided from other sources.
 CREATE TABLE geometries (
-    -- integer for internal unique id
-    -- may consider guid for global uniqueness
+    -- internal unique id
     geometry_id serial PRIMARY KEY,
-    -- jsonb document for all data, source ID, attributes
-    geometry_doc jsonb,
+    -- cross-reference to data source id
+    source_id varchar(30),
     -- geometry as EPSG:3857 avoiding reprojection for tiles
     geometry_geom geometry(POLYGON, 3857)
 );
-
--- Spatial index over building outlines
-CREATE INDEX geometries_idx ON geometries USING GIST ( geometry_geom );
 
 --
 -- Buildings table
@@ -22,8 +18,7 @@ CREATE INDEX geometries_idx ON geometries USING GIST ( geometry_geom );
 -- To store collected data.
 -- This is the core dataset to be collected by the application.
 CREATE TABLE buildings (
-    -- integer for internal unique id
-    -- may consider guid for global uniqueness
+    -- internal unique id
     building_id serial PRIMARY KEY,
     -- jsonb document for all data, attributes to be specified in application
     building_doc jsonb,
@@ -31,8 +26,27 @@ CREATE TABLE buildings (
     geometry_id integer REFERENCES geometries
 );
 
--- Index over building geometry (expect to look up building by geometry_id)
-CREATE INDEX building_geometry_idx ON buildings ( geometry_id );
+--
+-- User categories
+--
+-- Self-selected, optional categories
+CREATE TABLE user_categories (
+    category_id serial PRIMARY KEY,
+    -- category name/short description
+    category varchar(60)
+);
+INSERT INTO user_categories ( category_id, category ) VALUES ( 1, 'Not provided');
+
+--
+-- User access levels
+--
+-- If necessary for moderation
+CREATE TABLE user_access_levels (
+    access_level_id serial PRIMARY KEY,
+    -- name/short description
+    access_level varchar(60)
+);
+INSERT INTO user_access_levels ( access_level_id, access_level ) VALUES ( 1, 'untrusted');
 
 --
 -- Users table
@@ -40,7 +54,7 @@ CREATE INDEX building_geometry_idx ON buildings ( geometry_id );
 -- Minimal user data to support login and edit history
 CREATE TABLE users (
     -- internal unique id
-    user_id uuid PRIMARY KEY,
+    user_id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     -- username for login (required)
     username varchar(30) UNIQUE NOT NULL,
     -- email address for password reset (optional)
@@ -48,7 +62,11 @@ CREATE TABLE users (
     -- password - as generated from hash(salt+password) via pgcrypto
     pass varchar(60),
     -- date registered
-    registered timestamp default NOW()
+    registered timestamp default NOW(),
+    -- user category (optional, self-selected)
+    category integer REFERENCES user_categories NOT NULL DEFAULT 1,
+    -- user access level (essential, default untrusted)
+    access_level integer REFERENCES user_access_levels NOT NULL DEFAULT 1
 );
 
 CREATE INDEX user_username_idx ON users ( username );
@@ -77,8 +95,9 @@ CREATE TABLE log (
     -- default timestamp to time now
     log_timestamp TIMESTAMP default NOW(),
     -- log document to be extended in application
-    -- log change diff (CREATE/UPDATE/DELETE)
-    log_doc jsonb,
+    -- log from..to; only changed values (aim to be reversible)
+    log_from jsonb,
+    log_to jsonb,
     -- log user id
     user_id uuid REFERENCES users,
     -- log building id
