@@ -4,9 +4,11 @@
 # Extract MasterMap
 #
 
-: ${1?"Usage: $0 ./path/to/mastermap/dir"}
+: ${1?"Usage: $0 ./path/to/mastermap/dir ./path/to/boundary"}
+: ${2?"Usage: $0 ./path/to/mastermap/dir ./path/to/boundary"}
 
 data_dir=$1
+boundary_file=$2
 
 #
 # Extract buildings from *.gz to CSV
@@ -28,6 +30,7 @@ parallel \
 ogr2ogr \
     -select fid,descriptiveGroup \
     -f CSV $data_dir/{}.csv \
+    -clipsrc $boundary_file \
     $data_dir/{} \
     TopographicArea \
     -lco GEOMETRY=AS_WKT
