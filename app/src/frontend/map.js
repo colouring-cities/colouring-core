@@ -15,7 +15,7 @@ class ColouringMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            theme: 'light',
+            theme: 'night',
             lat: 51.5245255,
             lng: -0.1338422,
             zoom: 16
