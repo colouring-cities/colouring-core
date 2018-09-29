@@ -3,7 +3,7 @@
 --
 -- To store building outlines.
 -- Geometries form the backbone, expected to be provided from other sources.
-CREATE TABLE geometries (
+CREATE TABLE IF NOT EXISTS geometries (
     -- internal unique id
     geometry_id serial PRIMARY KEY,
     -- cross-reference to data source id
@@ -17,25 +17,30 @@ CREATE TABLE geometries (
 --
 -- To store collected data.
 -- This is the core dataset to be collected by the application.
-CREATE TABLE buildings (
+CREATE TABLE IF NOT EXISTS buildings (
     -- internal unique id
     building_id serial PRIMARY KEY,
     -- unique property reference number
-    uprn bigint,
+    ref_uprn bigint,
+    -- OS MasterMap topo id
+    ref_toid varchar,
+    -- OSM reference id
+    ref_osm_id bigint,
     -- jsonb document for all data, attributes to be specified in application
     building_doc jsonb,
     -- reference to geometry, aiming to decouple from geometry provider
     geometry_id integer REFERENCES geometries
 );
+ALTER TABLE buildings ADD CONSTRAINT buildings_ref_toid_len CHECK (length(ref_toid) < 90);
 
 --
 -- User categories
 --
 -- Self-selected, optional categories
-CREATE TABLE user_categories (
+CREATE TABLE IF NOT EXISTS user_categories (
     category_id serial PRIMARY KEY,
     -- category name/short description
-    category varchar(60)
+    category varchar
 );
 INSERT INTO user_categories ( category_id, category ) VALUES ( 1, 'Not provided');
 
@@ -43,10 +48,10 @@ INSERT INTO user_categories ( category_id, category ) VALUES ( 1, 'Not provided'
 -- User access levels
 --
 -- If necessary for moderation
-CREATE TABLE user_access_levels (
+CREATE TABLE IF NOT EXISTS user_access_levels (
     access_level_id serial PRIMARY KEY,
     -- name/short description
-    access_level varchar(60)
+    access_level varchar
 );
 INSERT INTO user_access_levels ( access_level_id, access_level ) VALUES ( 1, 'untrusted');
 
@@ -54,15 +59,15 @@ INSERT INTO user_access_levels ( access_level_id, access_level ) VALUES ( 1, 'un
 -- Users table
 --
 -- Minimal user data to support login and edit history
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     -- internal unique id
     user_id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     -- username for login (required)
-    username varchar(30) UNIQUE NOT NULL,
+    username varchar UNIQUE NOT NULL,
     -- email address for password reset (optional)
-    email varchar(50) UNIQUE,
+    email varchar UNIQUE,
     -- password - as generated from hash(salt+password) via pgcrypto
-    pass varchar(60),
+    pass varchar,
     -- date registered
     registered timestamp default NOW(),
     -- user category (optional, self-selected)
@@ -70,28 +75,30 @@ CREATE TABLE users (
     -- user access level (essential, default untrusted)
     access_level integer REFERENCES user_access_levels NOT NULL DEFAULT 1
 );
+ALTER TABLE users ADD CONSTRAINT users_username_len CHECK (length(username) < 30);
+ALTER TABLE users ADD CONSTRAINT users_email_len CHECK (length(email) < 50);
+ALTER TABLE users ADD CONSTRAINT users_pass_len CHECK (length(pass) < 60);
 
-CREATE INDEX user_username_idx ON users ( username );
-CREATE INDEX user_email_idx ON users ( email );
+CREATE INDEX IF NOT EXISTS user_username_idx ON users ( username );
+CREATE INDEX IF NOT EXISTS user_email_idx ON users ( email );
 
 --
 -- User session table
 --
---
-CREATE TABLE user_sessions (
+CREATE TABLE IF NOT EXISTS user_sessions (
     sid varchar PRIMARY KEY,
     sess json NOT NULL,
     expire timestamp(6) NOT NULL
 );
 
-CREATE INDEX user_sessions_expire_idx on user_sessions ( expire );
+CREATE INDEX IF NOT EXISTS user_sessions_expire_idx on user_sessions ( expire );
 
 --
 -- Logs table
 --
 -- To store all changes to building data, recording users and change in data
 -- over time.
-CREATE TABLE logs (
+CREATE TABLE IF NOT EXISTS logs (
     -- integer for internal unique id
     log_id bigserial PRIMARY KEY,
     -- default timestamp to time now
@@ -106,6 +113,6 @@ CREATE TABLE logs (
     building_id integer REFERENCES buildings
 );
 
-CREATE INDEX log_timestamp_idx ON logs ( log_timestamp );
-CREATE INDEX log_user_idx ON logs ( user_id );
-CREATE INDEX log_building_idx ON logs ( building_id );
+CREATE INDEX IF NOT EXISTS log_timestamp_idx ON logs ( log_timestamp );
+CREATE INDEX IF NOT EXISTS log_user_idx ON logs ( user_id );
+CREATE INDEX IF NOT EXISTS log_building_idx ON logs ( building_id );
