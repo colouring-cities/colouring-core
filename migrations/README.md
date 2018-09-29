@@ -9,7 +9,18 @@ $ psql "host={hostname} user={username} port={port} sslmode=require dbname=postg
 > create extension postgis;
 > create extension pgcrypto;
 > \q
-$ psql "host={hostname} user={username} port={port} sslmode=require dbname=colouringlondon" < 001.create-core.up.sql
+```
+
+To run all up migrations:
+
+```bash
+$ ls ./*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
+```
+
+Or all down migrations in reverse order:
+
+```bash
+$ ls -r ./*.down.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
 ```
 
 Create an app user:
@@ -18,11 +29,12 @@ Create an app user:
 -- role for server-side of front end (HTTP POST)
 CREATE ROLE appusername WITH LOGIN;
 -- create/update, authenticate and authorise users
-GRANT SELECT, UPDATE, INSERT, DELETE ON TABLE users TO appusername;
+GRANT SELECT, UPDATE, INSERT, DELETE ON TABLE users, user_sessons TO appusername;
 -- join users against categories and access levels
 GRANT SELECT ON TABLE user_access_levels, user_categories TO appusername;
 -- read/write building data
 GRANT SELECT, UPDATE ON TABLE buildings TO appusername;
+GRANT SELECT, INSERT, DELETE ON TABLE building_user_likes TO appusername;
 -- read geometry data
 GRANT SELECT ON TABLE geometries TO appusername;
 -- read/append to logs
