@@ -11,7 +11,8 @@ import pgConnect from 'connect-pg-simple';
 import App from './frontend/app';
 import { pool } from './db';
 import { authUser, createUser, getUserById } from './user';
-import { queryBuildingAtPoint, getBuildingById, saveBuilding } from './building';
+import { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById,
+         saveBuilding } from './building';
 import tileserver from './tileserver';
 import { parseBuildingURL } from './parse';
 
@@ -33,21 +34,21 @@ server.use(bodyParser.json());
 // handle user sessions
 const pgSession = pgConnect(session);
 const sess = {
-  name: 'cl.session',
-  store: new pgSession({
-    pool: pool,
-    tableName : 'user_sessions'
-  }),
-  secret: process.env.APP_COOKIE_SECRET,
-  saveUninitialized: false,
-  resave: false,
-  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
+    name: 'cl.session',
+    store: new pgSession({
+        pool: pool,
+        tableName : 'user_sessions'
+    }),
+    secret: process.env.APP_COOKIE_SECRET,
+    saveUninitialized: false,
+    resave: false,
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 };
 if (server.get('env') === 'production') {
-  // trust first proxy
-  server.set('trust proxy', 1)
-  // serve secure cookies
-  sess.cookie.secure = true
+    // trust first proxy
+    server.set('trust proxy', 1)
+    // serve secure cookies
+    sess.cookie.secure = true
 }
 server.use(session(sess));
 
@@ -84,16 +85,16 @@ function frontendRoute(req, res) {
 
 function renderHTML(context, data, req, res){
     const markup = renderToString(
-      <StaticRouter context={context} location={req.url}>
-        <App user={data.user} building={data.building} />
-      </StaticRouter>
+        <StaticRouter context={context} location={req.url}>
+            <App user={data.user} building={data.building} />
+        </StaticRouter>
     );
 
     if (context.url) {
-      res.redirect(context.url);
+        res.redirect(context.url);
     } else {
-      res.status(context.status).send(
-        `<!doctype html>
+        res.status(context.status).send(
+`<!doctype html>
     <html lang="">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -127,34 +128,44 @@ function renderHTML(context, data, req, res){
         </script>
     </body>
 </html>`
-      );
+        );
     }
 }
 
 // GET tiles
 server.use('/tiles', tileserver);
 
+// GET buildings
+// not implemented - may be useful to GET all buildings, paginated
 
-// GET building at point
-server.get('/buildings.json', function(req, res){
-  const { lng, lat } = req.query
-  queryBuildingAtPoint(lng, lat).then(function(result){
-      if (result) {
-          res.send(result)
-      } else {
-          res.status(404).send({error:'Not Found'})
-      }
-  }).catch(function(error){
-      res.send({error:'Database error'})
-  })
-})
+// GET buildings at point
+server.get('/buildings/locate', function(req, res){
+    const { lng, lat } = req.query;
+    queryBuildingsAtPoint(lng, lat).then(function(result){
+        res.send(result);
+    }).catch(function(error){
+        console.error(error);
+        res.send({error:'Database error'})
+    })
+});
 
-// Building routes
+// GET buildings by reference (UPRN/TOID or other identifier)
+server.get('/buildings/reference', function(req, res){
+    const { key, id } = req.query;
+    queryBuildingsByReference(key, id).then(function(result){
+        res.send(result);
+    }).catch(function(error){
+        console.error(error);
+        res.send({error:'Database error'})
+    })
+});
+
+// GET individual building, POST building updates
 server.route('/building/:building_id.json')
     .get(function (req, res) {
         const { building_id } = req.params;
         getBuildingById(building_id).then(function(result){
-            if (result) {
+            if (result && result.length) {
                 res.send(result)
             } else {
                 res.status(404).send({error:'Not Found'})
@@ -173,7 +184,6 @@ server.route('/building/:building_id.json')
         )
     })
 
-
 // POST new user
 server.post('/users', function(req, res){
     const user = req.body;
@@ -184,8 +194,8 @@ server.post('/users', function(req, res){
 
     if (user.email){
         if (user.email != user.confirm_email) {
-          res.send({error: "Email did not match confirmation."});
-          return
+            res.send({error: "Email did not match confirmation."});
+            return
         }
     } else {
         user.email = null;
@@ -221,6 +231,7 @@ server.post('/login', function(req, res){
 
 // POST user logout
 server.post('/logout', function(req, res){
+    req.session.user_id = undefined;
     req.session.destroy(function(err){
         if (err) {
             console.error(err);
@@ -243,6 +254,5 @@ server.get('/users/me', function(req, res){
         res.send(error);
     });
 });
-
 
 export default server;

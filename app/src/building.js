@@ -1,6 +1,6 @@
 import { query } from './db';
 
-function queryBuildingAtPoint(lng, lat) {
+function queryBuildingsAtPoint(lng, lat) {
     return query(
         `SELECT
         b.building_id as id,
@@ -17,25 +17,51 @@ function queryBuildingAtPoint(lng, lat) {
             ),
             g.geometry_geom
         )
-        LIMIT 1
         `,
         [lng, lat]
-    ).then(function(data){
-        const rows = data.rows
-        if (rows.length){
-            const id = rows[0].id
-            const doc = rows[0].doc
-            const geometry_id = rows[0].geometry_id
-
-            doc.id = id
-            doc.geometry_id = geometry_id
-            return doc
-        }
-        return undefined;
-    }).catch(function(error){
+    ).then(buildingRowsToDocs).catch(function(error){
         console.error(error);
         return undefined;
     });
+}
+function queryBuildingsByReference(key, id) {
+    if (key === 'toid'){
+        return query(
+            `SELECT
+            b.building_id as id,
+            b.building_doc as doc,
+            g.geometry_id as geometry_id
+            FROM buildings as b, geometries as g
+            WHERE
+            b.geometry_id = g.geometry_id
+            AND
+            b.ref_toid = $1
+            `,
+            [id]
+        ).then(buildingRowsToDocs).catch(function(error){
+            console.error(error);
+            return undefined;
+        });
+    }
+    if (key === 'uprn') {
+        return query(
+            `SELECT
+            b.building_id as id,
+            b.building_doc as doc,
+            g.geometry_id as geometry_id
+            FROM buildings as b, geometries as g
+            WHERE
+            b.geometry_id = g.geometry_id
+            AND
+            b.ref_uprn = $1
+            `,
+            [id]
+        ).then(buildingRowsToDocs).catch(function(error){
+            console.error(error);
+            return undefined;
+        });
+    }
+    return {error: 'Key must be UPRN or TOID'};
 }
 
 function getBuildingById(id) {
@@ -50,22 +76,24 @@ function getBuildingById(id) {
             building_id = $1
         `,
         [ id ]
-    ).then(function(data){
-        const rows = data.rows
-        if (rows.length){
-            const id = rows[0].id
-            const doc = rows[0].doc
-            const geometry_id = rows[0].geometry_id
-
-            doc.id = id
-            doc.geometry_id = geometry_id
-            return doc
-        }
-        return undefined;
-    }).catch(function(error){
+    ).then(buildingRowsToDocs).catch(function(error){
         console.error(error);
         return undefined;
     });
+}
+
+function buildingRowsToDocs(data){
+    const rows = data.rows
+    const data = rows.map(function(row){
+        const id = row.id
+        const doc = row.doc
+        const geometry_id = row.geometry_id
+
+        doc.id = id
+        doc.geometry_id = geometry_id
+        return doc
+    });
+    return data;
 }
 
 function saveBuilding(id, building_doc) {
@@ -88,4 +116,4 @@ function saveBuilding(id, building_doc) {
     });
 }
 
-export { queryBuildingAtPoint, getBuildingById, saveBuilding };
+export { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById, saveBuilding };
