@@ -38,18 +38,25 @@ class Login extends Component {
             body: JSON.stringify(this.state),
             headers:{
               'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'same-origin'
         }).then(
             res => res.json()
         ).then(function(res){
             if (res.error) {
                 this.setState({error: res.error})
             } else {
-                fetch('/users/me').then(
+                fetch('/users/me', {
+                    credentials: 'same-origin'
+                }).then(
                     (res) => res.json()
-                ).then(
-                    (user) => this.props.login(user)
-                ).catch(
+                ).then(user => {
+                    if (user.error) {
+                        this.setState({error: user.error})
+                    } else {
+                        this.props.login(user)
+                    }
+                }).catch(
                     (err) => this.setState({error: err})
                 )
             }
@@ -59,7 +66,7 @@ class Login extends Component {
     }
 
     render() {
-        if (this.props.user) {
+        if (this.props.user && !this.props.user.error) {
             return <Redirect to="/my-account.html" />
         }
         return (

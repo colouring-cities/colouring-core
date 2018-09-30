@@ -32,8 +32,11 @@ class App extends React.Component {
     }
 
     login(user) {
-        console.log("Logging in")
-        console.log(user)
+        if (user.error) {
+            this.logout();
+            return
+        }
+        console.log("Logging in", user);
         this.setState({user: user});
     }
 
