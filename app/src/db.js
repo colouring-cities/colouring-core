@@ -12,7 +12,13 @@ import pg from 'pg-promise';
 
 // pg-promise, can provide initialisation options
 const pgp = pg();
-// database connection, can provide connection string or object (should default to env vars)
-const db = pgp();
+// database connection (default to env vars)
+const db = pgp({
+    'host': process.env.PGHOST,
+    'dbname': process.env.PGDATABASE,
+    'user': process.env.PGUSER,
+    'password': process.env.PGPASSWORD,
+    'port': process.env.PGPORT
+});
 
 export default db;
