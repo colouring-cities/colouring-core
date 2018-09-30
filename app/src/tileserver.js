@@ -30,11 +30,8 @@ router.get('/highlight/:z/:x/:y.png', function(req, res) {
     const bbox = get_bbox(req.params)
     const table_def = `(
         SELECT
-            (g.geometry_id = ${geometry_id}) as focus,
-            cast(
-                b.building_doc->>'location_number'
-                as text
-            ) as location_number,
+            g.geometry_id = ${geometry_id}) as focus,
+            b.location_number as location_number,
             g.geometry_geom
         FROM
             geometries as g,
@@ -57,10 +54,7 @@ router.get('/date_year/:z/:x/:y.png', function(req, res) {
     // const table_def = 'geometries'
     const table_def = `(
         SELECT
-            cast(
-                NULLIF(b.building_doc->>'date_year', '')
-                as integer
-            ) as date_year,
+            b.date_year as date_year,
             g.geometry_geom
         FROM
             geometries as g,
@@ -83,15 +77,7 @@ router.get('/size_storeys/:z/:x/:y.png', function(req, res) {
     // const table_def = 'geometries'
     const table_def = `(
         SELECT
-            cast(
-                NULLIF(b.building_doc->>'size_attic', '')
-                as integer
-            ) +
-            cast(
-                NULLIF(b.building_doc->>'size_core', '')
-                as integer
-            )
-            as size_storeys,
+            (b.size_attic + b.size_core) as size_storeys,
             g.geometry_geom
         FROM
             geometries as g,
