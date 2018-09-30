@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 ALTER TABLE users ADD CONSTRAINT users_username_len CHECK (length(username) < 30);
 ALTER TABLE users ADD CONSTRAINT users_email_len CHECK (length(email) < 50);
-ALTER TABLE users ADD CONSTRAINT users_pass_len CHECK (length(pass) < 60);
+ALTER TABLE users ADD CONSTRAINT users_pass_len CHECK (length(pass) <= 60);
 
 CREATE INDEX IF NOT EXISTS user_username_idx ON users ( username );
 CREATE INDEX IF NOT EXISTS user_email_idx ON users ( email );
