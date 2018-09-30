@@ -86,7 +86,13 @@ function frontendRoute(req, res) {
         data.user = user;
         data.building = building;
         renderHTML(context, data, req, res)
-    })
+    }).catch(error => {
+        console.error(error);
+        data.user = undefined;
+        data.building = undefined;
+        contex.status = 500;
+        renderHTML(context, data, req, res);
+    });
 }
 
 function renderHTML(context, data, req, res){
@@ -177,6 +183,7 @@ server.route('/building/:building_id.json')
                 res.status(404).send({error:'Not Found'})
             }
         }).catch(function(error){
+            console.error(error);
             res.send({error:'Database error'})
         })
     })
