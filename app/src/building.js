@@ -1,5 +1,3 @@
-import { compare, deepClone } from 'fast-json-patch'
-
 import db from './db';
 // data type note: PostgreSQL bigint (64-bit) is handled as string in JavaScript, because of
 // JavaScript numerics are 64-bit double, giving only partial coverage.
@@ -25,6 +23,7 @@ function queryBuildingsAtPoint(lng, lat) {
         return undefined;
     });
 }
+
 function queryBuildingsByReference(key, id) {
     if (key === 'toid'){
         return db.manyOrNone(
@@ -85,11 +84,9 @@ function saveBuilding(building_id, building, user_id) {
             "SELECT * FOR UPDATE FROM buildings WHERE building_id = $1 and revision_id = $2;",
             [building_id, previous_revision_id]
         ).then(old_building => {
-            // full new building (possibly a subset of keys were sent as building)
-            const new_building = Object.assign(deepClone(old_building), building);
-            // uses JSON Patch (see RFC6902) to identify forward- and reverse- changesets
-            const patch = compare(old_building, new_building);
-            const reverse = compare(new_building, old_building);
+            const patches = compare(old_building, building, BUILDING_FIELD_WHITELIST);
+            const forward = patches[0];
+            const reverse = patches[1];
             return t.one(
                 `INSERT INTO logs (
                     forward_patch, reverse_patch, building_id, user_id
@@ -97,9 +94,9 @@ function saveBuilding(building_id, building, user_id) {
                     $1:jsonb, $2:jsonb, $3, $4
                 ) RETURNING log_id
                 `,
-                [patch, reverse, building_id, user_id]
+                [forward, reverse, building_id, user_id]
             ).then(revision => {
-                const sets = db.$config.pgp.helpers.sets(building);
+                const sets = db.$config.pgp.helpers.sets(forward);
                 return t.one(
                     `UPDATE
                         buildings
@@ -120,6 +117,56 @@ function saveBuilding(building_id, building, user_id) {
         console.error(error);
         return undefined;
     });
+}
+
+const BUILDING_FIELD_WHITELIST = new Set([
+    'ref_toid',
+    'ref_osm_id',
+    'location_name',
+    'location_number',
+    'location_street',
+    'location_line_two',
+    'location_town',
+    'location_postcode',
+    'location_latitude',
+    'location_longitude',
+    'date_year',
+    'date_lower',
+    'date_upper',
+    'date_source',
+    'facade_year',
+    'facade_upper',
+    'facade_lower',
+    'facade_source',
+    'size_storeys_attic',
+    'size_storeys_core',
+    'size_storeys_basement',
+    'size_height_apex',
+    'size_floor_area_ground',
+    'size_floor_area_total',
+    'size_width_frontage',
+]);
+
+/**
+ * Compare old and new data objects, generate shallow merge patch of changed fields
+ * - forward patch is object with {keys: new_values}
+ * - reverse patch is object with {keys: old_values}
+ *
+ * @param {object} old_obj
+ * @param {object} new_obj
+ * @param {Set} whitelist
+ * @returns {[object, object]}
+ */
+function compare(old_obj, new_obj, whitelist){
+    reverse_patch = {}
+    forward_patch = {}
+    for (const [key, value] of Object.entries(new_obj)) {
+        if (old_obj[key] !== value && whitelist.has(key)) {
+            reverse_patch[key] = old_obj[key];
+            forward_patch[key] = value;
+        }
+    }
+    return [forward_patch, reverse_patch]
 }
 
 export { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById, saveBuilding };
