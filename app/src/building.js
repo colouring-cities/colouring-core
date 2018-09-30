@@ -99,8 +99,12 @@ function saveBuilding(building_id, building, user_id) {
             [building_id, previous_revision_id]
         ).then(old_building => {
             const patches = compare(old_building, building, BUILDING_FIELD_WHITELIST);
+            console.log("Patching", patches)
             const forward = patches[0];
             const reverse = patches[1];
+            if (Object.keys(forward).length === 0) {
+                return Promise.reject("No change provided")
+            }
             return t.one(
                 `INSERT INTO logs (
                     forward_patch, reverse_patch, building_id, user_id
@@ -111,6 +115,7 @@ function saveBuilding(building_id, building, user_id) {
                 [forward, reverse, building_id, user_id]
             ).then(revision => {
                 const sets = db.$config.pgp.helpers.sets(forward);
+                console.log("Setting", sets)
                 const check_revision = (previous_revision_id)? "AND revision_id = $4" : "";
                 return t.one(
                     `UPDATE
