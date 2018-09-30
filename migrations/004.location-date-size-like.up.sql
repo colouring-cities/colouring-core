@@ -70,9 +70,16 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS size_width_frontage real;
 -- Likes
 
 -- Total likes (denormalised from up-to-one-vote-per-user)
-ALTER TABLE buildings ADD COLUMN IF NOT EXISTS likes_total integer;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS likes_total integer DEFAULT 0;
 
+-- Store users-buildings likes (many-to-many)
 CREATE TABLE IF NOT EXISTS building_user_likes (
+    building_like_id serial PRIMARY KEY,
     building_id integer REFERENCES buildings,
     user_id uuid REFERENCES users
 );
+CREATE INDEX building_likes_idx ON building_user_likes ( building_id );
+CREATE INDEX user_likes_idx ON building_user_likes ( user_id );
+
+-- One like per-building, per-user
+ALTER TABLE building_user_likes ADD CONSTRAINT building_like_once UNIQUE (building_id, user_id);
