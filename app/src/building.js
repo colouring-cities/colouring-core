@@ -1,6 +1,19 @@
+/**
+ * Building data access
+ *
+ */
 import db from './db';
 // data type note: PostgreSQL bigint (64-bit) is handled as string in JavaScript, because of
 // JavaScript numerics are 64-bit double, giving only partial coverage.
+
+const TransactionMode = db.$config.pgp.txMode.TransactionMode;
+const isolationLevel = db.$config.pgp.txMode.isolationLevel;
+
+// Create a transaction mode (serializable, read-write):
+const serializable = new TransactionMode({
+    tiLevel: isolationLevel.serializable,
+    readOnly: false
+});
 
 function queryBuildingsAtPoint(lng, lat) {
     return db.manyOrNone(
@@ -119,6 +132,54 @@ function saveBuilding(building_id, building, user_id) {
     });
 }
 
+
+function likeBuilding(building_id, user_id) {
+    // start transaction around save operation
+    // - insert building-user like
+    // - count total likes
+    // - insert changeset
+    // - update building to latest state
+    // commit or rollback (serializable - could be more compact?)
+    return db.tx({serializable}, t => {
+        return t.none(
+            "INSERT INTO building_user_likes ( building_id, user_id ) VALUES ($1, $2);",
+            [building_id, user_id]
+        ).then(() => {
+            return t.one(
+                "SELECT count(*) as likes FROM building_user_likes WHERE building_id = $1;",
+                [building_id]
+            ).then(building => {
+                return t.one(
+                    `INSERT INTO logs (
+                        forward_patch, building_id, user_id
+                    ) VALUES (
+                        $1:jsonb, $2, $3
+                    ) RETURNING log_id
+                    `,
+                    [{likes_total: building.likes}, building_id, user_id]
+                ).then(revision => {
+                    return t.one(
+                        `UPDATE buildings
+                        SET
+                            revision_id = $1,
+                            likes_total = $2
+                        WHERE
+                            building_id = $3
+                        RETURNING
+                            *
+                        `,
+                        [revision.log_id, building.likes, building_id]
+                    )
+                })
+            });
+        });
+    }).catch(function(error){
+        // TODO report transaction error as 'Need to re-fetch building before update'
+        console.error(error);
+        return undefined;
+    });
+}
+
 const BUILDING_FIELD_WHITELIST = new Set([
     'ref_toid',
     'ref_osm_id',
@@ -169,4 +230,5 @@ function compare(old_obj, new_obj, whitelist){
     return [forward_patch, reverse_patch]
 }
 
-export { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById, saveBuilding };
+export { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById, saveBuilding,
+         likeBuilding };
