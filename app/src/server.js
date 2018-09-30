@@ -188,9 +188,14 @@ server.route('/building/:building_id.json')
         })
     })
     .post(function (req, res) {
+        if (!req.session.user_id) {
+            res.send({error: 'Must be logged in'});
+            return
+        }
+        const user_id = req.session.user_id;
         const { building_id } = req.params;
         const building = req.body;
-        saveBuilding(building_id, building).then(building => {
+        saveBuilding(building_id, building, user_id).then(building => {
             if (building.error) {
                 res.send(building)
                 return
