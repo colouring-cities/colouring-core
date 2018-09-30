@@ -46,7 +46,7 @@ gdf_to_save.rename(
 )
 
 # convert to CSV
-test_data_csv = str(os.path.join(test_dir, 'test_buildings.csv'))
+test_data_csv = str(os.path.join(test_dir, 'test_buildings.3857.csv'))
 subprocess.run(["rm", test_data_csv])
 subprocess.run(["ogr2ogr", "-f", "CSV", test_data_csv, test_data_geojson, "-lco", "GEOMETRY=AS_WKT"])
 

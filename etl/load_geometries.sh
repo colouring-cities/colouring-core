@@ -15,9 +15,9 @@ mastermap_dir=$1
 #     geom: <geom>
 #
 find $mastermap_dir -type f -name '*.3857.csv' \
--printf "COPY geometries ( geometry_geom, source_id ) FROM '$mastermap_dir/%f' WITH CSV HEADER;\n" | \
+-printf "$mastermap_dir/%f\n" | \
 parallel \
-psql -c {}
+cat {} | psql -c "COPY geometries ( geometry_geom, source_id ) FROM stdin WITH CSV HEADER;"
 
 #
 # Delete any duplicated geometries (by TOID)
