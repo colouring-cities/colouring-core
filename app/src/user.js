@@ -1,4 +1,8 @@
-import { query } from './db';
+/**
+ * User data access
+ *
+ */
+import db from './db';
 
 
 function createUser(user) {
@@ -8,7 +12,7 @@ function createUser(user) {
     if (user.password.length > 70) {
         return Promise.reject({error: 'Password must be at most 70 characters'})
     }
-    return query(
+    return db.one(
         `INSERT
         INTO users (
             user_id,
@@ -26,9 +30,7 @@ function createUser(user) {
           user.email,
           user.password
         ]
-    ).then(function(data){
-        return data.rows[0];
-    }).catch(function(error){
+    ).catch(function(error){
         console.error('Error:', error)
 
         if (error.detail.indexOf('already exists') !== -1){
@@ -43,7 +45,7 @@ function createUser(user) {
 }
 
 function authUser(username, password) {
-    return query(
+    return db.one(
         `SELECT
             user_id,
             (
@@ -56,8 +58,7 @@ function authUser(username, password) {
           username,
           password
         ]
-    ).then(function(data){
-        const user = data.rows[0];
+    ).then(function(user){
         if (user && user.auth_ok) {
             return {user_id: user.user_id}
         } else {
@@ -70,7 +71,7 @@ function authUser(username, password) {
 }
 
 function getUserById(user_id) {
-    return query(
+    return db.one(
         `SELECT
             username, email, registered
         FROM users
@@ -79,9 +80,7 @@ function getUserById(user_id) {
         `, [
             user_id
         ]
-    ).then(function(data){
-        return data.rows[0];
-    }).catch(function(error){
+    ).catch(function(error){
         console.error('Error:', error)
         return undefined;
     });
