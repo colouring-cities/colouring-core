@@ -64,11 +64,11 @@ const BuildingView = function(props){
                 <h3 className="h3 bullet-prefix size">Size</h3>
                 <dl className="data-list">
                     <dt>Attic storeys</dt>
-                    <dd>{props.size_attic? props.size_attic : '-'}</dd>
+                    <dd>{props.size_storeys_attic? props.size_storeys_attic : '-'}</dd>
                     <dt>Core storeys</dt>
-                    <dd>{props.size_core? props.size_core : '-'}</dd>
+                    <dd>{props.size_storeys_core? props.size_storeys_core : '-'}</dd>
                     <dt>Basement storeys</dt>
-                    <dd>{props.size_basement? props.size_basement : '-'}</dd>
+                    <dd>{props.size_storeys_basement? props.size_storeys_basement : '-'}</dd>
                 </dl>
             </section>
             <section className="data-section">

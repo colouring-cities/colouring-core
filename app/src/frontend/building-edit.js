@@ -27,9 +27,9 @@ class BuildingEdit extends Component {
             facade_upper: props.facade_upper,
             facade_lower: props.facade_lower,
             facade_source: props.facade_source,
-            size_attic: props.size_attic,
-            size_core: props.size_core,
-            size_basement: props.size_basement,
+            size_storeys_attic: props.size_storeys_attic,
+            size_storeys_core: props.size_storeys_core,
+            size_storeys_basement: props.size_storeys_basement,
             likes_total: props.likes_total,
             liked: props.liked
         };
@@ -41,7 +41,7 @@ class BuildingEdit extends Component {
 
     handleChange(event) {
         const target = event.target;
-        const value = target.value;
+        const value = (target.value === '')? null : target.value;
         const name = target.name;
 
         this.setState({
@@ -202,24 +202,24 @@ class BuildingEdit extends Component {
                         <legend className="h3 bullet-prefix size">Size</legend>
                         <div id="data-list-size" className="data-list">
 
-                            <label htmlFor="size_attic">Attic storeys</label>
+                            <label htmlFor="size_storeys_attic">Attic storeys</label>
                             <input className="form-control" type="number" step="1"
-                                   id="size_attic" name="size_attic"
-                                   value={this.state.size_attic}
+                                   id="size_storeys_attic" name="size_storeys_attic"
+                                   value={this.state.size_storeys_attic}
                                    onChange={this.handleChange}
                                    />
 
-                            <label htmlFor="size_core">Core storeys</label>
+                            <label htmlFor="size_storeys_core">Core storeys</label>
                             <input className="form-control" type="number" step="1"
-                                   id="size_core" name="size_core"
-                                   value={this.state.size_core}
+                                   id="size_storeys_core" name="size_storeys_core"
+                                   value={this.state.size_storeys_core}
                                    onChange={this.handleChange}
                                    />
 
-                            <label htmlFor="size_basement">Basement storeys</label>
+                            <label htmlFor="size_storeys_basement">Basement storeys</label>
                             <input className="form-control" type="number" step="1"
-                                   id="size_basement" name="size_basement"
-                                   value={this.state.size_basement}
+                                   id="size_storeys_basement" name="size_storeys_basement"
+                                   value={this.state.size_storeys_basement}
                                    onChange={this.handleChange}
                                    />
                         </div>

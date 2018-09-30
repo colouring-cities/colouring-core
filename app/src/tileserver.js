@@ -81,7 +81,10 @@ router.get('/size_storeys/:z/:x/:y.png', function(req, res) {
     // const table_def = 'geometries'
     const table_def = `(
         SELECT
-            (b.size_attic + b.size_core) as size_storeys,
+            (
+                coalesce(b.size_storeys_attic, 0) +
+                coalesce(b.size_storeys_core, 0)
+            ) as size_storeys,
             g.geometry_geom
         FROM
             geometries as g,

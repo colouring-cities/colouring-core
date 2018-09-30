@@ -51,11 +51,11 @@ ALTER TABLE buildings ADD CONSTRAINT buildings_facade_source_len CHECK (length(f
 -- Size
 
 -- Attic storeys
-ALTER TABLE buildings ADD COLUMN IF NOT EXISTS size_storeys_attic smallint;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS size_storeys_attic smallint DEFAULT 0;
 -- Core storeys
-ALTER TABLE buildings ADD COLUMN IF NOT EXISTS size_storeys_core smallint;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS size_storeys_core smallint DEFAULT 0;
 -- Basement storeys
-ALTER TABLE buildings ADD COLUMN IF NOT EXISTS size_storeys_basement smallint;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS size_storeys_basement smallint DEFAULT 0;
 
 -- Height to apex (m)
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS size_height_apex real;
