@@ -34,7 +34,7 @@ router.get('/highlight/:z/:x/:y.png', function(req, res) {
     const bbox = get_bbox(req.params)
     const table_def = `(
         SELECT
-            g.geometry_id = ${geometry_id}) as focus,
+            g.geometry_id = ${geometry_id} as focus,
             b.location_number as location_number,
             g.geometry_geom
         FROM
