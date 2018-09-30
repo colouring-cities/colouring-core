@@ -4,13 +4,13 @@ import SphericalMercator from '@mapbox/sphericalmercator';
 
 import { strictParseInt } from './parse';
 
-// config file with connection details
-const config = require('../../config.json')
+// connection details from environment variables
 const DATASOURCE_CONFIG = {
-    'dbname': config.database.dbname,
-    'user': config.database.user,
-    'password': config.database.password,
-    'port': config.database.port,
+    'host': process.env.PGHOST,
+    'dbname': process.env.PGDATABASE,
+    'user': process.env.PGUSER,
+    'password': process.env.PGPASSWORD,
+    'port': process.env.PGPORT,
     'geometry_field': 'geometry_geom',
     'extent' : '-20005048.4188,-9039211.13765,19907487.2779,17096598.5401',
     'srid': 3857,
@@ -21,8 +21,9 @@ const TILE_SIZE = 256
 const TILE_BUFFER_SIZE = 64
 const PROJ4_STRING = '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over';
 
-// register datasource adapters for mapnik
+// register datasource adapters for mapnik database connection
 if (mapnik.register_default_input_plugins) mapnik.register_default_input_plugins();
+// register fonts for text rendering
 mapnik.register_default_fonts();
 
 const mercator = new SphericalMercator({
