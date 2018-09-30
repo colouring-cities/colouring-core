@@ -17,7 +17,8 @@ class MyAccountPage extends Component {
         this.setState({error: undefined});
 
         fetch('/logout', {
-            method: 'POST'
+            method: 'POST',
+            credentials: 'same-origin'
         }).then(
             res => res.json()
         ).then(function(res){
@@ -32,7 +33,7 @@ class MyAccountPage extends Component {
     }
 
     render() {
-        if (this.props && this.props.user) {
+        if (this.props.user && !this.props.user.error) {
             return (
                 <article>
                     <section className="main-col">

@@ -74,7 +74,8 @@ class BuildingEdit extends Component {
             body: JSON.stringify(this.state),
             headers:{
               'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'same-origin'
         }).then(
             res => res.json()
         ).then(function(res){
