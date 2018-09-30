@@ -1,3 +1,7 @@
+/**
+ * Tile-rendering helpers
+ *
+ */
 import path from 'path';
 import mapnik from 'mapnik';
 import SphericalMercator from '@mapbox/sphericalmercator';

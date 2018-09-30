@@ -1,3 +1,7 @@
+/**
+ * Tileserver routes for Express app
+ *
+ */
 import express from 'express';
 
 import { get_bbox, render_tile } from './tile';

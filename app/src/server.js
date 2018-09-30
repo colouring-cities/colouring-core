@@ -1,3 +1,9 @@
+/**
+ * Server-side Express application
+ * - API methods
+ * - entry-point to shared React App
+ *
+ */
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import express from 'express';

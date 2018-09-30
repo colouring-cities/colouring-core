@@ -1,3 +1,7 @@
+/**
+ * Load server and listen
+ *
+ */
 import app from './server';
 import http from 'http';
 
