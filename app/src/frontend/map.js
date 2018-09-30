@@ -28,7 +28,7 @@ class ColouringMap extends Component {
         var lat = e.latlng.lat
         var lng = e.latlng.lng
         fetch(
-            '/buildings.json?lat='+lat+'&lng='+lng
+            '/buildings/locate?lat='+lat+'&lng='+lng
         ).then(
             (res) => res.json()
         ).then(function(data){
