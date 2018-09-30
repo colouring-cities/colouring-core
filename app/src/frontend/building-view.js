@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 import Sidebar from './sidebar';
 import Tooltip from './tooltip';
@@ -16,37 +16,49 @@ const BuildingView = function(props){
             </Sidebar>
         );
     }
+    const hash = (props.location && props.location.hash)? props.location.hash: undefined;
     return (
         <Sidebar title={`View Building`}>
             <section className="data-section">
-                <h3 className="h3 bullet-prefix location">Location</h3>
-                <p className="data-intro">
+                <NavLink className="bullet-prefix" to="#location">
+                    <h3 className="h3 location">Location</h3>
+                </NavLink>
+                {
+                    ( hash.match('location') )
+                    ? (
+                        <Fragment>
+                        <p className="data-intro">
 
-                    Section introduction of up to roughly 100 characters will take
-                    approx&shy;imately this much space.
+                            Section introduction of up to roughly 100 characters will take
+                            approx&shy;imately this much space.
 
-                    <a href="/">Read more</a>.
-                </p>
-                <dl id="data-list-location" className="data-list collapse show">
-                    <dt>
-                        Building Name
-                        <Tooltip text="Hint tooltip content should be ~40 chars." />
-                    </dt>
-                    <dd>{props.location_name ? props.location_name : '-'}</dd>
-                    <dt>Building Number</dt>
-                    <dd>{props.location_number ? props.location_number : '-'}</dd>
-                    <dt>Street</dt>
-                    <dd>{props.location_street ? props.location_street : '-'}</dd>
-                    <dt>Address line 2</dt>
-                    <dd>{props.location_line_two ? props.location_line_two : '-'}</dd>
-                    <dt>Town</dt>
-                    <dd>{props.location_town ? props.location_town : '-'}</dd>
-                    <dt>Postcode</dt>
-                    <dd>{props.location_postcode ? props.location_postcode : '-'}</dd>
-                </dl>
+                            <a href="/">Read more</a>.
+                        </p>
+                        <dl id="data-list-location" className="data-list collapse show">
+                            <dt>
+                                Building Name
+                                <Tooltip text="Hint tooltip content should be ~40 chars." />
+                            </dt>
+                            <dd>{props.location_name ? props.location_name : '-'}</dd>
+                            <dt>Building Number</dt>
+                            <dd>{props.location_number ? props.location_number : '-'}</dd>
+                            <dt>Street</dt>
+                            <dd>{props.location_street ? props.location_street : '-'}</dd>
+                            <dt>Address line 2</dt>
+                            <dd>{props.location_line_two ? props.location_line_two : '-'}</dd>
+                            <dt>Town</dt>
+                            <dd>{props.location_town ? props.location_town : '-'}</dd>
+                            <dt>Postcode</dt>
+                            <dd>{props.location_postcode ? props.location_postcode : '-'}</dd>
+                        </dl>
+                        </Fragment>
+                    ) : null
+                }
             </section>
             <section className="data-section">
-                <h3 className="h3 bullet-prefix age">Age</h3>
+                <NavLink className="bullet-prefix" to="#age">
+                    <h3 className="h3 age">Age</h3>
+                </NavLink>
                 <dl className="data-list">
                     <dt>Year built (best estimate)</dt>
                     <dd>{props.date_year? props.date_year : '-'}</dd>
@@ -61,7 +73,9 @@ const BuildingView = function(props){
                 </dl>
             </section>
             <section className="data-section">
-                <h3 className="h3 bullet-prefix size">Size</h3>
+                <NavLink className="bullet-prefix" to="#size">
+                    <h3 className="h3 size">Size</h3>
+                </NavLink>
                 <dl className="data-list">
                     <dt>Attic storeys</dt>
                     <dd>{props.size_storeys_attic? props.size_storeys_attic : '-'}</dd>
@@ -72,7 +86,9 @@ const BuildingView = function(props){
                 </dl>
             </section>
             <section className="data-section">
-                <h3 className="h3 bullet-prefix like">Like Me!</h3>
+                <NavLink className="bullet-prefix" to="#like">
+                    <h3 className="h3 like">Like Me!</h3>
+                </NavLink>
                 <dl className="data-list">
                     <dt>Likes</dt>
                     <dd>{props.likes ? props.likes.length : 0}</dd>

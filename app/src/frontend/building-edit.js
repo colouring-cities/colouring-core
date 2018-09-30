@@ -8,7 +8,6 @@ import Sidebar from './sidebar';
 class BuildingEdit extends Component {
     constructor(props) {
         super(props);
-        const user = props.user || {};
         this.state = {
             error: undefined,
             building_id: props.building_id,

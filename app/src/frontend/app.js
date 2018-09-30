@@ -67,6 +67,7 @@ class App extends React.Component {
                                             <Route exact path="/building/:building.html">
                                                 <BuildingView
                                                     {...this.state.building}
+                                                    {...props} // includes route history/match
                                                     user={this.state.user}
                                                     selectBuilding={this.selectBuilding}
                                                     />

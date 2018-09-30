@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import Sidebar from './sidebar';
 
@@ -78,9 +78,9 @@ const LegendSection = (props) => (
 
 const LegendGroup = (props) => (
     <div className="data-section">
-        <Link to={`/map/${ props.slug }.html`}>
-            <h3 className={`h3 bullet-prefix ${ props.slug }`}>{ props.label }</h3>
-        </Link>
+        <NavLink className={`bullet-prefix ${ props.slug }`} to={`/map/${ props.slug }.html`}>
+            <h3 className="h3">{ props.label }</h3>
+        </NavLink>
         <dl className="data-list">
             { props.children }
         </dl>
