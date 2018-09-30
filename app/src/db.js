@@ -8,10 +8,11 @@
  *      PGPASSWORD=null
  *      PGPORT=5432
  */
-import { Pool } from 'pg';
+import pg from 'pg-promise';
 
-const pool = new Pool()
+// pg-promise, can provide initialisation options
+const pgp = pg();
+// database connection, can provide connection string or object (should default to env vars)
+const db = pgp();
 
-const query = (text, params) => pool.query(text, params);
-
-export { pool, query }
+export default db;
