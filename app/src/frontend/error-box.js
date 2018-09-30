@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
 
 function ErrorBox(props){
-    console.error(props.msg);
+    if (props.msg) {
+        console.error(props.msg);
+    }
     return (
         <Fragment>
             {
