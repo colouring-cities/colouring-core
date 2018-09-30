@@ -21,6 +21,9 @@ label {
 .buttons-container {
     margin-bottom: 0.75rem;
 }
+.info-container .buttons-container {
+    padding: 0 0.75rem;
+}
 .buttons-container .btn {
     margin-bottom: 0.25rem;
     margin-right: 0.25rem;
