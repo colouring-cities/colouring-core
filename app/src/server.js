@@ -190,9 +190,17 @@ server.route('/building/:building_id.json')
     .post(function (req, res) {
         const { building_id } = req.params;
         const building = req.body;
-        saveBuilding(building_id, building).then(
-            () => res.send({success: true})
-        ).catch(
+        saveBuilding(building_id, building).then(building => {
+            if (building.error) {
+                res.send(building)
+                return
+            }
+            if (typeof(building) === "undefined") {
+                res.send({error:'Database error'})
+                return
+            }
+            res.send(building)
+        }).catch(
             () => res.send({error:'Database error'})
         )
     })

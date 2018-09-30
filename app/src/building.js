@@ -93,8 +93,9 @@ function saveBuilding(building_id, building, user_id) {
     // - update to latest state
     // commit or rollback (repeated-read sufficient? or serializable?)
     return db.tx(t => {
+        const check_revision = (previous_revision_id)? "and revision_id = $2" : "";
         return t.one(
-            "SELECT * FOR UPDATE FROM buildings WHERE building_id = $1 and revision_id = $2;",
+            `SELECT * FROM buildings WHERE building_id = $1 ${check_revision} FOR UPDATE;`,
             [building_id, previous_revision_id]
         ).then(old_building => {
             const patches = compare(old_building, building, BUILDING_FIELD_WHITELIST);
@@ -104,12 +105,13 @@ function saveBuilding(building_id, building, user_id) {
                 `INSERT INTO logs (
                     forward_patch, reverse_patch, building_id, user_id
                 ) VALUES (
-                    $1:jsonb, $2:jsonb, $3, $4
+                    $1:json, $2:json, $3, $4
                 ) RETURNING log_id
                 `,
                 [forward, reverse, building_id, user_id]
             ).then(revision => {
                 const sets = db.$config.pgp.helpers.sets(forward);
+                const check_revision = (previous_revision_id)? "AND revision_id = $4" : "";
                 return t.one(
                     `UPDATE
                         buildings
@@ -117,7 +119,7 @@ function saveBuilding(building_id, building, user_id) {
                         revision_id = $1,
                         $2:raw
                     WHERE
-                        building_id = $3 AND revision_id = $4
+                        building_id = $3 ${check_revision}
                     RETURNING
                         *
                     `,
@@ -219,8 +221,8 @@ const BUILDING_FIELD_WHITELIST = new Set([
  * @returns {[object, object]}
  */
 function compare(old_obj, new_obj, whitelist){
-    reverse_patch = {}
-    forward_patch = {}
+    const reverse_patch = {}
+    const forward_patch = {}
     for (const [key, value] of Object.entries(new_obj)) {
         if (old_obj[key] !== value && whitelist.has(key)) {
             reverse_patch[key] = old_obj[key];

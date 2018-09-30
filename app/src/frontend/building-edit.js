@@ -12,6 +12,7 @@ class BuildingEdit extends Component {
         this.state = {
             error: undefined,
             building_id: props.building_id,
+            revision_id: props.revision_id,
             geometry_id: props.geometry_id,
             location_name: props.location_name,
             location_number: props.location_number,
