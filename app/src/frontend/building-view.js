@@ -6,7 +6,7 @@ import Tooltip from './tooltip';
 import InfoBox from './info-box';
 
 const BuildingView = function(props){
-    if (!props.id){
+    if (!props.building_id){
         return (
             <Sidebar title="Building Not Found">
                 <InfoBox msg="We can't find that one anywhere - try the map again?" />
@@ -17,7 +17,7 @@ const BuildingView = function(props){
         );
     }
     return (
-        <Sidebar title={`Building ${props.id}`}>
+        <Sidebar title={`View Building`}>
             <section className="data-section">
                 <h3 className="h3 bullet-prefix location">Location</h3>
                 <p className="data-intro">
@@ -80,7 +80,7 @@ const BuildingView = function(props){
             </section>
             <div className="buttons-container">
                 <Link to="/map/date_year.html" className="btn btn-secondary">Back to maps</Link>
-                <Link to={`/building/${props.id}/edit.html`} className="btn btn-primary">Edit data</Link>
+                <Link to={`/building/${props.building_id}/edit.html`} className="btn btn-primary">Edit data</Link>
             </div>
         </Sidebar>
     );

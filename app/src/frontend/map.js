@@ -32,9 +32,10 @@ class ColouringMap extends Component {
         ).then(
             (res) => res.json()
         ).then(function(data){
-            if (data.geometry_id && data.id){
-                this.props.selectBuilding(data);
-                this.props.history.push(`/building/${data.id}.html`);
+            if (data && data.length){
+                const building = data[0];
+                this.props.selectBuilding(building);
+                this.props.history.push(`/building/${building.building_id}.html`);
             } else {
                 // should deselect but keep/return to expected colour theme
                 // this.props.selectBuilding(undefined);
@@ -77,8 +78,8 @@ class ColouringMap extends Component {
         // highlight
         const geometry_id = (this.props.building) ? this.props.building.geometry_id : undefined;
         const highlight = `/tiles/highlight/{z}/{x}/{y}.png?highlight=${geometry_id}`
-        const highlightLayer = is_building ? (
-            <TileLayer key={this.props.building.id} url={highlight} />
+        const highlightLayer = (is_building && this.props.building) ? (
+            <TileLayer key={this.props.building.building_id} url={highlight} />
         ) : null;
 
         return (

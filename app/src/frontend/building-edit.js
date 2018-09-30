@@ -11,7 +11,7 @@ class BuildingEdit extends Component {
         const user = props.user || {};
         this.state = {
             error: undefined,
-            id: props.id,
+            building_id: props.building_id,
             geometry_id: props.geometry_id,
             location_name: props.location_name,
             location_number: props.location_number,
@@ -22,21 +22,20 @@ class BuildingEdit extends Component {
             date_lower: props.date_lower,
             date_upper: props.date_upper,
             date_source: props.date_source,
-            date_facade: props.date_facade,
+            facade_year: props.facade_year,
+            facade_upper: props.facade_upper,
+            facade_lower: props.facade_lower,
+            facade_source: props.facade_source,
             size_attic: props.size_attic,
             size_core: props.size_core,
             size_basement: props.size_basement,
-            likes: props.likes || [],
-            liked: this.user_likes(user.id, props.likes)
+            likes_total: props.likes_total,
+            liked: props.liked
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleLike = this.handleLike.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    user_likes(user_id, likes) {
-        return likes && likes.indexOf(user_id) !== -1;
     }
 
     handleChange(event) {
@@ -69,7 +68,7 @@ class BuildingEdit extends Component {
         event.preventDefault();
         this.setState({error: undefined})
 
-        fetch(`/building/${this.props.id}.json`, {
+        fetch(`/building/${this.props.building_id}.json`, {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers:{
@@ -83,7 +82,7 @@ class BuildingEdit extends Component {
                 this.setState({error: res.error})
             } else {
                 this.props.selectBuilding(this.state);  // could use server response?
-                this.props.history.push(`/building/${this.state.id}.html`);
+                this.props.history.push(`/building/${this.props.building_id}.html`);
             }
         }.bind(this)).catch(
             (err) => this.setState({error: err})
@@ -94,7 +93,7 @@ class BuildingEdit extends Component {
         if (!this.props.user){
             return <Redirect to="/sign-up.html" />
         }
-        if (!this.props.id){
+        if (!this.props.building_id){
             return (
                 <Sidebar title="Building Not Found">
                     <InfoBox msg="We can't find that one anywhere - try the map again?" />
@@ -105,7 +104,7 @@ class BuildingEdit extends Component {
             );
         }
         return (
-            <Sidebar title={`Building ${this.props.id}`}>
+            <Sidebar title={`Edit Building`}>
                 <form action="building-view.html" method="GET" onSubmit={this.handleSubmit}>
 
                     <ErrorBox msg={this.state.error} />
@@ -238,7 +237,7 @@ class BuildingEdit extends Component {
                         </div>
                     </fieldset>
                     <div className="buttons-container">
-                        <Link to={`/building/${this.props.id}.html`} className="btn btn-secondary">Cancel</Link>
+                        <Link to={`/building/${this.props.building_id}.html`} className="btn btn-secondary">Cancel</Link>
                         <button type="submit" className="btn btn-primary">Save</button>
                     </div>
                 </form>
