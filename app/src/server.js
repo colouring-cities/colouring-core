@@ -9,7 +9,7 @@ import session from 'express-session';
 import pgConnect from 'connect-pg-simple';
 
 import App from './frontend/app';
-import { pool } from './db';
+import db from './db';
 import { authUser, createUser, getUserById } from './user';
 import { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById,
          saveBuilding } from './building';
@@ -36,7 +36,7 @@ const pgSession = pgConnect(session);
 const sess = {
     name: 'cl.session',
     store: new pgSession({
-        pool: pool,
+        pgPromise: db,
         tableName : 'user_sessions'
     }),
     secret: process.env.APP_COOKIE_SECRET,
