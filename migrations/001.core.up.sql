@@ -20,18 +20,32 @@ CREATE TABLE IF NOT EXISTS geometries (
 CREATE TABLE IF NOT EXISTS buildings (
     -- internal unique id
     building_id serial PRIMARY KEY,
-    -- unique property reference number
-    ref_uprn bigint,
     -- OS MasterMap topo id
     ref_toid varchar,
     -- OSM reference id
     ref_osm_id bigint,
-    -- jsonb document for all data, attributes to be specified in application
-    building_doc jsonb,
     -- reference to geometry, aiming to decouple from geometry provider
     geometry_id integer REFERENCES geometries
 );
 ALTER TABLE buildings ADD CONSTRAINT buildings_ref_toid_len CHECK (length(ref_toid) < 90);
+
+--
+-- Properties table
+--
+-- To store UPRN information normalised - building<->property relationship is typically
+-- one-to-many, may be many-to-many.
+CREATE TABLE IF NOT EXISTS building_properties (
+    -- internal primary key
+    building_property_id serial PRIMARY KEY,
+    -- UPRN
+    uprn bigint,
+    -- Parent should reference UPRN, but assume dataset may be (initially) incomplete
+    parent_uprn bigint,
+    -- Building ID may be null for failed matches
+    building_id integer REFERENCES buildings,
+    -- TOID match provided by AddressBase
+    toid varchar
+);
 
 --
 -- User categories
@@ -104,9 +118,9 @@ CREATE TABLE IF NOT EXISTS logs (
     -- default timestamp to time now
     log_timestamp TIMESTAMP default NOW(),
     -- log document to be extended in application
-    -- log from..to; only changed values (aim to be reversible)
-    log_from jsonb,
-    log_to jsonb,
+    -- log from..to; only changed values (must be reversible)
+    forward_patch jsonb,
+    reverse_patch jsonb,
     -- log user id
     user_id uuid REFERENCES users,
     -- log building id
@@ -116,3 +130,5 @@ CREATE TABLE IF NOT EXISTS logs (
 CREATE INDEX IF NOT EXISTS log_timestamp_idx ON logs ( log_timestamp );
 CREATE INDEX IF NOT EXISTS log_user_idx ON logs ( user_id );
 CREATE INDEX IF NOT EXISTS log_building_idx ON logs ( building_id );
+
+ALTER TABLE buildings ADD COLUMN revision_id bigint REFERENCES logs ( log_id );
