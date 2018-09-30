@@ -1,62 +1,51 @@
-import { query } from './db';
+import { compare, deepClone } from 'fast-json-patch'
+
+import db from './db';
+// data type note: PostgreSQL bigint (64-bit) is handled as string in JavaScript, because of
+// JavaScript numerics are 64-bit double, giving only partial coverage.
 
 function queryBuildingsAtPoint(lng, lat) {
-    return query(
-        `SELECT
-        b.building_id as id,
-        b.building_doc as doc,
-        g.geometry_id as geometry_id
+    return db.manyOrNone(
+        `SELECT b.*
         FROM buildings as b, geometries as g
         WHERE
-        b.geometry_id = g.geometry_id
+            b.geometry_id = g.geometry_id
         AND
-        ST_Intersects(
-            ST_Transform(
-                ST_SetSRID(ST_Point($1, $2), 4326),
-                3857
-            ),
-            g.geometry_geom
-        )
+            ST_Intersects(
+                ST_Transform(
+                    ST_SetSRID(ST_Point($1, $2), 4326),
+                    3857
+                ),
+                geometry_geom
+            )
         `,
         [lng, lat]
-    ).then(buildingRowsToDocs).catch(function(error){
+    ).catch(function(error){
         console.error(error);
         return undefined;
     });
 }
 function queryBuildingsByReference(key, id) {
     if (key === 'toid'){
-        return query(
-            `SELECT
-            b.building_id as id,
-            b.building_doc as doc,
-            g.geometry_id as geometry_id
-            FROM buildings as b, geometries as g
-            WHERE
-            b.geometry_id = g.geometry_id
-            AND
-            b.ref_toid = $1
-            `,
+        return db.manyOrNone(
+            "SELECT * FROM buildings WHERE b.ref_toid = $1",
             [id]
-        ).then(buildingRowsToDocs).catch(function(error){
+        ).catch(function(error){
             console.error(error);
             return undefined;
         });
     }
     if (key === 'uprn') {
-        return query(
-            `SELECT
-            b.building_id as id,
-            b.building_doc as doc,
-            g.geometry_id as geometry_id
-            FROM buildings as b, geometries as g
+        return db.manyOrNone(
+            `SELECT b.*
+            FROM buildings as b, building_properties as p
             WHERE
-            b.geometry_id = g.geometry_id
+                b.building_id = p.building_id
             AND
-            b.ref_uprn = $1
+                p.uprn = $1
             `,
             [id]
-        ).then(buildingRowsToDocs).catch(function(error){
+        ).catch(function(error){
             console.error(error);
             return undefined;
         });
@@ -65,52 +54,69 @@ function queryBuildingsByReference(key, id) {
 }
 
 function getBuildingById(id) {
-    return query(
-        `SELECT
-            building_id as id,
-            geometry_id,
-            building_doc as doc
-        FROM
-            buildings
-        WHERE
-            building_id = $1
-        `,
-        [ id ]
-    ).then(buildingRowsToDocs).catch(function(error){
+    return db.one(
+        "SELECT * FROM buildings WHERE building_id = $1",
+        [id]
+    ).catch(function(error){
         console.error(error);
         return undefined;
     });
 }
 
-function buildingRowsToDocs(data){
-    const rows = data.rows
-    const data = rows.map(function(row){
-        const id = row.id
-        const doc = row.doc
-        const geometry_id = row.geometry_id
+function saveBuilding(building_id, building, user_id) {
+    // save building must fail if the revision seen by the user != the latest revision
+    // - any 'intuitive' retries to be handled by clients of this code
+    // revision id allows for a long user 'think time' between view-building, update-building
+    // (optimistic locking implemented using field-based row versioning)
+    const previous_revision_id = building.revision_id;
 
-        doc.id = id
-        doc.geometry_id = geometry_id
-        return doc
-    });
-    return data;
-}
+    // remove read-only fields from consideration
+    delete building.building_id;
+    delete building.revision_id;
+    delete building.geometry_id;
 
-function saveBuilding(id, building_doc) {
-    // don't save id or geometry_id into doc
-    delete building_doc.id;
-    delete building_doc.geometry_id;
-
-    return query(
-        `UPDATE
-            buildings
-        SET
-            building_doc = $2::jsonb
-        WHERE
-            building_id = $1
-        `,
-        [ id, building_doc ]
-    ).catch(function(error){
+    // start transaction around save operation
+    // - select and compare to identify changeset
+    // - insert changeset
+    // - update to latest state
+    // commit or rollback (repeated-read sufficient? or serializable?)
+    return db.tx(t => {
+        return t.one(
+            "SELECT * FOR UPDATE FROM buildings WHERE building_id = $1 and revision_id = $2;",
+            [building_id, previous_revision_id]
+        ).then(old_building => {
+            // full new building (possibly a subset of keys were sent as building)
+            const new_building = Object.assign(deepClone(old_building), building);
+            // uses JSON Patch (see RFC6902) to identify forward- and reverse- changesets
+            const patch = compare(old_building, new_building);
+            const reverse = compare(new_building, old_building);
+            return t.one(
+                `INSERT INTO logs (
+                    forward_patch, reverse_patch, building_id, user_id
+                ) VALUES (
+                    $1:jsonb, $2:jsonb, $3, $4
+                ) RETURNING log_id
+                `,
+                [patch, reverse, building_id, user_id]
+            ).then(revision => {
+                const sets = db.$config.pgp.helpers.sets(building);
+                return t.one(
+                    `UPDATE
+                        buildings
+                    SET
+                        revision_id = $1,
+                        $2:raw
+                    WHERE
+                        building_id = $3 AND revision_id = $4
+                    RETURNING
+                        *
+                    `,
+                    [revision.log_id, sets, building_id, previous_revision_id]
+                )
+            });
+        });
+    }).catch(function(error){
+        // TODO report transaction error as 'Need to re-fetch building before update'
         console.error(error);
         return undefined;
     });
