@@ -47,3 +47,14 @@
         height: auto;
     }
 }
+
+.sidebar-header .h2 {
+    display: inline-block;
+}
+.sidebar-header .icon-button {
+    margin-left: 0.25rem;
+    margin-top: 0.4rem;
+}
+.sidebar-header .icon-button:hover {
+    background-color: #eee;
+}

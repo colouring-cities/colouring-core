@@ -59,7 +59,7 @@ class BuildingEdit extends Component {
         }
         if (!this.props.building_id){
             return (
-                <Sidebar title="Building Not Found">
+                <Sidebar title="Building Not Found" back="/map/date_year.html">
                     <InfoBox msg="We can't find that one anywhere - try the map again?" />
                     <div className="buttons-container">
                         <Link to="/map/date_year.html" className="btn btn-secondary">Back to maps</Link>
@@ -68,10 +68,10 @@ class BuildingEdit extends Component {
             );
         }
         return (
-            <Sidebar title={`Edit Building`}>
+            <Sidebar title={`Edit Building`} back={`/building/${this.props.building_id}.html`}>
                 {
-                    CONFIG.map((props) => {
-                        return <EditForm {...props} {...this.props} key={props.slug} />
+                    CONFIG.map((conf_props) => {
+                        return <EditForm {...conf_props} {...this.props} key={conf_props.slug} />
                     })
                 }
             </Sidebar>

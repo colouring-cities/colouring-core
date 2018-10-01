@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import Sidebar from './sidebar';
 import Tooltip from './tooltip';
 import InfoBox from './info-box';
-import { InfoIcon, EditIcon } from './icons';
+import { HelpIcon, EditIcon } from './icons';
 
 
 const DataSection = function(props){
@@ -18,7 +18,7 @@ const DataSection = function(props){
                 {
                     props.helpLink?
                     <a className="icon-button help" title="Find out more" href={props.helpLink} target="_blank" rel="noopener noreferrer">
-                        <InfoIcon />
+                        <HelpIcon />
                     </a>
                     : null
                 }
@@ -55,7 +55,7 @@ const BuildingView = function(props){
     }
     const hash = (props.location && props.location.hash)? props.location.hash.replace('#', ''): undefined;
     return (
-        <Sidebar title={`View Building`}>
+        <Sidebar title={`View Building`} back="/map/date_year.html">
             <DataSection title="Location" slug="location" hash={hash}
                          helpLink="https://pollyhudson.wixsite.com/colouringlondon/location">
                 <p className="data-intro">

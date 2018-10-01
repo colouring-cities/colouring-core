@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 import './tooltip.css';
-import { HelpIcon } from './icons';
+import { InfoIcon } from './icons';
 
 class Tooltip extends Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class Tooltip extends Component {
             <div className="tooltip-wrap">
                 <button className="tooltip-hint icon-button" title={this.props.text}
                         onClick={this.handleClick}>
-                    <HelpIcon />
+                    <InfoIcon />
                 </button>
                 {
                     this.state.active?
