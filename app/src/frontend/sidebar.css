@@ -6,7 +6,7 @@
     bottom: 3rem;
     padding: 0.25em 0em;
     background: #fff;
-    background-color: rgba(255,255,255,0.95);
+    background-color: rgba(255,255,255,0.98);
     z-index: 1000;
     overflow-y: auto;
 }
@@ -16,11 +16,11 @@
     margin-left: -0.1em;
     padding: 0 0.75rem;
 }
-.leaflet-container .leaflet-control-attribution {
+#root .leaflet-container .leaflet-control-attribution {
     width: 100%;
     height: 3rem;
     background: #fff;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.7);
 }
 .leaflet-right{
     left: 0;
@@ -29,7 +29,7 @@
     .info-container {
         bottom: 2rem;
     }
-    .leaflet-container .leaflet-control-attribution {
+    #root .leaflet-container .leaflet-control-attribution {
         height: 2rem;
     }
 }
@@ -43,7 +43,7 @@
     .leaflet-right{
         left: 20rem;
     }
-    .leaflet-container .leaflet-control-attribution {
+    #root .leaflet-container .leaflet-control-attribution {
         height: auto;
     }
 }

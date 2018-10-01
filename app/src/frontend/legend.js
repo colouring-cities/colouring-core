@@ -77,7 +77,7 @@ const LegendSection = (props) => (
 );
 
 const LegendGroup = (props) => (
-    <div className="data-section">
+    <div className="data-section legend">
         <NavLink className={`bullet-prefix ${ props.slug }`} to={`/map/${ props.slug }.html`}>
             <h3 className="h3">{ props.label }</h3>
         </NavLink>

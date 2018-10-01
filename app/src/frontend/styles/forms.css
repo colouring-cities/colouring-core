@@ -12,6 +12,9 @@ input[type="email"] {
 input[type="number"] {
     padding-right: 0.25rem;
 }
+form .alert {
+    margin: 0.5rem 0;
+}
 .form-check-input {
     margin-top: 0.6rem;
 }
@@ -21,7 +24,8 @@ label {
 .buttons-container {
     margin-bottom: 0.75rem;
 }
-.info-container .buttons-container {
+.buttons-container.with-space {
+    margin-top: 1rem;
     padding: 0 0.75rem;
 }
 .buttons-container .btn {

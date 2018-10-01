@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import Sidebar from './sidebar';
@@ -9,12 +9,20 @@ import InfoBox from './info-box';
 const DataSection = function(props){
     const match = props.hash && props.slug.match(props.hash);
     return (
-        <section className="data-section">
+        <section className={(props.inactive)? "data-section inactive": "data-section"}>
             <NavLink className="bullet-prefix" to={(match)? '#': `#${props.slug}`}
                      isActive={() => match}>
                 <h3 className="h3">{props.title}</h3>
             </NavLink>
-            { (match)? props.children : null }
+            <Fragment>{ (match)? props.children : null }</Fragment>
+            <Fragment>{
+                (match && !props.inactive)?
+                    <div className="buttons-container with-space">
+                        <Link to="/map/date_year.html" className="btn btn-secondary">Back to maps</Link>
+                        <Link to={`/building/${props.building_id}/edit.html`} className="btn btn-primary">Edit data</Link>
+                    </div>
+                : null
+            }</Fragment>
         </section>
     );
 }
@@ -24,7 +32,7 @@ const BuildingView = function(props){
         return (
             <Sidebar title="Building Not Found">
                 <InfoBox msg="We can't find that one anywhere - try the map again?" />
-                <div className="buttons-container">
+                <div className="buttons-container with-space">
                     <Link to="/map/date_year.html" className="btn btn-secondary">Back to maps</Link>
                 </div>
             </Sidebar>
@@ -59,6 +67,12 @@ const BuildingView = function(props){
                     <dd>{props.location_postcode ? props.location_postcode : '-'}</dd>
                 </dl>
             </DataSection>
+            <DataSection inactive={true} title="Use" slug="use" hash={hash}>
+                <p className="data-intro">Coming soon&hellip;</p>
+            </DataSection>
+            <DataSection inactive={true} title="Type" slug="type" hash={hash}>
+                <p className="data-intro">Coming soon&hellip;</p>
+            </DataSection>
             <DataSection title="Age" slug="age" hash={hash}>
                 <dl className="data-list">
                     <dt>Year built (best estimate)</dt>
@@ -75,13 +89,44 @@ const BuildingView = function(props){
             </DataSection>
             <DataSection title="Size" slug="size" hash={hash}>
                 <dl className="data-list">
+                    <dt>Total storeys</dt>
+                    <dd>{(props.size_storeys_attic + props.size_storeys_basement + props.size_storeys_core)}</dd>
                     <dt>Attic storeys</dt>
                     <dd>{props.size_storeys_attic? props.size_storeys_attic : '-'}</dd>
-                    <dt>Core storeys</dt>
-                    <dd>{props.size_storeys_core? props.size_storeys_core : '-'}</dd>
                     <dt>Basement storeys</dt>
                     <dd>{props.size_storeys_basement? props.size_storeys_basement : '-'}</dd>
                 </dl>
+                <dl className="data-list">
+                    <dt>Height to apex (m)</dt>
+                    <dd>{props.size_height_apex? props.size_height_apex : '-'}</dd>
+                    <dt>Ground floor area (m²)</dt>
+                    <dd>{props.size_floor_area_ground? props.size_floor_area_ground : '-'}</dd>
+                    <dt>Total floor area (m²)</dt>
+                    <dd>{props.size_floor_area_total? props.size_floor_area_total : '-'}</dd>
+                    <dt>Frontage Width (m)</dt>
+                    <dd>{props.size_width_frontage? props.size_width_frontage : '-'}</dd>
+                </dl>
+            </DataSection>
+            <DataSection inactive={true} title="Shape &amp; Position" slug="form" hash={hash}>
+                <p className="data-intro">Coming soon&hellip;</p>
+            </DataSection>
+            <DataSection inactive={true} title="Build Team" slug="build-team" hash={hash}>
+                <p className="data-intro">Coming soon&hellip;</p>
+            </DataSection>
+            <DataSection inactive={true} title="Construction &amp; Design" slug="construction" hash={hash}>
+                <p className="data-intro">Coming soon&hellip;</p>
+            </DataSection>
+            <DataSection inactive={true} title="Energy" slug="energy" hash={hash}>
+                <p className="data-intro">Coming soon&hellip;</p>
+            </DataSection>
+            <DataSection inactive={true} title="Greenery" slug="greenery" hash={hash}>
+                <p className="data-intro">Coming soon&hellip;</p>
+            </DataSection>
+            <DataSection inactive={true} title="Planning &amp; Protection" slug="planning" hash={hash}>
+                <p className="data-intro">Coming soon&hellip;</p>
+            </DataSection>
+            <DataSection inactive={true} title="Demolition" slug="demolition" hash={hash}>
+                <p className="data-intro">Coming soon&hellip;</p>
             </DataSection>
             <DataSection title="Like Me!" slug="like" hash={hash}>
                 <dl className="data-list">
@@ -89,10 +134,6 @@ const BuildingView = function(props){
                     <dd>{props.likes ? props.likes.length : 0}</dd>
                 </dl>
             </DataSection>
-            <div className="buttons-container">
-                <Link to="/map/date_year.html" className="btn btn-secondary">Back to maps</Link>
-                <Link to={`/building/${props.building_id}/edit.html`} className="btn btn-primary">Edit data</Link>
-            </div>
         </Sidebar>
     );
 }
