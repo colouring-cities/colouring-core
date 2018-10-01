@@ -53,6 +53,50 @@
 .bullet-prefix.active:hover::before {
     content: '\25A0';
 }
+
+.icon-button {
+    display: inline-block;
+    width: 1.8rem;
+    height: 1.8rem;
+    padding: 0;
+    outline: none;
+    border: none;
+    border-radius: 0.9rem;
+    margin: 0 0.05rem;
+
+    background-color: transparent;
+    transition: background-color 0.2s;
+
+    color: #222;
+    vertical-align: top;
+    text-align: center;
+}
+.icon-button svg {
+    transition: color 0.2s;
+    color: #222;
+    margin-top: 2px;
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+.icon-button:hover {
+    background-color: #fff;
+}
+.icon-button.edit:hover svg {
+    color: rgb(11, 247, 255);
+}
+.icon-button.help:hover svg {
+    color: rgb(255, 11, 222);
+}
+.icon-button.tooltip-hint:hover svg {
+    color: rgb(11, 255, 72);
+}
+.section-header .icon-button {
+    float: right;
+    margin-top: -2px;
+}
+
 .data-section {
     border-top: 1px solid #ffffff;
 }
@@ -73,6 +117,7 @@
 .data-list {
     margin: 0;
     padding-left: 0.75rem;
+    padding-right: 0.5rem;
 }
 .legend .data-list {
     padding-left: 2.25rem;

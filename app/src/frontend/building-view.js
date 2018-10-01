@@ -4,25 +4,40 @@ import { Link, NavLink } from 'react-router-dom';
 import Sidebar from './sidebar';
 import Tooltip from './tooltip';
 import InfoBox from './info-box';
+import { InfoIcon, EditIcon } from './icons';
 
 
 const DataSection = function(props){
     const match = props.hash && props.slug.match(props.hash);
     return (
         <section className={(props.inactive)? "data-section inactive": "data-section"}>
-            <NavLink className="bullet-prefix" to={(match)? '#': `#${props.slug}`}
-                     isActive={() => match}>
-                <h3 className="h3">{props.title}</h3>
-            </NavLink>
+            <header className="bullet-prefix section-header" isActive={() => match}>
+                <NavLink to={(match)? '#': `#${props.slug}`}>
+                    <h3 className="h3">{props.title}</h3>
+                </NavLink>
+                {
+                    props.helpLink?
+                    <a className="icon-button help" title="Find out more" href={props.helpLink} target="_blank" rel="noopener noreferrer">
+                        <InfoIcon />
+                    </a>
+                    : null
+                }
+                {
+                    !props.inactive?
+                    <NavLink className="icon-button edit" title="Edit data" to={`/building/${props.building_id}/edit.html#${props.slug}`}>
+                        <EditIcon />
+                    </NavLink>
+                    : null
+                }
+            </header>
             <Fragment>{ (match)? props.children : null }</Fragment>
-            <Fragment>{
+            {
                 (match && !props.inactive)?
                     <div className="buttons-container with-space">
-                        <Link to="/map/date_year.html" className="btn btn-secondary">Back to maps</Link>
-                        <Link to={`/building/${props.building_id}/edit.html`} className="btn btn-primary">Edit data</Link>
+                        <Link to={`/building/${props.building_id}/edit.html#${props.slug}`} className="btn btn-primary">Edit data</Link>
                     </div>
                 : null
-            }</Fragment>
+            }
         </section>
     );
 }
@@ -41,13 +56,13 @@ const BuildingView = function(props){
     const hash = (props.location && props.location.hash)? props.location.hash.replace('#', ''): undefined;
     return (
         <Sidebar title={`View Building`}>
-            <DataSection title="Location" slug="location" hash={hash}>
+            <DataSection title="Location" slug="location" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/location">
                 <p className="data-intro">
 
                     Section introduction of up to roughly 100 characters will take
                     approx&shy;imately this much space.
 
-                    <a href="/">Read more</a>.
                 </p>
                 <dl id="data-list-location" className="data-list collapse show">
                     <dt>
@@ -67,13 +82,16 @@ const BuildingView = function(props){
                     <dd>{props.location_postcode ? props.location_postcode : '-'}</dd>
                 </dl>
             </DataSection>
-            <DataSection inactive={true} title="Use" slug="use" hash={hash}>
-                <p className="data-intro">Coming soon&hellip;</p>
+            <DataSection inactive={true} title="Use" slug="use" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/use">
+                <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
-            <DataSection inactive={true} title="Type" slug="type" hash={hash}>
-                <p className="data-intro">Coming soon&hellip;</p>
+            <DataSection inactive={true} title="Type" slug="type" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/type">
+                <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
-            <DataSection title="Age" slug="age" hash={hash}>
+            <DataSection title="Age" slug="age" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/age">
                 <dl className="data-list">
                     <dt>Year built (best estimate)</dt>
                     <dd>{props.date_year? props.date_year : '-'}</dd>
@@ -87,7 +105,8 @@ const BuildingView = function(props){
                     <dd>{props.date_facade? props.date_facade : '-'}</dd>
                 </dl>
             </DataSection>
-            <DataSection title="Size" slug="size" hash={hash}>
+            <DataSection title="Size" slug="size" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/shape">
                 <dl className="data-list">
                     <dt>Total storeys</dt>
                     <dd>{(props.size_storeys_attic + props.size_storeys_basement + props.size_storeys_core)}</dd>
@@ -107,28 +126,36 @@ const BuildingView = function(props){
                     <dd>{props.size_width_frontage? props.size_width_frontage : '-'}</dd>
                 </dl>
             </DataSection>
-            <DataSection inactive={true} title="Shape &amp; Position" slug="form" hash={hash}>
-                <p className="data-intro">Coming soon&hellip;</p>
+            <DataSection inactive={true} title="Shape &amp; Position" slug="form" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/form">
+                <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
-            <DataSection inactive={true} title="Build Team" slug="build-team" hash={hash}>
-                <p className="data-intro">Coming soon&hellip;</p>
+            <DataSection inactive={true} title="Build Team" slug="build-team" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/builder">
+                <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
-            <DataSection inactive={true} title="Construction &amp; Design" slug="construction" hash={hash}>
-                <p className="data-intro">Coming soon&hellip;</p>
+            <DataSection inactive={true} title="Construction &amp; Design" slug="construction" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/contstruction">
+                <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
-            <DataSection inactive={true} title="Energy" slug="energy" hash={hash}>
-                <p className="data-intro">Coming soon&hellip;</p>
+            <DataSection inactive={true} title="Energy" slug="energy" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/energy">
+                <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
-            <DataSection inactive={true} title="Greenery" slug="greenery" hash={hash}>
-                <p className="data-intro">Coming soon&hellip;</p>
+            <DataSection inactive={true} title="Greenery" slug="greenery" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/copy-of-street-context">
+                <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
-            <DataSection inactive={true} title="Planning &amp; Protection" slug="planning" hash={hash}>
-                <p className="data-intro">Coming soon&hellip;</p>
+            <DataSection inactive={true} title="Planning &amp; Protection" slug="planning" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/planning">
+                <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
-            <DataSection inactive={true} title="Demolition" slug="demolition" hash={hash}>
-                <p className="data-intro">Coming soon&hellip;</p>
+            <DataSection inactive={true} title="Demolition" slug="demolition" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/demolitions">
+                <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
-            <DataSection title="Like Me!" slug="like" hash={hash}>
+            <DataSection title="Like Me!" slug="like" hash={hash}
+                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/likeme">
                 <dl className="data-list">
                     <dt>Likes</dt>
                     <dd>{props.likes ? props.likes.length : 0}</dd>
