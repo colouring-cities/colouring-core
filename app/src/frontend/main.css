@@ -148,19 +148,6 @@
 .data-list .no-data {
     color: #999;
 }
-.data-legend {
-    list-style: none;
-    padding: 0;
-}
-.data-legend .key {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    text-indent: -30px;
-    margin-right: 0.2em;
-    vertical-align: text-bottom;
-    overflow: hidden;
-}
 
 /**
  * Animations for welcome-float and sidebar

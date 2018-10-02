@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import Sidebar from './sidebar';
+import './legend.css';
 
 const data_map = [
     {
@@ -13,23 +14,23 @@ const data_map = [
                 label: 'Year Built',
                 elements: [
                     { color: '#f0eaba', text: '≥2000' },
-                    { color: '#fae269', text: '1980-2000' },
-                    { color: '#fbaf27', text: '1960-1980' },
-                    { color: '#e6711d', text: '1940-1960' },
-                    { color: '#d73d3a', text: '1920-1940' },
-                    { color: '#ba221c', text: '1900-1920' },
-                    { color: '#bb859b', text: '1880-1900' },
-                    { color: '#8b3654', text: '1860-1880' },
-                    { color: '#8f5385', text: '1840-1860' },
-                    { color: '#56619b', text: '1820-1840' },
-                    { color: '#6793b2', text: '1800-1820' },
-                    { color: '#83c3b3', text: '1780-1800' },
-                    { color: '#adc88f', text: '1760-1780' },
-                    { color: '#83a663', text: '1740-1760' },
-                    { color: '#77852d', text: '1720-1740' },
-                    { color: '#69814e', text: '1700-1720' },
-                    { color: '#d0c291', text: '1680-1700' },
-                    { color: '#918158', text: '1660-1680' },
+                    { color: '#fae269', text: '1980–2000' },
+                    { color: '#fbaf27', text: '1960–1980' },
+                    { color: '#e6711d', text: '1940–1960' },
+                    { color: '#d73d3a', text: '1920–1940' },
+                    { color: '#ba221c', text: '1900–1920' },
+                    { color: '#bb859b', text: '1880–1900' },
+                    { color: '#8b3654', text: '1860–1880' },
+                    { color: '#8f5385', text: '1840–1860' },
+                    { color: '#56619b', text: '1820–1840' },
+                    { color: '#6793b2', text: '1800–1820' },
+                    { color: '#83c3b3', text: '1780–1800' },
+                    { color: '#adc88f', text: '1760–1780' },
+                    { color: '#83a663', text: '1740–1760' },
+                    { color: '#77852d', text: '1720–1740' },
+                    { color: '#69814e', text: '1700–1720' },
+                    { color: '#d0c291', text: '1680–1700' },
+                    { color: '#918158', text: '1660–1680' },
                     { color: '#7a5732', text: '<1660' },
                 ]
             }
@@ -44,8 +45,8 @@ const data_map = [
                 label: 'Number of storeys',
                 elements: [
                     { color: '#ffc584', text: '≥20' },
-                    { color: '#f46259', text: '10-20' },
-                    { color: '#da456a', text: '5-10' },
+                    { color: '#f46259', text: '10–20' },
+                    { color: '#da456a', text: '5–10' },
                     { color: '#a8327d', text: '4' },
                     { color: '#7c2383', text: '3' },
                     { color: '#5b167f', text: '2' },

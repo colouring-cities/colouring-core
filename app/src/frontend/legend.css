@@ -1,0 +1,16 @@
+/**
+ * Map legend
+ */
+.data-legend {
+    list-style: none;
+    padding: 0;
+}
+.data-legend .key {
+    display: inline-block;
+    width: 1.75rem;
+    height: 1.75rem;
+    text-indent: -30px;
+    margin: 0.125rem 0.5rem 0.125rem 0;
+    vertical-align: middle;
+    overflow: hidden;
+}
