@@ -57,7 +57,7 @@ const BuildingView = function(props){
     return (
         <Sidebar title={`View Building`} back="/map/date_year.html">
             <DataSection title="Location" slug="location" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/location">
+                         helpLink="https://pages.colouring.london/location">
                 <p className="data-intro">
 
                     Section introduction of up to roughly 100 characters will take
@@ -67,7 +67,7 @@ const BuildingView = function(props){
                 <dl id="data-list-location" className="data-list collapse show">
                     <dt>
                         Building Name
-                        <Tooltip text="Hint tooltip content should be ~40 chars." />
+                        <Tooltip text="May not be needed for many buildings." />
                     </dt>
                     <dd>{props.location_name ? props.location_name : '-'}</dd>
                     <dt>Building Number</dt>
@@ -83,15 +83,15 @@ const BuildingView = function(props){
                 </dl>
             </DataSection>
             <DataSection inactive={true} title="Use" slug="use" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/use">
+                         helpLink="https://pages.colouring.london/use">
                 <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
             <DataSection inactive={true} title="Type" slug="type" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/type">
+                         helpLink="https://pages.colouring.london/type">
                 <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
             <DataSection title="Age" slug="age" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/age">
+                         helpLink="https://pages.colouring.london/age">
                 <dl className="data-list">
                     <dt>Year built (best estimate)</dt>
                     <dd>{props.date_year? props.date_year : '-'}</dd>
@@ -106,7 +106,7 @@ const BuildingView = function(props){
                 </dl>
             </DataSection>
             <DataSection title="Size" slug="size" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/shape">
+                         helpLink="https://pages.colouring.london/shape">
                 <dl className="data-list">
                     <dt>Total storeys</dt>
                     <dd>{(props.size_storeys_attic + props.size_storeys_basement + props.size_storeys_core)}</dd>
@@ -127,35 +127,35 @@ const BuildingView = function(props){
                 </dl>
             </DataSection>
             <DataSection inactive={true} title="Shape &amp; Position" slug="form" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/form">
+                         helpLink="https://pages.colouring.london/form">
                 <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
             <DataSection inactive={true} title="Build Team" slug="build-team" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/builder">
+                         helpLink="https://pages.colouring.london/builder">
                 <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
             <DataSection inactive={true} title="Construction &amp; Design" slug="construction" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/contstruction">
+                         helpLink="https://pages.colouring.london/contstruction">
                 <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
             <DataSection inactive={true} title="Energy" slug="energy" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/energy">
+                         helpLink="https://pages.colouring.london/energy">
                 <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
             <DataSection inactive={true} title="Greenery" slug="greenery" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/copy-of-street-context">
+                         helpLink="https://pages.colouring.london/copy-of-street-context">
                 <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
             <DataSection inactive={true} title="Planning &amp; Protection" slug="planning" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/planning">
+                         helpLink="https://pages.colouring.london/planning">
                 <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
             <DataSection inactive={true} title="Demolition" slug="demolition" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/demolitions">
+                         helpLink="https://pages.colouring.london/demolitions">
                 <p className="data-intro">Coming soon&hellip; Click the ? for more info.</p>
             </DataSection>
             <DataSection title="Like Me!" slug="like" hash={hash}
-                         helpLink="https://pollyhudson.wixsite.com/colouringlondon/likeme">
+                         helpLink="https://pages.colouring.london/likeme">
                 <dl className="data-list">
                     <dt>Likes</dt>
                     <dd>{props.likes ? props.likes.length : 0}</dd>
