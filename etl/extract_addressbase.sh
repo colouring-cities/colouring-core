@@ -36,9 +36,28 @@ ogr2ogr -f CSV \
     -lco GEOMETRY=AS_WKT
 
 #
-# Filter, grouping by TOID
+# Filter
 #
-
 find $data_dir -type f -name '*.gml.csv' -printf "%f\n"  | \
 parallel \
 python filter_addressbase_csv.py $data_dir/{}
+
+
+#
+# Transform to 3857 (web mercator)
+#
+find $data_dir -type f -name '*.filtered.csv' -printf "%f\n" | \
+parallel \
+ogr2ogr \
+    -f CSV $data_dir/{}.3857.csv \
+    -s_srs "EPSG:4326" \
+    -t_srs "EPSG:3857" \
+    $data_dir/{} \
+    -lco GEOMETRY=AS_WKT
+
+#
+# Update to EWKT (with SRID indicator for loading to Postgres)
+#
+find $data_dir -type f -name '*.3857.csv' -printf "%f\n" | \
+parallel \
+cat $data_dir/{} "|" sed "'s/^\"POINT/\"SRID=3857;POINT/'" "|" cut -f 1,3,4,5 -d "','" ">" $data_dir/{}.loadable

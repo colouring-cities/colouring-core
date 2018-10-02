@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS geometries (
     -- cross-reference to data source id
     source_id varchar(30),
     -- geometry as EPSG:3857 avoiding reprojection for tiles
-    geometry_geom geometry(POLYGON, 3857)
+    geometry_geom geometry(GEOMETRY, 3857)
 );
 
 --
@@ -44,7 +44,9 @@ CREATE TABLE IF NOT EXISTS building_properties (
     -- Building ID may be null for failed matches
     building_id integer REFERENCES buildings,
     -- TOID match provided by AddressBase
-    toid varchar
+    toid varchar,
+    -- Geometry (for verification if loaded, not for public access)
+    uprn_geom geometry(POINT, 3857)
 );
 
 --

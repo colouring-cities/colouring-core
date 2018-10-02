@@ -29,7 +29,7 @@ create_building_records.sh
 # add UPRNs where they match
 load_uprns.py ./addressbase_dir
 # index building records
-psql < ../migrations/002.index-buildings.sql
+psql < ../migrations/003.index-buildings.sql
 ```
 
 To help test the Colouring London application, `get_test_polygons.py` will attempt to save a

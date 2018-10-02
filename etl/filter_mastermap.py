@@ -1,6 +1,6 @@
 """Filter MasterMap to buildings and addressbase-matches
 
-- WHERE descriptiveGroup = '(1:Building)'
+- WHERE descriptiveGroup includes 'Building'
 - OR toid in addressbase_toids
 """
 import csv

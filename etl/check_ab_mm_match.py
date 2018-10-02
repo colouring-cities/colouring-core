@@ -10,7 +10,7 @@ from multiprocessing import Pool
 csv.field_size_limit(sys.maxsize)
 
 def main(ab_path, mm_path):
-    ab_paths = sorted(glob.glob(os.path.join(ab_path, "*.gml.csv.filtered")))
+    ab_paths = sorted(glob.glob(os.path.join(ab_path, "*.gml.csv.filtered.csv")))
     mm_paths = sorted(glob.glob(os.path.join(mm_path, "*.gml.csv")))
 
     try:

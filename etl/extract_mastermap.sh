@@ -23,7 +23,7 @@ find $data_dir -type f -name '*.gz' -printf "%f\n" | \
 parallel \
 gunzip $data_dir/{} -k -S gml
 
-rename 's/$/.gml/' $data_dir/*[^gzt]
+rename 's/$/.gml/' $data_dir/*[^gzvt]
 
 find $data_dir -type f -name '*.gml' -printf "%f\n" | \
 parallel \
