@@ -54,41 +54,38 @@ class App extends React.Component {
                 <BetaBanner />
                 <Header user={this.state.user} />
                 <main className="beta">
+                    <TransitionGroup>
+                        <CSSTransition timeout={3000} classNames='fade'>
+                            <Switch>
+                                <Route exact path="/">
+                                    <Welcome />
+                                </Route>
+                                <Route exact path="/map/:map.html" component={Legend} />
+                                <Route exact path="/building/:building.html" render={(props) => (
+                                    <BuildingView
+                                        {...props}
+                                        {...this.state.building}
+                                        user={this.state.user}
+                                        />
+                                ) } />
+                                <Route exact path="/building/:building/edit.html" render={(props) => (
+                                    <BuildingEdit
+                                        {...props}
+                                        {...this.state.building}
+                                        user={this.state.user}
+                                        selectBuilding={this.selectBuilding}
+                                        />
+                                ) } />
+                            </Switch>
+                        </CSSTransition>
+                    </TransitionGroup>
                     <Switch>
-                        <Route path="/(map|building)?(/\w+)?(.html)?" render={(props) => (
-                            <Fragment>
-                                <TransitionGroup>
-                                    <CSSTransition timeout={3000} classNames='fade' key={props.location.key}>
-                                        <Switch location={props.location}>
-                                            <Route exact path="/">
-                                                <Welcome />
-                                            </Route>
-                                            <Route exact path="/map/:map.html" component={Legend} />
-                                            <Route exact path="/building/:building.html">
-                                                <BuildingView
-                                                    {...this.state.building}
-                                                    {...props} // includes route history/match
-                                                    user={this.state.user}
-                                                    selectBuilding={this.selectBuilding}
-                                                    />
-                                            </Route>
-                                            <Route exact path="/building/:building/edit.html">
-                                                <BuildingEdit
-                                                    {...this.state.building}
-                                                    {...props} // includes route history/match
-                                                    user={this.state.user}
-                                                    selectBuilding={this.selectBuilding}
-                                                    />
-                                            </Route>
-                                        </Switch>
-                                    </CSSTransition>
-                                </TransitionGroup>
-                                <ColouringMap
-                                    {...props}
-                                    building={this.state.building}
-                                    selectBuilding={this.selectBuilding}
-                                    />
-                            </Fragment>
+                        <Route exact path="/(map.*|building.*)?" render={(props) => (
+                            <ColouringMap
+                                {...props}
+                                building={this.state.building}
+                                selectBuilding={this.selectBuilding}
+                                />
                         ) } />
                         <Route exact path="/about.html" component={AboutPage} />
                         <Route exact path="/login.html">
@@ -110,7 +107,7 @@ class App extends React.Component {
 const NotFound = () => (
     <article>
         <section className="main-col">
-            <h1 class="h1">Page not found</h1>
+            <h1 className="h1">Page not found</h1>
             <p className="lead">
 
             We can't find that one anywhere.

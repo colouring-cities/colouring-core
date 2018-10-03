@@ -63,17 +63,12 @@ class ColouringMap extends Component {
         const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines.'
 
         // colour-data tiles
-        var data_tileset, is_building;
-        if (this.props.match && this.props.match.params && this.props.match.params[1]) {
-            data_tileset = this.props.match.params[1].replace("/", "")
-            is_building = this.props.match.params[0] === 'building'
-        } else {
-            is_building = false;
-            data_tileset = 'date_year';
-        }
-        const dataLayer = !is_building ? (
-            <TileLayer key={data_tileset} url={`/tiles/${data_tileset}/{z}/{x}/{y}.png`} />
-        ) : null;
+        const is_building = /building/.test(this.props.match.url)
+        const themer = /theme=([^&]*)/
+        const data_tileset = themer.test(this.props.match.url)? themer.exec(this.props.match.url)[1] : 'date_year';
+        console.log(is_building, data_tileset)
+
+        const dataLayer = <TileLayer key={data_tileset} url={`/tiles/${data_tileset}/{z}/{x}/{y}.png`} />;
 
         // highlight
         const geometry_id = (this.props.building) ? this.props.building.geometry_id : undefined;
