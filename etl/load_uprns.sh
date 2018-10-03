@@ -15,10 +15,10 @@ data_dir=$1
 #     toid: <toid>,
 #     uprn_geom: <point>
 #
-# find $data_dir -type f -name '*.3857.csv.loadable' \
-# -printf "$data_dir/%f\n" | \
-# parallel \
-# cat {} '|' psql -c "\"COPY building_properties ( uprn_geom, toid, uprn, parent_uprn ) FROM stdin WITH CSV HEADER;\""
+find $data_dir -type f -name '*.3857.csv.loadable' \
+-printf "$data_dir/%f\n" | \
+parallel \
+cat {} '|' psql -c "\"COPY building_properties ( uprn_geom, toid, uprn, parent_uprn ) FROM stdin WITH CSV HEADER;\""
 
 #
 # Create references
