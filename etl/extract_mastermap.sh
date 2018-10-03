@@ -30,9 +30,9 @@ parallel \
 ogr2ogr \
     -select fid,descriptiveGroup \
     -f CSV $data_dir/{}.csv \
-    -clipsrc $boundary_file \
     $data_dir/{} \
     TopographicArea \
     -lco GEOMETRY=AS_WKT
 
 rm $data_dir/*.gfs
+rm $data_dir/*.gml
