@@ -39,8 +39,8 @@ ogr2ogr \
 #
 find $mastermap_dir -type f -name '*.3857.csv' -printf "%f\n" | \
 parallel \
-sed -i 's/^"POLYGON/"SRID=3857;POLYGON/' $mastermap_dir/{}
+sed -i "'s/^\"POLYGON/\"SRID=3857;POLYGON/'" $mastermap_dir/{}
 
 find $mastermap_dir -type f -name '*.3857.csv' -printf "%f\n" | \
 parallel \
-sed -i 's/^"MULTIPOLYGON/"SRID=3857;MULTIPOLYGON/' $mastermap_dir/{}
+sed -i "'s/^\"MULTIPOLYGON/\"SRID=3857;MULTIPOLYGON/'" $mastermap_dir/{}
