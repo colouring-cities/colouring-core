@@ -5,52 +5,8 @@ import ErrorBox from './error-box';
 import InfoBox from './info-box';
 import Sidebar from './sidebar';
 
-const CONFIG = [
-    {
-        title: "Location", slug: "location", fields: [
-            { title: "Building name", slug: "location_name", type: "text" },
-            { title: "Building number", slug: "location_number", type: "text" },
-            { title: "Street", slug: "location_street", type: "text" },
-            { title: "Address line 2", slug: "location_line_two", type: "text" },
-            { title: "Town", slug: "location_town", type: "text" },
-            { title: "Postcode", slug: "location_postcode", type: "text" },
-        ]
-    },
-    { title: "Use", slug: "use", inactive: true, fields: [] },
-    { title: "Type", slug: "type", inactive: true, fields: [] },
-    {
-        title: "Age", slug: "age", fields: [
-            { title: "Year built (best estimate)", slug: "date_year", type: "number", step: 1 },
-            { title: "Year built (upper estimate)", slug: "date_upper", type: "number", step: 1 },
-            { title: "Year built (lower estimate)", slug: "date_lower", type: "number", step: 1 },
-            { title: "Facade date", slug: "date_facade", type: "number", step: 1 },
-            { title: "Source", slug: "date_source", type: "text" },
-        ]
-    },
-    {
-        title: "Size", slug: "size", fields: [
-            { title: "Attic storeys", slug: "size_storeys_attic", type: "number", step: 1 },
-            { title: "Core storeys", slug: "size_storeys_core", type: "number", step: 1 },
-            { title: "Basement storeys", slug: "size_storeys_basement", type: "number", step: 1 },
-            { title: "Height to apex (m)", slug: "size_height_apex", type: "number", step: 0.1 },
-            { title: "Ground floor area (m²)", slug: "size_floor_area_ground", type: "number", step: 0.1 },
-            { title: "Total floor area (m²)", slug: "size_floor_area_total", type: "number", step: 0.1 },
-            { title: "Frontage Width (m)", slug: "size_width_frontage", type: "number", step: 0.1 },
-        ]
-    },
-    { title: "Shape & Position", slug: "form", inactive: true, fields: [] },
-    { title: "Build Team", slug: "build-team", inactive: true, fields: [] },
-    { title: "Construction & Design", slug: "construction", inactive: true, fields: [] },
-    { title: "Energy", slug: "energy", inactive: true, fields: [] },
-    { title: "Greenery", slug: "greenery", inactive: true, fields: [] },
-    { title: "Planning & Protection", slug: "planning", inactive: true, fields: [] },
-    { title: "Demolition", slug: "demolition", inactive: true, fields: [] },
-    {
-        title: "Like Me!", slug: "like", fields: [
-            { title: "Like", slug: "like", type: "like"  }
-        ]
-    },
-];
+import CONFIG from './fields-config.json';
+
 
 class BuildingEdit extends Component {
     render() {
