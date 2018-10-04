@@ -14,13 +14,15 @@ script_dir=${0%/*}
 
 # extract both datasets
 $script_dir/extract_addressbase.sh $addressbase_dir
-$script_dir/extract_mastermap.sh $mastermap_dir $boundary_file
+$script_dir/extract_mastermap.sh $mastermap_dir
 # filter mastermap ('building' polygons and any others referenced by addressbase)
 $script_dir/filter_transform_mastermap_for_loading.sh $addressbase_dir $mastermap_dir
+
 # load all building outlines
 $script_dir/load_geometries.sh $mastermap_dir
 # index geometries (should be faster after loading)
 psql < $script_dir/../migrations/002.index-geometries.up.sql
+$script_dir/drop_outside_limit.sh $boundary_file
 # create a building record per outline
 $script_dir/create_building_records.sh
 # add UPRNs where they match
