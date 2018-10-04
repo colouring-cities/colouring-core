@@ -15,13 +15,16 @@
     display: block;
     position: relative;
     padding: 0.6rem 0.5rem 0.5rem 2.25rem;
-    cursor: pointer;
+    /* cursor: pointer; */
     text-decoration: none;
     color: #222;
     transition: background-color 0.2s;
 }
 .bullet-prefix h3 {
     display: inline-block;
+}
+.bullet-prefix a:first-child {
+    color: #222;
 }
 .bullet-prefix.active,
 .bullet-prefix:hover {
@@ -30,7 +33,7 @@
     background-color: #eeeeee;
 }
 .bullet-prefix::before {
-    display: inline-block;
+    display: block;
     position: absolute;
     left: 0.55rem;
     top: 0.3rem;
@@ -51,7 +54,7 @@
     content: '\25BC';
 }
 .bullet-prefix.active:hover::before {
-    content: '\25A0';
+    content: '\25B2';
 }
 
 .icon-button {
@@ -84,13 +87,22 @@
     background-color: #fff;
 }
 .icon-button.edit:hover svg {
-    color: rgb(11, 247, 255);
+    color: rgb(11, 225, 225);
 }
 .icon-button.help:hover svg {
-    color: rgb(255, 11, 222);
+    color: rgb(0, 81, 255)
 }
 .icon-button.tooltip-hint:hover svg {
-    color: rgb(11, 255, 72);
+    color: rgb(255, 11, 245);
+}
+.icon-button.close svg {
+    margin-top: -1px;
+}
+.icon-button.close:hover svg {
+    color: rgb(255, 72, 11)
+}
+.icon-button.save:hover svg {
+    color: rgb(11, 225, 72);
 }
 .section-header .icon-button {
     float: right;

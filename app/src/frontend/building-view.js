@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import queryString from 'query-string';
 
 import Sidebar from './sidebar';
 import Tooltip from './tooltip';
@@ -20,19 +21,19 @@ const BuildingView = (props) => {
             </Sidebar>
         );
     }
-    const hash = (props.location && props.location.hash)? props.location.hash.replace('#', ''): undefined;
+    const search = (props.location && props.location.search)? queryString.parse(props.location.search): {};
     return (
         <Sidebar title={`View Building`} back="/map/date_year.html">
             {
                 CONFIG.map(section_props => (
                     <DataSection
-                        title={section_props.title} slug={section_props.slug} hash={hash}
+                        key={section_props.slug} search={search}
                         building_id={props.building_id}
-                        intro={section_props.intro}
-                        helpLink={section_props.help}>
+                        {...section_props}>
                         {
                             section_props.fields.map(field_props => (
                                 <DataEntry
+                                    key={field_props.slug}
                                     title={field_props.title}
                                     value={props[field_props.slug]}
                                     tooltip={field_props.tooltip} />
@@ -47,23 +48,26 @@ const BuildingView = (props) => {
 
 
 const DataSection = (props) => {
-    const match = props.hash && props.slug.match(props.hash);
+    const match = props.search.cat === props.slug;
     return (
         <section id={props.slug} className={(props.inactive)? "data-section inactive": "data-section"}>
-            <header className="bullet-prefix section-header">
-                <NavLink to={(match)? '#': `#${props.slug}`} isActive={() => match}>
+            <header className={(match? "active " : "") + "bullet-prefix section-header"}>
+                <NavLink
+                    to={`/building/${props.building_id}.html` + ((match)? '': `?cat=${props.slug}`)}
+                    isActive={() => match}>
                     <h3 className="h3">{props.title}</h3>
                 </NavLink>
                 {
-                    props.helpLink?
-                    <a className="icon-button help" title="Find out more" href={props.helpLink} target="_blank" rel="noopener noreferrer">
+                    props.help?
+                    <a className="icon-button help" title="Find out more" href={props.help} target="_blank" rel="noopener noreferrer">
                         <HelpIcon />
                     </a>
                     : null
                 }
                 {
                     !props.inactive?
-                    <NavLink className="icon-button edit" title="Edit data" to={`/building/${props.building_id}/edit.html#${props.slug}`}>
+                    <NavLink className="icon-button edit" title="Edit data"
+                        to={`/building/${props.building_id}/edit.html?cat=${props.slug}`}>
                         <EditIcon />
                     </NavLink>
                     : null

@@ -1,38 +1,44 @@
 import React, { Component, Fragment } from 'react';
 import { Link, NavLink, Redirect } from 'react-router-dom';
+import queryString from 'query-string';
 
 import ErrorBox from './error-box';
 import InfoBox from './info-box';
 import Sidebar from './sidebar';
+import { HelpIcon, CloseIcon, SaveIcon } from './icons';
 
 import CONFIG from './fields-config.json';
 
 
-class BuildingEdit extends Component {
-    render() {
-        if (!this.props.user){
-            return <Redirect to="/sign-up.html" />
-        }
-        if (!this.props.building_id){
-            return (
-                <Sidebar title="Building Not Found" back="/map/date_year.html">
-                    <InfoBox msg="We can't find that one anywhere - try the map again?" />
-                    <div className="buttons-container">
-                        <Link to="/map/date_year.html" className="btn btn-secondary">Back to maps</Link>
-                    </div>
-                </Sidebar>
-            );
-        }
+const BuildingEdit = (props) => {
+    if (!props.user){
+        return <Redirect to="/sign-up.html" />
+    }
+    if (!props.building_id){
         return (
-            <Sidebar title={`Edit Building`} back={`/building/${this.props.building_id}.html`}>
-                {
-                    CONFIG.map((conf_props) => {
-                        return <EditForm {...conf_props} {...this.props} key={conf_props.slug} />
-                    })
-                }
+            <Sidebar title="Building Not Found" back="/map/date_year.html">
+                <InfoBox msg="We can't find that one anywhere - try the map again?" />
+                <div className="buttons-container">
+                    <Link to="/map/date_year.html" className="btn btn-secondary">Back to maps</Link>
+                </div>
             </Sidebar>
         );
     }
+
+    const search = (props.location && props.location.search)?
+        queryString.parse(props.location.search):
+        {};
+    return (
+        <Sidebar title={`Edit Building`} back={`/building/${props.building_id}.html`}>
+            {
+                CONFIG.map((conf_props) => {
+                    return <EditForm
+                        {...conf_props} {...props}
+                        search={search} key={conf_props.slug} />
+                })
+            }
+        </Sidebar>
+    );
 }
 
 class EditForm extends Component {
@@ -89,50 +95,80 @@ class EditForm extends Component {
     }
 
     render() {
-        const match = true;
+        const match = this.props.search.cat === this.props.slug;
         return (
             <section className={(this.props.inactive)? "data-section inactive": "data-section"}>
-                <NavLink className="bullet-prefix" to={(match)? '#': `#${this.props.slug}`}
-                         isActive={() => match}>
-                    <h3 className="h3">{this.props.title}</h3>
-                </NavLink>
-                <form action={`/building/${this.props.building_id}.html#${this.props.slug}`}
-                    method="GET" onSubmit={this.handleSubmit}>
-                    <ErrorBox msg={this.state.error} />
-                    <Fragment>{
-                        this.props.fields.map((props) => {
-                            var el;
-                            switch (props.type) {
-                                case "text":
-                                    el = <TextInput {...props} handleChange={this.handleChange}
-                                            value={this.state[props.slug]} key={props.slug} />
-                                    break;
-                                case "number":
-                                    el = <NumberInput {...props} handleChange={this.handleChange}
-                                            value={this.state[props.slug]} key={props.slug} />
-                                    break;
-                                case "like":
-                                    el = <LikeButton {...props} handleLike={this.handleLike}
-                                            value={this.state[props.slug]} key={props.slug} />
-                                    break;
-                                default:
-                                    el = null
-                                    break;
-                            }
-                            return el
-                        })
-                    }</Fragment>
-                    <Fragment>{
-                        (this.props.inactive)?
-                        null : (
-                            <div className="buttons-container">
-                                <Link to={`/building/${this.props.building_id}.html#${this.props.slug}`}
-                                    className="btn btn-secondary">Cancel</Link>
-                                <button type="submit" className="btn btn-primary">Save</button>
-                            </div>
-                        )
-                    }</Fragment>
-                </form>
+                <header className={(match? "active " : "") + "bullet-prefix section-header"}>
+                    <NavLink
+                        to={`/building/${this.props.building_id}/edit.html` + ((match)? '': `?cat=${this.props.slug}`)}
+                        isActive={() => match}>
+                        <h3 className="h3">{this.props.title}</h3>
+                    </NavLink>
+                    {
+                        this.props.help?
+                        <a className="icon-button help" title="Find out more" href={this.props.help}
+                            target="_blank" rel="noopener noreferrer">
+                            <HelpIcon />
+                        </a>
+                        : null
+                    }
+                    {
+                        match?
+                        <Fragment>
+                            <NavLink className="icon-button save" title="Save Changes"
+                                to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
+                                <SaveIcon />
+                            </NavLink>
+                            <NavLink className="icon-button close" title="Cancel"
+                                to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
+                                <CloseIcon />
+                            </NavLink>
+                        </Fragment>
+                        : null
+                    }
+                </header>
+                { (match && this.props.intro)? <p className="data-intro">{ this.props.intro }</p> : null }
+                {
+                    match?
+                    <form action={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
+                        method="GET" onSubmit={this.handleSubmit}>
+                        <ErrorBox msg={this.state.error} />
+                        <Fragment>{
+                            this.props.fields.map((props) => {
+                                var el;
+                                switch (props.type) {
+                                    case "text":
+                                        el = <TextInput {...props} handleChange={this.handleChange}
+                                                value={this.state[props.slug]} key={props.slug} />
+                                        break;
+                                    case "number":
+                                        el = <NumberInput {...props} handleChange={this.handleChange}
+                                                value={this.state[props.slug]} key={props.slug} />
+                                        break;
+                                    case "like":
+                                        el = <LikeButton {...props} handleLike={this.handleLike}
+                                                value={this.state[props.slug]} key={props.slug} />
+                                        break;
+                                    default:
+                                        el = null
+                                        break;
+                                }
+                                return el
+                            })
+                        }</Fragment>
+                        <Fragment>{
+                            (this.props.inactive)?
+                            null : (
+                                <div className="buttons-container">
+                                    <Link to={`/building/${this.props.building_id}.html#${this.props.slug}`}
+                                        className="btn btn-secondary">Cancel</Link>
+                                    <button type="submit" className="btn btn-primary">Save</button>
+                                </div>
+                            )
+                        }</Fragment>
+                    </form>
+                : null
+            }
             </section>
         )
     }
