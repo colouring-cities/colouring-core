@@ -90,7 +90,7 @@ function frontendRoute(req, res) {
         console.error(error);
         data.user = undefined;
         data.building = undefined;
-        contex.status = 500;
+        context.status = 500;
         renderHTML(context, data, req, res);
     });
 }
