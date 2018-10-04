@@ -23,6 +23,10 @@ cat {} '|' psql -c "\"COPY building_properties ( uprn_geom, toid, uprn, parent_u
 #
 # Create references
 #
+
+# index essential for speeed here
+psql -c "CREATE INDEX IF NOT EXISTS building_toid_idx ON buildings ( ref_toid );"
+# link to buildings
 psql -c "UPDATE building_properties
 SET building_id = (
     SELECT b.building_id
