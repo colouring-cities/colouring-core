@@ -4,11 +4,9 @@
 # Extract MasterMap
 #
 
-: ${1?"Usage: $0 ./path/to/mastermap/dir ./path/to/boundary"}
-: ${2?"Usage: $0 ./path/to/mastermap/dir ./path/to/boundary"}
+: ${1?"Usage: $0 ./path/to/mastermap/dir"}
 
 data_dir=$1
-boundary_file=$2
 
 #
 # Extract buildings from *.gz to CSV
