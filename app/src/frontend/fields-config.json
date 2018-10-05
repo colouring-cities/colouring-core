@@ -1,0 +1,146 @@
+[
+    {
+        "title": "Location", "slug": "location",
+        "help": "https://pages.colouring.london/location",
+        "fields": [
+            {
+                "title": "Building Name", "slug": "location_name", "type": "text",
+                "placeholder": "Building name (if any)",
+                "tooltip": "May not be needed for many buildings."
+            },
+            { "title": "Building number", "slug": "location_number", "type": "text" },
+            { "title": "Street", "slug": "location_street", "type": "text" },
+            { "title": "Address line 2", "slug": "location_line_two", "type": "text" },
+            { "title": "Town", "slug": "location_town", "type": "text" },
+            { "title": "Postcode", "slug": "location_postcode", "type": "text" },
+            {
+                "title": "TOID", "slug": "ref_toid", "type": "text",
+                "tooltip": "Ordnance Survey Topography Layer ID (to be filled automatically)"
+            },
+            {
+                "title": "UPRNs", "slug": "ref_uprn", "type": "list",
+                "tooltip": "Unique Property Reference Numbers (to be filled automatically)"
+            }
+        ]
+    },
+    {
+        "inactive": true,
+        "title": "Use", "slug": "use",
+        "intro": "How are buildings used today? Coming soon… Click the ? for more info.",
+        "help": "https://pages.colouring.london/use",
+        "fields": []
+    },
+    {
+        "inactive": true,
+        "title": "Type", "slug": "type",
+        "intro": "How were buildings originally used? Coming soon… Click the ? for more info.",
+        "help": "https://pages.colouring.london/type",
+        "fields": []
+    },
+    {
+        "title": "Age", "slug": "age",
+        "help": "https://pages.colouring.london/age",
+        "intro": "Age data can support energy analysis and help predict long-term change.",
+        "fields": [
+            { "title": "Year built (best estimate)", "slug": "date_year", "type": "number", "step": 1 },
+            {
+                "title": "Latest possible start date", "slug": "date_upper", "type": "number", "step": 1,
+                "tooltip": "This should be the latest date building could have started." },
+            {
+                "title": "Earliest possible start date", "slug": "date_lower", "type": "number", "step": 1,
+                "tooltip": "This should be the earliest date building could have started." },
+            {
+                "title": "Facade date", "slug": "date_facade", "type": "number", "step": 1,
+                "tooltip": "Best estimate"
+            },
+            {
+                "title": "Source of information", "slug": "date_source", "type": "text_list",
+                "tooltip": "Source for the main start date",
+                "options": [
+                    "Survey of London",
+                    "Pevsner Guides",
+                    "Local history publication",
+                    "National Heritage List for England",
+                    "Historical map",
+                    "Archive research",
+                    "Expert knowledge of building",
+                    "Other book",
+                    "Other website",
+                    "Other"
+                ]
+            }
+        ]
+    },
+    {
+        "inactive": true,
+        "title": "Size & Shape", "slug": "form",
+        "help": "https://pages.colouring.london/form",
+        "fields": [
+            {
+                "title": "Core storeys", "slug": "size_storeys_core", "type": "number", "step": 1,
+                "tooltip": "How many storeys between the pavement and start of roof?"
+            },
+            {
+                "title": "Attic storeys", "slug": "size_storeys_attic", "type": "number", "step": 1,
+                "tooltip": "How many storeys above start of roof?"
+            },
+            {
+                "title": "Basement storeys", "slug": "size_storeys_basement", "type": "number", "step": 1,
+                "tooltip": "How many storeys below pavement level?"
+            },
+            { "title": "Height to apex (m)", "slug": "size_height_apex", "type": "number", "step": 0.1 },
+            { "title": "Ground floor area (m²)", "slug": "size_floor_area_ground", "type": "number", "step": 0.1 },
+            { "title": "Total floor area (m²)", "slug": "size_floor_area_total", "type": "number", "step": 0.1 },
+            { "title": "Frontage Width (m)", "slug": "size_width_frontage", "type": "number", "step": 0.1 }
+        ]
+    },
+    {
+        "inactive": true,
+        "title": "Design & Build", "slug": "construction",
+        "intro": "How is it built? Coming soon… Click the ? for more info.",
+        "help": "https://pages.colouring.london/contstruction",
+        "fields": []
+    },
+    {
+        "inactive": true,
+        "title": "Team", "slug": "team",
+        "intro": "Who built it? Coming soon… Click the ? for more info.",
+        "help": "https://pages.colouring.london/builder",
+        "fields": []
+    },
+    {
+        "inactive": true,
+        "title": "Energy", "slug": "energy",
+        "intro": "Is it energy efficient? Coming soon… Click the ? for more info.",
+        "help": "https://pages.colouring.london/energy",
+        "fields": []
+    },
+    {
+        "inactive": true,
+        "title": "Greenery", "slug": "greenery",
+        "intro": "Is there greenery nearby? Coming soon… Click the ? for more info.",
+        "help": "https://pages.colouring.london/copy-of-street-context",
+        "fields": []
+    },
+    {
+        "inactive": true,
+        "title": "Planning", "slug": "planning",
+        "intro": "Protection and reuse. Coming soon… Click the ? for more info.",
+        "help": "https://pages.colouring.london/planning",
+        "fields": []
+    },
+    {
+        "inactive": true,
+        "title": "Demolition", "slug": "demolition",
+        "intro": "Coming soon… Click the ? for more info.",
+        "help": "https://pages.colouring.london/demolitions",
+        "fields": []
+    },
+    {
+        "title": "Like Me!", "slug": "like",
+        "help": "https://pages.colouring.london/likeme",
+        "fields": [
+            { "title": "Like", "slug": "like", "type": "like", "tooltip": "Do you like the building?"  }
+        ]
+    }
+]
