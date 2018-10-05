@@ -36,7 +36,6 @@ class App extends React.Component {
             this.logout();
             return
         }
-        console.log("Logging in", user);
         this.setState({user: user});
     }
 

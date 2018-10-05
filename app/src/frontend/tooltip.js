@@ -20,7 +20,6 @@ class Tooltip extends Component {
     }
 
     render() {
-        console.log(this.state, this.props)
         return (
             <div className="tooltip-wrap">
                 <button className={(this.state.active? "active ": "") + "tooltip-hint icon-button"} title={this.props.text}
