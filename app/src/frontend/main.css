@@ -14,7 +14,7 @@
 .bullet-prefix {
     display: block;
     position: relative;
-    padding: 0.6rem 0.5rem 0.5rem 2.25rem;
+    clear: both;
     /* cursor: pointer; */
     text-decoration: none;
     color: #222;
@@ -23,7 +23,9 @@
 .bullet-prefix h3 {
     display: inline-block;
 }
-.bullet-prefix a:first-child {
+.bullet-prefix > a {
+    display: block;
+    padding: 0.6rem 0.5rem 0.5rem 2.25rem;
     color: #222;
 }
 .bullet-prefix.active,
@@ -32,7 +34,7 @@
     text-decoration: none;
     background-color: #eeeeee;
 }
-.bullet-prefix::before {
+.bullet-prefix > a::before {
     display: block;
     position: absolute;
     left: 0.55rem;
@@ -40,21 +42,27 @@
     width: 1.2rem;
     height: 1rem;
     text-align: center;
-    vertical-align: middle;
     color: #7d7d7d;
     font-size: 1.2rem;
     content: '\25A0';
     transition: color 0.2s;
 }
-.bullet-prefix:hover::before,
-.bullet-prefix.active::before {
+.bullet-prefix:hover > a::before,
+.bullet-prefix.active > a::before {
     color: #222;
 }
-.bullet-prefix:hover::before {
+.bullet-prefix:hover > a::before {
     content: '\25BC';
 }
-.bullet-prefix.active:hover::before {
+.bullet-prefix.active:hover > a::before {
     content: '\25B2';
+}
+
+.bullet-prefix .icon-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.6rem 0.5rem 0.5rem 0;
 }
 
 .icon-button {
@@ -113,7 +121,7 @@
     border-top: 1px solid #ffffff;
 }
 .data-section.inactive {
-    opacity: 0.7;
+    opacity: 0.5;
 }
 .data-section.inactive .bullet-prefix::before {
     opacity: 0.4;

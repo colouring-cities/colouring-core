@@ -104,6 +104,7 @@ class EditForm extends Component {
                         isActive={() => match}>
                         <h3 className="h3">{this.props.title}</h3>
                     </NavLink>
+                    <nav className="icon-buttons">
                     {
                         this.props.help?
                         <a className="icon-button help" title="Find out more" href={this.props.help}
@@ -126,6 +127,7 @@ class EditForm extends Component {
                         </Fragment>
                         : null
                     }
+                    </nav>
                 </header>
                 { (match && this.props.intro)? <p className="data-intro">{ this.props.intro }</p> : null }
                 {

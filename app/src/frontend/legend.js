@@ -94,9 +94,11 @@ const LegendGroup = (props) => {
                 </NavLink>
                 {
                     props.help?
-                    <a className="icon-button help" title="Find out more" href={props.help} target="_blank" rel="noopener noreferrer">
-                        <HelpIcon />
-                    </a>
+                    <nav className="icon-buttons">
+                        <a className="icon-button help" title="Find out more" href={props.help} target="_blank" rel="noopener noreferrer">
+                            <HelpIcon />
+                        </a>
+                    </nav>
                     : null
                 }
             </header>

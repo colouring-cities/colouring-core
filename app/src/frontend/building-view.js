@@ -57,6 +57,7 @@ const DataSection = (props) => {
                     isActive={() => match}>
                     <h3 className="h3">{props.title}</h3>
                 </NavLink>
+                <nav className="icon-buttons">
                 {
                     props.help?
                     <a className="icon-button help" title="Find out more" href={props.help} target="_blank" rel="noopener noreferrer">
@@ -72,6 +73,7 @@ const DataSection = (props) => {
                     </NavLink>
                     : null
                 }
+                </nav>
             </header>
             { (match && props.intro)? <p className="data-intro">{ props.intro }</p> : null }
             { match? <dl className="data-list">{props.children}</dl> : null }
