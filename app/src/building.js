@@ -76,11 +76,11 @@ function getBuildingById(id) {
 }
 
 function saveBuilding(building_id, building, user_id) {
-    // save building must fail if the revision seen by the user != the latest revision
-    // - any 'intuitive' retries to be handled by clients of this code
+    // save building could fail if the revision seen by the user != the latest revision
+    // - any 'intuitive' retries would need to be handled by clients of this code
     // revision id allows for a long user 'think time' between view-building, update-building
     // (optimistic locking implemented using field-based row versioning)
-    const previous_revision_id = building.revision_id;
+    // const previous_revision_id = building.revision_id;
 
     // remove read-only fields from consideration
     delete building.building_id;
@@ -93,10 +93,9 @@ function saveBuilding(building_id, building, user_id) {
     // - update to latest state
     // commit or rollback (repeated-read sufficient? or serializable?)
     return db.tx(t => {
-        const check_revision = (previous_revision_id)? "and revision_id = $2" : "";
         return t.one(
-            `SELECT * FROM buildings WHERE building_id = $1 ${check_revision} FOR UPDATE;`,
-            [building_id, previous_revision_id]
+            `SELECT * FROM buildings WHERE building_id = $1 FOR UPDATE;`,
+            [building_id]
         ).then(old_building => {
             const patches = compare(old_building, building, BUILDING_FIELD_WHITELIST);
             console.log("Patching", patches)
@@ -116,7 +115,6 @@ function saveBuilding(building_id, building, user_id) {
             ).then(revision => {
                 const sets = db.$config.pgp.helpers.sets(forward);
                 console.log("Setting", sets)
-                const check_revision = (previous_revision_id)? "AND revision_id = $4" : "";
                 return t.one(
                     `UPDATE
                         buildings
@@ -124,11 +122,11 @@ function saveBuilding(building_id, building, user_id) {
                         revision_id = $1,
                         $2:raw
                     WHERE
-                        building_id = $3 ${check_revision}
+                        building_id = $3
                     RETURNING
                         *
                     `,
-                    [revision.log_id, sets, building_id, previous_revision_id]
+                    [revision.log_id, sets, building_id]
                 )
             });
         });
