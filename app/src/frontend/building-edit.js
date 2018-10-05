@@ -5,6 +5,7 @@ import queryString from 'query-string';
 import ErrorBox from './error-box';
 import InfoBox from './info-box';
 import Sidebar from './sidebar';
+import Tooltip from './tooltip';
 import { HelpIcon, CloseIcon, SaveIcon } from './icons';
 
 import CONFIG from './fields-config.json';
@@ -29,7 +30,8 @@ const BuildingEdit = (props) => {
         queryString.parse(props.location.search):
         {};
     return (
-        <Sidebar title={`Edit Building`} back={`/building/${props.building_id}.html`}>
+        <Sidebar title={`Edit Building`}
+            back={search.cat? `/building/${props.building_id}.html?cat=${search.cat}`: `/building//${props.building_id}.html`}>
             {
                 CONFIG.map((conf_props) => {
                     return <EditForm
@@ -143,6 +145,10 @@ class EditForm extends Component {
                                         el = <TextInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
                                         break;
+                                    case "text_list":
+                                        el = <TextListInput {...props} handleChange={this.handleChange}
+                                                value={this.state[props.slug]} key={props.slug} />
+                                        break;
                                     case "number":
                                         el = <NumberInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
@@ -162,7 +168,7 @@ class EditForm extends Component {
                             (this.props.inactive)?
                             null : (
                                 <div className="buttons-container">
-                                    <Link to={`/building/${this.props.building_id}.html#${this.props.slug}`}
+                                    <Link to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
                                         className="btn btn-secondary">Cancel</Link>
                                     <button type="submit" className="btn btn-primary">Save</button>
                                 </div>
@@ -178,7 +184,7 @@ class EditForm extends Component {
 
 const TextInput = (props) => (
     <Fragment>
-        <label htmlFor={props.slug}>{props.title}</label>
+        <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
         <input className="form-control" type="text"
             id={props.slug} name={props.slug}
             value={props.value || ""}
@@ -187,9 +193,27 @@ const TextInput = (props) => (
     </Fragment>
 );
 
+const TextListInput = (props) => (
+    <Fragment>
+        <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
+        <select className="form-control"
+            id={props.slug} name={props.slug}
+            value={props.value || ""}
+            list={`${props.slug}_suggestions`}
+            onChange={props.handleChange}>
+            <option value="">Select a source</option>
+            {
+                props.options.map(option => (
+                    <option value={option}>{option}</option>
+                ))
+            }
+        </select>
+    </Fragment>
+)
+
 const NumberInput = (props) => (
     <Fragment>
-        <label htmlFor={props.slug}>{props.title}</label>
+        <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
         <input className="form-control" type="number" step={props.step}
             id={props.slug} name={props.slug}
             value={props.value || ""}
@@ -210,5 +234,12 @@ const LikeButton = (props) => (
         </div>
     </Fragment>
 );
+
+const Label = (props) => (
+    <label htmlFor={props.slug}>
+        {props.title}
+        { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+    </label>
+)
 
 export default BuildingEdit;

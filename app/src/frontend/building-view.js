@@ -23,7 +23,7 @@ const BuildingView = (props) => {
     }
     const search = (props.location && props.location.search)? queryString.parse(props.location.search): {};
     return (
-        <Sidebar title={`View Building`} back="/map/date_year.html">
+        <Sidebar title={`View Building`} back={search.cat? `/map/${search.cat}.html` : "/map/age.html"}>
             {
                 CONFIG.map(section_props => (
                     <DataSection
@@ -80,7 +80,7 @@ const DataSection = (props) => {
             {
                 (match && !props.inactive)?
                     <div className="buttons-container with-space">
-                        <Link to={`/building/${props.building_id}/edit.html#${props.slug}`} className="btn btn-primary">Edit data</Link>
+                        <Link to={`/building/${props.building_id}/edit.html?cat=${props.slug}`} className="btn btn-primary">Edit data</Link>
                     </div>
                 : null
             }

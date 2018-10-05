@@ -100,6 +100,7 @@
 .icon-button.help:hover svg {
     color: rgb(0, 81, 255)
 }
+.icon-button.tooltip-hint.active svg,
 .icon-button.tooltip-hint:hover svg {
     color: rgb(255, 11, 245);
 }
@@ -155,6 +156,7 @@
 }
 .data-list dt,
 .data-section label {
+    display: block;
     margin: 0.5em 0 0;
     font-size: 0.8333rem;
     font-weight: normal;
