@@ -105,11 +105,7 @@ class EditForm extends Component {
         return (
             <section className={(this.props.inactive)? "data-section inactive": "data-section"}>
                 <header className={(match? "active " : "") + "bullet-prefix section-header"}>
-                    <NavLink
-                        to={`/building/${this.props.building_id}/edit.html` + ((match)? '': `?cat=${this.props.slug}`)}
-                        isActive={() => match}>
-                        <h3 className="h3">{this.props.title}</h3>
-                    </NavLink>
+                    <a><h3 className="h3">{this.props.title}</h3></a>
                     <nav className="icon-buttons">
                     {
                         this.props.help?
@@ -172,6 +168,10 @@ class EditForm extends Component {
                         )
                     }
                 </form>
+                <p className="data-intro">
+                    Colouring may take a few seconds - try zooming the map or
+                    hitting refresh after saving (we're working on making this
+                    smoother).</p>
             </section>
         )
     }
