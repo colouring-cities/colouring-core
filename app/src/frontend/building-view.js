@@ -16,7 +16,7 @@ const BuildingView = (props) => {
             <Sidebar title="Building Not Found">
                 <InfoBox msg="We can't find that one anywhere - try the map again?" />
                 <div className="buttons-container with-space">
-                    <Link to="/map/date_year.html" className="btn btn-secondary">Back to maps</Link>
+                    <Link to="/map/age.html" className="btn btn-secondary">Back to maps</Link>
                 </div>
             </Sidebar>
         );

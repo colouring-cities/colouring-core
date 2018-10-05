@@ -45,7 +45,7 @@ class MyAccountPage extends Component {
                         GitHub</a>.
 
                         </p>
-                        <Link to="/map/date_year.html" className="btn btn-primary">Start colouring</Link>
+                        <Link to="/map/age.html" className="btn btn-primary">Start colouring</Link>
                         <ErrorBox msg={this.state.error} />
                         <form method="POST" action="/logout" onSubmit={this.handleSubmit}>
                             <input className="btn btn-secondary" type="submit" value="Log out"/>

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Map, TileLayer, ZoomControl, AttributionControl } from 'react-leaflet-universal';
+import queryString from 'query-string';
 
 import '../../node_modules/leaflet/dist/leaflet.css'
 import './map.css'
@@ -25,8 +26,14 @@ class ColouringMap extends Component {
     }
 
     handleClick(e) {
+        if (this.props.match.url.match('edit')){
+            // don't navigate away from edit view
+            return
+        }
         var lat = e.latlng.lat
         var lng = e.latlng.lng
+        const is_building = /building/.test(this.props.match.url);
+        const new_cat = get_cat(is_building, this.props.location, this.props.match.url);
         fetch(
             '/buildings/locate?lat='+lat+'&lng='+lng
         ).then(
@@ -35,11 +42,12 @@ class ColouringMap extends Component {
             if (data && data.length){
                 const building = data[0];
                 this.props.selectBuilding(building);
-                this.props.history.push(`/building/${building.building_id}.html`);
+                this.props.history.push(`/building/${building.building_id}.html?cat=${new_cat}`);
             } else {
-                // should deselect but keep/return to expected colour theme
-                // this.props.selectBuilding(undefined);
-                // this.props.history.push(`/map/date_year.html`);
+                // deselect but keep/return to expected colour theme
+                this.props.selectBuilding(undefined);
+                const map_cat = new_cat || 'age';
+                this.props.history.push(`/map/${map_cat}.html`);
             }
         }.bind(this)).catch(
             (err) => console.error(err)
@@ -63,19 +71,23 @@ class ColouringMap extends Component {
         const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines.'
 
         // colour-data tiles
-        const is_building = /building/.test(this.props.match.url)
-        const themer = /theme=([^&]*)/
-        const data_tileset = themer.test(this.props.match.url)? themer.exec(this.props.match.url)[1] : 'date_year';
-        console.log(is_building, data_tileset)
-
-        const dataLayer = <TileLayer key={data_tileset} url={`/tiles/${data_tileset}/{z}/{x}/{y}.png`} />;
+        const is_building = /building/.test(this.props.match.url);
+        const cat = get_cat(is_building, this.props.location, this.props.match.url);
+        const tileset_by_cat = {
+            age: 'date_year',
+            size: 'size_storeys'
+        }
+        const data_tileset = tileset_by_cat[cat];
+        const dataLayer = data_tileset?
+            <TileLayer key={data_tileset} url={`/tiles/${data_tileset}/{z}/{x}/{y}.png`} />
+            : null;
 
         // highlight
         const geometry_id = (this.props.building) ? this.props.building.geometry_id : undefined;
         const highlight = `/tiles/highlight/{z}/{x}/{y}.png?highlight=${geometry_id}`
-        const highlightLayer = (is_building && this.props.building) ? (
+        const highlightLayer = (is_building && this.props.building) ?
             <TileLayer key={this.props.building.building_id} url={highlight} />
-        ) : null;
+            : null;
 
         return (
             <Fragment>
@@ -100,5 +112,17 @@ class ColouringMap extends Component {
         );
     }
 };
+
+function get_cat(is_building, location, url) {
+    const search = (location && location.search)? queryString.parse(location.search) : {};
+    var cat, matches;
+    if (is_building) {
+        cat = search.cat;
+    } else {
+        matches = /\/map\/([^.]+).html/.exec(url);
+        cat = matches && matches[1];
+    }
+    return cat;
+}
 
 export default ColouringMap;
