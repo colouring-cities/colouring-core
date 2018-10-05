@@ -17,10 +17,10 @@ const BuildingEdit = (props) => {
     }
     if (!props.building_id){
         return (
-            <Sidebar title="Building Not Found" back="/map/date_year.html">
+            <Sidebar title="Building Not Found" back="/map/age.html">
                 <InfoBox msg="We can't find that one anywhere - try the map again?" />
                 <div className="buttons-container">
-                    <Link to="/map/date_year.html" className="btn btn-secondary">Back to maps</Link>
+                    <Link to="/map/age.html" className="btn btn-secondary">Back to maps</Link>
                 </div>
             </Sidebar>
         );
@@ -89,7 +89,8 @@ class EditForm extends Component {
                 this.setState({error: res.error})
             } else {
                 this.props.selectBuilding(res);
-                this.props.history.push(`/building/${this.props.building_id}.html`);
+                const new_cat = this.props.search.cat;
+                this.props.history.push(`/building/${res.building_id}.html?cat=${new_cat}`);
             }
         }.bind(this)).catch(
             (err) => this.setState({error: err})
@@ -98,6 +99,9 @@ class EditForm extends Component {
 
     render() {
         const match = this.props.search.cat === this.props.slug;
+        if (!match) {
+            return null
+        }
         return (
             <section className={(this.props.inactive)? "data-section inactive": "data-section"}>
                 <header className={(match? "active " : "") + "bullet-prefix section-header"}>
@@ -115,68 +119,59 @@ class EditForm extends Component {
                         </a>
                         : null
                     }
-                    {
-                        match?
-                        <Fragment>
-                            <NavLink className="icon-button save" title="Save Changes"
-                                to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
-                                <SaveIcon />
-                            </NavLink>
-                            <NavLink className="icon-button close" title="Cancel"
-                                to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
-                                <CloseIcon />
-                            </NavLink>
-                        </Fragment>
-                        : null
-                    }
+                        <NavLink className="icon-button save" title="Save Changes"
+                            onClick={this.handleSubmit}
+                            to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
+                            <SaveIcon />
+                        </NavLink>
+                        <NavLink className="icon-button close" title="Cancel"
+                            to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
+                            <CloseIcon />
+                        </NavLink>
                     </nav>
                 </header>
-                { (match && this.props.intro)? <p className="data-intro">{ this.props.intro }</p> : null }
-                {
-                    match?
-                    <form action={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
-                        method="GET" onSubmit={this.handleSubmit}>
-                        <ErrorBox msg={this.state.error} />
-                        <Fragment>{
-                            this.props.fields.map((props) => {
-                                var el;
-                                switch (props.type) {
-                                    case "text":
-                                        el = <TextInput {...props} handleChange={this.handleChange}
-                                                value={this.state[props.slug]} key={props.slug} />
-                                        break;
-                                    case "text_list":
-                                        el = <TextListInput {...props} handleChange={this.handleChange}
-                                                value={this.state[props.slug]} key={props.slug} />
-                                        break;
-                                    case "number":
-                                        el = <NumberInput {...props} handleChange={this.handleChange}
-                                                value={this.state[props.slug]} key={props.slug} />
-                                        break;
-                                    case "like":
-                                        el = <LikeButton {...props} handleLike={this.handleLike}
-                                                value={this.state[props.slug]} key={props.slug} />
-                                        break;
-                                    default:
-                                        el = null
-                                        break;
-                                }
-                                return el
-                            })
-                        }</Fragment>
-                        <Fragment>{
-                            (this.props.inactive)?
-                            null : (
-                                <div className="buttons-container">
-                                    <Link to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
-                                        className="btn btn-secondary">Cancel</Link>
-                                    <button type="submit" className="btn btn-primary">Save</button>
-                                </div>
-                            )
-                        }</Fragment>
-                    </form>
-                : null
-            }
+                { this.props.intro? <p className="data-intro">{ this.props.intro }</p> : null }
+                <form action={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
+                    method="GET" onSubmit={this.handleSubmit}>
+                    <ErrorBox msg={this.state.error} />
+                    {
+                        this.props.fields.map((props) => {
+                            var el;
+                            switch (props.type) {
+                                case "text":
+                                    el = <TextInput {...props} handleChange={this.handleChange}
+                                            value={this.state[props.slug]} key={props.slug} />
+                                    break;
+                                case "text_list":
+                                    el = <TextListInput {...props} handleChange={this.handleChange}
+                                            value={this.state[props.slug]} key={props.slug} />
+                                    break;
+                                case "number":
+                                    el = <NumberInput {...props} handleChange={this.handleChange}
+                                            value={this.state[props.slug]} key={props.slug} />
+                                    break;
+                                case "like":
+                                    el = <LikeButton {...props} handleLike={this.handleLike}
+                                            value={this.state[props.slug]} key={props.slug} />
+                                    break;
+                                default:
+                                    el = null
+                                    break;
+                            }
+                            return el
+                        })
+                    }
+                    {
+                        (this.props.inactive)?
+                        null : (
+                            <div className="buttons-container">
+                                <Link to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
+                                    className="btn btn-secondary">Cancel</Link>
+                                <button type="submit" className="btn btn-primary">Save</button>
+                            </div>
+                        )
+                    }
+                </form>
             </section>
         )
     }
@@ -188,6 +183,7 @@ const TextInput = (props) => (
         <input className="form-control" type="text"
             id={props.slug} name={props.slug}
             value={props.value || ""}
+            disabled={props.disabled}
             onChange={props.handleChange}
             />
     </Fragment>
@@ -199,12 +195,13 @@ const TextListInput = (props) => (
         <select className="form-control"
             id={props.slug} name={props.slug}
             value={props.value || ""}
+            disabled={props.disabled}
             list={`${props.slug}_suggestions`}
             onChange={props.handleChange}>
             <option value="">Select a source</option>
             {
                 props.options.map(option => (
-                    <option value={option}>{option}</option>
+                    <option key={option} value={option}>{option}</option>
                 ))
             }
         </select>
@@ -217,6 +214,7 @@ const NumberInput = (props) => (
         <input className="form-control" type="number" step={props.step}
             id={props.slug} name={props.slug}
             value={props.value || ""}
+            disabled={props.disabled}
             onChange={props.handleChange}
             />
     </Fragment>
