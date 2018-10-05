@@ -184,6 +184,7 @@ const TextInput = (props) => (
             id={props.slug} name={props.slug}
             value={props.value || ""}
             disabled={props.disabled}
+            placeholder={props.placeholder}
             onChange={props.handleChange}
             />
     </Fragment>
