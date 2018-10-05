@@ -53,10 +53,10 @@ const LEGEND_CONFIG = {
     ],
     like: [
         {
-            title: 'Like Me!',
+            title: 'Which buildings do you like?',
             slug: 'like',
             elements: [
-                { color: '#f65400', text: 'Liked' },
+                { color: '#f65400', text: 'We like these buildings 👍 🎉 +1' },
             ]
         }
     ]
@@ -71,12 +71,13 @@ const Legend = (props) => {
 
     return (
         <Sidebar title="Maps">
-        {
-            CONFIG.map((data_group) => (
-                <LegendGroup {...data_group} maps={LEGEND_CONFIG[data_group.slug]}
-                    data_layer={data_layer} key={data_group.slug} />
-            ))
-        }
+            <p className="data-intro">Click on the map to see more information about a building&hellip;</p>
+            {
+                CONFIG.map((data_group) => (
+                    <LegendGroup {...data_group} maps={LEGEND_CONFIG[data_group.slug]}
+                        data_layer={data_layer} key={data_group.slug} />
+                ))
+            }
         </Sidebar>
     );
 }
