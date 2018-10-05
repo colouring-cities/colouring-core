@@ -16,11 +16,13 @@
             { "title": "Postcode", "slug": "location_postcode", "type": "text" },
             {
                 "title": "TOID", "slug": "ref_toid", "type": "text",
-                "tooltip": "Ordnance Survey Topography Layer ID (to be filled automatically)"
+                "tooltip": "Ordnance Survey Topography Layer ID (to be filled automatically)",
+                "disabled": true
             },
             {
                 "title": "UPRNs", "slug": "ref_uprn", "type": "list",
-                "tooltip": "Unique Property Reference Numbers (to be filled automatically)"
+                "tooltip": "Unique Property Reference Numbers (to be filled automatically)",
+                "disabled": true
             }
         ]
     },
@@ -51,7 +53,7 @@
                 "title": "Earliest possible start date", "slug": "date_lower", "type": "number", "step": 1,
                 "tooltip": "This should be the earliest date building could have started." },
             {
-                "title": "Facade date", "slug": "date_facade", "type": "number", "step": 1,
+                "title": "Facade date", "slug": "facade_year", "type": "number", "step": 1,
                 "tooltip": "Best estimate"
             },
             {
