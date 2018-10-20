@@ -27,6 +27,7 @@ class App extends React.Component {
             building: props.building,
         };
         this.login = this.login.bind(this);
+        this.updateUser = this.updateUser.bind(this);
         this.logout = this.logout.bind(this);
         this.selectBuilding = this.selectBuilding.bind(this);
     }
@@ -37,6 +38,11 @@ class App extends React.Component {
             return
         }
         this.setState({user: user});
+    }
+
+    updateUser(user){
+        console.log(user);
+        this.setState({user: { ...this.state.user, ...user }});
     }
 
     logout() {
@@ -94,7 +100,11 @@ class App extends React.Component {
                             <SignUp user={this.state.user} login={this.login} />
                         </Route>
                         <Route exact path="/my-account.html">
-                            <MyAccountPage user={this.state.user} logout={this.logout} />
+                            <MyAccountPage
+                                user={this.state.user}
+                                updateUser={this.updateUser}
+                                logout={this.logout}
+                                />
                         </Route>
                         <Route component={NotFound} />
                     </Switch>

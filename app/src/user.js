@@ -73,7 +73,7 @@ function authUser(username, password) {
 function getUserById(user_id) {
     return db.one(
         `SELECT
-            username, email, registered
+            username, email, registered, api_key
         FROM users
         WHERE
         user_id = $1
@@ -86,4 +86,23 @@ function getUserById(user_id) {
     });
 }
 
-export { getUserById, createUser, authUser }
+function getNewUserAPIKey(user_id) {
+    return db.one(
+        `UPDATE
+            users
+        SET
+            api_key = gen_random_uuid()
+        WHERE
+            user_id = $1
+        RETURNING
+            api_key
+        `, [
+            user_id
+        ]
+    ).catch(function(error){
+        console.error('Error:', error)
+        return {error: 'Failed to generate new API key.'};
+    });
+}
+
+export { getUserById, createUser, authUser, getNewUserAPIKey }

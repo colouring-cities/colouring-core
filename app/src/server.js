@@ -16,7 +16,7 @@ import pgConnect from 'connect-pg-simple';
 
 import App from './frontend/app';
 import db from './db';
-import { authUser, createUser, getUserById } from './user';
+import { authUser, createUser, getUserById, getNewUserAPIKey } from './user';
 import { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById,
          saveBuilding } from './building';
 import tileserver from './tileserver';
@@ -280,5 +280,19 @@ server.get('/users/me', function(req, res){
         res.send(error);
     });
 });
+
+// POST generate API key
+server.post('/api/key', function(req, res){
+    if (!req.session.user_id) {
+        res.send({error: 'Must be logged in'});
+        return
+    }
+
+    getNewUserAPIKey(req.session.user_id).then(function(api_key){
+        res.send(api_key);
+    }).catch(function(error){
+        res.send(error);
+    });
+})
 
 export default server;
