@@ -36,6 +36,8 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS date_upper smallint;
 -- Date Source
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS date_source varchar;
 ALTER TABLE buildings ADD CONSTRAINT buildings_date_source_len CHECK (length(date_source) < 150);
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS date_source_detail varchar;
+ALTER TABLE buildings ADD CONSTRAINT buildings_date_source_detail_len CHECK (length(date_source_detail) < 500);
 
 -- Facade date
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS facade_year smallint;
@@ -43,9 +45,11 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS facade_year smallint;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS facade_upper smallint;
 -- Facade date (lower)
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS facade_lower smallint;
--- Date Source
+-- Facade date Source
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS facade_source varchar;
 ALTER TABLE buildings ADD CONSTRAINT buildings_facade_source_len CHECK (length(facade_source) < 150);
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS facade_source_detail varchar;
+ALTER TABLE buildings ADD CONSTRAINT buildings_facade_source_detail_len CHECK (length(facade_source_detail) < 500);
 
 
 -- Size
