@@ -3,7 +3,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import './main.css';
+import './app.css';
 
 import AboutPage from './about';
 import BetaBanner from './beta-banner';
