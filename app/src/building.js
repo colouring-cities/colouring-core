@@ -40,7 +40,13 @@ function queryBuildingsAtPoint(lng, lat) {
 function queryBuildingsByReference(key, id) {
     if (key === 'toid'){
         return db.manyOrNone(
-            "SELECT * FROM buildings WHERE b.ref_toid = $1",
+            `SELECT
+                *
+            FROM
+                buildings
+            WHERE
+                ref_toid = $1
+            `,
             [id]
         ).catch(function(error){
             console.error(error);
@@ -49,8 +55,10 @@ function queryBuildingsByReference(key, id) {
     }
     if (key === 'uprn') {
         return db.manyOrNone(
-            `SELECT b.*
-            FROM buildings as b, building_properties as p
+            `SELECT
+                b.*
+            FROM
+                buildings as b, building_properties as p
             WHERE
                 b.building_id = p.building_id
             AND

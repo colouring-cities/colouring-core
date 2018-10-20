@@ -177,11 +177,7 @@ server.route('/building/:building_id.json')
     .get(function (req, res) {
         const { building_id } = req.params;
         getBuildingById(building_id).then(function(result){
-            if (result && result.length) {
-                res.send(result)
-            } else {
-                res.status(404).send({error:'Not Found'})
-            }
+            res.send(result);
         }).catch(function(error){
             console.error(error);
             res.send({error:'Database error'})
