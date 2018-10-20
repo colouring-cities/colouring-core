@@ -1,7 +1,0 @@
-{
-    "crs": 27700,
-    "mapping": [
-        ["Date_sou_1", "date_source", "lambda old_, new_: new_"],
-        ["Year_C", "date_year", "lambda old_, new_: int(new_)"]
-    ]
-}

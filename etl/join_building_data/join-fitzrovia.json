@@ -1,6 +1,0 @@
-{
-    "crs": 27700,
-    "mapping": [
-        ["Storeys", "size_storeys", "lambda old_, new_: int(new_) if new_ is not None else None"]
-    ]
-}
