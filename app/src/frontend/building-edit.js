@@ -46,8 +46,12 @@ const BuildingEdit = (props) => {
 class EditForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {...props}
-        this.state.error = this.state.error || undefined;
+        this.state = {}
+        for (let field of props.fields) {
+            this.state[field.slug] = props[field.slug]
+        }
+        this.state.error = this.props.error || undefined;
+        this.state.like = this.props.like || undefined;
 
         this.handleChange = this.handleChange.bind(this);
         this.handleLike = this.handleLike.bind(this);
