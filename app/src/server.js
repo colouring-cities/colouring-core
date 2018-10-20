@@ -16,7 +16,7 @@ import pgConnect from 'connect-pg-simple';
 
 import App from './frontend/app';
 import db from './db';
-import { authUser, createUser, getUserById, getNewUserAPIKey } from './user';
+import { authUser, createUser, getUserById, authAPIUser, getNewUserAPIKey } from './user';
 import { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById,
          saveBuilding } from './building';
 import tileserver from './tileserver';
@@ -188,27 +188,39 @@ server.route('/building/:building_id.json')
         })
     })
     .post(function (req, res) {
-        if (!req.session.user_id) {
+        if (req.session.user_id) {
+            updateBuilding(req, res, req.session.user_id);
+        }  else if (req.query.api_key) {
+            authAPIUser(req.query.api_key)
+                .then(function(user){
+                    updateBuilding(req, res, user.user_id)
+                })
+                .catch(function(err){
+                    console.error(err);
+                    res.send({error: 'Must be logged in'});
+                });
+        } else {
             res.send({error: 'Must be logged in'});
+        }
+    })
+
+function updateBuilding(req, res, user_id){
+    const { building_id } = req.params;
+    const building = req.body;
+    saveBuilding(building_id, building, user_id).then(building => {
+        if (building.error) {
+            res.send(building)
             return
         }
-        const user_id = req.session.user_id;
-        const { building_id } = req.params;
-        const building = req.body;
-        saveBuilding(building_id, building, user_id).then(building => {
-            if (building.error) {
-                res.send(building)
-                return
-            }
-            if (typeof(building) === "undefined") {
-                res.send({error:'Database error'})
-                return
-            }
-            res.send(building)
-        }).catch(
-            () => res.send({error:'Database error'})
-        )
-    })
+        if (typeof(building) === "undefined") {
+            res.send({error:'Database error'})
+            return
+        }
+        res.send(building)
+    }).catch(
+        () => res.send({error:'Database error'})
+    )
+}
 
 // POST new user
 server.post('/users', function(req, res){

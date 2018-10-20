@@ -133,7 +133,7 @@ function saveBuilding(building_id, building, user_id) {
     }).catch(function(error){
         // TODO report transaction error as 'Need to re-fetch building before update'
         console.error(error);
-        return undefined;
+        return {error: error};
     });
 }
 

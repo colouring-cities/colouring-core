@@ -74,9 +74,10 @@ function getUserById(user_id) {
     return db.one(
         `SELECT
             username, email, registered, api_key
-        FROM users
+        FROM
+            users
         WHERE
-        user_id = $1
+            user_id = $1
         `, [
             user_id
         ]
@@ -105,4 +106,21 @@ function getNewUserAPIKey(user_id) {
     });
 }
 
-export { getUserById, createUser, authUser, getNewUserAPIKey }
+function authAPIUser(api_key) {
+    return db.one(
+        `SELECT
+            user_id
+        FROM
+            users
+        WHERE
+            api_key = $1
+        `, [
+            api_key
+        ]
+    ).catch(function(error){
+        console.error('Error:', error)
+        return undefined;
+    });
+}
+
+export { getUserById, createUser, authUser, getNewUserAPIKey, authAPIUser }
