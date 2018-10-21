@@ -29,7 +29,7 @@ Create an app user:
 -- role for server-side of front end (HTTP POST)
 CREATE ROLE appusername WITH LOGIN;
 -- create/update, authenticate and authorise users
-GRANT SELECT, UPDATE, INSERT, DELETE ON TABLE users, user_sessons TO appusername;
+GRANT SELECT, UPDATE, INSERT, DELETE ON TABLE users, user_sessions TO appusername;
 -- join users against categories and access levels
 GRANT SELECT ON TABLE user_access_levels, user_categories TO appusername;
 -- read/write building data
