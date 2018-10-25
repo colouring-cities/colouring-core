@@ -194,7 +194,6 @@ function likeBuilding(building_id, user_id) {
 }
 
 const BUILDING_FIELD_WHITELIST = new Set([
-    'ref_toid',
     'ref_osm_id',
     'location_name',
     'location_number',
