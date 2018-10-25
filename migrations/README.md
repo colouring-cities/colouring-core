@@ -35,6 +35,7 @@ GRANT SELECT ON TABLE user_access_levels, user_categories TO appusername;
 -- read/write building data
 GRANT SELECT, UPDATE ON TABLE buildings TO appusername;
 GRANT SELECT, INSERT, DELETE ON TABLE building_user_likes TO appusername;
+GRANT SELECT ON TABLE building_properties TO appusername;
 -- read geometry data
 GRANT SELECT ON TABLE geometries TO appusername;
 -- read/append to logs
