@@ -87,9 +87,9 @@ const LegendGroup = (props) => {
     const inactive = props.inactive || !props.maps;
     return (
         <section className={(inactive? "inactive ": "") + "data-section legend"}>
-            <header className="bullet-prefix section-header">
+            <header className={(match? "active " : "") + " section-header view"}>
                 <NavLink
-                    to={`/map/${props.slug}.html`}
+                    to={match? "/map/base.html": `/map/${props.slug}.html`}
                     isActive={() => match}
                     title={(inactive)? 'Coming soon… Click the ? for more info.' :
                         (match)? '' : 'Show on map'}>
@@ -98,7 +98,8 @@ const LegendGroup = (props) => {
                 {
                     props.help?
                     <nav className="icon-buttons">
-                        <a className="icon-button help" title="Find out more" href={props.help} target="_blank" rel="noopener noreferrer">
+                        <a className="icon-button help" title="Find out more" href={props.help}>
+                            Help
                             <HelpIcon />
                         </a>
                     </nav>

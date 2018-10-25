@@ -51,7 +51,7 @@ const DataSection = (props) => {
     const match = props.search.cat === props.slug;
     return (
         <section id={props.slug} className={(props.inactive)? "data-section inactive": "data-section"}>
-            <header className={(match? "active " : "") + "bullet-prefix section-header"}>
+            <header className={(match? "active " : "") + " section-header view"}>
                 <NavLink
                     to={`/building/${props.building_id}.html` + ((match)? '': `?cat=${props.slug}`)}
                     title={(props.inactive)? 'Coming soon… Click the ? for more info.' :

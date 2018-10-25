@@ -194,15 +194,14 @@ const AboutPage = () => (
 
         Receive occasional newsletters about the project as it develops. You can
         read previous newsletters in our <a
-        href="https://tinyletter.com/colouringlondon/archive"
-        target="_blank" rel="noopener noreferrer">newsletter archive</a>.
+        href="https://tinyletter.com/colouringlondon/archive">newsletter archive</a>.
 
         </p>
         <label htmlFor="tlemail">Enter your email address:</label>
         <input className="form-control" type="email" name="email" id="tlemail" placeholder="name@example.com" />
         <input type="hidden" value="1" name="embed"/>
         <small className="form-text text-muted">
-            <a href="https://tinyletter.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://tinyletter.com">
             powered by TinyLetter</a>.
             We'll never share your email address.
         </small>

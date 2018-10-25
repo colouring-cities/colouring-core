@@ -113,7 +113,7 @@ class EditForm extends Component {
         }
         return (
             <section className={(this.props.inactive)? "data-section inactive": "data-section"}>
-                <header className={(match? "active " : "") + "bullet-prefix section-header"}>
+                <header className={(match? "active " : "") + " section-header edit"}>
                     <a><h3 className="h3">{this.props.title}</h3></a>
                     <nav className="icon-buttons">
                     {

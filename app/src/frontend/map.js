@@ -125,7 +125,7 @@ function get_cat(is_building, location, url) {
         cat = search.cat;
     } else {
         matches = /\/map\/([^.]+).html/.exec(url);
-        cat = (matches && matches.length < 1)? matches[1] : "";
+        cat = (matches && matches.length > 1)? matches[1] : "";
     }
     return cat;
 }

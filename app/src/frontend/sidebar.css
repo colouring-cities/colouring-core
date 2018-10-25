@@ -69,7 +69,7 @@
 /**
  * Data list section headers
  */
-.bullet-prefix {
+.section-header {
     display: block;
     position: relative;
     clear: both;
@@ -77,21 +77,21 @@
     color: #222;
     transition: background-color 0.2s;
 }
-.bullet-prefix h3 {
+.section-header h3 {
     display: inline-block;
 }
-.bullet-prefix > a {
+.section-header > a {
     display: block;
     padding: 0.6rem 0.5rem 0.5rem 2.25rem;
     color: #222;
 }
-.bullet-prefix.active,
-.bullet-prefix:hover {
+.section-header.active,
+.section-header:hover {
     color: #222;
     text-decoration: none;
     background-color: #eeeeee;
 }
-.bullet-prefix > a::before {
+.section-header > a::before {
     display: block;
     position: absolute;
     left: 0.55rem;
@@ -104,27 +104,27 @@
     content: '\25B8';
     transition: color 0.2s;
 }
-.bullet-prefix:hover > a::before,
-.bullet-prefix.active > a::before {
+.section-header:hover > a::before,
+.section-header.active > a::before {
     font-size: 1rem;
 }
-.bullet-prefix:hover > a::before,
-.bullet-prefix.active > a::before {
+.section-header:hover > a::before,
+.section-header.active > a::before {
     content: '\25BC';
 }
-.bullet-prefix.active:hover > a::before {
+.section-header.view.active:hover > a::before {
     content: '\25B2';
 }
 
-.data-section.inactive .bullet-prefix > a::before,
-.data-section.inactive .bullet-prefix:hover > a::before,
-.data-section.inactive .bullet-prefix.active:hover > a::before {
+.data-section.inactive .section-header > a::before,
+.data-section.inactive .section-header:hover > a::before,
+.data-section.inactive .section-header.active:hover > a::before {
     opacity: 0.4;
     color: #222;
     font-size: 1.2rem;
     content: '\25B8';
 }
-.bullet-prefix .icon-buttons {
+.section-header .icon-buttons {
     position: absolute;
     top: 0;
     right: 0;
