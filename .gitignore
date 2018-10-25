@@ -2,7 +2,7 @@
 node_modules
 
 # Config
-*config.json
+config.json
 *.log
 ecosystem.config.js
 app/start.sh
