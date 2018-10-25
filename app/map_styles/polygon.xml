@@ -152,4 +152,9 @@
             <PolygonSymbolizer fill="#7a5732" />
         </Rule>
     </Style>
+    <Style name="likes">
+        <Rule>
+            <PolygonSymbolizer fill="#f03b20" />
+        </Rule>
+    </Style>
 </Map>

@@ -162,4 +162,27 @@ router.get('/location/:z/:x/:y.png', function(req, res) {
     })
 });
 
+
+// location information depth
+router.get('/likes/:z/:x/:y.png', function(req, res) {
+    const bbox = get_bbox(req.params)
+    const table_def = `(
+        SELECT
+            g.geometry_geom
+        FROM
+            geometries as g,
+            buildings as b
+        WHERE
+            g.geometry_id = b.geometry_id
+            AND b.likes_total > 0
+    ) as location`
+    const style_def = ['likes']
+    render_tile(bbox, table_def, style_def, function(err, im) {
+        if (err) throw err
+
+        res.writeHead(200, {'Content-Type': 'image/png'})
+        res.end(im.encodeSync('png'))
+    })
+});
+
 export default router;

@@ -77,6 +77,7 @@ class ColouringMap extends Component {
             age: 'date_year',
             size: 'size_storeys',
             location: 'location',
+            like: 'likes',
         }
         const data_tileset = tileset_by_cat[cat];
         const dataLayer = data_tileset?
