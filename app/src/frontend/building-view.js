@@ -62,7 +62,8 @@ const DataSection = (props) => {
                 <nav className="icon-buttons">
                 {
                     props.help?
-                    <a className="icon-button help" title="Find out more" href={props.help} target="_blank" rel="noopener noreferrer">
+                    <a className="icon-button help" title="Find out more" href={props.help}>
+                        Help
                         <HelpIcon />
                     </a>
                     : null
@@ -71,6 +72,7 @@ const DataSection = (props) => {
                     !props.inactive?
                     <NavLink className="icon-button edit" title="Edit data"
                         to={`/building/${props.building_id}/edit.html?cat=${props.slug}`}>
+                        Edit
                         <EditIcon />
                     </NavLink>
                     : null

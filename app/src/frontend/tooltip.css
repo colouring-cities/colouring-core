@@ -4,11 +4,10 @@
 .tooltip-wrap {
     float: right;
     position: relative;
-    top: -5px;
+    top: -3px;
+    right: -4px;
 }
 .tooltip-wrap .icon-button svg {
-    width: 1rem;
-    height: 1rem;
     margin-top: -2px;
 }
 .tooltip {

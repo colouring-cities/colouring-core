@@ -113,8 +113,8 @@ class EditForm extends Component {
                     <nav className="icon-buttons">
                     {
                         this.props.help?
-                        <a className="icon-button help" title="Find out more" href={this.props.help}
-                            target="_blank" rel="noopener noreferrer">
+                        <a className="icon-button help" title="Find out more" href={this.props.help}>
+                            Help
                             <HelpIcon />
                         </a>
                         : null
@@ -122,15 +122,17 @@ class EditForm extends Component {
                         <NavLink className="icon-button save" title="Save Changes"
                             onClick={this.handleSubmit}
                             to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
+                            Save
                             <SaveIcon />
                         </NavLink>
-                        <NavLink className="icon-button close" title="Cancel"
+                        <NavLink className="icon-button close-edit" title="Cancel"
                             to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
+                            Cancel
                             <CloseIcon />
                         </NavLink>
                     </nav>
                 </header>
-                { this.props.intro? <p className="data-intro">{ this.props.intro }</p> : null }
+
                 <form action={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
                     method="GET" onSubmit={this.handleSubmit}>
                     <ErrorBox msg={this.state.error} />
@@ -161,21 +163,18 @@ class EditForm extends Component {
                             return el
                         })
                     }
-                    {
-                        (this.props.inactive)?
-                        null : (
-                            <div className="buttons-container">
-                                <Link to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
-                                    className="btn btn-secondary">Cancel</Link>
-                                <button type="submit" className="btn btn-primary">Save</button>
-                            </div>
-                        )
-                    }
+
+                    <p className="alert alert-info">
+                        Colouring may take a few seconds - try zooming the map or
+                        hitting refresh after saving (we're working on making this
+                        smoother).</p>
+
+                    <div className="buttons-container">
+                        <Link to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
+                            className="btn btn-secondary">Cancel</Link>
+                        <button type="submit" className="btn btn-primary">Save</button>
+                    </div>
                 </form>
-                <p className="data-intro">
-                    Colouring may take a few seconds - try zooming the map or
-                    hitting refresh after saving (we're working on making this
-                    smoother).</p>
             </section>
         )
     }
