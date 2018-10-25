@@ -74,10 +74,28 @@ class EditForm extends Component {
     }
 
     handleLike(event) {
-        const liked = event.target.checked;
-        this.setState({
-            like: liked
-        });
+        event.preventDefault();
+
+        fetch(`/building/like/${this.props.building_id}`, {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin'
+        }).then(
+            res => res.json()
+        ).then(function(res){
+            if (res.error) {
+                this.setState({error: res.error})
+            } else {
+                this.props.selectBuilding(res);
+                this.setState({
+                    likes_total: res.likes_total
+                })
+            }
+        }.bind(this)).catch(
+            (err) => this.setState({error: err})
+        );
     }
 
     handleSubmit(event) {
@@ -124,17 +142,28 @@ class EditForm extends Component {
                         </a>
                         : null
                     }
+                    {
+                        (this.props.slug === 'like')? // special-case for likes
+                        <NavLink className="icon-button save" title="Done"
+                        to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
+                            Done
+                            <SaveIcon />
+                        </NavLink>
+                        :
+                        <Fragment>
                         <NavLink className="icon-button save" title="Save Changes"
-                            onClick={this.handleSubmit}
+                        onClick={this.handleSubmit}
                             to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
                             Save
                             <SaveIcon />
                         </NavLink>
                         <NavLink className="icon-button close-edit" title="Cancel"
-                            to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
+                        to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
                             Cancel
                             <CloseIcon />
                         </NavLink>
+                        </Fragment>
+                    }
                     </nav>
                 </header>
 
@@ -174,11 +203,19 @@ class EditForm extends Component {
                         hitting refresh after saving (we're working on making this
                         smoother).</p>
 
-                    <div className="buttons-container">
-                        <Link to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
-                            className="btn btn-secondary">Cancel</Link>
-                        <button type="submit" className="btn btn-primary">Save</button>
-                    </div>
+                    {
+                        (this.props.slug === 'like')? // special-case for likes
+                        <div className="buttons-container">
+                            <Link to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
+                                className="btn btn-secondary">Done</Link>
+                       </div>
+                       :
+                        <div className="buttons-container">
+                            <Link to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
+                                className="btn btn-secondary">Cancel</Link>
+                            <button type="submit" className="btn btn-primary">Save</button>
+                       </div>
+                    }
                 </form>
             </section>
         )
@@ -231,14 +268,8 @@ const NumberInput = (props) => (
 
 const LikeButton = (props) => (
     <Fragment>
-        <label htmlFor="likes">Like this building?</label>
-        <div className="form-check">
-            <input className="form-check-input position-static"
-                type="checkbox"
-                checked={props.value}
-                onChange={props.handleLike}
-                />
-        </div>
+        <p class="likes">{(props.value)? props.value : 0} likes</p>
+        <button class="btn btn-success btn-like" onClick={props.handleLike}>Like this building!</button>
     </Fragment>
 );
 

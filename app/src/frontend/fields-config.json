@@ -155,7 +155,7 @@
         "title": "Like Me!", "slug": "like",
         "help": "https://pages.colouring.london/likeme",
         "fields": [
-            { "title": "Like", "slug": "like", "type": "like", "tooltip": "Do you like the building?"  }
+            { "title": "Like", "slug": "likes_total", "type": "like", "tooltip": "Do you like the building?"  }
         ]
     }
 ]

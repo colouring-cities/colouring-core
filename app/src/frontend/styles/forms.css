@@ -53,3 +53,11 @@ form .btn {
         margin-right: 0;
     }
 }
+
+/* Like button */
+.likes {
+    margin: 0.5rem 0;
+}
+form  .btn-like {
+    margin: 0;
+}

@@ -18,7 +18,7 @@ import App from './frontend/app';
 import db from './db';
 import { authUser, createUser, getUserById, authAPIUser, getNewUserAPIKey } from './user';
 import { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById,
-         saveBuilding } from './building';
+         saveBuilding, likeBuilding } from './building';
 import tileserver from './tileserver';
 import { parseBuildingURL } from './parse';
 
@@ -217,6 +217,28 @@ function updateBuilding(req, res, user_id){
         () => res.send({error:'Database error'})
     )
 }
+
+// POST like building
+server.post('/building/like/:building_id', function(req, res){
+    if (!req.session.user_id) {
+        res.send({error: 'Must be logged in'});
+        return
+    }
+    const { building_id } = req.params;
+    likeBuilding(building_id, req.session.user_id).then(building => {
+        if (building.error) {
+            res.send(building)
+            return
+        }
+        if (typeof(building) === "undefined") {
+            res.send({error:'Database error'})
+            return
+        }
+        res.send(building)
+    }).catch(
+        () => res.send({error:'Database error'})
+    )
+});
 
 // POST new user
 server.post('/users', function(req, res){

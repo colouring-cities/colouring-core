@@ -166,7 +166,7 @@ function likeBuilding(building_id, user_id) {
                     `INSERT INTO logs (
                         forward_patch, building_id, user_id
                     ) VALUES (
-                        $1:jsonb, $2, $3
+                        $1:json, $2, $3
                     ) RETURNING log_id
                     `,
                     [{likes_total: building.likes}, building_id, user_id]
