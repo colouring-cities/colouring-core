@@ -268,8 +268,8 @@ const NumberInput = (props) => (
 
 const LikeButton = (props) => (
     <Fragment>
-        <p class="likes">{(props.value)? props.value : 0} likes</p>
-        <button class="btn btn-success btn-like" onClick={props.handleLike}>Like this building!</button>
+        <p className="likes">{(props.value)? props.value : 0} likes</p>
+        <button className="btn btn-success btn-like" onClick={props.handleLike}>Like this building!</button>
     </Fragment>
 );
 
