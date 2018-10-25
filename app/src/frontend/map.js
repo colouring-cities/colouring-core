@@ -80,8 +80,10 @@ class ColouringMap extends Component {
             like: 'likes',
         }
         const data_tileset = tileset_by_cat[cat];
+        // pick revision id to bust browser cache
+        const rev = this.props.building? this.props.building.revision_id : '';
         const dataLayer = data_tileset?
-            <TileLayer key={data_tileset} url={`/tiles/${data_tileset}/{z}/{x}/{y}.png`} />
+            <TileLayer key={data_tileset} url={`/tiles/${data_tileset}/{z}/{x}/{y}.png?rev=${rev}`} />
             : null;
 
         // highlight
