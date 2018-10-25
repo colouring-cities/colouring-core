@@ -11,10 +11,41 @@ import { strictParseInt } from './parse';
 const router = express.Router()
 
 // basic geometry tiles
-router.get('/outline/:z/:x/:y.png', function(req, res) {
+router.get('/base_light/:z/:x/:y.png', function(req, res) {
     const bbox = get_bbox(req.params)
-    const table_def = 'geometries'
-    const style_def = ['polygon']
+    const table_def = `(
+        SELECT
+            b.location_number as location_number,
+            g.geometry_geom
+        FROM
+            geometries as g,
+            buildings as b
+        WHERE
+            g.geometry_id = b.geometry_id
+    ) as outline`
+    const style_def = ['base_light']
+    render_tile(bbox, table_def, style_def, function(err, im) {
+        if (err) throw err
+
+        res.writeHead(200, {'Content-Type': 'image/png'})
+        res.end(im.encodeSync('png'))
+    })
+});
+
+// dark theme
+router.get('/base_night/:z/:x/:y.png', function(req, res) {
+    const bbox = get_bbox(req.params)
+    const table_def = `(
+        SELECT
+            b.location_number as location_number,
+            g.geometry_geom
+        FROM
+            geometries as g,
+            buildings as b
+        WHERE
+            g.geometry_id = b.geometry_id
+    ) as outline`
+    const style_def = ['base_night']
     render_tile(bbox, table_def, style_def, function(err, im) {
         if (err) throw err
 
@@ -35,7 +66,6 @@ router.get('/highlight/:z/:x/:y.png', function(req, res) {
     const table_def = `(
         SELECT
             g.geometry_id = ${geometry_id} as focus,
-            b.location_number as location_number,
             g.geometry_geom
         FROM
             geometries as g,

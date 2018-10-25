@@ -89,6 +89,10 @@ class ColouringMap extends Component {
             <TileLayer key={this.props.building.building_id} url={highlight} />
             : null;
 
+        const base_layer_url = (this.state.theme === 'light')?
+            `/tiles/base_light/{z}/{x}/{y}.png`
+            : `/tiles/base_night/{z}/{x}/{y}.png`
+
         return (
             <Fragment>
                 <Map
@@ -102,6 +106,7 @@ class ColouringMap extends Component {
                     onClick={this.handleClick}
                     >
                     <TileLayer url={url} attribution={attribution} />
+                    <TileLayer url={base_layer_url} />
                     { dataLayer }
                     { highlightLayer }
                     <ZoomControl position="topright" />
