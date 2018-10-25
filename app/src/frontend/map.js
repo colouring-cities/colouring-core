@@ -121,6 +121,9 @@ class ColouringMap extends Component {
 };
 
 function get_cat(is_building, location, url) {
+    if (url === "/") {
+        return "age"
+    }
     const search = (location && location.search)? queryString.parse(location.search) : {};
     var cat, matches;
     if (is_building) {
