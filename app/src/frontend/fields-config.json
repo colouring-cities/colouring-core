@@ -20,7 +20,7 @@
                 "disabled": true
             },
             {
-                "title": "UPRNs", "slug": "ref_uprn", "type": "list",
+                "title": "UPRNs", "slug": "uprns", "type": "list",
                 "tooltip": "Unique Property Reference Numbers (to be filled automatically)",
                 "disabled": true
             },

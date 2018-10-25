@@ -83,6 +83,16 @@ function getBuildingById(id) {
     });
 }
 
+function getBuildingUPRNsById(id) {
+    return db.any(
+        "SELECT uprn, parent_uprn FROM building_properties WHERE building_id = $1",
+        [id]
+    ).catch(function(error){
+        console.error(error);
+        return undefined;
+    });
+}
+
 function saveBuilding(building_id, building, user_id) {
     // save building could fail if the revision seen by the user != the latest revision
     // - any 'intuitive' retries would need to be handled by clients of this code
@@ -244,5 +254,5 @@ function compare(old_obj, new_obj, whitelist){
     return [forward_patch, reverse_patch]
 }
 
-export { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById, saveBuilding,
-         likeBuilding };
+export { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById,
+         getBuildingUPRNsById, saveBuilding, likeBuilding };

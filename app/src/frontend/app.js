@@ -51,7 +51,26 @@ class App extends React.Component {
     }
 
     selectBuilding(building) {
-        this.setState({building: building})
+        // get UPRNs and update
+        fetch(`/building/${building.building_id}/uprns.json`, {
+            method: 'GET',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin'
+        }).then(
+            res => res.json()
+        ).then((res) => {
+            if (res.error) {
+                console.error(res);
+            } else {
+                building.uprns = res.uprns;
+                this.setState({building: building});
+            }
+        }).catch((err) => {
+            console.error(err)
+            this.setState({building: building});
+        });
     }
 
     render() {

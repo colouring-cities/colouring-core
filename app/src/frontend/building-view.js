@@ -31,13 +31,19 @@ const BuildingView = (props) => {
                         building_id={props.building_id}
                         {...section_props}>
                         {
-                            section_props.fields.map(field_props => (
+                            section_props.fields.map(field_props => {
+                                return (field_props.slug === 'uprns')?
+                                <UPRNsDataEntry
+                                    title={field_props.title}
+                                    value={props.uprns}
+                                    tooltip={field_props.tooltip} />
+                                :
                                 <DataEntry
                                     key={field_props.slug}
                                     title={field_props.title}
                                     value={props[field_props.slug]}
                                     tooltip={field_props.tooltip} />
-                            ))
+                            })
                         }
                     </DataSection>
                 ))
@@ -100,5 +106,41 @@ const DataEntry = (props) => (
         <dd>{(props.value != null)? props.value : '\u00A0'}</dd>
     </Fragment>
 );
+
+const UPRNsDataEntry = (props) => {
+    const uprns = props.value || [];
+    const no_parent = uprns.filter(uprn => uprn.parent_uprn == null);
+    const with_parent = uprns.filter(uprn => uprn.parent_uprn != null);
+
+    return (
+    <Fragment>
+        <dt>
+            { props.title }
+            { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+        </dt>
+        <dd><ul className="uprn-list">
+            <Fragment>{
+                no_parent.length?
+                    no_parent.map(uprn => (
+                        <li>{uprn.uprn}</li>
+                    ))
+                : '\u00A0'
+            }</Fragment>
+            {
+                with_parent.length?
+                <details>
+                    <summary>Children</summary>
+                    {
+                    with_parent.map(uprn => (
+                        <li>{uprn.uprn} (child of {uprn.parent_uprn})</li>
+                        ))
+                    }
+                </details>
+                : null
+            }
+        </ul></dd>
+    </Fragment>
+    )
+}
 
 export default BuildingView;

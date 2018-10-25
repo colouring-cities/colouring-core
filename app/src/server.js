@@ -18,7 +18,7 @@ import App from './frontend/app';
 import db from './db';
 import { authUser, createUser, getUserById, authAPIUser, getNewUserAPIKey } from './user';
 import { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById,
-         saveBuilding, likeBuilding } from './building';
+         getBuildingUPRNsById, saveBuilding, likeBuilding } from './building';
 import tileserver from './tileserver';
 import { parseBuildingURL } from './parse';
 
@@ -76,15 +76,20 @@ function frontendRoute(req, res) {
 
     Promise.all([
         req.session.user_id? getUserById(req.session.user_id) : undefined,
-        is_building? getBuildingById(building_id) : undefined
+        is_building? getBuildingById(building_id) : undefined,
+        is_building? getBuildingUPRNsById(building_id) : undefined
     ]).then(function(values){
         const user = values[0];
         const building = values[1];
+        const uprns = values[2];
         if (is_building && typeof(building) === "undefined"){
             context.status = 404
         }
         data.user = user;
         data.building = building;
+        if (data.building != null) {
+            data.building.uprns = uprns
+        }
         renderHTML(context, data, req, res)
     }).catch(error => {
         console.error(error);
@@ -217,6 +222,22 @@ function updateBuilding(req, res, user_id){
         () => res.send({error:'Database error'})
     )
 }
+
+server.get('/building/:building_id/uprns.json', function (req, res) {
+        const { building_id } = req.params;
+        getBuildingUPRNsById(building_id).then(function(result){
+            if (typeof(result) === "undefined") {
+                res.send({error:'Database error'})
+                return
+            }
+            res.send({
+                uprns: result
+            });
+        }).catch(function(error){
+            console.error(error);
+            res.send({error:'Database error'})
+        })
+    })
 
 // POST like building
 server.post('/building/like/:building_id', function(req, res){

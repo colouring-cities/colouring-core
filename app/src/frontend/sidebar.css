@@ -258,3 +258,7 @@
 .data-list .no-data {
     color: #999;
 }
+.data-list dd ul {
+    list-style: none;
+    padding-left: 0;
+}
