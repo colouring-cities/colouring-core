@@ -41,13 +41,13 @@ const LEGEND_CONFIG = {
             title: 'Number of storeys',
             slug: 'size_storeys',
             elements: [
-                { color: '#ffc584', text: '≥20' },
-                { color: '#f46259', text: '10–20' },
-                { color: '#da456a', text: '5–10' },
-                { color: '#a8327d', text: '4' },
-                { color: '#7c2383', text: '3' },
-                { color: '#5b167f', text: '2' },
-                { color: '#360f69', text: '1' },
+                { color: '#fef0d9', text: '≥20' },
+                { color: '#fdd49e', text: '10–20' },
+                { color: '#fdbb84', text: '5–10' },
+                { color: '#fc8d59', text: '4' },
+                { color: '#ef6548', text: '3' },
+                { color: '#d7301f', text: '2' },
+                { color: '#990000', text: '1' },
             ]
         }
     ],

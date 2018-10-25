@@ -25,43 +25,31 @@
     <Style name="size_storeys">
         <Rule>
             <Filter>[size_storeys] &gt;= 20</Filter>
-            <PolygonSymbolizer fill="#ffc584" />
-            <LineSymbolizer stroke="white" stroke-width="0.3" />
+            <PolygonSymbolizer fill="#fef0d9" />
         </Rule>
         <Rule>
             <Filter>[size_storeys] &gt;= 10 and [size_storeys] &lt; 20</Filter>
-            <PolygonSymbolizer fill="#f46259" />
-            <LineSymbolizer stroke="white" stroke-width="0.3" />
+            <PolygonSymbolizer fill="#fdd49e" />
         </Rule>
         <Rule>
             <Filter>[size_storeys] &gt;= 5 and [size_storeys] &lt; 10</Filter>
-            <PolygonSymbolizer fill="#da456a" />
-            <LineSymbolizer stroke="white" stroke-width="0.3" />
+            <PolygonSymbolizer fill="#fdbb84" />
         </Rule>
         <Rule>
             <Filter>[size_storeys] = 4</Filter>
-            <PolygonSymbolizer fill="#a8327d" />
-            <LineSymbolizer stroke="white" stroke-width="0.3" />
+            <PolygonSymbolizer fill="#fc8d59" />
         </Rule>
         <Rule>
             <Filter>[size_storeys] = 3</Filter>
-            <PolygonSymbolizer fill="#7c2383" />
-            <LineSymbolizer stroke="white" stroke-width="0.3" />
+            <PolygonSymbolizer fill="#ef6548" />
         </Rule>
         <Rule>
             <Filter>[size_storeys] = 2</Filter>
-            <PolygonSymbolizer fill="#5b167f" />
-            <LineSymbolizer stroke="white" stroke-width="0.3" />
+            <PolygonSymbolizer fill="#d7301f" />
         </Rule>
         <Rule>
             <Filter>[size_storeys] = 1</Filter>
-            <PolygonSymbolizer fill="#360f69" />
-            <LineSymbolizer stroke="white" stroke-width="0.3" />
-        </Rule>
-        <Rule>
-            <ElseFilter />
-            <PolygonSymbolizer fill="#00000000" />
-            <LineSymbolizer stroke="black" stroke-width="0.3" />
+            <PolygonSymbolizer fill="#990000" />
         </Rule>
     </Style>
     <Style name="date_year">
