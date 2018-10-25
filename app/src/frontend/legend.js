@@ -90,7 +90,9 @@ const LegendGroup = (props) => {
             <header className="bullet-prefix section-header">
                 <NavLink
                     to={`/map/${props.slug}.html`}
-                    isActive={() => match}>
+                    isActive={() => match}
+                    title={(inactive)? 'Coming soon… Click the ? for more info.' :
+                        (match)? '' : 'Show on map'}>
                     <h3 className="h3">{props.title}</h3>
                 </NavLink>
                 {
@@ -103,7 +105,6 @@ const LegendGroup = (props) => {
                     : null
                 }
             </header>
-            { (match && props.intro)? <p className="data-intro">{ props.intro }</p> : null }
             <dl className="data-list">
             {
                 (match && props.maps)?

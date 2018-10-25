@@ -54,6 +54,8 @@ const DataSection = (props) => {
             <header className={(match? "active " : "") + "bullet-prefix section-header"}>
                 <NavLink
                     to={`/building/${props.building_id}.html` + ((match)? '': `?cat=${props.slug}`)}
+                    title={(props.inactive)? 'Coming soon… Click the ? for more info.' :
+                        (match)? 'Hide details' : 'Show details'}
                     isActive={() => match}>
                     <h3 className="h3">{props.title}</h3>
                 </NavLink>
@@ -75,7 +77,6 @@ const DataSection = (props) => {
                 }
                 </nav>
             </header>
-            { (match && props.intro)? <p className="data-intro">{ props.intro }</p> : null }
             { match? <dl className="data-list">{props.children}</dl> : null }
             {
                 (match && !props.inactive)?
