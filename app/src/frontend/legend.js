@@ -9,6 +9,19 @@ import CONFIG from './fields-config.json';
 
 
 const LEGEND_CONFIG = {
+    location: [
+        {
+            title: 'Location Information (number of data entries)',
+            slug: 'location',
+            elements: [
+                { color: '#f0f9e8', text: '>5' },
+                { color: '#bae4bc', text: '4' },
+                { color: '#7bccc4', text: '3' },
+                { color: '#43a2ca', text: '2' },
+                { color: '#0868ac', text: '1' }
+            ]
+        }
+    ],
     age: [
         {
             title: 'Year Built',

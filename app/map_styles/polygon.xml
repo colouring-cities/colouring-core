@@ -22,6 +22,28 @@
             <LineSymbolizer stroke="#00ffffff" stroke-width="2.5" />
         </Rule>
     </Style>
+    <Style name="location_info_count">
+        <Rule>
+            <Filter>[location_info_count] &gt;= 5</Filter>
+            <PolygonSymbolizer fill="#f0f9e8" />
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] = 4</Filter>
+            <PolygonSymbolizer fill="#bae4bc" />
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] = 3</Filter>
+            <PolygonSymbolizer fill="#7bccc4" />
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] = 2</Filter>
+            <PolygonSymbolizer fill="#43a2ca" />
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] = 1</Filter>
+            <PolygonSymbolizer fill="#0868ac" />
+        </Rule>
+    </Style>
     <Style name="size_storeys">
         <Rule>
             <Filter>[size_storeys] &gt;= 20</Filter>

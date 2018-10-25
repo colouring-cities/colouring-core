@@ -131,4 +131,35 @@ router.get('/size_storeys/:z/:x/:y.png', function(req, res) {
     })
 });
 
+// location information depth
+router.get('/location/:z/:x/:y.png', function(req, res) {
+    const bbox = get_bbox(req.params)
+    const table_def = `(
+        SELECT
+            (
+                case when b.location_name is null then 0 else 1 end +
+                case when b.location_number is null then 0 else 1 end +
+                case when b.location_street is null then 0 else 1 end +
+                case when b.location_line_two is null then 0 else 1 end +
+                case when b.location_town is null then 0 else 1 end +
+                case when b.location_postcode is null then 0 else 1 end +
+                case when b.location_latitude is null then 0 else 1 end +
+                case when b.location_longitude is null then 0 else 1 end
+            ) as location_info_count,
+            g.geometry_geom
+        FROM
+            geometries as g,
+            buildings as b
+        WHERE
+            g.geometry_id = b.geometry_id
+    ) as location`
+    const style_def = ['location_info_count']
+    render_tile(bbox, table_def, style_def, function(err, im) {
+        if (err) throw err
+
+        res.writeHead(200, {'Content-Type': 'image/png'})
+        res.end(im.encodeSync('png'))
+    })
+});
+
 export default router;

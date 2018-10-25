@@ -75,7 +75,8 @@ class ColouringMap extends Component {
         const cat = get_cat(is_building, this.props.location, this.props.match.url);
         const tileset_by_cat = {
             age: 'date_year',
-            size: 'size_storeys'
+            size: 'size_storeys',
+            location: 'location',
         }
         const data_tileset = tileset_by_cat[cat];
         const dataLayer = data_tileset?
