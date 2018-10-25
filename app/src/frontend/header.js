@@ -22,6 +22,9 @@ const Header = (props) => (
                     <NavLink to="/map/age.html" className="nav-link">View Maps</NavLink>
                 </li>
                 <li className="nav-item">
+                    <NavLink to="/select.html" className="nav-link">Edit Maps</NavLink>
+                </li>
+                <li className="nav-item">
                     <a className="nav-link" href="https://pages.colouring.london/buildingcategories">Building Categories</a>
                 </li>
                 <li className="nav-item">

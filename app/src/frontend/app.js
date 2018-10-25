@@ -16,6 +16,7 @@ import Login from './login';
 import MyAccountPage from './my-account';
 import SignUp from './signup';
 import Welcome from './welcome';
+import BuildingEditAny from './building-edit-any';
 
 
 
@@ -65,6 +66,9 @@ class App extends React.Component {
                                 <Route exact path="/">
                                     <Welcome />
                                 </Route>
+                                <Route exact path="/select.html">
+                                    <BuildingEditAny />
+                                </Route>
                                 <Route exact path="/map/:map.html" component={Legend} />
                                 <Route exact path="/building/:building.html" render={(props) => (
                                     <BuildingView
@@ -85,7 +89,7 @@ class App extends React.Component {
                         </CSSTransition>
                     </TransitionGroup>
                     <Switch>
-                        <Route exact path="/(map.*|building.*)?" render={(props) => (
+                        <Route exact path="/(select.html|map.*|building.*)?" render={(props) => (
                             <ColouringMap
                                 {...props}
                                 building={this.state.building}

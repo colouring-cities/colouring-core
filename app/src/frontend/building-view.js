@@ -23,7 +23,7 @@ const BuildingView = (props) => {
     }
     const search = (props.location && props.location.search)? queryString.parse(props.location.search): {};
     return (
-        <Sidebar title={`View Building`} back={search.cat? `/map/${search.cat}.html` : "/map/age.html"}>
+        <Sidebar title={`Building Data`} back={search.cat? `/map/${search.cat}.html` : "/map/age.html"}>
             {
                 CONFIG.map(section_props => (
                     <DataSection
