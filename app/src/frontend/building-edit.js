@@ -60,8 +60,13 @@ class EditForm extends Component {
 
     handleChange(event) {
         const target = event.target;
-        const value = (target.value === '')? null : target.value;
+        let value = (target.value === '')? null : target.value;
         const name = target.name;
+
+        // special transform - consider something data driven before adding 'else if's
+        if (name === 'location_postcode' && value !== null) {
+            value = value.toUpperCase();
+        }
 
         this.setState({
             [name]: value
