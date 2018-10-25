@@ -34,6 +34,7 @@ const BuildingView = (props) => {
                             section_props.fields.map(field_props => {
                                 return (field_props.slug === 'uprns')?
                                 <UPRNsDataEntry
+                                    key={field_props.slug}
                                     title={field_props.title}
                                     value={props.uprns}
                                     tooltip={field_props.tooltip} />
@@ -122,7 +123,7 @@ const UPRNsDataEntry = (props) => {
             <Fragment>{
                 no_parent.length?
                     no_parent.map(uprn => (
-                        <li>{uprn.uprn}</li>
+                        <li key={uprn.uprn}>{uprn.uprn}</li>
                     ))
                 : '\u00A0'
             }</Fragment>
@@ -132,7 +133,7 @@ const UPRNsDataEntry = (props) => {
                     <summary>Children</summary>
                     {
                     with_parent.map(uprn => (
-                        <li>{uprn.uprn} (child of {uprn.parent_uprn})</li>
+                        <li key={uprn.uprn}>{uprn.uprn} (child of {uprn.parent_uprn})</li>
                         ))
                     }
                 </details>
