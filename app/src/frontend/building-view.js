@@ -97,7 +97,7 @@ const DataEntry = (props) => (
             { props.title }
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
         </dt>
-        <dd>{props.value ? props.value : '-'}</dd>
+        <dd>{props.value ? props.value : '\u00A0'}</dd>
     </Fragment>
 );
 
