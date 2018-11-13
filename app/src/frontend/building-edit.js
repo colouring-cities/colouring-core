@@ -30,7 +30,7 @@ const BuildingEdit = (props) => {
         queryString.parse(props.location.search):
         {};
     return (
-        <Sidebar title={`Building Data`}
+        <Sidebar title={`You are editing`}
             back={search.cat? `/building/${props.building_id}.html?cat=${search.cat}`: `/building//${props.building_id}.html`}>
             {
                 CONFIG.map((conf_props) => {
