@@ -5,7 +5,7 @@ import queryString from 'query-string';
 import Sidebar from './sidebar';
 import Tooltip from './tooltip';
 import InfoBox from './info-box';
-import { HelpIcon, EditIcon } from './icons';
+import { EditIcon } from './icons';
 
 import CONFIG from './fields-config.json';
 
