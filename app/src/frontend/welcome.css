@@ -7,6 +7,7 @@
     top: 0;
     width: 100%;
     border-radius: 0;
+    padding: 1.5em 2.5em 2.5em;
 }
 .welcome-float.jumbotron {
     background: #fff;
@@ -15,8 +16,8 @@
 @media (min-width: 768px){
     .welcome-float {
         left: 50%;
-        margin-left: -20em;
-        width: 40em;
+        margin-left: -22.5em;
+        width: 45em;
         top: 1em;
     }
 }
