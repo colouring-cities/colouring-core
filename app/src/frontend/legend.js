@@ -111,9 +111,8 @@ const LegendGroup = (props) => {
                 {
                     props.help?
                     <nav className="icon-buttons">
-                        <a className="icon-button help" title="Find out more" href={props.help}>
-                            Help
-                            <HelpIcon />
+                        <a className="icon-button help" href={props.help}>
+                            More info
                         </a>
                     </nav>
                     : null
