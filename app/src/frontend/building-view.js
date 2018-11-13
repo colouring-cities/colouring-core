@@ -70,8 +70,7 @@ const DataSection = (props) => {
                 {
                     props.help?
                     <a className="icon-button help" title="Find out more" href={props.help}>
-                        Help
-                        <HelpIcon />
+                        More info
                     </a>
                     : null
                 }

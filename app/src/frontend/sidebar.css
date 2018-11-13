@@ -179,7 +179,11 @@
 .icon-button.edit:hover svg {
     color: rgb(11, 225, 225);
 }
-.icon-button.help:hover svg {
+.icon-button.help,
+.section-header .icon-button.help {
+    margin-top: 2px;
+}
+.icon-button.help:hover {
     color: rgb(0, 81, 255)
 }
 .icon-button.tooltip-hint.active svg,
