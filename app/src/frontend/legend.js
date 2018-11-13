@@ -108,15 +108,20 @@ const LegendGroup = (props) => {
                         (match)? '' : 'Show on map'}>
                     <h3 className="h3">{props.title}</h3>
                 </NavLink>
-                {
-                    props.help?
-                    <nav className="icon-buttons">
+                <nav className="icon-buttons">
+                    {
+                        props.help?
                         <a className="icon-button help" href={props.help}>
                             More info
                         </a>
-                    </nav>
-                    : null
-                }
+                        : null
+                    }
+                    <NavLink className="icon-button edit" title="Edit data"
+                        to={`/select.html?cat=${props.slug}`}>
+                        Edit
+                        <EditIcon />
+                    </NavLink>
+                </nav>
             </header>
             <dl className="data-list">
             {
