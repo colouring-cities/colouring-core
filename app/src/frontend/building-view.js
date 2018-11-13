@@ -87,13 +87,6 @@ const DataSection = (props) => {
                 </nav>
             </header>
             { match? <dl className="data-list">{props.children}</dl> : null }
-            {
-                (match && !props.inactive)?
-                    <div className="buttons-container with-space">
-                        <Link to={`/building/${props.building_id}/edit.html?cat=${props.slug}`} className="btn btn-primary">Edit data</Link>
-                    </div>
-                : null
-            }
         </section>
     );
 }
