@@ -76,9 +76,8 @@ class App extends React.Component {
     render() {
         return (
             <Fragment>
-                <BetaBanner />
                 <Header user={this.state.user} />
-                <main className="beta">
+                <main>
                     <TransitionGroup>
                         <CSSTransition timeout={3000} classNames='fade'>
                             <Switch>
