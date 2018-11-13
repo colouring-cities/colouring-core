@@ -6,7 +6,6 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 import AboutPage from './about';
-import BetaBanner from './beta-banner';
 import BuildingEdit from './building-edit';
 import BuildingView from './building-view';
 import ColouringMap from './map';

@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Sidebar from './sidebar';
-import { HelpIcon } from './icons';
 import './legend.css';
 
 import CONFIG from './fields-config.json';
