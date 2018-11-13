@@ -83,7 +83,7 @@ const Legend = (props) => {
     }
 
     return (
-        <Sidebar title="Colouring Maps">
+        <Sidebar title="View Maps">
             <p className="data-intro">Click on the map to see more information about a building&hellip;</p>
             {
                 CONFIG.map((data_group) => (
