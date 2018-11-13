@@ -42,7 +42,7 @@ class ColouringMap extends Component {
             if (data && data.length){
                 const building = data[0];
                 this.props.selectBuilding(building);
-                this.props.history.push(`/building/${building.building_id}.html?cat=${new_cat}`);
+                this.props.history.push(`/building/${building.building_id}.html`);
             } else {
                 // deselect but keep/return to expected colour theme
                 this.props.selectBuilding(undefined);
