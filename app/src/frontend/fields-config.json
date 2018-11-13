@@ -111,7 +111,7 @@
     },
     {
         "inactive": true,
-        "title": "Design & Build", "slug": "construction",
+        "title": "Construction", "slug": "construction",
         "intro": "How is it built? Coming soon… Click the ? for more info.",
         "help": "https://pages.colouring.london/contstruction",
         "fields": []
@@ -125,7 +125,7 @@
     },
     {
         "inactive": true,
-        "title": "Energy", "slug": "energy",
+        "title": "Sustainability", "slug": "energy",
         "intro": "Is it energy efficient? Coming soon… Click the ? for more info.",
         "help": "https://pages.colouring.london/energy",
         "fields": []
