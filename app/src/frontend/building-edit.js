@@ -6,7 +6,7 @@ import ErrorBox from './error-box';
 import InfoBox from './info-box';
 import Sidebar from './sidebar';
 import Tooltip from './tooltip';
-import { HelpIcon, CloseIcon, SaveIcon } from './icons';
+import { CloseIcon, SaveIcon } from './icons';
 
 import CONFIG from './fields-config.json';
 
@@ -137,8 +137,7 @@ class EditForm extends Component {
                     {
                         this.props.help?
                         <a className="icon-button help" title="Find out more" href={this.props.help}>
-                            Help
-                            <HelpIcon />
+                            More info
                         </a>
                         : null
                     }
