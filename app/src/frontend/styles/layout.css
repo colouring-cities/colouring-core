@@ -1,22 +1,20 @@
-
 /**
  * Main Layout
  */
- main.beta {
+ main {
     position: relative;
     min-height: 35rem;
 }
 @media (min-width: 768px){
-    main.beta {
+    main {
         position: absolute;
-        top: 114px; /* 32px banner + 82px header */
+        top: 82px; /* 82px header */
         bottom: 0;
         left: 0;
         right: 0;
         min-height: auto;
     }
 }
-
 /**
  * Text pages
  */
