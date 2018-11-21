@@ -12,3 +12,6 @@ etl/cache/*
 etl/images/*
 etl/*.geojson
 etl/*.csv
+
+# Notes
+TODO
