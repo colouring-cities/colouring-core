@@ -97,7 +97,6 @@ form .btn {
 .btn {
     background: #cecfd3;
     border: 0;
-    border-radius: 1em;
     margin: 0.5em 0;
     padding: 0.5em 1em;
     width: 100%;
@@ -107,11 +106,24 @@ form .btn {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+    transition: background-color 0.2s;
 }
 .btn:hover,
 .btn:focus,
 .btn:active {
     background-color: #bcbec0;
+}
+.btn-bold {
+    background: #fff;
+    border: 1px solid #222;
+    font-size: 1.25em;
+    box-shadow: #222 2px 2px 4px -2px;
+}
+.btn-bold:hover,
+.btn-bold:focus,
+.btn-bold:active {
+    background-color: #fff;
+    box-shadow: #222 2px 2px 4px -1px;
 }
 .btn.btn-half {
     width: 49%;
@@ -172,7 +184,7 @@ form .btn {
     background-color: #72b2fe;
 }
 .pale-grey {
-    background-color: #a6a6a7;
+    background-color: #efefef;
 }
 .pale-brown {
     background-color: #918e6e;
@@ -357,60 +369,6 @@ img {
 }
 
 /**
- * Carousel
- */
-.carousel {
-    position: relative;
-}
-.carousel-control {
-    display: none;
-}
-.carousel.active .carousel-control {
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1.75em;
-    border: 0;
-    background-color: #fff;
-    background-position: center center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    cursor: pointer;
-}
-.carousel.active .carousel-control:hover,
-.carousel.active .carousel-control:active,
-.carousel.active .carousel-control:focus {
-    border: 0;
-    outline: none;
-    opacity: 0.6;
-}
-.carousel button::-moz-focus-inner {
-    border:0;
-}
-.carousel-control.next {
-    right: -1em;
-    background-image: url('images/arrow-next.png');
-}
-.carousel-control.back {
-    left: -1em;
-    background-image: url('images/arrow-back.png');
-}
-.carousel-content {
-    padding: 0;
-    list-style: none;
-}
-.carousel-content li {
-    text-align: center;
-}
-.carousel.active .carousel-content li {
-    display: none;
-}
-.carousel.active .carousel-content li.current {
-    display: block;
-}
-
-/**
  * Logos
  */
 .logo-list {
@@ -426,32 +384,4 @@ img {
 }
 .logo-list li:first-child {
     width: 4em;
-}
-
-/**
- * Data categories
- */
-.data-category-list {
-    padding: 0;
-    text-align: center;
-    list-style: none;
-    margin: 0 -0.75em;
-}
-.data-category-list li {
-    display: inline-block;
-    vertical-align: bottom;
-    width: 9em;
-    height: 9em;
-    margin: 0.375em;
-    padding: 0.1em;
-}
-.data-category-list .category {
-    text-align: center;
-    font-size: 1.5em;
-    margin: 1.4em 0 0.5em;
-}
-.data-category-list .description {
-    text-align: center;
-    font-size: 1em;
-    margin: 0;
 }
