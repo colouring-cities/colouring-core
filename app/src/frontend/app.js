@@ -84,7 +84,7 @@ class App extends React.Component {
                                     <Welcome />
                                 </Route>
                                 <Route exact path="/select.html">
-                                    <BuildingEditAny />
+                                    <BuildingEditAny user={this.state.user} />
                                 </Route>
                                 <Route exact path="/map/:map.html" component={Legend} />
                                 <Route exact path="/building/:building.html" render={(props) => (
