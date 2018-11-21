@@ -6,6 +6,7 @@ import { EditIcon } from './icons';
 import './legend.css';
 
 import CONFIG from './fields-config.json';
+import InfoBox from './info-box';
 
 
 const LEGEND_CONFIG = {
@@ -86,7 +87,7 @@ const Legend = (props) => {
 
     return (
         <Sidebar title="View Maps">
-            <p className="data-intro">Click on the map to see more information about a building&hellip;</p>
+            <InfoBox msg="Click on the map to see more information about a building&hellip;" />
             {
                 CONFIG.map((data_group) => (
                     <LegendGroup {...data_group} maps={LEGEND_CONFIG[data_group.slug]}
