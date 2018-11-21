@@ -2,17 +2,25 @@
     <Style name="base_light">
         <Rule>
             <PolygonSymbolizer fill="#cccccc" />
+        </Rule>
+        <Rule>
             <TextSymbolizer face-name="DejaVu Sans Condensed Bold"  fill="#000000">
                 [location_number]
             </TextSymbolizer>
+            <MaxScaleDenominator>5000</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
     </Style>
     <Style name="base_night">
         <Rule>
             <PolygonSymbolizer fill="#303044" />
+        </Rule>
+        <Rule>
             <TextSymbolizer face-name="DejaVu Sans Condensed Bold" fill="#ffffff">
                 [location_number]
             </TextSymbolizer>
+            <MaxScaleDenominator>5000</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
     </Style>
     <Style name="highlight">
