@@ -168,7 +168,8 @@ router.get('/likes/:z/:x/:y.png', function(req, res) {
     const bbox = get_bbox(req.params)
     const table_def = `(
         SELECT
-            g.geometry_geom
+            g.geometry_geom,
+            b.likes_total as likes
         FROM
             geometries as g,
             buildings as b
