@@ -61,9 +61,10 @@ class MyAccountPage extends Component {
                         <h1 className="h1">Welcome, {this.props.user.username}!</h1>
                         <p>
 
-                        Colouring London is under active development, please report any
-                        bugs on <a href="http://github.com/tomalrussell/colouring-london/issues">
-                        GitHub</a>.
+                        Colouring London is under active development, Please <a href="https://discuss.colouring.london/">discuss
+                        suggestions for improvements</a> and <a
+                        href="https://github.com/tomalrussell/colouring-london/issues">
+                        report issues or problems</a>.
 
                         </p>
                         <ErrorBox msg={this.state.error} />

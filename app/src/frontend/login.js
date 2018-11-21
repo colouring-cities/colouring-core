@@ -73,8 +73,12 @@ class Login extends Component {
             <article>
                 <section className="main-col">
                     <h1 className="h2">Log in</h1>
-                    <InfoBox msg="Colouring London is under active development - at the moment, user accounts
-                                and data may be deleted without notice. Caveat visitor!" />
+                    <InfoBox msg="Welcome to Colouring London. You're one of the first people to use the site!  ">
+                        <br/>Please <a href="https://discuss.colouring.london/">discuss
+                        suggestions for improvements</a> and <a
+                        href="https://github.com/tomalrussell/colouring-london/issues">
+                        report issues or problems</a>.
+                    </InfoBox>
                     <ErrorBox msg={this.state.error} />
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="username">Username*</label>

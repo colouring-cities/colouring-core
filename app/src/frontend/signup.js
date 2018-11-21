@@ -72,8 +72,12 @@ class SignUp extends Component {
             <article>
                 <section className="main-col">
                     <h1 className="h2">Sign up</h1>
-                    <InfoBox msg="Colouring London is under active development - at the moment, user accounts
-                                and data may be deleted without notice. Caveat visitor!" />
+                    <InfoBox msg="Welcome to Colouring London. You're one of the first people to sign up!  ">
+                        <br/>Please <a href="https://discuss.colouring.london/">discuss
+                        suggestions for improvements</a> and <a
+                        href="https://github.com/tomalrussell/colouring-london/issues">
+                        report issues or problems</a>.
+                    </InfoBox>
                     <p>
                         Create an account to start colouring in.
                     </p>
@@ -99,7 +103,7 @@ class SignUp extends Component {
                                value={this.state.confirm_email} onChange={this.handleChange}
                                />
 
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">Password (at least 8 characters)</label>
                         <input name="password" id="password"
                                className="form-control"
                                type={(this.state.show_password)? 'text': 'password'}
