@@ -89,7 +89,7 @@
     {
         "title": "Size & Shape", "slug": "size",
         "intro": "How big is it?",
-        "help": "https://pages.colouring.london/shape",
+        "help": "https://pages.colouring.london/shapeandsize",
         "fields": [
             {
                 "title": "Core storeys", "slug": "size_storeys_core", "type": "number", "step": 1,
