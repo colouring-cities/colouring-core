@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { Map, TileLayer, ZoomControl, AttributionControl } from 'react-leaflet-universal';
-import queryString from 'query-string';
 
 import '../../node_modules/leaflet/dist/leaflet.css'
 import './map.css'
@@ -26,14 +25,12 @@ class ColouringMap extends Component {
     }
 
     handleClick(e) {
-        if (this.props.match.url.match('edit')){
-            // don't navigate away from edit view
-            return
-        }
-        var lat = e.latlng.lat
-        var lng = e.latlng.lng
-        const is_building = /building/.test(this.props.match.url);
-        const new_cat = get_cat(is_building, this.props.location, this.props.match.url);
+        const is_edit = this.props.match.url.match('edit')
+        const mode = is_edit? 'edit': 'view';
+        const lat = e.latlng.lat
+        const lng = e.latlng.lng
+        const new_cat = get_cat(this.props.match.url);
+        const map_cat = new_cat || 'age';
         fetch(
             '/buildings/locate?lat='+lat+'&lng='+lng
         ).then(
@@ -42,12 +39,11 @@ class ColouringMap extends Component {
             if (data && data.length){
                 const building = data[0];
                 this.props.selectBuilding(building);
-                this.props.history.push(`/building/${building.building_id}.html`);
+                this.props.history.push(`/${mode}/${map_cat}/building/${building.building_id}.html`);
             } else {
                 // deselect but keep/return to expected colour theme
                 this.props.selectBuilding(undefined);
-                const map_cat = new_cat || 'age';
-                this.props.history.push(`/map/${map_cat}.html`);
+                this.props.history.push(`/${mode}/${map_cat}.html`);
             }
         }.bind(this)).catch(
             (err) => console.error(err)
@@ -72,7 +68,7 @@ class ColouringMap extends Component {
 
         // colour-data tiles
         const is_building = /building/.test(this.props.match.url);
-        const cat = get_cat(is_building, this.props.location, this.props.match.url);
+        const cat = get_cat(this.props.match.url);
         const tileset_by_cat = {
             age: 'date_year',
             size: 'size_storeys',
@@ -122,18 +118,12 @@ class ColouringMap extends Component {
     }
 };
 
-function get_cat(is_building, location, url) {
+function get_cat(url) {
     if (url === "/") {
         return "age"
     }
-    const search = (location && location.search)? queryString.parse(location.search) : {};
-    var cat, matches;
-    if (is_building) {
-        cat = search.cat;
-    } else {
-        matches = /\/map\/([^.]+).html/.exec(url);
-        cat = (matches && matches.length > 1)? matches[1] : "";
-    }
+    const matches = /^\/(view|edit)\/([^\/.]+)/.exec(url);
+    const cat = (matches && matches.length > 2)? matches[2] : "age";
     return cat;
 }
 

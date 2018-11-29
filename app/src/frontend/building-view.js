@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import queryString from 'query-string';
 
 import Sidebar from './sidebar';
 import Tooltip from './tooltip';
@@ -16,18 +15,18 @@ const BuildingView = (props) => {
             <Sidebar title="Building Not Found">
                 <InfoBox msg="We can't find that one anywhere - try the map again?" />
                 <div className="buttons-container with-space">
-                    <Link to="/map/age.html" className="btn btn-secondary">Back to maps</Link>
+                    <Link to="/view/age.html" className="btn btn-secondary">Back to maps</Link>
                 </div>
             </Sidebar>
         );
     }
-    const search = (props.location && props.location.search)? queryString.parse(props.location.search): {};
+    const cat = get_cat(props.match.url);
     return (
-        <Sidebar title={`Data available for this building`} back={search.cat? `/map/${search.cat}.html` : "/map/age.html"}>
+        <Sidebar title={`Data available for this building`} back={`/view/${cat}.html`}>
             {
                 CONFIG.map(section_props => (
                     <DataSection
-                        key={section_props.slug} search={search}
+                        key={section_props.slug} cat={cat}
                         building_id={props.building_id}
                         {...section_props}>
                         {
@@ -54,13 +53,23 @@ const BuildingView = (props) => {
 }
 
 
+function get_cat(url) {
+    if (url === "/") {
+        return "age"
+    }
+    const matches = /^\/(view|edit)\/([^\/.]+)/.exec(url);
+    const cat = (matches && matches.length > 2)? matches[2] : "age";
+    return cat;
+}
+
+
 const DataSection = (props) => {
-    const match = props.search.cat === props.slug;
+    const match = props.cat === props.slug;
     return (
         <section id={props.slug} className={(props.inactive)? "data-section inactive": "data-section"}>
             <header className={(match? "active " : "") + " section-header view"}>
                 <NavLink
-                    to={`/building/${props.building_id}.html` + ((match)? '': `?cat=${props.slug}`)}
+                    to={`/view/${props.slug}/building/${props.building_id}.html`}
                     title={(props.inactive)? 'Coming soon… Click the ? for more info.' :
                         (match)? 'Hide details' : 'Show details'}
                     isActive={() => match}>
@@ -77,7 +86,7 @@ const DataSection = (props) => {
                 {
                     !props.inactive?
                     <NavLink className="icon-button edit" title="Edit data"
-                        to={`/building/${props.building_id}/edit.html?cat=${props.slug}`}>
+                        to={`/edit/${props.slug}/building/${props.building_id}.html`}>
                         Edit
                         <EditIcon />
                     </NavLink>

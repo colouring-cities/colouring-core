@@ -15,7 +15,7 @@ function strictParseInt(value) {
 
 
 function parseBuildingURL(url){
-    const re = /^\/building\/([^\/]+)(\/edit)?.html/;
+    const re = /\/building\/([^\/]+).html/;
     const matches = re.exec(url);
 
     if (matches && matches.length >= 2) {

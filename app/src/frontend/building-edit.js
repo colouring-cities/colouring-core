@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { Link, NavLink, Redirect } from 'react-router-dom';
-import queryString from 'query-string';
 
 import ErrorBox from './error-box';
 import InfoBox from './info-box';
@@ -26,21 +25,30 @@ const BuildingEdit = (props) => {
         );
     }
 
-    const search = (props.location && props.location.search)?
-        queryString.parse(props.location.search):
-        {};
+    const cat = get_cat(props.match.url);
     return (
-        <Sidebar title={`You are editing`}
-            back={search.cat? `/building/${props.building_id}.html?cat=${search.cat}`: `/building//${props.building_id}.html`}>
+        <Sidebar
+            key={props.building_id}
+            title={`You are editing`}
+            back={`/edit/${cat}.html`}>
             {
                 CONFIG.map((conf_props) => {
                     return <EditForm
                         {...conf_props} {...props}
-                        search={search} key={conf_props.slug} />
+                        cat={cat} key={conf_props.slug} />
                 })
             }
         </Sidebar>
     );
+}
+
+function get_cat(url) {
+    if (url === "/") {
+        return "age"
+    }
+    const matches = /^\/(view|edit)\/([^\/.]+)/.exec(url);
+    const cat = (matches && matches.length > 2)? matches[2] : "age";
+    return cat;
 }
 
 class EditForm extends Component {
@@ -116,7 +124,7 @@ class EditForm extends Component {
                 this.setState({error: res.error})
             } else {
                 this.props.selectBuilding(res);
-                const new_cat = this.props.search.cat;
+                const new_cat = this.props.cat;
                 this.props.history.push(`/building/${res.building_id}.html?cat=${new_cat}`);
             }
         }.bind(this)).catch(
@@ -125,14 +133,17 @@ class EditForm extends Component {
     }
 
     render() {
-        const match = this.props.search.cat === this.props.slug;
-        if (!match) {
-            return null
-        }
+        const match = this.props.cat === this.props.slug;
         return (
             <section className={(this.props.inactive)? "data-section inactive": "data-section"}>
                 <header className={(match? "active " : "") + " section-header edit"}>
-                    <a><h3 className="h3">{this.props.title}</h3></a>
+                    <NavLink
+                        to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
+                        title={(this.props.inactive)? 'Coming soon… Click the ? for more info.' :
+                            (match)? 'Hide details' : 'Show details'}
+                        isActive={() => match}>
+                        <h3 className="h3">{this.props.title}</h3>
+                    </NavLink>
                     <nav className="icon-buttons">
                     {
                         this.props.help?
@@ -142,31 +153,34 @@ class EditForm extends Component {
                         : null
                     }
                     {
-                        (this.props.slug === 'like')? // special-case for likes
+                        (match && this.props.slug === 'like')? // special-case for likes
                         <NavLink className="icon-button save" title="Done"
-                        to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
+                        to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}>
                             Done
                             <SaveIcon />
                         </NavLink>
                         :
+                        match? (
                         <Fragment>
                         <NavLink className="icon-button save" title="Save Changes"
                         onClick={this.handleSubmit}
-                            to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
+                            to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}>
                             Save
                             <SaveIcon />
                         </NavLink>
                         <NavLink className="icon-button close-edit" title="Cancel"
-                        to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}>
+                        to={`/view/${this.props.slug}/building/${this.props.building_id}.html`}>
                             Cancel
                             <CloseIcon />
                         </NavLink>
                         </Fragment>
+                        ): null
                     }
                     </nav>
                 </header>
-
-                <form action={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
+                {
+                match? (
+                <form action={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
                     method="GET" onSubmit={this.handleSubmit}>
                     <ErrorBox msg={this.state.error} />
                     {
@@ -216,6 +230,8 @@ class EditForm extends Component {
                        </div>
                     }
                 </form>
+                ) : null
+            }
             </section>
         )
     }

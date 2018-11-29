@@ -10,12 +10,11 @@ import BuildingEdit from './building-edit';
 import BuildingView from './building-view';
 import ColouringMap from './map';
 import Header from './header';
-import Legend from './legend';
+import Overview from './overview';
 import Login from './login';
 import MyAccountPage from './my-account';
 import SignUp from './signup';
 import Welcome from './welcome';
-import BuildingEditAny from './building-edit-any';
 
 
 
@@ -83,18 +82,26 @@ class App extends React.Component {
                                 <Route exact path="/">
                                     <Welcome />
                                 </Route>
-                                <Route exact path="/select.html">
-                                    <BuildingEditAny user={this.state.user} />
-                                </Route>
-                                <Route exact path="/map/:map.html" component={Legend} />
-                                <Route exact path="/building/:building.html" render={(props) => (
+                                <Route exact path="/view/:cat.html" render={(props) => (
+                                    <Overview
+                                        {...props}
+                                        mode='view' user={this.state.user}
+                                        />
+                                ) } />
+                                <Route exact path="/edit/:cat.html" render={(props) => (
+                                    <Overview
+                                        {...props}
+                                        mode='edit' user={this.state.user}
+                                        />
+                                ) } />
+                                <Route exact path="/view/:cat/building/:building.html" render={(props) => (
                                     <BuildingView
                                         {...props}
                                         {...this.state.building}
                                         user={this.state.user}
                                         />
                                 ) } />
-                                <Route exact path="/building/:building/edit.html" render={(props) => (
+                                <Route exact path="/edit/:cat/building/:building.html" render={(props) => (
                                     <BuildingEdit
                                         {...props}
                                         {...this.state.building}
@@ -106,7 +113,7 @@ class App extends React.Component {
                         </CSSTransition>
                     </TransitionGroup>
                     <Switch>
-                        <Route exact path="/(select.html|map.*|building.*)?" render={(props) => (
+                        <Route exact path="/(edit.*|view.*)?" render={(props) => (
                             <ColouringMap
                                 {...props}
                                 building={this.state.building}
