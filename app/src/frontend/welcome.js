@@ -16,7 +16,7 @@ const Welcome = () => (
         Can you help us? We're looking for volunteers of all ages and abilities to test the
         site before we launch next year. Just add your knowledge to make the buildings colour.
         </p>
-        <Link to="/map/age.html"
+        <Link to="/view/age.html"
             className="btn btn-outline-dark btn-lg btn-block">
             Start Colouring Here!
         </Link>
