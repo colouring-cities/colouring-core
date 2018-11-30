@@ -70,7 +70,7 @@ class MyAccountPage extends Component {
                         <ErrorBox msg={this.state.error} />
                         <form method="POST" action="/logout" onSubmit={this.handleLogout}>
                             <div className="buttons-container">
-                                <Link to="/map/age.html" className="btn btn-primary">Start colouring</Link>
+                                <Link to="/edit/age.html" className="btn btn-primary">Start colouring</Link>
                                 <input className="btn btn-secondary" type="submit" value="Log out"/>
                             </div>
                         </form>

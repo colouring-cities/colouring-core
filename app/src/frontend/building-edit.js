@@ -5,7 +5,7 @@ import ErrorBox from './error-box';
 import InfoBox from './info-box';
 import Sidebar from './sidebar';
 import Tooltip from './tooltip';
-import { CloseIcon, SaveIcon } from './icons';
+import { SaveIcon } from './icons';
 import { parseCategoryURL } from '../parse';
 
 import CONFIG from './fields-config.json';
@@ -15,18 +15,17 @@ const BuildingEdit = (props) => {
     if (!props.user){
         return <Redirect to="/sign-up.html" />
     }
+    const cat = parseCategoryURL(props.match.url);
     if (!props.building_id){
         return (
-            <Sidebar title="Building Not Found" back="/map/age.html">
+            <Sidebar title="Building Not Found" back={`/edit/${cat}.html`}>
                 <InfoBox msg="We can't find that one anywhere - try the map again?" />
                 <div className="buttons-container">
-                    <Link to="/map/age.html" className="btn btn-secondary">Back to maps</Link>
+                    <Link to={`/edit/${cat}.html`} className="btn btn-secondary">Back to maps</Link>
                 </div>
             </Sidebar>
         );
     }
-
-    const cat = parseCategoryURL(props.match.url);
     return (
         <Sidebar
             key={props.building_id}
