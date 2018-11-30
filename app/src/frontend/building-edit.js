@@ -124,8 +124,6 @@ class EditForm extends Component {
                 this.setState({error: res.error})
             } else {
                 this.props.selectBuilding(res);
-                const new_cat = this.props.cat;
-                this.props.history.push(`/building/${res.building_id}.html?cat=${new_cat}`);
             }
         }.bind(this)).catch(
             (err) => this.setState({error: err})
@@ -218,16 +216,10 @@ class EditForm extends Component {
 
                     {
                         (this.props.slug === 'like')? // special-case for likes
+                        null :
                         <div className="buttons-container">
-                            <Link to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
-                                className="btn btn-secondary">Done</Link>
-                       </div>
-                       :
-                        <div className="buttons-container">
-                            <Link to={`/building/${this.props.building_id}.html?cat=${this.props.slug}`}
-                                className="btn btn-secondary">Cancel</Link>
                             <button type="submit" className="btn btn-primary">Save</button>
-                       </div>
+                        </div>
                     }
                 </form>
                 ) : null
