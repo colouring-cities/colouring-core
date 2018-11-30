@@ -143,28 +143,14 @@ class EditForm extends Component {
                         : null
                     }
                     {
-                        (match && this.props.slug === 'like')? // special-case for likes
-                        <NavLink className="icon-button save" title="Done"
-                        to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}>
-                            Done
-                            <SaveIcon />
-                        </NavLink>
-                        :
-                        match? (
-                        <Fragment>
+                        (match && this.props.slug !== 'like')? // special-case for likes
                         <NavLink className="icon-button save" title="Save Changes"
                         onClick={this.handleSubmit}
                             to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}>
                             Save
                             <SaveIcon />
                         </NavLink>
-                        <NavLink className="icon-button close-edit" title="Cancel"
-                        to={`/view/${this.props.slug}/building/${this.props.building_id}.html`}>
-                            Cancel
-                            <CloseIcon />
-                        </NavLink>
-                        </Fragment>
-                        ): null
+                        : null
                     }
                     </nav>
                 </header>
