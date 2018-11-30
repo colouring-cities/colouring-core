@@ -15,7 +15,7 @@ function strictParseInt(value) {
 
 
 function parseBuildingURL(url){
-    const re = /\/building\/([^\/]+).html/;
+    const re = /\/building\/([^/]+).html/;
     const matches = re.exec(url);
 
     if (matches && matches.length >= 2) {
@@ -24,4 +24,14 @@ function parseBuildingURL(url){
     return undefined;
 }
 
-export { strictParseInt, parseBuildingURL };
+function parseCategoryURL(url) {
+    const default_cat = 'age';
+    if (url === "/") {
+        return default_cat
+    }
+    const matches = /^\/(view|edit)\/([^/.]+)/.exec(url);
+    const cat = (matches && matches.length >= 3)? matches[2] : default_cat;
+    return cat;
+}
+
+export { strictParseInt, parseBuildingURL, parseCategoryURL };

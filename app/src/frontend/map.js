@@ -4,6 +4,7 @@ import { Map, TileLayer, ZoomControl, AttributionControl } from 'react-leaflet-u
 import '../../node_modules/leaflet/dist/leaflet.css'
 import './map.css'
 import ThemeSwitcher from './theme-switcher';
+import { parseCategoryURL } from '../parse';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
@@ -29,7 +30,7 @@ class ColouringMap extends Component {
         const mode = is_edit? 'edit': 'view';
         const lat = e.latlng.lat
         const lng = e.latlng.lng
-        const new_cat = get_cat(this.props.match.url);
+        const new_cat = parseCategoryURL(this.props.match.url);
         const map_cat = new_cat || 'age';
         fetch(
             '/buildings/locate?lat='+lat+'&lng='+lng
@@ -68,7 +69,7 @@ class ColouringMap extends Component {
 
         // colour-data tiles
         const is_building = /building/.test(this.props.match.url);
-        const cat = get_cat(this.props.match.url);
+        const cat = parseCategoryURL(this.props.match.url);
         const tileset_by_cat = {
             age: 'date_year',
             size: 'size_storeys',
@@ -117,14 +118,5 @@ class ColouringMap extends Component {
         );
     }
 };
-
-function get_cat(url) {
-    if (url === "/") {
-        return "age"
-    }
-    const matches = /^\/(view|edit)\/([^\/.]+)/.exec(url);
-    const cat = (matches && matches.length > 2)? matches[2] : "age";
-    return cat;
-}
 
 export default ColouringMap;

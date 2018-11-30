@@ -5,6 +5,7 @@ import Sidebar from './sidebar';
 import Tooltip from './tooltip';
 import InfoBox from './info-box';
 import { EditIcon } from './icons';
+import { parseCategoryURL } from '../parse';
 
 import CONFIG from './fields-config.json';
 
@@ -20,7 +21,7 @@ const BuildingView = (props) => {
             </Sidebar>
         );
     }
-    const cat = get_cat(props.match.url);
+    const cat = parseCategoryURL(props.match.url);
     return (
         <Sidebar title={`Data available for this building`} back={`/view/${cat}.html`}>
             {
@@ -50,16 +51,6 @@ const BuildingView = (props) => {
             }
         </Sidebar>
     );
-}
-
-
-function get_cat(url) {
-    if (url === "/") {
-        return "age"
-    }
-    const matches = /^\/(view|edit)\/([^\/.]+)/.exec(url);
-    const cat = (matches && matches.length > 2)? matches[2] : "age";
-    return cat;
 }
 
 

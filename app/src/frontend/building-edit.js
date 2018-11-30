@@ -6,6 +6,7 @@ import InfoBox from './info-box';
 import Sidebar from './sidebar';
 import Tooltip from './tooltip';
 import { CloseIcon, SaveIcon } from './icons';
+import { parseCategoryURL } from '../parse';
 
 import CONFIG from './fields-config.json';
 
@@ -25,7 +26,7 @@ const BuildingEdit = (props) => {
         );
     }
 
-    const cat = get_cat(props.match.url);
+    const cat = parseCategoryURL(props.match.url);
     return (
         <Sidebar
             key={props.building_id}
@@ -40,15 +41,6 @@ const BuildingEdit = (props) => {
             }
         </Sidebar>
     );
-}
-
-function get_cat(url) {
-    if (url === "/") {
-        return "age"
-    }
-    const matches = /^\/(view|edit)\/([^\/.]+)/.exec(url);
-    const cat = (matches && matches.length > 2)? matches[2] : "age";
-    return cat;
 }
 
 class EditForm extends Component {
