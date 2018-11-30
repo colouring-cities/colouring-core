@@ -68,11 +68,10 @@ function frontendRoute(req, res) {
     context.status = 200;
 
     const building_id = parseBuildingURL(req.url);
-    if (isNaN(building_id)){
+    const is_building = (typeof(building_id) !== "undefined");
+    if (is_building && isNaN(building_id)){
         context.status = 404;
     }
-    const is_building = (typeof(building_id) !== "undefined")
-
 
     Promise.all([
         req.session.user_id? getUserById(req.session.user_id) : undefined,
