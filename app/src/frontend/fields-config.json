@@ -83,6 +83,15 @@
                     "Other website",
                     "Other"
                 ]
+            },
+            {
+                "title": "Source details", "slug": "date_source_detail", "type": "text_long",
+                "tooltip": "References for date source (max 500 characters)"
+            },
+            {
+                "title": "Text and Image Links", "slug": "date_link", "type": "text_multi",
+                "placeholder": "https://...",
+                "tooltip": "URL for age and date reference"
             }
         ]
     },

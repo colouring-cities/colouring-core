@@ -255,6 +255,11 @@
     font-weight: normal;
     color: #555;
 }
+.data-section input,
+.data-section textarea,
+.data-section select {
+    margin: 0 0 0.5em 0;
+}
 .data-list dd {
     margin: 0 0 0.5rem;
     line-height: 1.5;

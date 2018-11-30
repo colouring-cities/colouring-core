@@ -55,8 +55,15 @@ class EditForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleLike = this.handleLike.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
     }
 
+    /**
+     * Handle changes on typical inputs
+     * - e.g. input[type=text], radio, select, textare
+     *
+     * @param {DocumentEvent} event
+     */
     handleChange(event) {
         const target = event.target;
         let value = (target.value === '')? null : target.value;
@@ -72,6 +79,25 @@ class EditForm extends Component {
         });
     }
 
+    /**
+     * Handle update directly
+     * - e.g. as callback from MultiTextInput where we set a list of strings
+     *
+     * @param {String} key
+     * @param {*} value
+     */
+    handleUpdate(key, value) {
+        this.setState({
+            [key]: value
+        });
+    }
+
+    /**
+     * Handle likes separately
+     * - like/love reaction is limited to set/unset per user
+     *
+     * @param {DocumentEvent} event
+     */
     handleLike(event) {
         event.preventDefault();
 
@@ -160,29 +186,28 @@ class EditForm extends Component {
                     <ErrorBox msg={this.state.error} />
                     {
                         this.props.fields.map((props) => {
-                            var el;
                             switch (props.type) {
                                 case "text":
-                                    el = <TextInput {...props} handleChange={this.handleChange}
+                                    return <TextInput {...props} handleChange={this.handleChange}
                                             value={this.state[props.slug]} key={props.slug} />
-                                    break;
                                 case "text_list":
-                                    el = <TextListInput {...props} handleChange={this.handleChange}
+                                    return <TextListInput {...props} handleChange={this.handleChange}
                                             value={this.state[props.slug]} key={props.slug} />
-                                    break;
+                                case "text_long":
+                                    return <LongTextInput {...props} handleChange={this.handleChange}
+                                            value={this.state[props.slug]} key={props.slug} />
                                 case "number":
-                                    el = <NumberInput {...props} handleChange={this.handleChange}
+                                    return <NumberInput {...props} handleChange={this.handleChange}
                                             value={this.state[props.slug]} key={props.slug} />
-                                    break;
+                                case "text_multi":
+                                    return <MultiTextInput {...props} handleChange={this.handleUpdate}
+                                            value={this.state[props.slug]} key={props.slug} />
                                 case "like":
-                                    el = <LikeButton {...props} handleLike={this.handleLike}
+                                    return <LikeButton {...props} handleLike={this.handleLike}
                                             value={this.state[props.slug]} key={props.slug} />
-                                    break;
                                 default:
-                                    el = null
-                                    break;
+                                    return null
                             }
-                            return el
                         })
                     }
 
@@ -218,6 +243,87 @@ const TextInput = (props) => (
             />
     </Fragment>
 );
+
+const LongTextInput = (props) => (
+    <Fragment>
+        <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
+        <textarea className="form-control"
+            id={props.slug} name={props.slug}
+            disabled={props.disabled}
+            placeholder={props.placeholder}
+            onChange={props.handleChange}
+            value={props.value || ""}></textarea>
+    </Fragment>
+)
+
+
+class MultiTextInput extends Component {
+    constructor(props) {
+        super(props);
+        this.edit = this.edit.bind(this);
+        this.add = this.add.bind(this);
+        this.remove = this.remove.bind(this);
+        this.getValues = this.getValues.bind(this);
+    }
+
+    getValues() {
+        return (this.props.value && this.props.value.length)? this.props.value : [null];
+    }
+
+    edit(event) {
+        const edit_i = +event.target.dataset.index;
+        const edit_item = event.target.value;
+        const old_values = this.getValues();
+        const values = old_values.map((item, i) => {
+            return i === edit_i ? edit_item : item;
+        });
+        this.props.handleChange(this.props.slug, values);
+    }
+
+    add(event) {
+        event.preventDefault();
+        const values = this.getValues().concat("");
+        this.props.handleChange(this.props.slug, values);
+    }
+
+    remove(event){
+        const remove_i = +event.target.dataset.index;
+        const values = this.getValues().filter((_, i) => {
+            return i !== remove_i;
+        });
+        this.props.handleChange(this.props.slug, values);
+    }
+
+    render() {
+        const values = this.getValues();
+        return (
+        <Fragment>
+            <Label slug={this.props.slug} title={this.props.title} tooltip={this.props.tooltip} />
+            {
+                values.map((item, i) => (
+                <div class="input-group">
+                    <input className="form-control" type="text"
+                        key={`${this.props.slug}-${i}`} name={`${this.props.slug}-${i}`}
+                        data-index={i}
+                        value={item || ""}
+                        placeholder={this.props.placeholder}
+                        disabled={this.props.disabled}
+                        onChange={this.edit}
+                        />
+                    <div class="input-group-append">
+                        <button type="button" onClick={this.remove}
+                                title="Remove"
+                                data-index={i} class="btn btn-outline-dark">✕</button>
+                    </div>
+                </div>
+                ))
+            }
+            <button type="button" title="Add" onClick={this.add}
+                    class="btn btn-outline-dark">+</button>
+        </Fragment>
+        )
+    }
+}
 
 const TextListInput = (props) => (
     <Fragment>
