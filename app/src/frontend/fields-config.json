@@ -113,21 +113,21 @@
         "inactive": true,
         "title": "Construction", "slug": "construction",
         "intro": "How is it built? Coming soon… Click the ? for more info.",
-        "help": "https://pages.colouring.london/contstruction",
+        "help": "https://pages.colouring.london/construction",
         "fields": []
     },
     {
         "inactive": true,
         "title": "Team", "slug": "team",
         "intro": "Who built it? Coming soon… Click the ? for more info.",
-        "help": "https://pages.colouring.london/builder",
+        "help": "https://pages.colouring.london/team",
         "fields": []
     },
     {
         "inactive": true,
-        "title": "Sustainability", "slug": "energy",
+        "title": "Sustainability", "slug": "sustainability",
         "intro": "Is it energy efficient? Coming soon… Click the ? for more info.",
-        "help": "https://pages.colouring.london/energy",
+        "help": "https://pages.colouring.london/sustainability",
         "fields": []
     },
     {
@@ -141,7 +141,7 @@
         "inactive": true,
         "title": "Planning", "slug": "planning",
         "intro": "Protection and reuse. Coming soon… Click the ? for more info.",
-        "help": "https://pages.colouring.london/planning",
+        "help": "https://pages.colouring.london/controls",
         "fields": []
     },
     {
