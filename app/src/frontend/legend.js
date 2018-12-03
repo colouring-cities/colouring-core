@@ -4,14 +4,19 @@ import './legend.css';
 
 
 const LEGEND_CONFIG = {
-    location: [
+    location: {
+        title: "Location",
+        elements: [
         { color: '#f0f9e8', text: '>5' },
         { color: '#bae4bc', text: '4' },
         { color: '#7bccc4', text: '3' },
         { color: '#43a2ca', text: '2' },
         { color: '#0868ac', text: '1' }
-    ],
-    age: [
+        ]
+    },
+    age: {
+        title: "Age",
+        elements: [
         { color: '#f0eaba', text: '≥2000' },
         { color: '#fae269', text: '1980–2000' },
         { color: '#fbaf27', text: '1960–1980' },
@@ -31,8 +36,11 @@ const LEGEND_CONFIG = {
         { color: '#d0c291', text: '1680–1700' },
         { color: '#918158', text: '1660–1680' },
         { color: '#7a5732', text: '<1660' },
-    ],
-    size: [
+        ]
+    },
+    size: {
+        title: "Size & Shape",
+        elements: [
         { color: '#ffffcc', text: '≥20' },
         { color: '#ffeda0', text: '15-20' },
         { color: '#fed976', text: '10–15' },
@@ -42,29 +50,63 @@ const LEGEND_CONFIG = {
         { color: '#e31a1c', text: '3' },
         { color: '#bd0026', text: '2' },
         { color: '#800026', text: '1' },
-    ],
-    like: [
+        ]
+    },
+    like: {
+        title: "Like Me",
+        elements: [
         { color: '#f65400', text: 'We like these buildings 👍 🎉 +1' },
-    ]
+        ]
+    },
+    use: {
+        title: "Use",
+        elements: []
+    },
+    type: {
+        title: "Type",
+        elements: []
+    },
+    construction: {
+        title: "Construction",
+        elements: []
+    },
+    team: {
+        title: "Team",
+        elements: []
+    },
+    sustainability: {
+        title: "Sustainability",
+        elements: []
+    },
+    greenery: {
+        title: "Greenery",
+        elements: []
+    },
+    planning: {
+        title: "Planning",
+        elements: []
+    },
+    demolition: {
+        title: "Demolition",
+        elements: []
+    }
 };
 
 const Legend = (props) => {
-    let elements = LEGEND_CONFIG[props.slug];
+    const details = LEGEND_CONFIG[props.slug];
+    const title = details.title;
+    const elements = details.elements;
     return (
-        <dl className="data-list">
-            <dt>
-                { props.title }
-            </dt>
-            <dd>
-                <ul className="data-legend">
-                {
-                    elements.map((data_item) => (
-                        <LegendItem {...data_item} key={data_item.color} />
-                    ))
-                }
-                </ul>
-            </dd>
-        </dl>
+        <div className="map-legend">
+            <h4 className="h4">{ title }</h4>
+            <ul className="data-legend">
+            {
+                elements.map((data_item) => (
+                    <LegendItem {...data_item} key={data_item.color} />
+                ))
+            }
+            </ul>
+        </div>
     );
 }
 

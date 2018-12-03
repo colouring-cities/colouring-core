@@ -1,6 +1,16 @@
 /**
  * Map legend
  */
+.map-legend {
+    z-index: 1000;
+    position: absolute;
+    bottom: 55px;
+    right: 10px;
+    float: right;
+    background: white;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+}
 .data-legend {
     list-style: none;
     padding: 0;

@@ -63,7 +63,7 @@ const OverviewSection = (props) => {
             </header>
             {
                 (match && props.intro)?
-                (<p class="data-intro">{props.intro}</p>)
+                (<p className="data-intro">{props.intro}</p>)
                 : null
             }
         </section>

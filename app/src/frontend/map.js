@@ -5,6 +5,7 @@ import '../../node_modules/leaflet/dist/leaflet.css'
 import './map.css'
 import ThemeSwitcher from './theme-switcher';
 import { parseCategoryURL } from '../parse';
+import Legend from './legend';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
@@ -114,6 +115,7 @@ class ColouringMap extends Component {
                     <AttributionControl prefix="" />
                 </Map>
                 <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
+                <Legend slug={cat} />
             </Fragment>
         );
     }
