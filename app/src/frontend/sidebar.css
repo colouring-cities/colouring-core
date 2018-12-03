@@ -55,11 +55,12 @@
  * Sidebar main header
  */
 .sidebar-header h2 {
+    margin-top: 0.45rem;
     display: inline-block;
 }
 .sidebar-header .icon-button {
     margin-left: 0.25rem;
-    margin-top: 0.4rem;
+    margin-top: 0.3rem;
 }
 .sidebar-header .icon-button:hover {
     background-color: #eee;
