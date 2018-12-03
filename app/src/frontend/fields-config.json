@@ -2,7 +2,7 @@
     {
         "title": "Location", "slug": "location",
         "help": "https://pages.colouring.london/location",
-        "intro": "Where is it?",
+        "intro": "Where are the buildings? Address, location and cross-references.",
         "fields": [
             {
                 "title": "Building Name", "slug": "location_name", "type": "text",
@@ -41,21 +41,21 @@
     {
         "inactive": true,
         "title": "Use", "slug": "use",
-        "intro": "How are buildings used today? Coming soon… Click the ? for more info.",
+        "intro": "How are buildings used today? Coming soon…",
         "help": "https://pages.colouring.london/use",
         "fields": []
     },
     {
         "inactive": true,
         "title": "Type", "slug": "type",
-        "intro": "How were buildings originally used? Coming soon… Click the ? for more info.",
+        "intro": "How were buildings originally used? Coming soon…",
         "help": "https://pages.colouring.london/type",
         "fields": []
     },
     {
         "title": "Age", "slug": "age",
         "help": "https://pages.colouring.london/age",
-        "intro": "Age data can support energy analysis and help predict long-term change.",
+        "intro": "Building age data can support energy analysis and help predict long-term change.",
         "fields": [
             { "title": "Year built (best estimate)", "slug": "date_year", "type": "number", "step": 1 },
             {
@@ -97,7 +97,7 @@
     },
     {
         "title": "Size & Shape", "slug": "size",
-        "intro": "How big is it?",
+        "intro": "How big are buildings?",
         "help": "https://pages.colouring.london/shapeandsize",
         "fields": [
             {
@@ -121,47 +121,48 @@
     {
         "inactive": true,
         "title": "Construction", "slug": "construction",
-        "intro": "How is it built? Coming soon… Click the ? for more info.",
+        "intro": "How are buildings built? Coming soon…",
         "help": "https://pages.colouring.london/construction",
         "fields": []
     },
     {
         "inactive": true,
         "title": "Team", "slug": "team",
-        "intro": "Who built it? Coming soon… Click the ? for more info.",
+        "intro": "Who built the buildings? Coming soon…",
         "help": "https://pages.colouring.london/team",
         "fields": []
     },
     {
         "inactive": true,
         "title": "Sustainability", "slug": "sustainability",
-        "intro": "Is it energy efficient? Coming soon… Click the ? for more info.",
+        "intro": "Are buildings energy efficient? Coming soon…",
         "help": "https://pages.colouring.london/sustainability",
         "fields": []
     },
     {
         "inactive": true,
         "title": "Greenery", "slug": "greenery",
-        "intro": "Is there greenery nearby? Coming soon… Click the ? for more info.",
+        "intro": "Is there greenery nearby? Coming soon…",
         "help": "https://pages.colouring.london/copy-of-street-context",
         "fields": []
     },
     {
         "inactive": true,
         "title": "Planning", "slug": "planning",
-        "intro": "Protection and reuse. Coming soon… Click the ? for more info.",
+        "intro": "Protection and reuse. Coming soon…",
         "help": "https://pages.colouring.london/controls",
         "fields": []
     },
     {
         "inactive": true,
         "title": "Demolition", "slug": "demolition",
-        "intro": "Coming soon… Click the ? for more info.",
+        "intro": "Coming soon…",
         "help": "https://pages.colouring.london/demolitions",
         "fields": []
     },
     {
         "title": "Like Me!", "slug": "like",
+        "intro": "Do we like the buildings?",
         "help": "https://pages.colouring.london/likeme",
         "fields": [
             { "title": "Number of likes", "slug": "likes_total", "type": "like", "tooltip": "Do you like the building?"  }

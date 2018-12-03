@@ -227,8 +227,7 @@
     margin: 0;
 }
 .data-intro {
-    padding-left: 0.75rem;
-    font-size: 0.8333rem;
+    padding: 0 0.75rem;
     margin-top: 0.25rem;
 }
 .data-list {

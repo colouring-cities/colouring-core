@@ -61,6 +61,11 @@ const OverviewSection = (props) => {
                     }
                 </nav>
             </header>
+            {
+                (match && props.intro)?
+                (<p class="data-intro">{props.intro}</p>)
+                : null
+            }
         </section>
     )
 };
