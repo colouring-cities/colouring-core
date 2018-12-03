@@ -1,33 +1,20 @@
 .theme-switcher {
     z-index: 1000;
     position: absolute;
-    bottom: 55px;
+    top: 75px;
     right: 10px;
     float: right;
     background: white;
     border-radius: 4px;
 }
-
-@media (min-width: 380px){
-    .theme-switcher {
-        bottom: 40px;
-    }
-}
-@media (min-width: 1020px){
-    .theme-switcher {
-        bottom: 24px;
-    }
-}
 .theme-switcher .btn {
     margin: 0;
 }
-
 .theme-switcher.night .btn {
     color: #fff;
     background-color: #343a40;
     border-color: #343a40;
 }
-
 .theme-switcher.night .btn:hover {
     color: #343a40;
     background-color: transparent;

@@ -55,7 +55,7 @@ const LEGEND_CONFIG = {
     like: {
         title: "Like Me",
         elements: [
-        { color: '#f65400', text: 'We like these buildings 👍 🎉 +1' },
+        { color: '#f65400', text: '👍 🎉 +1' },
         ]
     },
     use: {
@@ -98,14 +98,19 @@ const Legend = (props) => {
     const elements = details.elements;
     return (
         <div className="map-legend">
+            <h3 className="h3 logotype">Colouring London</h3>
             <h4 className="h4">{ title }</h4>
-            <ul className="data-legend">
             {
-                elements.map((data_item) => (
-                    <LegendItem {...data_item} key={data_item.color} />
-                ))
+                elements.length?
+                (<ul className="data-legend">
+                {
+                    elements.map((data_item) => (
+                        <LegendItem {...data_item} key={data_item.color} />
+                    ))
+                }
+                </ul>)
+                : (<p className="data-intro">Coming soon…</p>)
             }
-            </ul>
         </div>
     );
 }

@@ -114,8 +114,8 @@ class ColouringMap extends Component {
                     <ZoomControl position="topright" />
                     <AttributionControl prefix="" />
                 </Map>
-                <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
                 <Legend slug={cat} />
+                <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
             </Fragment>
         );
     }
