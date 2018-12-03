@@ -13,7 +13,7 @@
     z-index: 1000;
     overflow-y: auto;
 }
-.info-container .h2:first-child {
+.info-container h2:first-child {
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
     margin-left: -0.1em;
@@ -54,7 +54,7 @@
 /**
  * Sidebar main header
  */
-.sidebar-header .h2 {
+.sidebar-header h2 {
     display: inline-block;
 }
 .sidebar-header .icon-button {
@@ -227,7 +227,7 @@
     margin: 0;
 }
 .data-intro {
-    padding: 0 0.75rem;
+    padding: 0 0.5rem 0 2.25rem;
     margin-top: 0.25rem;
 }
 .data-list {

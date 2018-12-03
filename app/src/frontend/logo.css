@@ -1,16 +1,18 @@
 /**
  * Logo
  */
+ .logotype {
+     font-family: 'glacial_cl', sans-serif;
+     text-transform: uppercase;
+ }
 .logo,
 .logo.navbar-brand {
     display: block;
     padding: 0;
-    text-transform: uppercase;
     color: #000;
     text-decoration: none;
 }
 .logo .logotype {
-    font-family: 'glacial_cl', sans-serif;
     font-size: 2rem;
     margin: 0 0 0 3px;
     display: inline-block;
