@@ -81,14 +81,20 @@ class ColouringMap extends Component {
         // pick revision id to bust browser cache
         const rev = this.props.building? this.props.building.revision_id : '';
         const dataLayer = data_tileset?
-            <TileLayer key={data_tileset} url={`/tiles/${data_tileset}/{z}/{x}/{y}.png?rev=${rev}`} />
+            <TileLayer
+                key={data_tileset}
+                url={`/tiles/${data_tileset}/{z}/{x}/{y}.png?rev=${rev}`}
+                minZoom={14} />
             : null;
 
         // highlight
         const geometry_id = (this.props.building) ? this.props.building.geometry_id : undefined;
         const highlight = `/tiles/highlight/{z}/{x}/{y}.png?highlight=${geometry_id}`
         const highlightLayer = (is_building && this.props.building) ?
-            <TileLayer key={this.props.building.building_id} url={highlight} />
+            <TileLayer
+                key={this.props.building.building_id}
+                url={highlight}
+                minZoom={14} />
             : null;
 
         const base_layer_url = (this.state.theme === 'light')?
@@ -108,7 +114,7 @@ class ColouringMap extends Component {
                     onClick={this.handleClick}
                     >
                     <TileLayer url={url} attribution={attribution} />
-                    <TileLayer url={base_layer_url} />
+                    <TileLayer url={base_layer_url} minZoom={14} />
                     { dataLayer }
                     { highlightLayer }
                     <ZoomControl position="topright" />
