@@ -162,10 +162,10 @@
     },
     {
         "title": "Like Me!", "slug": "like",
-        "intro": "Do we like the buildings?",
+        "intro": "Do you like the building and think it contributes to the city?",
         "help": "https://pages.colouring.london/likeme",
         "fields": [
-            { "title": "Number of likes", "slug": "likes_total", "type": "like", "tooltip": "Do you like the building?"  }
+            { "title": "Number of likes", "slug": "likes_total", "type": "like", "tooltip": "Do you like the building and think it contributes to the city?"  }
         ]
     }
 ]
