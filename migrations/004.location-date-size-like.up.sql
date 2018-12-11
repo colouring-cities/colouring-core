@@ -84,6 +84,3 @@ CREATE TABLE IF NOT EXISTS building_user_likes (
 );
 CREATE INDEX building_likes_idx ON building_user_likes ( building_id );
 CREATE INDEX user_likes_idx ON building_user_likes ( user_id );
-
--- One like per-building, per-user
--- ALTER TABLE building_user_likes ADD CONSTRAINT building_like_once UNIQUE (building_id, user_id);
