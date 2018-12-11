@@ -183,6 +183,11 @@ class EditForm extends Component {
                 match? (
                 <form action={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
                     method="GET" onSubmit={this.handleSubmit}>
+                    {
+                        this.props.slug === 'location'?
+                        <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
+                        : null
+                    }
                     <ErrorBox msg={this.state.error} />
                     {
                         this.props.fields.map((props) => {
@@ -210,11 +215,7 @@ class EditForm extends Component {
                             }
                         })
                     }
-
-                    <p className="alert alert-info">
-                        Colouring may take a few seconds - try zooming the map or
-                        hitting refresh after saving (we're working on making this
-                        smoother).</p>
+                    <InfoBox msg="Colouring may take a few seconds - try zooming the map or hitting refresh after saving (we're working on making this smoother)." />
 
                     {
                         (this.props.slug === 'like')? // special-case for likes
@@ -237,6 +238,7 @@ const TextInput = (props) => (
         <input className="form-control" type="text"
             id={props.slug} name={props.slug}
             value={props.value || ""}
+            maxlength={props.max_length}
             disabled={props.disabled}
             placeholder={props.placeholder}
             onChange={props.handleChange}

@@ -7,13 +7,29 @@
             {
                 "title": "Building Name", "slug": "location_name", "type": "text",
                 "placeholder": "Building name (if any)",
-                "tooltip": "May not be needed for many buildings."
+                "tooltip": "May not be needed for many buildings.",
+                "disabled": true
             },
-            { "title": "Building number", "slug": "location_number", "type": "text" },
-            { "title": "Street", "slug": "location_street", "type": "text" },
-            { "title": "Address line 2", "slug": "location_line_two", "type": "text" },
-            { "title": "Town", "slug": "location_town", "type": "text" },
-            { "title": "Postcode", "slug": "location_postcode", "type": "text" },
+            {
+                "title": "Building number", "slug": "location_number", "type": "number",
+                "step": 1
+            },
+            {
+                "title": "Street", "slug": "location_street", "type": "text",
+                "disabled": true
+            },
+            {
+                "title": "Address line 2", "slug": "location_line_two", "type": "text",
+                "disabled": true
+            },
+            {
+                "title": "Town", "slug": "location_town", "type": "text",
+                "disabled": true
+            },
+            {
+                "title": "Postcode", "slug": "location_postcode", "type": "text",
+                "max_length": 8
+            },
             {
                 "title": "TOID", "slug": "ref_toid", "type": "text",
                 "tooltip": "Ordnance Survey Topography Layer ID (to be filled automatically)",
@@ -26,7 +42,8 @@
             },
             {
                 "title": "OSM ID", "slug": "ref_osm_id", "type": "text",
-                "tooltip": "OpenStreetMap feature ID"
+                "tooltip": "OpenStreetMap feature ID",
+                "max_length": 20
             },
             {
                 "title": "Latitude", "slug": "location_latitude", "type": "number",
