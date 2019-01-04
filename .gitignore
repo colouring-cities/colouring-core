@@ -6,6 +6,7 @@ config.json
 *.log
 ecosystem.config.js
 app/start.sh
+html/norton*.html
 
 # Data
 etl/cache/*
