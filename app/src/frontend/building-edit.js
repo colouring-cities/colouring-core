@@ -207,6 +207,8 @@ class EditForm extends Component {
                                 case "text_multi":
                                     return <MultiTextInput {...props} handleChange={this.handleUpdate}
                                             value={this.state[props.slug]} key={props.slug} />
+                                case "checkbox":
+                                    return null // TODO checkbox input
                                 case "like":
                                     return <LikeButton {...props} handleLike={this.handleLike}
                                             value={this.state[props.slug]} key={props.slug} />
