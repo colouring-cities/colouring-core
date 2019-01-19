@@ -53,6 +53,7 @@ class EditForm extends Component {
         this.state.like = this.props.like || undefined;
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleCheck = this.handleCheck.bind(this);
         this.handleLike = this.handleLike.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
@@ -73,6 +74,21 @@ class EditForm extends Component {
         if (name === 'location_postcode' && value !== null) {
             value = value.toUpperCase();
         }
+        this.setState({
+            [name]: value
+        });
+    }
+
+    /**
+     * Handle changes on checkboxes
+     * - e.g. input[type=checkbox]
+     *
+     * @param {DocumentEvent} event
+     */
+    handleCheck(event) {
+        const target = event.target;
+        const value = target.checked;
+        const name = target.name;
 
         this.setState({
             [name]: value
@@ -208,7 +224,8 @@ class EditForm extends Component {
                                     return <MultiTextInput {...props} handleChange={this.handleUpdate}
                                             value={this.state[props.slug]} key={props.slug} />
                                 case "checkbox":
-                                    return null // TODO checkbox input
+                                    return <CheckboxInput {...props} handleChange={this.handleCheck}
+                                            value={this.state[props.slug]} key={props.slug} />
                                 case "like":
                                     return <LikeButton {...props} handleLike={this.handleLike}
                                             value={this.state[props.slug]} key={props.slug} />
@@ -240,7 +257,7 @@ const TextInput = (props) => (
         <input className="form-control" type="text"
             id={props.slug} name={props.slug}
             value={props.value || ""}
-            maxlength={props.max_length}
+            maxLength={props.max_length}
             disabled={props.disabled}
             placeholder={props.placeholder}
             onChange={props.handleChange}
@@ -359,6 +376,21 @@ const NumberInput = (props) => (
             />
     </Fragment>
 );
+
+const CheckboxInput = (props) => (
+    <div class="form-check">
+        <input className="form-check-input" type="checkbox"
+            id={props.slug} name={props.slug}
+            checked={!!props.value}
+            disabled={props.disabled}
+            onChange={props.handleChange}
+            />
+        <label htmlFor={props.slug} className="form-check-label">
+            {props.title}
+            { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+        </label>
+    </div>
+)
 
 const LikeButton = (props) => (
     <Fragment>
