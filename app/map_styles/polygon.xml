@@ -178,6 +178,11 @@
             <PolygonSymbolizer fill="#7a5732" />
         </Rule>
     </Style>
+    <Style name="planning_in_conservation_area">
+        <Rule>
+            <PolygonSymbolizer fill="#73ebaf" />
+        </Rule>
+    </Style>
     <Style name="likes">
         <Rule>
             <Filter>[likes] &gt;= 10</Filter>
