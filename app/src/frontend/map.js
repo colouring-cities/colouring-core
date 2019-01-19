@@ -6,6 +6,7 @@ import './map.css'
 import ThemeSwitcher from './theme-switcher';
 import { parseCategoryURL } from '../parse';
 import Legend from './legend';
+import { HelpIcon } from './icons';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
@@ -70,6 +71,7 @@ class ColouringMap extends Component {
 
         // colour-data tiles
         const is_building = /building/.test(this.props.match.url);
+        const is_edit = /edit/.test(this.props.match.url);
         const cat = parseCategoryURL(this.props.match.url);
         const tileset_by_cat = {
             age: 'date_year',
@@ -121,6 +123,13 @@ class ColouringMap extends Component {
                     <ZoomControl position="topright" />
                     <AttributionControl prefix="" />
                 </Map>
+                {
+                    !is_building? (
+                        <div class="map-notice">
+                            <HelpIcon /> {is_edit? 'Click a building to edit' : 'Click a building for details'}
+                        </div>
+                    ) : null
+                }
                 <Legend slug={cat} />
                 <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
             </Fragment>
