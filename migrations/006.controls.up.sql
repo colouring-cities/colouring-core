@@ -21,7 +21,7 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_list_id int DEFAULT null
 -- - World Heritage Site
 -- - Certificate of Immunity
 -- - Building Preservation Notice
-CREATE TYPE IF NOT EXISTS planning_list_cat AS ENUM (
+CREATE TYPE planning_list_cat AS ENUM (
     'Listed Building',
     'Scheduled Monument',
     'Wreck',
@@ -38,7 +38,7 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_list_cat planning_list_c
 -- - I
 -- - II*
 -- - II
-CREATE TYPE IF NOT EXISTS planning_list_grade AS ENUM ('I', 'II*', 'II', 'None');
+CREATE TYPE planning_list_grade AS ENUM ('I', 'II*', 'II', 'None');
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_list_grade planning_list_grade DEFAULT 'None';
 
 -- Heritage at risk (bool, at-risk id)
