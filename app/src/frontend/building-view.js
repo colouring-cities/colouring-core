@@ -1,3 +1,4 @@
+import urlapi from 'url';
 import React, { Fragment } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -32,18 +33,27 @@ const BuildingView = (props) => {
                         {...section_props}>
                         {
                             section_props.fields.map(field_props => {
-                                return (field_props.slug === 'uprns')?
-                                <UPRNsDataEntry
-                                    key={field_props.slug}
-                                    title={field_props.title}
-                                    value={props.uprns}
-                                    tooltip={field_props.tooltip} />
-                                :
-                                <DataEntry
-                                    key={field_props.slug}
-                                    title={field_props.title}
-                                    value={props[field_props.slug]}
-                                    tooltip={field_props.tooltip} />
+
+                                switch (field_props.type) {
+                                    case "uprn_list":
+                                        return <UPRNsDataEntry
+                                            key={field_props.slug}
+                                            title={field_props.title}
+                                            value={props.uprns}
+                                            tooltip={field_props.tooltip} />
+                                    case "text_multi":
+                                        return <MultiDataEntry
+                                            key={field_props.slug}
+                                            title={field_props.title}
+                                            value={props[field_props.slug]}
+                                            tooltip={field_props.tooltip} />
+                                    default:
+                                        return <DataEntry
+                                            key={field_props.slug}
+                                            title={field_props.title}
+                                            value={props[field_props.slug]}
+                                            tooltip={field_props.tooltip} />
+                                }
                             })
                         }
                     </DataSection>
@@ -99,6 +109,66 @@ const DataEntry = (props) => (
         <dd>{(props.value != null)? props.value : '\u00A0'}</dd>
     </Fragment>
 );
+
+const MultiDataEntry = (props) => {
+    let content;
+
+    if (props.value && props.value.length) {
+        content = <ul>{
+            props.value.map((item, index) => {
+                return <li key={index}><a href={sanitise_url(item)}>{item}</a></li>
+            })
+        }</ul>
+    } else {
+        content = '\u00A0'
+    }
+
+    return (
+        <Fragment>
+            <dt>
+                { props.title }
+                { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+            </dt>
+            <dd>{ content }</dd>
+        </Fragment>
+    );
+}
+
+function sanitise_url(string){
+    let url_
+
+    // http or https
+    if (!(string.substring(0, 7) === 'http://' || string.substring(0, 8) === 'https://')){
+        return null
+    }
+
+    try {
+        url_ = document.createElement('a')
+        url_.href = string
+    } catch (error) {
+        try {
+            url_ = urlapi.parse(string)
+        } catch (error) {
+            return null
+        }
+    }
+
+    // required (www.example.com)
+    if (!url_.hostname || url_.hostname === '' || url_.hostname === 'localhost'){
+        return null
+    }
+
+    // optional (/some/path)
+    // url_.pathname;
+
+    // optional (?name=value)
+    // url_.search;
+
+    // optional (#anchor)
+    // url_.hash;
+
+    return `${url_.protocol}//${url_.hostname}${url_.pathname || ''}${url_.search || ''}${url_.hash || ''}`
+}
 
 const UPRNsDataEntry = (props) => {
     const uprns = props.value || [];
