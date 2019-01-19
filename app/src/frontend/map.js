@@ -124,7 +124,7 @@ class ColouringMap extends Component {
                     <AttributionControl prefix="" />
                 </Map>
                 {
-                    !is_building? (
+                    !is_building && this.props.match.url !== '/'? (
                         <div class="map-notice">
                             <HelpIcon /> {is_edit? 'Click a building to edit' : 'Click a building for details'}
                         </div>
