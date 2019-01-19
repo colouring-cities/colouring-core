@@ -76,6 +76,7 @@ class ColouringMap extends Component {
             size: 'size_storeys',
             location: 'location',
             like: 'likes',
+            planning: 'conservation_area',
         }
         const data_tileset = tileset_by_cat[cat];
         // pick revision id to bust browser cache

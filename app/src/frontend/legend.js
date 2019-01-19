@@ -89,7 +89,9 @@ const LEGEND_CONFIG = {
     },
     planning: {
         title: "Planning",
-        elements: []
+        elements: [
+        { color: "#73ebaf", text: 'within conservation area' },
+        ]
     },
     demolition: {
         title: "Demolition",
