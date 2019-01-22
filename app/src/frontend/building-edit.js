@@ -170,7 +170,7 @@ class EditForm extends Component {
         const building_like = this.props.building_like;
         return (
             <section className={(this.props.inactive)? "data-section inactive": "data-section"}>
-                <header className={(match? "active " : "") + " section-header edit"}>
+                <header className={`section-header edit ${this.props.slug} ${(match? "active" : "")}`}>
                     <NavLink
                         to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
                         title={(this.props.inactive)? 'Coming soon… Click the ? for more info.' :
