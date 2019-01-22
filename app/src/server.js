@@ -24,7 +24,8 @@ import {
     getBuildingLikeById,
     getBuildingUPRNsById,
     saveBuilding,
-    likeBuilding
+    likeBuilding,
+    unlikeBuilding
 } from './building';
 import tileserver from './tileserver';
 import { parseBuildingURL } from './parse';
@@ -275,19 +276,36 @@ server.route('/building/:building_id/like.json')
             return
         }
         const { building_id } = req.params;
-        likeBuilding(building_id, req.session.user_id).then(building => {
-            if (building.error) {
+        const { like } = req.body;
+        if (like){
+            likeBuilding(building_id, req.session.user_id).then(building => {
+                if (building.error) {
+                    res.send(building)
+                    return
+                }
+                if (typeof(building) === "undefined") {
+                    res.send({error:'Database error'})
+                    return
+                }
                 res.send(building)
-                return
-            }
-            if (typeof(building) === "undefined") {
-                res.send({error:'Database error'})
-                return
-            }
-            res.send(building)
-        }).catch(
-            () => res.send({error:'Database error'})
-        )
+            }).catch(
+                () => res.send({error:'Database error'})
+            )
+        } else {
+            unlikeBuilding(building_id, req.session.user_id).then(building => {
+                if (building.error) {
+                    res.send(building)
+                    return
+                }
+                if (typeof(building) === "undefined") {
+                    res.send({error:'Database error'})
+                    return
+                }
+                res.send(building)
+            }).catch(
+                () => res.send({error:'Database error'})
+            )
+        }
     })
 
 // POST new user

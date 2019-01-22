@@ -116,13 +116,15 @@ class EditForm extends Component {
      */
     handleLike(event) {
         event.preventDefault();
+        const like = event.target.checked;
 
         fetch(`/building/${this.props.building_id}/like.json`, {
             method: 'POST',
             headers:{
               'Content-Type': 'application/json'
             },
-            credentials: 'same-origin'
+            credentials: 'same-origin',
+            body: JSON.stringify({like: like})
         }).then(
             res => res.json()
         ).then(function(res){
@@ -380,7 +382,7 @@ const NumberInput = (props) => (
 );
 
 const CheckboxInput = (props) => (
-    <div class="form-check">
+    <div className="form-check">
         <input className="form-check-input" type="checkbox"
             id={props.slug} name={props.slug}
             checked={!!props.value}
@@ -397,11 +399,18 @@ const CheckboxInput = (props) => (
 const LikeButton = (props) => (
     <Fragment>
         <p className="likes">{(props.value)? props.value : 0} likes</p>
-        {
-            (props.building_like)?
-            <p>You already like this building!</p>
-            : <button className="btn btn-success btn-like" onClick={props.handleLike}>Like this building!</button>
-        }
+        <div className="form-check">
+            <input className="form-check-input" type="checkbox"
+                id={props.slug} name={props.slug}
+                checked={!!props.building_like}
+                disabled={props.disabled}
+                onChange={props.handleLike}
+                />
+            <label htmlFor={props.slug} className="form-check-label">
+                I like this building!
+                { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+            </label>
+        </div>
     </Fragment>
 );
 

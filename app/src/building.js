@@ -220,6 +220,59 @@ function likeBuilding(building_id, user_id) {
     });
 }
 
+
+function unlikeBuilding(building_id, user_id) {
+    // start transaction around save operation
+    // - insert building-user like
+    // - count total likes
+    // - insert changeset
+    // - update building to latest state
+    // commit or rollback (serializable - could be more compact?)
+    return db.tx({serializable}, t => {
+        return t.none(
+            "DELETE FROM building_user_likes WHERE building_id = $1 AND user_id = $2;",
+            [building_id, user_id]
+        ).then(() => {
+            return t.one(
+                "SELECT count(*) as likes FROM building_user_likes WHERE building_id = $1;",
+                [building_id]
+            ).then(building => {
+                return t.one(
+                    `INSERT INTO logs (
+                        forward_patch, building_id, user_id
+                    ) VALUES (
+                        $1:json, $2, $3
+                    ) RETURNING log_id
+                    `,
+                    [{likes_total: building.likes}, building_id, user_id]
+                ).then(revision => {
+                    return t.one(
+                        `UPDATE buildings
+                        SET
+                            revision_id = $1,
+                            likes_total = $2
+                        WHERE
+                            building_id = $3
+                        RETURNING
+                            *
+                        `,
+                        [revision.log_id, building.likes, building_id]
+                    )
+                })
+            });
+        });
+    }).catch(function(error){
+        // TODO report transaction error as 'Need to re-fetch building before update'
+        console.error(error);
+        if (error.detail && error.detail.includes("already exists")){
+            // 'already exists' is thrown if user already liked it
+            return {error: 'It looks like you already like that building!'};
+        } else {
+            return undefined
+        }
+    });
+}
+
 const BUILDING_FIELD_WHITELIST = new Set([
     'ref_osm_id',
     // 'location_name',
@@ -297,5 +350,6 @@ export {
     getBuildingLikeById,
     getBuildingUPRNsById,
     saveBuilding,
-    likeBuilding
+    likeBuilding,
+    unlikeBuilding
 };
