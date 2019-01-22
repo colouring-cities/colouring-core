@@ -105,7 +105,32 @@ const Legend = (props) => {
     const elements = details.elements;
     return (
         <div className="map-legend">
-            <h3 className="h3 logotype">Colouring London</h3>
+            <div className="logo">
+                <div className="grid">
+                    <div className="row">
+                        <div className="cell"></div>
+                        <div className="cell"></div>
+                        <div className="cell"></div>
+                        <div className="cell"></div>
+                    </div>
+                    <div className="row">
+                        <div className="cell"></div>
+                        <div className="cell"></div>
+                        <div className="cell"></div>
+                        <div className="cell"></div>
+                    </div>
+                    <div className="row">
+                        <div className="cell"></div>
+                        <div className="cell"></div>
+                        <div className="cell"></div>
+                        <div className="cell"></div>
+                    </div>
+                </div>
+                <h3 className="h3 logotype">
+                    <span>Colouring</span>
+                    <span>London</span>
+                </h3>
+            </div>
             <h4 className="h4">{ title }</h4>
             {
                 elements.length?

@@ -27,6 +27,20 @@
     font-size: 0.625em;
     letter-spacing: 0;
 }
+.map-legend .logo {
+    margin-top: -5px;
+    padding: 0 0.4rem 0.4rem 0.4rem;
+}
+.map-legend .logo .logotype {
+    position: relative;
+    top: 6px;
+}
+.map-legend .logo .row .cell {
+    background-color: #ccc;
+    height: 11px;
+    width: 11px;
+    animation: none !important;
+}
 .logo .grid {
     position: relative;
     top: -1px;
