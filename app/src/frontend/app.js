@@ -24,6 +24,7 @@ class App extends React.Component {
         this.state = {
             user: props.user,
             building: props.building,
+            building_like: props.building_like
         };
         this.login = this.login.bind(this);
         this.updateUser = this.updateUser.bind(this);
@@ -69,6 +70,26 @@ class App extends React.Component {
             console.error(err)
             this.setState({building: building});
         });
+
+        // get if liked and update
+        fetch(`/building/${building.building_id}/like.json`, {
+            method: 'GET',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin'
+        }).then(
+            res => res.json()
+        ).then((res) => {
+            if (res.error) {
+                console.error(res);
+            } else {
+                this.setState({building_like: res.like});
+            }
+        }).catch((err) => {
+            console.error(err)
+            this.setState({building_like: false});
+        });
     }
 
     render() {
@@ -99,6 +120,7 @@ class App extends React.Component {
                                         {...props}
                                         {...this.state.building}
                                         user={this.state.user}
+                                        building_like={this.state.building_like}
                                         />
                                 ) } />
                                 <Route exact path="/edit/:cat/building/:building.html" render={(props) => (
@@ -106,6 +128,7 @@ class App extends React.Component {
                                         {...props}
                                         {...this.state.building}
                                         user={this.state.user}
+                                        building_like={this.state.building_like}
                                         selectBuilding={this.selectBuilding}
                                         />
                                 ) } />

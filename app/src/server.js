@@ -74,6 +74,7 @@ function frontendRoute(req, res) {
     const data = {};
     context.status = 200;
 
+    const user_id = req.session.user_id;
     const building_id = parseBuildingURL(req.url);
     const is_building = (typeof(building_id) !== "undefined");
     if (is_building && isNaN(building_id)){
@@ -81,20 +82,23 @@ function frontendRoute(req, res) {
     }
 
     Promise.all([
-        req.session.user_id? getUserById(req.session.user_id) : undefined,
+        user_id? getUserById(user_id) : undefined,
         is_building? getBuildingById(building_id) : undefined,
-        is_building? getBuildingUPRNsById(building_id) : undefined
+        is_building? getBuildingUPRNsById(building_id) : undefined,
+        (is_building && user_id)? getBuildingLikeById(building_id, user_id) : false
     ]).then(function(values){
         const user = values[0];
         const building = values[1];
         const uprns = values[2];
+        const building_like = values[3];
         if (is_building && typeof(building) === "undefined"){
             context.status = 404
         }
         data.user = user;
         data.building = building;
         if (data.building != null) {
-            data.building.uprns = uprns
+            data.building.uprns = uprns;
+            data.building_like = building_like;
         }
         renderHTML(context, data, req, res)
     }).catch(error => {

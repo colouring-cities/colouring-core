@@ -47,6 +47,13 @@ const BuildingView = (props) => {
                                             title={field_props.title}
                                             value={props[field_props.slug]}
                                             tooltip={field_props.tooltip} />
+                                    case "like":
+                                        return <LikeDataEntry
+                                            key={field_props.slug}
+                                            title={field_props.title}
+                                            value={props[field_props.slug]}
+                                            user_building_like={props.building_like}
+                                            tooltip={field_props.tooltip} />
                                     default:
                                         return <DataEntry
                                             key={field_props.slug}
@@ -107,6 +114,27 @@ const DataEntry = (props) => (
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
         </dt>
         <dd>{(props.value != null)? props.value : '\u00A0'}</dd>
+    </Fragment>
+);
+
+const LikeDataEntry = (props) => (
+    <Fragment>
+        <dt>
+            { props.title }
+            { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+        </dt>
+        <dd>
+        {
+            (props.value != null)?
+                (props.value === 1)?
+                    `${props.value} person likes this building`
+                    : `${props.value} people like this building`
+                : '\u00A0'
+        }
+        </dd>
+        {
+            (props.user_building_like)? <dd>&hellip;including you!</dd> : null
+        }
     </Fragment>
 );
 
