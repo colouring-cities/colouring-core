@@ -7,7 +7,7 @@
     left: 0;
     right: 0;
     bottom: 3rem;
-    padding: 0.25em 0em;
+    padding: 0.25em 0em 2em;
     background: #fff;
     background-color: rgba(255,255,255,0.98);
     z-index: 1000;
@@ -76,7 +76,10 @@
     clear: both;
     text-decoration: none;
     color: #222;
-    transition: background-color 0.2s;
+    transition: border-color 0.2s;
+    border-style: solid;
+    border-color: #fff;
+    border-width: 4px 0 4px 0;
 }
 .section-header h3 {
     display: inline-block;
@@ -85,13 +88,86 @@
     display: block;
     padding: 0.6rem 0.5rem 0.5rem 2.25rem;
     color: #222;
+    outline: none;
 }
 .section-header.active,
 .section-header:hover {
     color: #222;
     text-decoration: none;
-    background-color: #eeeeee;
 }
+.section-header.active.location {
+    border-color: #edc40b;
+}
+.section-header.location:hover {
+    border-color: #fae897;
+}
+.section-header.active.use {
+    border-color: #f0ee0c;
+}
+.section-header.use:hover {
+    border-color: #f6f552;
+}
+.section-header.active.type {
+    border-color: #ff9100;
+}
+.section-header.type:hover {
+    border-color: #ffb24d;
+}
+.section-header.active.age {
+    border-color: #ee5f63;
+}
+.section-header.age:hover {
+    border-color: #f5a4a6;
+}
+.section-header.active.size {
+    border-color: #ee91bf;
+}
+.section-header.size:hover {
+    border-color: #f8d3e6;
+}
+.section-header.active.construction {
+    border-color: #aa7fa7;
+}
+.section-header.construction:hover {
+    border-color: #c9adc7;
+}
+.section-header.active.team {
+    border-color: #6f879c;
+}
+.section-header.team:hover {
+    border-color: #9cadbb;
+}
+.section-header.active.sustainability {
+    border-color: #5ec232;
+}
+.section-header.sustainability:hover {
+    border-color: #8bd868;
+}
+.section-header.active.greenery {
+    border-color: #6dbb8b;
+}
+.section-header.greenery:hover {
+    border-color: #8bd868;
+}
+.section-header.active.planning {
+    border-color: #65b7ff;
+}
+.section-header.planning:hover {
+    border-color: #b2dbff;
+}
+.section-header.active.demolition {
+    border-color: #a1a3a9;
+}
+.section-header.demolition:hover {
+    border-color: #c9cace;
+}
+.section-header.active.like {
+    border-color: #9c896d;
+}
+.section-header.like:hover {
+    border-color: #bbae9b;
+}
+
 .section-header > a::before {
     display: block;
     position: absolute;
@@ -117,6 +193,15 @@
     content: '\25B2';
 }
 
+.data-section.inactive .section-header,
+.data-section.inactive .section-header > a {
+    color: #777;
+}
+.data-section.inactive .section-header.active,
+.data-section.inactive .section-header.active:hover > a,
+.data-section.inactive .section-header.active > a {
+    color: #222;
+}
 .data-section.inactive .section-header > a::before,
 .data-section.inactive .section-header:hover > a::before,
 .data-section.inactive .section-header.active:hover > a::before {
@@ -218,12 +303,6 @@
 /**
  * Data list sections
  */
-.data-section {
-    border-top: 1px solid #ffffff;
-}
-.data-section.inactive {
-    opacity: 0.5;
-}
 .data-section .h3 {
     margin: 0;
 }
