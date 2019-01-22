@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -97,44 +96,40 @@ class App extends React.Component {
             <Fragment>
                 <Header user={this.state.user} />
                 <main>
-                    <TransitionGroup>
-                        <CSSTransition timeout={3000} classNames='fade'>
-                            <Switch>
-                                <Route exact path="/">
-                                    <Welcome />
-                                </Route>
-                                <Route exact path="/view/:cat.html" render={(props) => (
-                                    <Overview
-                                        {...props}
-                                        mode='view' user={this.state.user}
-                                        />
-                                ) } />
-                                <Route exact path="/edit/:cat.html" render={(props) => (
-                                    <Overview
-                                        {...props}
-                                        mode='edit' user={this.state.user}
-                                        />
-                                ) } />
-                                <Route exact path="/view/:cat/building/:building.html" render={(props) => (
-                                    <BuildingView
-                                        {...props}
-                                        {...this.state.building}
-                                        user={this.state.user}
-                                        building_like={this.state.building_like}
-                                        />
-                                ) } />
-                                <Route exact path="/edit/:cat/building/:building.html" render={(props) => (
-                                    <BuildingEdit
-                                        {...props}
-                                        {...this.state.building}
-                                        user={this.state.user}
-                                        building_like={this.state.building_like}
-                                        selectBuilding={this.selectBuilding}
-                                        />
-                                ) } />
-                            </Switch>
-                        </CSSTransition>
-                    </TransitionGroup>
+                    <Switch>
+                        <Route exact path="/">
+                            <Welcome />
+                        </Route>
+                        <Route exact path="/view/:cat.html" render={(props) => (
+                            <Overview
+                                {...props}
+                                mode='view' user={this.state.user}
+                                />
+                        ) } />
+                        <Route exact path="/edit/:cat.html" render={(props) => (
+                            <Overview
+                                {...props}
+                                mode='edit' user={this.state.user}
+                                />
+                        ) } />
+                        <Route exact path="/view/:cat/building/:building.html" render={(props) => (
+                            <BuildingView
+                                {...props}
+                                {...this.state.building}
+                                user={this.state.user}
+                                building_like={this.state.building_like}
+                                />
+                        ) } />
+                        <Route exact path="/edit/:cat/building/:building.html" render={(props) => (
+                            <BuildingEdit
+                                {...props}
+                                {...this.state.building}
+                                user={this.state.user}
+                                building_like={this.state.building_like}
+                                selectBuilding={this.selectBuilding}
+                                />
+                        ) } />
+                    </Switch>
                     <Switch>
                         <Route exact path="/(edit.*|view.*)?" render={(props) => (
                             <ColouringMap
