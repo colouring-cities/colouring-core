@@ -125,7 +125,7 @@ class ColouringMap extends Component {
                 </Map>
                 {
                     !is_building && this.props.match.url !== '/'? (
-                        <div class="map-notice">
+                        <div className="map-notice">
                             <HelpIcon /> {is_edit? 'Click a building to edit' : 'Click a building for details'}
                         </div>
                     ) : null

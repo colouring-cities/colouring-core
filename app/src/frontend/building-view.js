@@ -87,7 +87,7 @@ const DataSection = (props) => {
                 {
                     props.help?
                     <a className="icon-button help" title="Find out more" href={props.help}>
-                        More info
+                        Info
                     </a>
                     : null
                 }
@@ -102,7 +102,13 @@ const DataSection = (props) => {
                 }
                 </nav>
             </header>
-            { match? <dl className="data-list">{props.children}</dl> : null }
+            {
+                match?
+                    !props.inactive?
+                    <dl className="data-list">{props.children}</dl>
+                    : <p className="data-intro">{props.intro}</p>
+                : null
+            }
         </section>
     );
 }

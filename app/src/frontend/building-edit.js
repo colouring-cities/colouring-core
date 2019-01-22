@@ -182,12 +182,12 @@ class EditForm extends Component {
                     {
                         this.props.help?
                         <a className="icon-button help" title="Find out more" href={this.props.help}>
-                            More info
+                            Info
                         </a>
                         : null
                     }
                     {
-                        (match && this.props.slug !== 'like')? // special-case for likes
+                        (match && !this.props.inactive && this.props.slug !== 'like')? // special-case for likes
                         <NavLink className="icon-button save" title="Save Changes"
                         onClick={this.handleSubmit}
                             to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}>
@@ -200,54 +200,56 @@ class EditForm extends Component {
                 </header>
                 {
                 match? (
-                <form action={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
-                    method="GET" onSubmit={this.handleSubmit}>
-                    {
-                        this.props.slug === 'location'?
-                        <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
-                        : null
-                    }
-                    <ErrorBox msg={this.state.error} />
-                    {
-                        this.props.fields.map((props) => {
-                            switch (props.type) {
-                                case "text":
-                                    return <TextInput {...props} handleChange={this.handleChange}
-                                            value={this.state[props.slug]} key={props.slug} />
-                                case "text_list":
-                                    return <TextListInput {...props} handleChange={this.handleChange}
-                                            value={this.state[props.slug]} key={props.slug} />
-                                case "text_long":
-                                    return <LongTextInput {...props} handleChange={this.handleChange}
-                                            value={this.state[props.slug]} key={props.slug} />
-                                case "number":
-                                    return <NumberInput {...props} handleChange={this.handleChange}
-                                            value={this.state[props.slug]} key={props.slug} />
-                                case "text_multi":
-                                    return <MultiTextInput {...props} handleChange={this.handleUpdate}
-                                            value={this.state[props.slug]} key={props.slug} />
-                                case "checkbox":
-                                    return <CheckboxInput {...props} handleChange={this.handleCheck}
-                                            value={this.state[props.slug]} key={props.slug} />
-                                case "like":
-                                    return <LikeButton {...props} handleLike={this.handleLike}
-                                            building_like={building_like}
-                                            value={this.state[props.slug]} key={props.slug} />
-                                default:
-                                    return null
-                            }
-                        })
-                    }
-                    <InfoBox msg="Colouring may take a few seconds - try zooming the map or hitting refresh after saving (we're working on making this smoother)." />
+                    !this.props.inactive?
+                    <form action={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
+                        method="GET" onSubmit={this.handleSubmit}>
+                        {
+                            this.props.slug === 'location'?
+                            <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
+                            : null
+                        }
+                        <ErrorBox msg={this.state.error} />
+                        {
+                            this.props.fields.map((props) => {
+                                switch (props.type) {
+                                    case "text":
+                                        return <TextInput {...props} handleChange={this.handleChange}
+                                                value={this.state[props.slug]} key={props.slug} />
+                                    case "text_list":
+                                        return <TextListInput {...props} handleChange={this.handleChange}
+                                                value={this.state[props.slug]} key={props.slug} />
+                                    case "text_long":
+                                        return <LongTextInput {...props} handleChange={this.handleChange}
+                                                value={this.state[props.slug]} key={props.slug} />
+                                    case "number":
+                                        return <NumberInput {...props} handleChange={this.handleChange}
+                                                value={this.state[props.slug]} key={props.slug} />
+                                    case "text_multi":
+                                        return <MultiTextInput {...props} handleChange={this.handleUpdate}
+                                                value={this.state[props.slug]} key={props.slug} />
+                                    case "checkbox":
+                                        return <CheckboxInput {...props} handleChange={this.handleCheck}
+                                                value={this.state[props.slug]} key={props.slug} />
+                                    case "like":
+                                        return <LikeButton {...props} handleLike={this.handleLike}
+                                                building_like={building_like}
+                                                value={this.state[props.slug]} key={props.slug} />
+                                    default:
+                                        return null
+                                }
+                            })
+                        }
+                        <InfoBox msg="Colouring may take a few seconds - try zooming the map or hitting refresh after saving (we're working on making this smoother)." />
 
-                    {
-                        (this.props.slug === 'like')? // special-case for likes
-                        null :
-                        <div className="buttons-container">
-                            <button type="submit" className="btn btn-primary">Save</button>
-                        </div>
-                    }
-                </form>
+                        {
+                            (this.props.slug === 'like')? // special-case for likes
+                            null :
+                            <div className="buttons-container">
+                                <button type="submit" className="btn btn-primary">Save</button>
+                            </div>
+                        }
+                    </form>
+                    : <form><InfoBox msg={`We're not collection data on ${this.props.title.toLowerCase()} yet - check back soon.`} /></form>
                 ) : null
             }
             </section>

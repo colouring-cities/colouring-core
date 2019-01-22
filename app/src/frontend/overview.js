@@ -47,7 +47,7 @@ const OverviewSection = (props) => {
                     {
                         props.help?
                         <a className="icon-button help" href={props.help}>
-                            More info
+                            Info
                         </a>
                         : null
                     }
