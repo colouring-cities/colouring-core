@@ -4,7 +4,7 @@
  */
 import express from 'express';
 
-import { get_bbox, render_tile } from './tile';
+import { render_tile } from './tile';
 import { strictParseInt } from './parse';
 
 // tiles router
@@ -12,7 +12,6 @@ const router = express.Router()
 
 // basic geometry tiles
 router.get('/base_light/:z/:x/:y.png', function(req, res) {
-    const bbox = get_bbox(req.params)
     const table_def = `(
         SELECT
             b.location_number as location_number,
@@ -24,7 +23,7 @@ router.get('/base_light/:z/:x/:y.png', function(req, res) {
             g.geometry_id = b.geometry_id
     ) as outline`
     const style_def = ['base_light']
-    render_tile(bbox, table_def, style_def, function(err, im) {
+    render_tile(req.params, table_def, style_def, function(err, im) {
         if (err) throw err
 
         res.writeHead(200, {'Content-Type': 'image/png'})
@@ -34,7 +33,6 @@ router.get('/base_light/:z/:x/:y.png', function(req, res) {
 
 // dark theme
 router.get('/base_night/:z/:x/:y.png', function(req, res) {
-    const bbox = get_bbox(req.params)
     const table_def = `(
         SELECT
             b.location_number as location_number,
@@ -46,7 +44,7 @@ router.get('/base_night/:z/:x/:y.png', function(req, res) {
             g.geometry_id = b.geometry_id
     ) as outline`
     const style_def = ['base_night']
-    render_tile(bbox, table_def, style_def, function(err, im) {
+    render_tile(req.params, table_def, style_def, function(err, im) {
         if (err) throw err
 
         res.writeHead(200, {'Content-Type': 'image/png'})
@@ -62,7 +60,6 @@ router.get('/highlight/:z/:x/:y.png', function(req, res) {
         res.status(400).send({error:'Bad parameter'})
         return
     }
-    const bbox = get_bbox(req.params)
     const table_def = `(
         SELECT
             g.geometry_id = ${geometry_id} as focus,
@@ -74,7 +71,7 @@ router.get('/highlight/:z/:x/:y.png', function(req, res) {
             g.geometry_id = b.geometry_id
     ) as highlight`
     const style_def = ['highlight']
-    render_tile(bbox, table_def, style_def, function(err, im) {
+    render_tile(req.params, table_def, style_def, function(err, im) {
         if (err) throw err
 
         res.writeHead(200, {'Content-Type': 'image/png'})
@@ -84,7 +81,6 @@ router.get('/highlight/:z/:x/:y.png', function(req, res) {
 
 // date_year choropleth
 router.get('/date_year/:z/:x/:y.png', function(req, res) {
-    const bbox = get_bbox(req.params)
     // const table_def = 'geometries'
     const table_def = `(
         SELECT
@@ -97,7 +93,7 @@ router.get('/date_year/:z/:x/:y.png', function(req, res) {
             g.geometry_id = b.geometry_id
     ) as outline`
     const style_def = ['date_year']
-    render_tile(bbox, table_def, style_def, function(err, im) {
+    render_tile(req.params, table_def, style_def, function(err, im) {
         if (err) throw err
 
         res.writeHead(200, {'Content-Type': 'image/png'})
@@ -107,7 +103,6 @@ router.get('/date_year/:z/:x/:y.png', function(req, res) {
 
 // date_year choropleth
 router.get('/size_storeys/:z/:x/:y.png', function(req, res) {
-    const bbox = get_bbox(req.params)
     // const table_def = 'geometries'
     const table_def = `(
         SELECT
@@ -123,7 +118,7 @@ router.get('/size_storeys/:z/:x/:y.png', function(req, res) {
             g.geometry_id = b.geometry_id
     ) as outline`
     const style_def = ['size_storeys']
-    render_tile(bbox, table_def, style_def, function(err, im) {
+    render_tile(req.params, table_def, style_def, function(err, im) {
         if (err) throw err
 
         res.writeHead(200, {'Content-Type': 'image/png'})
@@ -133,7 +128,6 @@ router.get('/size_storeys/:z/:x/:y.png', function(req, res) {
 
 // location information depth
 router.get('/location/:z/:x/:y.png', function(req, res) {
-    const bbox = get_bbox(req.params)
     const table_def = `(
         SELECT
             (
@@ -156,7 +150,7 @@ router.get('/location/:z/:x/:y.png', function(req, res) {
             g.geometry_id = b.geometry_id
     ) as location`
     const style_def = ['location_info_count']
-    render_tile(bbox, table_def, style_def, function(err, im) {
+    render_tile(req.params, table_def, style_def, function(err, im) {
         if (err) throw err
 
         res.writeHead(200, {'Content-Type': 'image/png'})
@@ -167,7 +161,6 @@ router.get('/location/:z/:x/:y.png', function(req, res) {
 
 // likes
 router.get('/likes/:z/:x/:y.png', function(req, res) {
-    const bbox = get_bbox(req.params)
     const table_def = `(
         SELECT
             g.geometry_geom,
@@ -180,7 +173,7 @@ router.get('/likes/:z/:x/:y.png', function(req, res) {
             AND b.likes_total > 0
     ) as location`
     const style_def = ['likes']
-    render_tile(bbox, table_def, style_def, function(err, im) {
+    render_tile(req.params, table_def, style_def, function(err, im) {
         if (err) throw err
 
         res.writeHead(200, {'Content-Type': 'image/png'})
@@ -191,7 +184,6 @@ router.get('/likes/:z/:x/:y.png', function(req, res) {
 
 // conservation status
 router.get('/conservation_area/:z/:x/:y.png', function(req, res) {
-    const bbox = get_bbox(req.params)
     const table_def = `(
         SELECT
             g.geometry_geom
@@ -203,7 +195,7 @@ router.get('/conservation_area/:z/:x/:y.png', function(req, res) {
             AND b.planning_in_conservation_area = true
     ) as conservation_area`
     const style_def = ['planning_in_conservation_area']
-    render_tile(bbox, table_def, style_def, function(err, im) {
+    render_tile(req.params, table_def, style_def, function(err, im) {
         if (err) throw err
 
         res.writeHead(200, {'Content-Type': 'image/png'})

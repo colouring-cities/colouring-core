@@ -34,17 +34,7 @@ const mercator = new SphericalMercator({
     size: TILE_SIZE
 });
 
-function get_bbox(params){
-    const { z, x, y } = params
-    const int_z = strictParseInt(z);
-    const int_x = strictParseInt(x);
-    const int_y = strictParseInt(y);
-
-    if (isNaN(int_x) || isNaN(int_y) || isNaN(int_z)){
-        console.error("Missing x or y or z")
-        return {error:'Bad parameter'}
-    }
-
+function get_bbox(int_z, int_x, int_y){
     return mercator.bbox(
         int_x,
         int_y,
@@ -54,7 +44,28 @@ function get_bbox(params){
     );
 }
 
-function render_tile(bbox, table_def, style_def, cb){
+function should_try_cache(style, int_z) {
+    if (style === 'base_light' ||  style === 'base_light') {
+        // cache for higher zoom levels (unlikely to change)
+        return int_z <= 15
+    }
+    // else cache for lower zoom levels (change slowly)
+    return int_z <= 12
+}
+
+function render_tile(params, table_def, style_def, cb){
+    const { z, x, y } = params
+    const int_z = strictParseInt(z);
+    const int_x = strictParseInt(x);
+    const int_y = strictParseInt(y);
+
+    if (isNaN(int_x) || isNaN(int_y) || isNaN(int_z)){
+        console.error("Missing x or y or z")
+        return {error:'Bad parameter'}
+    }
+    const bbox = get_bbox(int_z, int_x, int_y)
+    // const should_cache = should_try_cache(style_def[0], int_z)
+
     const map = new mapnik.Map(TILE_SIZE, TILE_SIZE, PROJ4_STRING);
     map.bufferSize = TILE_BUFFER_SIZE;
 
