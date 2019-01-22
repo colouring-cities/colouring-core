@@ -8,11 +8,11 @@ const LEGEND_CONFIG = {
         title: "Location",
         description: "% data collected",
         elements: [
-            { color: '#0868ac', text: '≥80%' },
-            { color: '#43a2ca', text: '60–80%' },
-            { color: '#7bccc4', text: '40–60%' },
-            { color: '#bae4bc', text: '20–40%' },
-            { color: '#f0f9e8', text: '<20%' }
+            { color: '#084081', text: '≥80%' },
+            { color: '#0868ac', text: '60–80%' },
+            { color: '#43a2ca', text: '40–60%' },
+            { color: '#7bccc4', text: '20–40%' },
+            { color: '#bae4bc', text: '<20%' }
         ]
     },
     age: {
