@@ -6,7 +6,7 @@
     position: absolute;
     bottom: 55px;
     right: 10px;
-    min-width: 7rem;
+    min-width: 12rem;
     float: right;
     background: white;
     border-radius: 4px;
@@ -24,9 +24,13 @@
         bottom: 24px;
     }
 }
-.map-legend h4,
+.map-legend .h4,
+.map-legend p,
 .data-legend {
     padding: 0 0.5rem;
+}
+.map-legend p {
+    margin: 0.25rem 0 0.5rem;
 }
 .data-legend {
     max-height: 30rem;

@@ -28,17 +28,17 @@
     letter-spacing: 0;
 }
 .map-legend .logo {
-    margin-top: -5px;
-    padding: 0 0.4rem 0.4rem 0.4rem;
+    padding: 0.5rem;
 }
 .map-legend .logo .logotype {
+    font-size: 1.75rem;
     position: relative;
-    top: 6px;
+    top: 3px;
 }
 .map-legend .logo .row .cell {
     background-color: #ccc;
-    height: 11px;
-    width: 11px;
+    height: 10px;
+    width: 10px;
     animation: none !important;
 }
 .logo .grid {

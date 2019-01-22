@@ -106,6 +106,24 @@ const Legend = (props) => {
     const elements = details.elements;
     return (
         <div className="map-legend">
+            <h4 className="h4">{ title }</h4>
+            {
+                details.description?
+                    <p>{details.description}</p>
+                    : null
+            }
+            {
+                elements.length?
+                (<ul className="data-legend">
+                {
+                    elements.map((data_item) => (
+                        <LegendItem {...data_item} key={data_item.color} />
+                    ))
+                }
+                </ul>)
+                : (<p className="data-intro">Coming soon…</p>)
+            }
+
             <div className="logo">
                 <div className="grid">
                     <div className="row">
@@ -132,18 +150,6 @@ const Legend = (props) => {
                     <span>London</span>
                 </h3>
             </div>
-            <h4 className="h4">{ title }</h4>
-            {
-                elements.length?
-                (<ul className="data-legend">
-                {
-                    elements.map((data_item) => (
-                        <LegendItem {...data_item} key={data_item.color} />
-                    ))
-                }
-                </ul>)
-                : (<p className="data-intro">Coming soon…</p>)
-            }
         </div>
     );
 }
