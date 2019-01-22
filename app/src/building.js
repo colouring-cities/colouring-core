@@ -279,7 +279,7 @@ const BUILDING_FIELD_WHITELIST = new Set([
     'location_number',
     // 'location_street',
     // 'location_line_two',
-    // 'location_town',
+    'location_town',
     'location_postcode',
     'location_latitude',
     'location_longitude',
