@@ -96,15 +96,16 @@ function frontendRoute(req, res) {
         }
         data.user = user;
         data.building = building;
+        data.building_like = building_like;
         if (data.building != null) {
             data.building.uprns = uprns;
-            data.building_like = building_like;
         }
         renderHTML(context, data, req, res)
     }).catch(error => {
         console.error(error);
         data.user = undefined;
         data.building = undefined;
+        data.building_like = undefined;
         context.status = 500;
         renderHTML(context, data, req, res);
     });
@@ -113,7 +114,7 @@ function frontendRoute(req, res) {
 function renderHTML(context, data, req, res){
     const markup = renderToString(
         <StaticRouter context={context} location={req.url}>
-            <App user={data.user} building={data.building} />
+            <App user={data.user} building={data.building} building_like={data.building_like} />
         </StaticRouter>
     );
 

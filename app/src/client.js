@@ -12,7 +12,7 @@ const data = window.__PRELOADED_STATE__;
 
 hydrate(
   <BrowserRouter>
-    <App user={data.user} building={data.building} />
+    <App user={data.user} building={data.building} building_like={data.building_like} />
   </BrowserRouter>,
   document.getElementById('root')
 );

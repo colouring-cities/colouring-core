@@ -117,7 +117,7 @@ class EditForm extends Component {
     handleLike(event) {
         event.preventDefault();
 
-        fetch(`/building/like/${this.props.building_id}`, {
+        fetch(`/building/${this.props.building_id}/like.json`, {
             method: 'POST',
             headers:{
               'Content-Type': 'application/json'
@@ -165,6 +165,7 @@ class EditForm extends Component {
 
     render() {
         const match = this.props.cat === this.props.slug;
+        const building_like = this.props.building_like;
         return (
             <section className={(this.props.inactive)? "data-section inactive": "data-section"}>
                 <header className={(match? "active " : "") + " section-header edit"}>
@@ -228,6 +229,7 @@ class EditForm extends Component {
                                             value={this.state[props.slug]} key={props.slug} />
                                 case "like":
                                     return <LikeButton {...props} handleLike={this.handleLike}
+                                            building_like={building_like}
                                             value={this.state[props.slug]} key={props.slug} />
                                 default:
                                     return null
@@ -395,7 +397,11 @@ const CheckboxInput = (props) => (
 const LikeButton = (props) => (
     <Fragment>
         <p className="likes">{(props.value)? props.value : 0} likes</p>
-        <button className="btn btn-success btn-like" onClick={props.handleLike}>Like this building!</button>
+        {
+            (props.building_like)?
+            <p>You already like this building!</p>
+            : <button className="btn btn-success btn-like" onClick={props.handleLike}>Like this building!</button>
+        }
     </Fragment>
 );
 
