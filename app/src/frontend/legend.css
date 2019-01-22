@@ -30,15 +30,15 @@
     padding: 0 0.5rem;
 }
 .data-legend {
-    max-height: 20rem;
+    max-height: 30rem;
     overflow-y: auto;
     list-style: none;
     margin-bottom: 0;
 }
 .data-legend .key {
     display: inline-block;
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 1.3rem;
+    height: 1.3rem;
     text-indent: -30px;
     margin: 0.125rem 0.5rem 0.125rem 0;
     vertical-align: middle;
