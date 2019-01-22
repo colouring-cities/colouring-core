@@ -199,7 +199,12 @@ function likeBuilding(building_id, user_id) {
     }).catch(function(error){
         // TODO report transaction error as 'Need to re-fetch building before update'
         console.error(error);
-        return undefined;
+        if (error.detail && error.detail.includes("already exists")){
+            // 'already exists' is thrown if user already liked it
+            return {error: 'It looks like you already like that building!'};
+        } else {
+            return undefined
+        }
     });
 }
 
