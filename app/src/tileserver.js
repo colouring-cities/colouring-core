@@ -144,7 +144,9 @@ router.get('/location/:z/:x/:y.png', function(req, res) {
                 case when b.location_town is null then 0 else 1 end +
                 case when b.location_postcode is null then 0 else 1 end +
                 case when b.location_latitude is null then 0 else 1 end +
-                case when b.location_longitude is null then 0 else 1 end
+                case when b.location_longitude is null then 0 else 1 end +
+                case when b.ref_toid is null then 0 else 1 end +
+                case when b.ref_osm_id is null then 0 else 1 end
             ) as location_info_count,
             g.geometry_geom
         FROM

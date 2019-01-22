@@ -42,23 +42,23 @@
     </Style>
     <Style name="location_info_count">
         <Rule>
-            <Filter>[location_info_count] &gt;= 5</Filter>
+            <Filter>[location_info_count] &gt; 0 and [location_info_count] &lt; 2</Filter>
             <PolygonSymbolizer fill="#f0f9e8" />
         </Rule>
         <Rule>
-            <Filter>[location_info_count] = 4</Filter>
+            <Filter>[location_info_count] &gt;= 2 and [location_info_count] &lt; 4</Filter>
             <PolygonSymbolizer fill="#bae4bc" />
         </Rule>
         <Rule>
-            <Filter>[location_info_count] = 3</Filter>
+            <Filter>[location_info_count] &gt;= 4 and [location_info_count] &lt; 6</Filter>
             <PolygonSymbolizer fill="#7bccc4" />
         </Rule>
         <Rule>
-            <Filter>[location_info_count] = 2</Filter>
+            <Filter>[location_info_count] &gt;= 6 and [location_info_count] &lt; 8</Filter>
             <PolygonSymbolizer fill="#43a2ca" />
         </Rule>
         <Rule>
-            <Filter>[location_info_count] = 1</Filter>
+            <Filter>[location_info_count] &gt;= 8</Filter>
             <PolygonSymbolizer fill="#0868ac" />
         </Rule>
     </Style>
