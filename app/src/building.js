@@ -83,6 +83,16 @@ function getBuildingById(id) {
     });
 }
 
+function getBuildingLikeById(building_id, user_id) {
+    return db.one(
+        "SELECT true as like FROM building_user_likes WHERE building_id = $1 and user_id = $2 LIMIT 1",
+        [building_id, user_id]
+    ).catch(function(error){
+        console.error(error);
+        return undefined;
+    });
+}
+
 function getBuildingUPRNsById(id) {
     return db.any(
         "SELECT uprn, parent_uprn FROM building_properties WHERE building_id = $1",
@@ -278,5 +288,12 @@ function compare(old_obj, new_obj, whitelist){
     return [forward_patch, reverse_patch]
 }
 
-export { queryBuildingsAtPoint, queryBuildingsByReference, getBuildingById,
-         getBuildingUPRNsById, saveBuilding, likeBuilding };
+export {
+    queryBuildingsAtPoint,
+    queryBuildingsByReference,
+    getBuildingById,
+    getBuildingLikeById,
+    getBuildingUPRNsById,
+    saveBuilding,
+    likeBuilding
+};
