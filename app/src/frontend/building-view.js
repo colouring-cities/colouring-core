@@ -113,7 +113,12 @@ const DataEntry = (props) => (
             { props.title }
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
         </dt>
-        <dd>{(props.value != null)? props.value : '\u00A0'}</dd>
+        <dd>{
+            (props.value != null && props.value !== "")?
+                (typeof(props.value) === "boolean")?
+                    (props.value)? 'Yes' : 'No'
+                    : props.value
+                : '\u00A0'}</dd>
     </Fragment>
 );
 
