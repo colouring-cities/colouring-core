@@ -12,7 +12,11 @@ html/norton*.html
 etl/cache/*
 etl/images/*
 etl/*.geojson
-etl/*.csv
+etl/**/*.csv
+etl/**/*.txt
+etl/**/*.xls
+etl/**/*.xlsx
+etl/**/*.zip
 
 # Notes
 TODO
