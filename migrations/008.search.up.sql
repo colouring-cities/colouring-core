@@ -26,6 +26,6 @@ CREATE TABLE IF NOT EXISTS search_locations (
 -- - SELECT *, search_str <-> 'searchterm' AS dist FROM search_locations ORDER BY dist LIMIT 5;
 -- - SELECT *, similarity(search_str, 'searchterm') AS dist FROM search_locations
 --       WHERE t % 'searchterm' ORDER BY dist ASC, t LIMIT 5;
--- Docs suggest the second query will perform better than the third, when only a small number
--- of closest matches are desired, if combined with a GIST index (not GIN as below),
+-- Docs suggest the '<->' query will perform better than the 'similarity', when only a small
+-- number of closest matches are desired, if combined with a GIST index,
 CREATE INDEX trgm_gist_idx_search_str ON search_locations USING GIST (search_str gist_trgm_ops);
