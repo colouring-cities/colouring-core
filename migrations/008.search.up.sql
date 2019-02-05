@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS search_locations (
 -- - SELECT * FROM search_locations WHERE search_str ILIKE 'e1%'
 -- - SELECT *, search_str <-> 'searchterm' AS dist FROM search_locations ORDER BY dist LIMIT 5;
 -- - SELECT *, similarity(search_str, 'searchterm') AS dist FROM search_locations
---       WHERE t % 'searchterm' ORDER BY dist DESC, t LIMIT 5;
+--       WHERE t % 'searchterm' ORDER BY dist ASC, t LIMIT 5;
 -- Docs suggest the second query will perform better than the third, when only a small number
 -- of closest matches are desired, if combined with a GIST index (not GIN as below),
-CREATE INDEX trgm_idx_search_str ON search_locations USING GIN (search_str gin_trgm_ops);
+CREATE INDEX trgm_gist_idx_search_str ON search_locations USING GIST (search_str gist_trgm_ops);
