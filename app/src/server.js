@@ -27,7 +27,7 @@ import {
     likeBuilding,
     unlikeBuilding
 } from './building';
-import { searchLocation, queryLocation } from './search';
+import { queryLocation } from './search';
 import tileserver from './tileserver';
 import { parseBuildingURL } from './parse';
 
@@ -236,6 +236,7 @@ function updateBuilding(req, res, user_id){
     )
 }
 
+// GET building UPRNs
 server.get('/building/:building_id/uprns.json', function (req, res) {
         const { building_id } = req.params;
         getBuildingUPRNsById(building_id).then(function(result){
