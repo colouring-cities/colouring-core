@@ -27,6 +27,7 @@ import {
     likeBuilding,
     unlikeBuilding
 } from './building';
+import { searchLocation, queryLocation } from './search';
 import tileserver from './tileserver';
 import { parseBuildingURL } from './parse';
 
@@ -388,6 +389,41 @@ server.post('/api/key', function(req, res){
 
     getNewUserAPIKey(req.session.user_id).then(function(api_key){
         res.send(api_key);
+    }).catch(function(error){
+        res.send(error);
+    });
+})
+
+// GET search
+server.get('/search', function(req, res){
+    const search_term = req.query.q;
+    if (!search_term){
+        res.send({
+            error: 'Please provide a search term'
+        })
+        return
+    }
+    queryLocation(search_term).then((results) => {
+        if (typeof(results) === "undefined") {
+            res.send({
+                error: 'Database error'
+            })
+            return
+        }
+        res.send({
+            results: results.map(item => {
+                // map from DB results to GeoJSON Feature objects
+                const geom = JSON.parse(item.st_asgeojson)
+                return {
+                    type: 'Feature',
+                    attributes: {
+                        label: item.search_str,
+                        zoom: item.zoom || 9
+                    },
+                    geometry: geom
+                }
+            })
+        })
     }).catch(function(error){
         res.send(error);
     });
