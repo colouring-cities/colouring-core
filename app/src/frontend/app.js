@@ -16,7 +16,18 @@ import SignUp from './signup';
 import Welcome from './welcome';
 
 
-
+/**
+ * App component
+ *
+ * This is the top-level stateful frontend component
+ * - rendered from props, instantiated either server-side in server.js or client-side in
+ *   client.js
+ * - state (including user, current building) is initialised from props
+ * - callbacks to update top-level state are passed down to subcomponents
+ * - render method wraps a react-router switch - this drives which version of the sidebar and
+ *   map or other pages are rendered, based on the URL. Use a react-router-dom <Link /> in
+ *   child components to navigate without a full page reload.
+ */
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -159,6 +170,10 @@ class App extends React.Component {
         );
     }
 }
+
+/**
+ * Component to fall back on in case of 404 or no other match
+ */
 const NotFound = () => (
     <article>
         <section className="main-col">
