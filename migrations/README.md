@@ -44,6 +44,8 @@ GRANT SELECT, INSERT ON TABLE logs to appusername;
 GRANT USAGE ON ALL SEQUENCES IN SCHEMA public to appusername;
 -- use postgis/pgcrypto functions
 GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO appusername;
+-- read map search locations
+GRANT SELECT ON TABLE search_locations to appusername;
 ```
 
 Set or update passwords:
