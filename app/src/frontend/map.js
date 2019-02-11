@@ -3,10 +3,12 @@ import { Map, TileLayer, ZoomControl, AttributionControl } from 'react-leaflet-u
 
 import '../../node_modules/leaflet/dist/leaflet.css'
 import './map.css'
-import ThemeSwitcher from './theme-switcher';
-import { parseCategoryURL } from '../parse';
-import Legend from './legend';
+
 import { HelpIcon } from './icons';
+import Legend from './legend';
+import { parseCategoryURL } from '../parse';
+import SearchBox from './search-box';
+import ThemeSwitcher from './theme-switcher';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
@@ -24,7 +26,16 @@ class ColouringMap extends Component {
             zoom: 16
         };
         this.handleClick = this.handleClick.bind(this);
+        this.handleLocate = this.handleLocate.bind(this);
         this.themeSwitch = this.themeSwitch.bind(this);
+    }
+
+    handleLocate(lat, lng, zoom){
+        this.setState({
+            lat: lat,
+            lng: lng,
+            zoom: zoom
+        })
     }
 
     handleClick(e) {
@@ -132,6 +143,11 @@ class ColouringMap extends Component {
                 }
                 <Legend slug={cat} />
                 <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
+                {
+                    this.props.match.url !== '/'? (
+                        <SearchBox onLocate={this.handleLocate} is_building={is_building} />
+                    ) : null
+                }
             </Fragment>
         );
     }

@@ -1,0 +1,29 @@
+.search-box {
+    position: absolute;
+    top: 3.625rem;
+    left: 25.5rem;
+    z-index: 1000;
+}
+.building.search-box {
+    top: 0.5rem;
+}
+.search-box form,
+.search-box .search-box-results {
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0px 0px 1px 1px #222222;
+}
+.search-box button {
+    margin-bottom: 0;
+}
+.search-box .search-box-results {
+    margin-top: 0.25rem;
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+}
+.search-box-result {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    border-bottom: 1px solid #eee;
+}
