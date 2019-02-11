@@ -39,3 +39,5 @@ sed -i 's/^\"POINT/\"SRID=4326;POINT/' codepo_gb/london_postcodes_4326.csv
 # Load
 cat codepo_gb/london_postcodes_4326.csv \
     | psql -c "COPY search_locations ( center, search_str ) FROM stdin WITH CSV HEADER;"
+
+psql -c "UPDATE search_locations SET zoom = 18, search_class = 'postcode';"
