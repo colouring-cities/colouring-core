@@ -42,6 +42,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "adamdennett",
+      "name": "Adam Dennett",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5138911?v=4",
+      "profile": "https://github.com/adamdennett",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7
