@@ -4,7 +4,7 @@ node_js:
 cache:
   directories:
     - app/node_modules
+before_script:
+  - cd $TRAVIS_BUILD_DIR/app && npm install
 script:
-  - cd app
-  - npm run build
-  - npm test
+  - cd $TRAVIS_BUILD_DIR/app && npm test
