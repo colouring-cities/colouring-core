@@ -1,4 +1,5 @@
 # Colouring London
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 How many buildings are there in London? What are their characteristics? Where
 are they located and how do they contribute to the city? How adaptable are
@@ -55,3 +56,15 @@ and technical support.
 
     You should have received a copy of the GNU General Public License
     along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars0.githubusercontent.com/u/6041913?v=4" width="100px;" alt="dominic"/><br /><sub><b>dominic</b></sub>](https://dghumphrey.co.uk/)<br />[🤔](#ideas-dominijk "Ideas, Planning, & Feedback") [🖋](#content-dominijk "Content") |
+| :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
