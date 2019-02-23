@@ -1,5 +1,5 @@
 # Colouring London
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 How many buildings are there in London? What are their characteristics? Where
 are they located and how do they contribute to the city? How adaptable are
@@ -63,8 +63,8 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/all-contri
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars0.githubusercontent.com/u/6041913?v=4" width="100px;" alt="dominic"/><br /><sub><b>dominic</b></sub>](https://dghumphrey.co.uk/)<br />[🤔](#ideas-dominijk "Ideas, Planning, & Feedback") [🖋](#content-dominijk "Content") |
-| :---: |
+| [<img src="https://avatars0.githubusercontent.com/u/6041913?v=4" width="100px;" alt="dominic"/><br /><sub><b>dominic</b></sub>](https://dghumphrey.co.uk/)<br />[🤔](#ideas-dominijk "Ideas, Planning, & Feedback") [🖋](#content-dominijk "Content") | [<img src="https://avatars3.githubusercontent.com/u/42236514?v=4" width="100px;" alt="polly64"/><br /><sub><b>polly64</b></sub>](https://github.com/polly64)<br />[🎨](#design-polly64 "Design") [🤔](#ideas-polly64 "Ideas, Planning, & Feedback") [🖋](#content-polly64 "Content") [🔍](#fundingFinding-polly64 "Funding Finding") |
+| :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
