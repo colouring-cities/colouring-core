@@ -4,6 +4,7 @@
  */
 import express from 'express';
 
+import { get, put } from './cache';
 import { render_tile } from './tile';
 import { strictParseInt } from '../parse';
 
@@ -51,12 +52,27 @@ function handle_tile_request(tileset, req, res) {
         return {error:'Bad parameter'}
     }
 
-    render_tile(tileset, int_z, int_x, int_y, undefined, function(err, im) {
-        if (err) throw err
+    get(tileset, int_z, int_x, int_y, (err, im) => {
+        if (err) {
+            render_tile(tileset, int_z, int_x, int_y, undefined, (err, im) => {
+                if (err) throw err
 
-        res.writeHead(200, {'Content-Type': 'image/png'})
-        res.end(im)
+                put(im, tileset, z, x, y, (err) => {
+                    if (err) {
+                        console.error(err)
+                    }
+
+                    res.writeHead(200, {'Content-Type': 'image/png'})
+                    res.end(im)
+                })
+
+            })
+        } else {
+            res.writeHead(200, {'Content-Type': 'image/png'})
+            res.end(im)
+        }
     })
+
 }
 
 function handle_highlight_tile_request(req, res) {

@@ -18,5 +18,9 @@ etl/**/*.xls
 etl/**/*.xlsx
 etl/**/*.zip
 
+# Cache
+app/tilecache/**/*.png
+app/tilecache/**/*.mbtiles
+
 # Notes
 TODO
