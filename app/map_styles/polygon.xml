@@ -35,7 +35,6 @@
     </Style>
     <Style name="highlight">
         <Rule>
-            <Filter>[focus] = true</Filter>
             <LineSymbolizer stroke="#00ffffaa" stroke-width="4.5" />
             <LineSymbolizer stroke="#00ffffff" stroke-width="2.5" />
         </Rule>

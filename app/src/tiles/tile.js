@@ -182,13 +182,11 @@ function render_tile(tileset, z, x, y, geometry_id, cb){
 function get_highlight_table_def(geometry_id) {
     return `(
         SELECT
-            g.geometry_id = ${geometry_id} as focus,
             g.geometry_geom
         FROM
-            geometries as g,
-            buildings as b
+            geometries as g
         WHERE
-            g.geometry_id = b.geometry_id
+            g.geometry_id = ${geometry_id}
     ) as highlight`
 }
 
