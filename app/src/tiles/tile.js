@@ -189,4 +189,4 @@ function get_highlight_table_def(geometry_id) {
 }
 
 
-export { get_bbox, get_xyz, render_tile };
+export { get_bbox, get_xyz, render_tile, TILE_SIZE };

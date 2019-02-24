@@ -6,8 +6,16 @@ import express from 'express';
 import sharp from 'sharp';
 
 import { get, put } from './cache';
-import { render_tile, get_bbox, get_xyz } from './tile';
+import { render_tile, get_bbox, get_xyz, TILE_SIZE } from './tile';
 import { strictParseInt } from '../parse';
+
+// zoom level when we switch from rendering direct from database to instead composing tiles
+// from the zoom level below - gets similar effect, with much lower load on Postgres
+const STITCH_THRESHOLD = 12
+
+// Hard-code extent so we can short-circuit rendering and return empty/transparent tiles outside the area of interest
+// bbox in CRS espg:3957 in form: [w, s, e, n]
+const EXTENT_BBOX = [-61149.622628, 6667754.851372, 28128.826409, 6744803.375884]
 
 // tiles router
 const router = express.Router()
@@ -63,6 +71,9 @@ function handle_tile_request(tileset, req, res) {
 }
 
 function load_tile(tileset, z, x, y) {
+    if (outside_extent(z, x, y)) {
+        return empty_tile()
+    }
     return new Promise((resolve) => {
         get(tileset, z, x, y, (err, im) => {
             if (err) {
@@ -79,9 +90,7 @@ function load_tile(tileset, z, x, y) {
 }
 
 function render_or_stitch_tile(tileset, z, x, y) {
-    const STITCH_THRESHOLD = 12
     if (z <= STITCH_THRESHOLD) {
-
         return stitch_tile(tileset, z, x, y).then(im => {
             return new Promise((resolve, reject) => {
                 put(im, tileset, z, x, y, (err) => {
@@ -115,6 +124,22 @@ function render_or_stitch_tile(tileset, z, x, y) {
     }
 }
 
+function outside_extent(z, x, y) {
+    const xy = get_xyz(EXTENT_BBOX, z);
+    return xy.minY > y || xy.maxY < y || xy.minX > x || xy.maxX < x;
+}
+
+function empty_tile() {
+    return sharp({
+        create: {
+            width: TILE_SIZE,
+            height: TILE_SIZE,
+            channels: 4,
+            background: { r: 0, g: 0, b: 0, alpha: 0 }
+        }
+    }).png().toBuffer()
+}
+
 function stitch_tile(tileset, z, x, y) {
     const bbox = get_bbox(z, x, y)
     const next_z = z + 1
@@ -137,8 +162,8 @@ function stitch_tile(tileset, z, x, y) {
         // instead of repeatedly creating `sharp` objects, to png, to buffer...
         return sharp({
             create: {
-                width: 512,
-                height: 512,
+                width: TILE_SIZE * 2,
+                height: TILE_SIZE * 2,
                 channels: 4,
                 background: { r: 0, g: 0, b: 0, alpha: 0 }
             }
@@ -158,7 +183,7 @@ function stitch_tile(tileset, z, x, y) {
             ).png().toBuffer()
         }).then((buf) => {
             return sharp(buf
-            ).resize(256, 256, { fit: 'inside' }
+            ).resize(TILE_SIZE, TILE_SIZE, { fit: 'inside' }
             ).png().toBuffer()
         })
     });
