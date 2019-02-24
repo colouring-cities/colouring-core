@@ -3,9 +3,10 @@
  *
  */
 import express from 'express';
+import sharp from 'sharp';
 
 import { get, put } from './cache';
-import { render_tile } from './tile';
+import { render_tile, get_bbox, get_xyz } from './tile';
 import { strictParseInt } from '../parse';
 
 // tiles router
@@ -52,28 +53,117 @@ function handle_tile_request(tileset, req, res) {
         return {error:'Bad parameter'}
     }
 
-    get(tileset, int_z, int_x, int_y, (err, im) => {
-        if (err) {
-            render_tile(tileset, int_z, int_x, int_y, undefined, (err, im) => {
-                if (err) throw err
+    load_tile(tileset, int_z, int_x, int_y).then((im) => {
+        res.writeHead(200, {'Content-Type': 'image/png'})
+        res.end(im)
+    }).catch((err) => {
+        console.error(err)
+        res.status(500).send({error: err})
+    })
+}
 
+function load_tile(tileset, z, x, y) {
+    return new Promise((resolve) => {
+        get(tileset, z, x, y, (err, im) => {
+            if (err) {
+                render_or_stitch_tile(tileset, z, x, y)
+                    .then((im) => {
+                        resolve(im)
+                    })
+            } else {
+                console.log(`From cache ${tileset}/${z}/${x}/${y}`)
+                resolve(im)
+            }
+        })
+    })
+}
+
+function render_or_stitch_tile(tileset, z, x, y) {
+    const STITCH_THRESHOLD = 12
+    if (z <= STITCH_THRESHOLD) {
+
+        return stitch_tile(tileset, z, x, y).then(im => {
+            return new Promise((resolve, reject) => {
                 put(im, tileset, z, x, y, (err) => {
                     if (err) {
                         console.error(err)
+                    } else {
+                        console.log(`Stitch ${tileset}/${z}/${x}/${y}`)
                     }
-
-                    res.writeHead(200, {'Content-Type': 'image/png'})
-                    res.end(im)
+                    resolve(im)
                 })
-
             })
-        } else {
-            res.writeHead(200, {'Content-Type': 'image/png'})
-            res.end(im)
-        }
-    })
+        })
+    } else {
 
+        return new Promise((resolve, reject) => {
+            render_tile(tileset, z, x, y, undefined, (err, im) => {
+                if (err) {
+                    reject(err)
+                    return
+                }
+                put(im, tileset, z, x, y, (err) => {
+                    if (err) {
+                        console.error(err)
+                    } else {
+                        console.log(`Render ${tileset}/${z}/${x}/${y}`)
+                    }
+                    resolve(im)
+                })
+            })
+        })
+    }
 }
+
+function stitch_tile(tileset, z, x, y) {
+    const bbox = get_bbox(z, x, y)
+    const next_z = z + 1
+    const next_xy = get_xyz(bbox, next_z)
+
+    return Promise.all([
+        // recurse down through zoom levels, using cache if available...
+        load_tile(tileset, next_z, next_xy.minX, next_xy.minY),
+        load_tile(tileset, next_z, next_xy.maxX, next_xy.minY),
+        load_tile(tileset, next_z, next_xy.minX, next_xy.maxY),
+        load_tile(tileset, next_z, next_xy.maxX, next_xy.maxY)
+    ]).then(([
+        top_left,
+        top_right,
+        bottom_left,
+        bottom_right
+    ]) => {
+        // not possible to chain overlays in a single pipeline, but there may still be a better
+        // way to create image buffer here (four tiles resize to one at the next zoom level)
+        // instead of repeatedly creating `sharp` objects, to png, to buffer...
+        return sharp({
+            create: {
+                width: 512,
+                height: 512,
+                channels: 4,
+                background: { r: 0, g: 0, b: 0, alpha: 0 }
+            }
+        }).overlayWith(
+            top_left, { gravity: sharp.gravity.northwest }
+        ).png().toBuffer().then((buf) => {
+            return sharp(buf).overlayWith(
+                top_right, { gravity: sharp.gravity.northeast }
+            ).png().toBuffer()
+        }).then((buf) => {
+            return sharp(buf).overlayWith(
+                bottom_left, { gravity: sharp.gravity.southwest }
+            ).png().toBuffer()
+        }).then((buf) => {
+            return sharp(buf).overlayWith(
+                bottom_right, { gravity: sharp.gravity.southeast }
+            ).png().toBuffer()
+        }).then((buf) => {
+            return sharp(buf
+                ).resize(256, 256, {fit: 'inside'}
+                ).png().toBuffer()
+        })
+    });
+}
+
 
 function handle_highlight_tile_request(req, res) {
     const { z, x, y } = req.params
