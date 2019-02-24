@@ -40,7 +40,7 @@
             <LineSymbolizer stroke="#00ffffff" stroke-width="2.5" />
         </Rule>
     </Style>
-    <Style name="location_info_count">
+    <Style name="location">
         <Rule>
             <Filter>[location_info_count] &gt;= 8</Filter>
             <PolygonSymbolizer fill="#084081" />
@@ -178,7 +178,7 @@
             <PolygonSymbolizer fill="#7a5732" />
         </Rule>
     </Style>
-    <Style name="planning_in_conservation_area">
+    <Style name="conservation_area">
         <Rule>
             <PolygonSymbolizer fill="#73ebaf" />
         </Rule>
