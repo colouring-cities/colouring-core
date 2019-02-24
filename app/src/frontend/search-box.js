@@ -89,7 +89,7 @@ class SearchBox extends Component {
         return (
             <div className={`search-box ${this.props.is_building? "building" : ""}`}>
                 <form action="/search" method="GET" onSubmit={this.search}
-                    class="form-inline">
+                    className="form-inline">
                     <input
                         className="form-control"
                         type="search"
@@ -100,7 +100,7 @@ class SearchBox extends Component {
                         aria-label="Search for a postcode"
                         onChange={this.handleChange}
                         />
-                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                    <button className="btn btn-outline-dark" type="submit">Search</button>
                 </form>
                 { resultsList }
             </div>
