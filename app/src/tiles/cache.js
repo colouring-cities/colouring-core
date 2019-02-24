@@ -18,12 +18,11 @@
 // and then use stdlib `import fs from 'fs';`
 import fs from 'node-fs';
 
-// const CACHE_PATH = process.env.CACHE_PATH
-const CACHE_PATH = '/home/tom/projects/colouring-london/colouring-london/app/tilecache'
+const CACHE_PATH = process.env.TILECACHE_PATH
 
 function get(tileset, z, x, y, cb){
     if (!should_try_cache(tileset, z)) {
-        cb("Skip cache", null)
+        cb(`Skip cache get ${tileset}/${z}/${x}/${y}`, null)
         return
     }
     const dir = `${CACHE_PATH}/${tileset}/${z}/${x}`
@@ -33,7 +32,7 @@ function get(tileset, z, x, y, cb){
 
 function put(im, tileset, z, x, y, cb){
     if (!should_try_cache(tileset, z)) {
-        cb("Skip cache")
+        cb(`Skip cache put ${tileset}/${z}/${x}/${y}`)
         return
     }
     const dir = `${CACHE_PATH}/${tileset}/${z}/${x}`
@@ -54,12 +53,16 @@ function put(im, tileset, z, x, y, cb){
 }
 
 function should_try_cache(tileset, z) {
+    if (tileset === 'date_year'){
+        // cache high zoom because of front page hits
+        return z <= 16
+    }
     if (tileset === 'base_light' ||  tileset === 'base_night') {
         // cache for higher zoom levels (unlikely to change)
-        return z <= 15
+        return z <= 17
     }
     // else cache for lower zoom levels (change slowly)
-    return z <= 12
+    return z <= 13
 }
 
 export { get, put };
