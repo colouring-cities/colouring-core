@@ -14,7 +14,7 @@ function strictParseInt(value) {
 }
 
 
-function parseBuildingURL(url){
+function parseBuildingURL(url) {
     const re = /\/building\/([^/]+).html/;
     const matches = re.exec(url);
 
@@ -30,7 +30,7 @@ function parseCategoryURL(url) {
         return default_cat
     }
     const matches = /^\/(view|edit)\/([^/.]+)/.exec(url);
-    const cat = (matches && matches.length >= 3)? matches[2] : default_cat;
+    const cat = (matches && matches.length >= 3) ? matches[2] : default_cat;
     return cat;
 }
 

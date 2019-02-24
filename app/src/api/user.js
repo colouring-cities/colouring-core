@@ -7,10 +7,10 @@ import db from '../db';
 
 function createUser(user) {
     if (!user.password || user.password.length < 8) {
-        return Promise.reject({error: 'Password must be at least 8 characters'})
+        return Promise.reject({ error: 'Password must be at least 8 characters' })
     }
     if (user.password.length > 70) {
-        return Promise.reject({error: 'Password must be at most 70 characters'})
+        return Promise.reject({ error: 'Password must be at most 70 characters' })
     }
     return db.one(
         `INSERT
@@ -26,21 +26,21 @@ function createUser(user) {
             crypt($3, gen_salt('bf'))
         ) RETURNING user_id
         `, [
-          user.username,
-          user.email,
-          user.password
+            user.username,
+            user.email,
+            user.password
         ]
-    ).catch(function(error){
+    ).catch(function (error) {
         console.error('Error:', error)
 
-        if (error.detail.indexOf('already exists') !== -1){
-            if (error.detail.indexOf('username') !== -1){
-                return {error:'Username already registered'};
+        if (error.detail.indexOf('already exists') !== -1) {
+            if (error.detail.indexOf('username') !== -1) {
+                return { error: 'Username already registered' };
             } else if (error.detail.indexOf('email') !== -1) {
-                return {error: 'Email already registered'};
+                return { error: 'Email already registered' };
             }
         }
-        return {error: 'Database error'}
+        return { error: 'Database error' }
     });
 }
 
@@ -55,18 +55,18 @@ function authUser(username, password) {
         WHERE
         username = $1
         `, [
-          username,
-          password
+            username,
+            password
         ]
-    ).then(function(user){
+    ).then(function (user) {
         if (user && user.auth_ok) {
-            return {user_id: user.user_id}
+            return { user_id: user.user_id }
         } else {
-            return {error: 'Username or password not recognised'}
+            return { error: 'Username or password not recognised' }
         }
-    }).catch(function(err){
+    }).catch(function (err) {
         console.error(err);
-        return {error: 'Username or password not recognised'};
+        return { error: 'Username or password not recognised' };
     })
 }
 
@@ -81,7 +81,7 @@ function getUserById(user_id) {
         `, [
             user_id
         ]
-    ).catch(function(error){
+    ).catch(function (error) {
         console.error('Error:', error)
         return undefined;
     });
@@ -100,9 +100,9 @@ function getNewUserAPIKey(user_id) {
         `, [
             user_id
         ]
-    ).catch(function(error){
+    ).catch(function (error) {
         console.error('Error:', error)
-        return {error: 'Failed to generate new API key.'};
+        return { error: 'Failed to generate new API key.' };
     });
 }
 
@@ -117,7 +117,7 @@ function authAPIUser(api_key) {
         `, [
             api_key
         ]
-    ).catch(function(error){
+    ).catch(function (error) {
         console.error('Error:', error)
         return undefined;
     });

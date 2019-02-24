@@ -31,14 +31,14 @@ function queryBuildingsAtPoint(lng, lat) {
             )
         `,
         [lng, lat]
-    ).catch(function(error){
+    ).catch(function (error) {
         console.error(error);
         return undefined;
     });
 }
 
 function queryBuildingsByReference(key, id) {
-    if (key === 'toid'){
+    if (key === 'toid') {
         return db.manyOrNone(
             `SELECT
                 *
@@ -48,7 +48,7 @@ function queryBuildingsByReference(key, id) {
                 ref_toid = $1
             `,
             [id]
-        ).catch(function(error){
+        ).catch(function (error) {
             console.error(error);
             return undefined;
         });
@@ -65,19 +65,19 @@ function queryBuildingsByReference(key, id) {
                 p.uprn = $1
             `,
             [id]
-        ).catch(function(error){
+        ).catch(function (error) {
             console.error(error);
             return undefined;
         });
     }
-    return {error: 'Key must be UPRN or TOID'};
+    return { error: 'Key must be UPRN or TOID' };
 }
 
 function getBuildingById(id) {
     return db.one(
         "SELECT * FROM buildings WHERE building_id = $1",
         [id]
-    ).catch(function(error){
+    ).catch(function (error) {
         console.error(error);
         return undefined;
     });
@@ -89,7 +89,7 @@ function getBuildingLikeById(building_id, user_id) {
         [building_id, user_id]
     ).then(res => {
         return res && res.like
-    }).catch(function(error){
+    }).catch(function (error) {
         console.error(error);
         return undefined;
     });
@@ -99,7 +99,7 @@ function getBuildingUPRNsById(id) {
     return db.any(
         "SELECT uprn, parent_uprn FROM building_properties WHERE building_id = $1",
         [id]
-    ).catch(function(error){
+    ).catch(function (error) {
         console.error(error);
         return undefined;
     });
@@ -160,10 +160,9 @@ function saveBuilding(building_id, building, user_id) {
                 )
             });
         });
-    }).catch(function(error){
-        // TODO report transaction error as 'Need to re-fetch building before update'
+    }).catch(function (error) {
         console.error(error);
-        return {error: error};
+        return { error: error };
     });
 }
 
@@ -175,7 +174,7 @@ function likeBuilding(building_id, user_id) {
     // - insert changeset
     // - update building to latest state
     // commit or rollback (serializable - could be more compact?)
-    return db.tx({serializable}, t => {
+    return db.tx({ serializable }, t => {
         return t.none(
             "INSERT INTO building_user_likes ( building_id, user_id ) VALUES ($1, $2);",
             [building_id, user_id]
@@ -191,7 +190,7 @@ function likeBuilding(building_id, user_id) {
                         $1:json, $2, $3
                     ) RETURNING log_id
                     `,
-                    [{likes_total: building.likes}, building_id, user_id]
+                    [{ likes_total: building.likes }, building_id, user_id]
                 ).then(revision => {
                     return t.one(
                         `UPDATE buildings
@@ -208,12 +207,11 @@ function likeBuilding(building_id, user_id) {
                 })
             });
         });
-    }).catch(function(error){
-        // TODO report transaction error as 'Need to re-fetch building before update'
+    }).catch(function (error) {
         console.error(error);
-        if (error.detail && error.detail.includes("already exists")){
+        if (error.detail && error.detail.includes("already exists")) {
             // 'already exists' is thrown if user already liked it
-            return {error: 'It looks like you already like that building!'};
+            return { error: 'It looks like you already like that building!' };
         } else {
             return undefined
         }
@@ -228,7 +226,7 @@ function unlikeBuilding(building_id, user_id) {
     // - insert changeset
     // - update building to latest state
     // commit or rollback (serializable - could be more compact?)
-    return db.tx({serializable}, t => {
+    return db.tx({ serializable }, t => {
         return t.none(
             "DELETE FROM building_user_likes WHERE building_id = $1 AND user_id = $2;",
             [building_id, user_id]
@@ -244,7 +242,7 @@ function unlikeBuilding(building_id, user_id) {
                         $1:json, $2, $3
                     ) RETURNING log_id
                     `,
-                    [{likes_total: building.likes}, building_id, user_id]
+                    [{ likes_total: building.likes }, building_id, user_id]
                 ).then(revision => {
                     return t.one(
                         `UPDATE buildings
@@ -261,12 +259,11 @@ function unlikeBuilding(building_id, user_id) {
                 })
             });
         });
-    }).catch(function(error){
-        // TODO report transaction error as 'Need to re-fetch building before update'
+    }).catch(function (error) {
         console.error(error);
-        if (error.detail && error.detail.includes("already exists")){
+        if (error.detail && error.detail.includes("already exists")) {
             // 'already exists' is thrown if user already liked it
-            return {error: 'It looks like you already like that building!'};
+            return { error: 'It looks like you already like that building!' };
         } else {
             return undefined
         }
@@ -331,7 +328,7 @@ const BUILDING_FIELD_WHITELIST = new Set([
  * @param {Set} whitelist
  * @returns {[object, object]}
  */
-function compare(old_obj, new_obj, whitelist){
+function compare(old_obj, new_obj, whitelist) {
     const reverse_patch = {}
     const forward_patch = {}
     for (const [key, value] of Object.entries(new_obj)) {

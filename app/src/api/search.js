@@ -8,7 +8,7 @@
  */
 import db from '../db';
 
-function queryLocation(term){
+function queryLocation(term) {
     const max_results = 5;
     return db.manyOrNone(
         `SELECT

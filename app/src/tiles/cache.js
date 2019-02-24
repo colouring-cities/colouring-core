@@ -20,7 +20,7 @@ import fs from 'node-fs';
 
 const CACHE_PATH = process.env.TILECACHE_PATH
 
-function get(tileset, z, x, y, cb){
+function get(tileset, z, x, y, cb) {
     if (!should_try_cache(tileset, z)) {
         cb(`Skip cache get ${tileset}/${z}/${x}/${y}`, null)
         return
@@ -30,7 +30,7 @@ function get(tileset, z, x, y, cb){
     fs.readFile(fname, cb)
 }
 
-function put(im, tileset, z, x, y, cb){
+function put(im, tileset, z, x, y, cb) {
     if (!should_try_cache(tileset, z)) {
         cb(`Skip cache put ${tileset}/${z}/${x}/${y}`)
         return
@@ -40,7 +40,7 @@ function put(im, tileset, z, x, y, cb){
     fs.writeFile(fname, im, 'binary', (err) => {
         if (err && err.code === 'ENOENT') {
             fs.mkdir(dir, 0o755, true, (err) => {
-                if (err){
+                if (err) {
                     cb(err);
                 } else {
                     fs.writeFile(fname, im, 'binary', cb);
@@ -53,11 +53,11 @@ function put(im, tileset, z, x, y, cb){
 }
 
 function should_try_cache(tileset, z) {
-    if (tileset === 'date_year'){
+    if (tileset === 'date_year') {
         // cache high zoom because of front page hits
         return z <= 16
     }
-    if (tileset === 'base_light' ||  tileset === 'base_night') {
+    if (tileset === 'base_light' || tileset === 'base_night') {
         // cache for higher zoom levels (unlikely to change)
         return z <= 17
     }

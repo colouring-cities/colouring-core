@@ -48,17 +48,17 @@ function handle_tile_request(tileset, req, res) {
     const int_x = strictParseInt(x);
     const int_y = strictParseInt(y);
 
-    if (isNaN(int_x) || isNaN(int_y) || isNaN(int_z)){
+    if (isNaN(int_x) || isNaN(int_y) || isNaN(int_z)) {
         console.error("Missing x or y or z")
-        return {error:'Bad parameter'}
+        return { error: 'Bad parameter' }
     }
 
     load_tile(tileset, int_z, int_x, int_y).then((im) => {
-        res.writeHead(200, {'Content-Type': 'image/png'})
+        res.writeHead(200, { 'Content-Type': 'image/png' })
         res.end(im)
     }).catch((err) => {
         console.error(err)
-        res.status(500).send({error: err})
+        res.status(500).send({ error: err })
     })
 }
 
@@ -158,8 +158,8 @@ function stitch_tile(tileset, z, x, y) {
             ).png().toBuffer()
         }).then((buf) => {
             return sharp(buf
-                ).resize(256, 256, {fit: 'inside'}
-                ).png().toBuffer()
+            ).resize(256, 256, { fit: 'inside' }
+            ).png().toBuffer()
         })
     });
 }
@@ -171,23 +171,23 @@ function handle_highlight_tile_request(req, res) {
     const int_x = strictParseInt(x);
     const int_y = strictParseInt(y);
 
-    if (isNaN(int_x) || isNaN(int_y) || isNaN(int_z)){
+    if (isNaN(int_x) || isNaN(int_y) || isNaN(int_z)) {
         console.error("Missing x or y or z")
-        return {error:'Bad parameter'}
+        return { error: 'Bad parameter' }
     }
 
     // highlight layer uses geometry_id to outline a single building
     const { highlight } = req.query
     const geometry_id = strictParseInt(highlight);
-    if(isNaN(geometry_id)){
-        res.status(400).send({error:'Bad parameter'})
+    if (isNaN(geometry_id)) {
+        res.status(400).send({ error: 'Bad parameter' })
         return
     }
 
-    render_tile('highlight', int_z, int_x, int_y, geometry_id, function(err, im) {
+    render_tile('highlight', int_z, int_x, int_y, geometry_id, function (err, im) {
         if (err) throw err
 
-        res.writeHead(200, {'Content-Type': 'image/png'})
+        res.writeHead(200, { 'Content-Type': 'image/png' })
         res.end(im)
     })
 }

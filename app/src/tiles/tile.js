@@ -14,7 +14,7 @@ const DATASOURCE_CONFIG = {
     'password': process.env.PGPASSWORD,
     'port': process.env.PGPORT,
     'geometry_field': 'geometry_geom',
-    'extent' : '-20005048.4188,-9039211.13765,19907487.2779,17096598.5401',
+    'extent': '-20005048.4188,-9039211.13765,19907487.2779,17096598.5401',
     'srid': 3857,
     'type': 'postgis'
 }
@@ -129,26 +129,26 @@ const mercator = new SphericalMercator({
     size: TILE_SIZE
 });
 
-function get_bbox(z, x, y){
+function get_bbox(z, x, y) {
     return mercator.bbox(x, y, z, false, '900913');
 }
 
-function get_xyz(bbox, z){
+function get_xyz(bbox, z) {
     return mercator.xyz(bbox, z, false, '900913')
 }
 
-function render_tile(tileset, z, x, y, geometry_id, cb){
+function render_tile(tileset, z, x, y, geometry_id, cb) {
     const bbox = get_bbox(z, x, y)
 
     const map = new mapnik.Map(TILE_SIZE, TILE_SIZE, PROJ4_STRING);
     map.bufferSize = TILE_BUFFER_SIZE;
     const layer = new mapnik.Layer('tile', PROJ4_STRING);
 
-    const table_def = (tileset === 'highlight')?
+    const table_def = (tileset === 'highlight') ?
         get_highlight_table_def(geometry_id)
         : MAP_STYLE_TABLE_DEFINITIONS[tileset];
 
-    const conf = Object.assign({table: table_def}, DATASOURCE_CONFIG)
+    const conf = Object.assign({ table: table_def }, DATASOURCE_CONFIG)
 
     var postgis;
     try {
@@ -159,7 +159,7 @@ function render_tile(tileset, z, x, y, geometry_id, cb){
         map.load(
             path.join(__dirname, '..', 'map_styles', 'polygon.xml'),
             { strict: true },
-            function(err, map){
+            function (err, map) {
                 if (err) throw err
 
                 map.add_layer(layer)
@@ -171,7 +171,7 @@ function render_tile(tileset, z, x, y, geometry_id, cb){
                 });
             }
         )
-    } catch(err) {
+    } catch (err) {
         console.error(err);
     }
 }
