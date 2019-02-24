@@ -12,8 +12,11 @@
  *   at zoom level n
  *
  */
-import fs from 'fs';
-import path from 'path';
+
+// Using node-fs package to patch fs
+// for node >10 we could drop this in favour of fs.mkdir (which has recursive option)
+// and then use stdlib `import fs from 'fs';`
+import fs from 'node-fs';
 
 // const CACHE_PATH = process.env.CACHE_PATH
 const CACHE_PATH = '/home/tom/projects/colouring-london/colouring-london/app/tilecache'
@@ -37,31 +40,21 @@ function put(im, tileset, z, x, y, cb){
     const fname = `${dir}/${y}.png`
     fs.writeFile(fname, im, 'binary', (err) => {
         if (err && err.code === 'ENOENT') {
-            try {
-                console.log("trying")
-                mkdir_recursive(dir);
-                fs.writeFile(fname, im, 'binary', cb);
-            } catch (error) {
-                console.log("mkdir error")
-                cb(err);
-            }
+            fs.mkdir(dir, 0o755, true, (err) => {
+                if (err){
+                    cb(err);
+                } else {
+                    fs.writeFile(fname, im, 'binary', cb);
+                }
+            });
         } else {
             cb(err)
         }
     });
 }
 
-// for node >10 we could drop this in favour of fs.mkdir(dir, { recursive: true }, (err) => {})
-function mkdir_recursive(dir) {
-    const parent = path.dirname(dir);
-    if (!fs.existsSync(parent)) {
-        mkdir_recursive(parent)
-    }
-    fs.mkdirSync(dir);
-}
-
 function should_try_cache(tileset, z) {
-    if (tileset === 'base_light' ||  tileset === 'base_light') {
+    if (tileset === 'base_light' ||  tileset === 'base_night') {
         // cache for higher zoom levels (unlikely to change)
         return z <= 15
     }

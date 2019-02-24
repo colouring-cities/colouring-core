@@ -98,7 +98,7 @@ class ColouringMap extends Component {
             <TileLayer
                 key={data_tileset}
                 url={`/tiles/${data_tileset}/{z}/{x}/{y}.png?rev=${rev}`}
-                minZoom={14} />
+                minZoom={9} />
             : null;
 
         // highlight
@@ -120,7 +120,7 @@ class ColouringMap extends Component {
                 <Map
                     center={position}
                     zoom={this.state.zoom}
-                    minZoom={10}
+                    minZoom={9}
                     maxZoom={18}
                     doubleClickZoom={false}
                     zoomControl={false}
