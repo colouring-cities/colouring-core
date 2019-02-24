@@ -5,7 +5,7 @@
 import express from 'express';
 
 import { render_tile } from './tile';
-import { strictParseInt } from './parse';
+import { strictParseInt } from '../parse';
 
 // tiles router
 const router = express.Router()

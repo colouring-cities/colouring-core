@@ -16,7 +16,7 @@ import pgConnect from 'connect-pg-simple';
 
 import App from './frontend/app';
 import db from './db';
-import { authUser, createUser, getUserById, authAPIUser, getNewUserAPIKey } from './user';
+import { authUser, createUser, getUserById, authAPIUser, getNewUserAPIKey } from './api/user';
 import {
     queryBuildingsAtPoint,
     queryBuildingsByReference,
@@ -26,9 +26,9 @@ import {
     saveBuilding,
     likeBuilding,
     unlikeBuilding
-} from './building';
-import { queryLocation } from './search';
-import tileserver from './tileserver';
+} from './api/building';
+import { queryLocation } from './api/search';
+import tileserver from './tiles/tileserver';
 import { parseBuildingURL } from './parse';
 
 // create server

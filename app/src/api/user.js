@@ -2,7 +2,7 @@
  * User data access
  *
  */
-import db from './db';
+import db from '../db';
 
 
 function createUser(user) {

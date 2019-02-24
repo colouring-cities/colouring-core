@@ -6,7 +6,7 @@ import path from 'path';
 import mapnik from 'mapnik';
 import SphericalMercator from '@mapbox/sphericalmercator';
 
-import { strictParseInt } from './parse';
+import { strictParseInt } from '../parse';
 
 // connection details from environment variables
 const DATASOURCE_CONFIG = {
