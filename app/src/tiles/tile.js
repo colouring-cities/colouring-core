@@ -162,15 +162,15 @@ function render_tile(tileset, z, x, y, geometry_id, cb){
             path.join(__dirname, '..', 'map_styles', 'polygon.xml'),
             { strict: true },
             function(err, map){
-                if (err) {
-                    console.error(err);
-                    return
-                }
+                if (err) throw err
 
                 map.add_layer(layer)
                 const im = new mapnik.Image(map.width, map.height)
                 map.extent = bbox
-                map.render(im, cb);
+                map.render(im, {}, (err, rendered) => {
+                    if (err) throw err
+                    rendered.encode('png', cb)
+                });
             }
         )
     } catch(err) {

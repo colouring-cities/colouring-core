@@ -55,7 +55,7 @@ function handle_tile_request(tileset, req, res) {
         if (err) throw err
 
         res.writeHead(200, {'Content-Type': 'image/png'})
-        res.end(im.encodeSync('png'))
+        res.end(im)
     })
 }
 
@@ -82,7 +82,7 @@ function handle_highlight_tile_request(req, res) {
         if (err) throw err
 
         res.writeHead(200, {'Content-Type': 'image/png'})
-        res.end(im.encodeSync('png'))
+        res.end(im)
     })
 }
 
