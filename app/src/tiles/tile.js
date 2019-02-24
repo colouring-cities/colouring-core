@@ -129,14 +129,12 @@ const mercator = new SphericalMercator({
     size: TILE_SIZE
 });
 
-function get_bbox(int_z, int_x, int_y){
-    return mercator.bbox(
-        int_x,
-        int_y,
-        int_z,
-        false,
-        '900913'
-    );
+function get_bbox(z, x, y){
+    return mercator.bbox(x, y, z, false, '900913');
+}
+
+function get_xyz(bbox, z){
+    return mercator.xyz(bbox, z, false, '900913')
 }
 
 function render_tile(tileset, z, x, y, geometry_id, cb){
@@ -191,4 +189,4 @@ function get_highlight_table_def(geometry_id) {
 }
 
 
-export { get_bbox, render_tile };
+export { get_bbox, get_xyz, render_tile };
