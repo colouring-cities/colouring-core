@@ -87,7 +87,7 @@ su postgres -c "psql -c \"SELECT 1 FROM pg_database WHERE datname = 'vagrant';\"
     | grep -q 1 || su postgres -c "createdb -E UTF8 -T template0 --locale=en_US.utf8 -O vagrant vagrant"
 
 # Run all 'up' migrations to create tables, data types, indexes
-su postgres -c "ls /vagrant/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;"
+su postgres -c "ls /vagrant/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < \$migration; done;"
 
 
 #
