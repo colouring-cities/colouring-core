@@ -73,7 +73,7 @@ service postgresql start
 # Ensure en_US locale exists
 locale-gen en_US.UTF-8
 # Database config to listen on network connection
-sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/9.5/main/postgresql.conf
+sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/10/main/postgresql.conf
 # Allow password connections from any IP (so includes host)
 echo "host    all             all             all                     md5" >> /etc/postgresql/10/main/pg_hba.conf
 # Restart postgres to pick up config changes
