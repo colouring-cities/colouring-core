@@ -119,7 +119,7 @@ chown -R vagrant:vagrant /home/vagrant/colouringlondon
 npm install -g npm@next
 
 # Local fixed install of node modules
-cd /vagrant/app && npm ci --no-bin-links
+cd /vagrant/app && npm install
 
 
 #
