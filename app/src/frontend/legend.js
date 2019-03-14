@@ -40,7 +40,7 @@ const LEGEND_CONFIG = {
         ]
     },
     size: {
-        title: "Size & Shape",
+        title: "Number of storeys",
         elements: [
         { color: '#ffffcc', text: '≥20' },
         { color: '#ffeda0', text: '15-20' },
