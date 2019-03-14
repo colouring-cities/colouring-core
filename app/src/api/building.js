@@ -90,8 +90,13 @@ function getBuildingLikeById(building_id, user_id) {
     ).then(res => {
         return res && res.like
     }).catch(function (error) {
-        console.error(error);
-        return undefined;
+        if (error instanceof pgp.errors.QueryResultError && error.message.includes("No data returned from the query")) {
+            // user hasn't liked building yet
+            return { error: 'It looks like you have not liked this building yet!' };
+        } else {
+            return undefined
+            console.error(error);
+        }
     });
 }
 
