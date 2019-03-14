@@ -84,19 +84,14 @@ function getBuildingById(id) {
 }
 
 function getBuildingLikeById(building_id, user_id) {
-    return db.one(
+    return db.oneOrNone(
         "SELECT true as like FROM building_user_likes WHERE building_id = $1 and user_id = $2 LIMIT 1",
         [building_id, user_id]
     ).then(res => {
         return res && res.like
     }).catch(function (error) {
-        if (error instanceof pgp.errors.QueryResultError && error.message.includes("No data returned from the query")) {
-            // user hasn't liked building yet
-            return { error: 'It looks like you have not liked this building yet!' };
-        } else {
-            return undefined
-            console.error(error);
-        }
+        console.error(error);
+        return undefined;
     });
 }
 
