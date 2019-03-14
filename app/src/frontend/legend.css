@@ -33,7 +33,7 @@
     margin: 0.25rem 0 0.5rem;
 }
 .data-legend {
-    max-height: 30rem;
+    max-height: 50vh;
     overflow-y: auto;
     list-style: none;
     margin-bottom: 0;
