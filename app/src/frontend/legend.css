@@ -33,10 +33,29 @@
     margin: 0.25rem 0 0.5rem;
 }
 .data-legend {
-    max-height: 30rem;
+    max-height: 80px;
+    max-height: 20vh;
     overflow-y: auto;
     list-style: none;
     margin-bottom: 0;
+}
+@media (min-height: 470px) {
+    .data-legend {
+        max-height: 150px;
+        max-height: 30vh;
+    }
+}
+@media (min-height: 550px) {
+    .data-legend {
+        max-height: 220px;
+        max-height: 40vh;
+    }
+}
+@media (min-height: 670px) {
+    .data-legend {
+        max-height: 330px;
+        max-height: 50vh;
+    }
 }
 .data-legend .key {
     display: inline-block;
