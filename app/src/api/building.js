@@ -84,7 +84,7 @@ function getBuildingById(id) {
 }
 
 function getBuildingLikeById(building_id, user_id) {
-    return db.one(
+    return db.oneOrNone(
         "SELECT true as like FROM building_user_likes WHERE building_id = $1 and user_id = $2 LIMIT 1",
         [building_id, user_id]
     ).then(res => {

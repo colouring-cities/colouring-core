@@ -262,12 +262,8 @@ server.route('/building/:building_id/like.json')
         }
         const { building_id } = req.params;
         getBuildingLikeById(building_id, req.session.user_id).then(like => {
-            if (typeof (like) === "undefined") {
-                res.send({ like: false })
-                return
-            }
             // any value returned means like
-            res.send({ like: true })
+            res.send({ like: like })
         }).catch(
             () => res.send({ error: 'Database error' })
         )
