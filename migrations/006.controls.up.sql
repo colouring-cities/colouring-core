@@ -36,7 +36,7 @@ AS ENUM ('Extended',
     'Reduced');
 
 ALTER TABLE buildings
-    ADD COLUMN IF NOT EXISTS planning_conservation_area_update_type DEFAULT 'Unknown';
+    ADD COLUMN IF NOT EXISTS planning_conservation_area_update_type planning_conservation_area_update_type DEFAULT 'Unknown';
 
 -- Listed (bool, list id)
 -- e.g. https://historicengland.org.uk/listing/the-list/list-entry/1294614
