@@ -16,13 +16,41 @@ class SearchBox extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.search = this.search.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.clearResults = this.clearResults.bind(this);
+        this.clearQuery = this.clearQuery.bind(this);
     }
 
     // Update search term
     handleChange(e) {
         this.setState({
             q: e.target.value
-        })
+        });
+        // If the ‘clear’ icon has been clicked, clear results list as well 
+        if(e.target.value === "") {
+           this.clearResults();
+        }
+    }
+
+    // Clear search results on ESC
+    handleKeyPress(e){
+        if(e.keyCode === 27) {
+            //ESC is pressed
+            this.clearQuery();
+            this.clearResults();
+        }
+    }
+
+    clearResults(){
+        this.setState({
+            results: []
+        });
+    }
+
+    clearQuery(){
+        this.setState({
+            q: ""
+        });
     }
 
     // Query search endpoint
@@ -87,7 +115,7 @@ class SearchBox extends Component {
             </ul>
         : null;
         return (
-            <div className={`search-box ${this.props.is_building? "building" : ""}`}>
+            <div className={`search-box ${this.props.is_building? "building" : ""}`} onKeyDown={this.handleKeyPress}>
                 <form action="/search" method="GET" onSubmit={this.search}
                     className="form-inline">
                     <input
