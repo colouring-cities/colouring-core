@@ -224,6 +224,9 @@ class EditForm extends Component {
                                     case "number":
                                         return <NumberInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
+                                    case "year_estimator":
+                                        return <YearEstimator {...props} handleChange={this.handleChange}
+                                                value={this.state[props.slug]} key={props.slug} />
                                     case "text_multi":
                                         return <MultiTextInput {...props} handleChange={this.handleUpdate}
                                                 value={this.state[props.slug]} key={props.slug} />
@@ -382,6 +385,21 @@ const NumberInput = (props) => (
             />
     </Fragment>
 );
+
+class YearEstimator extends Component {
+    constructor(props) {
+        super(props);
+    }
+    // TODO add dropdown for decade, century
+    // TODO roll in first/last year estimate
+    // TODO handle changes internally, reporting out date_year, date_upper, date_lower
+    render() {
+        return (
+            <NumberInput {...this.props} handleChange={this.props.handleChange}
+            value={this.props.value} key={this.props.slug} />
+        )
+    }
+}
 
 const CheckboxInput = (props) => (
     <div className="form-check">

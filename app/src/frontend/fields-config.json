@@ -74,16 +74,16 @@
         "intro": "Building age data can support energy analysis and help predict long-term change.",
         "fields": [
             {
-                "title": "Year built (best estimate)", "slug": "date_year", "type": "number", "step": 1
+                "title": "Year built (best estimate)", "slug": "date_year", "type": "year_estimator"
             },
             {
-                "title": "Latest possible start date", "slug": "date_upper", "type": "number", "step": 1,
-                "tooltip": "This should be the latest date building could have started." },
+                "title": "Latest possible start year", "slug": "date_upper", "type": "number", "step": 1,
+                "tooltip": "This should be the latest year in which building could have started." },
             {
                 "title": "Earliest possible start date", "slug": "date_lower", "type": "number", "step": 1,
-                "tooltip": "This should be the earliest date building could have started." },
+                "tooltip": "This should be the earliest year in which building could have started." },
             {
-                "title": "Facade date", "slug": "facade_year", "type": "number", "step": 1,
+                "title": "Facade year", "slug": "facade_year", "type": "number", "step": 1,
                 "tooltip": "Best estimate"
             },
             {
