@@ -70,7 +70,7 @@ class MyAccountPage extends Component {
                         <ErrorBox msg={this.state.error} />
                         <form method="POST" action="/logout" onSubmit={this.handleLogout}>
                             <div className="buttons-container">
-                                <Link to="/edit/age.html" className="btn btn-primary">Start colouring</Link>
+                                <Link to="/edit/age.html" className="btn btn-warning">Start colouring</Link>
                                 <input className="btn btn-secondary" type="submit" value="Log out"/>
                             </div>
                         </form>
@@ -87,12 +87,16 @@ class MyAccountPage extends Component {
 
                         <hr/>
 
-                        <h2 className="h2">Experimental features</h2>
+                        <h2 className="h2">Techical details</h2>
+                        <p>Are you a software developer? If so, you might be interested in these.</p>
                         <h3 className="h3">API key</h3>
                         <p>{this.props.user.api_key? this.props.user.api_key : '-'}</p>
-                        <form method="POST" action="/api/key" onSubmit={this.handleGenerateKey}>
-                            <input className="btn btn-primary" type="submit" value="Generate API key"/>
+                        <form method="POST" action="/api/key" onSubmit={this.handleGenerateKey} className="form-group mb-3">
+                            <input className="btn btn-warning" type="submit" value="Generate API key"/>
                         </form>
+
+                        <h3 className="h3">GitHub</h3>
+                        <a href="http://github.com/tomalrussell/colouring-london/">Colouring London Github repository</a>
 
                     </section>
                 </article>
