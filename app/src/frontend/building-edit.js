@@ -427,7 +427,7 @@ const LikeButton = (props) => (
                 onChange={props.handleLike}
                 />
             <label htmlFor={props.slug} className="form-check-label">
-                I like this building!
+                I like this building and think it contributes to the city!
                 { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
             </label>
         </div>
