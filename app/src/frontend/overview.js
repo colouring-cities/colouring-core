@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 
 import Sidebar from './sidebar';
@@ -33,6 +33,8 @@ const Overview = (props) => {
 const OverviewSection = (props) => {
     const match = props.data_layer === props.slug;
     const inactive = props.inactive;
+    console.log(props.fields);
+
     return (
         <section className={(inactive? "inactive ": "") + "data-section legend"}>
             <header className={`section-header ${props.mode} ${props.slug} ${(match? "active" : "")}`}>
@@ -64,7 +66,18 @@ const OverviewSection = (props) => {
             </header>
             {
                 (match && props.intro)?
-                (<p className="data-intro">{props.intro}</p>)
+                (
+                    <Fragment>
+                    <p className="data-intro">{props.intro}</p>
+                    <ul>
+                    {
+                        props.fields.map((field) => {
+                            return (<li>{field.title}</li>)
+                        })
+                    }
+                    </ul>
+                    </Fragment>
+                )
                 : null
             }
         </section>
