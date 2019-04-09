@@ -88,7 +88,9 @@ su postgres -c "psql -c \"SELECT 1 FROM pg_database WHERE datname = 'vagrant';\"
 
 
 # Create extensions
-su vagrant -c "psql -c \"create extension postgis; create extension pgcrypto;\" "
+su vagrant -c "psql -c \"create extension postgis;\" "
+su vagrant -c "psql -c \"create extension pgcrypto;\" "
+su vagrant -c "psql -c \"create extension pg_trgm;\" "
 
 # Run all 'up' migrations to create tables, data types, indexes
 su vagrant -c "ls /vagrant/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < \$migration; done;"
