@@ -24,7 +24,7 @@ const Header = (props) => (
                 <li className="nav-item">
                     <NavLink to="/edit/age.html" className="nav-link">Add/Edit Data</NavLink>
                 </li>
-                 <li className="nav-item">
+                <li className="nav-item">
                     <a className="nav-link" href="https://pages.colouring.london/about">More about</a>
                 </li>
                 <li className="nav-item">
