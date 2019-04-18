@@ -331,7 +331,7 @@ class MultiTextInput extends Component {
             <Label slug={this.props.slug} title={this.props.title} tooltip={this.props.tooltip} />
             {
                 values.map((item, i) => (
-                <div class="input-group">
+                <div className="input-group" key={i}>
                     <input className="form-control" type="text"
                         key={`${this.props.slug}-${i}`} name={`${this.props.slug}-${i}`}
                         data-index={i}
@@ -340,16 +340,16 @@ class MultiTextInput extends Component {
                         disabled={this.props.disabled}
                         onChange={this.edit}
                         />
-                    <div class="input-group-append">
+                    <div className="input-group-append">
                         <button type="button" onClick={this.remove}
                                 title="Remove"
-                                data-index={i} class="btn btn-outline-dark">✕</button>
+                                data-index={i} className="btn btn-outline-dark">✕</button>
                     </div>
                 </div>
                 ))
             }
             <button type="button" title="Add" onClick={this.add}
-                    class="btn btn-outline-dark">+</button>
+                    className="btn btn-outline-dark">+</button>
         </Fragment>
         )
     }
@@ -389,6 +389,13 @@ const NumberInput = (props) => (
 class YearEstimator extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            year: props.date_year,
+            upper: props.date_upper,
+            lower: props.date_lower,
+            decade: Math.floor(props.date_year / 10) * 10,
+            century: Math.floor(props.date_year / 100) * 100
+        }
     }
     // TODO add dropdown for decade, century
     // TODO roll in first/last year estimate
