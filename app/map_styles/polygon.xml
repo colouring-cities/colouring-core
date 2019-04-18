@@ -63,39 +63,23 @@
     </Style>
     <Style name="size_storeys">
         <Rule>
-            <Filter>[size_storeys] &gt;= 20</Filter>
+            <Filter>[size_storeys] &gt;= 40</Filter>
             <PolygonSymbolizer fill="#ffffcc" />
         </Rule>
         <Rule>
-            <Filter>[size_storeys] &gt;= 15 and [size_storeys] &lt; 20</Filter>
-            <PolygonSymbolizer fill="#ffeda0" />
-        </Rule>
-        <Rule>
-            <Filter>[size_storeys] &gt;= 10 and [size_storeys] &lt; 15</Filter>
+            <Filter>[size_storeys] &gt;= 20 and [size_storeys] &lt; 40</Filter>
             <PolygonSymbolizer fill="#fed976" />
         </Rule>
         <Rule>
-            <Filter>[size_storeys] &gt;= 6 and [size_storeys] &lt; 10</Filter>
-            <PolygonSymbolizer fill="#feb24c" />
-        </Rule>
-        <Rule>
-            <Filter>[size_storeys] = 5</Filter>
+            <Filter>[size_storeys] &gt;= 10 and [size_storeys] &lt; 20</Filter>
             <PolygonSymbolizer fill="#fd8d3c" />
         </Rule>
         <Rule>
-            <Filter>[size_storeys] = 4</Filter>
-            <PolygonSymbolizer fill="#fc4e2a" />
-        </Rule>
-        <Rule>
-            <Filter>[size_storeys] = 3</Filter>
+            <Filter>[size_storeys] &gt;= 6 and [size_storeys] &lt; 10</Filter>
             <PolygonSymbolizer fill="#e31a1c" />
         </Rule>
         <Rule>
-            <Filter>[size_storeys] = 2</Filter>
-            <PolygonSymbolizer fill="#bd0026" />
-        </Rule>
-        <Rule>
-            <Filter>[size_storeys] = 1</Filter>
+            <Filter>[size_storeys] &gt;= 1 and [size_storeys] &lt; 6</Filter>
             <PolygonSymbolizer fill="#800026" />
         </Rule>
     </Style>
