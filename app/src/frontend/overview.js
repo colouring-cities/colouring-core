@@ -33,7 +33,6 @@ const Overview = (props) => {
 const OverviewSection = (props) => {
     const match = props.data_layer === props.slug;
     const inactive = props.inactive;
-    console.log(props.fields);
 
     return (
         <section className={(inactive? "inactive ": "") + "data-section legend"}>
@@ -72,7 +71,7 @@ const OverviewSection = (props) => {
                     <ul>
                     {
                         props.fields.map((field) => {
-                            return (<li>{field.title}</li>)
+                            return (<li key={field.slug}>{field.title}</li>)
                         })
                     }
                     </ul>

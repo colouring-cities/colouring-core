@@ -51,7 +51,6 @@ class App extends React.Component {
     }
 
     updateUser(user){
-        console.log(user);
         this.setState({user: { ...this.state.user, ...user }});
     }
 
