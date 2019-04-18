@@ -224,6 +224,9 @@ class EditForm extends Component {
                                     case "number":
                                         return <NumberInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
+                                    case "year_estimator":
+                                        return <YearEstimator {...props} handleChange={this.handleChange}
+                                                value={this.state[props.slug]} key={props.slug} />
                                     case "text_multi":
                                         return <MultiTextInput {...props} handleChange={this.handleUpdate}
                                                 value={this.state[props.slug]} key={props.slug} />
@@ -328,7 +331,7 @@ class MultiTextInput extends Component {
             <Label slug={this.props.slug} title={this.props.title} tooltip={this.props.tooltip} />
             {
                 values.map((item, i) => (
-                <div class="input-group">
+                <div className="input-group" key={i}>
                     <input className="form-control" type="text"
                         key={`${this.props.slug}-${i}`} name={`${this.props.slug}-${i}`}
                         data-index={i}
@@ -337,16 +340,16 @@ class MultiTextInput extends Component {
                         disabled={this.props.disabled}
                         onChange={this.edit}
                         />
-                    <div class="input-group-append">
+                    <div className="input-group-append">
                         <button type="button" onClick={this.remove}
                                 title="Remove"
-                                data-index={i} class="btn btn-outline-dark">✕</button>
+                                data-index={i} className="btn btn-outline-dark">✕</button>
                     </div>
                 </div>
                 ))
             }
             <button type="button" title="Add" onClick={this.add}
-                    class="btn btn-outline-dark">+</button>
+                    className="btn btn-outline-dark">+</button>
         </Fragment>
         )
     }
@@ -383,6 +386,28 @@ const NumberInput = (props) => (
     </Fragment>
 );
 
+class YearEstimator extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            year: props.date_year,
+            upper: props.date_upper,
+            lower: props.date_lower,
+            decade: Math.floor(props.date_year / 10) * 10,
+            century: Math.floor(props.date_year / 100) * 100
+        }
+    }
+    // TODO add dropdown for decade, century
+    // TODO roll in first/last year estimate
+    // TODO handle changes internally, reporting out date_year, date_upper, date_lower
+    render() {
+        return (
+            <NumberInput {...this.props} handleChange={this.props.handleChange}
+            value={this.props.value} key={this.props.slug} />
+        )
+    }
+}
+
 const CheckboxInput = (props) => (
     <div className="form-check">
         <input className="form-check-input" type="checkbox"
@@ -409,7 +434,7 @@ const LikeButton = (props) => (
                 onChange={props.handleLike}
                 />
             <label htmlFor={props.slug} className="form-check-label">
-                I like this building!
+                I like this building and think it contributes to the city!
                 { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
             </label>
         </div>

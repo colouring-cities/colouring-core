@@ -9,17 +9,17 @@ const Welcome = () => (
 
         <p className="lead">
         Colouring London is a citizen science platform collecting information on every
-        building in London. We're building it at the Centre for Advanced Spatial Analysis,
-        University College London, to help make London more sustainable.
+        building in London, to help make the city more sustainable.
         </p>
         <p className="lead">
-        Can you help us? We're looking for volunteers of all ages and abilities to test the
-        site before we launch next year. Just add your knowledge to make the buildings colour.
+        We're looking for volunteers of all ages and abilities to test the
+        site. Add your knowledge to make the buildings colour.
         </p>
         <Link to="/view/age.html"
             className="btn btn-outline-dark btn-lg btn-block">
             Start Colouring Here!
         </Link>
+        <img src="images/supporter-logos.png" alt="Colouring London collaborating organisations:         The Bartlett UCL, Ordnance Survey, Historic ENgland, GLA, bretrust, EPPSRC, RICS, Survey of London, RSA, RIBA Learning, UCL Energy Institute, UCL, UCL IEDE, IHR, Layers of London" />
     </div>
 );
 
