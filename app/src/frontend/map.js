@@ -141,11 +141,13 @@ class ColouringMap extends Component {
                         </div>
                     ) : null
                 }
-                <Legend slug={cat} />
-                <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
                 {
                     this.props.match.url !== '/'? (
+                    <Fragment>
+                        <Legend slug={cat} />
+                        <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
                         <SearchBox onLocate={this.handleLocate} is_building={is_building} />
+                    </Fragment>
                     ) : null
                 }
             </Fragment>
