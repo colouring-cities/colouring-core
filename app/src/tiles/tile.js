@@ -1,6 +1,14 @@
 /**
  * Render tiles
  *
+ * Use mapnik to render map tiles from the database
+ *
+ * Styles have two sources of truth for colour ranges (could generate from single source?)
+ * - XML style definitions in app/map_styles/polygon.xml
+ * - front-end legend in app/src/frontend/legend.js
+ *
+ * Data is provided by the queries in MAP_STYLE_TABLE_DEFINITIONS below.
+ *
  */
 import path from 'path';
 import mapnik from 'mapnik';
