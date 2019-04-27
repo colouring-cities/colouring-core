@@ -1,5 +1,8 @@
 /**
- * Tileserver routes for Express app
+ * Tileserver
+ * - routes for Express app
+ * - stitch tiles above a certain zoom level (compositing from sharply-rendered lower zooms)
+ * - render empty tile outside extent of geographical area of interest
  *
  */
 import express from 'express';
