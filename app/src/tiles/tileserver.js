@@ -209,6 +209,10 @@ function handle_highlight_tile_request(req, res) {
         return
     }
 
+    if (outside_extent(z, x, y)) {
+        return empty_tile()
+    }
+
     render_tile('highlight', int_z, int_x, int_y, geometry_id, function (err, im) {
         if (err) throw err
 
