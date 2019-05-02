@@ -12,7 +12,7 @@ module.exports = {
             args: "start",
             env: {
                 NODE_ENV: "development",
-                TILECACHE_PATH: "./app/tilecache"
+                TILECACHE_PATH: "./app/tilecache",
 
                 // update these details in private copy
                 PGHOST: "hostname",
