@@ -57,21 +57,30 @@
     {
         "inactive": true,
         "title": "Use", "slug": "use",
-        "intro": "How are buildings used today? Coming soon…",
+        "intro": "How are buildings used, and how does use change over time? Coming soon…",
         "help": "https://pages.colouring.london/use",
         "fields": [
-            { "title" : "Single of multiple use?", "slug": "use_multi" },
-            { "title" : "Type of use/s", "slug": "use_type" },
-            { "title" : "Number of self-contained units", "slug": "use_number_scu" }
+            { "title": "Single of multiple use?", "slug": "use_multi" },
+            { "title": "Type of use/s", "slug": "use_type" },
+            { "title": "Number of self-contained units", "slug": "use_number_scu" },
+            { "title": "Original use (as constructed)", "slug": "use_type_original" }
         ]
     },
     {
         "inactive": true,
-        "title": "Type", "slug": "type",
-        "intro": "How were buildings originally used? Coming soon…",
-        "help": "https://pages.colouring.london/type",
+        "title": "Ownership", "slug": "ownership",
+        "intro": "How are buildings owned? Coming soon…",
+        "help": "https://pages.colouring.london/buildingcategories",
         "fields": [
-            { "title": "Type of building (original use)", "slug": "type_original" }
+            {
+                "title": "Owner type (private, state/public, or communal/third sector)",
+                "slug": "ownership_owner_type"
+            },
+            {
+                "title": "Original owner type (at construction)",
+                "slug": "ownership_owner_type_original"
+            },
+            { "title": "Tenure type", "slug": "ownership_tenure_type" }
         ]
     },
     {

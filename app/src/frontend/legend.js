@@ -64,8 +64,8 @@ const LEGEND_CONFIG = {
         title: "Use",
         elements: []
     },
-    type: {
-        title: "Type",
+    ownership: {
+        title: "Ownership",
         elements: []
     },
     construction: {
