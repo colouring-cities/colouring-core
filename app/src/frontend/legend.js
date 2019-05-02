@@ -44,9 +44,9 @@ const LEGEND_CONFIG = {
         elements: [
         { color: '#ffffcc', text: '≥40' },
         { color: '#fed976', text: '20–39' },
-        { color: '#fd8d3c', text: '10-19' },
-        { color: '#e31a1c', text: '6-9' },
-        { color: '#800026', text: '1-5' },
+        { color: '#fd8d3c', text: '10–19' },
+        { color: '#e31a1c', text: '6–9' },
+        { color: '#800026', text: '1–5' },
         ]
     },
     like: {
