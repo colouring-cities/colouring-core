@@ -332,9 +332,15 @@
     padding: 0 0.5rem 0 2.25rem;
     margin-top: 0.5rem;
 }
+.data-section p {
+    font-size: 1rem;
+}
 .data-section ul {
     padding-left: 3.333rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
+}
+.data-section li {
+    margin-bottom: 0.3rem;
 }
 .data-list {
     margin: 0;
