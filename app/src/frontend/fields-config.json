@@ -327,7 +327,6 @@
         "help": "https://pages.colouring.london/demolitions",
         "fields": [
             { "title": "Is the building proposed for demolition?" },
-            { "title": "Is the building proposed for demolition?" },
             { "title": "Has the building been demolished?" },
             { "title": "Dates of construction and demolition of previous buildings on site" }
         ]
