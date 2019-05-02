@@ -3,6 +3,8 @@
  *
  */
 import db from '../db';
+import { remove_all_at_bbox } from '../tiles/cache';
+
 // data type note: PostgreSQL bigint (64-bit) is handled as string in JavaScript, because of
 // JavaScript numerics are 64-bit double, giving only partial coverage.
 
@@ -128,7 +130,7 @@ function saveBuilding(building_id, building, user_id) {
             [building_id]
         ).then(old_building => {
             const patches = compare(old_building, building, BUILDING_FIELD_WHITELIST);
-            console.log("Patching", patches)
+            console.log("Patching", building_id, patches)
             const forward = patches[0];
             const reverse = patches[1];
             if (Object.keys(forward).length === 0) {
@@ -144,7 +146,7 @@ function saveBuilding(building_id, building, user_id) {
                 [forward, reverse, building_id, user_id]
             ).then(revision => {
                 const sets = db.$config.pgp.helpers.sets(forward);
-                console.log("Setting", sets)
+                console.log("Setting", building_id, sets)
                 return t.one(
                     `UPDATE
                         buildings
@@ -157,7 +159,10 @@ function saveBuilding(building_id, building, user_id) {
                         *
                     `,
                     [revision.log_id, sets, building_id]
-                )
+                ).then((data) => {
+                    expireBuildingTileCache(building_id)
+                    return data
+                })
             });
         });
     }).catch(function (error) {
@@ -203,7 +208,10 @@ function likeBuilding(building_id, user_id) {
                             *
                         `,
                         [revision.log_id, building.likes, building_id]
-                    )
+                    ).then((data) => {
+                        expireBuildingTileCache(building_id)
+                        return data
+                    })
                 })
             });
         });
@@ -255,7 +263,10 @@ function unlikeBuilding(building_id, user_id) {
                             *
                         `,
                         [revision.log_id, building.likes, building_id]
-                    )
+                    ).then((data) => {
+                        expireBuildingTileCache(building_id)
+                        return data
+                    })
                 })
             });
         });
@@ -268,6 +279,33 @@ function unlikeBuilding(building_id, user_id) {
             return undefined
         }
     });
+}
+
+function privateQueryBuildingBBOX(building_id){
+    return  db.one(
+        `SELECT
+            ST_XMin(envelope) as xmin,
+            ST_YMin(envelope) as ymin,
+            ST_XMax(envelope) as xmax,
+            ST_YMax(envelope) as ymax
+        FROM (
+            SELECT
+                ST_Envelope(g.geometry_geom) as envelope
+            FROM buildings as b, geometries as g
+            WHERE
+                b.geometry_id = g.geometry_id
+            AND
+                b.building_id = $1
+        ) as envelope`,
+        [building_id]
+    )
+}
+
+function expireBuildingTileCache(building_id) {
+    privateQueryBuildingBBOX(building_id).then((bbox) => {
+        const building_bbox = [bbox.xmax, bbox.ymax, bbox.xmin, bbox.ymin]
+        remove_all_at_bbox(building_bbox);
+    })
 }
 
 const BUILDING_FIELD_WHITELIST = new Set([

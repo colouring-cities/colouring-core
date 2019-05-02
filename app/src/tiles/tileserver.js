@@ -1,5 +1,8 @@
 /**
- * Tileserver routes for Express app
+ * Tileserver
+ * - routes for Express app
+ * - stitch tiles above a certain zoom level (compositing from sharply-rendered lower zooms)
+ * - render empty tile outside extent of geographical area of interest
  *
  */
 import express from 'express';
@@ -74,33 +77,23 @@ function load_tile(tileset, z, x, y) {
     if (outside_extent(z, x, y)) {
         return empty_tile()
     }
-    return new Promise((resolve) => {
-        get(tileset, z, x, y, (err, im) => {
-            if (err) {
-                render_or_stitch_tile(tileset, z, x, y)
-                    .then((im) => {
-                        resolve(im)
-                    })
-            } else {
-                console.log(`From cache ${tileset}/${z}/${x}/${y}`)
-                resolve(im)
-            }
-        })
+    return get(tileset, z, x, y).then((im) => {
+        console.log(`From cache ${tileset}/${z}/${x}/${y}`)
+        return im
+    }).catch((_) => {
+        return render_or_stitch_tile(tileset, z, x, y)
     })
 }
 
 function render_or_stitch_tile(tileset, z, x, y) {
     if (z <= STITCH_THRESHOLD) {
         return stitch_tile(tileset, z, x, y).then(im => {
-            return new Promise((resolve, reject) => {
-                put(im, tileset, z, x, y, (err) => {
-                    if (err) {
-                        console.error(err)
-                    } else {
-                        console.log(`Stitch ${tileset}/${z}/${x}/${y}`)
-                    }
-                    resolve(im)
-                })
+            return put(im, tileset, z, x, y).then(() => {
+                console.log(`Stitch ${tileset}/${z}/${x}/${y}`)
+                return im
+            }).catch((err) => {
+                console.error(err)
+                return im
             })
         })
     } else {
@@ -111,12 +104,11 @@ function render_or_stitch_tile(tileset, z, x, y) {
                     reject(err)
                     return
                 }
-                put(im, tileset, z, x, y, (err) => {
-                    if (err) {
-                        console.error(err)
-                    } else {
-                        console.log(`Render ${tileset}/${z}/${x}/${y}`)
-                    }
+                put(im, tileset, z, x, y).then(() => {
+                    console.log(`Render ${tileset}/${z}/${x}/${y}`)
+                    resolve(im)
+                }).catch((err) => {
+                    console.error(err)
                     resolve(im)
                 })
             })
@@ -132,8 +124,8 @@ function outside_extent(z, x, y) {
 function empty_tile() {
     return sharp({
         create: {
-            width: TILE_SIZE,
-            height: TILE_SIZE,
+            width: 1,
+            height: 1,
             channels: 4,
             background: { r: 0, g: 0, b: 0, alpha: 0 }
         }
@@ -207,6 +199,10 @@ function handle_highlight_tile_request(req, res) {
     if (isNaN(geometry_id)) {
         res.status(400).send({ error: 'Bad parameter' })
         return
+    }
+
+    if (outside_extent(z, x, y)) {
+        return empty_tile()
     }
 
     render_tile('highlight', int_z, int_x, int_y, geometry_id, function (err, im) {

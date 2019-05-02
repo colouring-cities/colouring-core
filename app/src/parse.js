@@ -1,11 +1,13 @@
 /**
  * Utility functions for parsing
+ *
  */
 
 /**
  * Parse a string as positive integer or NaN
  *
  * @param {string} value
+ * @returns {number} integer or NaN
  */
 function strictParseInt(value) {
     if (/^([1-9][0-9]*)$/.test(value))
@@ -13,7 +15,12 @@ function strictParseInt(value) {
     return NaN;
 }
 
-
+/**
+ * Parse building ID from URL
+ *
+ * @param {String} url
+ * @returns {number|undefined}
+ */
 function parseBuildingURL(url) {
     const re = /\/building\/([^/]+).html/;
     const matches = re.exec(url);
@@ -24,6 +31,12 @@ function parseBuildingURL(url) {
     return undefined;
 }
 
+/**
+ * Parse category slug from URL
+ *
+ * @param {String} url
+ * @returns {String} [age]
+ */
 function parseCategoryURL(url) {
     const default_cat = 'age';
     if (url === "/") {

@@ -2,8 +2,10 @@
  * Load server and listen
  *
  */
-import app from './server';
 import http from 'http';
+
+import app from './server';
+
 
 const server = http.createServer(app);
 
@@ -17,6 +19,7 @@ server.listen(process.env.PORT || 3000, error => {
   console.log('🚀  started');
 });
 
+// In development mode, enable hot module reloading (HMR)
 if (module.hot) {
   console.log('✅  Server-side HMR Enabled!');
 
