@@ -14,7 +14,7 @@
 }
 .logo .logotype {
     font-size: 2rem;
-    margin: 0 0 0 3px;
+    margin: 0 0 -1px 3px;
     display: inline-block;
     vertical-align: bottom;
 }
@@ -28,17 +28,16 @@
     letter-spacing: 0;
 }
 .map-legend .logo {
-    padding: 0.5rem;
+    padding: 0 0.5rem 0.5rem;
 }
 .map-legend .logo .logotype {
-    font-size: 1.75rem;
-    position: relative;
-    top: 3px;
+    font-size: 1.9rem;
+    margin-bottom: -2px;
 }
 .map-legend .logo .row .cell {
     background-color: #ccc;
-    height: 10px;
-    width: 10px;
+    height: 12px;
+    width: 12px;
     animation: none !important;
 }
 .logo .grid {
@@ -57,127 +56,130 @@
 }
 .logo .cell {
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
     margin: 0 3px 0 0;
 }
 .logo .row:nth-child(1) .cell:nth-child(1) {
-    animation: pulse 47s infinite;
+    animation: pulse 87s infinite;
     animation-delay: -1.5s;
 }
 .logo .row:nth-child(1) .cell:nth-child(2) {
-    animation: pulse 32s infinite;
+    animation: pulse 52s infinite;
     animation-delay: -0.5s;
 }
 .logo .row:nth-child(1) .cell:nth-child(3) {
-    animation: pulse 49s infinite;
+    animation: pulse 79s infinite;
     animation-delay: -6s;
 }
 .logo .row:nth-child(1) .cell:nth-child(4) {
-    animation: pulse 35s infinite;
+    animation: pulse 55s infinite;
     animation-delay: -10s;
 }
 .logo .row:nth-child(2) .cell:nth-child(1) {
-    animation: pulse 34s infinite;
+    animation: pulse 64s infinite;
     animation-delay: -7.2s;
 }
 .logo .row:nth-child(2) .cell:nth-child(2) {
-    animation: pulse 58s infinite;
-    animation-delay: -15s;
+    animation: pulse 98s infinite;
+    animation-delay: -25s;
 }
 .logo .row:nth-child(2) .cell:nth-child(3) {
-    animation: pulse 31s infinite;
-    animation-delay: -5s;
+    animation: pulse 51s infinite;
+    animation-delay: -35s;
 }
 .logo .row:nth-child(2) .cell:nth-child(4) {
-    animation: pulse 46s infinite;
-    animation-delay: -4.5s;
+    animation: pulse 76s infinite;
+    animation-delay: -20s;
 }
 .logo .row:nth-child(3) .cell:nth-child(1) {
-    animation: pulse 32s infinite;
+    animation: pulse 52s infinite;
     animation-delay: -3.5s;
 }
 .logo .row:nth-child(3) .cell:nth-child(2) {
-    animation: pulse 49s infinite;
+    animation: pulse 79s infinite;
     animation-delay: -8.5s;
 }
 .logo .row:nth-child(3) .cell:nth-child(3) {
-    animation: pulse 35s infinite;
+    animation: pulse 65s infinite;
     animation-delay: -4s;
 }
 .logo .row:nth-child(3) .cell:nth-child(4) {
-    animation: pulse 34s infinite;
+    animation: pulse 54s infinite;
     animation-delay: -17s;
 }
 
 @keyframes pulse {
     0%, 100% {
-        background-color: #ffad00;
+        background-color: #edc40b;
     }
-    8% {
-        background-color: #ffad00;
+    9% {
+        background-color: #edc40b;
     }
     10% {
-        background-color: #72b2fe;
+        background-color: #ff9100;
     }
-    16% {
-        background-color: #72b2fe;
+    17% {
+        background-color: #ff9100;
     }
     18% {
-        background-color: #5ec233;
+        background-color: #ee91bf;
     }
-    24% {
-        background-color: #5ec233;
+    25% {
+        background-color: #ee91bf;
     }
     26% {
-        background-color: #e96762;
+        background-color: #aa7fa7;
     }
-    32% {
-        background-color: #e96762;
+    33% {
+        background-color: #aa7fa7;
     }
     34% {
-        background-color: #e099c1;
+        background-color: #5ec232;
     }
-    40% {
-        background-color: #e099c1;
+    41% {
+        background-color: #5ec232;
     }
     42% {
-        background-color: #7d6f94;
+        background-color: #65b7ff;
     }
-    48% {
-        background-color: #7d6f94;
+    49% {
+        background-color: #65b7ff;
     }
     50% {
-        background-color: #eb7905;
+        background-color: #6f879c;
     }
-    56% {
-        background-color: #eb7905;
+    57% {
+        background-color: #6f879c;
     }
     58% {
-        background-color: #72b889;
+        background-color: #6dbb8b;
     }
-    64% {
-        background-color: #72b889;
+    65% {
+        background-color: #6dbb8b;
     }
     66% {
-        background-color: #f0d106;
+        background-color: #ee5f63;
     }
-    72% {
-        background-color: #f0d106;
+    73% {
+        background-color: #ee5f63;
     }
     74% {
-        background-color: #a6a6a7;
+        background-color: #f0ee0c;
     }
-    80% {
-        background-color: #a6a6a7;
+    81% {
+        background-color: #f0ee0c;
     }
     82% {
-        background-color: #918e6e;
+        background-color: #a1a3a9;
     }
-    88% {
-        background-color: #918e6e;
+    89% {
+        background-color: #a1a3a9;
     }
     90% {
-        background-color: #ffad00;
+        background-color: #9c896d;
+    }
+    99% {
+        background-color: #9c896d;
     }
 }
