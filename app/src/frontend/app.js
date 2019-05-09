@@ -8,6 +8,7 @@ import './app.css';
 import AboutPage from './about';
 import BuildingEdit from './building-edit';
 import BuildingView from './building-view';
+import MultiEdit from './multi-edit';
 import ColouringMap from './map';
 import Header from './header';
 import Overview from './overview';
@@ -31,15 +32,20 @@ import Welcome from './welcome';
 class App extends React.Component {
     constructor(props) {
         super(props);
+        // set building revision id, default 0
+        const rev = (props.building)? props.building.revision_id : 0;
         this.state = {
             user: props.user,
             building: props.building,
-            building_like: props.building_like
+            building_like: props.building_like,
+            revision_id: rev
         };
         this.login = this.login.bind(this);
         this.updateUser = this.updateUser.bind(this);
         this.logout = this.logout.bind(this);
         this.selectBuilding = this.selectBuilding.bind(this);
+        this.colourBuilding = this.colourBuilding.bind(this);
+        this.increaseRevision = this.increaseRevision.bind(this);
     }
 
     login(user) {
@@ -58,8 +64,16 @@ class App extends React.Component {
         this.setState({user: undefined});
     }
 
+    increaseRevision(revision_id) {
+        // bump revision id, only ever increasing
+        if (revision_id > this.state.revision_id){
+            this.setState({revision_id: revision_id})
+        }
+    }
+
     selectBuilding(building) {
-    // get UPRNs and update
+        this.increaseRevision(building.revision_id);
+        // get UPRNs and update
         fetch(`/building/${building.building_id}/uprns.json`, {
             method: 'GET',
             headers:{
@@ -101,6 +115,28 @@ class App extends React.Component {
         });
     }
 
+    colourBuilding(building) {
+        fetch(`/building/${building.building_id}.json`, {
+            method: 'POST',
+            body: JSON.stringify({date_year: 1999}), // TODO link to multi/pass in data
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin'
+        }).then(
+            res => res.json()
+        ).then(res => {
+            if (res.error) {
+                console.error({error: res.error})
+            } else {
+                console.log(res);
+                this.increaseRevision(res.revision_id);
+            }
+        }).catch(
+            (err) => console.error({error: err})
+        );
+    }
+
     render() {
         return (
             <Fragment>
@@ -122,6 +158,12 @@ class App extends React.Component {
                                 mode='edit' user={this.state.user}
                             />
                         ) } />
+                        <Route exact path="/multi-edit/:cat.html" render={(props) => (
+                            <MultiEdit
+                                {...props}
+                                user={this.state.user}
+                                />
+                        ) } />
                         <Route exact path="/view/:cat/building/:building.html" render={(props) => (
                             <BuildingView
                                 {...props}
@@ -141,11 +183,13 @@ class App extends React.Component {
                         ) } />
                     </Switch>
                     <Switch>
-                        <Route exact path="/(edit.*|view.*)?" render={(props) => (
+                        <Route exact path="/(multi-edit.*|edit.*|view.*)?" render={(props) => (
                             <ColouringMap
                                 {...props}
                                 building={this.state.building}
+                                revision_id={this.state.revision_id}
                                 selectBuilding={this.selectBuilding}
+                                colourBuilding={this.colourBuilding}
                             />
                         ) } />
                         <Route exact path="/about.html" component={AboutPage} />
