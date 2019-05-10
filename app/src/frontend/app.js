@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { parse } from 'query-string';
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -16,6 +17,7 @@ import Login from './login';
 import MyAccountPage from './my-account';
 import SignUp from './signup';
 import Welcome from './welcome';
+import { parseCategoryURL } from '../parse';
 
 /**
  * App component
@@ -116,9 +118,44 @@ class App extends React.Component {
     }
 
     colourBuilding(building) {
-        fetch(`/building/${building.building_id}.json`, {
+        const cat = parseCategoryURL(window.location.pathname);
+        const q = parse(window.location.search);
+        let data;
+        if (cat === 'like'){
+            data = {like: true}
+            this.likeBuilding(building.building_id)
+        } else {
+            data = {}
+            data[q.k] = q.v;
+            this.updateBuilding(building.building_id, data)
+        }
+    }
+
+    likeBuilding(building_id) {
+        fetch(`/building/${building_id}/like.json`, {
             method: 'POST',
-            body: JSON.stringify({date_year: 1999}), // TODO link to multi/pass in data
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify({like: true})
+        }).then(
+            res => res.json()
+        ).then(function(res){
+            if (res.error) {
+                console.error({error: res.error})
+            } else {
+                this.increaseRevision(res.revision_id);
+            }
+        }.bind(this)).catch(
+            (err) => console.error({error: err})
+        );
+    }
+
+    updateBuilding(building_id, data){
+        fetch(`/building/${building_id}.json`, {
+            method: 'POST',
+            body: JSON.stringify(data),
             headers:{
               'Content-Type': 'application/json'
             },
@@ -129,7 +166,6 @@ class App extends React.Component {
             if (res.error) {
                 console.error({error: res.error})
             } else {
-                console.log(res);
                 this.increaseRevision(res.revision_id);
             }
         }).catch(

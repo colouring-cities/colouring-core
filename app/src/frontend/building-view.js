@@ -56,6 +56,8 @@ const BuildingView = (props) => {
                                 default:
                                     return <DataEntry
                                         key={field.slug}
+                                        slug={field_props.slug}
+                                        cat={cat}
                                         title={field.title}
                                         value={props[field.slug]}
                                         tooltip={field.tooltip} />
@@ -137,6 +139,15 @@ const DataEntry = (props) => (
         <dt>
             { props.title }
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+            { (props.cat && props.slug && props.value)?
+                <div className="icon-buttons">
+                    <NavLink
+                        to={`/multi-edit/${props.cat}.html?k=${props.slug}&v=${props.value}`}
+                        className="icon-button copy">
+                        Copy
+                    </NavLink>
+                </div> : null
+            }
         </dt>
         <dd>{
             (props.value != null && props.value !== '')?
@@ -158,6 +169,13 @@ const LikeDataEntry = (props) => (
         <dt>
             { props.title }
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+            <div className="icon-buttons">
+                <NavLink
+                    to={`/multi-edit/${props.cat}.html?k=like&v=${true}`}
+                    className="icon-button copy">
+                    Copy
+                </NavLink>
+            </div>
         </dt>
         <dd>
             {
