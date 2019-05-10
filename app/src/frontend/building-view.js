@@ -7,7 +7,6 @@ import Sidebar from './sidebar';
 import Tooltip from './tooltip';
 import InfoBox from './info-box';
 import { EditIcon } from './icons';
-import { parseCategoryURL } from '../parse';
 
 import CONFIG from './fields-config.json';
 
@@ -22,7 +21,7 @@ const BuildingView = (props) => {
             </Sidebar>
         );
     }
-    const cat = parseCategoryURL(props.match.url);
+    const cat = props.match.params.cat;
     return (
         <Sidebar title={'Data available for this building'} back={`/view/${cat}.html`}>
             {

@@ -7,7 +7,6 @@ import InfoBox from './info-box';
 import Sidebar from './sidebar';
 import Tooltip from './tooltip';
 import { SaveIcon } from './icons';
-import { parseCategoryURL } from '../parse';
 
 import CONFIG from './fields-config.json';
 
@@ -15,7 +14,7 @@ const BuildingEdit = (props) => {
     if (!props.user){
         return <Redirect to="/sign-up.html" />
     }
-    const cat = parseCategoryURL(props.match.url);
+    const cat = props.match.params.cat;
     if (!props.building_id){
         return (
             <Sidebar title="Building Not Found" back={`/edit/${cat}.html`}>

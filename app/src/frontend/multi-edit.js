@@ -2,14 +2,14 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import Sidebar from './sidebar';
-import { parseCategoryURL } from '../parse';
 
 
 const MultiEdit = (props) => {
     if (!props.user){
         return <Redirect to="/sign-up.html" />
     }
-    const cat = parseCategoryURL(props.match.url);
+    const cat = props.match.params.cat;
+
     return (
         <Sidebar
             title={`Quick edit`}
