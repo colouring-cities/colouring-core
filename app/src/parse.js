@@ -43,7 +43,7 @@ function parseCategoryURL(url) {
     if (url === '/') {
         return defaultCat;
     }
-    const matches = /^\/(view|edit)\/([^/.]+)/.exec(url);
+    const matches = /^\/(view|edit|multi-edit)\/([^/.]+)/.exec(url);
     const cat = (matches && matches.length >= 3) ? matches[2] : defaultCat;
     return cat;
 }
