@@ -285,7 +285,7 @@ EditForm.propTypes = {
 const TextInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
-            cat={props.cat}
+            cat={props.cat} disabled={props.disabled}
             value={props.value || ''}
         />
         <input className="form-control" type="text"
@@ -313,7 +313,8 @@ TextInput.propTypes = {
 
 const LongTextInput = (props) => (
     <Fragment>
-        <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
+        <Label slug={props.slug} title={props.title} cat={props.cat}
+            disabled={props.disabled} tooltip={props.tooltip} />
         <textarea className="form-control"
             id={props.slug} name={props.slug}
             disabled={props.disabled}
@@ -414,7 +415,7 @@ MultiTextInput.propTypes = {
 const TextListInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
-            cat={props.cat}
+            cat={props.cat} disabled={props.disabled}
             value={props.value || ''}
         />
         <select className="form-control"
@@ -447,7 +448,7 @@ TextListInput.propTypes = {
 const NumberInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
-            cat={props.cat}
+            cat={props.cat} disabled={props.disabled}
             value={props.value || ''}
         />
         <input className="form-control" type="number" step={props.step}
@@ -565,7 +566,7 @@ const Label = (props) => (
     <label htmlFor={props.slug}>
         {props.title}
         { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
-        { (props.cat && props.slug && props.value)?
+        { (props.cat && props.slug && !props.disabled)?
             <div className="icon-buttons">
                 <NavLink
                     to={`/multi-edit/${props.cat}.html?k=${props.slug}&v=${props.value}`}
@@ -582,6 +583,7 @@ Label.propTypes = {
     cat: PropTypes.string,
     value: PropTypes.any,
     title: PropTypes.string,
+    disabled: PropTypes.bool,
     tooltip: PropTypes.string
 }
 
