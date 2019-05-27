@@ -9,7 +9,7 @@
 import db from '../db';
 
 function queryLocation(term) {
-    const max_results = 5;
+    const limit = 5;
     return db.manyOrNone(
         `SELECT
             search_str, search_class, ST_AsGeoJSON(center), zoom,
@@ -19,7 +19,7 @@ function queryLocation(term) {
         ORDER BY
             dist
         LIMIT $2;`,
-        [term, max_results]
+        [term, limit]
     ).catch((error) => {
         console.error(error);
         return undefined;

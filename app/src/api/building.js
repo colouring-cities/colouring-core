@@ -3,7 +3,7 @@
  *
  */
 import db from '../db';
-import { remove_all_at_bbox } from '../tiles/cache';
+import { removeAllAtBbox } from '../tiles/cache';
 
 // data type note: PostgreSQL bigint (64-bit) is handled as string in JavaScript, because of
 // JavaScript numerics are 64-bit double, giving only partial coverage.
@@ -85,10 +85,10 @@ function getBuildingById(id) {
     });
 }
 
-function getBuildingLikeById(building_id, user_id) {
+function getBuildingLikeById(buildingId, userId) {
     return db.oneOrNone(
         'SELECT true as like FROM building_user_likes WHERE building_id = $1 and user_id = $2 LIMIT 1',
-        [building_id, user_id]
+        [buildingId, userId]
     ).then(res => {
         return res && res.like
     }).catch(function (error) {
@@ -107,13 +107,7 @@ function getBuildingUPRNsById(id) {
     });
 }
 
-function saveBuilding(building_id, building, user_id) {
-    // save building could fail if the revision seen by the user != the latest revision
-    // - any 'intuitive' retries would need to be handled by clients of this code
-    // revision id allows for a long user 'think time' between view-building, update-building
-    // (optimistic locking implemented using field-based row versioning)
-    // const previous_revision_id = building.revision_id;
-
+function saveBuilding(buildingId, building, userId) {
     // remove read-only fields from consideration
     delete building.building_id;
     delete building.revision_id;
@@ -127,10 +121,10 @@ function saveBuilding(building_id, building, user_id) {
     return db.tx(t => {
         return t.one(
             'SELECT * FROM buildings WHERE building_id = $1 FOR UPDATE;',
-            [building_id]
-        ).then(old_building => {
-            const patches = compare(old_building, building, BUILDING_FIELD_WHITELIST);
-            console.log('Patching', building_id, patches)
+            [buildingId]
+        ).then(oldBuilding => {
+            const patches = compare(oldBuilding, building, BUILDING_FIELD_WHITELIST);
+            console.log('Patching', buildingId, patches)
             const forward = patches[0];
             const reverse = patches[1];
             if (Object.keys(forward).length === 0) {
@@ -143,10 +137,10 @@ function saveBuilding(building_id, building, user_id) {
                     $1:json, $2:json, $3, $4
                 ) RETURNING log_id
                 `,
-                [forward, reverse, building_id, user_id]
+                [forward, reverse, buildingId, userId]
             ).then(revision => {
                 const sets = db.$config.pgp.helpers.sets(forward);
-                console.log('Setting', building_id, sets)
+                console.log('Setting', buildingId, sets)
                 return t.one(
                     `UPDATE
                         buildings
@@ -158,9 +152,9 @@ function saveBuilding(building_id, building, user_id) {
                     RETURNING
                         *
                     `,
-                    [revision.log_id, sets, building_id]
+                    [revision.log_id, sets, buildingId]
                 ).then((data) => {
-                    expireBuildingTileCache(building_id)
+                    expireBuildingTileCache(buildingId)
                     return data
                 })
             });
@@ -172,7 +166,7 @@ function saveBuilding(building_id, building, user_id) {
 }
 
 
-function likeBuilding(building_id, user_id) {
+function likeBuilding(buildingId, userId) {
     // start transaction around save operation
     // - insert building-user like
     // - count total likes
@@ -182,11 +176,11 @@ function likeBuilding(building_id, user_id) {
     return db.tx({ serializable }, t => {
         return t.none(
             'INSERT INTO building_user_likes ( building_id, user_id ) VALUES ($1, $2);',
-            [building_id, user_id]
+            [buildingId, userId]
         ).then(() => {
             return t.one(
                 'SELECT count(*) as likes FROM building_user_likes WHERE building_id = $1;',
-                [building_id]
+                [buildingId]
             ).then(building => {
                 return t.one(
                     `INSERT INTO logs (
@@ -195,7 +189,7 @@ function likeBuilding(building_id, user_id) {
                         $1:json, $2, $3
                     ) RETURNING log_id
                     `,
-                    [{ likes_total: building.likes }, building_id, user_id]
+                    [{ likes_total: building.likes }, buildingId, userId]
                 ).then(revision => {
                     return t.one(
                         `UPDATE buildings
@@ -207,9 +201,9 @@ function likeBuilding(building_id, user_id) {
                         RETURNING
                             *
                         `,
-                        [revision.log_id, building.likes, building_id]
+                        [revision.log_id, building.likes, buildingId]
                     ).then((data) => {
-                        expireBuildingTileCache(building_id)
+                        expireBuildingTileCache(buildingId)
                         return data
                     })
                 })
@@ -227,7 +221,7 @@ function likeBuilding(building_id, user_id) {
 }
 
 
-function unlikeBuilding(building_id, user_id) {
+function unlikeBuilding(buildingId, userId) {
     // start transaction around save operation
     // - insert building-user like
     // - count total likes
@@ -237,11 +231,11 @@ function unlikeBuilding(building_id, user_id) {
     return db.tx({ serializable }, t => {
         return t.none(
             'DELETE FROM building_user_likes WHERE building_id = $1 AND user_id = $2;',
-            [building_id, user_id]
+            [buildingId, userId]
         ).then(() => {
             return t.one(
                 'SELECT count(*) as likes FROM building_user_likes WHERE building_id = $1;',
-                [building_id]
+                [buildingId]
             ).then(building => {
                 return t.one(
                     `INSERT INTO logs (
@@ -250,7 +244,7 @@ function unlikeBuilding(building_id, user_id) {
                         $1:json, $2, $3
                     ) RETURNING log_id
                     `,
-                    [{ likes_total: building.likes }, building_id, user_id]
+                    [{ likes_total: building.likes }, buildingId, userId]
                 ).then(revision => {
                     return t.one(
                         `UPDATE buildings
@@ -262,9 +256,9 @@ function unlikeBuilding(building_id, user_id) {
                         RETURNING
                             *
                         `,
-                        [revision.log_id, building.likes, building_id]
+                        [revision.log_id, building.likes, buildingId]
                     ).then((data) => {
-                        expireBuildingTileCache(building_id)
+                        expireBuildingTileCache(buildingId)
                         return data
                     })
                 })
@@ -281,7 +275,7 @@ function unlikeBuilding(building_id, user_id) {
     });
 }
 
-function privateQueryBuildingBBOX(building_id){
+function privateQueryBuildingBBOX(buildingId){
     return db.one(
         `SELECT
             ST_XMin(envelope) as xmin,
@@ -297,14 +291,14 @@ function privateQueryBuildingBBOX(building_id){
             AND
                 b.building_id = $1
         ) as envelope`,
-        [building_id]
+        [buildingId]
     )
 }
 
-function expireBuildingTileCache(building_id) {
-    privateQueryBuildingBBOX(building_id).then((bbox) => {
-        const building_bbox = [bbox.xmax, bbox.ymax, bbox.xmin, bbox.ymin]
-        remove_all_at_bbox(building_bbox);
+function expireBuildingTileCache(buildingId) {
+    privateQueryBuildingBBOX(buildingId).then((bbox) => {
+        const buildingBbox = [bbox.xmax, bbox.ymax, bbox.xmin, bbox.ymin]
+        removeAllAtBbox(buildingBbox);
     })
 }
 
@@ -361,21 +355,21 @@ const BUILDING_FIELD_WHITELIST = new Set([
  * - forward patch is object with {keys: new_values}
  * - reverse patch is object with {keys: old_values}
  *
- * @param {object} old_obj
- * @param {object} new_obj
+ * @param {object} oldObj
+ * @param {object} newObj
  * @param {Set} whitelist
  * @returns {[object, object]}
  */
-function compare(old_obj, new_obj, whitelist) {
-    const reverse_patch = {}
-    const forward_patch = {}
-    for (const [key, value] of Object.entries(new_obj)) {
-        if (old_obj[key] !== value && whitelist.has(key)) {
-            reverse_patch[key] = old_obj[key];
-            forward_patch[key] = value;
+function compare(oldObj, newObj, whitelist) {
+    const reverse = {}
+    const forward = {}
+    for (const [key, value] of Object.entries(newObj)) {
+        if (oldObj[key] !== value && whitelist.has(key)) {
+            reverse[key] = oldObj[key];
+            forward[key] = value;
         }
     }
-    return [forward_patch, reverse_patch]
+    return [forward, reverse]
 }
 
 export {

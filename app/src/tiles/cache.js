@@ -18,7 +18,7 @@
 // and then use stdlib `import fs from 'fs';`
 import fs from 'node-fs';
 
-import { get_xyz } from './tile';
+import { getXYZ } from './tile';
 
 // Use an environment variable to configure the cache location, somewhere we can read/write to.
 const CACHE_PATH = process.env.TILECACHE_PATH
@@ -32,10 +32,10 @@ const CACHE_PATH = process.env.TILECACHE_PATH
  * @param {number} y
  */
 function get(tileset, z, x, y) {
-    if (!should_try_cache(tileset, z)) {
+    if (!shouldTryCache(tileset, z)) {
         return Promise.reject(`Skip cache get ${tileset}/${z}/${x}/${y}`);
     }
-    const location = cache_location(tileset, z, x, y);
+    const location = cacheLocation(tileset, z, x, y);
     return new Promise((resolve, reject) => {
         fs.readFile(location.fname, (err, data) => {
             if (err) {
@@ -57,10 +57,10 @@ function get(tileset, z, x, y) {
  * @param {number} y
  */
 function put(im, tileset, z, x, y) {
-    if (!should_try_cache(tileset, z)) {
+    if (!shouldTryCache(tileset, z)) {
         return Promise.reject(`Skip cache put ${tileset}/${z}/${x}/${y}`);
     }
-    const location = cache_location(tileset, z, x, y);
+    const location = cacheLocation(tileset, z, x, y);
     return new Promise((resolve, reject) => {
         fs.writeFile(location.fname, im, 'binary', (err) => {
             if (err && err.code === 'ENOENT') {
@@ -91,7 +91,7 @@ function put(im, tileset, z, x, y) {
  * @param {number} y
  */
 function remove(tileset, z, x, y) {
-    const location = cache_location(tileset, z, x, y)
+    const location = cacheLocation(tileset, z, x, y)
     return new Promise(resolve => {
         fs.unlink(location.fname, (err) => {
             if(err){
@@ -111,26 +111,26 @@ function remove(tileset, z, x, y) {
  * @param {String} tileset
  * @param {Array} bbox [w, s, e, n] in EPSG:3857 coordinates
  */
-function remove_all_at_bbox(bbox) {
+function removeAllAtBbox(bbox) {
     // magic numbers for min/max zoom
-    const min_zoom = 9;
-    const max_zoom = 18;
+    const minZoom = 9;
+    const maxZoom = 18;
     // magic list of tilesets - see tileserver, other cache rules
     const tilesets = ['date_year', 'size_storeys', 'location', 'likes', 'conservation_area'];
-    let tile_bounds;
-    const remove_promises = [];
+    let tileBounds;
+    const removePromises = [];
     for (let ti = 0; ti < tilesets.length; ti++) {
         const tileset = tilesets[ti];
-        for (let z = min_zoom; z <= max_zoom; z++) {
-            tile_bounds = get_xyz(bbox, z)
-            for (let x = tile_bounds.minX; x <= tile_bounds.maxX; x++){
-                for (let y = tile_bounds.minY; y <= tile_bounds.maxY; y++){
-                    remove_promises.push(remove(tileset, z, x, y))
+        for (let z = minZoom; z <= maxZoom; z++) {
+            tileBounds = getXYZ(bbox, z)
+            for (let x = tileBounds.minX; x <= tileBounds.maxX; x++){
+                for (let y = tileBounds.minY; y <= tileBounds.maxY; y++){
+                    removePromises.push(remove(tileset, z, x, y))
                 }
             }
         }
     }
-    Promise.all(remove_promises)
+    Promise.all(removePromises)
 }
 
 /**
@@ -142,7 +142,7 @@ function remove_all_at_bbox(bbox) {
  * @param {number} y
  * @returns {object} { dir: <directory>, fname: <full filepath> }
  */
-function cache_location(tileset, z, x, y) {
+function cacheLocation(tileset, z, x, y) {
     const dir = `${CACHE_PATH}/${tileset}/${z}/${x}`
     const fname = `${dir}/${y}.png`
     return {dir, fname}
@@ -155,7 +155,7 @@ function cache_location(tileset, z, x, y) {
  * @param {number} z zoom level
  * @returns {boolean} whether to use the cache (or not)
  */
-function should_try_cache(tileset, z) {
+function shouldTryCache(tileset, z) {
     if (tileset === 'date_year') {
     // cache high zoom because of front page hits
         return z <= 16
@@ -168,4 +168,4 @@ function should_try_cache(tileset, z) {
     return z <= 13
 }
 
-export { get, put, remove, remove_all_at_bbox };
+export { get, put, remove, removeAllAtBbox };

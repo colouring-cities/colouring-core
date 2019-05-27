@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './tooltip.css';
 import { InfoIcon } from './icons';
@@ -42,4 +43,9 @@ class Tooltip extends Component {
         );
     }
 }
+
+Tooltip.propTypes = {
+    text: PropTypes.string
+}
+
 export default Tooltip;

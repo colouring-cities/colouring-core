@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 const InfoBox = (props) => (
     <Fragment>
@@ -19,5 +20,10 @@ const InfoBox = (props) => (
         }
     </Fragment>
 );
+
+InfoBox.propTypes = {
+    msg: PropTypes.string,
+    children: PropTypes.node
+}
 
 export default InfoBox;

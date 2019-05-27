@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { Map, TileLayer, ZoomControl, AttributionControl } from 'react-leaflet-universal';
 
 import '../../node_modules/leaflet/dist/leaflet.css'
@@ -39,12 +40,12 @@ class ColouringMap extends Component {
     }
 
     handleClick(e) {
-        const is_edit = this.props.match.url.match('edit')
-        const mode = is_edit? 'edit': 'view';
+        const isEdit = this.props.match.url.match('edit')
+        const mode = isEdit? 'edit': 'view';
         const lat = e.latlng.lat
         const lng = e.latlng.lng
-        const new_cat = parseCategoryURL(this.props.match.url);
-        const map_cat = new_cat || 'age';
+        const newCat = parseCategoryURL(this.props.match.url);
+        const mapCat = newCat || 'age';
         fetch(
             '/buildings/locate?lat='+lat+'&lng='+lng
         ).then(
@@ -53,11 +54,11 @@ class ColouringMap extends Component {
             if (data && data.length){
                 const building = data[0];
                 this.props.selectBuilding(building);
-                this.props.history.push(`/${mode}/${map_cat}/building/${building.building_id}.html`);
+                this.props.history.push(`/${mode}/${mapCat}/building/${building.building_id}.html`);
             } else {
                 // deselect but keep/return to expected colour theme
                 this.props.selectBuilding(undefined);
-                this.props.history.push(`/${mode}/${map_cat}.html`);
+                this.props.history.push(`/${mode}/${mapCat}.html`);
             }
         }.bind(this)).catch(
             (err) => console.error(err)
@@ -81,37 +82,37 @@ class ColouringMap extends Component {
         const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines.'
 
         // colour-data tiles
-        const is_building = /building/.test(this.props.match.url);
-        const is_edit = /edit/.test(this.props.match.url);
+        const isBuilding = /building/.test(this.props.match.url);
+        const isEdit = /edit/.test(this.props.match.url);
         const cat = parseCategoryURL(this.props.match.url);
-        const tileset_by_cat = {
+        const tilesetByCat = {
             age: 'date_year',
             size: 'size_storeys',
             location: 'location',
             like: 'likes',
             planning: 'conservation_area',
         }
-        const data_tileset = tileset_by_cat[cat];
+        const tileset = tilesetByCat[cat];
         // pick revision id to bust browser cache
         const rev = this.props.building? this.props.building.revision_id : '';
-        const dataLayer = data_tileset?
+        const dataLayer = tileset?
             <TileLayer
-                key={data_tileset}
-                url={`/tiles/${data_tileset}/{z}/{x}/{y}.png?rev=${rev}`}
+                key={tileset}
+                url={`/tiles/${tileset}/{z}/{x}/{y}.png?rev=${rev}`}
                 minZoom={9} />
             : null;
 
         // highlight
-        const geometry_id = (this.props.building) ? this.props.building.geometry_id : undefined;
-        const highlight = `/tiles/highlight/{z}/{x}/{y}.png?highlight=${geometry_id}`
-        const highlightLayer = (is_building && this.props.building) ?
+        const geometryId = (this.props.building) ? this.props.building.geometry_id : undefined;
+        const highlight = `/tiles/highlight/{z}/{x}/{y}.png?highlight=${geometryId}`
+        const highlightLayer = (isBuilding && this.props.building) ?
             <TileLayer
                 key={this.props.building.building_id}
                 url={highlight}
                 minZoom={14} />
             : null;
 
-        const base_layer_url = (this.state.theme === 'light')?
+        const baseUrl = (this.state.theme === 'light')?
             '/tiles/base_light/{z}/{x}/{y}.png'
             : '/tiles/base_night/{z}/{x}/{y}.png'
 
@@ -128,16 +129,16 @@ class ColouringMap extends Component {
                     onClick={this.handleClick}
                 >
                     <TileLayer url={url} attribution={attribution} />
-                    <TileLayer url={base_layer_url} minZoom={14} />
+                    <TileLayer url={baseUrl} minZoom={14} />
                     { dataLayer }
                     { highlightLayer }
                     <ZoomControl position="topright" />
                     <AttributionControl prefix="" />
                 </Map>
                 {
-                    !is_building && this.props.match.url !== '/'? (
+                    !isBuilding && this.props.match.url !== '/'? (
                         <div className="map-notice">
-                            <HelpIcon /> {is_edit? 'Click a building to edit' : 'Click a building for details'}
+                            <HelpIcon /> {isEdit? 'Click a building to edit' : 'Click a building for details'}
                         </div>
                     ) : null
                 }
@@ -146,13 +147,20 @@ class ColouringMap extends Component {
                         <Fragment>
                             <Legend slug={cat} />
                             <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
-                            <SearchBox onLocate={this.handleLocate} is_building={is_building} />
+                            <SearchBox onLocate={this.handleLocate} isBuilding={isBuilding} />
                         </Fragment>
                     ) : null
                 }
             </Fragment>
         );
     }
+}
+
+ColouringMap.propTypes = {
+    building: PropTypes.object,
+    selectBuilding: PropTypes.func,
+    match: PropTypes.object,
+    history: PropTypes.object
 }
 
 export default ColouringMap;

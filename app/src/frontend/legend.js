@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './legend.css';
 
@@ -136,17 +137,21 @@ const Legend = (props) => {
             }
             {
                 elements.length?
-                    (<ul className="data-legend">
+                    <ul className="data-legend">
                         {
-                            elements.map((data_item) => (
-                                <LegendItem {...data_item} key={data_item.color} />
+                            elements.map((item) => (
+                                <LegendItem {...item} key={item.color} />
                             ))
                         }
-                    </ul>)
-                    : (<p className="data-intro">Coming soon…</p>)
+                    </ul>
+                    : <p className="data-intro">Coming soon…</p>
             }
         </div>
     );
+}
+
+Legend.propTypes = {
+    slug: PropTypes.string
 }
 
 const LegendItem = (props) => (
@@ -155,5 +160,10 @@ const LegendItem = (props) => (
         { props.text }
     </li>
 );
+
+LegendItem.propTypes = {
+    color: PropTypes.string,
+    text: PropTypes.string
+}
 
 export default Legend;

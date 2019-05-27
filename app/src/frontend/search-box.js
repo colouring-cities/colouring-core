@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './search-box.css';
 
@@ -26,7 +27,7 @@ class SearchBox extends Component {
         this.setState({
             q: e.target.value
         });
-        // If the ‘clear’ icon has been clicked, clear results list as well 
+        // If the ‘clear’ icon has been clicked, clear results list as well
         if(e.target.value === '') {
             this.clearResults();
         }
@@ -107,7 +108,7 @@ class SearchBox extends Component {
                                         this.props.onLocate(lat, lng, zoom);
                                     }}
                                     href={href}
-                                >{`${label.substring(0,4)} ${label.substring(4, 7)}`}</a>
+                                >{`${label.substring(0, 4)} ${label.substring(4, 7)}`}</a>
                             </li>
                         )
                     })
@@ -115,7 +116,7 @@ class SearchBox extends Component {
             </ul>
             : null;
         return (
-            <div className={`search-box ${this.props.is_building? 'building' : ''}`} onKeyDown={this.handleKeyPress}>
+            <div className={`search-box ${this.props.isBuilding? 'building' : ''}`} onKeyDown={this.handleKeyPress}>
                 <form action="/search" method="GET" onSubmit={this.search}
                     className="form-inline">
                     <input
@@ -134,6 +135,11 @@ class SearchBox extends Component {
             </div>
         )
     }
+}
+
+SearchBox.propTypes = {
+    onLocate: PropTypes.func,
+    isBuilding: PropTypes.bool
 }
 
 export default SearchBox;

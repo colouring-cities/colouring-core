@@ -70,7 +70,7 @@ function authUser(username, password) {
     })
 }
 
-function getUserById(user_id) {
+function getUserById(id) {
     return db.one(
         `SELECT
             username, email, registered, api_key
@@ -79,7 +79,7 @@ function getUserById(user_id) {
         WHERE
             user_id = $1
         `, [
-            user_id
+            id
         ]
     ).catch(function (error) {
         console.error('Error:', error)
@@ -87,7 +87,7 @@ function getUserById(user_id) {
     });
 }
 
-function getNewUserAPIKey(user_id) {
+function getNewUserAPIKey(id) {
     return db.one(
         `UPDATE
             users
@@ -98,7 +98,7 @@ function getNewUserAPIKey(user_id) {
         RETURNING
             api_key
         `, [
-            user_id
+            id
         ]
     ).catch(function (error) {
         console.error('Error:', error)
@@ -106,7 +106,7 @@ function getNewUserAPIKey(user_id) {
     });
 }
 
-function authAPIUser(api_key) {
+function authAPIUser(key) {
     return db.one(
         `SELECT
             user_id
@@ -115,7 +115,7 @@ function authAPIUser(api_key) {
         WHERE
             api_key = $1
         `, [
-            api_key
+            key
         ]
     ).catch(function (error) {
         console.error('Error:', error)

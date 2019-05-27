@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -168,6 +169,12 @@ class App extends React.Component {
             </Fragment>
         );
     }
+}
+
+App.propTypes = {
+    user: PropTypes.object,
+    building: PropTypes.object,
+    building_like: PropTypes.bool
 }
 
 /**

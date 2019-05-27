@@ -33,11 +33,11 @@ const PROJ4_STRING = '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x
 
 // Mapnik uses table definitions to query geometries and attributes from PostGIS.
 // The queries here are eventually used as subqueries when Mapnik fetches data to render a
-// tile - so given a table_definition like:
-//      (SELECT geometry_geom FROM geometries) as my_table_definition
+// tile - so given a table definition like:
+//      (SELECT geometry_geom FROM geometries) as def
 // Mapnik will wrap it in a bbox query and PostGIS will eventually see something like:
 //      SELECT AsBinary("geometry") AS geom from
-//          (SELECT geometry_geom FROM geometries) as my_table_definition
+//          (SELECT geometry_geom FROM geometries) as def
 //      WHERE "geometry" && SetSRID('BOX3D(0,1,2,3)'::box3d, 3857)
 // see docs: https://github.com/mapnik/mapnik/wiki/OptimizeRenderingWithPostGIS
 const MAP_STYLE_TABLE_DEFINITIONS = {
@@ -139,26 +139,26 @@ const mercator = new SphericalMercator({
     size: TILE_SIZE
 });
 
-function get_bbox(z, x, y) {
+function getBbox(z, x, y) {
     return mercator.bbox(x, y, z, false, '900913');
 }
 
-function get_xyz(bbox, z) {
+function getXYZ(bbox, z) {
     return mercator.xyz(bbox, z, false, '900913')
 }
 
-function render_tile(tileset, z, x, y, geometry_id, cb) {
-    const bbox = get_bbox(z, x, y)
+function renderTile(tileset, z, x, y, geometryId, cb) {
+    const bbox = getBbox(z, x, y)
 
     const map = new mapnik.Map(TILE_SIZE, TILE_SIZE, PROJ4_STRING);
     map.bufferSize = TILE_BUFFER_SIZE;
     const layer = new mapnik.Layer('tile', PROJ4_STRING);
 
-    const table_def = (tileset === 'highlight') ?
-        get_highlight_table_def(geometry_id)
+    const tableDefinition = (tileset === 'highlight') ?
+        getHighlightTableDefinition(geometryId)
         : MAP_STYLE_TABLE_DEFINITIONS[tileset];
 
-    const conf = Object.assign({ table: table_def }, DATASOURCE_CONFIG)
+    const conf = Object.assign({ table: tableDefinition }, DATASOURCE_CONFIG)
 
     var postgis;
     try {
@@ -186,17 +186,17 @@ function render_tile(tileset, z, x, y, geometry_id, cb) {
     }
 }
 
-// highlight single geometry, requires geometry_id in the table query
-function get_highlight_table_def(geometry_id) {
+// highlight single geometry, requires geometryId in the table query
+function getHighlightTableDefinition(geometryId) {
     return `(
         SELECT
             g.geometry_geom
         FROM
             geometries as g
         WHERE
-            g.geometry_id = ${geometry_id}
+            g.geometry_id = ${geometryId}
     ) as highlight`
 }
 
 
-export { get_bbox, get_xyz, render_tile, TILE_SIZE };
+export { getBbox, getXYZ, renderTile, TILE_SIZE };

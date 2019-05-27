@@ -9,7 +9,7 @@ import express from 'express';
 import sharp from 'sharp';
 
 import { get, put } from './cache';
-import { render_tile, get_bbox, get_xyz, TILE_SIZE } from './tile';
+import { renderTile, getBbox, getXYZ, TILE_SIZE } from './tile';
 import { strictParseInt } from '../parse';
 
 // zoom level when we switch from rendering direct from database to instead composing tiles
@@ -23,48 +23,48 @@ const EXTENT_BBOX = [-61149.622628, 6667754.851372, 28128.826409, 6744803.375884
 // tiles router
 const router = express.Router()
 
-router.get('/highlight/:z/:x/:y.png', handle_highlight_tile_request);
+router.get('/highlight/:z/:x/:y.png', handleHighlightTileRequest);
 
 router.get('/base_light/:z/:x/:y.png', (req, res) => {
-    handle_tile_request('base_light', req, res)
+    handleTileRequest('base_light', req, res)
 });
 
 router.get('/base_night/:z/:x/:y.png', (req, res) => {
-    handle_tile_request('base_night', req, res)
+    handleTileRequest('base_night', req, res)
 });
 
 router.get('/date_year/:z/:x/:y.png', (req, res) => {
-    handle_tile_request('date_year', req, res)
+    handleTileRequest('date_year', req, res)
 });
 
 router.get('/size_storeys/:z/:x/:y.png', (req, res) => {
-    handle_tile_request('size_storeys', req, res)
+    handleTileRequest('size_storeys', req, res)
 });
 
 router.get('/location/:z/:x/:y.png', (req, res) => {
-    handle_tile_request('location', req, res)
+    handleTileRequest('location', req, res)
 });
 
 router.get('/likes/:z/:x/:y.png', (req, res) => {
-    handle_tile_request('likes', req, res)
+    handleTileRequest('likes', req, res)
 });
 
 router.get('/conservation_area/:z/:x/:y.png', (req, res) => {
-    handle_tile_request('conservation_area', req, res)
+    handleTileRequest('conservation_area', req, res)
 });
 
-function handle_tile_request(tileset, req, res) {
+function handleTileRequest(tileset, req, res) {
     const { z, x, y } = req.params
-    const int_z = strictParseInt(z);
-    const int_x = strictParseInt(x);
-    const int_y = strictParseInt(y);
+    const intZ = strictParseInt(z);
+    const intX = strictParseInt(x);
+    const intY = strictParseInt(y);
 
-    if (isNaN(int_x) || isNaN(int_y) || isNaN(int_z)) {
+    if (isNaN(intX) || isNaN(intY) || isNaN(intZ)) {
         console.error('Missing x or y or z')
         return { error: 'Bad parameter' }
     }
 
-    load_tile(tileset, int_z, int_x, int_y).then((im) => {
+    loadTile(tileset, intZ, intX, intY).then((im) => {
         res.writeHead(200, { 'Content-Type': 'image/png' })
         res.end(im)
     }).catch((err) => {
@@ -73,21 +73,21 @@ function handle_tile_request(tileset, req, res) {
     })
 }
 
-function load_tile(tileset, z, x, y) {
-    if (outside_extent(z, x, y)) {
-        return empty_tile()
+function loadTile(tileset, z, x, y) {
+    if (outsideExtent(z, x, y)) {
+        return emptyTile()
     }
     return get(tileset, z, x, y).then((im) => {
         console.log(`From cache ${tileset}/${z}/${x}/${y}`)
         return im
     }).catch(() => {
-        return render_or_stitch_tile(tileset, z, x, y)
+        return renderOrStitchTile(tileset, z, x, y)
     })
 }
 
-function render_or_stitch_tile(tileset, z, x, y) {
+function renderOrStitchTile(tileset, z, x, y) {
     if (z <= STITCH_THRESHOLD) {
-        return stitch_tile(tileset, z, x, y).then(im => {
+        return StitchTile(tileset, z, x, y).then(im => {
             return put(im, tileset, z, x, y).then(() => {
                 console.log(`Stitch ${tileset}/${z}/${x}/${y}`)
                 return im
@@ -99,7 +99,7 @@ function render_or_stitch_tile(tileset, z, x, y) {
     } else {
 
         return new Promise((resolve, reject) => {
-            render_tile(tileset, z, x, y, undefined, (err, im) => {
+            renderTile(tileset, z, x, y, undefined, (err, im) => {
                 if (err) {
                     reject(err)
                     return
@@ -116,12 +116,12 @@ function render_or_stitch_tile(tileset, z, x, y) {
     }
 }
 
-function outside_extent(z, x, y) {
-    const xy = get_xyz(EXTENT_BBOX, z);
+function outsideExtent(z, x, y) {
+    const xy = getXYZ(EXTENT_BBOX, z);
     return xy.minY > y || xy.maxY < y || xy.minX > x || xy.maxX < x;
 }
 
-function empty_tile() {
+function emptyTile() {
     return sharp({
         create: {
             width: 1,
@@ -132,22 +132,22 @@ function empty_tile() {
     }).png().toBuffer()
 }
 
-function stitch_tile(tileset, z, x, y) {
-    const bbox = get_bbox(z, x, y)
-    const next_z = z + 1
-    const next_xy = get_xyz(bbox, next_z)
+function StitchTile(tileset, z, x, y) {
+    const bbox = getBbox(z, x, y)
+    const nextZ = z + 1
+    const nextXY = getXYZ(bbox, nextZ)
 
     return Promise.all([
     // recurse down through zoom levels, using cache if available...
-        load_tile(tileset, next_z, next_xy.minX, next_xy.minY),
-        load_tile(tileset, next_z, next_xy.maxX, next_xy.minY),
-        load_tile(tileset, next_z, next_xy.minX, next_xy.maxY),
-        load_tile(tileset, next_z, next_xy.maxX, next_xy.maxY)
+        loadTile(tileset, nextZ, nextXY.minX, nextXY.minY),
+        loadTile(tileset, nextZ, nextXY.maxX, nextXY.minY),
+        loadTile(tileset, nextZ, nextXY.minX, nextXY.maxY),
+        loadTile(tileset, nextZ, nextXY.maxX, nextXY.maxY)
     ]).then(([
-        top_left,
-        top_right,
-        bottom_left,
-        bottom_right
+        topLeft,
+        topRight,
+        bottomLeft,
+        bottomRight
     ]) => {
     // not possible to chain overlays in a single pipeline, but there may still be a better
     // way to create image buffer here (four tiles resize to one at the next zoom level)
@@ -160,18 +160,18 @@ function stitch_tile(tileset, z, x, y) {
                 background: { r: 0, g: 0, b: 0, alpha: 0 }
             }
         }).overlayWith(
-            top_left, { gravity: sharp.gravity.northwest }
+            topLeft, { gravity: sharp.gravity.northwest }
         ).png().toBuffer().then((buf) => {
             return sharp(buf).overlayWith(
-                top_right, { gravity: sharp.gravity.northeast }
+                topRight, { gravity: sharp.gravity.northeast }
             ).png().toBuffer()
         }).then((buf) => {
             return sharp(buf).overlayWith(
-                bottom_left, { gravity: sharp.gravity.southwest }
+                bottomLeft, { gravity: sharp.gravity.southwest }
             ).png().toBuffer()
         }).then((buf) => {
             return sharp(buf).overlayWith(
-                bottom_right, { gravity: sharp.gravity.southeast }
+                bottomRight, { gravity: sharp.gravity.southeast }
             ).png().toBuffer()
         }).then((buf) => {
             return sharp(buf
@@ -182,30 +182,30 @@ function stitch_tile(tileset, z, x, y) {
 }
 
 
-function handle_highlight_tile_request(req, res) {
+function handleHighlightTileRequest(req, res) {
     const { z, x, y } = req.params
-    const int_z = strictParseInt(z);
-    const int_x = strictParseInt(x);
-    const int_y = strictParseInt(y);
+    const intZ = strictParseInt(z);
+    const intX = strictParseInt(x);
+    const intY = strictParseInt(y);
 
-    if (isNaN(int_x) || isNaN(int_y) || isNaN(int_z)) {
+    if (isNaN(intX) || isNaN(intY) || isNaN(intZ)) {
         console.error('Missing x or y or z')
         return { error: 'Bad parameter' }
     }
 
     // highlight layer uses geometry_id to outline a single building
     const { highlight } = req.query
-    const geometry_id = strictParseInt(highlight);
-    if (isNaN(geometry_id)) {
+    const geometryId = strictParseInt(highlight);
+    if (isNaN(geometryId)) {
         res.status(400).send({ error: 'Bad parameter' })
         return
     }
 
-    if (outside_extent(z, x, y)) {
-        return empty_tile()
+    if (outsideExtent(z, x, y)) {
+        return emptyTile()
     }
 
-    render_tile('highlight', int_z, int_x, int_y, geometry_id, function (err, im) {
+    renderTile('highlight', intZ, intX, intY, geometryId, function (err, im) {
         if (err) {throw err}
 
         res.writeHead(200, { 'Content-Type': 'image/png' })

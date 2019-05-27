@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './sidebar.css';
 import { BackIcon } from './icons';
@@ -19,5 +20,11 @@ const Sidebar = (props) => (
         {props.children}
     </div>
 );
+
+Sidebar.propTypes = {
+    back: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    children: PropTypes.node
+}
 
 export default Sidebar;

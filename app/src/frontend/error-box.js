@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 function ErrorBox(props){
     if (props.msg) {
@@ -20,6 +21,10 @@ function ErrorBox(props){
             }
         </Fragment>
     );
+}
+
+ErrorBox.propTypes = {
+    msg: PropTypes.string
 }
 
 export default ErrorBox;

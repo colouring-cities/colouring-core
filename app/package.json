@@ -25,6 +25,7 @@
     "mapnik": "^4.2.1",
     "node-fs": "^0.1.7",
     "pg-promise": "^8.7.2",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-leaflet": "^1.0.1",
@@ -36,6 +37,7 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
+    "eslint-plugin-jest": "^22.6.4",
     "eslint-plugin-react": "^7.13.0",
     "razzle": "^3.0.0"
   }

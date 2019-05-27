@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Logo from './logo';
 import './header.css';
@@ -98,6 +99,12 @@ class Header extends React.Component {
             </header>
         );
     }
+}
+
+Header.propTypes = {
+    user: PropTypes.shape({
+        username: PropTypes.string
+    })
 }
 
 export default Header;

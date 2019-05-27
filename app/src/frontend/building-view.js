@@ -1,6 +1,7 @@
 import urlapi from 'url';
 import React, { Fragment } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Sidebar from './sidebar';
 import Tooltip from './tooltip';
@@ -26,40 +27,40 @@ const BuildingView = (props) => {
     return (
         <Sidebar title={'Data available for this building'} back={`/view/${cat}.html`}>
             {
-                CONFIG.map(section_props => (
+                CONFIG.map(section => (
                     <DataSection
-                        key={section_props.slug} cat={cat}
+                        key={section.slug} cat={cat}
                         building_id={props.building_id}
-                        {...section_props}>
+                        {...section}>
                         {
-                            section_props.fields.map(field_props => {
+                            section.fields.map(field => {
 
-                                switch (field_props.type) {
+                                switch (field.type) {
                                 case 'uprn_list':
                                     return <UPRNsDataEntry
-                                        key={field_props.slug}
-                                        title={field_props.title}
+                                        key={field.slug}
+                                        title={field.title}
                                         value={props.uprns}
-                                        tooltip={field_props.tooltip} />
+                                        tooltip={field.tooltip} />
                                 case 'text_multi':
                                     return <MultiDataEntry
-                                        key={field_props.slug}
-                                        title={field_props.title}
-                                        value={props[field_props.slug]}
-                                        tooltip={field_props.tooltip} />
+                                        key={field.slug}
+                                        title={field.title}
+                                        value={props[field.slug]}
+                                        tooltip={field.tooltip} />
                                 case 'like':
                                     return <LikeDataEntry
-                                        key={field_props.slug}
-                                        title={field_props.title}
-                                        value={props[field_props.slug]}
+                                        key={field.slug}
+                                        title={field.title}
+                                        value={props[field.slug]}
                                         user_building_like={props.building_like}
-                                        tooltip={field_props.tooltip} />
+                                        tooltip={field.tooltip} />
                                 default:
                                     return <DataEntry
-                                        key={field_props.slug}
-                                        title={field_props.title}
-                                        value={props[field_props.slug]}
-                                        tooltip={field_props.tooltip} />
+                                        key={field.slug}
+                                        title={field.title}
+                                        value={props[field.slug]}
+                                        tooltip={field.tooltip} />
                                 }
                             })
                         }
@@ -70,6 +71,15 @@ const BuildingView = (props) => {
     );
 }
 
+BuildingView.propTypes = {
+    building_id: PropTypes.string,
+    match: PropTypes.object,
+    uprns: PropTypes.arrayOf(PropTypes.shape({
+        uprn: PropTypes.string.isRequired,
+        parent_uprn: PropTypes.string
+    })),
+    building_like: PropTypes.bool
+}
 
 const DataSection = (props) => {
     const match = props.cat === props.slug;
@@ -113,6 +123,17 @@ const DataSection = (props) => {
     );
 }
 
+DataSection.propTypes = {
+    title: PropTypes.string,
+    cat: PropTypes.string,
+    slug: PropTypes.string,
+    intro: PropTypes.string,
+    help: PropTypes.string,
+    inactive: PropTypes.bool,
+    building_id: PropTypes.string,
+    children: PropTypes.node
+}
+
 const DataEntry = (props) => (
     <Fragment>
         <dt>
@@ -127,6 +148,12 @@ const DataEntry = (props) => (
                 : '\u00A0'}</dd>
     </Fragment>
 );
+
+DataEntry.propTypes = {
+    title: PropTypes.string,
+    tooltip: PropTypes.string,
+    value: PropTypes.any
+}
 
 const LikeDataEntry = (props) => (
     <Fragment>
@@ -149,13 +176,20 @@ const LikeDataEntry = (props) => (
     </Fragment>
 );
 
+LikeDataEntry.propTypes = {
+    title: PropTypes.string,
+    tooltip: PropTypes.string,
+    value: PropTypes.any,
+    user_building_like: PropTypes.bool
+}
+
 const MultiDataEntry = (props) => {
     let content;
 
     if (props.value && props.value.length) {
         content = <ul>{
             props.value.map((item, index) => {
-                return <li key={index}><a href={sanitise_url(item)}>{item}</a></li>
+                return <li key={index}><a href={sanitiseURL(item)}>{item}</a></li>
             })
         }</ul>
     } else {
@@ -173,7 +207,13 @@ const MultiDataEntry = (props) => {
     );
 }
 
-function sanitise_url(string){
+MultiDataEntry.propTypes = {
+    title: PropTypes.string,
+    tooltip: PropTypes.string,
+    value: PropTypes.arrayOf(PropTypes.string)
+}
+
+function sanitiseURL(string){
     let url_
 
     // http or https
@@ -211,8 +251,8 @@ function sanitise_url(string){
 
 const UPRNsDataEntry = (props) => {
     const uprns = props.value || [];
-    const no_parent = uprns.filter(uprn => uprn.parent_uprn == null);
-    const with_parent = uprns.filter(uprn => uprn.parent_uprn != null);
+    const noParent = uprns.filter(uprn => uprn.parent_uprn == null);
+    const withParent = uprns.filter(uprn => uprn.parent_uprn != null);
 
     return (
         <Fragment>
@@ -222,18 +262,18 @@ const UPRNsDataEntry = (props) => {
             </dt>
             <dd><ul className="uprn-list">
                 <Fragment>{
-                    no_parent.length?
-                        no_parent.map(uprn => (
+                    noParent.length?
+                        noParent.map(uprn => (
                             <li key={uprn.uprn}>{uprn.uprn}</li>
                         ))
                         : '\u00A0'
                 }</Fragment>
                 {
-                    with_parent.length?
+                    withParent.length?
                         <details>
                             <summary>Children</summary>
                             {
-                                with_parent.map(uprn => (
+                                withParent.map(uprn => (
                                     <li key={uprn.uprn}>{uprn.uprn} (child of {uprn.parent_uprn})</li>
                                 ))
                             }
@@ -243,6 +283,15 @@ const UPRNsDataEntry = (props) => {
             </ul></dd>
         </Fragment>
     )
+}
+
+UPRNsDataEntry.propTypes = {
+    title: PropTypes.string,
+    tooltip: PropTypes.string,
+    value: PropTypes.arrayOf(PropTypes.shape({
+        uprn: PropTypes.string.isRequired,
+        parent_uprn: PropTypes.string
+    }))
 }
 
 export default BuildingView;

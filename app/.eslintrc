@@ -1,13 +1,15 @@
 {
   "extends": [
     "eslint:recommended",
+    "plugin:jest/recommended",
     "plugin:react/recommended"
   ],
   "env": {
     "browser": true,
     "commonjs": true,
     "node": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
   "parser": "babel-eslint",
   "parserOptions": {
@@ -23,9 +25,12 @@
     "curly": "warn",
     "quotes": ["warn", "single"],
     "indent": ["warn", 4],
-    "no-multi-spaces": ["error", {"ignoreEOLComments": true} ]
+    "no-multi-spaces": ["warn", {"ignoreEOLComments": true} ],
+    "comma-spacing": ["warn"],
+    "camelcase": ["warn", {"ignoreDestructuring": true ,"properties": "never"}]
   },
   "plugins": [
+    "jest",
     "react"
   ],
   "settings": {

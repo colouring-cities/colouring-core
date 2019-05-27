@@ -76,29 +76,29 @@ function frontendRoute(req, res) {
     const data = {};
     context.status = 200;
 
-    const user_id = req.session.user_id;
-    const building_id = parseBuildingURL(req.url);
-    const is_building = (typeof (building_id) !== 'undefined');
-    if (is_building && isNaN(building_id)) {
+    const userId = req.session.user_id;
+    const buildingId = parseBuildingURL(req.url);
+    const isBuilding = (typeof (buildingId) !== 'undefined');
+    if (isBuilding && isNaN(buildingId)) {
         context.status = 404;
     }
 
     Promise.all([
-        user_id ? getUserById(user_id) : undefined,
-        is_building ? getBuildingById(building_id) : undefined,
-        is_building ? getBuildingUPRNsById(building_id) : undefined,
-        (is_building && user_id) ? getBuildingLikeById(building_id, user_id) : false
+        userId ? getUserById(userId) : undefined,
+        isBuilding ? getBuildingById(buildingId) : undefined,
+        isBuilding ? getBuildingUPRNsById(buildingId) : undefined,
+        (isBuilding && userId) ? getBuildingLikeById(buildingId, userId) : false
     ]).then(function (values) {
         const user = values[0];
         const building = values[1];
         const uprns = values[2];
-        const building_like = values[3];
-        if (is_building && typeof (building) === 'undefined') {
+        const buildingLike = values[3];
+        if (isBuilding && typeof (building) === 'undefined') {
             context.status = 404
         }
         data.user = user;
         data.building = building;
-        data.building_like = building_like;
+        data.building_like = buildingLike;
         if (data.building != null) {
             data.building.uprns = uprns;
         }
@@ -218,10 +218,10 @@ server.route('/building/:building_id.json')
         }
     })
 
-function updateBuilding(req, res, user_id) {
+function updateBuilding(req, res, userId) {
     const { building_id } = req.params;
     const building = req.body;
-    saveBuilding(building_id, building, user_id).then(building => {
+    saveBuilding(building_id, building, userId).then(building => {
         if (building.error) {
             res.send(building)
             return
@@ -384,8 +384,8 @@ server.post('/api/key', function (req, res) {
         return
     }
 
-    getNewUserAPIKey(req.session.user_id).then(function (api_key) {
-        res.send(api_key);
+    getNewUserAPIKey(req.session.user_id).then(function (apiKey) {
+        res.send(apiKey);
     }).catch(function (error) {
         res.send(error);
     });
@@ -393,14 +393,14 @@ server.post('/api/key', function (req, res) {
 
 // GET search
 server.get('/search', function (req, res) {
-    const search_term = req.query.q;
-    if (!search_term) {
+    const searchTerm = req.query.q;
+    if (!searchTerm) {
         res.send({
             error: 'Please provide a search term'
         })
         return
     }
-    queryLocation(search_term).then((results) => {
+    queryLocation(searchTerm).then((results) => {
         if (typeof (results) === 'undefined') {
             res.send({
                 error: 'Database error'

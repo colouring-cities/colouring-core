@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Link, NavLink, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import ErrorBox from './error-box';
 import InfoBox from './info-box';
@@ -32,14 +33,20 @@ const BuildingEdit = (props) => {
             title={'You are editing'}
             back={`/edit/${cat}.html`}>
             {
-                CONFIG.map((conf_props) => {
+                CONFIG.map((section) => {
                     return <EditForm
-                        {...conf_props} {...props}
-                        cat={cat} key={conf_props.slug} />
+                        {...section} {...props}
+                        cat={cat} key={section.slug} />
                 })
             }
         </Sidebar>
     );
+}
+
+BuildingEdit.propTypes = {
+    user: PropTypes.object,
+    match: PropTypes.object,
+    building_id: PropTypes.string,
 }
 
 class EditForm extends Component {
@@ -167,7 +174,7 @@ class EditForm extends Component {
 
     render() {
         const match = this.props.cat === this.props.slug;
-        const building_like = this.props.building_like;
+        const buildingLike = this.props.building_like;
         return (
             <section className={(this.props.inactive)? 'data-section inactive': 'data-section'}>
                 <header className={`section-header edit ${this.props.slug} ${(match? 'active' : '')}`}>
@@ -235,7 +242,7 @@ class EditForm extends Component {
                                                 value={this.state[props.slug]} key={props.slug} />
                                         case 'like':
                                             return <LikeButton {...props} handleLike={this.handleLike}
-                                                building_like={building_like}
+                                                building_like={buildingLike}
                                                 value={this.state[props.slug]} key={props.slug} />
                                         default:
                                             return null
@@ -260,6 +267,20 @@ class EditForm extends Component {
     }
 }
 
+EditForm.propTypes = {
+    title: PropTypes.string,
+    slug: PropTypes.string,
+    cat: PropTypes.string,
+    help: PropTypes.string,
+    error: PropTypes.object,
+    like: PropTypes.bool,
+    building_like: PropTypes.bool,
+    selectBuilding: PropTypes.func,
+    building_id: PropTypes.string,
+    inactive: PropTypes.bool,
+    fields: PropTypes.array
+}
+
 const TextInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
@@ -274,6 +295,17 @@ const TextInput = (props) => (
     </Fragment>
 );
 
+TextInput.propTypes = {
+    slug: PropTypes.string,
+    title: PropTypes.string,
+    tooltip: PropTypes.string,
+    value: PropTypes.string,
+    max_length: PropTypes.number,
+    disabled: PropTypes.bool,
+    placeholder: PropTypes.string,
+    handleChange: PropTypes.func
+}
+
 const LongTextInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
@@ -286,6 +318,15 @@ const LongTextInput = (props) => (
     </Fragment>
 )
 
+LongTextInput.propTypes = {
+    slug: PropTypes.string,
+    title: PropTypes.string,
+    tooltip: PropTypes.string,
+    value: PropTypes.string,
+    disabled: PropTypes.bool,
+    placeholder: PropTypes.string,
+    handleChange: PropTypes.func
+}
 
 class MultiTextInput extends Component {
     constructor(props) {
@@ -301,11 +342,11 @@ class MultiTextInput extends Component {
     }
 
     edit(event) {
-        const edit_i = +event.target.dataset.index;
-        const edit_item = event.target.value;
-        const old_values = this.getValues();
-        const values = old_values.map((item, i) => {
-            return i === edit_i ? edit_item : item;
+        const editIndex = +event.target.dataset.index;
+        const editItem = event.target.value;
+        const oldValues = this.getValues();
+        const values = oldValues.map((item, i) => {
+            return i === editIndex ? editItem : item;
         });
         this.props.handleChange(this.props.slug, values);
     }
@@ -317,9 +358,9 @@ class MultiTextInput extends Component {
     }
 
     remove(event){
-        const remove_i = +event.target.dataset.index;
+        const removeIndex = +event.target.dataset.index;
         const values = this.getValues().filter((_, i) => {
-            return i !== remove_i;
+            return i !== removeIndex;
         });
         this.props.handleChange(this.props.slug, values);
     }
@@ -355,6 +396,16 @@ class MultiTextInput extends Component {
     }
 }
 
+MultiTextInput.propTypes = {
+    slug: PropTypes.string,
+    title: PropTypes.string,
+    tooltip: PropTypes.string,
+    value: PropTypes.arrayOf(PropTypes.string),
+    placeholder: PropTypes.string,
+    disabled: PropTypes.bool,
+    handleChange: PropTypes.func
+}
+
 const TextListInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
@@ -374,6 +425,16 @@ const TextListInput = (props) => (
     </Fragment>
 )
 
+TextListInput.propTypes = {
+    slug: PropTypes.string,
+    title: PropTypes.string,
+    tooltip: PropTypes.string,
+    options: PropTypes.arrayOf(PropTypes.string),
+    value: PropTypes.string,
+    disabled: PropTypes.bool,
+    handleChange: PropTypes.func
+}
+
 const NumberInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
@@ -385,6 +446,16 @@ const NumberInput = (props) => (
         />
     </Fragment>
 );
+
+NumberInput.propTypes = {
+    slug: PropTypes.string,
+    title: PropTypes.string,
+    tooltip: PropTypes.string,
+    step: PropTypes.number,
+    value: PropTypes.number,
+    disabled: PropTypes.bool,
+    handleChange: PropTypes.func
+}
 
 class YearEstimator extends Component {
     constructor(props) {
@@ -408,6 +479,18 @@ class YearEstimator extends Component {
     }
 }
 
+YearEstimator.propTypes = {
+    slug: PropTypes.string,
+    title: PropTypes.string,
+    tooltip: PropTypes.string,
+    date_year: PropTypes.number,
+    date_upper: PropTypes.number,
+    date_lower: PropTypes.number,
+    value: PropTypes.number,
+    disabled: PropTypes.bool,
+    handleChange: PropTypes.func
+}
+
 const CheckboxInput = (props) => (
     <div className="form-check">
         <input className="form-check-input" type="checkbox"
@@ -422,6 +505,15 @@ const CheckboxInput = (props) => (
         </label>
     </div>
 )
+
+CheckboxInput.propTypes = {
+    slug: PropTypes.string,
+    title: PropTypes.string,
+    tooltip: PropTypes.string,
+    value: PropTypes.bool,
+    disabled: PropTypes.bool,
+    handleChange: PropTypes.func
+}
 
 const LikeButton = (props) => (
     <Fragment>
@@ -441,11 +533,27 @@ const LikeButton = (props) => (
     </Fragment>
 );
 
+LikeButton.propTypes = {
+    slug: PropTypes.string,
+    title: PropTypes.string,
+    tooltip: PropTypes.string,
+    value: PropTypes.number,
+    building_like: PropTypes.bool,
+    disabled: PropTypes.bool,
+    handleLike: PropTypes.func
+}
+
 const Label = (props) => (
     <label htmlFor={props.slug}>
         {props.title}
         { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
     </label>
-)
+);
+
+Label.propTypes = {
+    slug: PropTypes.string,
+    title: PropTypes.string,
+    tooltip: PropTypes.string
+}
 
 export default BuildingEdit;

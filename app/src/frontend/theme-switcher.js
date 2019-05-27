@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './theme-switcher.css';
 
@@ -10,5 +11,10 @@ const ThemeSwitcher = (props) => (
         </button>
     </form>
 );
+
+ThemeSwitcher.propTypes = {
+    currentTheme: PropTypes.string,
+    onSubmit: PropTypes.func.isRequired
+}
 
 export default ThemeSwitcher;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import ErrorBox from './error-box';
 import InfoBox from './info-box';
@@ -154,6 +155,11 @@ class SignUp extends Component {
             </article>
         )
     }
+}
+
+SignUp.propTypes = {
+    login: PropTypes.func.isRequired,
+    user: PropTypes.object
 }
 
 export default SignUp;

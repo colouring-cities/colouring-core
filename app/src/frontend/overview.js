@@ -1,14 +1,15 @@
 import React, { Fragment } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Sidebar from './sidebar';
 import { EditIcon } from './icons';
 import CONFIG from './fields-config.json';
 
 const Overview = (props) => {
-    var data_layer = 'age'; // always default
+    var dataLayer = 'age'; // always default
     if (props.match && props.match.params && props.match.params.cat) {
-        data_layer = props.match.params.cat;
+        dataLayer = props.match.params.cat;
     }
 
     if (props.mode === 'edit' && !props.user){
@@ -16,22 +17,28 @@ const Overview = (props) => {
     }
 
     let title = (props.mode === 'view')? 'View maps' : 'Add or edit data';
-    let back = (props.mode === 'edit')? `/view/${data_layer}.html` : undefined;
+    let back = (props.mode === 'edit')? `/view/${dataLayer}.html` : undefined;
 
     return (
         <Sidebar title={title} back={back}>
             {
-                CONFIG.map((data_group) => (
-                    <OverviewSection {...data_group}
-                        data_layer={data_layer} key={data_group.slug} mode={props.mode} />
+                CONFIG.map((dataGroup) => (
+                    <OverviewSection {...dataGroup}
+                        dataLayer={dataLayer} key={dataGroup.slug} mode={props.mode} />
                 ))
             }
         </Sidebar>
     );
 }
 
+Overview.propTypes = {
+    match: PropTypes.object,
+    mode: PropTypes.string,
+    user: PropTypes.object
+}
+
 const OverviewSection = (props) => {
-    const match = props.data_layer === props.slug;
+    const match = props.dataLayer === props.slug;
     const inactive = props.inactive;
 
     return (
@@ -82,5 +89,19 @@ const OverviewSection = (props) => {
         </section>
     )
 };
+
+OverviewSection.propTypes = {
+    title: PropTypes.string,
+    slug: PropTypes.string,
+    intro: PropTypes.string,
+    help: PropTypes.string,
+    dataLayer: PropTypes.string,
+    mode: PropTypes.string,
+    inactive: PropTypes.bool,
+    fields: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        slug: PropTypes.string
+    }))
+}
 
 export default Overview;
