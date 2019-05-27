@@ -10,8 +10,9 @@
  * @returns {number} integer or NaN
  */
 function strictParseInt(value) {
-    if (/^([1-9][0-9]*)$/.test(value))
+    if (/^([1-9][0-9]*)$/.test(value)) {
         return Number(value);
+    }
     return NaN;
 }
 

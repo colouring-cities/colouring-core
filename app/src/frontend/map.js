@@ -153,6 +153,6 @@ class ColouringMap extends Component {
             </Fragment>
         );
     }
-};
+}
 
 export default ColouringMap;

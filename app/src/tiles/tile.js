@@ -129,7 +129,9 @@ const MAP_STYLE_TABLE_DEFINITIONS = {
 }
 
 // register datasource adapters for mapnik database connection
-if (mapnik.register_default_input_plugins) mapnik.register_default_input_plugins();
+if (mapnik.register_default_input_plugins) {
+    mapnik.register_default_input_plugins();
+}
 // register fonts for text rendering
 mapnik.register_default_fonts();
 
@@ -168,13 +170,13 @@ function render_tile(tileset, z, x, y, geometry_id, cb) {
             path.join(__dirname, '..', 'map_styles', 'polygon.xml'),
             { strict: true },
             function (err, map) {
-                if (err) throw err
+                if (err) {throw err}
 
                 map.add_layer(layer)
                 const im = new mapnik.Image(map.width, map.height)
                 map.extent = bbox
                 map.render(im, {}, (err, rendered) => {
-                    if (err) throw err
+                    if (err) {throw err}
                     rendered.encode('png', cb)
                 });
             }

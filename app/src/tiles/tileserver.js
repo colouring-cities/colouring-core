@@ -206,7 +206,7 @@ function handle_highlight_tile_request(req, res) {
     }
 
     render_tile('highlight', int_z, int_x, int_y, geometry_id, function (err, im) {
-        if (err) throw err
+        if (err) {throw err}
 
         res.writeHead(200, { 'Content-Type': 'image/png' })
         res.end(im)
