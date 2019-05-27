@@ -80,7 +80,7 @@ function load_tile(tileset, z, x, y) {
     return get(tileset, z, x, y).then((im) => {
         console.log(`From cache ${tileset}/${z}/${x}/${y}`)
         return im
-    }).catch((_) => {
+    }).catch(() => {
         return render_or_stitch_tile(tileset, z, x, y)
     })
 }
