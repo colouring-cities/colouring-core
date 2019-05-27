@@ -5,7 +5,7 @@ import React from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle, faPaintBrush, faInfoCircle, faTimes, faCheck, faCheckDouble,
-         faAngleLeft, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+    faAngleLeft, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
     faQuestionCircle,

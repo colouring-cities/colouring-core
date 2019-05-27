@@ -138,7 +138,7 @@ function stitch_tile(tileset, z, x, y) {
     const next_xy = get_xyz(bbox, next_z)
 
     return Promise.all([
-        // recurse down through zoom levels, using cache if available...
+    // recurse down through zoom levels, using cache if available...
         load_tile(tileset, next_z, next_xy.minX, next_xy.minY),
         load_tile(tileset, next_z, next_xy.maxX, next_xy.minY),
         load_tile(tileset, next_z, next_xy.minX, next_xy.maxY),
@@ -149,9 +149,9 @@ function stitch_tile(tileset, z, x, y) {
         bottom_left,
         bottom_right
     ]) => {
-        // not possible to chain overlays in a single pipeline, but there may still be a better
-        // way to create image buffer here (four tiles resize to one at the next zoom level)
-        // instead of repeatedly creating `sharp` objects, to png, to buffer...
+    // not possible to chain overlays in a single pipeline, but there may still be a better
+    // way to create image buffer here (four tiles resize to one at the next zoom level)
+    // instead of repeatedly creating `sharp` objects, to png, to buffer...
         return sharp({
             create: {
                 width: TILE_SIZE * 2,

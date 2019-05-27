@@ -8,15 +8,15 @@ function ErrorBox(props){
         <Fragment>
             {
                 (props.msg)?
-                (
-                    <div className="alert alert-danger" role="alert">
-                        {
-                            (typeof props.msg === 'string' || props.msg instanceof String)?
-                            props.msg
-                            : 'Unexpected error'
-                        }
-                    </div>
-                ) : null
+                    (
+                        <div className="alert alert-danger" role="alert">
+                            {
+                                (typeof props.msg === 'string' || props.msg instanceof String)?
+                                    props.msg
+                                    : 'Unexpected error'
+                            }
+                        </div>
+                    ) : null
             }
         </Fragment>
     );

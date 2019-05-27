@@ -21,7 +21,8 @@
     "no-console": "off",
     "strict": ["error", "global"],
     "curly": "warn",
-    "quotes": ["warn", "single"]
+    "quotes": ["warn", "single"],
+    "indent": ["warn", 4]
   },
   "plugins": [
     "react"

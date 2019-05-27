@@ -63,7 +63,7 @@ class MyAccountPage extends Component {
 
                         Colouring London is under active development, Please <a href="https://discuss.colouring.london/">discuss
                         suggestions for improvements</a> and <a
-                        href="https://github.com/tomalrussell/colouring-london/issues">
+                                href="https://github.com/tomalrussell/colouring-london/issues">
                         report issues or problems</a>.
 
                         </p>

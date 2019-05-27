@@ -40,7 +40,7 @@ class SignUp extends Component {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers:{
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             credentials: 'same-origin'
         }).then(
@@ -75,7 +75,7 @@ class SignUp extends Component {
                     <InfoBox msg="Welcome to Colouring London. You're one of the first people to sign up!  ">
                         <br/>Please <a href="https://discuss.colouring.london/">discuss
                         suggestions for improvements</a> and <a
-                        href="https://github.com/tomalrussell/colouring-london/issues">
+                            href="https://github.com/tomalrussell/colouring-london/issues">
                         report issues or problems</a>.
                     </InfoBox>
                     <p>
@@ -85,38 +85,38 @@ class SignUp extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="username">Username*</label>
                         <input name="username" id="username"
-                               className="form-control" type="text"
-                               value={this.state.username} onChange={this.handleChange}
-                               placeholder="not-your-real-name" required
-                               />
+                            className="form-control" type="text"
+                            value={this.state.username} onChange={this.handleChange}
+                            placeholder="not-your-real-name" required
+                        />
 
                         <label htmlFor="email">Email (optional)</label>
                         <input name="email" id="email"
-                               className="form-control" type="email"
-                               value={this.state.email} onChange={this.handleChange}
-                               placeholder="someone@example.com"
-                               />
+                            className="form-control" type="email"
+                            value={this.state.email} onChange={this.handleChange}
+                            placeholder="someone@example.com"
+                        />
 
                         <label htmlFor="confirm_email">Confirm email (optional)</label>
                         <input name="confirm_email" id="confirm_email"
-                               className="form-control" type="email"
-                               value={this.state.confirm_email} onChange={this.handleChange}
-                               />
+                            className="form-control" type="email"
+                            value={this.state.confirm_email} onChange={this.handleChange}
+                        />
 
                         <label htmlFor="password">Password (at least 8 characters)</label>
                         <input name="password" id="password"
-                               className="form-control"
-                               type={(this.state.show_password)? 'text': 'password'}
-                               value={this.state.password} onChange={this.handleChange}
-                               required
-                               />
+                            className="form-control"
+                            type={(this.state.show_password)? 'text': 'password'}
+                            value={this.state.password} onChange={this.handleChange}
+                            required
+                        />
 
                         <div className="form-check">
                             <input id="show_password" name="show_password"
-                                   className="form-check-input" type="checkbox"
-                                   checked={this.state.show_password}
-                                   onChange={this.handleChange}
-                                   />
+                                className="form-check-input" type="checkbox"
+                                checked={this.state.show_password}
+                                onChange={this.handleChange}
+                            />
                             <label className="form-check-label" htmlFor="show_password">
                                 Show password?
                             </label>
@@ -124,14 +124,14 @@ class SignUp extends Component {
 
                         <div className="form-check">
                             <input id="confirm_conditions" name="confirm_conditions"
-                                   className="form-check-input" type="checkbox"
-                                   checked={this.state.confirm_conditions}
-                                   onChange={this.handleChange}
-                                   required />
+                                className="form-check-input" type="checkbox"
+                                checked={this.state.confirm_conditions}
+                                onChange={this.handleChange}
+                                required />
                             <label className="form-check-label" htmlFor="confirm_conditions">
                                 I confirm that I have read and agree to the <a
-                                href="/privacy-policy">privacy policy</a> and <a
-                                href="/user-agreement">contributor agreement</a>.
+                                    href="/privacy-policy">privacy policy</a> and <a
+                                    href="/user-agreement">contributor agreement</a>.
                             </label>
                         </div>
 

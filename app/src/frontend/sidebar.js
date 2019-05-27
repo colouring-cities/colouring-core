@@ -12,7 +12,7 @@ const Sidebar = (props) => (
                     <Link className="icon-button back" to={props.back}>
                         <BackIcon />
                     </Link>
-                : null
+                    : null
             }
             <h2 className="h2">{props.title}</h2>
         </header>

@@ -37,7 +37,7 @@ class Login extends Component {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers:{
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             credentials: 'same-origin'
         }).then(
@@ -76,32 +76,32 @@ class Login extends Component {
                     <InfoBox msg="Welcome to Colouring London. You're one of the first people to use the site!  ">
                         <br/>Please <a href="https://discuss.colouring.london/">discuss
                         suggestions for improvements</a> and <a
-                        href="https://github.com/tomalrussell/colouring-london/issues">
+                            href="https://github.com/tomalrussell/colouring-london/issues">
                         report issues or problems</a>.
                     </InfoBox>
                     <ErrorBox msg={this.state.error} />
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="username">Username*</label>
                         <input name="username" id="username"
-                               className="form-control" type="text"
-                               value={this.state.username} onChange={this.handleChange}
-                               placeholder="not-your-real-name" required
-                               />
+                            className="form-control" type="text"
+                            value={this.state.username} onChange={this.handleChange}
+                            placeholder="not-your-real-name" required
+                        />
 
                         <label htmlFor="password">Password</label>
                         <input name="password" id="password"
-                               className="form-control"
-                               type={(this.state.show_password)? 'text': 'password'}
-                               value={this.state.password} onChange={this.handleChange}
-                               required
-                               />
+                            className="form-control"
+                            type={(this.state.show_password)? 'text': 'password'}
+                            value={this.state.password} onChange={this.handleChange}
+                            required
+                        />
 
                         <div className="form-check">
                             <input id="show_password" name="show_password"
-                                   className="form-check-input" type="checkbox"
-                                   checked={this.state.show_password}
-                                   onChange={this.handleChange}
-                                   />
+                                className="form-check-input" type="checkbox"
+                                checked={this.state.show_password}
+                                onChange={this.handleChange}
+                            />
                             <label htmlFor="show_password" className="form-check-label">Show password?</label>
                         </div>
 

@@ -11,12 +11,12 @@ import App from './frontend/app';
 const data = window.__PRELOADED_STATE__;
 
 hydrate(
-  <BrowserRouter>
-    <App user={data.user} building={data.building} building_like={data.building_like} />
-  </BrowserRouter>,
-  document.getElementById('root')
+    <BrowserRouter>
+        <App user={data.user} building={data.building} building_like={data.building_like} />
+    </BrowserRouter>,
+    document.getElementById('root')
 );
 
 if (module.hot) {
-  module.hot.accept();
+    module.hot.accept();
 }

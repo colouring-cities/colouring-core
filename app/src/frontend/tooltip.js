@@ -23,20 +23,20 @@ class Tooltip extends Component {
         return (
             <div className="tooltip-wrap">
                 <button className={(this.state.active? 'active ': '') + 'tooltip-hint icon-button'}
-                        title={this.props.text}
-                        onClick={this.handleClick}>
+                    title={this.props.text}
+                    onClick={this.handleClick}>
                     Hint
                     <InfoIcon />
                 </button>
                 {
                     this.state.active?
-                    (
-                        <div className="tooltip bs-tooltip-bottom">
-                            <div className="arrow"></div>
-                            <div className="tooltip-inner">{this.props.text}</div>
-                        </div>
-                    )
-                    : null
+                        (
+                            <div className="tooltip bs-tooltip-bottom">
+                                <div className="arrow"></div>
+                                <div className="tooltip-inner">{this.props.text}</div>
+                            </div>
+                        )
+                        : null
                 }
             </div>
         );

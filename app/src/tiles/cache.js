@@ -157,11 +157,11 @@ function cache_location(tileset, z, x, y) {
  */
 function should_try_cache(tileset, z) {
     if (tileset === 'date_year') {
-        // cache high zoom because of front page hits
+    // cache high zoom because of front page hits
         return z <= 16
     }
     if (tileset === 'base_light' || tileset === 'base_night') {
-        // cache for higher zoom levels (unlikely to change)
+    // cache for higher zoom levels (unlikely to change)
         return z <= 17
     }
     // else cache for lower zoom levels (change slowly)

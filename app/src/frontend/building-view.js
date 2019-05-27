@@ -35,31 +35,31 @@ const BuildingView = (props) => {
                             section_props.fields.map(field_props => {
 
                                 switch (field_props.type) {
-                                    case 'uprn_list':
-                                        return <UPRNsDataEntry
-                                            key={field_props.slug}
-                                            title={field_props.title}
-                                            value={props.uprns}
-                                            tooltip={field_props.tooltip} />
-                                    case 'text_multi':
-                                        return <MultiDataEntry
-                                            key={field_props.slug}
-                                            title={field_props.title}
-                                            value={props[field_props.slug]}
-                                            tooltip={field_props.tooltip} />
-                                    case 'like':
-                                        return <LikeDataEntry
-                                            key={field_props.slug}
-                                            title={field_props.title}
-                                            value={props[field_props.slug]}
-                                            user_building_like={props.building_like}
-                                            tooltip={field_props.tooltip} />
-                                    default:
-                                        return <DataEntry
-                                            key={field_props.slug}
-                                            title={field_props.title}
-                                            value={props[field_props.slug]}
-                                            tooltip={field_props.tooltip} />
+                                case 'uprn_list':
+                                    return <UPRNsDataEntry
+                                        key={field_props.slug}
+                                        title={field_props.title}
+                                        value={props.uprns}
+                                        tooltip={field_props.tooltip} />
+                                case 'text_multi':
+                                    return <MultiDataEntry
+                                        key={field_props.slug}
+                                        title={field_props.title}
+                                        value={props[field_props.slug]}
+                                        tooltip={field_props.tooltip} />
+                                case 'like':
+                                    return <LikeDataEntry
+                                        key={field_props.slug}
+                                        title={field_props.title}
+                                        value={props[field_props.slug]}
+                                        user_building_like={props.building_like}
+                                        tooltip={field_props.tooltip} />
+                                default:
+                                    return <DataEntry
+                                        key={field_props.slug}
+                                        title={field_props.title}
+                                        value={props[field_props.slug]}
+                                        tooltip={field_props.tooltip} />
                                 }
                             })
                         }
@@ -84,30 +84,30 @@ const DataSection = (props) => {
                     <h3 className="h3">{props.title}</h3>
                 </NavLink>
                 <nav className="icon-buttons">
-                {
-                    props.help?
-                    <a className="icon-button help" title="Find out more" href={props.help}>
+                    {
+                        props.help?
+                            <a className="icon-button help" title="Find out more" href={props.help}>
                         Info
-                    </a>
-                    : null
-                }
-                {
-                    !props.inactive?
-                    <NavLink className="icon-button edit" title="Edit data"
-                        to={`/edit/${props.slug}/building/${props.building_id}.html`}>
+                            </a>
+                            : null
+                    }
+                    {
+                        !props.inactive?
+                            <NavLink className="icon-button edit" title="Edit data"
+                                to={`/edit/${props.slug}/building/${props.building_id}.html`}>
                         Edit
-                        <EditIcon />
-                    </NavLink>
-                    : null
-                }
+                                <EditIcon />
+                            </NavLink>
+                            : null
+                    }
                 </nav>
             </header>
             {
                 match?
                     !props.inactive?
-                    <dl className="data-list">{props.children}</dl>
-                    : <p className="data-intro">{props.intro}</p>
-                : null
+                        <dl className="data-list">{props.children}</dl>
+                        : <p className="data-intro">{props.intro}</p>
+                    : null
             }
         </section>
     );
@@ -135,13 +135,13 @@ const LikeDataEntry = (props) => (
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
         </dt>
         <dd>
-        {
-            (props.value != null)?
-                (props.value === 1)?
-                    `${props.value} person likes this building`
-                    : `${props.value} people like this building`
-                : '\u00A0'
-        }
+            {
+                (props.value != null)?
+                    (props.value === 1)?
+                        `${props.value} person likes this building`
+                        : `${props.value} people like this building`
+                    : '\u00A0'
+            }
         </dd>
         {
             (props.user_building_like)? <dd>&hellip;including you!</dd> : null
@@ -215,33 +215,33 @@ const UPRNsDataEntry = (props) => {
     const with_parent = uprns.filter(uprn => uprn.parent_uprn != null);
 
     return (
-    <Fragment>
-        <dt>
-            { props.title }
-            { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
-        </dt>
-        <dd><ul className="uprn-list">
-            <Fragment>{
-                no_parent.length?
-                    no_parent.map(uprn => (
-                        <li key={uprn.uprn}>{uprn.uprn}</li>
-                    ))
-                : '\u00A0'
-            }</Fragment>
-            {
-                with_parent.length?
-                <details>
-                    <summary>Children</summary>
-                    {
-                    with_parent.map(uprn => (
-                        <li key={uprn.uprn}>{uprn.uprn} (child of {uprn.parent_uprn})</li>
+        <Fragment>
+            <dt>
+                { props.title }
+                { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+            </dt>
+            <dd><ul className="uprn-list">
+                <Fragment>{
+                    no_parent.length?
+                        no_parent.map(uprn => (
+                            <li key={uprn.uprn}>{uprn.uprn}</li>
                         ))
-                    }
-                </details>
-                : null
-            }
-        </ul></dd>
-    </Fragment>
+                        : '\u00A0'
+                }</Fragment>
+                {
+                    with_parent.length?
+                        <details>
+                            <summary>Children</summary>
+                            {
+                                with_parent.map(uprn => (
+                                    <li key={uprn.uprn}>{uprn.uprn} (child of {uprn.parent_uprn})</li>
+                                ))
+                            }
+                        </details>
+                        : null
+                }
+            </ul></dd>
+        </Fragment>
     )
 }
 

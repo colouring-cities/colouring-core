@@ -47,37 +47,37 @@ const OverviewSection = (props) => {
                 <nav className="icon-buttons">
                     {
                         props.help?
-                        <a className="icon-button help" href={props.help}>
+                            <a className="icon-button help" href={props.help}>
                             Info
-                        </a>
-                        : null
+                            </a>
+                            : null
                     }
                     {
                         props.mode === 'view'?
-                        <NavLink className="icon-button edit" title="Edit data"
-                            to={`/edit/${props.slug}.html`}>
+                            <NavLink className="icon-button edit" title="Edit data"
+                                to={`/edit/${props.slug}.html`}>
                             Edit
-                            <EditIcon />
-                        </NavLink>
-                        : null
+                                <EditIcon />
+                            </NavLink>
+                            : null
                     }
                 </nav>
             </header>
             {
                 (match && props.intro)?
-                (
-                    <Fragment>
-                    <p className="data-intro">{props.intro}</p>
-                    <ul>
-                    {
-                        props.fields.map((field) => {
-                            return (<li key={field.slug}>{field.title}</li>)
-                        })
-                    }
-                    </ul>
-                    </Fragment>
-                )
-                : null
+                    (
+                        <Fragment>
+                            <p className="data-intro">{props.intro}</p>
+                            <ul>
+                                {
+                                    props.fields.map((field) => {
+                                        return (<li key={field.slug}>{field.title}</li>)
+                                    })
+                                }
+                            </ul>
+                        </Fragment>
+                    )
+                    : null
             }
         </section>
     )

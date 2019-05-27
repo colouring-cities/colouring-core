@@ -121,7 +121,7 @@ class EditForm extends Component {
         fetch(`/building/${this.props.building_id}/like.json`, {
             method: 'POST',
             headers:{
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             credentials: 'same-origin',
             body: JSON.stringify({like: like})
@@ -149,7 +149,7 @@ class EditForm extends Component {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers:{
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             credentials: 'same-origin'
         }).then(
@@ -179,82 +179,82 @@ class EditForm extends Component {
                         <h3 className="h3">{this.props.title}</h3>
                     </NavLink>
                     <nav className="icon-buttons">
-                    {
-                        this.props.help?
-                        <a className="icon-button help" title="Find out more" href={this.props.help}>
+                        {
+                            this.props.help?
+                                <a className="icon-button help" title="Find out more" href={this.props.help}>
                             Info
-                        </a>
-                        : null
-                    }
-                    {
-                        (match && !this.props.inactive && this.props.slug !== 'like')? // special-case for likes
-                        <NavLink className="icon-button save" title="Save Changes"
-                        onClick={this.handleSubmit}
-                            to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}>
+                                </a>
+                                : null
+                        }
+                        {
+                            (match && !this.props.inactive && this.props.slug !== 'like')? // special-case for likes
+                                <NavLink className="icon-button save" title="Save Changes"
+                                    onClick={this.handleSubmit}
+                                    to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}>
                             Save
-                            <SaveIcon />
-                        </NavLink>
-                        : null
-                    }
+                                    <SaveIcon />
+                                </NavLink>
+                                : null
+                        }
                     </nav>
                 </header>
                 {
-                match? (
-                    !this.props.inactive?
-                    <form action={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
-                        method="GET" onSubmit={this.handleSubmit}>
-                        {
-                            this.props.slug === 'location'?
-                            <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
-                            : null
-                        }
-                        <ErrorBox msg={this.state.error} />
-                        {
-                            this.props.fields.map((props) => {
-                                switch (props.type) {
-                                    case 'text':
-                                        return <TextInput {...props} handleChange={this.handleChange}
+                    match? (
+                        !this.props.inactive?
+                            <form action={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
+                                method="GET" onSubmit={this.handleSubmit}>
+                                {
+                                    this.props.slug === 'location'?
+                                        <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
+                                        : null
+                                }
+                                <ErrorBox msg={this.state.error} />
+                                {
+                                    this.props.fields.map((props) => {
+                                        switch (props.type) {
+                                        case 'text':
+                                            return <TextInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case 'text_list':
-                                        return <TextListInput {...props} handleChange={this.handleChange}
+                                        case 'text_list':
+                                            return <TextListInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case 'text_long':
-                                        return <LongTextInput {...props} handleChange={this.handleChange}
+                                        case 'text_long':
+                                            return <LongTextInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case 'number':
-                                        return <NumberInput {...props} handleChange={this.handleChange}
+                                        case 'number':
+                                            return <NumberInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case 'year_estimator':
-                                        return <YearEstimator {...props} handleChange={this.handleChange}
+                                        case 'year_estimator':
+                                            return <YearEstimator {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case 'text_multi':
-                                        return <MultiTextInput {...props} handleChange={this.handleUpdate}
+                                        case 'text_multi':
+                                            return <MultiTextInput {...props} handleChange={this.handleUpdate}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case 'checkbox':
-                                        return <CheckboxInput {...props} handleChange={this.handleCheck}
+                                        case 'checkbox':
+                                            return <CheckboxInput {...props} handleChange={this.handleCheck}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case 'like':
-                                        return <LikeButton {...props} handleLike={this.handleLike}
+                                        case 'like':
+                                            return <LikeButton {...props} handleLike={this.handleLike}
                                                 building_like={building_like}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    default:
-                                        return null
+                                        default:
+                                            return null
+                                        }
+                                    })
                                 }
-                            })
-                        }
-                        <InfoBox msg="Colouring may take a few seconds - try zooming the map or hitting refresh after saving (we're working on making this smoother)." />
+                                <InfoBox msg="Colouring may take a few seconds - try zooming the map or hitting refresh after saving (we're working on making this smoother)." />
 
-                        {
-                            (this.props.slug === 'like')? // special-case for likes
-                            null :
-                            <div className="buttons-container">
-                                <button type="submit" className="btn btn-primary">Save</button>
-                            </div>
-                        }
-                    </form>
-                    : <form><InfoBox msg={`We're not collection data on ${this.props.title.toLowerCase()} yet - check back soon.`} /></form>
-                ) : null
-            }
+                                {
+                                    (this.props.slug === 'like')? // special-case for likes
+                                        null :
+                                        <div className="buttons-container">
+                                            <button type="submit" className="btn btn-primary">Save</button>
+                                        </div>
+                                }
+                            </form>
+                            : <form><InfoBox msg={`We're not collection data on ${this.props.title.toLowerCase()} yet - check back soon.`} /></form>
+                    ) : null
+                }
             </section>
         )
     }
@@ -270,7 +270,7 @@ const TextInput = (props) => (
             disabled={props.disabled}
             placeholder={props.placeholder}
             onChange={props.handleChange}
-            />
+        />
     </Fragment>
 );
 
@@ -327,30 +327,30 @@ class MultiTextInput extends Component {
     render() {
         const values = this.getValues();
         return (
-        <Fragment>
-            <Label slug={this.props.slug} title={this.props.title} tooltip={this.props.tooltip} />
-            {
-                values.map((item, i) => (
-                <div className="input-group" key={i}>
-                    <input className="form-control" type="text"
-                        key={`${this.props.slug}-${i}`} name={`${this.props.slug}-${i}`}
-                        data-index={i}
-                        value={item || ''}
-                        placeholder={this.props.placeholder}
-                        disabled={this.props.disabled}
-                        onChange={this.edit}
-                        />
-                    <div className="input-group-append">
-                        <button type="button" onClick={this.remove}
-                                title="Remove"
-                                data-index={i} className="btn btn-outline-dark">✕</button>
-                    </div>
-                </div>
-                ))
-            }
-            <button type="button" title="Add" onClick={this.add}
+            <Fragment>
+                <Label slug={this.props.slug} title={this.props.title} tooltip={this.props.tooltip} />
+                {
+                    values.map((item, i) => (
+                        <div className="input-group" key={i}>
+                            <input className="form-control" type="text"
+                                key={`${this.props.slug}-${i}`} name={`${this.props.slug}-${i}`}
+                                data-index={i}
+                                value={item || ''}
+                                placeholder={this.props.placeholder}
+                                disabled={this.props.disabled}
+                                onChange={this.edit}
+                            />
+                            <div className="input-group-append">
+                                <button type="button" onClick={this.remove}
+                                    title="Remove"
+                                    data-index={i} className="btn btn-outline-dark">✕</button>
+                            </div>
+                        </div>
+                    ))
+                }
+                <button type="button" title="Add" onClick={this.add}
                     className="btn btn-outline-dark">+</button>
-        </Fragment>
+            </Fragment>
         )
     }
 }
@@ -382,7 +382,7 @@ const NumberInput = (props) => (
             value={props.value || ''}
             disabled={props.disabled}
             onChange={props.handleChange}
-            />
+        />
     </Fragment>
 );
 
@@ -403,7 +403,7 @@ class YearEstimator extends Component {
     render() {
         return (
             <NumberInput {...this.props} handleChange={this.props.handleChange}
-            value={this.props.value} key={this.props.slug} />
+                value={this.props.value} key={this.props.slug} />
         )
     }
 }
@@ -415,7 +415,7 @@ const CheckboxInput = (props) => (
             checked={!!props.value}
             disabled={props.disabled}
             onChange={props.handleChange}
-            />
+        />
         <label htmlFor={props.slug} className="form-check-label">
             {props.title}
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
@@ -432,7 +432,7 @@ const LikeButton = (props) => (
                 checked={!!props.building_like}
                 disabled={props.disabled}
                 onChange={props.handleLike}
-                />
+            />
             <label htmlFor={props.slug} className="form-check-label">
                 I like this building and think it contributes to the city!
                 { props.tooltip? <Tooltip text={ props.tooltip } /> : null }

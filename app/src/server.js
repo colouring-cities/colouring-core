@@ -141,15 +141,15 @@ function renderHTML(context, data, req, res) {
           }
         </style>
         ${
-            assets.client.css
-                ? `<link rel="stylesheet" href="${assets.client.css}">`
-                : ''
-            }
+    assets.client.css
+        ? `<link rel="stylesheet" href="${assets.client.css}">`
+        : ''
+}
         ${
-            process.env.NODE_ENV === 'production'
-                ? `<script src="${assets.client.js}" defer></script>`
-                : `<script src="${assets.client.js}" defer crossorigin></script>`
-            }
+    process.env.NODE_ENV === 'production'
+        ? `<script src="${assets.client.js}" defer></script>`
+        : `<script src="${assets.client.js}" defer crossorigin></script>`
+}
     </head>
     <body>
         <div id="root">${markup}</div>

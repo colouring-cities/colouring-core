@@ -5,13 +5,13 @@ import { MemoryRouter } from 'react-router-dom';
 import App from './app';
 
 describe('<App />', () => {
-  test('renders without exploding', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-      div
-    );
-  });
+    test('renders without exploding', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(
+            <MemoryRouter>
+                <App />
+            </MemoryRouter>,
+            div
+        );
+    });
 });

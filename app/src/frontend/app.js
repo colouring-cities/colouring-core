@@ -59,11 +59,11 @@ class App extends React.Component {
     }
 
     selectBuilding(building) {
-        // get UPRNs and update
+    // get UPRNs and update
         fetch(`/building/${building.building_id}/uprns.json`, {
             method: 'GET',
             headers:{
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             credentials: 'same-origin'
         }).then(
@@ -84,7 +84,7 @@ class App extends React.Component {
         fetch(`/building/${building.building_id}/like.json`, {
             method: 'GET',
             headers:{
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             credentials: 'same-origin'
         }).then(
@@ -114,13 +114,13 @@ class App extends React.Component {
                             <Overview
                                 {...props}
                                 mode='view' user={this.state.user}
-                                />
+                            />
                         ) } />
                         <Route exact path="/edit/:cat.html" render={(props) => (
                             <Overview
                                 {...props}
                                 mode='edit' user={this.state.user}
-                                />
+                            />
                         ) } />
                         <Route exact path="/view/:cat/building/:building.html" render={(props) => (
                             <BuildingView
@@ -128,7 +128,7 @@ class App extends React.Component {
                                 {...this.state.building}
                                 user={this.state.user}
                                 building_like={this.state.building_like}
-                                />
+                            />
                         ) } />
                         <Route exact path="/edit/:cat/building/:building.html" render={(props) => (
                             <BuildingEdit
@@ -137,7 +137,7 @@ class App extends React.Component {
                                 user={this.state.user}
                                 building_like={this.state.building_like}
                                 selectBuilding={this.selectBuilding}
-                                />
+                            />
                         ) } />
                     </Switch>
                     <Switch>
@@ -146,7 +146,7 @@ class App extends React.Component {
                                 {...props}
                                 building={this.state.building}
                                 selectBuilding={this.selectBuilding}
-                                />
+                            />
                         ) } />
                         <Route exact path="/about.html" component={AboutPage} />
                         <Route exact path="/login.html">
@@ -160,7 +160,7 @@ class App extends React.Component {
                                 user={this.state.user}
                                 updateUser={this.updateUser}
                                 logout={this.logout}
-                                />
+                            />
                         </Route>
                         <Route component={NotFound} />
                     </Switch>

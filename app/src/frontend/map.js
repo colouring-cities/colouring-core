@@ -126,7 +126,7 @@ class ColouringMap extends Component {
                     zoomControl={false}
                     attributionControl={false}
                     onClick={this.handleClick}
-                    >
+                >
                     <TileLayer url={url} attribution={attribution} />
                     <TileLayer url={base_layer_url} minZoom={14} />
                     { dataLayer }
@@ -143,11 +143,11 @@ class ColouringMap extends Component {
                 }
                 {
                     this.props.match.url !== '/'? (
-                    <Fragment>
-                        <Legend slug={cat} />
-                        <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
-                        <SearchBox onLocate={this.handleLocate} is_building={is_building} />
-                    </Fragment>
+                        <Fragment>
+                            <Legend slug={cat} />
+                            <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
+                            <SearchBox onLocate={this.handleLocate} is_building={is_building} />
+                        </Fragment>
                     ) : null
                 }
             </Fragment>
