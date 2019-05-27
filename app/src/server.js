@@ -78,7 +78,7 @@ function frontendRoute(req, res) {
 
     const user_id = req.session.user_id;
     const building_id = parseBuildingURL(req.url);
-    const is_building = (typeof (building_id) !== "undefined");
+    const is_building = (typeof (building_id) !== 'undefined');
     if (is_building && isNaN(building_id)) {
         context.status = 404;
     }
@@ -93,7 +93,7 @@ function frontendRoute(req, res) {
         const building = values[1];
         const uprns = values[2];
         const building_like = values[3];
-        if (is_building && typeof (building) === "undefined") {
+        if (is_building && typeof (building) === 'undefined') {
             context.status = 404
         }
         data.user = user;
@@ -226,7 +226,7 @@ function updateBuilding(req, res, user_id) {
             res.send(building)
             return
         }
-        if (typeof (building) === "undefined") {
+        if (typeof (building) === 'undefined') {
             res.send({ error: 'Database error' })
             return
         }
@@ -240,7 +240,7 @@ function updateBuilding(req, res, user_id) {
 server.get('/building/:building_id/uprns.json', function (req, res) {
     const { building_id } = req.params;
     getBuildingUPRNsById(building_id).then(function (result) {
-        if (typeof (result) === "undefined") {
+        if (typeof (result) === 'undefined') {
             res.send({ error: 'Database error' })
             return
         }
@@ -281,7 +281,7 @@ server.route('/building/:building_id/like.json')
                     res.send(building)
                     return
                 }
-                if (typeof (building) === "undefined") {
+                if (typeof (building) === 'undefined') {
                     res.send({ error: 'Database error' })
                     return
                 }
@@ -295,7 +295,7 @@ server.route('/building/:building_id/like.json')
                     res.send(building)
                     return
                 }
-                if (typeof (building) === "undefined") {
+                if (typeof (building) === 'undefined') {
                     res.send({ error: 'Database error' })
                     return
                 }
@@ -316,7 +316,7 @@ server.post('/users', function (req, res) {
 
     if (user.email) {
         if (user.email != user.confirm_email) {
-            res.send({ error: "Email did not match confirmation." });
+            res.send({ error: 'Email did not match confirmation.' });
             return
         }
     } else {
@@ -401,7 +401,7 @@ server.get('/search', function (req, res) {
         return
     }
     queryLocation(search_term).then((results) => {
-        if (typeof (results) === "undefined") {
+        if (typeof (results) === 'undefined') {
             res.send({
                 error: 'Database error'
             })

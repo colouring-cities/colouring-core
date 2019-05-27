@@ -29,7 +29,7 @@ const BuildingEdit = (props) => {
     return (
         <Sidebar
             key={props.building_id}
-            title={`You are editing`}
+            title={'You are editing'}
             back={`/edit/${cat}.html`}>
             {
                 CONFIG.map((conf_props) => {
@@ -169,8 +169,8 @@ class EditForm extends Component {
         const match = this.props.cat === this.props.slug;
         const building_like = this.props.building_like;
         return (
-            <section className={(this.props.inactive)? "data-section inactive": "data-section"}>
-                <header className={`section-header edit ${this.props.slug} ${(match? "active" : "")}`}>
+            <section className={(this.props.inactive)? 'data-section inactive': 'data-section'}>
+                <header className={`section-header edit ${this.props.slug} ${(match? 'active' : '')}`}>
                     <NavLink
                         to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
                         title={(this.props.inactive)? 'Coming soon… Click the ? for more info.' :
@@ -212,28 +212,28 @@ class EditForm extends Component {
                         {
                             this.props.fields.map((props) => {
                                 switch (props.type) {
-                                    case "text":
+                                    case 'text':
                                         return <TextInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case "text_list":
+                                    case 'text_list':
                                         return <TextListInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case "text_long":
+                                    case 'text_long':
                                         return <LongTextInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case "number":
+                                    case 'number':
                                         return <NumberInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case "year_estimator":
+                                    case 'year_estimator':
                                         return <YearEstimator {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case "text_multi":
+                                    case 'text_multi':
                                         return <MultiTextInput {...props} handleChange={this.handleUpdate}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case "checkbox":
+                                    case 'checkbox':
                                         return <CheckboxInput {...props} handleChange={this.handleCheck}
                                                 value={this.state[props.slug]} key={props.slug} />
-                                    case "like":
+                                    case 'like':
                                         return <LikeButton {...props} handleLike={this.handleLike}
                                                 building_like={building_like}
                                                 value={this.state[props.slug]} key={props.slug} />
@@ -265,7 +265,7 @@ const TextInput = (props) => (
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
         <input className="form-control" type="text"
             id={props.slug} name={props.slug}
-            value={props.value || ""}
+            value={props.value || ''}
             maxLength={props.max_length}
             disabled={props.disabled}
             placeholder={props.placeholder}
@@ -282,7 +282,7 @@ const LongTextInput = (props) => (
             disabled={props.disabled}
             placeholder={props.placeholder}
             onChange={props.handleChange}
-            value={props.value || ""}></textarea>
+            value={props.value || ''}></textarea>
     </Fragment>
 )
 
@@ -312,7 +312,7 @@ class MultiTextInput extends Component {
 
     add(event) {
         event.preventDefault();
-        const values = this.getValues().concat("");
+        const values = this.getValues().concat('');
         this.props.handleChange(this.props.slug, values);
     }
 
@@ -335,7 +335,7 @@ class MultiTextInput extends Component {
                     <input className="form-control" type="text"
                         key={`${this.props.slug}-${i}`} name={`${this.props.slug}-${i}`}
                         data-index={i}
-                        value={item || ""}
+                        value={item || ''}
                         placeholder={this.props.placeholder}
                         disabled={this.props.disabled}
                         onChange={this.edit}
@@ -360,7 +360,7 @@ const TextListInput = (props) => (
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
         <select className="form-control"
             id={props.slug} name={props.slug}
-            value={props.value || ""}
+            value={props.value || ''}
             disabled={props.disabled}
             list={`${props.slug}_suggestions`}
             onChange={props.handleChange}>
@@ -379,7 +379,7 @@ const NumberInput = (props) => (
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
         <input className="form-control" type="number" step={props.step}
             id={props.slug} name={props.slug}
-            value={props.value || ""}
+            value={props.value || ''}
             disabled={props.disabled}
             onChange={props.handleChange}
             />

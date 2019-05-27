@@ -8,6 +8,7 @@
     "start": "razzle start",
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
+    "lint": "eslint .",
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {

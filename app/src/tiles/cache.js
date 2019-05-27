@@ -97,7 +97,7 @@ function remove(tileset, z, x, y) {
             if(err){
                 // pass
             } else {
-                console.log("Expire cache", tileset, z, x, y)
+                console.log('Expire cache', tileset, z, x, y)
             }
             resolve()
         })

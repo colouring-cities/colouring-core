@@ -10,7 +10,7 @@ class SearchBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            q: "",
+            q: '',
             results: [],
             fetching: false
         }
@@ -27,7 +27,7 @@ class SearchBox extends Component {
             q: e.target.value
         });
         // If the ‘clear’ icon has been clicked, clear results list as well 
-        if(e.target.value === "") {
+        if(e.target.value === '') {
            this.clearResults();
         }
     }
@@ -49,7 +49,7 @@ class SearchBox extends Component {
 
     clearQuery(){
         this.setState({
-            q: ""
+            q: ''
         });
     }
 
@@ -115,7 +115,7 @@ class SearchBox extends Component {
             </ul>
         : null;
         return (
-            <div className={`search-box ${this.props.is_building? "building" : ""}`} onKeyDown={this.handleKeyPress}>
+            <div className={`search-box ${this.props.is_building? 'building' : ''}`} onKeyDown={this.handleKeyPress}>
                 <form action="/search" method="GET" onSubmit={this.search}
                     className="form-inline">
                     <input

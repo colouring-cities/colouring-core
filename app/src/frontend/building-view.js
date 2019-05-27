@@ -24,7 +24,7 @@ const BuildingView = (props) => {
     }
     const cat = parseCategoryURL(props.match.url);
     return (
-        <Sidebar title={`Data available for this building`} back={`/view/${cat}.html`}>
+        <Sidebar title={'Data available for this building'} back={`/view/${cat}.html`}>
             {
                 CONFIG.map(section_props => (
                     <DataSection
@@ -35,19 +35,19 @@ const BuildingView = (props) => {
                             section_props.fields.map(field_props => {
 
                                 switch (field_props.type) {
-                                    case "uprn_list":
+                                    case 'uprn_list':
                                         return <UPRNsDataEntry
                                             key={field_props.slug}
                                             title={field_props.title}
                                             value={props.uprns}
                                             tooltip={field_props.tooltip} />
-                                    case "text_multi":
+                                    case 'text_multi':
                                         return <MultiDataEntry
                                             key={field_props.slug}
                                             title={field_props.title}
                                             value={props[field_props.slug]}
                                             tooltip={field_props.tooltip} />
-                                    case "like":
+                                    case 'like':
                                         return <LikeDataEntry
                                             key={field_props.slug}
                                             title={field_props.title}
@@ -74,8 +74,8 @@ const BuildingView = (props) => {
 const DataSection = (props) => {
     const match = props.cat === props.slug;
     return (
-        <section id={props.slug} className={(props.inactive)? "data-section inactive": "data-section"}>
-            <header className={`section-header view ${props.slug} ${(match? "active" : "")}`}>
+        <section id={props.slug} className={(props.inactive)? 'data-section inactive': 'data-section'}>
+            <header className={`section-header view ${props.slug} ${(match? 'active' : '')}`}>
                 <NavLink
                     to={`/view/${props.slug}/building/${props.building_id}.html`}
                     title={(props.inactive)? 'Coming soon… Click the ? for more info.' :
@@ -120,8 +120,8 @@ const DataEntry = (props) => (
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
         </dt>
         <dd>{
-            (props.value != null && props.value !== "")?
-                (typeof(props.value) === "boolean")?
+            (props.value != null && props.value !== '')?
+                (typeof(props.value) === 'boolean')?
                     (props.value)? 'Yes' : 'No'
                     : props.value
                 : '\u00A0'}</dd>

@@ -40,7 +40,7 @@ function parseBuildingURL(url) {
  */
 function parseCategoryURL(url) {
     const default_cat = 'age';
-    if (url === "/") {
+    if (url === '/') {
         return default_cat
     }
     const matches = /^\/(view|edit)\/([^/.]+)/.exec(url);

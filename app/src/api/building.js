@@ -77,7 +77,7 @@ function queryBuildingsByReference(key, id) {
 
 function getBuildingById(id) {
     return db.one(
-        "SELECT * FROM buildings WHERE building_id = $1",
+        'SELECT * FROM buildings WHERE building_id = $1',
         [id]
     ).catch(function (error) {
         console.error(error);
@@ -87,7 +87,7 @@ function getBuildingById(id) {
 
 function getBuildingLikeById(building_id, user_id) {
     return db.oneOrNone(
-        "SELECT true as like FROM building_user_likes WHERE building_id = $1 and user_id = $2 LIMIT 1",
+        'SELECT true as like FROM building_user_likes WHERE building_id = $1 and user_id = $2 LIMIT 1',
         [building_id, user_id]
     ).then(res => {
         return res && res.like
@@ -99,7 +99,7 @@ function getBuildingLikeById(building_id, user_id) {
 
 function getBuildingUPRNsById(id) {
     return db.any(
-        "SELECT uprn, parent_uprn FROM building_properties WHERE building_id = $1",
+        'SELECT uprn, parent_uprn FROM building_properties WHERE building_id = $1',
         [id]
     ).catch(function (error) {
         console.error(error);
@@ -126,15 +126,15 @@ function saveBuilding(building_id, building, user_id) {
     // commit or rollback (repeated-read sufficient? or serializable?)
     return db.tx(t => {
         return t.one(
-            `SELECT * FROM buildings WHERE building_id = $1 FOR UPDATE;`,
+            'SELECT * FROM buildings WHERE building_id = $1 FOR UPDATE;',
             [building_id]
         ).then(old_building => {
             const patches = compare(old_building, building, BUILDING_FIELD_WHITELIST);
-            console.log("Patching", building_id, patches)
+            console.log('Patching', building_id, patches)
             const forward = patches[0];
             const reverse = patches[1];
             if (Object.keys(forward).length === 0) {
-                return Promise.reject("No change provided")
+                return Promise.reject('No change provided')
             }
             return t.one(
                 `INSERT INTO logs (
@@ -146,7 +146,7 @@ function saveBuilding(building_id, building, user_id) {
                 [forward, reverse, building_id, user_id]
             ).then(revision => {
                 const sets = db.$config.pgp.helpers.sets(forward);
-                console.log("Setting", building_id, sets)
+                console.log('Setting', building_id, sets)
                 return t.one(
                     `UPDATE
                         buildings
@@ -181,11 +181,11 @@ function likeBuilding(building_id, user_id) {
     // commit or rollback (serializable - could be more compact?)
     return db.tx({ serializable }, t => {
         return t.none(
-            "INSERT INTO building_user_likes ( building_id, user_id ) VALUES ($1, $2);",
+            'INSERT INTO building_user_likes ( building_id, user_id ) VALUES ($1, $2);',
             [building_id, user_id]
         ).then(() => {
             return t.one(
-                "SELECT count(*) as likes FROM building_user_likes WHERE building_id = $1;",
+                'SELECT count(*) as likes FROM building_user_likes WHERE building_id = $1;',
                 [building_id]
             ).then(building => {
                 return t.one(
@@ -217,7 +217,7 @@ function likeBuilding(building_id, user_id) {
         });
     }).catch(function (error) {
         console.error(error);
-        if (error.detail && error.detail.includes("already exists")) {
+        if (error.detail && error.detail.includes('already exists')) {
             // 'already exists' is thrown if user already liked it
             return { error: 'It looks like you already like that building!' };
         } else {
@@ -236,11 +236,11 @@ function unlikeBuilding(building_id, user_id) {
     // commit or rollback (serializable - could be more compact?)
     return db.tx({ serializable }, t => {
         return t.none(
-            "DELETE FROM building_user_likes WHERE building_id = $1 AND user_id = $2;",
+            'DELETE FROM building_user_likes WHERE building_id = $1 AND user_id = $2;',
             [building_id, user_id]
         ).then(() => {
             return t.one(
-                "SELECT count(*) as likes FROM building_user_likes WHERE building_id = $1;",
+                'SELECT count(*) as likes FROM building_user_likes WHERE building_id = $1;',
                 [building_id]
             ).then(building => {
                 return t.one(
@@ -272,7 +272,7 @@ function unlikeBuilding(building_id, user_id) {
         });
     }).catch(function (error) {
         console.error(error);
-        if (error.detail && error.detail.includes("already exists")) {
+        if (error.detail && error.detail.includes('already exists')) {
             // 'already exists' is thrown if user already liked it
             return { error: 'It looks like you already like that building!' };
         } else {

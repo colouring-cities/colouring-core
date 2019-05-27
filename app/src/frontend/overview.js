@@ -35,8 +35,8 @@ const OverviewSection = (props) => {
     const inactive = props.inactive;
 
     return (
-        <section className={(inactive? "inactive ": "") + "data-section legend"}>
-            <header className={`section-header ${props.mode} ${props.slug} ${(match? "active" : "")}`}>
+        <section className={(inactive? 'inactive ': '') + 'data-section legend'}>
+            <header className={`section-header ${props.mode} ${props.slug} ${(match? 'active' : '')}`}>
                 <NavLink
                     to={`/${props.mode}/${props.slug}.html`}
                     isActive={() => match}

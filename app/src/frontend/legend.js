@@ -5,8 +5,8 @@ import './legend.css';
 
 const LEGEND_CONFIG = {
     location: {
-        title: "Location",
-        description: "% data collected",
+        title: 'Location',
+        description: '% data collected',
         elements: [
             { color: '#084081', text: '≥80%' },
             { color: '#0868ac', text: '60–80%' },
@@ -16,7 +16,7 @@ const LEGEND_CONFIG = {
         ]
     },
     age: {
-        title: "Age",
+        title: 'Age',
         elements: [
         { color: '#f0eaba', text: '≥2000' },
         { color: '#fae269', text: '1980–2000' },
@@ -40,7 +40,7 @@ const LEGEND_CONFIG = {
         ]
     },
     size: {
-        title: "Number of storeys",
+        title: 'Number of storeys',
         elements: [
         { color: '#ffffcc', text: '≥40' },
         { color: '#fed976', text: '20–39' },
@@ -50,48 +50,48 @@ const LEGEND_CONFIG = {
         ]
     },
     like: {
-        title: "Like Me",
+        title: 'Like Me',
         elements: [
-        { color: "#bd0026", text: '👍👍👍 ≥10' },
-        { color: "#e31a1c", text: '👍👍 5–10' },
-        { color: "#fc4e2a", text: '👍 4' },
-        { color: "#fd8d3c", text: '👍 3' },
-        { color: "#feb24c", text: '👍 2' },
-        { color: "#fed976", text: '👍 1' },
+        { color: '#bd0026', text: '👍👍👍 ≥10' },
+        { color: '#e31a1c', text: '👍👍 5–10' },
+        { color: '#fc4e2a', text: '👍 4' },
+        { color: '#fd8d3c', text: '👍 3' },
+        { color: '#feb24c', text: '👍 2' },
+        { color: '#fed976', text: '👍 1' },
         ]
     },
     use: {
-        title: "Use",
+        title: 'Use',
         elements: []
     },
     ownership: {
-        title: "Ownership",
+        title: 'Ownership',
         elements: []
     },
     construction: {
-        title: "Construction",
+        title: 'Construction',
         elements: []
     },
     team: {
-        title: "Team",
+        title: 'Team',
         elements: []
     },
     sustainability: {
-        title: "Sustainability",
+        title: 'Sustainability',
         elements: []
     },
     greenery: {
-        title: "Greenery",
+        title: 'Greenery',
         elements: []
     },
     planning: {
-        title: "Planning",
+        title: 'Planning',
         elements: [
-        { color: "#73ebaf", text: 'within conservation area' },
+        { color: '#73ebaf', text: 'within conservation area' },
         ]
     },
     demolition: {
-        title: "Demolition",
+        title: 'Demolition',
         elements: []
     }
 };

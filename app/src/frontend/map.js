@@ -112,8 +112,8 @@ class ColouringMap extends Component {
             : null;
 
         const base_layer_url = (this.state.theme === 'light')?
-            `/tiles/base_light/{z}/{x}/{y}.png`
-            : `/tiles/base_night/{z}/{x}/{y}.png`
+            '/tiles/base_light/{z}/{x}/{y}.png'
+            : '/tiles/base_night/{z}/{x}/{y}.png'
 
         return (
             <Fragment>

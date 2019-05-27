@@ -60,7 +60,7 @@ function handle_tile_request(tileset, req, res) {
     const int_y = strictParseInt(y);
 
     if (isNaN(int_x) || isNaN(int_y) || isNaN(int_z)) {
-        console.error("Missing x or y or z")
+        console.error('Missing x or y or z')
         return { error: 'Bad parameter' }
     }
 
@@ -189,7 +189,7 @@ function handle_highlight_tile_request(req, res) {
     const int_y = strictParseInt(y);
 
     if (isNaN(int_x) || isNaN(int_y) || isNaN(int_z)) {
-        console.error("Missing x or y or z")
+        console.error('Missing x or y or z')
         return { error: 'Bad parameter' }
     }
 
