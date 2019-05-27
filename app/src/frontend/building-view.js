@@ -11,7 +11,6 @@ import { parseCategoryURL } from '../parse';
 
 import CONFIG from './fields-config.json';
 
-
 const BuildingView = (props) => {
     if (!props.building_id){
         return (

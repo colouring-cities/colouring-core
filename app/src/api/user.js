@@ -4,7 +4,6 @@
  */
 import db from '../db';
 
-
 function createUser(user) {
     if (!user.password || user.password.length < 8) {
         return Promise.reject({ error: 'Password must be at least 8 characters' })

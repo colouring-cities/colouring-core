@@ -16,7 +16,6 @@ import MyAccountPage from './my-account';
 import SignUp from './signup';
 import Welcome from './welcome';
 
-
 /**
  * App component
  *

@@ -198,5 +198,4 @@ function getHighlightTableDefinition(geometryId) {
     ) as highlight`
 }
 
-
 export { getBbox, getXYZ, renderTile, TILE_SIZE };

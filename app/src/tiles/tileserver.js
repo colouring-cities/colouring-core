@@ -181,7 +181,6 @@ function StitchTile(tileset, z, x, y) {
     });
 }
 
-
 function handleHighlightTileRequest(req, res) {
     const { z, x, y } = req.params
     const intZ = strictParseInt(z);

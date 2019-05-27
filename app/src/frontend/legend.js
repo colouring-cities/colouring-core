@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import './legend.css';
 
-
 const LEGEND_CONFIG = {
     location: {
         title: 'Location',

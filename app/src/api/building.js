@@ -165,7 +165,6 @@ function saveBuilding(buildingId, building, userId) {
     });
 }
 
-
 function likeBuilding(buildingId, userId) {
     // start transaction around save operation
     // - insert building-user like
@@ -219,7 +218,6 @@ function likeBuilding(buildingId, userId) {
         }
     });
 }
-
 
 function unlikeBuilding(buildingId, userId) {
     // start transaction around save operation

@@ -11,7 +11,6 @@ import { parseCategoryURL } from '../parse';
 
 import CONFIG from './fields-config.json';
 
-
 const BuildingEdit = (props) => {
     if (!props.user){
         return <Redirect to="/sign-up.html" />

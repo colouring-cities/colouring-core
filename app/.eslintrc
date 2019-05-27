@@ -27,7 +27,9 @@
     "indent": ["warn", 4],
     "no-multi-spaces": ["warn", {"ignoreEOLComments": true} ],
     "comma-spacing": ["warn"],
-    "camelcase": ["warn", {"ignoreDestructuring": true ,"properties": "never"}]
+    "camelcase": ["warn", {"ignoreDestructuring": true ,"properties": "never"}],
+    "eol-last": ["warn", "always"],
+    "no-multiple-empty-lines": ["warn", {"max": 1}]
   },
   "plugins": [
     "jest",
