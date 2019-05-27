@@ -72,7 +72,7 @@ const BuildingView = (props) => {
 }
 
 BuildingView.propTypes = {
-    building_id: PropTypes.string,
+    building_id: PropTypes.number,
     match: PropTypes.object,
     uprns: PropTypes.arrayOf(PropTypes.shape({
         uprn: PropTypes.string.isRequired,
@@ -130,7 +130,7 @@ DataSection.propTypes = {
     intro: PropTypes.string,
     help: PropTypes.string,
     inactive: PropTypes.bool,
-    building_id: PropTypes.string,
+    building_id: PropTypes.number,
     children: PropTypes.node
 }
 

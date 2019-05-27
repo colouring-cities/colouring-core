@@ -44,7 +44,7 @@ const BuildingEdit = (props) => {
 BuildingEdit.propTypes = {
     user: PropTypes.object,
     match: PropTypes.object,
-    building_id: PropTypes.string,
+    building_id: PropTypes.number
 }
 
 class EditForm extends Component {
@@ -277,7 +277,7 @@ EditForm.propTypes = {
     like: PropTypes.bool,
     building_like: PropTypes.bool,
     selectBuilding: PropTypes.func,
-    building_id: PropTypes.string,
+    building_id: PropTypes.number,
     inactive: PropTypes.bool,
     fields: PropTypes.array
 }
