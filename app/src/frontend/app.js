@@ -35,7 +35,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         // set building revision id, default 0
-        const rev = (props.building)? props.building.revision_id : 0;
+        const rev = (props.building)? +props.building.revision_id : 0;
         this.state = {
             user: props.user,
             building: props.building,
@@ -67,6 +67,7 @@ class App extends React.Component {
     }
 
     increaseRevision(revisionId) {
+        revisionId = +revisionId;
         // bump revision id, only ever increasing
         if (revisionId > this.state.revision_id){
             this.setState({revision_id: revisionId})
