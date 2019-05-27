@@ -179,7 +179,7 @@ const NotFound = () => (
             <h1 className="h1">Page not found</h1>
             <p className="lead">
 
-            We can't find that one anywhere.
+            We can&rsquo;t find that one anywhere.
 
             </p>
             <Link className="btn btn-outline-dark" to="/">Back home</Link>

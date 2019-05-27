@@ -203,7 +203,7 @@ const AboutPage = () => (
         <small className="form-text text-muted">
             <a href="https://tinyletter.com">
             powered by TinyLetter</a>.
-            We'll never share your email address.
+            We&rsquo;ll never share your email address.
         </small>
         <div className="buttons-container">
         <input className="btn btn-outline-dark btn-block" type="submit" value="Sign up for updates" />

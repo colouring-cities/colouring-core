@@ -49,7 +49,7 @@ class Header extends React.Component {
               <a className="nav-link" href="https://pages.colouring.london/about">More about</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="https://pages.colouring.london/whoisinvolved">Who's Involved?</a>
+              <a className="nav-link" href="https://pages.colouring.london/whoisinvolved">Who&rsquo;s Involved?</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="https://discuss.colouring.london">Discuss</a>
