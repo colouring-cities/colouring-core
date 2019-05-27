@@ -66,10 +66,10 @@ class App extends React.Component {
         this.setState({user: undefined});
     }
 
-    increaseRevision(revision_id) {
+    increaseRevision(revisionId) {
         // bump revision id, only ever increasing
-        if (revision_id > this.state.revision_id){
-            this.setState({revision_id: revision_id})
+        if (revisionId > this.state.revision_id){
+            this.setState({revision_id: revisionId})
         }
     }
 
@@ -131,11 +131,11 @@ class App extends React.Component {
         }
     }
 
-    likeBuilding(building_id) {
-        fetch(`/building/${building_id}/like.json`, {
+    likeBuilding(buildingId) {
+        fetch(`/building/${buildingId}/like.json`, {
             method: 'POST',
             headers:{
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             credentials: 'same-origin',
             body: JSON.stringify({like: true})
@@ -152,12 +152,12 @@ class App extends React.Component {
         );
     }
 
-    updateBuilding(building_id, data){
-        fetch(`/building/${building_id}.json`, {
+    updateBuilding(buildingId, data){
+        fetch(`/building/${buildingId}.json`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers:{
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             credentials: 'same-origin'
         }).then(
@@ -198,7 +198,7 @@ class App extends React.Component {
                             <MultiEdit
                                 {...props}
                                 user={this.state.user}
-                                />
+                            />
                         ) } />
                         <Route exact path="/view/:cat/building/:building.html" render={(props) => (
                             <BuildingView

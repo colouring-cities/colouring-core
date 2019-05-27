@@ -64,7 +64,7 @@ class ColouringMap extends Component {
                     this.props.colourBuilding(building);
                 } else {
                     this.props.selectBuilding(building);
-                    this.props.history.push(`/${mode}/${map_cat}/building/${building.building_id}.html`);
+                    this.props.history.push(`/${mode}/${mapCat}/building/${building.building_id}.html`);
                 }
             } else {
                 // deselect but keep/return to expected colour theme
@@ -106,7 +106,7 @@ class ColouringMap extends Component {
         const tileset = tilesetByCat[cat];
         // pick revision id to bust browser cache
         const rev = this.props.revision_id;
-        const dataLayer = data_tileset?
+        const dataLayer = tileset?
             <TileLayer
                 key={tileset}
                 url={`/tiles/${tileset}/{z}/{x}/{y}.png?rev=${rev}`}
@@ -169,7 +169,9 @@ class ColouringMap extends Component {
 
 ColouringMap.propTypes = {
     building: PropTypes.object,
+    revision_id: PropTypes.number,
     selectBuilding: PropTypes.func,
+    colourBuilding: PropTypes.func,
     match: PropTypes.object,
     history: PropTypes.object
 }

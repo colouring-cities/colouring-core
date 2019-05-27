@@ -206,62 +206,62 @@ class EditForm extends Component {
                     </nav>
                 </header>
                 {
-                match? (
-                    !this.props.inactive?
-                    <form action={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
-                        method="GET" onSubmit={this.handleSubmit}>
-                        {
-                            this.props.slug === 'location'?
-                            <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
-                            : null
-                        }
-                        <ErrorBox msg={this.state.error} />
-                        {
-                            this.props.fields.map((props) => {
-                                switch (props.type) {
-                                    case "text":
-                                        return <TextInput {...props} handleChange={this.handleChange}
+                    match? (
+                        !this.props.inactive?
+                            <form action={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
+                                method="GET" onSubmit={this.handleSubmit}>
+                                {
+                                    this.props.slug === 'location'?
+                                        <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
+                                        : null
+                                }
+                                <ErrorBox msg={this.state.error} />
+                                {
+                                    this.props.fields.map((props) => {
+                                        switch (props.type) {
+                                        case 'text':
+                                            return <TextInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
-                                    case "text_list":
-                                        return <TextListInput {...props} handleChange={this.handleChange}
+                                        case 'text_list':
+                                            return <TextListInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
-                                    case "text_long":
-                                        return <LongTextInput {...props} handleChange={this.handleChange}
+                                        case 'text_long':
+                                            return <LongTextInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
-                                    case "number":
-                                        return <NumberInput {...props} handleChange={this.handleChange}
+                                        case 'number':
+                                            return <NumberInput {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
-                                    case "year_estimator":
-                                        return <YearEstimator {...props} handleChange={this.handleChange}
+                                        case 'year_estimator':
+                                            return <YearEstimator {...props} handleChange={this.handleChange}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
-                                    case "text_multi":
-                                        return <MultiTextInput {...props} handleChange={this.handleUpdate}
+                                        case 'text_multi':
+                                            return <MultiTextInput {...props} handleChange={this.handleUpdate}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
-                                    case "checkbox":
-                                        return <CheckboxInput {...props} handleChange={this.handleCheck}
+                                        case 'checkbox':
+                                            return <CheckboxInput {...props} handleChange={this.handleCheck}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
-                                    case "like":
-                                        return <LikeButton {...props} handleLike={this.handleLike}
+                                        case 'like':
+                                            return <LikeButton {...props} handleLike={this.handleLike}
                                                 building_like={buildingLike}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
-                                    default:
-                                        return null
+                                        default:
+                                            return null
+                                        }
+                                    })
                                 }
-                            })
-                        }
-                        <InfoBox msg="Colouring may take a few seconds - try zooming the map or hitting refresh after saving (we're working on making this smoother)." />
-                        {
-                            (this.props.slug === 'like')? // special-case for likes
-                                null :
-                                <div className="buttons-container">
-                                    <button type="submit" className="btn btn-primary">Save</button>
-                                </div>
-                        }
-                    </form>
-                    : <form>
-                        <InfoBox msg={`We're not collection data on ${this.props.title.toLowerCase()} yet - check back soon.`} />
-                    </form>
-                ) : null
+                                <InfoBox msg="Colouring may take a few seconds - try zooming the map or hitting refresh after saving (we're working on making this smoother)." />
+                                {
+                                    (this.props.slug === 'like')? // special-case for likes
+                                        null :
+                                        <div className="buttons-container">
+                                            <button type="submit" className="btn btn-primary">Save</button>
+                                        </div>
+                                }
+                            </form>
+                            : <form>
+                                <InfoBox msg={`We're not collection data on ${this.props.title.toLowerCase()} yet - check back soon.`} />
+                            </form>
+                    ) : null
                 }
             </section>
         )
@@ -286,8 +286,8 @@ const TextInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
             cat={props.cat}
-            value={props.value || ""}
-            />
+            value={props.value || ''}
+        />
         <input className="form-control" type="text"
             id={props.slug} name={props.slug}
             value={props.value || ''}
@@ -301,6 +301,7 @@ const TextInput = (props) => (
 
 TextInput.propTypes = {
     slug: PropTypes.string,
+    cat: PropTypes.string,
     title: PropTypes.string,
     tooltip: PropTypes.string,
     value: PropTypes.string,
@@ -414,8 +415,8 @@ const TextListInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
             cat={props.cat}
-            value={props.value || ""}
-            />
+            value={props.value || ''}
+        />
         <select className="form-control"
             id={props.slug} name={props.slug}
             value={props.value || ''}
@@ -434,6 +435,7 @@ const TextListInput = (props) => (
 
 TextListInput.propTypes = {
     slug: PropTypes.string,
+    cat: PropTypes.string,
     title: PropTypes.string,
     tooltip: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
@@ -446,8 +448,8 @@ const NumberInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
             cat={props.cat}
-            value={props.value || ""}
-            />
+            value={props.value || ''}
+        />
         <input className="form-control" type="number" step={props.step}
             id={props.slug} name={props.slug}
             value={props.value || ''}
@@ -459,6 +461,7 @@ const NumberInput = (props) => (
 
 NumberInput.propTypes = {
     slug: PropTypes.string,
+    cat: PropTypes.string,
     title: PropTypes.string,
     tooltip: PropTypes.string,
     step: PropTypes.number,
@@ -549,6 +552,7 @@ const LikeButton = (props) => (
 
 LikeButton.propTypes = {
     slug: PropTypes.string,
+    cat: PropTypes.string,
     title: PropTypes.string,
     tooltip: PropTypes.string,
     value: PropTypes.number,
@@ -575,6 +579,8 @@ const Label = (props) => (
 
 Label.propTypes = {
     slug: PropTypes.string,
+    cat: PropTypes.string,
+    value: PropTypes.any,
     title: PropTypes.string,
     tooltip: PropTypes.string
 }

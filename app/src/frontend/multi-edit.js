@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { parse } from 'query-string';
+import PropTypes from 'prop-types';
 
 import Sidebar from './sidebar';
 import CONFIG from './fields-config.json';
@@ -14,14 +15,14 @@ const MultiEdit = (props) => {
         // special case for likes
         return (
             <Sidebar
-            title={`Quick like`}
-            back={`/edit/${cat}.html`}>
-                <section className="data-section">
-                    <p className="data-intro">Click all the buildings that you like and think contribute to the city!</p>
+                title='Quick like'
+                back={`/edit/${cat}.html`}>
+                <section className='data-section'>
+                    <p className='data-intro'>Click all the buildings that you like and think contribute to the city!</p>
 
-                    <div className="buttons-container ml-3 mr-3">
-                        <Link to={`/view/like.html`} className="btn btn-secondary">Back to view</Link>
-                        <Link to={`/edit/like.html`} className="btn btn-secondary">Back to edit</Link>
+                    <div className='buttons-container ml-3 mr-3'>
+                        <Link to='/view/like.html' className='btn btn-secondary'>Back to view</Link>
+                        <Link to='/edit/like.html' className='btn btn-secondary'>Back to edit</Link>
                     </div>
                 </section>
             </Sidebar>
@@ -29,25 +30,31 @@ const MultiEdit = (props) => {
     }
 
     const q = parse(props.location.search);
-    const label = field_title_from_slug(q.k);
+    const label = fieldTitleFromSlug(q.k);
     return (
         <Sidebar
-            title={`Quick edit`}
+            title='Quick edit'
             back={`/edit/${cat}.html`}>
-            <section className="data-section">
-                <p className="data-intro">Click a building to colour</p>
-                <p className="data-intro">Set <strong>{label}</strong> to <strong>{q.v}</strong></p>
+            <section className='data-section'>
+                <p className='data-intro'>Click a building to colour</p>
+                <p className='data-intro'>Set <strong>{label}</strong> to <strong>{q.v}</strong></p>
 
-                <div className="buttons-container ml-3">
-                    <Link to={`/view/${cat}.html`} className="btn btn-secondary">Back to view</Link>
-                    <Link to={`/edit/${cat}.html`} className="btn btn-secondary">Back to edit</Link>
+                <div className='buttons-container ml-3'>
+                    <Link to={`/view/${cat}.html`} className='btn btn-secondary'>Back to view</Link>
+                    <Link to={`/edit/${cat}.html`} className='btn btn-secondary'>Back to edit</Link>
                 </div>
             </section>
         </Sidebar>
     );
 }
 
-function field_title_from_slug(slug) {
+MultiEdit.propTypes = {
+    user: PropTypes.object,
+    match: PropTypes.object,
+    location: PropTypes.object
+}
+
+function fieldTitleFromSlug(slug) {
     const fields = CONFIG.reduce(
         (prev, section) => {
             const el = prev.concat(

@@ -56,7 +56,7 @@ const BuildingView = (props) => {
                                 default:
                                     return <DataEntry
                                         key={field.slug}
-                                        slug={field_props.slug}
+                                        slug={field.slug}
                                         cat={cat}
                                         title={field.title}
                                         value={props[field.slug]}
@@ -160,6 +160,8 @@ const DataEntry = (props) => (
 
 DataEntry.propTypes = {
     title: PropTypes.string,
+    cat: PropTypes.string,
+    slug: PropTypes.string,
     tooltip: PropTypes.string,
     value: PropTypes.any
 }
@@ -194,6 +196,7 @@ const LikeDataEntry = (props) => (
 
 LikeDataEntry.propTypes = {
     title: PropTypes.string,
+    cat: PropTypes.string,
     tooltip: PropTypes.string,
     value: PropTypes.any,
     user_building_like: PropTypes.bool
