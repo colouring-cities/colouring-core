@@ -57,6 +57,7 @@ const BuildingView = (props) => {
                                     return <DataEntry
                                         key={field.slug}
                                         slug={field.slug}
+                                        disabled={field.disabled}
                                         cat={cat}
                                         title={field.title}
                                         value={props[field.slug]}
