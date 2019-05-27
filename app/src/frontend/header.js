@@ -28,7 +28,7 @@ class Header extends React.Component {
                         <Logo/>
                     </span>
                     <button className="navbar-toggler navbar-toggler-right" type="button"
-                        onClick={this.handleClick}   aria-expanded="false" aria-label="Toggle navigation">
+                        onClick={this.handleClick} aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className={this.state.collapseMenu ? 'collapse navbar-collapse' : 'navbar-collapse'}>

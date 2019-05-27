@@ -22,7 +22,8 @@
     "strict": ["error", "global"],
     "curly": "warn",
     "quotes": ["warn", "single"],
-    "indent": ["warn", 4]
+    "indent": ["warn", 4],
+    "no-multi-spaces": ["error", {"ignoreEOLComments": true} ]
   },
   "plugins": [
     "react"

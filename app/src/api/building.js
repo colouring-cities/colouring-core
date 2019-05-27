@@ -282,7 +282,7 @@ function unlikeBuilding(building_id, user_id) {
 }
 
 function privateQueryBuildingBBOX(building_id){
-    return  db.one(
+    return db.one(
         `SELECT
             ST_XMin(envelope) as xmin,
             ST_YMin(envelope) as ymin,

@@ -16,7 +16,7 @@ const Overview = (props) => {
     }
 
     let title = (props.mode === 'view')? 'View maps' : 'Add or edit data';
-    let back =  (props.mode === 'edit')? `/view/${data_layer}.html` : undefined;
+    let back = (props.mode === 'edit')? `/view/${data_layer}.html` : undefined;
 
     return (
         <Sidebar title={title} back={back}>
