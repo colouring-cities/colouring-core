@@ -52,7 +52,7 @@ class EditForm extends Component {
     constructor(props) {
         super(props);
         this.state = {}
-        for (let field of props.fields) {
+        for (const field of props.fields) {
             this.state[field.slug] = props[field.slug]
         }
         this.state.error = this.props.error || undefined;

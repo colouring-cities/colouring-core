@@ -16,8 +16,8 @@ const Overview = (props) => {
         return <Redirect to="/sign-up.html" />
     }
 
-    let title = (props.mode === 'view')? 'View maps' : 'Add or edit data';
-    let back = (props.mode === 'edit')? `/view/${dataLayer}.html` : undefined;
+    const title = (props.mode === 'view')? 'View maps' : 'Add or edit data';
+    const back = (props.mode === 'edit')? `/view/${dataLayer}.html` : undefined;
 
     return (
         <Sidebar title={title} back={back}>
