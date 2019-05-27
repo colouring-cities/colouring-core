@@ -73,7 +73,7 @@ service postgresql start
 # Ensure en_US locale exists
 locale-gen en_US.UTF-8
 # Database config to listen on network connection
-sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/9.5/main/postgresql.conf
+sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/10/main/postgresql.conf
 # Allow password connections from any IP (so includes host)
 echo "host    all             all             all                     md5" >> /etc/postgresql/10/main/pg_hba.conf
 # Restart postgres to pick up config changes
@@ -86,8 +86,14 @@ su postgres -c "psql -c \"SELECT 1 FROM pg_user WHERE usename = 'vagrant';\" " \
 su postgres -c "psql -c \"SELECT 1 FROM pg_database WHERE datname = 'vagrant';\" " \
     | grep -q 1 || su postgres -c "createdb -E UTF8 -T template0 --locale=en_US.utf8 -O vagrant vagrant"
 
+
+# Create extensions
+su vagrant -c "psql -c \"create extension postgis;\" "
+su vagrant -c "psql -c \"create extension pgcrypto;\" "
+su vagrant -c "psql -c \"create extension pg_trgm;\" "
+
 # Run all 'up' migrations to create tables, data types, indexes
-su postgres -c "ls /vagrant/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;"
+su vagrant -c "ls /vagrant/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < \$migration; done;"
 
 
 #
@@ -115,7 +121,7 @@ chown -R vagrant:vagrant /home/vagrant/colouringlondon
 npm install -g npm@next
 
 # Local fixed install of node modules
-cd /vagrant/app && npm ci
+cd /vagrant/app && npm install
 
 
 #
