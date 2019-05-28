@@ -531,10 +531,6 @@ CheckboxInput.propTypes = {
 
 const LikeButton = (props) => (
     <Fragment>
-        <NavLink
-            to={`/multi-edit/${props.cat}.html?k=like&v=${true}`}>
-            Like more buildings
-        </NavLink>
         <p className="likes">{(props.value)? props.value : 0} likes</p>
         <div className="form-check">
             <input className="form-check-input" type="checkbox"
@@ -548,6 +544,12 @@ const LikeButton = (props) => (
                 { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
             </label>
         </div>
+        <p>
+            <NavLink
+                to={`/multi-edit/${props.cat}.html?k=like&v=${true}`}>
+                Like more buildings
+            </NavLink>
+        </p>
     </Fragment>
 );
 
