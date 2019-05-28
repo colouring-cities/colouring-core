@@ -7,7 +7,6 @@ import Sidebar from './sidebar';
 import Tooltip from './tooltip';
 import InfoBox from './info-box';
 import { EditIcon } from './icons';
-import { parseCategoryURL } from '../parse';
 
 import CONFIG from './fields-config.json';
 
@@ -22,7 +21,7 @@ const BuildingView = (props) => {
             </Sidebar>
         );
     }
-    const cat = parseCategoryURL(props.match.url);
+    const cat = props.match.params.cat;
     return (
         <Sidebar title={'Data available for this building'} back={`/view/${cat}.html`}>
             {
@@ -57,6 +56,9 @@ const BuildingView = (props) => {
                                 default:
                                     return <DataEntry
                                         key={field.slug}
+                                        slug={field.slug}
+                                        disabled={field.disabled}
+                                        cat={cat}
                                         title={field.title}
                                         value={props[field.slug]}
                                         tooltip={field.tooltip} />
@@ -71,7 +73,7 @@ const BuildingView = (props) => {
 }
 
 BuildingView.propTypes = {
-    building_id: PropTypes.string,
+    building_id: PropTypes.number,
     match: PropTypes.object,
     uprns: PropTypes.arrayOf(PropTypes.shape({
         uprn: PropTypes.string.isRequired,
@@ -129,7 +131,7 @@ DataSection.propTypes = {
     intro: PropTypes.string,
     help: PropTypes.string,
     inactive: PropTypes.bool,
-    building_id: PropTypes.string,
+    building_id: PropTypes.number,
     children: PropTypes.node
 }
 
@@ -138,6 +140,16 @@ const DataEntry = (props) => (
         <dt>
             { props.title }
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+            { (props.cat && props.slug && !props.disabled)?
+                <div className="icon-buttons">
+                    <NavLink
+                        to={`/multi-edit/${props.cat}.html?k=${props.slug}&v=${props.value}`}
+                        className="icon-button copy">
+                        Copy
+                    </NavLink>
+                </div>
+                : null
+            }
         </dt>
         <dd>{
             (props.value != null && props.value !== '')?
@@ -150,7 +162,10 @@ const DataEntry = (props) => (
 
 DataEntry.propTypes = {
     title: PropTypes.string,
+    cat: PropTypes.string,
+    slug: PropTypes.string,
     tooltip: PropTypes.string,
+    disabled: PropTypes.bool,
     value: PropTypes.any
 }
 
@@ -159,6 +174,13 @@ const LikeDataEntry = (props) => (
         <dt>
             { props.title }
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+            <div className="icon-buttons">
+                <NavLink
+                    to={`/multi-edit/${props.cat}.html?k=like&v=${true}`}
+                    className="icon-button copy">
+                    Copy
+                </NavLink>
+            </div>
         </dt>
         <dd>
             {
@@ -177,6 +199,7 @@ const LikeDataEntry = (props) => (
 
 LikeDataEntry.propTypes = {
     title: PropTypes.string,
+    cat: PropTypes.string,
     tooltip: PropTypes.string,
     value: PropTypes.any,
     user_building_like: PropTypes.bool

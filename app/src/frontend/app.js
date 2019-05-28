@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { parse } from 'query-string';
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -8,6 +9,7 @@ import './app.css';
 import AboutPage from './about';
 import BuildingEdit from './building-edit';
 import BuildingView from './building-view';
+import MultiEdit from './multi-edit';
 import ColouringMap from './map';
 import Header from './header';
 import Overview from './overview';
@@ -15,6 +17,7 @@ import Login from './login';
 import MyAccountPage from './my-account';
 import SignUp from './signup';
 import Welcome from './welcome';
+import { parseCategoryURL } from '../parse';
 
 /**
  * App component
@@ -31,15 +34,20 @@ import Welcome from './welcome';
 class App extends React.Component {
     constructor(props) {
         super(props);
+        // set building revision id, default 0
+        const rev = (props.building)? +props.building.revision_id : 0;
         this.state = {
             user: props.user,
             building: props.building,
-            building_like: props.building_like
+            building_like: props.building_like,
+            revision_id: rev
         };
         this.login = this.login.bind(this);
         this.updateUser = this.updateUser.bind(this);
         this.logout = this.logout.bind(this);
         this.selectBuilding = this.selectBuilding.bind(this);
+        this.colourBuilding = this.colourBuilding.bind(this);
+        this.increaseRevision = this.increaseRevision.bind(this);
     }
 
     login(user) {
@@ -58,8 +66,17 @@ class App extends React.Component {
         this.setState({user: undefined});
     }
 
+    increaseRevision(revisionId) {
+        revisionId = +revisionId;
+        // bump revision id, only ever increasing
+        if (revisionId > this.state.revision_id){
+            this.setState({revision_id: revisionId})
+        }
+    }
+
     selectBuilding(building) {
-    // get UPRNs and update
+        this.increaseRevision(building.revision_id);
+        // get UPRNs and update
         fetch(`/building/${building.building_id}/uprns.json`, {
             method: 'GET',
             headers:{
@@ -101,6 +118,62 @@ class App extends React.Component {
         });
     }
 
+    colourBuilding(building) {
+        const cat = parseCategoryURL(window.location.pathname);
+        const q = parse(window.location.search);
+        let data;
+        if (cat === 'like'){
+            data = {like: true}
+            this.likeBuilding(building.building_id)
+        } else {
+            data = {}
+            data[q.k] = q.v;
+            this.updateBuilding(building.building_id, data)
+        }
+    }
+
+    likeBuilding(buildingId) {
+        fetch(`/building/${buildingId}/like.json`, {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify({like: true})
+        }).then(
+            res => res.json()
+        ).then(function(res){
+            if (res.error) {
+                console.error({error: res.error})
+            } else {
+                this.increaseRevision(res.revision_id);
+            }
+        }.bind(this)).catch(
+            (err) => console.error({error: err})
+        );
+    }
+
+    updateBuilding(buildingId, data){
+        fetch(`/building/${buildingId}.json`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin'
+        }).then(
+            res => res.json()
+        ).then(res => {
+            if (res.error) {
+                console.error({error: res.error})
+            } else {
+                this.increaseRevision(res.revision_id);
+            }
+        }).catch(
+            (err) => console.error({error: err})
+        );
+    }
+
     render() {
         return (
             <Fragment>
@@ -122,6 +195,12 @@ class App extends React.Component {
                                 mode='edit' user={this.state.user}
                             />
                         ) } />
+                        <Route exact path="/multi-edit/:cat.html" render={(props) => (
+                            <MultiEdit
+                                {...props}
+                                user={this.state.user}
+                            />
+                        ) } />
                         <Route exact path="/view/:cat/building/:building.html" render={(props) => (
                             <BuildingView
                                 {...props}
@@ -141,11 +220,13 @@ class App extends React.Component {
                         ) } />
                     </Switch>
                     <Switch>
-                        <Route exact path="/(edit.*|view.*)?" render={(props) => (
+                        <Route exact path="/(multi-edit.*|edit.*|view.*)?" render={(props) => (
                             <ColouringMap
                                 {...props}
                                 building={this.state.building}
+                                revision_id={this.state.revision_id}
                                 selectBuilding={this.selectBuilding}
+                                colourBuilding={this.colourBuilding}
                             />
                         ) } />
                         <Route exact path="/about.html" component={AboutPage} />

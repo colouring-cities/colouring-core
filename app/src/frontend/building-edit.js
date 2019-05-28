@@ -7,7 +7,6 @@ import InfoBox from './info-box';
 import Sidebar from './sidebar';
 import Tooltip from './tooltip';
 import { SaveIcon } from './icons';
-import { parseCategoryURL } from '../parse';
 
 import CONFIG from './fields-config.json';
 
@@ -15,12 +14,12 @@ const BuildingEdit = (props) => {
     if (!props.user){
         return <Redirect to="/sign-up.html" />
     }
-    const cat = parseCategoryURL(props.match.url);
+    const cat = props.match.params.cat;
     if (!props.building_id){
         return (
             <Sidebar title="Building Not Found" back={`/edit/${cat}.html`}>
                 <InfoBox msg="We can't find that one anywhere - try the map again?" />
-                <div className="buttons-container">
+                <div className="buttons-container ml-3 mr-3">
                     <Link to={`/edit/${cat}.html`} className="btn btn-secondary">Back to maps</Link>
                 </div>
             </Sidebar>
@@ -45,7 +44,7 @@ const BuildingEdit = (props) => {
 BuildingEdit.propTypes = {
     user: PropTypes.object,
     match: PropTypes.object,
-    building_id: PropTypes.string,
+    building_id: PropTypes.number
 }
 
 class EditForm extends Component {
@@ -173,7 +172,9 @@ class EditForm extends Component {
 
     render() {
         const match = this.props.cat === this.props.slug;
+        const cat = this.props.cat;
         const buildingLike = this.props.building_like;
+
         return (
             <section className={(this.props.inactive)? 'data-section inactive': 'data-section'}>
                 <header className={`section-header edit ${this.props.slug} ${(match? 'active' : '')}`}>
@@ -220,36 +221,35 @@ class EditForm extends Component {
                                         switch (props.type) {
                                         case 'text':
                                             return <TextInput {...props} handleChange={this.handleChange}
-                                                value={this.state[props.slug]} key={props.slug} />
+                                                value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'text_list':
                                             return <TextListInput {...props} handleChange={this.handleChange}
-                                                value={this.state[props.slug]} key={props.slug} />
+                                                value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'text_long':
                                             return <LongTextInput {...props} handleChange={this.handleChange}
-                                                value={this.state[props.slug]} key={props.slug} />
+                                                value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'number':
                                             return <NumberInput {...props} handleChange={this.handleChange}
-                                                value={this.state[props.slug]} key={props.slug} />
+                                                value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'year_estimator':
                                             return <YearEstimator {...props} handleChange={this.handleChange}
-                                                value={this.state[props.slug]} key={props.slug} />
+                                                value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'text_multi':
                                             return <MultiTextInput {...props} handleChange={this.handleUpdate}
-                                                value={this.state[props.slug]} key={props.slug} />
+                                                value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'checkbox':
                                             return <CheckboxInput {...props} handleChange={this.handleCheck}
-                                                value={this.state[props.slug]} key={props.slug} />
+                                                value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'like':
                                             return <LikeButton {...props} handleLike={this.handleLike}
                                                 building_like={buildingLike}
-                                                value={this.state[props.slug]} key={props.slug} />
+                                                value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         default:
                                             return null
                                         }
                                     })
                                 }
                                 <InfoBox msg="Colouring may take a few seconds - try zooming the map or hitting refresh after saving (we're working on making this smoother)." />
-
                                 {
                                     (this.props.slug === 'like')? // special-case for likes
                                         null :
@@ -258,7 +258,9 @@ class EditForm extends Component {
                                         </div>
                                 }
                             </form>
-                            : <form><InfoBox msg={`We're not collection data on ${this.props.title.toLowerCase()} yet - check back soon.`} /></form>
+                            : <form>
+                                <InfoBox msg={`We're not collection data on ${this.props.title.toLowerCase()} yet - check back soon.`} />
+                            </form>
                     ) : null
                 }
             </section>
@@ -275,14 +277,17 @@ EditForm.propTypes = {
     like: PropTypes.bool,
     building_like: PropTypes.bool,
     selectBuilding: PropTypes.func,
-    building_id: PropTypes.string,
+    building_id: PropTypes.number,
     inactive: PropTypes.bool,
     fields: PropTypes.array
 }
 
 const TextInput = (props) => (
     <Fragment>
-        <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
+        <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
+            cat={props.cat} disabled={props.disabled}
+            value={props.value || ''}
+        />
         <input className="form-control" type="text"
             id={props.slug} name={props.slug}
             value={props.value || ''}
@@ -296,6 +301,7 @@ const TextInput = (props) => (
 
 TextInput.propTypes = {
     slug: PropTypes.string,
+    cat: PropTypes.string,
     title: PropTypes.string,
     tooltip: PropTypes.string,
     value: PropTypes.string,
@@ -307,7 +313,8 @@ TextInput.propTypes = {
 
 const LongTextInput = (props) => (
     <Fragment>
-        <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
+        <Label slug={props.slug} title={props.title} cat={props.cat}
+            disabled={props.disabled} tooltip={props.tooltip} />
         <textarea className="form-control"
             id={props.slug} name={props.slug}
             disabled={props.disabled}
@@ -407,7 +414,10 @@ MultiTextInput.propTypes = {
 
 const TextListInput = (props) => (
     <Fragment>
-        <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
+        <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
+            cat={props.cat} disabled={props.disabled}
+            value={props.value || ''}
+        />
         <select className="form-control"
             id={props.slug} name={props.slug}
             value={props.value || ''}
@@ -426,6 +436,7 @@ const TextListInput = (props) => (
 
 TextListInput.propTypes = {
     slug: PropTypes.string,
+    cat: PropTypes.string,
     title: PropTypes.string,
     tooltip: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
@@ -436,7 +447,10 @@ TextListInput.propTypes = {
 
 const NumberInput = (props) => (
     <Fragment>
-        <Label slug={props.slug} title={props.title} tooltip={props.tooltip} />
+        <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
+            cat={props.cat} disabled={props.disabled}
+            value={props.value || ''}
+        />
         <input className="form-control" type="number" step={props.step}
             id={props.slug} name={props.slug}
             value={props.value || ''}
@@ -448,6 +462,7 @@ const NumberInput = (props) => (
 
 NumberInput.propTypes = {
     slug: PropTypes.string,
+    cat: PropTypes.string,
     title: PropTypes.string,
     tooltip: PropTypes.string,
     step: PropTypes.number,
@@ -529,11 +544,18 @@ const LikeButton = (props) => (
                 { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
             </label>
         </div>
+        <p>
+            <NavLink
+                to={`/multi-edit/${props.cat}.html?k=like&v=${true}`}>
+                Like more buildings
+            </NavLink>
+        </p>
     </Fragment>
 );
 
 LikeButton.propTypes = {
     slug: PropTypes.string,
+    cat: PropTypes.string,
     title: PropTypes.string,
     tooltip: PropTypes.string,
     value: PropTypes.number,
@@ -546,12 +568,24 @@ const Label = (props) => (
     <label htmlFor={props.slug}>
         {props.title}
         { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+        { (props.cat && props.slug && !props.disabled)?
+            <div className="icon-buttons">
+                <NavLink
+                    to={`/multi-edit/${props.cat}.html?k=${props.slug}&v=${props.value}`}
+                    className="icon-button copy">
+                    Copy
+                </NavLink>
+            </div> : null
+        }
     </label>
 );
 
 Label.propTypes = {
     slug: PropTypes.string,
+    cat: PropTypes.string,
+    value: PropTypes.any,
     title: PropTypes.string,
+    disabled: PropTypes.bool,
     tooltip: PropTypes.string
 }
 

@@ -114,7 +114,7 @@ MyAccountPage.propTypes = {
     user: PropTypes.shape({
         username: PropTypes.string,
         email: PropTypes.string,
-        registered: PropTypes.string,
+        registered: PropTypes.date,
         api_key: PropTypes.string,
         error: PropTypes.object
     }),

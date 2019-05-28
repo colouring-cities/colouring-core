@@ -268,10 +268,10 @@
 
     color: #222;
     margin-top: 2px;
-    width: 1.8rem;
-    height: 1.8rem;
-    padding: 0.4rem;
-    border-radius: 0.9rem;
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+    border-radius: 15px;
     margin: 0 0.05rem;
     display: inline-block;
     vertical-align: middle;
@@ -279,7 +279,7 @@
 .svg-inline--fa.fa-w-11,
 .svg-inline--fa.fa-w-16,
 .svg-inline--fa.fa-w-8 {
-    width: 1.8rem;
+    width: 30px;
 }
 .icon-button:hover svg {
     background-color: #fff;
@@ -291,6 +291,7 @@
 .section-header .icon-button.help {
     margin-top: 2px;
 }
+.icon-button.copy:hover,
 .icon-button.help:hover {
     color: rgb(0, 81, 255)
 }
@@ -310,6 +311,10 @@
 .section-header .icon-button {
     float: right;
     margin-top: -2px;
+}
+label .icon-buttons,
+.data-list dt .icon-buttons {
+    float: right;
 }
 
 /* Back button */
@@ -334,6 +339,7 @@
 }
 .data-section p {
     font-size: 1rem;
+    margin: 0.5rem 0;
 }
 .data-section ul {
     padding-left: 3.333rem;

@@ -29,6 +29,7 @@ class ColouringMap extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleLocate = this.handleLocate.bind(this);
         this.themeSwitch = this.themeSwitch.bind(this);
+        this.getMode = this.getMode.bind(this);
     }
 
     handleLocate(lat, lng, zoom){
@@ -39,9 +40,14 @@ class ColouringMap extends Component {
         })
     }
 
-    handleClick(e) {
+    getMode() {
         const isEdit = this.props.match.url.match('edit')
-        const mode = isEdit? 'edit': 'view';
+        const isMulti = this.props.match.url.match('multi')
+        return isEdit? (isMulti? 'multi' : 'edit') : 'view';
+    }
+
+    handleClick(e) {
+        const mode = this.getMode()
         const lat = e.latlng.lat
         const lng = e.latlng.lng
         const newCat = parseCategoryURL(this.props.match.url);
@@ -53,8 +59,13 @@ class ColouringMap extends Component {
         ).then(function(data){
             if (data && data.length){
                 const building = data[0];
-                this.props.selectBuilding(building);
-                this.props.history.push(`/${mode}/${mapCat}/building/${building.building_id}.html`);
+                if (mode === 'multi') {
+                    // colour building directly
+                    this.props.colourBuilding(building);
+                } else {
+                    this.props.selectBuilding(building);
+                    this.props.history.push(`/${mode}/${mapCat}/building/${building.building_id}.html`);
+                }
             } else {
                 // deselect but keep/return to expected colour theme
                 this.props.selectBuilding(undefined);
@@ -94,7 +105,7 @@ class ColouringMap extends Component {
         }
         const tileset = tilesetByCat[cat];
         // pick revision id to bust browser cache
-        const rev = this.props.building? this.props.building.revision_id : '';
+        const rev = this.props.revision_id;
         const dataLayer = tileset?
             <TileLayer
                 key={tileset}
@@ -158,7 +169,9 @@ class ColouringMap extends Component {
 
 ColouringMap.propTypes = {
     building: PropTypes.object,
+    revision_id: PropTypes.number,
     selectBuilding: PropTypes.func,
+    colourBuilding: PropTypes.func,
     match: PropTypes.object,
     history: PropTypes.object
 }

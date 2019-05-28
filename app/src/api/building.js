@@ -172,7 +172,7 @@ function likeBuilding(buildingId, userId) {
     // - insert changeset
     // - update building to latest state
     // commit or rollback (serializable - could be more compact?)
-    return db.tx({ serializable }, t => {
+    return db.tx({mode: serializable}, t => {
         return t.none(
             'INSERT INTO building_user_likes ( building_id, user_id ) VALUES ($1, $2);',
             [buildingId, userId]
@@ -226,7 +226,7 @@ function unlikeBuilding(buildingId, userId) {
     // - insert changeset
     // - update building to latest state
     // commit or rollback (serializable - could be more compact?)
-    return db.tx({ serializable }, t => {
+    return db.tx({mode: serializable}, t => {
         return t.none(
             'DELETE FROM building_user_likes WHERE building_id = $1 AND user_id = $2;',
             [buildingId, userId]
