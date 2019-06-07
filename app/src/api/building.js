@@ -79,9 +79,28 @@ function getBuildingById(id) {
     return db.one(
         'SELECT * FROM buildings WHERE building_id = $1',
         [id]
-    ).catch(function (error) {
+    ).then((building) => {
+        return getBuildingEditHistory(id).then((edit_history) => {
+            building.edit_history = edit_history
+            return building
+        })
+    }).catch(function (error) {
         console.error(error);
         return undefined;
+    });
+}
+
+function getBuildingEditHistory(id) {
+    return db.manyOrNone(
+        `SELECT log_id as revision_id, forward_patch, reverse_patch, date_trunc('minute', log_timestamp), username
+        FROM logs, users
+        WHERE building_id = $1 AND logs.user_id = users.user_id`,
+        [id]
+    ).then((data) => {
+        return data
+    }).catch(function (error) {
+        console.error(error);
+        return []
     });
 }
 
