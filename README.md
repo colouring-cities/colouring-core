@@ -31,6 +31,19 @@ for download under a liberal open data license
 1. Run tests: `npm test`
 1. Run app: `npm start`
 
+In development, run with environment variables:
+
+```bash
+APP_COOKIE_SECRET=test_secret \
+PGHOST=localhost \
+PGUSER=dbuser \
+PGDATABASE=dbname \
+PGPASSWORD=dbpassword \
+PGPORT=5432 \
+TILECACHE_PATH=/path/to/tilecache/directory \
+    npm start
+```
+
 ## Acknowledgements
 
 Colouring London is being designed and built by the Centre for Advanced Spatial
