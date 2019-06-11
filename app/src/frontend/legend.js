@@ -129,7 +129,7 @@ class Legend extends React.Component {
 
 
     onResize(e) {
-        this.setState({collapseList: (e.target.outerHeight < 670)});  // magic number needs to be consistent with CSS expander-button media query 
+        this.setState({collapseList: (e.target.outerHeight < 670 || e.target.outerWidth < 768)});  // magic number needs to be consistent with CSS expander-button media query 
     }
 
 
