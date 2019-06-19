@@ -5,9 +5,8 @@
     border-radius: 4px;
     z-index: 1000;
     position: absolute;
-    left: 25.5rem;
-    top: 0.5rem;
     box-shadow: 0px 0px 1px 1px #222;
+    visibility: hidden;
 }
 .leaflet-container {
     position: absolute;
@@ -22,4 +21,12 @@
 }
 .leaflet-grab {
     cursor: crosshair;
+}
+@media (min-width: 768px){
+    /* Only show the "Click a building ..." notice for larger screens */
+    .map-notice {
+        left: 25.5rem;
+        top: 0.5rem;
+        visibility: visible;
+    }
 }
