@@ -70,7 +70,7 @@
         "inactive": true,
         "title": "Ownership", "slug": "ownership",
         "intro": "How are buildings owned? Coming soon…",
-        "help": "https://pages.colouring.london/buildingcategories",
+        "help": "https://www.pages.colouring.london/type",
         "fields": [
             {
                 "title": "Owner type (private, state/public, or communal/third sector)",
