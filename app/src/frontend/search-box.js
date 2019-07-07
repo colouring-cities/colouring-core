@@ -103,7 +103,7 @@ class SearchBox extends Component {
 
     componentDidMount() {
         window.addEventListener('resize', this.onResize);
-        if (window && window.outerHeight) {
+        if (window && window.innerHeight) {
             // if we're in the browser, pass in as though from event to initialise
             this.onResize({target: window});
         }
@@ -116,7 +116,7 @@ class SearchBox extends Component {
     // On a real mobile device onResize() gets called when the virtual keyboard pops up (e.g. when entering search text)
     // so be careful what states are changed in this method (i.e. don't collapse the search box here)
     onResize(e) {
-        this.setState({smallScreen: (e.target.outerWidth < 768)});
+        this.setState({smallScreen: (e.target.innerWidth < 768)});
     }
 
     render() {
