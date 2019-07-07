@@ -165,11 +165,11 @@
 .section-header.team.active > a::before {
     color: #6f879c;
 }
-.section-header.active.sustainability {
+.section-header.active.energy {
     border-bottom-color: #5ec232;
 }
-.section-header.sustainability:hover > a::before,
-.section-header.sustainability.active > a::before {
+.section-header.energy:hover > a::before,
+.section-header.energy.active > a::before {
     color: #5ec232;
 }
 .section-header.active.greenery {
@@ -179,18 +179,18 @@
 .section-header.greenery.active > a::before {
     color: #6dbb8b;
 }
-.section-header.active.planning {
+.section-header.active.community {
     border-bottom-color: #65b7ff;
+}
+.section-header.community:hover > a::before,
+.section-header.community.active > a::before {
+    color: #65b7ff;
+}
+.section-header.active.planning {
+    border-bottom-color: #a1a3a9;
 }
 .section-header.planning:hover > a::before,
 .section-header.planning.active > a::before {
-    color: #65b7ff;
-}
-.section-header.active.demolition {
-    border-bottom-color: #a1a3a9;
-}
-.section-header.demolition:hover > a::before,
-.section-header.demolition.active > a::before {
     color: #a1a3a9;
 }
 .section-header.active.like {
