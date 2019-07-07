@@ -15,6 +15,14 @@ const LEGEND_CONFIG = {
             { color: '#bae4bc', text: '<20%' }
         ]
     },
+    use: {
+        title: 'Use',
+        elements: []
+    },
+    type: {
+        title: 'Type',
+        elements: []
+    },
     age: {
         title: 'Age',
         elements: [
@@ -49,25 +57,6 @@ const LEGEND_CONFIG = {
             { color: '#800026', text: '1–5' },
         ]
     },
-    like: {
-        title: 'Like Me',
-        elements: [
-            { color: '#bd0026', text: '👍👍👍 ≥10' },
-            { color: '#e31a1c', text: '👍👍 5–10' },
-            { color: '#fc4e2a', text: '👍 4' },
-            { color: '#fd8d3c', text: '👍 3' },
-            { color: '#feb24c', text: '👍 2' },
-            { color: '#fed976', text: '👍 1' },
-        ]
-    },
-    use: {
-        title: 'Use',
-        elements: []
-    },
-    ownership: {
-        title: 'Ownership',
-        elements: []
-    },
     construction: {
         title: 'Construction',
         elements: []
@@ -76,8 +65,8 @@ const LEGEND_CONFIG = {
         title: 'Team',
         elements: []
     },
-    sustainability: {
-        title: 'Sustainability',
+    energy: {
+        title: 'Energy',
         elements: []
     },
     greenery: {
@@ -90,9 +79,20 @@ const LEGEND_CONFIG = {
             { color: '#73ebaf', text: 'within conservation area' },
         ]
     },
-    demolition: {
-        title: 'Demolition',
+    community: {
+        title: 'Community',
         elements: []
+    },
+    like: {
+        title: 'Like Me',
+        elements: [
+            { color: '#bd0026', text: '👍👍👍 ≥10' },
+            { color: '#e31a1c', text: '👍👍 5–10' },
+            { color: '#fc4e2a', text: '👍 4' },
+            { color: '#fd8d3c', text: '👍 3' },
+            { color: '#feb24c', text: '👍 2' },
+            { color: '#fed976', text: '👍 1' },
+        ]
     }
 };
 
@@ -114,7 +114,7 @@ class Legend extends React.Component {
     }
 
 
-    componentDidMount() {  
+    componentDidMount() {
         window.addEventListener('resize', this.onResize);
         if (window && window.outerHeight) {
             // if we're in the browser, pass in as though from event to initialise
@@ -129,14 +129,14 @@ class Legend extends React.Component {
 
 
     onResize(e) {
-        this.setState({collapseList: (e.target.outerHeight < 670 || e.target.outerWidth < 768)});  // magic number needs to be consistent with CSS expander-button media query 
+        this.setState({collapseList: (e.target.outerHeight < 670 || e.target.outerWidth < 768)});  // magic number needs to be consistent with CSS expander-button media query
     }
 
 
-    render() { 
-        const details = LEGEND_CONFIG[this.props.slug];
-        const title = details.title;
-        const elements = details.elements;
+    render() {
+        const details = LEGEND_CONFIG[this.props.slug] || {};
+        const title = details.title || "";
+        const elements = details.elements || [];
 
         return (
             <div className="map-legend">
@@ -181,7 +181,7 @@ class Legend extends React.Component {
                                        <li key={item.color} >
                                             <span className="key" style={ { background: item.color } }>-</span>
                                             { item.text }
-                                       </li> 
+                                       </li>
 
                                 ))
                             }
