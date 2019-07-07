@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import './search-box.css';
-
+import { SearchIcon } from './icons';
 /**
  * Search for location
  */
@@ -13,13 +13,19 @@ class SearchBox extends Component {
         this.state = {
             q: '',
             results: [],
-            fetching: false
+            fetching: false,
+            //track the state of the search box i.e. collapsed or expanded. Default to true
+            collapsedSearch: true,
+            //is this a small screen device? if not we will disable collapse option
+            smallScreen: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.search = this.search.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.clearResults = this.clearResults.bind(this);
         this.clearQuery = this.clearQuery.bind(this);
+        this.expandSearch = this.expandSearch.bind(this);
+        this.onResize= this.onResize.bind(this);
     }
 
     // Update search term
@@ -52,6 +58,12 @@ class SearchBox extends Component {
         this.setState({
             q: ''
         });
+    }
+
+    expandSearch(e){
+        this.setState(state => ({
+            collapsedSearch: !state.collapsedSearch
+        }));
     }
 
     // Query search endpoint
@@ -89,7 +101,34 @@ class SearchBox extends Component {
         })
     }
 
+    componentDidMount() {
+        window.addEventListener('resize', this.onResize);
+        if (window && window.outerHeight) {
+            // if we're in the browser, pass in as though from event to initialise
+            this.onResize({target: window});
+        }
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onResize);
+    }
+
+    // On a real mobile device onResize() gets called when the virtual keyboard pops up (e.g. when entering search text)
+    // so be careful what states are changed in this method (i.e. don't collapse the search box here)
+    onResize(e) {
+        this.setState({smallScreen: (e.target.outerWidth < 768)});
+    }
+
     render() {
+        // if the current state is collapsed (and a mobile device) just render the icon
+        if(this.state.collapsedSearch && this.state.smallScreen){
+            return(
+               <div className="collapse-btn" onClick={this.expandSearch}>
+		    <SearchIcon />
+		</div>
+            )
+        }
+
         const resultsList = this.state.results.length?
             <ul className="search-box-results">
                 {
@@ -117,8 +156,10 @@ class SearchBox extends Component {
             : null;
         return (
             <div className={`search-box ${this.props.isBuilding? 'building' : ''}`} onKeyDown={this.handleKeyPress}>
-                <form action="/search" method="GET" onSubmit={this.search}
-                    className="form-inline">
+                <form action="/search" method="GET" onSubmit={this.search} className="form-inline">
+                    <div onClick={this.state.smallScreen ? this.expandSearch : null}>
+                        <SearchIcon/>
+                    </div>
                     <input
                         className="form-control"
                         type="search"
@@ -129,7 +170,7 @@ class SearchBox extends Component {
                         aria-label="Search for a postcode"
                         onChange={this.handleChange}
                     />
-                    <button className="btn btn-outline-dark" type="submit">Search</button>
+		    <button className="btn btn-outline-dark" type="submit">Search</button>
                 </form>
                 { resultsList }
             </div>
