@@ -259,7 +259,7 @@ class EditForm extends Component {
                                 }
                             </form>
                             : <form>
-                                <InfoBox msg={`We're not collection data on ${this.props.title.toLowerCase()} yet - check back soon.`} />
+                                <InfoBox msg={`We're not collecting data on ${this.props.title.toLowerCase()} yet - check back soon.`} />
                             </form>
                     ) : null
                 }
