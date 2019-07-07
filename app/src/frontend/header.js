@@ -65,6 +65,11 @@ class Header extends React.Component {
                                 </a>
                             </li>
                             <li className="nav-item">
+                                <a className="nav-link" href="https://www.pages.colouring.london/data-ethics">
+                                    Data Ethics
+                                </a>
+                            </li>
+                            <li className="nav-item">
                                 <a className="nav-link" href="https://discuss.colouring.london">
                                     Discuss
                                 </a>
