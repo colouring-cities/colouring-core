@@ -96,71 +96,108 @@ const LEGEND_CONFIG = {
     }
 };
 
-const Legend = (props) => {
-    const details = LEGEND_CONFIG[props.slug];
-    const title = details.title;
-    const elements = details.elements;
-    return (
-        <div className="map-legend">
-            <div className="logo">
-                <div className="grid">
-                    <div className="row">
-                        <div className="cell"></div>
-                        <div className="cell"></div>
-                        <div className="cell"></div>
-                        <div className="cell"></div>
+
+class Legend extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {collapseList: false};
+        this.handleClick = this.handleClick.bind(this);
+        this.onResize= this.onResize.bind(this);
+    }
+
+
+    handleClick() {
+        this.setState(state => ({
+            collapseList: !state.collapseList
+        }));
+    }
+
+
+    componentDidMount() {  
+        window.addEventListener('resize', this.onResize);
+        if (window && window.outerHeight) {
+            // if we're in the browser, pass in as though from event to initialise
+            this.onResize({target: window});
+        }
+    }
+
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onResize);
+    }
+
+
+    onResize(e) {
+        this.setState({collapseList: (e.target.outerHeight < 670 || e.target.outerWidth < 768)});  // magic number needs to be consistent with CSS expander-button media query 
+    }
+
+
+    render() { 
+        const details = LEGEND_CONFIG[this.props.slug];
+        const title = details.title;
+        const elements = details.elements;
+
+        return (
+            <div className="map-legend">
+                <div className="logo">
+                    <div className="grid">
+                        <div className="row">
+                            <div className="cell"></div>
+                            <div className="cell"></div>
+                            <div className="cell"></div>
+                            <div className="cell"></div>
+                        </div>
+                        <div className="row">
+                            <div className="cell"></div>
+                            <div className="cell"></div>
+                            <div className="cell"></div>
+                            <div className="cell"></div>
+                        </div>
+                        <div className="row">
+                            <div className="cell"></div>
+                            <div className="cell"></div>
+                            <div className="cell"></div>
+                            <div className="cell"></div>
+                        </div>
                     </div>
-                    <div className="row">
-                        <div className="cell"></div>
-                        <div className="cell"></div>
-                        <div className="cell"></div>
-                        <div className="cell"></div>
-                    </div>
-                    <div className="row">
-                        <div className="cell"></div>
-                        <div className="cell"></div>
-                        <div className="cell"></div>
-                        <div className="cell"></div>
-                    </div>
+                    <h3 className="h3 logotype">
+                        <span>Colouring</span>
+                        <span>London</span>
+                    </h3>
                 </div>
-                <h3 className="h3 logotype">
-                    <span>Colouring</span>
-                    <span>London</span>
-                </h3>
+                <h4 className="h4">{ title } {elements.length?<button className="expander-button btn btn-outline-secondary btn-sm" type="button" onClick={this.handleClick} >^</button>:null}</h4>
+                {
+                    details.description?
+                        <p>{details.description} </p>
+                        : null
+                }
+                {
+                    elements.length?
+                        <ul className={this.state.collapseList ? 'collapse data-legend' : 'data-legend'} >
+                            {
+                                elements.map((item) => (
+
+                                       <li key={item.color} >
+                                            <span className="key" style={ { background: item.color } }>-</span>
+                                            { item.text }
+                                       </li> 
+
+                                ))
+                            }
+                        </ul>
+                        : <p className="data-intro">Coming soon…</p>
+                }
             </div>
-            <h4 className="h4">{ title }</h4>
-            {
-                details.description?
-                    <p>{details.description}</p>
-                    : null
-            }
-            {
-                elements.length?
-                    <ul className="data-legend">
-                        {
-                            elements.map((item) => (
-                                <LegendItem {...item} key={item.color} />
-                            ))
-                        }
-                    </ul>
-                    : <p className="data-intro">Coming soon…</p>
-            }
-        </div>
-    );
+        );
+
+    }
+
 }
+
 
 Legend.propTypes = {
-    slug: PropTypes.string
-}
-
-const LegendItem = (props) => (
-    <li>
-        <span className="key" style={ { background: props.color } }>-</span>
-        { props.text }
-    </li>
-);
-
-LegendItem.propTypes = {
+    slug: PropTypes.string,
     color: PropTypes.string,
     text: PropTypes.string
 }

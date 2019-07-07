@@ -4,7 +4,7 @@
 .map-legend {
     z-index: 1000;
     position: absolute;
-    bottom: 55px;
+    bottom: 50%;
     right: 10px;
     min-width: 12rem;
     float: right;
@@ -14,7 +14,7 @@
     border: 1px solid #fff;
     box-shadow: 0px 0px 1px 1px #222222;
 }
-@media (min-width: 380px){
+@media (min-width: 768px){
     .map-legend {
         bottom: 40px;
     }
@@ -69,4 +69,12 @@
 .map-legend .data-intro {
     padding: 0 0.5rem;
     opacity: 0.5;
+}
+.expander-button {
+    float: right;	
+}
+@media (min-height: 670px) and (min-width: 768px) {
+    .expander-button {
+        visibility: hidden;
+    }
 }
