@@ -429,6 +429,30 @@
         ]
     },
     {
+        "inactive": true,
+        "title": "Community",
+        "slug": "community",
+        "intro": "How does this building work for the local community?",
+        "help": "https://pages.colouring.london/type",
+        "fields": [
+            {
+                "title": "Is this a publicly owned building?",
+                "slug": "community_publicly_owned",
+                "type": "checkbox"
+            },
+            {
+                "title": "Has this building ever been used for community or public services activities?",
+                "slug": "community_past_public",
+                "type": "checkbox"
+            },
+            {
+                "title": "Would you describe this building as a community asset?",
+                "slug": "community_asset",
+                "type": "checkbox"
+            }
+        ]
+    },
+    {
         "title": "Planning",
         "slug": "planning",
         "intro": "Planning controls relating to protection and reuse.",
@@ -569,30 +593,6 @@
                 "disabled": true,
                 "slug": "planning_demolition_history",
                 "type": "text"
-            }
-        ]
-    },
-    {
-        "inactive": true,
-        "title": "Community",
-        "slug": "community",
-        "intro": "How does this building work for the local community?",
-        "help": "https://pages.colouring.london/type",
-        "fields": [
-            {
-                "title": "Is this a publicly owned building?",
-                "slug": "community_publicly_owned",
-                "type": "checkbox"
-            },
-            {
-                "title": "Has this building ever been used for community or public services activities?",
-                "slug": "community_past_public",
-                "type": "checkbox"
-            },
-            {
-                "title": "Would you describe this building as a community asset?",
-                "slug": "community_asset",
-                "type": "checkbox"
             }
         ]
     },
