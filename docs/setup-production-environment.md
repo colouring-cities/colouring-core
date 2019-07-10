@@ -50,7 +50,7 @@ Get the Node distribution and install it
 
 `sudo mv /usr/local/lib/node/node-$NODE_VERSION-$DISTRO /usr/local/lib/node/node-$NODE_VERSION`
 
-`rm node-$NODE_VERSION-​$DISTRO.tar.xz`
+`rm node-$NODE_VERSION-$DISTRO.tar.xz`
 
 
 Export the NODE_JS variable to your bash profile
@@ -82,11 +82,11 @@ Restart postgres for the changes to take effect
 
 Create a distinct postgres user
 
-`sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = 'cldbadmin';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE cldbadmin SUPERUSER LOGIN PASSWORD 'om10ram%';"`
+`sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<postgres_username>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <postgres_username> SUPERUSER LOGIN PASSWORD '<postgres_password>';"`
 
 Create default colouring london database
 
-`sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colorlondondb';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O cldbadmin colorlondondb`
+`sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colorlondondb';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <postgres_username> colorlondondb`
 
 `psql -d colorlondondb -U cldbadmin -c "create extension postgis;"`
 
@@ -96,7 +96,7 @@ Create default colouring london database
 
 Import data from most recent colouring london database dump
 
-`pg_restore --no-privileges --no-owner --username "cldbadmin" --dbname "colorlondondb" --clean "/home/cacolorlondon/db/colouringlondonbeta_2018-12-10.dump"`
+`pg_restore --no-privileges --no-owner --username "<postgres_username>" --dbname "colorlondondb" --clean "/home/cacolorlondon/db/colouringlondonbeta_2018-12-10.dump"`
 
 
 ***
@@ -110,7 +110,7 @@ Now upgrade the npm package manager to the most recent release with global privi
 
 `export NODEJS_HOME=/usr/local/lib/node/node-v8.11.3/bin/`
 
-`export PATH=$NODEJS_HOME:​$PATH`
+`export PATH=$NODEJS_HOME:$PATH`
 
 `npm install -g npm@next`
 
@@ -183,7 +183,7 @@ Test out the configuration
 `npm run build`
 
 
-`PGPASSWORD=<postgres_password> PGDATABASE=colorlondondb PGUSER=cldbadmin PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=<secret> npm run start:prod`
+`PGPASSWORD=<postgres_password> PGDATABASE=colorlondondb PGUSER=<postgres_username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=<secret> npm run start:prod`
 
 ***
 
