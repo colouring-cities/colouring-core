@@ -1,7 +1,7 @@
-#Setting Up a Production Environment
+# Setting Up a Production Environment
 
 
-####Preliminaries
+#### Preliminaries
 This guide assumes a virtual environment running Ubuntu 18_04.
 
 Install updates to packages:
@@ -19,7 +19,7 @@ Install openSSH (if necessary)
 ***
 
 
-####Install essential tools
+#### Install essential tools
 
 `sudo apt-get install -y build-essential git vim-nox wget curl`
 
