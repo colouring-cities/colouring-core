@@ -1,8 +1,9 @@
-# Setting Up a Production Environment
+# Setting Up A Production Environment
 
 
 #### Preliminaries
-This guide assumes a virtual environment running Ubuntu 18_04.
+
+This guide assumes a virtual environment (VM) running Ubuntu 18_04.
 
 Install updates to packages:
 
@@ -19,25 +20,56 @@ Install openSSH (if necessary)
 ***
 
 
-#### Install essential tools
+#### Install Essential Components
+
+Install some useful development tools
 
 `sudo apt-get install -y build-essential git vim-nox wget curl`
 
-Install postgres and associated tools
+Install Postgres and associated tools
 
 `sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-10-postgis-2.4`
 
 `sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev`
 
 
-Now that GIT is installed, clone the remote repository
+Install Nginx
 
-`git clone https://github.com/tomalrussell/colouring-london.git`
+`sudo apt install nginx`
 
 
+Clone the remote Colouring London GitHub repository into `/var/www`
 
-Define a couple of convenience variables
+`cd /var/www`
+
+`sudo git clone https://github.com/tomalrussell/colouring-london.git`
+
+Create a system user (`nodeapp`) to `chown` the `colouring-london` directory
+
+`useradd -r -s /bin/nologin nodeapp`
+
+Add the current user to the `nodeapp` group
+
+`sudo usermod -a -G nodeapp <your_ubuntu_username>`
+
+Make the `nodeapp` user/group `chown` the `colouring-london` directory and its subdirectories
+
+`sudo chown -R nodeapp:nodeapp /var/www/colouring-london`
+
+Now set appropriate permissions on the `colouring-london` directory
+
+`sudo chmod -R 775 /var/www/colouring-london`
+
+
+***
+
+
+#### Install Node. 
+
+First define a couple of convenience variables:
+
 `NODE_VERSION=v8.11.3`
+
 `DISTRO=linux-x64`
 
 Get the Node distribution and install it
@@ -53,8 +85,39 @@ Get the Node distribution and install it
 `rm node-$NODE_VERSION-$DISTRO.tar.xz`
 
 
-Export the NODE_JS variable to your bash profile
-`cat >> ~/.profile <<EOF export NODEJS_HOME=/usr/local/lib/node/node-$NODE_VERSION/bin export PATH=$NODEJS_HOME:$PATH EOF`
+Export the `NODE_JS_HOME` variable to your bash profile
+
+	cat >> ~/.profile <<EOF
+	export NODEJS_HOME=/usr/local/lib/node/node-$NODE_VERSION/bin
+	export PATH=$NODEJS_HOME:$PATH
+	EOF
+
+
+Reload your profile to ensure changes take effect
+
+`source ~/.profile`
+
+
+***
+
+
+#### Configure Node
+
+Now upgrade the `npm` package manager to the most recent release with global privileges. This needs to be performed as root user, so it is necessary to export the node variables to the root user profile. 
+
+`sudo su root`
+
+`export NODEJS_HOME=/usr/local/lib/node/node-v8.11.3/bin/`
+
+`export PATH=$NODEJS_HOME:$PATH`
+
+`npm install -g npm@next`
+
+`exit`
+
+Now install the required Node packages as designated in `package.json`
+
+`cd /var/www/colouring-london/app && npm install`
 
 
 ***
@@ -71,79 +134,55 @@ Export the NODE_JS variable to your bash profile
 `echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/10/main/pg_hba.conf > /dev/null`
 
 
-For production we do not want to use our Ubuntu username as the postgres username. So we need to replace peer authentication with password authentication for local connections. 
+For production we do not want to use our Ubuntu username as the Postgres username. So we need to replace peer authentication with password authentication for local connections. 
 
 `sudo sed -i 's/^local.*all.*all.*peer$/local   all             all                                     md5/' /etc/postgresql/10/main/pg_hba.conf`
 
 
-Restart postgres for the changes to take effect
+Restart Postgres for the configuration changes to take effect
 
 `sudo service postgresql restart`
 
-Create a distinct postgres user
+Create a distinct Postgres user
 
 `sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<postgres_username>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <postgres_username> SUPERUSER LOGIN PASSWORD '<postgres_password>';"`
 
+
 Create default colouring london database
 
-`sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colorlondondb';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <postgres_username> colorlondondb`
+`sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringlondondb';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <postgres_username> colouringlondondb`
 
-`psql -d colorlondondb -U cldbadmin -c "create extension postgis;"`
+`psql -d colouringlondondb -U <postgres_username> -c "create extension postgis;"`
 
-`psql -d colorlondondb -U cldbadmin -c "create extension pgcrypto;"`
+`psql -d colouringlondondb -U <postgres_username> -c "create extension pgcrypto;"`
 
-`psql -d colorlondondb -U cldbadmin -c "create extension pg_trgm;"`
-
-Import data from most recent colouring london database dump
-
-`pg_restore --no-privileges --no-owner --username "<postgres_username>" --dbname "colorlondondb" --clean "/home/cacolorlondon/db/colouringlondonbeta_2018-12-10.dump"`
+`psql -d colouringlondondb -U <postgres_username> -c "create extension pg_trgm;"`
 
 
-***
+Import data from the most recent colouring london database dump
 
-
-#### Setting up Node
-
-Now upgrade the npm package manager to the most recent release with global privileges. This needs to be performed as root user, so it is necessary to export the node variables to the root user profile. 
-
-`sudo su root`
-
-`export NODEJS_HOME=/usr/local/lib/node/node-v8.11.3/bin/`
-
-`export PATH=$NODEJS_HOME:$PATH`
-
-`npm install -g npm@next`
-
-`exit`
-
-
-`cd ./colouring-london/app && npm install`
+`pg_restore --no-privileges --no-owner --username "<postgres_username>" --dbname "colouringlondondb" --clean "<path/to/database/dump/file>"`
 
 
 ***
 
 
-#### Setting up NGINX
-
-Install Nginx
-
-`sudo apt install nginx`
-
+#### Configure NGINX
 
 Configure linux firewall
-
-`sudo ufw app list`
 
 `sudo ufw allow 'Nginx HTTP'`
 
 `sudo ufw allow OpenSSH`
 
-`sudo ufw status`
-
 `sudo ufw enable`
 
+We can check the status of the firewall with
 
-Edit `sites-available/default` to create a minimal Nginx configuration to test the installation
+`sudo ufw status`
+
+
+Now edit `sites-available/default` to create a minimal Nginx configuration to test the installation
 
 `sudo nano /etc/nginx/sites-available/default`
 
@@ -177,15 +216,23 @@ If all is well, restart Nginx
 
 Test out the configuration
 
-`cd colouring-london/app`
+`cd /var/www/colouring-london/app`
 
 
 `npm run build`
 
 
-`PGPASSWORD=<postgres_password> PGDATABASE=colorlondondb PGUSER=<postgres_username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=<secret> npm run start:prod`
+`PGPASSWORD=<postgres_password> PGDATABASE=colouringlondondb PGUSER=<postgres_username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=<secret> npm run start:prod`
+
+Now open a browser window on a client machine and navigate to the IP Address of your VM
+
+`http://<ip_address_of_vm>`
+
+You should see the Colouring London homepage.
+
 
 ***
+
 
 #### Set up PM2
 
@@ -202,9 +249,9 @@ Perform a global install of PM2
 `exit`
 
 
-Create ecosystem.config.js file from template
+Create an `ecosystem.config.js` file from the template file
 
-`cd ~/colouring-london`
+`cd /var/www/colouring-london`
 
 `nano ecosystem.config.template.js`
 
@@ -219,16 +266,16 @@ Create ecosystem.config.js file from template
 	        {
 	            name: "colouringlondon",
 	            script: "./app/build/server.js",
-	            instances: 2,
+	            instances: 6,
 	            env: {
 	                NODE_ENV: "production",
 	                PGHOST: "localhost",
 	                PGPORT: 5432,
-	                PGDATABASE: "colorlondondb",
-	                PGUSER: "cldbadmin",
-	                PGPASSWORD: "longrandomspassword",
-	                APP_COOKIE_SECRET: "longrandomsecret",
-	                TILECACHE_PATH: "~/colouring-london/app/tilecache"
+	                PGDATABASE: "colouringlondondb",
+	                PGUSER: "<postgres_username>",
+	                PGPASSWORD: "<postgres_password>",
+	                APP_COOKIE_SECRET: "<longrandomsecret>",
+	                TILECACHE_PATH: "/var/www/colouring-london/app/tilecache"
 	            }
 	        }
 	    ]
@@ -237,11 +284,17 @@ Create ecosystem.config.js file from template
 Edit the above file as appropriate and save as `ecosystem.config.js`
 
 
-Start colouring-london
+Start the colouring-london app
 
-`cd ~/colouring-london`
+`cd /var/www/colouring-london`
 
 `pm2 start ecosystem.config.js`
+
+Open a browser window on a client machine and navigate to the IP Address of your VM
+
+`http://<ip_address_of_vm>`
+
+You should see the Colouring London homepage.
 
 To stop the colouring-london app type:
 
@@ -253,6 +306,6 @@ To stop the colouring-london app type:
 
 #### Set up SSL - TO DO
 
-DON'T FORGET to open Firewall (443)
+DON'T FORGET to open the Ubuntu firewall to HTTPS
 
 
