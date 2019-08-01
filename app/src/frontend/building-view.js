@@ -135,30 +135,35 @@ DataSection.propTypes = {
     children: PropTypes.node
 }
 
-const DataEntry = (props) => (
-    <Fragment>
-        <dt>
-            { props.title }
-            { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
-            { (props.cat && props.slug && !props.disabled)?
-                <div className="icon-buttons">
-                    <NavLink
-                        to={`/multi-edit/${props.cat}.html?k=${props.slug}&v=${props.value}`}
-                        className="icon-button copy">
-                        Copy
-                    </NavLink>
-                </div>
-                : null
-            }
-        </dt>
-        <dd>{
-            (props.value != null && props.value !== '')?
-                (typeof(props.value) === 'boolean')?
-                    (props.value)? 'Yes' : 'No'
-                    : props.value
-                : '\u00A0'}</dd>
-    </Fragment>
-);
+const DataEntry = (props) => {
+    const data = {};
+    data[props.slug] = props.value;
+    const data_string = JSON.stringify(data);
+    return (
+        <Fragment>
+            <dt>
+                { props.title }
+                { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+                { (props.cat && props.slug && !props.disabled)?
+                    <div className="icon-buttons">
+                        <NavLink
+                            to={`/multi-edit/${props.cat}.html?data=${data_string}`}
+                            className="icon-button copy">
+                            Copy
+                        </NavLink>
+                    </div>
+                    : null
+                }
+            </dt>
+            <dd>{
+                (props.value != null && props.value !== '')?
+                    (typeof(props.value) === 'boolean')?
+                        (props.value)? 'Yes' : 'No'
+                        : props.value
+                    : '\u00A0'}</dd>
+        </Fragment>
+    );
+}
 
 DataEntry.propTypes = {
     title: PropTypes.string,
@@ -169,33 +174,36 @@ DataEntry.propTypes = {
     value: PropTypes.any
 }
 
-const LikeDataEntry = (props) => (
-    <Fragment>
-        <dt>
-            { props.title }
-            { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
-            <div className="icon-buttons">
-                <NavLink
-                    to={`/multi-edit/${props.cat}.html?k=like&v=${true}`}
-                    className="icon-button copy">
-                    Copy
-                </NavLink>
-            </div>
-        </dt>
-        <dd>
+const LikeDataEntry = (props) => {
+    const data_string = JSON.stringify({like: true});
+    (
+        <Fragment>
+            <dt>
+                { props.title }
+                { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+                <div className="icon-buttons">
+                    <NavLink
+                        to={`/multi-edit/${props.cat}.html?data=${data_string}`}
+                        className="icon-button copy">
+                        Copy
+                    </NavLink>
+                </div>
+            </dt>
+            <dd>
+                {
+                    (props.value != null)?
+                        (props.value === 1)?
+                            `${props.value} person likes this building`
+                            : `${props.value} people like this building`
+                        : '\u00A0'
+                }
+            </dd>
             {
-                (props.value != null)?
-                    (props.value === 1)?
-                        `${props.value} person likes this building`
-                        : `${props.value} people like this building`
-                    : '\u00A0'
+                (props.user_building_like)? <dd>&hellip;including you!</dd> : null
             }
-        </dd>
-        {
-            (props.user_building_like)? <dd>&hellip;including you!</dd> : null
-        }
-    </Fragment>
-);
+        </Fragment>
+    );
+}
 
 LikeDataEntry.propTypes = {
     title: PropTypes.string,

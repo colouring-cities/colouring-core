@@ -564,21 +564,26 @@ LikeButton.propTypes = {
     handleLike: PropTypes.func
 }
 
-const Label = (props) => (
-    <label htmlFor={props.slug}>
-        {props.title}
-        { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
-        { (props.cat && props.slug && !props.disabled)?
-            <div className="icon-buttons">
-                <NavLink
-                    to={`/multi-edit/${props.cat}.html?k=${props.slug}&v=${props.value}`}
-                    className="icon-button copy">
-                    Copy
-                </NavLink>
-            </div> : null
-        }
-    </label>
-);
+const Label = (props) => {
+    const data = {};
+    data[props.slug] = props.value;
+    const data_string = JSON.stringify(data);
+    return (
+        <label htmlFor={props.slug}>
+            {props.title}
+            { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+            { (props.cat && props.slug && !props.disabled)?
+                <div className="icon-buttons">
+                    <NavLink
+                        to={`/multi-edit/${props.cat}.html?data=${data_string}`}
+                        className="icon-button copy">
+                        Copy
+                    </NavLink>
+                </div> : null
+            }
+        </label>
+    );
+}
 
 Label.propTypes = {
     slug: PropTypes.string,

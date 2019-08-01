@@ -118,16 +118,22 @@ class App extends React.Component {
         });
     }
 
+    /**
+     * Colour building
+     *
+     * Used in multi-edit mode to colour buildings on map click
+     *
+     * Pulls data from URL to form update
+     *
+     * @param {object} building
+     */
     colourBuilding(building) {
         const cat = parseCategoryURL(window.location.pathname);
         const q = parse(window.location.search);
-        let data;
+        const data = (cat === 'like')? {like: true}: JSON.parse(q.data);
         if (cat === 'like'){
-            data = {like: true}
             this.likeBuilding(building.building_id)
         } else {
-            data = {}
-            data[q.k] = q.v;
             this.updateBuilding(building.building_id, data)
         }
     }

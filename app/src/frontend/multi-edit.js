@@ -34,7 +34,7 @@ const MultiEdit = (props) => {
     }
 
     const q = parse(props.location.search);
-    const label = fieldTitleFromSlug(q.k);
+    const data = JSON.parse(q.data)
     const title = sectionTitleFromCat(cat);
     return (
         <Sidebar
@@ -44,7 +44,14 @@ const MultiEdit = (props) => {
                 <header className={`section-header view ${cat} active`}>
                     <a><h3 className="h3">{title}</h3></a>
                 </header>
-                <p class='data-intro'>Set <strong>{label}</strong> to <strong>{q.v}</strong></p>
+                {
+                    Object.keys(data).map((key => {
+                        const label = fieldTitleFromSlug(key);
+                        return (<p className='data-intro' key={key}>
+                            Set <strong>{label}</strong> to <strong>{data[key]}</strong>
+                            </p>)
+                    }))
+                }
                 <form className='buttons-container'>
                     <InfoBox msg='Click buildings to colour' />
 
