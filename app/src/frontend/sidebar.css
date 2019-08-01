@@ -296,6 +296,9 @@
     cursor: pointer;
     margin-left: 5px;
 }
+.data-section label .icon-buttons .icon-button.copy {
+    margin-top: 0px;
+}
 .icon-button.copy:hover,
 .icon-button.help:hover {
     color: rgb(0, 81, 255)
