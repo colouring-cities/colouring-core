@@ -288,8 +288,13 @@
     color: rgb(11, 225, 225);
 }
 .icon-button.help,
-.section-header .icon-button.help {
+.section-header .icon-button.help,
+.section-header .icon-button.copy {
     margin-top: 2px;
+}
+.section-header .icon-button.copy {
+    cursor: pointer;
+    margin-left: 5px;
 }
 .icon-button.copy:hover,
 .icon-button.help:hover {

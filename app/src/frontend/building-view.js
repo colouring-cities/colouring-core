@@ -29,43 +29,7 @@ const BuildingView = (props) => {
                     <DataSection
                         key={section.slug} cat={cat}
                         building_id={props.building_id}
-                        {...section}>
-                        {
-                            section.fields.map(field => {
-
-                                switch (field.type) {
-                                case 'uprn_list':
-                                    return <UPRNsDataEntry
-                                        key={field.slug}
-                                        title={field.title}
-                                        value={props.uprns}
-                                        tooltip={field.tooltip} />
-                                case 'text_multi':
-                                    return <MultiDataEntry
-                                        key={field.slug}
-                                        title={field.title}
-                                        value={props[field.slug]}
-                                        tooltip={field.tooltip} />
-                                case 'like':
-                                    return <LikeDataEntry
-                                        key={field.slug}
-                                        title={field.title}
-                                        value={props[field.slug]}
-                                        user_building_like={props.building_like}
-                                        tooltip={field.tooltip} />
-                                default:
-                                    return <DataEntry
-                                        key={field.slug}
-                                        slug={field.slug}
-                                        disabled={field.disabled}
-                                        cat={cat}
-                                        title={field.title}
-                                        value={props[field.slug]}
-                                        tooltip={field.tooltip} />
-                                }
-                            })
-                        }
-                    </DataSection>
+                        {...section} {...props} />
                 ))
             }
         </Sidebar>
@@ -82,46 +46,144 @@ BuildingView.propTypes = {
     building_like: PropTypes.bool
 }
 
-const DataSection = (props) => {
-    const match = props.cat === props.slug;
-    return (
-        <section id={props.slug} className={(props.inactive)? 'data-section inactive': 'data-section'}>
-            <header className={`section-header view ${props.slug} ${(match? 'active' : '')}`}>
-                <NavLink
-                    to={`/view/${props.slug}/building/${props.building_id}.html`}
-                    title={(props.inactive)? 'Coming soon… Click the ? for more info.' :
-                        (match)? 'Hide details' : 'Show details'}
-                    isActive={() => match}>
-                    <h3 className="h3">{props.title}</h3>
-                </NavLink>
-                <nav className="icon-buttons">
-                    {
-                        props.help?
-                            <a className="icon-button help" title="Find out more" href={props.help}>
-                        Info
-                            </a>
+class DataSection extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            copying: false,
+            values_to_copy: {}
+        };
+        this.toggleCopying = this.toggleCopying.bind(this);
+        this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
+    }
+
+    /**
+     * Enter or exit "copying" state - allow user to select attributes to copy
+     */
+    toggleCopying() {
+        this.setState({
+            copying: !this.state.copying
+        })
+    }
+
+    /**
+     * Keep track of data to copy (accumulate while in "copying" state)
+     *
+     * @param {string} key
+     */
+    toggleCopyAttribute(key) {
+        const value = this.props[key];
+        const values = this.state.values_to_copy;
+        if(Object.keys(this.state.values_to_copy).includes(key)){
+            delete values[key];
+        } else {
+            values[key] = value;
+        }
+        this.setState({
+            values_to_copy: values
+        })
+    }
+
+    render() {
+        const props = this.props;
+        const match = props.cat === props.slug;
+        const data_string = JSON.stringify(this.state.values_to_copy);
+        return (
+            <section id={props.slug} className={(props.inactive)? 'data-section inactive': 'data-section'}>
+                <header className={`section-header view ${props.slug} ${(match? 'active' : '')}`}>
+                    <NavLink
+                        to={`/view/${props.slug}/building/${props.building_id}.html`}
+                        title={(props.inactive)? 'Coming soon… Click the ? for more info.' :
+                            (match)? 'Hide details' : 'Show details'}
+                        isActive={() => match}>
+                        <h3 className="h3">{props.title}</h3>
+                    </NavLink>
+                    <nav className="icon-buttons">
+                        {
+                            (match && !props.inactive)?
+                                this.state.copying?
+                                    <Fragment>
+                                        <NavLink
+                                            to={`/multi-edit/${props.cat}.html?data=${data_string}`}
+                                            className="icon-button copy">
+                                            Copy selected
+                                        </NavLink>
+                                        <a className="icon-button copy" onClick={this.toggleCopying}>Cancel</a>
+                                    </Fragment>
+                                :
+                                    <a className="icon-button copy" onClick={this.toggleCopying}>Copy</a>
                             : null
-                    }
-                    {
+                        }
+                        {
+                            props.help && !this.state.copying?
+                                <a className="icon-button help" title="Find out more" href={props.help}>
+                            Info
+                                </a>
+                                : null
+                        }
+                        {
+                            !props.inactive && !this.state.copying?
+                                <NavLink className="icon-button edit" title="Edit data"
+                                    to={`/edit/${props.slug}/building/${props.building_id}.html`}>
+                            Edit
+                                    <EditIcon />
+                                </NavLink>
+                                : null
+                        }
+                    </nav>
+                </header>
+                {
+                    match?
                         !props.inactive?
-                            <NavLink className="icon-button edit" title="Edit data"
-                                to={`/edit/${props.slug}/building/${props.building_id}.html`}>
-                        Edit
-                                <EditIcon />
-                            </NavLink>
-                            : null
-                    }
-                </nav>
-            </header>
-            {
-                match?
-                    !props.inactive?
-                        <dl className="data-list">{props.children}</dl>
-                        : <p className="data-intro">{props.intro}</p>
-                    : null
-            }
-        </section>
-    );
+                            <dl className="data-list">
+                                {
+                                    props.fields.map(field => {
+
+                                        switch (field.type) {
+                                        case 'uprn_list':
+                                            return <UPRNsDataEntry
+                                                key={field.slug}
+                                                title={field.title}
+                                                value={props.uprns}
+                                                tooltip={field.tooltip} />
+                                        case 'text_multi':
+                                            return <MultiDataEntry
+                                                key={field.slug}
+                                                title={field.title}
+                                                value={props[field.slug]}
+                                                tooltip={field.tooltip} />
+                                        case 'like':
+                                            return <LikeDataEntry
+                                                key={field.slug}
+                                                title={field.title}
+                                                value={props[field.slug]}
+                                                user_building_like={props.building_like}
+                                                tooltip={field.tooltip} />
+                                        default:
+                                            return <DataEntry
+                                                key={field.slug}
+                                                slug={field.slug}
+                                                disabled={field.disabled}
+                                                cat={props.cat}
+                                                title={field.title}
+                                                value={props[field.slug]}
+
+                                                copying={this.state.copying}
+                                                toggleCopyAttribute={this.toggleCopyAttribute}
+                                                copy={Object.keys(this.state.values_to_copy).includes(field.slug)}
+
+                                                tooltip={field.tooltip} />
+                                        }
+                                    })
+                                }
+
+                            </dl>
+                            : <p className="data-intro">{props.intro}</p>
+                        : null
+                }
+            </section>
+        );
+    }
 }
 
 DataSection.propTypes = {
@@ -136,21 +198,18 @@ DataSection.propTypes = {
 }
 
 const DataEntry = (props) => {
-    const data = {};
-    data[props.slug] = props.value;
-    const data_string = JSON.stringify(data);
     return (
         <Fragment>
             <dt>
                 { props.title }
                 { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
-                { (props.cat && props.slug && !props.disabled)?
+                { (props.copying && props.cat && props.slug && !props.disabled)?
                     <div className="icon-buttons">
-                        <NavLink
-                            to={`/multi-edit/${props.cat}.html?data=${data_string}`}
-                            className="icon-button copy">
+                        <label className="icon-button copy">
                             Copy
-                        </NavLink>
+                            <input type="checkbox" checked={props.copy}
+                                onChange={() => props.toggleCopyAttribute(props.slug)}/>
+                        </label>
                     </div>
                     : null
                 }
