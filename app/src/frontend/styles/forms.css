@@ -17,6 +17,7 @@ form .alert {
 }
 .form-check-input {
     margin-top: 0.6rem;
+    margin-left: 0;
     left: 0;
 }
 label {
