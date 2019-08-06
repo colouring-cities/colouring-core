@@ -1,4 +1,3 @@
-import urlapi from 'url';
 import React, { Fragment } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -7,6 +6,7 @@ import Sidebar from './sidebar';
 import Tooltip from './tooltip';
 import InfoBox from './info-box';
 import { EditIcon } from './icons';
+import { sanitiseURL } from './helpers';
 
 import CONFIG from './fields-config.json';
 
@@ -149,8 +149,16 @@ class DataSection extends React.Component {
                                         case 'text_multi':
                                             return <MultiDataEntry
                                                 key={field.slug}
+                                                slug={field.slug}
+                                                disabled={field.disabled}
+                                                cat={props.cat}
                                                 title={field.title}
                                                 value={props[field.slug]}
+
+                                                copying={this.state.copying}
+                                                toggleCopyAttribute={this.toggleCopyAttribute}
+                                                copy={Object.keys(this.state.values_to_copy).includes(field.slug)}
+
                                                 tooltip={field.tooltip} />
                                         case 'like':
                                             return <LikeDataEntry
@@ -290,6 +298,16 @@ const MultiDataEntry = (props) => {
             <dt>
                 { props.title }
                 { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+                { (props.copying && props.cat && props.slug && !props.disabled)?
+                    <div className="icon-buttons">
+                        <label className="icon-button copy">
+                            Copy
+                            <input type="checkbox" checked={props.copy}
+                                onChange={() => props.toggleCopyAttribute(props.slug)}/>
+                        </label>
+                    </div>
+                    : null
+                }
             </dt>
             <dd>{ content }</dd>
         </Fragment>
@@ -300,42 +318,6 @@ MultiDataEntry.propTypes = {
     title: PropTypes.string,
     tooltip: PropTypes.string,
     value: PropTypes.arrayOf(PropTypes.string)
-}
-
-function sanitiseURL(string){
-    let url_
-
-    // http or https
-    if (!(string.substring(0, 7) === 'http://' || string.substring(0, 8) === 'https://')){
-        return null
-    }
-
-    try {
-        url_ = document.createElement('a')
-        url_.href = string
-    } catch (error) {
-        try {
-            url_ = urlapi.parse(string)
-        } catch (error) {
-            return null
-        }
-    }
-
-    // required (www.example.com)
-    if (!url_.hostname || url_.hostname === '' || url_.hostname === 'localhost'){
-        return null
-    }
-
-    // optional (/some/path)
-    // url_.pathname;
-
-    // optional (?name=value)
-    // url_.search;
-
-    // optional (#anchor)
-    // url_.hash;
-
-    return `${url_.protocol}//${url_.hostname}${url_.pathname || ''}${url_.search || ''}${url_.hash || ''}`
 }
 
 const UPRNsDataEntry = (props) => {
