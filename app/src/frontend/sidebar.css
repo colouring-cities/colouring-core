@@ -388,6 +388,7 @@ label .icon-buttons,
 .data-list dd {
     margin: 0 0 0.5rem;
     line-height: 1.5;
+    white-space: pre;
 }
 .data-list .no-data {
     color: #999;
