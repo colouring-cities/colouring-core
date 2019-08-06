@@ -50,18 +50,52 @@ BuildingEdit.propTypes = {
 class EditForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            error: this.props.error || undefined,
+            like: this.props.like || undefined,
+            copying: false,
+            keys_to_copy: {}
+        }
         for (const field of props.fields) {
             this.state[field.slug] = props[field.slug]
         }
-        this.state.error = this.props.error || undefined;
-        this.state.like = this.props.like || undefined;
 
         this.handleChange = this.handleChange.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
         this.handleLike = this.handleLike.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
+
+        this.toggleCopying = this.toggleCopying.bind(this);
+        this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
+    }
+
+    /**
+     * Enter or exit "copying" state - allow user to select attributes to copy
+     */
+    toggleCopying() {
+        this.setState({
+            copying: !this.state.copying
+        })
+    }
+
+    /**
+     * Keep track of data to copy (accumulate while in "copying" state)
+     *
+     * Note that we track keys only - values are already held in state
+     *
+     * @param {string} key
+     */
+    toggleCopyAttribute(key) {
+        const keys = this.state.keys_to_copy;
+        if(this.state.keys_to_copy[key]){
+            delete keys[key];
+        } else {
+            keys[key] = true;
+        }
+        this.setState({
+            keys_to_copy: keys
+        })
     }
 
     /**
@@ -175,6 +209,12 @@ class EditForm extends Component {
         const cat = this.props.cat;
         const buildingLike = this.props.building_like;
 
+        const values_to_copy = {}
+        for (const key of Object.keys(this.state.keys_to_copy)) {
+            values_to_copy[key] = this.state[key]
+        }
+        const data_string = JSON.stringify(values_to_copy);
+
         return (
             <section className={(this.props.inactive)? 'data-section inactive': 'data-section'}>
                 <header className={`section-header edit ${this.props.slug} ${(match? 'active' : '')}`}>
@@ -187,14 +227,38 @@ class EditForm extends Component {
                     </NavLink>
                     <nav className="icon-buttons">
                         {
-                            this.props.help?
+                            (match && !this.props.inactive && this.props.slug !== 'like')?
+                            this.state.copying?
+                                <Fragment>
+                                    <NavLink
+                                        to={`/multi-edit/${this.props.cat}.html?data=${data_string}`}
+                                        className="icon-button copy">
+                                        Copy selected
+                                    </NavLink>
+                                    <a className="icon-button copy" onClick={this.toggleCopying}>Cancel</a>
+                                </Fragment>
+                            :
+                                <a className="icon-button copy" onClick={this.toggleCopying}>Copy</a>
+                            : null
+                        }
+                        {
+                            (match && this.props.slug === 'like')?
+                                <NavLink
+                                    to={`/multi-edit/${this.props.cat}.html`}
+                                    className="icon-button copy">
+                                    Copy
+                                </NavLink>
+                            : null
+                        }
+                        {
+                            this.props.help && !this.state.copying?
                                 <a className="icon-button help" title="Find out more" href={this.props.help}>
                             Info
                                 </a>
                                 : null
                         }
                         {
-                            (match && !this.props.inactive && this.props.slug !== 'like')? // special-case for likes
+                            (match && !this.state.copying && !this.props.inactive && this.props.slug !== 'like')? // special-case for likes
                                 <NavLink className="icon-button save" title="Save Changes"
                                     onClick={this.handleSubmit}
                                     to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}>
@@ -221,24 +285,45 @@ class EditForm extends Component {
                                         switch (props.type) {
                                         case 'text':
                                             return <TextInput {...props} handleChange={this.handleChange}
+                                                copying={this.state.copying}
+                                                toggleCopyAttribute={this.toggleCopyAttribute}
+                                                copy={this.state.keys_to_copy[props.slug]}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'text_list':
                                             return <TextListInput {...props} handleChange={this.handleChange}
+                                                copying={this.state.copying}
+                                                toggleCopyAttribute={this.toggleCopyAttribute}
+                                                copy={this.state.keys_to_copy[props.slug]}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'text_long':
                                             return <LongTextInput {...props} handleChange={this.handleChange}
+                                                copying={this.state.copying}
+                                                toggleCopyAttribute={this.toggleCopyAttribute}
+                                                copy={this.state.keys_to_copy[props.slug]}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'number':
                                             return <NumberInput {...props} handleChange={this.handleChange}
+                                                copying={this.state.copying}
+                                                toggleCopyAttribute={this.toggleCopyAttribute}
+                                                copy={this.state.keys_to_copy[props.slug]}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'year_estimator':
                                             return <YearEstimator {...props} handleChange={this.handleChange}
+                                                copying={this.state.copying}
+                                                toggleCopyAttribute={this.toggleCopyAttribute}
+                                                copy={this.state.keys_to_copy[props.slug]}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'text_multi':
                                             return <MultiTextInput {...props} handleChange={this.handleUpdate}
+                                                copying={this.state.copying}
+                                                toggleCopyAttribute={this.toggleCopyAttribute}
+                                                copy={this.state.keys_to_copy[props.slug]}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'checkbox':
                                             return <CheckboxInput {...props} handleChange={this.handleCheck}
+                                                copying={this.state.copying}
+                                                toggleCopyAttribute={this.toggleCopyAttribute}
+                                                copy={this.state.keys_to_copy[props.slug]}
                                                 value={this.state[props.slug]} key={props.slug} cat={cat} />
                                         case 'like':
                                             return <LikeButton {...props} handleLike={this.handleLike}
@@ -285,9 +370,11 @@ EditForm.propTypes = {
 const TextInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
-            cat={props.cat} disabled={props.disabled}
-            value={props.value || ''}
-        />
+            copying={props.copying}
+            toggleCopyAttribute={props.toggleCopyAttribute}
+            copy={props.copy}
+            cat={props.cat}
+            disabled={props.disabled} />
         <input className="form-control" type="text"
             id={props.slug} name={props.slug}
             value={props.value || ''}
@@ -314,6 +401,9 @@ TextInput.propTypes = {
 const LongTextInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} cat={props.cat}
+            copying={props.copying}
+            toggleCopyAttribute={props.toggleCopyAttribute}
+            copy={props.copy}
             disabled={props.disabled} tooltip={props.tooltip} />
         <textarea className="form-control"
             id={props.slug} name={props.slug}
@@ -375,7 +465,12 @@ class MultiTextInput extends Component {
         const values = this.getValues();
         return (
             <Fragment>
-                <Label slug={this.props.slug} title={this.props.title} tooltip={this.props.tooltip} />
+                <Label slug={this.props.slug} title={this.props.title} tooltip={this.props.tooltip}
+                    cat={this.props.cat}
+                    copying={this.props.copying}
+                    disabled={this.props.disabled}
+                    toggleCopyAttribute={this.props.toggleCopyAttribute}
+                    copy={this.props.copy} />
                 {
                     values.map((item, i) => (
                         <div className="input-group" key={i}>
@@ -409,15 +504,19 @@ MultiTextInput.propTypes = {
     value: PropTypes.arrayOf(PropTypes.string),
     placeholder: PropTypes.string,
     disabled: PropTypes.bool,
-    handleChange: PropTypes.func
+    handleChange: PropTypes.func,
+    copy: PropTypes.bool,
+    toggleCopyAttribute: PropTypes.func,
+    copying: PropTypes.bool
 }
 
 const TextListInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
             cat={props.cat} disabled={props.disabled}
-            value={props.value || ''}
-        />
+            copying={props.copying}
+            toggleCopyAttribute={props.toggleCopyAttribute}
+            copy={props.copy} />
         <select className="form-control"
             id={props.slug} name={props.slug}
             value={props.value || ''}
@@ -449,8 +548,9 @@ const NumberInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
             cat={props.cat} disabled={props.disabled}
-            value={props.value || ''}
-        />
+            copying={props.copying}
+            toggleCopyAttribute={props.toggleCopyAttribute}
+            copy={props.copy} />
         <input className="form-control" type="number" step={props.step}
             id={props.slug} name={props.slug}
             value={props.value || ''}
@@ -488,6 +588,7 @@ class YearEstimator extends Component {
     render() {
         return (
             <NumberInput {...this.props} handleChange={this.props.handleChange}
+
                 value={this.props.value} key={this.props.slug} />
         )
     }
@@ -502,22 +603,32 @@ YearEstimator.propTypes = {
     date_lower: PropTypes.number,
     value: PropTypes.number,
     disabled: PropTypes.bool,
-    handleChange: PropTypes.func
+    handleChange: PropTypes.func,
+    copy: PropTypes.bool,
+    toggleCopyAttribute: PropTypes.func,
+    copying: PropTypes.bool
 }
 
 const CheckboxInput = (props) => (
-    <div className="form-check">
-        <input className="form-check-input" type="checkbox"
-            id={props.slug} name={props.slug}
-            checked={!!props.value}
-            disabled={props.disabled}
-            onChange={props.handleChange}
-        />
-        <label htmlFor={props.slug} className="form-check-label">
-            {props.title}
-            { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
-        </label>
-    </div>
+    <Fragment>
+        <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
+            cat={props.cat} disabled={props.disabled}
+            copying={props.copying}
+            toggleCopyAttribute={props.toggleCopyAttribute}
+            copy={props.copy} />
+        <div className="form-check">
+            <input className="form-check-input" type="checkbox"
+                id={props.slug} name={props.slug}
+                checked={!!props.value}
+                disabled={props.disabled}
+                onChange={props.handleChange}
+                />
+            <label htmlFor={props.slug} className="form-check-label">
+                {props.title}
+                { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+            </label>
+        </div>
+    </Fragment>
 )
 
 CheckboxInput.propTypes = {
@@ -546,7 +657,7 @@ const LikeButton = (props) => (
         </div>
         <p>
             <NavLink
-                to={`/multi-edit/${props.cat}.html?k=like&v=${true}`}>
+                to={`/multi-edit/${props.cat}.html`}>
                 Like more buildings
             </NavLink>
         </p>
@@ -564,26 +675,27 @@ LikeButton.propTypes = {
     handleLike: PropTypes.func
 }
 
-const Label = (props) => (
-    <label htmlFor={props.slug}>
-        {props.title}
-        { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
-        { (props.cat && props.slug && !props.disabled)?
-            <div className="icon-buttons">
-                <NavLink
-                    to={`/multi-edit/${props.cat}.html?k=${props.slug}&v=${props.value}`}
-                    className="icon-button copy">
-                    Copy
-                </NavLink>
-            </div> : null
-        }
-    </label>
-);
+const Label = (props) => {
+    return (
+        <label htmlFor={props.slug}>
+            {props.title}
+            { (props.copying && props.cat && props.slug && !props.disabled)?
+                <div className="icon-buttons">
+                    <label className="icon-button copy">
+                        Copy
+                        <input type="checkbox" checked={props.copy}
+                            onChange={() => props.toggleCopyAttribute(props.slug)}/>
+                    </label>
+                </div> : null
+            }
+            { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+        </label>
+    );
+}
 
 Label.propTypes = {
     slug: PropTypes.string,
     cat: PropTypes.string,
-    value: PropTypes.any,
     title: PropTypes.string,
     disabled: PropTypes.bool,
     tooltip: PropTypes.string
