@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { parse } from 'query-string';
 import PropTypes from 'prop-types';
@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Sidebar from './sidebar';
 import CONFIG from './fields-config.json';
 import InfoBox from './info-box';
+import { sanitiseURL } from './helpers';
 
 const MultiEdit = (props) => {
     if (!props.user){
@@ -44,16 +45,16 @@ const MultiEdit = (props) => {
                 <header className={`section-header view ${cat} active`}>
                     <a><h3 className="h3">{title}</h3></a>
                 </header>
+                <dl className='data-list'>
                 {
                     Object.keys(data).map((key => {
                         const label = fieldTitleFromSlug(key);
-                        return (<p className='data-intro' key={key}>
-                            Set <strong>{label}</strong> to <strong>{data[key]}</strong>
-                            </p>)
+                        return <DataEntry key={key} label={label} value={data[key]}/>
                     }))
                 }
+                </dl>
                 <form className='buttons-container'>
-                    <InfoBox msg='Click buildings to colour' />
+                    <InfoBox msg='Click buildings to colour using the data above' />
 
                     <Link to={`/view/${cat}.html`} className='btn btn-secondary'>Back to view</Link>
                     <Link to={`/edit/${cat}.html`} className='btn btn-secondary'>Back to edit</Link>
@@ -67,6 +68,37 @@ MultiEdit.propTypes = {
     user: PropTypes.object,
     match: PropTypes.object,
     location: PropTypes.object
+}
+
+const DataEntry = (props) => {
+    let content;
+
+    if (props.value != null && props.value !== '') {
+        if (typeof(props.value) === 'boolean') {
+            content = (props.value)? 'Yes' : 'No'
+        } else if (Array.isArray(props.value)) {
+            if (props.value.length) {
+                content = <ul>{
+                    props.value.map((item, index) => {
+                        return <li key={index}><a href={sanitiseURL(item)}>{item}</a></li>
+                    })
+                }</ul>
+            } else {
+                content = '\u00A0'
+            }
+        } else {
+            content = props.value
+        }
+    } else {
+        content = '\u00A0'
+    }
+
+    return (
+        <Fragment>
+            <dt>{props.label}</dt>
+            <dd>{content}</dd>
+        </Fragment>
+    )
 }
 
 function sectionTitleFromCat(cat) {
