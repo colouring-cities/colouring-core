@@ -35,7 +35,7 @@ const MultiEdit = (props) => {
     }
 
     const q = parse(props.location.search);
-    const data = JSON.parse(q.data)
+    const data = JSON.parse(q.data as string) // TODO: verify what happens when data is string[]
     const title = sectionTitleFromCat(cat);
     return (
         <Sidebar
@@ -116,7 +116,7 @@ function fieldTitleFromSlug(slug) {
         (prev, section) => {
             const el = prev.concat(
                 section.fields.filter(
-                    field => field.slug === slug
+                    (field: any) => field.slug === slug // TODO: remove any
                 )
             )
             return el

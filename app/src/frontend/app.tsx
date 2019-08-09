@@ -31,7 +31,13 @@ import { parseCategoryURL } from '../parse';
  *   map or other pages are rendered, based on the URL. Use a react-router-dom <Link /> in
  *   child components to navigate without a full page reload.
  */
-class App extends React.Component {
+class App extends React.Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        user: PropTypes.object,
+        building: PropTypes.object,
+        building_like: PropTypes.bool
+    }
+
     constructor(props) {
         super(props);
         // set building revision id, default 0
@@ -130,7 +136,7 @@ class App extends React.Component {
     colourBuilding(building) {
         const cat = parseCategoryURL(window.location.pathname);
         const q = parse(window.location.search);
-        const data = (cat === 'like')? {like: true}: JSON.parse(q.data);
+        const data = (cat === 'like')? {like: true}: JSON.parse(q.data as string); // TODO: verify what happens if data is string[]
         if (cat === 'like'){
             this.likeBuilding(building.building_id)
         } else {
@@ -255,12 +261,6 @@ class App extends React.Component {
             </Fragment>
         );
     }
-}
-
-App.propTypes = {
-    user: PropTypes.object,
-    building: PropTypes.object,
-    building_like: PropTypes.bool
 }
 
 /**

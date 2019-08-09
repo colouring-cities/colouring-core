@@ -4,7 +4,19 @@ import PropTypes from 'prop-types';
 
 import ErrorBox from './error-box';
 
-class MyAccountPage extends Component {
+class MyAccountPage extends Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        user: PropTypes.shape({
+            username: PropTypes.string,
+            email: PropTypes.string,
+            registered: PropTypes.instanceOf(Date), // TODO: check if fix correct
+            api_key: PropTypes.string,
+            error: PropTypes.object
+        }),
+        updateUser: PropTypes.func,
+        logout: PropTypes.func
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -108,18 +120,6 @@ class MyAccountPage extends Component {
             )
         }
     }
-}
-
-MyAccountPage.propTypes = {
-    user: PropTypes.shape({
-        username: PropTypes.string,
-        email: PropTypes.string,
-        registered: PropTypes.date,
-        api_key: PropTypes.string,
-        error: PropTypes.object
-    }),
-    updateUser: PropTypes.func,
-    logout: PropTypes.func
 }
 
 export default MyAccountPage;

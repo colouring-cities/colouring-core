@@ -6,7 +6,12 @@ import ErrorBox from './error-box';
 import InfoBox from './info-box';
 import SupporterLogos from './supporter-logos';
 
-class SignUp extends Component {
+class SignUp extends Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        login: PropTypes.func.isRequired,
+        user: PropTypes.object
+    };
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -155,11 +160,6 @@ class SignUp extends Component {
             </article>
         )
     }
-}
-
-SignUp.propTypes = {
-    login: PropTypes.func.isRequired,
-    user: PropTypes.object
 }
 
 export default SignUp;
