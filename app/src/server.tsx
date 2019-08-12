@@ -48,7 +48,7 @@ server.use(bodyParser.json());
 
 // handle user sessions
 const pgSession = pgConnect(session);
-const sess = {
+const sess: any = { // TODO: remove any
     name: 'cl.session',
     store: new pgSession({
         pgPromise: db,
@@ -72,8 +72,8 @@ server.get('/*.html', frontendRoute);
 server.get('/', frontendRoute);
 
 function frontendRoute(req, res) {
-    const context = {};
-    const data = {};
+    const context: any = {}; // TODO: remove any
+    const data: any = {}; // TODO: remove any
     context.status = 200;
 
     const userId = req.session.user_id;
@@ -339,7 +339,7 @@ server.post('/users', function (req, res) {
 
 // POST user auth
 server.post('/login', function (req, res) {
-    authUser(req.body.username, req.body.password).then(function (user) {
+    authUser(req.body.username, req.body.password).then(function (user: any) { // TODO: remove any
         if (user.user_id) {
             req.session.user_id = user.user_id;
         } else {

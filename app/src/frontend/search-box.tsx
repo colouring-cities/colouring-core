@@ -6,8 +6,12 @@ import { SearchIcon } from './icons';
 /**
  * Search for location
  */
-class SearchBox extends Component {
-
+class SearchBox extends Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        onLocate: PropTypes.func,
+        isBuilding: PropTypes.bool
+    };
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -176,11 +180,6 @@ class SearchBox extends Component {
             </div>
         )
     }
-}
-
-SearchBox.propTypes = {
-    onLocate: PropTypes.func,
-    isBuilding: PropTypes.bool
 }
 
 export default SearchBox;

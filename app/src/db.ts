@@ -15,10 +15,10 @@ const pgp = pg();
 // database connection (default to env vars)
 const db = pgp({
     'host': process.env.PGHOST,
-    'dbname': process.env.PGDATABASE,
+    'database': process.env.PGDATABASE,
     'user': process.env.PGUSER,
     'password': process.env.PGPASSWORD,
-    'port': process.env.PGPORT
+    'port': parseInt(process.env.PGPORT)
 });
 
 export default db;

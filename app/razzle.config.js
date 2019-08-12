@@ -1,4 +1,5 @@
 module.exports = {
+    plugins: ['typescript'],
     modify: (config, { target, dev }, webpack) => {
         // load webfonts
         rules = config.module.rules || [];

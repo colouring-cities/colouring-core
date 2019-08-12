@@ -47,17 +47,36 @@ BuildingEdit.propTypes = {
     building_id: PropTypes.number
 }
 
-class EditForm extends Component {
+class EditForm extends Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        title: PropTypes.string,
+        slug: PropTypes.string,
+        cat: PropTypes.string,
+        help: PropTypes.string,
+        error: PropTypes.object,
+        like: PropTypes.bool,
+        building_like: PropTypes.bool,
+        selectBuilding: PropTypes.func,
+        building_id: PropTypes.number,
+        inactive: PropTypes.bool,
+        fields: PropTypes.array
+    };
+
     constructor(props) {
         super(props);
+
+        // create object and spread into state to avoid TS complaining about modifying readonly state
+        let fieldsObj = {};
+        for (const field of props.fields) {
+            fieldsObj[field.slug] = props[field.slug];
+        }
+        
         this.state = {
             error: this.props.error || undefined,
             like: this.props.like || undefined,
             copying: false,
-            keys_to_copy: {}
-        }
-        for (const field of props.fields) {
-            this.state[field.slug] = props[field.slug]
+            keys_to_copy: {},
+            ...fieldsObj
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -353,20 +372,6 @@ class EditForm extends Component {
     }
 }
 
-EditForm.propTypes = {
-    title: PropTypes.string,
-    slug: PropTypes.string,
-    cat: PropTypes.string,
-    help: PropTypes.string,
-    error: PropTypes.object,
-    like: PropTypes.bool,
-    building_like: PropTypes.bool,
-    selectBuilding: PropTypes.func,
-    building_id: PropTypes.number,
-    inactive: PropTypes.bool,
-    fields: PropTypes.array
-}
-
 const TextInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
@@ -424,7 +429,20 @@ LongTextInput.propTypes = {
     handleChange: PropTypes.func
 }
 
-class MultiTextInput extends Component {
+class MultiTextInput extends Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        slug: PropTypes.string,
+        title: PropTypes.string,
+        tooltip: PropTypes.string,
+        value: PropTypes.arrayOf(PropTypes.string),
+        placeholder: PropTypes.string,
+        disabled: PropTypes.bool,
+        handleChange: PropTypes.func,
+        copy: PropTypes.bool,
+        toggleCopyAttribute: PropTypes.func,
+        copying: PropTypes.bool
+    };
+
     constructor(props) {
         super(props);
         this.edit = this.edit.bind(this);
@@ -497,19 +515,6 @@ class MultiTextInput extends Component {
     }
 }
 
-MultiTextInput.propTypes = {
-    slug: PropTypes.string,
-    title: PropTypes.string,
-    tooltip: PropTypes.string,
-    value: PropTypes.arrayOf(PropTypes.string),
-    placeholder: PropTypes.string,
-    disabled: PropTypes.bool,
-    handleChange: PropTypes.func,
-    copy: PropTypes.bool,
-    toggleCopyAttribute: PropTypes.func,
-    copying: PropTypes.bool
-}
-
 const TextListInput = (props) => (
     <Fragment>
         <Label slug={props.slug} title={props.title} tooltip={props.tooltip}
@@ -521,7 +526,7 @@ const TextListInput = (props) => (
             id={props.slug} name={props.slug}
             value={props.value || ''}
             disabled={props.disabled}
-            list={`${props.slug}_suggestions`}
+            // list={`${props.slug}_suggestions`} TODO: investigate whether this was needed
             onChange={props.handleChange}>
             <option value="">Select a source</option>
             {
@@ -571,7 +576,22 @@ NumberInput.propTypes = {
     handleChange: PropTypes.func
 }
 
-class YearEstimator extends Component {
+class YearEstimator extends Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        slug: PropTypes.string,
+        title: PropTypes.string,
+        tooltip: PropTypes.string,
+        date_year: PropTypes.number,
+        date_upper: PropTypes.number,
+        date_lower: PropTypes.number,
+        value: PropTypes.number,
+        disabled: PropTypes.bool,
+        handleChange: PropTypes.func,
+        copy: PropTypes.bool,
+        toggleCopyAttribute: PropTypes.func,
+        copying: PropTypes.bool
+    };
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -592,21 +612,6 @@ class YearEstimator extends Component {
                 value={this.props.value} key={this.props.slug} />
         )
     }
-}
-
-YearEstimator.propTypes = {
-    slug: PropTypes.string,
-    title: PropTypes.string,
-    tooltip: PropTypes.string,
-    date_year: PropTypes.number,
-    date_upper: PropTypes.number,
-    date_lower: PropTypes.number,
-    value: PropTypes.number,
-    disabled: PropTypes.bool,
-    handleChange: PropTypes.func,
-    copy: PropTypes.bool,
-    toggleCopyAttribute: PropTypes.func,
-    copying: PropTypes.bool
 }
 
 const CheckboxInput = (props) => (
@@ -675,7 +680,7 @@ LikeButton.propTypes = {
     handleLike: PropTypes.func
 }
 
-const Label = (props) => {
+const Label: React.SFC<any> = (props) => { // TODO: remove any
     return (
         <label htmlFor={props.slug}>
             {props.title}

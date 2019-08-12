@@ -10,12 +10,10 @@ const server = http.createServer(app);
 
 let currentApp = app;
 
-server.listen(process.env.PORT || 3000, error => {
-    if (error) {
-        console.log(error);
-    }
-
+server.listen(process.env.PORT || 3000, () => {
     console.log('🚀  started');
+}).on('error', error => {
+    console.log(error);
 });
 
 // In development mode, enable hot module reloading (HMR)

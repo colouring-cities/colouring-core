@@ -8,7 +8,13 @@ import './header.css';
 /**
  * Render the main header using a responsive design
  */
-class Header extends React.Component {
+class Header extends React.Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        user: PropTypes.shape({
+            username: PropTypes.string
+        })
+    };
+    
     constructor(props) {
         super(props);
         this.state = {collapseMenu: true};
@@ -104,12 +110,6 @@ class Header extends React.Component {
             </header>
         );
     }
-}
-
-Header.propTypes = {
-    user: PropTypes.shape({
-        username: PropTypes.string
-    })
 }
 
 export default Header;

@@ -8,7 +8,7 @@ import { hydrate } from 'react-dom';
 
 import App from './frontend/app';
 
-const data = window.__PRELOADED_STATE__;
+const data = (window as any).__PRELOADED_STATE__; // TODO: remove any
 
 hydrate(
     <BrowserRouter>

@@ -72,7 +72,7 @@ function queryBuildingsByReference(key, id) {
             return undefined;
         });
     }
-    return { error: 'Key must be UPRN or TOID' };
+    return Promise.resolve({ error: 'Key must be UPRN or TOID' });
 }
 
 function getBuildingById(id) {

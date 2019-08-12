@@ -46,7 +46,18 @@ BuildingView.propTypes = {
     building_like: PropTypes.bool
 }
 
-class DataSection extends React.Component {
+class DataSection extends React.Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        title: PropTypes.string,
+        cat: PropTypes.string,
+        slug: PropTypes.string,
+        intro: PropTypes.string,
+        help: PropTypes.string,
+        inactive: PropTypes.bool,
+        building_id: PropTypes.number,
+        children: PropTypes.node
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -194,18 +205,7 @@ class DataSection extends React.Component {
     }
 }
 
-DataSection.propTypes = {
-    title: PropTypes.string,
-    cat: PropTypes.string,
-    slug: PropTypes.string,
-    intro: PropTypes.string,
-    help: PropTypes.string,
-    inactive: PropTypes.bool,
-    building_id: PropTypes.number,
-    children: PropTypes.node
-}
-
-const DataEntry = (props) => {
+const DataEntry: React.SFC<any> = (props) => { // TODO: remove any
     return (
         <Fragment>
             <dt>
@@ -241,9 +241,9 @@ DataEntry.propTypes = {
     value: PropTypes.any
 }
 
-const LikeDataEntry = (props) => {
+const LikeDataEntry: React.SFC<any> = (props) => { // TODO: remove any
     const data_string = JSON.stringify({like: true});
-    (
+    return (
         <Fragment>
             <dt>
                 { props.title }
@@ -280,7 +280,7 @@ LikeDataEntry.propTypes = {
     user_building_like: PropTypes.bool
 }
 
-const MultiDataEntry = (props) => {
+const MultiDataEntry: React.SFC<any> = (props) => { // TODO: remove any
     let content;
 
     if (props.value && props.value.length) {
