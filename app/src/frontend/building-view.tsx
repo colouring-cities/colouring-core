@@ -266,7 +266,7 @@ const LikeDataEntry: React.SFC<any> = (props) => { // TODO: remove any
                 }
             </dd>
             {
-                (props.user_building_like)? <dd>&hellip;including you!</dd> : null
+                (props.user_building_like)? <dd>&hellip;including you!</dd> : ''
             }
         </Fragment>
     );
