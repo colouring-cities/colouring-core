@@ -109,7 +109,7 @@
         "title": "Type",
         "slug": "type",
         "intro": "How were buildings previously used? Coming soon…",
-        "help": "https://www.pages.colouring.london/copy-of-type-and-use",
+        "help": "https://www.pages.colouring.london/buildingtypology",
         "fields": [
             {
                 "title": "Original use (as constructed)",
@@ -406,7 +406,7 @@
         "title": "Greenery",
         "slug": "greenery",
         "intro": "Is there greenery nearby? Coming soon…",
-        "help": "https://pages.colouring.london/copy-of-street-context",
+        "help": "https://pages.colouring.london/greenery",
         "fields": [
             {
                 "title": "Gardens"
@@ -433,7 +433,7 @@
         "title": "Community",
         "slug": "community",
         "intro": "How does this building work for the local community?",
-        "help": "https://pages.colouring.london/type",
+        "help": "https://pages.colouring.london/community",
         "fields": [
             {
                 "title": "Is this a publicly owned building?",
@@ -456,7 +456,7 @@
         "title": "Planning",
         "slug": "planning",
         "intro": "Planning controls relating to protection and reuse.",
-        "help": "https://pages.colouring.london/controls",
+        "help": "https://pages.colouring.london/planning",
         "fields": [
             {
                 "title": "Planning portal link",
