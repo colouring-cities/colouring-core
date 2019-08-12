@@ -347,54 +347,54 @@
     },
     {
         "inactive": true,
-        "title": "Energy",
-        "slug": "energy",
+        "title": "Sustainability",
+        "slug": "sustainability",
         "intro": "Are buildings energy efficient? Coming soon…",
         "help": "https://pages.colouring.london/sustainability",
         "fields": [
             {
                 "title": "Energy Performance Certificate (EPC) rating",
                 "disabled": true,
-                "slug": "energy_epc_band_current",
+                "slug": "sustainability_epc_band_current",
                 "type": "text_list",
                 "options": ["A", "B", "C", "D", "E", "F", "G"]
             },
             {
                 "title": "Display Energy Certificate (DEC)",
                 "disabled": true,
-                "slug": "energy_dec_band_current",
+                "slug": "sustainability_dec_band_current",
                 "type": "text_list",
                 "options": ["A", "B", "C", "D", "E", "F", "G"]
             },
             {
                 "title": "BREEAM Rating",
                 "disabled": true,
-                "slug": "energy_breeam_rating",
+                "slug": "sustainability_breeam_rating",
                 "type": "number",
                 "step": 1
             },
             {
                 "title": "Year of last significant retrofit",
                 "disabled": true,
-                "slug": "energy_last_retrofit_date",
+                "slug": "sustainability_last_retrofit_date",
                 "type": "number",
                 "step": 1
             },
             {
                 "title": "Embodied carbon estimation (for discussion)",
-                "slug": "energy_embodied_carbon",
+                "slug": "sustainability_embodied_carbon",
                 "type": "text",
                 "disabled": true
             },
             {
                 "title": "Adaptability/repairability rating (for discussion)",
-                "slug": "energy_adaptability_rating",
+                "slug": "sustainability_adaptability_rating",
                 "type": "text",
                 "disabled": true
             },
             {
                 "title": "Expected lifespan (for discussion)",
-                "slug": "energy_expected_lifespan",
+                "slug": "sustainability_expected_lifespan",
                 "type": "number",
                 "step": 1,
                 "disabled": true

@@ -65,8 +65,8 @@ const LEGEND_CONFIG = {
         title: 'Team',
         elements: []
     },
-    energy: {
-        title: 'Energy',
+    sustainability: {
+        title: 'Sustainability',
         elements: []
     },
     greenery: {

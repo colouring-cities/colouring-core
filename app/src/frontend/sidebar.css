@@ -165,11 +165,11 @@
 .section-header.team.active > a::before {
     color: #6f879c;
 }
-.section-header.active.energy {
+.section-header.active.sustainability {
     border-bottom-color: #5ec232;
 }
-.section-header.energy:hover > a::before,
-.section-header.energy.active > a::before {
+.section-header.sustainability:hover > a::before,
+.section-header.sustainability.active > a::before {
     color: #5ec232;
 }
 .section-header.active.greenery {
