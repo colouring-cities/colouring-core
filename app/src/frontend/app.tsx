@@ -18,6 +18,7 @@ import MyAccountPage from './my-account';
 import SignUp from './signup';
 import Welcome from './welcome';
 import { parseCategoryURL } from '../parse';
+import PrivacyPolicyPage from './privacy-policy';
 
 /**
  * App component
@@ -255,6 +256,7 @@ class App extends React.Component<any, any> { // TODO: add proper types
                                 logout={this.logout}
                             />
                         </Route>
+                        <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
                         <Route component={NotFound} />
                     </Switch>
                 </main>
