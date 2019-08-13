@@ -18,6 +18,7 @@ import MyAccountPage from './my-account';
 import SignUp from './signup';
 import Welcome from './welcome';
 import { parseCategoryURL } from '../parse';
+import ContributorAgreementPage from './contributor-agreement';
 
 /**
  * App component
@@ -255,6 +256,7 @@ class App extends React.Component<any, any> { // TODO: add proper types
                                 logout={this.logout}
                             />
                         </Route>
+                        <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
                         <Route component={NotFound} />
                     </Switch>
                 </main>
