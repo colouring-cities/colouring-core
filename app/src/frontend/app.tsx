@@ -19,6 +19,7 @@ import SignUp from './signup';
 import Welcome from './welcome';
 import { parseCategoryURL } from '../parse';
 import PrivacyPolicyPage from './privacy-policy';
+import ContributorAgreementPage from './contributor-agreement';
 
 /**
  * App component
@@ -257,6 +258,7 @@ class App extends React.Component<any, any> { // TODO: add proper types
                             />
                         </Route>
                         <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
+                        <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
                         <Route component={NotFound} />
                     </Switch>
                 </main>

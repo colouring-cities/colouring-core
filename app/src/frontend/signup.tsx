@@ -11,7 +11,7 @@ class SignUp extends Component<any, any> { // TODO: add proper types
         login: PropTypes.func.isRequired,
         user: PropTypes.object
     };
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -135,9 +135,9 @@ class SignUp extends Component<any, any> { // TODO: add proper types
                                 onChange={this.handleChange}
                                 required />
                             <label className="form-check-label" htmlFor="confirm_conditions">
-                                I confirm that I have read and agree to the <a
-                                    href="/privacy-policy.html">privacy policy</a> and <a
-                                    href="/user-agreement">contributor agreement</a>.
+                                I confirm that I have read and agree to the <Link
+                                    to="/privacy-policy.html">privacy policy</Link> and <Link
+                                    to="/contributor-agreement.html">contributor agreement</Link>.
                             </label>
                         </div>
 
