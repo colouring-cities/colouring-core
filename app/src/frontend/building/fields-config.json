@@ -248,7 +248,7 @@
             {
                 "title": "FAR ratio (percentage of plot covered by building)",
                 "disabled": true,
-                "slug": "size_plot_area_total",
+                "slug": "size_far_ratio",
                 "type": "number",
                 "step": 0.1
             },
