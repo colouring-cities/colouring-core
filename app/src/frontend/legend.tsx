@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './legend.css';
+import { MinorLogo } from './components/logo';
 
 const LEGEND_CONFIG = {
     location: {
@@ -145,32 +146,7 @@ class Legend extends React.Component<any, any> { // TODO: add proper types
 
         return (
             <div className="map-legend">
-                <div className="logo">
-                    <div className="grid">
-                        <div className="row">
-                            <div className="cell"></div>
-                            <div className="cell"></div>
-                            <div className="cell"></div>
-                            <div className="cell"></div>
-                        </div>
-                        <div className="row">
-                            <div className="cell"></div>
-                            <div className="cell"></div>
-                            <div className="cell"></div>
-                            <div className="cell"></div>
-                        </div>
-                        <div className="row">
-                            <div className="cell"></div>
-                            <div className="cell"></div>
-                            <div className="cell"></div>
-                            <div className="cell"></div>
-                        </div>
-                    </div>
-                    <h3 className="h3 logotype">
-                        <span>Colouring</span>
-                        <span>London</span>
-                    </h3>
-                </div>
+                <MinorLogo />
                 <h4 className="h4">{ title } {elements.length?<button className="expander-button btn btn-outline-secondary btn-sm" type="button" onClick={this.handleClick} >^</button>:null}</h4>
                 {
                     details.description?

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Logo from './components/logo';
+import { Logo } from './components/logo';
 import './header.css';
 
 /**
