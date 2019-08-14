@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import ErrorBox from './components/error-box';
-import InfoBox from './components/info-box';
-import SupporterLogos from './components/supporter-logos';
+import ErrorBox from '../components/error-box';
+import InfoBox from '../components/info-box';
+import SupporterLogos from '../components/supporter-logos';
 
 class SignUp extends Component<any, any> { // TODO: add proper types
     static propTypes = { // TODO: generate propTypes from TS
