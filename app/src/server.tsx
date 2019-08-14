@@ -158,4 +158,7 @@ server.use('/tiles', tileserver);
 
 server.use('/api', apiServer);
 
+// use the frontend route for anything else - will presumably show the 404 page
+server.use(frontendRoute);
+
 export default server;
