@@ -5,33 +5,36 @@ import PropTypes from 'prop-types';
 import Sidebar from './sidebar';
 import Tooltip from '../components/tooltip';
 import InfoBox from '../components/info-box';
-import { EditIcon } from '../components/icons';
+import { BackIcon, EditIcon } from '../components/icons';
 import { sanitiseURL } from '../helpers';
 
 import CONFIG from './fields-config.json';
 
 const BuildingView = (props) => {
-    if (!props.building_id){
+    const cat = props.match.params.cat;
+    const sections = CONFIG.filter((d) => d.slug === cat)
+
+    if (!props.building_id || sections.length !== 1){
         return (
-            <Sidebar title="Building Not Found">
+            <Sidebar title="Building Not Found" back={`/view/categories.html`}>
                 <InfoBox msg="We can't find that one anywhere - try the map again?" />
                 <div className="buttons-container with-space">
-                    <Link to="/view/age.html" className="btn btn-secondary">Back to maps</Link>
+                    <Link to="/view/categories.html" className="btn btn-secondary">Back to categories</Link>
                 </div>
             </Sidebar>
         );
     }
-    const cat = props.match.params.cat;
+
+    const section = sections[0];
     return (
-        <Sidebar title={'Data available for this building'} back={`/view/${cat}.html`}>
-            {
-                CONFIG.map(section => (
-                    <DataSection
-                        key={section.slug} cat={cat}
-                        building_id={props.building_id}
-                        {...section} {...props} />
-                ))
-            }
+        <Sidebar>
+            <DataSection
+                key={section.slug}
+                cat={cat}
+                building_id={props.building_id}
+                {...section}
+                {...props}
+            />
         </Sidebar>
     );
 }
@@ -102,6 +105,9 @@ class DataSection extends React.Component<any, any> { // TODO: add proper types
         return (
             <section id={props.slug} className={(props.inactive)? 'data-section inactive': 'data-section'}>
                 <header className={`section-header view ${props.slug} ${(match? 'active' : '')}`}>
+                    <Link className="icon-button back" to="/view/categories.html">
+                        <BackIcon />
+                    </Link>
                     <NavLink
                         to={`/view/${props.slug}/building/${props.building_id}.html`}
                         title={(props.inactive)? 'Coming soon… Click the ? for more info.' :

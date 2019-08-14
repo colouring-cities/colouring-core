@@ -6,7 +6,7 @@ import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
 import Sidebar from './sidebar';
 import Tooltip from '../components/tooltip';
-import { SaveIcon } from '../components/icons';
+import { BackIcon, SaveIcon } from '../components/icons';
 
 import CONFIG from './fields-config.json';
 
@@ -15,28 +15,27 @@ const BuildingEdit = (props) => {
         return <Redirect to="/sign-up.html" />
     }
     const cat = props.match.params.cat;
-    if (!props.building_id){
+    const sections = CONFIG.filter((d) => d.slug === cat)
+
+    if (!props.building_id || sections.length !== 1){
         return (
-            <Sidebar title="Building Not Found" back={`/edit/${cat}.html`}>
+            <Sidebar title="Building Not Found" back={`/edit/categories.html`}>
                 <InfoBox msg="We can't find that one anywhere - try the map again?" />
                 <div className="buttons-container ml-3 mr-3">
-                    <Link to={`/edit/${cat}.html`} className="btn btn-secondary">Back to maps</Link>
+                    <Link to={`/edit/categories.html`} className="btn btn-secondary">Back to maps</Link>
                 </div>
             </Sidebar>
         );
     }
+
+    const section = sections[0];
     return (
-        <Sidebar
-            key={props.building_id}
-            title={'You are editing'}
-            back={`/edit/${cat}.html`}>
-            {
-                CONFIG.map((section) => {
-                    return <EditForm
-                        {...section} {...props}
-                        cat={cat} key={section.slug} />
-                })
-            }
+        <Sidebar>
+            <EditForm
+                {...section}
+                {...props}
+                cat={cat}
+            />
         </Sidebar>
     );
 }
@@ -237,6 +236,9 @@ class EditForm extends Component<any, any> { // TODO: add proper types
         return (
             <section className={(this.props.inactive)? 'data-section inactive': 'data-section'}>
                 <header className={`section-header edit ${this.props.slug} ${(match? 'active' : '')}`}>
+                    <Link className="icon-button back" to="/edit/categories.html">
+                        <BackIcon />
+                    </Link>
                     <NavLink
                         to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
                         title={(this.props.inactive)? 'Coming soon… Click the ? for more info.' :
