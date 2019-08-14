@@ -59,7 +59,7 @@
     clear: both;
     text-decoration: none;
     color: #222;
-    padding: 0.75rem 0.25rem 0.5rem;
+    padding: 0.75rem 0.25rem 0.5rem 0;
 }
 .section-header h2,
 .section-header .icon-buttons {
@@ -152,7 +152,7 @@ label .icon-buttons,
 /* Back button */
 .icon-button.back,
 .icon-button.back:hover {
-    padding: 5px 2px;
+    padding: 5px 1px;
     background-color: transparent;
 }
 .icon-button.back:hover svg {
