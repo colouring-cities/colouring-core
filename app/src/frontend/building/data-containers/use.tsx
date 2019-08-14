@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { withCopyEdit } from '../building-view';
+import withCopyEdit from '../data-container';
+import DataEntry from '../data-components/data-entry';
 
 /**
  * Use view/edit section

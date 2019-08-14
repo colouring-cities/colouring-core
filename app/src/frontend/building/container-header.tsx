@@ -49,7 +49,7 @@ const ContainerHeader: React.FunctionComponent<any> = (props) => (
                     <NavLink
                         className="icon-button edit"
                         title="Edit data"
-                        to={`/edit/${props.slug}/building/${props.building_id}.html`}>
+                        to={`/edit/${props.cat}/building/${props.building.building_id}.html`}>
                         Edit
                         <EditIcon />
                     </NavLink>

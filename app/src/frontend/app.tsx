@@ -6,7 +6,6 @@ import { parse } from 'query-string';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import BuildingEdit from './building/building-edit';
 import BuildingView from './building/building-view';
 import ColouringMap from './map/map';
 import Header from './header';
