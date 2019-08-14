@@ -199,85 +199,74 @@ class App extends React.Component<any, any> { // TODO: add proper types
         const building_id = (this.state.building)?
             this.state.building.building_id
             : 2503371 // Default to UCL main building. TODO use last selected if any
+        const building = this.state.building;
+        const building_like = this.state.building_like;
         return (
             <Fragment>
-                <Header user={this.state.user} />
-                <main>
-                    <Switch>
-                        <Route exact path="/">
-                            <Welcome />
-                        </Route>
-                        <Route exact path="/view/categories.html">
-                            <Sidebar>
-                                <Categories
-                                    mode="view"
-                                    building_id={building_id}
-                                />
-                            </Sidebar>
-                        </Route>
-                        <Route exact path="/edit/categories.html">
-                            <Sidebar>
-                                <Categories
-                                    mode="edit"
-                                    building_id={building_id}
-                                />
-                            </Sidebar>
-                        </Route>
-                        <Route exact path="/multi-edit/:cat.html" render={(props) => (
-                            <MultiEdit
-                                {...props}
-                                user={this.state.user}
-                            />
-                        ) } />
-                        <Route exact path="/view/:cat/building/:building.html" render={(props) => (
-                            <BuildingView
-                                {...props}
-                                {...this.state.building}
-                                user={this.state.user}
-                                building_like={this.state.building_like}
-                            />
-                        ) } />
-                        <Route exact path="/edit/:cat/building/:building.html" render={(props) => (
-                            <BuildingEdit
-                                {...props}
-                                {...this.state.building}
-                                user={this.state.user}
-                                building_like={this.state.building_like}
-                                selectBuilding={this.selectBuilding}
-                            />
-                        ) } />
-                    </Switch>
-                    <Switch>
-                        <Route exact path="/(multi-edit.*|edit.*|view.*)?" render={(props) => (
-                            <ColouringMap
-                                {...props}
-                                building={this.state.building}
-                                revision_id={this.state.revision_id}
-                                selectBuilding={this.selectBuilding}
-                                colourBuilding={this.colourBuilding}
-                            />
-                        ) } />
-                        <Route exact path="/about.html" component={AboutPage} />
-                        <Route exact path="/login.html">
-                            <Login user={this.state.user} login={this.login} />
-                        </Route>
-                        <Route exact path="/forgotten-password.html" component={ForgottenPassword} />
-                        <Route exact path="/password-reset.html" component={PasswordReset} />
-                        <Route exact path="/sign-up.html">
-                            <SignUp user={this.state.user} login={this.login} />
-                        </Route>
-                        <Route exact path="/my-account.html">
-                            <MyAccountPage
-                                user={this.state.user}
-                                updateUser={this.updateUser}
-                                logout={this.logout}
-                            />
-                        </Route>
-                        <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
-                        <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
-                        <Route component={NotFound} />
-                    </Switch>
-                </main>
+            <Header user={this.state.user} />
+            <main>
+            <Switch>
+                <Route exact path="/">
+                    <Welcome />
+                </Route>
+                <Route exact path="/view/categories.html">
+                    <Sidebar>
+                        <Categories mode="view" building_id={building_id} />
+                    </Sidebar>
+                </Route>
+                <Route exact path="/edit/categories.html">
+                    <Sidebar>
+                        <Categories mode="edit" building_id={building_id} />
+                    </Sidebar>
+                </Route>
+                <Route exact path="/multi-edit/:cat.html" render={(props) => (
+                    <MultiEdit
+                        {...props}
+                        user={this.state.user}
+                    />
+                ) } />
+                <Route exact path="/:mode/:cat/building/:building.html" render={(props) => (
+                    <BuildingView
+                        mode={props.match.params.mode}
+                        cat={props.match.params.cat}
+                        building={this.state.building}
+                        building_like={this.state.building_like}
+                        selectBuilding={this.selectBuilding}
+                        user={this.state.user}
+                    />
+                ) } />
+            </Switch>
+            <Switch>
+                <Route exact path="/(multi-edit.*|edit.*|view.*)?" render={(props) => (
+                    <ColouringMap
+                        {...props}
+                        building={this.state.building}
+                        revision_id={this.state.revision_id}
+                        selectBuilding={this.selectBuilding}
+                        colourBuilding={this.colourBuilding}
+                    />
+                ) } />
+                <Route exact path="/about.html" component={AboutPage} />
+                <Route exact path="/login.html">
+                    <Login user={this.state.user} login={this.login} />
+                </Route>
+                <Route exact path="/forgotten-password.html" component={ForgottenPassword} />
+                <Route exact path="/password-reset.html" component={PasswordReset} />
+                <Route exact path="/sign-up.html">
+                    <SignUp user={this.state.user} login={this.login} />
+                </Route>
+                <Route exact path="/my-account.html">
+                    <MyAccountPage
+                        user={this.state.user}
+                        updateUser={this.updateUser}
+                        logout={this.logout}
+                    />
+                </Route>
+                <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
+                <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
+                <Route component={NotFound} />
+            </Switch>
+            </main>
             </Fragment>
         );
     }

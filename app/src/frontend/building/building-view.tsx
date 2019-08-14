@@ -1,200 +1,206 @@
 import React, { Fragment } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import BuildingNotFound from './building-not-found';
-import Sidebar from './sidebar';
 import Tooltip from '../components/tooltip';
-import { BackIcon, EditIcon } from '../components/icons';
 import { sanitiseURL } from '../helpers';
 
-import CONFIG from './fields-config.json';
+import BuildingNotFound from './building-not-found';
+import ContainerHeader from './container-header';
+import Sidebar from './sidebar';
 
+import LocationContainer from './data-containers/location';
+import UseContainer from './data-containers/use';
+import TypeContainer from './data-containers/type';
+import AgeContainer from './data-containers/age';
+import SizeContainer from './data-containers/size';
+import ConstructionContainer from './data-containers/construction';
+import TeamContainer from './data-containers/team';
+import SustainabilityContainer from './data-containers/sustainability';
+import GreeneryContainer from './data-containers/greenery';
+import CommunityContainer from './data-containers/community';
+import PlanningContainer from './data-containers/planning';
+import LikeContainer from './data-containers/like';
+
+/**
+ * Top-level container for building view/edit form
+ *
+ * @param props
+ */
 const BuildingView = (props) => {
-    const cat = props.match.params.cat;
-    const sections = CONFIG.filter((d) => d.slug === cat)
-
-    if (!props.building_id || sections.length !== 1){
-        return (<BuildingNotFound mode="view" />);
-    }
-
-    const section = sections[0];
-    return (
-        <Sidebar>
-            <DataSection
-                cat={cat}
-                {...section}
+    switch (props.cat) {
+        case 'location':
+            return <LocationContainer
                 {...props}
+                title="Location"
+                help="https://pages.colouring.london/location"
+                intro="Where are the buildings? Address, location and cross-references."
             />
-        </Sidebar>
-    );
+        case 'use':
+            return <UseContainer
+                {...props}
+                inactive={true}
+                title="Land Use"
+                intro="How are buildings used, and how does use change over time? Coming soon…"
+                help="https://pages.colouring.london/use"
+            />
+        case 'type':
+            return <TypeContainer
+                {...props}
+                inactive={true}
+                title="Type"
+                intro="How were buildings previously used? Coming soon…"
+                help="https://www.pages.colouring.london/buildingtypology"
+            />
+        case 'age':
+            return <AgeContainer
+                {...props}
+                title="Age"
+                help="https://pages.colouring.london/age"
+                intro="Building age data can support energy analysis and help predict long-term change."
+            />
+        case 'size':
+            return <SizeContainer
+                {...props}
+                title="Size &amp; Shape"
+                intro="How big are buildings?"
+                help="https://pages.colouring.london/shapeandsize"
+            />
+        case 'construction':
+            return <ConstructionContainer
+                {...props}
+                title="Construction"
+                intro="How are buildings built? Coming soon…"
+                help="https://pages.colouring.london/construction"
+                inactive={true}
+            />
+        case 'team':
+            return <TeamContainer
+                {...props}
+                title="Team"
+                intro="Who built the buildings? Coming soon…"
+                help="https://pages.colouring.london/team"
+                inactive={true}
+            />
+        case 'sustainability':
+            return <SustainabilityContainer
+                {...props}
+                title="Sustainability"
+                intro="Are buildings energy efficient? Coming soon…"
+                help="https://pages.colouring.london/sustainability"
+                inactive={true}
+            />
+        case 'greenery':
+            return <GreeneryContainer
+                {...props}
+                title="Greenery"
+                intro="Is there greenery nearby? Coming soon…"
+                help="https://pages.colouring.london/greenery"
+                inactive={true}
+            />
+        case 'community':
+            return <CommunityContainer
+                {...props}
+                title="Community"
+                intro="How does this building work for the local community?"
+                help="https://pages.colouring.london/community"
+                inactive={true}
+            />
+        case 'planning':
+            return <PlanningContainer
+                {...props}
+                title="Planning"
+                intro="Planning controls relating to protection and reuse."
+                help="https://pages.colouring.london/planning"
+            />
+        case 'like':
+            return <LikeContainer
+                {...props}
+                title="Like Me!"
+                intro="Do you like the building and think it contributes to the city?"
+                help="https://pages.colouring.london/likeme"
+            />
+        default:
+            return <BuildingNotFound mode="view" />
+    }
 }
 
-BuildingView.propTypes = {
-    building_id: PropTypes.number,
-    match: PropTypes.object,
-    uprns: PropTypes.arrayOf(PropTypes.shape({
-        uprn: PropTypes.string.isRequired,
-        parent_uprn: PropTypes.string
-    })),
-    building_like: PropTypes.bool
-}
-
-class DataSection extends React.Component<any, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        title: PropTypes.string,
-        cat: PropTypes.string,
-        slug: PropTypes.string,
-        intro: PropTypes.string,
-        help: PropTypes.string,
-        inactive: PropTypes.bool,
-        building_id: PropTypes.number,
-        children: PropTypes.node
-    };
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            copying: false,
-            values_to_copy: {}
+/**
+ * Shared functionality for view/edit forms
+ *
+ * See React Higher-order-component docs for the pattern
+ * - https://reactjs.org/docs/higher-order-components.html
+ *
+ * @param WrappedComponent
+ */
+function  withCopyEdit(WrappedComponent) {
+    return class extends React.Component<any, any> { // TODO: add proper types
+        static propTypes = { // TODO: generate propTypes from TS
+            title: PropTypes.string,
+            slug: PropTypes.string,
+            intro: PropTypes.string,
+            help: PropTypes.string,
+            inactive: PropTypes.bool,
+            building_id: PropTypes.number,
+            children: PropTypes.node
         };
-        this.toggleCopying = this.toggleCopying.bind(this);
-        this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
-    }
 
-    /**
-     * Enter or exit "copying" state - allow user to select attributes to copy
-     */
-    toggleCopying() {
-        this.setState({
-            copying: !this.state.copying
-        })
-    }
-
-    /**
-     * Keep track of data to copy (accumulate while in "copying" state)
-     *
-     * @param {string} key
-     */
-    toggleCopyAttribute(key) {
-        const value = this.props[key];
-        const values = this.state.values_to_copy;
-        if(Object.keys(this.state.values_to_copy).includes(key)){
-            delete values[key];
-        } else {
-            values[key] = value;
+        constructor(props) {
+            super(props);
+            this.state = {
+                copying: false,
+                values_to_copy: {}
+            };
+            this.toggleCopying = this.toggleCopying.bind(this);
+            this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
         }
-        this.setState({
-            values_to_copy: values
-        })
-    }
 
-    render() {
-        const props = this.props;
-        const match = props.cat === props.slug;
-        const data_string = JSON.stringify(this.state.values_to_copy);
-        return (
-            <section id={props.slug} className="data-section">
-                <header className={`section-header view ${props.slug} background-${props.slug}`}>
-                    <Link className="icon-button back" to="/view/categories.html">
-                        <BackIcon />
-                    </Link>
-                    <h2 className="h2">{props.title}</h2>
-                    <nav className="icon-buttons">
-                        {
-                            (match && !props.inactive)?
-                                this.state.copying?
-                                    <Fragment>
-                                        <NavLink
-                                            to={`/multi-edit/${props.cat}.html?data=${data_string}`}
-                                            className="icon-button copy">
-                                            Copy selected
-                                        </NavLink>
-                                        <a className="icon-button copy" onClick={this.toggleCopying}>Cancel</a>
-                                    </Fragment>
-                                :
-                                    <a className="icon-button copy" onClick={this.toggleCopying}>Copy</a>
-                            : null
-                        }
-                        {
-                            props.help && !this.state.copying?
-                                <a className="icon-button help" title="Find out more" href={props.help}>
-                            Info
-                                </a>
-                                : null
-                        }
-                        {
-                            !props.inactive && !this.state.copying?
-                                <NavLink className="icon-button edit" title="Edit data"
-                                    to={`/edit/${props.slug}/building/${props.building_id}.html`}>
-                            Edit
-                                    <EditIcon />
-                                </NavLink>
-                                : null
-                        }
-                    </nav>
-                </header>
-                {
-                    match?
-                        !props.inactive?
-                            <dl className="data-list">
-                                {
-                                    props.fields.map(field => {
+        /**
+         * Enter or exit "copying" state - allow user to select attributes to copy
+         */
+        toggleCopying() {
+            this.setState({
+                copying: !this.state.copying
+            })
+        }
 
-                                        switch (field.type) {
-                                        case 'uprn_list':
-                                            return <UPRNsDataEntry
-                                                key={field.slug}
-                                                title={field.title}
-                                                value={props.uprns}
-                                                tooltip={field.tooltip} />
-                                        case 'text_multi':
-                                            return <MultiDataEntry
-                                                key={field.slug}
-                                                slug={field.slug}
-                                                disabled={field.disabled}
-                                                cat={props.cat}
-                                                title={field.title}
-                                                value={props[field.slug]}
+        /**
+         * Keep track of data to copy (accumulate while in "copying" state)
+         *
+         * @param {string} key
+         */
+        toggleCopyAttribute(key) {
+            const value = this.props[key];
+            const values = this.state.values_to_copy;
+            if(Object.keys(this.state.values_to_copy).includes(key)){
+                delete values[key];
+            } else {
+                values[key] = value;
+            }
+            this.setState({
+                values_to_copy: values
+            })
+        }
 
-                                                copying={this.state.copying}
-                                                toggleCopyAttribute={this.toggleCopyAttribute}
-                                                copy={Object.keys(this.state.values_to_copy).includes(field.slug)}
-
-                                                tooltip={field.tooltip} />
-                                        case 'like':
-                                            return <LikeDataEntry
-                                                key={field.slug}
-                                                title={field.title}
-                                                value={props[field.slug]}
-                                                user_building_like={props.building_like}
-                                                tooltip={field.tooltip} />
-                                        default:
-                                            return <DataEntry
-                                                key={field.slug}
-                                                slug={field.slug}
-                                                disabled={field.disabled}
-                                                cat={props.cat}
-                                                title={field.title}
-                                                value={props[field.slug]}
-
-                                                copying={this.state.copying}
-                                                toggleCopyAttribute={this.toggleCopyAttribute}
-                                                copy={Object.keys(this.state.values_to_copy).includes(field.slug)}
-
-                                                tooltip={field.tooltip} />
-                                        }
-                                    })
-                                }
-
-                            </dl>
-                            : <p className="data-intro">{props.intro}</p>
-                        : null
-                }
-            </section>
-        );
+        render() {
+            const data_string = JSON.stringify(this.state.values_to_copy);
+            const copy = {
+                copying: this.state.copying,
+                toggleCopyAttribute: this.toggleCopyAttribute,
+                copyingKey: (key) => Object.keys(this.state.values_to_copy).includes(key)
+            }
+            return this.props.building?
+                <Sidebar>
+                    <section id={this.props.slug} className="data-section">
+                        <ContainerHeader {...this.props} data_string={data_string} copy={copy} />
+                        <WrappedComponent {...this.props} copy={copy} />
+                    </section>
+                </Sidebar>
+            : <BuildingNotFound mode="view" />
+        }
     }
 }
+
 
 const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
     return (
@@ -202,12 +208,14 @@ const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
             <dt>
                 { props.title }
                 { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
-                { (props.copying && props.cat && props.slug && !props.disabled)?
+                { (props.copy.copying && props.cat && props.slug && !props.disabled)?
                     <div className="icon-buttons">
                         <label className="icon-button copy">
                             Copy
-                            <input type="checkbox" checked={props.copy}
-                                onChange={() => props.toggleCopyAttribute(props.slug)}/>
+                            <input
+                                type="checkbox"
+                                checked={props.copy.copyingThis(props.slug)}
+                                onChange={() => props.copy.toggleCopyAttribute(props.slug)}/>
                         </label>
                     </div>
                     : null
@@ -357,3 +365,4 @@ UPRNsDataEntry.propTypes = {
 }
 
 export default BuildingView;
+export { withCopyEdit };
