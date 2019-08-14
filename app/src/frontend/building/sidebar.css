@@ -51,23 +51,7 @@
 }
 
 /**
- * Sidebar main header
- */
-.sidebar-header h2 {
-    margin: 0.45rem 0 0.6rem;
-    display: inline-block;
-}
-.sidebar-header .icon-button {
-    margin-left: 0.25rem;
-    margin-top: 0.3rem;
-}
-.sidebar-header .icon-button:hover {
-    background-color: #eee;
-}
-
-
-/**
- * Data list section headers
+ * Data section headers
  */
 .section-header {
     display: block;

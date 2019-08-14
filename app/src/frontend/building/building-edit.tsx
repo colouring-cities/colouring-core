@@ -19,10 +19,10 @@ const BuildingEdit = (props) => {
 
     if (!props.building_id || sections.length !== 1){
         return (
-            <Sidebar title="Building Not Found" back={`/edit/categories.html`}>
+            <Sidebar>
                 <InfoBox msg="We can't find that one anywhere - try the map again?" />
                 <div className="buttons-container ml-3 mr-3">
-                    <Link to={`/edit/categories.html`} className="btn btn-secondary">Back to maps</Link>
+                    <Link to={`/edit/categories.html`} className="btn btn-secondary">Back to categories</Link>
                 </div>
             </Sidebar>
         );

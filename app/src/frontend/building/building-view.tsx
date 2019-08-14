@@ -16,7 +16,7 @@ const BuildingView = (props) => {
 
     if (!props.building_id || sections.length !== 1){
         return (
-            <Sidebar title="Building Not Found" back={`/view/categories.html`}>
+            <Sidebar>
                 <InfoBox msg="We can't find that one anywhere - try the map again?" />
                 <div className="buttons-container with-space">
                     <Link to="/view/categories.html" className="btn btn-secondary">Back to categories</Link>
