@@ -9,11 +9,11 @@ const LikeDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove
     return (
         <Fragment>
             <dt>
-                { props.title }
-                { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
+                Number of likes
+                <Tooltip text="People who like the building and think it contributes to the city." />
                 <div className="icon-buttons">
                     <NavLink
-                        to={`/multi-edit/${props.cat}.html?data=${data_string}`}
+                        to={`/multi-edit/like.html?data=${data_string}`}
                         className="icon-button copy">
                         Copy
                     </NavLink>
@@ -36,9 +36,6 @@ const LikeDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove
 }
 
 LikeDataEntry.propTypes = {
-    title: PropTypes.string,
-    cat: PropTypes.string,
-    tooltip: PropTypes.string,
     value: PropTypes.any,
     user_building_like: PropTypes.bool
 }
