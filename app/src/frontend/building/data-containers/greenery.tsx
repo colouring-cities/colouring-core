@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
-import DataEntry from '../data-components/data-entry';
 
 /**
 * Greenery view/edit section
 */
 const GreeneryView = (props) => (
-    <dl className="data-list">
-
-    </dl>
+    <Fragment>
+        <p className="data-intro">{props.intro}</p>
+        <ul className="data-list">
+            <li>Gardens</li>
+            <li>Trees</li>
+            <li>Green walls</li>
+            <li>Green roof</li>
+            <li>Proximity to parks and open greenspace</li>
+            <li>Building shading</li>
+        </ul>
+    </Fragment>
 )
 const GreeneryContainer = withCopyEdit(GreeneryView);
 
