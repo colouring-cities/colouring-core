@@ -2,9 +2,10 @@ import React, { Component, Fragment } from 'react';
 import { Link, NavLink, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import Sidebar from './sidebar';
+import BuildingNotFound from './building-not-found';
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
-import Sidebar from './sidebar';
 import Tooltip from '../components/tooltip';
 import { BackIcon, SaveIcon } from '../components/icons';
 
@@ -18,14 +19,7 @@ const BuildingEdit = (props) => {
     const sections = CONFIG.filter((d) => d.slug === cat)
 
     if (!props.building_id || sections.length !== 1){
-        return (
-            <Sidebar>
-                <InfoBox msg="We can't find that one anywhere - try the map again?" />
-                <div className="buttons-container ml-3 mr-3">
-                    <Link to={`/edit/categories.html`} className="btn btn-secondary">Back to categories</Link>
-                </div>
-            </Sidebar>
-        );
+        return (<BuildingNotFound mode="edit" />);
     }
 
     const section = sections[0];

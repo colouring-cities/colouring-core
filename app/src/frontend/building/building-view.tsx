@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import BuildingNotFound from './building-not-found';
 import Sidebar from './sidebar';
 import Tooltip from '../components/tooltip';
-import InfoBox from '../components/info-box';
 import { BackIcon, EditIcon } from '../components/icons';
 import { sanitiseURL } from '../helpers';
 
@@ -15,14 +15,7 @@ const BuildingView = (props) => {
     const sections = CONFIG.filter((d) => d.slug === cat)
 
     if (!props.building_id || sections.length !== 1){
-        return (
-            <Sidebar>
-                <InfoBox msg="We can't find that one anywhere - try the map again?" />
-                <div className="buttons-container with-space">
-                    <Link to="/view/categories.html" className="btn btn-secondary">Back to categories</Link>
-                </div>
-            </Sidebar>
-        );
+        return (<BuildingNotFound mode="view" />);
     }
 
     const section = sections[0];
