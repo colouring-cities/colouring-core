@@ -1,161 +1,18 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 
-
-import { authUser, createUser, getUserById, authAPIUser, getNewUserAPIKey } from './services/user';
-import {
-    queryBuildingsAtPoint,
-    queryBuildingsByReference,
-    getBuildingById,
-    getBuildingLikeById,
-    getBuildingUPRNsById,
-    saveBuilding,
-    likeBuilding,
-    unlikeBuilding
-} from './services/building';
+import { authUser, createUser, getUserById, getNewUserAPIKey } from './services/user';
 import { queryLocation } from './services/search';
 
-const server = express.Router();
+import buildingsRouter from './routes/buildingsRouter';
 
-// GET buildings
-// not implemented - may be useful to GET all buildings, paginated
 
-// GET buildings at point
-server.get('/buildings/locate', function (req, res) {
-    const { lng, lat } = req.query;
-    queryBuildingsAtPoint(lng, lat).then(function (result) {
-        res.send(result);
-    }).catch(function (error) {
-        console.error(error);
-        res.send({ error: 'Database error' })
-    })
-});
+const server = express();
 
-// GET buildings by reference (UPRN/TOID or other identifier)
-server.get('/buildings/reference', function (req, res) {
-    const { key, id } = req.query;
-    queryBuildingsByReference(key, id).then(function (result) {
-        res.send(result);
-    }).catch(function (error) {
-        console.error(error);
-        res.send({ error: 'Database error' })
-    })
-});
+// parse POSTed json body
+server.use(bodyParser.json());
 
-// GET individual building, POST building updates
-server.route('/building/:building_id.json')
-    .get(function (req, res) {
-        const { building_id } = req.params;
-        getBuildingById(building_id).then(function (result) {
-            res.send(result);
-        }).catch(function (error) {
-            console.error(error);
-            res.send({ error: 'Database error' })
-        })
-    })
-    .post(function (req, res) {
-        if (req.session.user_id) {
-            updateBuilding(req, res, req.session.user_id);
-        } else if (req.query.api_key) {
-            authAPIUser(req.query.api_key)
-                .then(function (user) {
-                    updateBuilding(req, res, user.user_id)
-                })
-                .catch(function (err) {
-                    console.error(err);
-                    res.send({ error: 'Must be logged in' });
-                });
-        } else {
-            res.send({ error: 'Must be logged in' });
-        }
-    })
-
-function updateBuilding(req, res, userId) {
-    const { building_id } = req.params;
-    const building = req.body;
-    saveBuilding(building_id, building, userId).then(building => {
-        if (building.error) {
-            res.send(building)
-            return
-        }
-        if (typeof (building) === 'undefined') {
-            res.send({ error: 'Database error' })
-            return
-        }
-        res.send(building)
-    }).catch(
-        () => res.send({ error: 'Database error' })
-    )
-}
-
-// GET building UPRNs
-server.get('/building/:building_id/uprns.json', function (req, res) {
-    const { building_id } = req.params;
-    getBuildingUPRNsById(building_id).then(function (result) {
-        if (typeof (result) === 'undefined') {
-            res.send({ error: 'Database error' })
-            return
-        }
-        res.send({
-            uprns: result
-        });
-    }).catch(function (error) {
-        console.error(error);
-        res.send({ error: 'Database error' })
-    })
-})
-
-// GET/POST like building
-server.route('/building/:building_id/like.json')
-    .get(function (req, res) {
-        if (!req.session.user_id) {
-            res.send({ like: false });  // not logged in, so cannot have liked
-            return
-        }
-        const { building_id } = req.params;
-        getBuildingLikeById(building_id, req.session.user_id).then(like => {
-            // any value returned means like
-            res.send({ like: like })
-        }).catch(
-            () => res.send({ error: 'Database error' })
-        )
-    })
-    .post(function (req, res) {
-        if (!req.session.user_id) {
-            res.send({ error: 'Must be logged in' });
-            return
-        }
-        const { building_id } = req.params;
-        const { like } = req.body;
-        if (like) {
-            likeBuilding(building_id, req.session.user_id).then(building => {
-                if (building.error) {
-                    res.send(building)
-                    return
-                }
-                if (typeof (building) === 'undefined') {
-                    res.send({ error: 'Database error' })
-                    return
-                }
-                res.send(building)
-            }).catch(
-                () => res.send({ error: 'Database error' })
-            )
-        } else {
-            unlikeBuilding(building_id, req.session.user_id).then(building => {
-                if (building.error) {
-                    res.send(building)
-                    return
-                }
-                if (typeof (building) === 'undefined') {
-                    res.send({ error: 'Database error' })
-                    return
-                }
-                res.send(building)
-            }).catch(
-                () => res.send({ error: 'Database error' })
-            )
-        }
-    })
+server.use('/buildings', buildingsRouter);
 
 // POST new user
 server.post('/users', function (req, res) {

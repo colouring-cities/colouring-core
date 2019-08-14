@@ -85,7 +85,7 @@ class App extends React.Component<any, any> { // TODO: add proper types
     selectBuilding(building) {
         this.increaseRevision(building.revision_id);
         // get UPRNs and update
-        fetch(`/building/${building.building_id}/uprns.json`, {
+        fetch(`/api/buildings/${building.building_id}/uprns.json`, {
             method: 'GET',
             headers:{
                 'Content-Type': 'application/json'
@@ -106,7 +106,7 @@ class App extends React.Component<any, any> { // TODO: add proper types
         });
 
         // get if liked and update
-        fetch(`/building/${building.building_id}/like.json`, {
+        fetch(`/api/buildings/${building.building_id}/like.json`, {
             method: 'GET',
             headers:{
                 'Content-Type': 'application/json'
@@ -147,7 +147,7 @@ class App extends React.Component<any, any> { // TODO: add proper types
     }
 
     likeBuilding(buildingId) {
-        fetch(`/building/${buildingId}/like.json`, {
+        fetch(`/api/buildings/${buildingId}/like.json`, {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -168,7 +168,7 @@ class App extends React.Component<any, any> { // TODO: add proper types
     }
 
     updateBuilding(buildingId, data){
-        fetch(`/building/${buildingId}.json`, {
+        fetch(`/api/buildings/${buildingId}.json`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers:{

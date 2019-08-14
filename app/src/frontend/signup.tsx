@@ -42,7 +42,7 @@ class SignUp extends Component<any, any> { // TODO: add proper types
         event.preventDefault();
         this.setState({error: undefined})
 
-        fetch('/users', {
+        fetch('/api/users', {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers:{
@@ -55,7 +55,7 @@ class SignUp extends Component<any, any> { // TODO: add proper types
             if (res.error) {
                 this.setState({error: res.error})
             } else {
-                fetch('/users/me', {
+                fetch('/api/users/me', {
                     credentials: 'same-origin'
                 }).then(
                     (res) => res.json()

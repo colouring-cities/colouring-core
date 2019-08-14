@@ -30,7 +30,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
         event.preventDefault();
         this.setState({error: undefined});
 
-        fetch('/logout', {
+        fetch('/api/logout', {
             method: 'POST',
             credentials: 'same-origin'
         }).then(
@@ -50,7 +50,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
         event.preventDefault();
         this.setState({error: undefined});
 
-        fetch('/api/key', {
+        fetch('/api/api/key', {
             method: 'POST',
             credentials: 'same-origin'
         }).then(

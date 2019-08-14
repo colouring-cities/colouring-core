@@ -78,7 +78,7 @@ class SearchBox extends Component<any, any> { // TODO: add proper types
         })
 
         fetch(
-            '/search?q='+this.state.q
+            '/api/search?q='+this.state.q
         ).then(
             (res) => res.json()
         ).then((data) => {

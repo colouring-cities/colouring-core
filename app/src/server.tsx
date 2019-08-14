@@ -10,7 +10,6 @@ import express from 'express';
 import { renderToString } from 'react-dom/server';
 import serialize from 'serialize-javascript';
 
-import bodyParser from 'body-parser';
 import session from 'express-session';
 import pgConnect from 'connect-pg-simple';
 
@@ -23,7 +22,7 @@ import {
     getBuildingUPRNsById
 } from './api/services/building';
 import tileserver from './tiles/tileserver';
-import apiRouter from './api/api';
+import apiServer from './api/api';
 import { parseBuildingURL } from './parse';
 
 // create server
@@ -38,8 +37,6 @@ server.disable('x-powered-by');
 // serve static files
 server.use(express.static(process.env.RAZZLE_PUBLIC_DIR));
 
-// parse POSTed json body
-server.use(bodyParser.json());
 
 // handle user sessions
 const pgSession = pgConnect(session);
@@ -159,6 +156,6 @@ function renderHTML(context, data, req, res) {
 
 server.use('/tiles', tileserver);
 
-server.use('/api', apiRouter);
+server.use('/api', apiServer);
 
 export default server;
