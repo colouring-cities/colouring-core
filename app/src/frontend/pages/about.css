@@ -33,11 +33,11 @@
 }
 .carousel-control.next {
     right: -1em;
-    background-image: url('images/arrow-next.png');
+    background-image: url('../images/arrow-next.png');
 }
 .carousel-control.back {
     left: -1em;
-    background-image: url('images/arrow-back.png');
+    background-image: url('../images/arrow-back.png');
 }
 .carousel-content {
     padding: 0;

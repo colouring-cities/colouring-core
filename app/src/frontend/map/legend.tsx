@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './legend.css';
-import { MinorLogo } from './components/logo';
+import { MinorLogo } from '../components/logo';
 
 const LEGEND_CONFIG = {
     location: {

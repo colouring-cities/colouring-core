@@ -2,11 +2,11 @@ import React, { Component, Fragment } from 'react';
 import { Link, NavLink, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import ErrorBox from './components/error-box';
-import InfoBox from './components/info-box';
+import ErrorBox from '../components/error-box';
+import InfoBox from '../components/info-box';
 import Sidebar from './sidebar';
-import Tooltip from './components/tooltip';
-import { SaveIcon } from './components/icons';
+import Tooltip from '../components/tooltip';
+import { SaveIcon } from '../components/icons';
 
 import CONFIG from './fields-config.json';
 

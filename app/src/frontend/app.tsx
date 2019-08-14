@@ -6,12 +6,12 @@ import { parse } from 'query-string';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import BuildingEdit from './building-edit';
-import BuildingView from './building-view';
-import ColouringMap from './map';
+import BuildingEdit from './building/building-edit';
+import BuildingView from './building/building-view';
+import ColouringMap from './map/map';
 import Header from './header';
-import MultiEdit from './multi-edit';
-import Overview from './overview';
+import MultiEdit from './building/multi-edit';
+import Overview from './building/overview';
 
 import AboutPage from './pages/about';
 import ContributorAgreementPage from './pages/contributor-agreement';

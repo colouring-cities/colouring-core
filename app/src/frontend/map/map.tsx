@@ -2,12 +2,12 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Map, TileLayer, ZoomControl, AttributionControl } from 'react-leaflet-universal';
 
-import '../../node_modules/leaflet/dist/leaflet.css'
+import '../../../node_modules/leaflet/dist/leaflet.css'
 import './map.css'
 
-import { HelpIcon } from './components/icons';
+import { HelpIcon } from '../components/icons';
 import Legend from './legend';
-import { parseCategoryURL } from '../parse';
+import { parseCategoryURL } from '../../parse';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
 

@@ -3,7 +3,7 @@ import { NavLink, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Sidebar from './sidebar';
-import { EditIcon } from './components/icons';
+import { EditIcon } from '../components/icons';
 import CONFIG from './fields-config.json';
 
 const Overview = (props) => {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import './search-box.css';
-import { SearchIcon } from './components/icons';
+import { SearchIcon } from '../components/icons';
 /**
  * Search for location
  */

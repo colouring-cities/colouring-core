@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './sidebar.css';
-import { BackIcon } from './components/icons';
+import { BackIcon } from '../components/icons';
 
 const Sidebar = (props) => (
     <div id="legend" className="info-container">

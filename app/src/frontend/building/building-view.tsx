@@ -3,10 +3,10 @@ import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Sidebar from './sidebar';
-import Tooltip from './components/tooltip';
-import InfoBox from './components/info-box';
-import { EditIcon } from './components/icons';
-import { sanitiseURL } from './helpers';
+import Tooltip from '../components/tooltip';
+import InfoBox from '../components/info-box';
+import { EditIcon } from '../components/icons';
+import { sanitiseURL } from '../helpers';
 
 import CONFIG from './fields-config.json';
 
