@@ -16,9 +16,7 @@ const MultiEdit = (props) => {
     if (cat === 'like') {
         // special case for likes
         return (
-            <Sidebar
-                title='Quick edit'
-                back={`/edit/${cat}.html`}>
+            <Sidebar>
                 <section className='data-section'>
                     <header className={`section-header view ${cat} active`}>
                         <a><h3 className="h3">Like me!</h3></a>
@@ -38,9 +36,7 @@ const MultiEdit = (props) => {
     const data = JSON.parse(q.data as string) // TODO: verify what happens when data is string[]
     const title = sectionTitleFromCat(cat);
     return (
-        <Sidebar
-            title='Quick edit'
-            back={`/edit/${cat}.html`}>
+        <Sidebar>
             <section className='data-section'>
                 <header className={`section-header view ${cat} active`}>
                     <a><h3 className="h3">{title}</h3></a>
