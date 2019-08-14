@@ -205,7 +205,7 @@ class DataSection extends React.Component<any, any> { // TODO: add proper types
     }
 }
 
-const DataEntry: React.SFC<any> = (props) => { // TODO: remove any
+const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
     return (
         <Fragment>
             <dt>
@@ -241,7 +241,7 @@ DataEntry.propTypes = {
     value: PropTypes.any
 }
 
-const LikeDataEntry: React.SFC<any> = (props) => { // TODO: remove any
+const LikeDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
     const data_string = JSON.stringify({like: true});
     return (
         <Fragment>
@@ -280,7 +280,7 @@ LikeDataEntry.propTypes = {
     user_building_like: PropTypes.bool
 }
 
-const MultiDataEntry: React.SFC<any> = (props) => { // TODO: remove any
+const MultiDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
     let content;
 
     if (props.value && props.value.length) {

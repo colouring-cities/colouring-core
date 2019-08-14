@@ -70,7 +70,7 @@ class EditForm extends Component<any, any> { // TODO: add proper types
         for (const field of props.fields) {
             fieldsObj[field.slug] = props[field.slug];
         }
-        
+
         this.state = {
             error: this.props.error || undefined,
             like: this.props.like || undefined,
@@ -591,7 +591,7 @@ class YearEstimator extends Component<any, any> { // TODO: add proper types
         toggleCopyAttribute: PropTypes.func,
         copying: PropTypes.bool
     };
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -680,7 +680,7 @@ LikeButton.propTypes = {
     handleLike: PropTypes.func
 }
 
-const Label: React.SFC<any> = (props) => { // TODO: remove any
+const Label: React.FunctionComponent<any> = (props) => { // TODO: remove any
     return (
         <label htmlFor={props.slug}>
             {props.title}
