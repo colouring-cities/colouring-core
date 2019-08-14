@@ -12,6 +12,7 @@ import ColouringMap from './map/map';
 import Header from './header';
 import MultiEdit from './building/multi-edit';
 import Categories from './building/categories';
+import Sidebar from './building/sidebar';
 
 import AboutPage from './pages/about';
 import ContributorAgreementPage from './pages/contributor-agreement';
@@ -207,16 +208,20 @@ class App extends React.Component<any, any> { // TODO: add proper types
                             <Welcome />
                         </Route>
                         <Route exact path="/view/categories.html">
-                            <Categories
-                                mode="view"
-                                building_id={building_id}
-                            />
+                            <Sidebar>
+                                <Categories
+                                    mode="view"
+                                    building_id={building_id}
+                                />
+                            </Sidebar>
                         </Route>
                         <Route exact path="/edit/categories.html">
-                            <Categories
-                                mode="edit"
-                                building_id={building_id}
-                            />
+                            <Sidebar>
+                                <Categories
+                                    mode="edit"
+                                    building_id={building_id}
+                                />
+                            </Sidebar>
                         </Route>
                         <Route exact path="/multi-edit/:cat.html" render={(props) => (
                             <MultiEdit
