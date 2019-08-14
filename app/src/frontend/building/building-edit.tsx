@@ -32,6 +32,7 @@ const BuildingEdit = (props) => {
     return (
         <Sidebar>
             <EditForm
+                key={props.building_id}  // provide key so that React re-creates if props change
                 {...section}
                 {...props}
                 cat={cat}

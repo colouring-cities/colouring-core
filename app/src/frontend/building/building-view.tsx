@@ -29,9 +29,7 @@ const BuildingView = (props) => {
     return (
         <Sidebar>
             <DataSection
-                key={section.slug}
                 cat={cat}
-                building_id={props.building_id}
                 {...section}
                 {...props}
             />
