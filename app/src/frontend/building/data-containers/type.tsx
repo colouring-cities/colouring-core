@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
-import DataEntry from '../data-components/data-entry';
 
 /**
 * Type view/edit section
 */
 const TypeView = (props) => (
-    <dl className="data-list">
-
-    </dl>
+    <Fragment>
+        <p className="data-intro">{props.intro}</p>
+        <ul>
+            <li>Original use (as constructed)</li>
+            {
+                // "disabled": true,
+                // "slug": "use_type_original",
+                // "type": "text"
+            }
+        </ul>
+    </Fragment>
 )
 const TypeContainer = withCopyEdit(TypeView);
 
