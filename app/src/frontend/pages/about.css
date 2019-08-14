@@ -52,31 +52,3 @@
 .carousel.active .carousel-content li.current {
     display: block;
 }
-
-/**
- * Data categories
- */
-.data-category-list {
-    padding: 0;
-    text-align: center;
-    list-style: none;
-    margin: 0 -0.75em;
-}
-.data-category-list li {
-    display: inline-block;
-    vertical-align: bottom;
-    width: 9em;
-    height: 9em;
-    margin: 0.375em;
-    padding: 0.1em;
-}
-.data-category-list .category {
-    text-align: center;
-    font-size: 1.5em;
-    margin: 1.4em 0 0.5em;
-}
-.data-category-list .description {
-    text-align: center;
-    font-size: 1em;
-    margin: 0;
-}

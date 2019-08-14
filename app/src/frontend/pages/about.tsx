@@ -2,6 +2,7 @@ import React from 'react';
 
 import SupporterLogos from '../components/supporter-logos';
 import './about.css';
+import Categories from '../building/categories';
 
 const AboutPage = () => (
     <article>
@@ -71,56 +72,7 @@ const AboutPage = () => (
         research.
 
             </p>
-            <ol className="data-category-list">
-                <li className="bold-yellow">
-                    <h3 className="category">Location</h3>
-                    <p className="description">Where is it?</p>
-                </li>
-                <li className="bright-yellow">
-                    <h3 className="category">Use</h3>
-                    <p className="description">How is it used?</p>
-                </li>
-                <li className="bold-orange">
-                    <h3 className="category">Type</h3>
-                    <p className="description">How was it first used?</p>
-                </li>
-                <li className="red">
-                    <h3 className="category">Age</h3>
-                    <p className="description">When was it built?</p>
-                </li>
-                <li className="pastel-pink">
-                    <h3 className="category">Size</h3>
-                    <p className="description">How big is it?</p>
-                </li>
-                <li className="pastel-purple">
-                    <h3 className="category">Construction</h3>
-                    <p className="description">How is it built?</p>
-                </li>
-                <li className="blue-grey">
-                    <h3 className="category">Design/Build</h3>
-                    <p className="description">Who built it?</p>
-                </li>
-                <li className="bright-green">
-                    <h3 className="category">Street Front</h3>
-                    <p className="description">How does it relate to the street?</p>
-                </li>
-                <li className="pastel-green">
-                    <h3 className="category">Greenery</h3>
-                    <p className="description">Is it near a tree or park?</p>
-                </li>
-                <li className="bright-blue">
-                    <h3 className="category">Protection</h3>
-                    <p className="description">Is it designated?</p>
-                </li>
-                <li className="pale-grey">
-                    <h3 className="category">Demolitions</h3>
-                    <p className="description">How many rebuilds on the site?</p>
-                </li>
-                <li className="pale-brown">
-                    <h3 className="category">Like Me?</h3>
-                    <p className="description">Do you like it?</p>
-                </li>
-            </ol>
+            <Categories building_id={2503371} mode="view" />
         </div>
         <hr/>
         <div className="main-col">

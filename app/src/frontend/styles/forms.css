@@ -41,17 +41,3 @@ form .btn {
     margin-right: 0;
     text-align: center;
 }
-.btn.btn-half {
-    width: 100%;
-    margin-bottom: 0.25rem;
-}
-@media (min-width: 768px) {
-    .btn.btn-half {
-        width: 49%;
-        margin-left: 0;
-        margin-right: 2%;
-    }
-    .btn.btn-half:nth-child(2n) {
-        margin-right: 0;
-    }
-}
