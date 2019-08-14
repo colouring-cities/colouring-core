@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import InfoBox from './info-box';
+import InfoBox from '../info-box';
 
 const PrivacyPolicyPage: React.SFC<any> = () => (
     <article>

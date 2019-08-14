@@ -6,22 +6,24 @@ import { parse } from 'query-string';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import AboutPage from './about';
 import BuildingEdit from './building-edit';
 import BuildingView from './building-view';
-import MultiEdit from './multi-edit';
 import ColouringMap from './map';
 import Header from './header';
-import Overview from './overview';
 import Login from './login';
-import MyAccountPage from './my-account';
+import MultiEdit from './multi-edit';
+import Overview from './overview';
 import SignUp from './signup';
-import Welcome from './welcome';
-import { parseCategoryURL } from '../parse';
-import PrivacyPolicyPage from './privacy-policy';
-import ContributorAgreementPage from './contributor-agreement';
 import ForgottenPassword from './forgotten-password';
 import PasswordReset from './password-reset';
+
+import AboutPage from './pages/about';
+import ContributorAgreementPage from './pages/contributor-agreement';
+import MyAccountPage from './pages/my-account';
+import PrivacyPolicyPage from './pages/privacy-policy';
+import Welcome from './pages/welcome';
+
+import { parseCategoryURL } from '../parse';
 
 /**
  * App component

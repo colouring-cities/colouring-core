@@ -2,8 +2,8 @@ import React, { Component, FormEvent } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import ErrorBox from './error-box';
-import ConfirmationModal from './confirmation-modal';
+import ConfirmationModal from '../confirmation-modal';
+import ErrorBox from '../error-box';
 
 class MyAccountPage extends Component<any, any> { // TODO: add proper types
     static propTypes = { // TODO: generate propTypes from TS
@@ -86,7 +86,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
                 credentials: 'same-origin'
             });
             const data = await res.json();
-            
+
             if(data.error) {
                 this.setState({ error: data.error });
             } else {

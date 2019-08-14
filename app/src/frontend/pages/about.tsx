@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SupporterLogos from './supporter-logos';
+import SupporterLogos from '../supporter-logos';
 import './about.css';
 
 const AboutPage = () => (
