@@ -53,24 +53,6 @@
 /**
  * Sidebar main header
  */
-.sidebar-header {
-    border-bottom: 6px solid;
-    border-image: linear-gradient(
-        to right,
-        #edc40b 0%, #edc40b 8.3%,
-        #f0ee0c 8.3%, #f0ee0c 16.6%,
-        #ff9100 16.6%, #ff9100 25%,
-        #ee5f63 25%, #ee5f63 33.3%,
-        #ee91bf 33.3%, #ee91bf 41.6%,
-        #aa7fa7 41.6%, #aa7fa7 50%,
-        #6f879c 50%, #6f879c 58.3%,
-        #5ec232 58.3%, #5ec232 66.6%,
-        #6dbb8b 66.6%, #6dbb8b 75%,
-        #65b7ff 75%, #65b7ff 83.3%,
-        #a1a3a9 83.3%, #a1a3a9 91.6%,
-        #9c896d 91.6%, #9c896d 100%
-    ) 1;
-}
 .sidebar-header h2 {
     margin: 0.45rem 0 0.6rem;
     display: inline-block;

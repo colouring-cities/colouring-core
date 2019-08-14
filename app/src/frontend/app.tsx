@@ -11,7 +11,7 @@ import BuildingView from './building/building-view';
 import ColouringMap from './map/map';
 import Header from './header';
 import MultiEdit from './building/multi-edit';
-import Overview from './building/overview';
+import Categories from './building/categories';
 
 import AboutPage from './pages/about';
 import ContributorAgreementPage from './pages/contributor-agreement';
@@ -195,6 +195,9 @@ class App extends React.Component<any, any> { // TODO: add proper types
     }
 
     render() {
+        const building_id = (this.state.building)?
+            this.state.building.building_id
+            : 2503371 // Default to UCL main building. TODO use last selected if any
         return (
             <Fragment>
                 <Header user={this.state.user} />
@@ -203,18 +206,18 @@ class App extends React.Component<any, any> { // TODO: add proper types
                         <Route exact path="/">
                             <Welcome />
                         </Route>
-                        <Route exact path="/view/:cat.html" render={(props) => (
-                            <Overview
-                                {...props}
-                                mode='view' user={this.state.user}
+                        <Route exact path="/view/categories.html">
+                            <Categories
+                                mode="view"
+                                building_id={building_id}
                             />
-                        ) } />
-                        <Route exact path="/edit/:cat.html" render={(props) => (
-                            <Overview
-                                {...props}
-                                mode='edit' user={this.state.user}
+                        </Route>
+                        <Route exact path="/edit/categories.html">
+                            <Categories
+                                mode="edit"
+                                building_id={building_id}
                             />
-                        ) } />
+                        </Route>
                         <Route exact path="/multi-edit/:cat.html" render={(props) => (
                             <MultiEdit
                                 {...props}
