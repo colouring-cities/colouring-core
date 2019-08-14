@@ -235,17 +235,11 @@ class EditForm extends Component<any, any> { // TODO: add proper types
 
         return (
             <section className={(this.props.inactive)? 'data-section inactive': 'data-section'}>
-                <header className={`section-header edit ${this.props.slug} ${(match? 'active' : '')}`}>
+                <header className={`section-header edit ${this.props.slug} background-${this.props.slug}`}>
                     <Link className="icon-button back" to="/edit/categories.html">
                         <BackIcon />
                     </Link>
-                    <NavLink
-                        to={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
-                        title={(this.props.inactive)? 'Coming soon… Click the ? for more info.' :
-                            (match)? 'Hide details' : 'Show details'}
-                        isActive={() => match}>
-                        <h3 className="h3">{this.props.title}</h3>
-                    </NavLink>
+                    <h2 className="h2">{this.props.title}</h2>
                     <nav className="icon-buttons">
                         {
                             (match && !this.props.inactive && this.props.slug !== 'like')?

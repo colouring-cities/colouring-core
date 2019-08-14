@@ -7,7 +7,7 @@
     left: 0;
     right: 0;
     bottom: 3rem;
-    padding: 0.25em 0em 2em;
+    padding: 0 0 2em;
     background: #fff;
     z-index: 1000;
     overflow-y: auto;
@@ -75,66 +75,20 @@
     clear: both;
     text-decoration: none;
     color: #222;
-    border-style: solid;
-    border-color: #fff;
-    border-top-color: #222;
-    border-width: 1px 0 4px 0;
-    padding-top: 4px;
+    padding: 0.75rem 0.25rem 0.5rem;
 }
-.section-header h3 {
+.section-header h2,
+.section-header .icon-buttons {
     display: inline-block;
-}
-.section-header > a {
-    display: block;
-    padding: 0.6rem 0.5rem 0.5rem 2.25rem;
-    color: #222;
-    outline: none;
-}
-.section-header.active,
-.section-header:hover {
-    color: #222;
-    text-decoration: none;
-}
-.data-section:first-of-type .section-header {
-    border-top-color: #fff;
-}
-
-.section-header > a::before {
-    display: block;
-    position: absolute;
-    left: 0.55rem;
-    top: 0.5rem;
-    width: 1.2rem;
-    height: 1rem;
-    text-align: center;
-    color: #222264;
-    font-size: 1.2rem;
-    content: '\25B8';
-}
-.section-header:hover > a::before,
-.section-header.active > a::before {
-    font-size: 1rem;
-}
-.section-header:hover > a::before,
-.section-header.active > a::before {
-    top: 0.7rem;
-    content: '\25BC';
-}
-
-.data-section.inactive .section-header,
-.data-section.inactive .section-header > a {
-    color: #777;
-}
-.data-section.inactive .section-header.active,
-.data-section.inactive .section-header.active:hover > a,
-.data-section.inactive .section-header.active > a {
-    color: #222;
 }
 .section-header .icon-buttons {
     position: absolute;
-    top: 0;
     right: 0;
+    top: 7px;
     padding: 0.7rem 0.5rem 0.5rem 0;
+}
+.icon-buttons .icon-button {
+    margin-left: 7px;
 }
 
 /**
@@ -154,8 +108,8 @@
 .icon-button:hover {
     color: #222;
     text-decoration: none;
+    cursor: pointer;
 }
-
 .icon-button.tooltip-hint {
     padding: 0;
 }
@@ -179,20 +133,12 @@
 .svg-inline--fa.fa-w-8 {
     width: 30px;
 }
-.icon-button:hover svg {
-    background-color: #fff;
-}
 .icon-button.edit:hover svg {
     color: rgb(11, 225, 225);
 }
 .icon-button.help,
-.section-header .icon-button.help,
-.section-header .icon-button.copy {
-    margin-top: 2px;
-}
-.section-header .icon-button.copy {
-    cursor: pointer;
-    margin-left: 5px;
+.icon-button.copy {
+    margin-top: 4px;
 }
 .data-section label .icon-buttons .icon-button.copy {
     margin-top: 0px;
@@ -214,10 +160,6 @@
 .icon-button.save:hover svg {
     color: rgb(11, 225, 72);
 }
-.section-header .icon-button {
-    float: right;
-    margin-top: -2px;
-}
 label .icon-buttons,
 .data-list dt .icon-buttons {
     float: right;
@@ -226,7 +168,7 @@ label .icon-buttons,
 /* Back button */
 .icon-button.back,
 .icon-button.back:hover {
-    padding: 0;
+    padding: 5px 2px;
     background-color: transparent;
 }
 .icon-button.back:hover svg {

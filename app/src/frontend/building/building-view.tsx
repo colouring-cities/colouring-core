@@ -103,18 +103,12 @@ class DataSection extends React.Component<any, any> { // TODO: add proper types
         const match = props.cat === props.slug;
         const data_string = JSON.stringify(this.state.values_to_copy);
         return (
-            <section id={props.slug} className={(props.inactive)? 'data-section inactive': 'data-section'}>
-                <header className={`section-header view ${props.slug} ${(match? 'active' : '')}`}>
+            <section id={props.slug} className="data-section">
+                <header className={`section-header view ${props.slug} background-${props.slug}`}>
                     <Link className="icon-button back" to="/view/categories.html">
                         <BackIcon />
                     </Link>
-                    <NavLink
-                        to={`/view/${props.slug}/building/${props.building_id}.html`}
-                        title={(props.inactive)? 'Coming soon… Click the ? for more info.' :
-                            (match)? 'Hide details' : 'Show details'}
-                        isActive={() => match}>
-                        <h3 className="h3">{props.title}</h3>
-                    </NavLink>
+                    <h2 className="h2">{props.title}</h2>
                     <nav className="icon-buttons">
                         {
                             (match && !props.inactive)?
