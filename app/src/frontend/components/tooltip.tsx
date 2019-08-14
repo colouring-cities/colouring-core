@@ -8,7 +8,7 @@ class Tooltip extends Component<any, any> { // TODO: add proper types
     static propTypes = { // TODO: generate propTypes from TS
         text: PropTypes.string
     };
-    
+
     constructor(props) {
         super(props);
         this.state = {

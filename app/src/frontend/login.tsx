@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import ErrorBox from './error-box';
-import InfoBox from './info-box';
-import SupporterLogos from './supporter-logos';
+import ErrorBox from './components/error-box';
+import InfoBox from './components/info-box';
+import SupporterLogos from './components/supporter-logos';
 
 class Login extends Component<any, any> { // TODO: add proper types
     static propTypes = { // TODO: generate propTypes from TS
         login: PropTypes.func,
         user: PropTypes.object
     };
-    
+
     constructor(props) {
         super(props);
         this.state = {

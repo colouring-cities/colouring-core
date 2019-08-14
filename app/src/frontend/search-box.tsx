@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import './search-box.css';
-import { SearchIcon } from './icons';
+import { SearchIcon } from './components/icons';
 /**
  * Search for location
  */
@@ -11,7 +11,7 @@ class SearchBox extends Component<any, any> { // TODO: add proper types
         onLocate: PropTypes.func,
         isBuilding: PropTypes.bool
     };
-    
+
     constructor(props) {
         super(props);
         this.state = {

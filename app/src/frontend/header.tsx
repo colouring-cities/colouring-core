@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Logo from './logo';
+import Logo from './components/logo';
 import './header.css';
 
 /**
@@ -14,7 +14,7 @@ class Header extends React.Component<any, any> { // TODO: add proper types
             username: PropTypes.string
         })
     };
-    
+
     constructor(props) {
         super(props);
         this.state = {collapseMenu: true};

@@ -5,7 +5,7 @@ import { Map, TileLayer, ZoomControl, AttributionControl } from 'react-leaflet-u
 import '../../node_modules/leaflet/dist/leaflet.css'
 import './map.css'
 
-import { HelpIcon } from './icons';
+import { HelpIcon } from './components/icons';
 import Legend from './legend';
 import { parseCategoryURL } from '../parse';
 import SearchBox from './search-box';
@@ -25,7 +25,7 @@ class ColouringMap extends Component<any, any> { // TODO: add proper types
         match: PropTypes.object,
         history: PropTypes.object
     };
-    
+
     constructor(props) {
         super(props);
         this.state = {

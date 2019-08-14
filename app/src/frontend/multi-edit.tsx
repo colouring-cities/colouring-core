@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import Sidebar from './sidebar';
 import CONFIG from './fields-config.json';
-import InfoBox from './info-box';
+import InfoBox from './components/info-box';
 import { sanitiseURL } from './helpers';
 
 const MultiEdit = (props) => {

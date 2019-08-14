@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import InfoBox from '../info-box';
+import InfoBox from '../components/info-box';
 
 const ContributorAgreementPage : React.SFC<any> = () => (
     <article>
