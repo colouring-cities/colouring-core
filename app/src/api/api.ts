@@ -134,4 +134,8 @@ server.get('/search', function (req, res) {
     });
 })
 
+server.use((req, res) => {
+    res.status(404).json({ error: 'Resource not found'});
+})
+
 export default server;
