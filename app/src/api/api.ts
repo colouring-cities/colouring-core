@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import { authUser, createUser, getUserById, getNewUserAPIKey } from './services/user';
+import { authUser, createUser, getUserById, getNewUserAPIKey, deleteUser } from './services/user';
 import { queryLocation } from './services/search';
 
 import buildingsRouter from './routes/buildingsRouter';
@@ -45,6 +45,35 @@ server.post('/users', function (req, res) {
     });
 });
 
+// GET own user info
+server.route('/users/me')
+    .get(function (req, res) {
+        if (!req.session.user_id) {
+            res.send({ error: 'Must be logged in' });
+            return
+        }
+
+        getUserById(req.session.user_id).then(function (user) {
+            res.send(user);
+        }).catch(function (error) {
+            res.send(error);
+        });
+    })
+    .delete((req, res) => {
+        if (!req.session.user_id) {
+            return res.send({ error: 'Must be logged in' });
+        }
+        console.log(`Deleting user ${req.session.user_id}`);
+
+        deleteUser(req.session.user_id).then(
+            () => logout(req.session)
+        ).then(() => {
+            res.send({ success: true });
+        }).catch(err => {
+            res.send({ error: err });
+        });
+    })
+
 // POST user auth
 server.post('/login', function (req, res) {
     authUser(req.body.username, req.body.password).then(function (user: any) { // TODO: remove any
@@ -61,29 +90,23 @@ server.post('/login', function (req, res) {
 
 // POST user logout
 server.post('/logout', function (req, res) {
-    req.session.user_id = undefined;
-    req.session.destroy(function (err) {
-        if (err) {
-            console.error(err);
-            res.send({ error: 'Failed to end session' })
-        }
+    logout(req.session).then(() => {
         res.send({ success: true });
+    }).catch(err => {
+        console.error(err);
+        res.send({ error: 'Failed to end session'});
     });
 });
 
-// GET own user info
-server.get('/users/me', function (req, res) {
-    if (!req.session.user_id) {
-        res.send({ error: 'Must be logged in' });
-        return
-    }
-
-    getUserById(req.session.user_id).then(function (user) {
-        res.send(user);
-    }).catch(function (error) {
-        res.send(error);
+function logout(session) {
+    return new Promise((resolve, reject) => {
+        session.user_id = undefined;
+        session.destroy(err => {
+            if (err) return reject(err);
+            return resolve();
+        });
     });
-});
+}
 
 // POST generate API key
 server.post('/api/key', function (req, res) {

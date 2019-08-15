@@ -122,4 +122,22 @@ function authAPIUser(key) {
     });
 }
 
-export { getUserById, createUser, authUser, getNewUserAPIKey, authAPIUser }
+function deleteUser(id) {
+    return db.none(
+        `UPDATE users
+        SET
+            email = null,
+            pass = null,
+            api_key = null,
+            username = concat('deleted_', cast(user_id as char(13))),
+            is_deleted = true,
+            deleted_on = now() at time zone 'utc'
+        WHERE user_id = $1
+        `, [id]
+    ).catch((error) => {
+        console.error('Error:', error);
+        return {error: 'Database error'};
+    });
+}
+
+export { getUserById, createUser, authUser, getNewUserAPIKey, authAPIUser, deleteUser }
