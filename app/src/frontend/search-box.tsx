@@ -78,7 +78,7 @@ class SearchBox extends Component<any, any> { // TODO: add proper types
         })
 
         fetch(
-            '/search?q='+this.state.q
+            '/api/search?q='+this.state.q
         ).then(
             (res) => res.json()
         ).then((data) => {
@@ -160,7 +160,7 @@ class SearchBox extends Component<any, any> { // TODO: add proper types
             : null;
         return (
             <div className={`search-box ${this.props.isBuilding? 'building' : ''}`} onKeyDown={this.handleKeyPress}>
-                <form action="/search" method="GET" onSubmit={this.search} className="form-inline">
+                <form onSubmit={this.search} className="form-inline">
                     <div onClick={this.state.smallScreen ? this.expandSearch : null}>
                         <SearchIcon/>
                     </div>

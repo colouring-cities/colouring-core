@@ -176,7 +176,7 @@ class EditForm extends Component<any, any> { // TODO: add proper types
         event.preventDefault();
         const like = event.target.checked;
 
-        fetch(`/building/${this.props.building_id}/like.json`, {
+        fetch(`/api/buildings/${this.props.building_id}/like.json`, {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -203,7 +203,7 @@ class EditForm extends Component<any, any> { // TODO: add proper types
         event.preventDefault();
         this.setState({error: undefined})
 
-        fetch(`/building/${this.props.building_id}.json`, {
+        fetch(`/api/buildings/${this.props.building_id}.json`, {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers:{

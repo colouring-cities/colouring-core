@@ -61,7 +61,7 @@ class ColouringMap extends Component<any, any> { // TODO: add proper types
         const newCat = parseCategoryURL(this.props.match.url);
         const mapCat = newCat || 'age';
         fetch(
-            '/buildings/locate?lat='+lat+'&lng='+lng
+            '/api/buildings/locate?lat='+lat+'&lng='+lng
         ).then(
             (res) => res.json()
         ).then(function(data){

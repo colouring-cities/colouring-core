@@ -30,7 +30,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
         event.preventDefault();
         this.setState({error: undefined});
 
-        fetch('/logout', {
+        fetch('/api/logout', {
             method: 'POST',
             credentials: 'same-origin'
         }).then(
@@ -50,7 +50,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
         event.preventDefault();
         this.setState({error: undefined});
 
-        fetch('/api/key', {
+        fetch('/api/api/key', {
             method: 'POST',
             credentials: 'same-origin'
         }).then(
@@ -81,7 +81,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
 
                         </p>
                         <ErrorBox msg={this.state.error} />
-                        <form method="POST" action="/logout" onSubmit={this.handleLogout}>
+                        <form onSubmit={this.handleLogout}>
                             <div className="buttons-container">
                                 <Link to="/edit/age.html" className="btn btn-warning">Start colouring</Link>
                                 <input className="btn btn-secondary" type="submit" value="Log out"/>
@@ -104,7 +104,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
                         <p>Are you a software developer? If so, you might be interested in these.</p>
                         <h3 className="h3">API key</h3>
                         <p>{this.props.user.api_key? this.props.user.api_key : '-'}</p>
-                        <form method="POST" action="/api/key" onSubmit={this.handleGenerateKey} className="form-group mb-3">
+                        <form onSubmit={this.handleGenerateKey} className="form-group mb-3">
                             <input className="btn btn-warning" type="submit" value="Generate API key"/>
                         </form>
 
