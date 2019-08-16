@@ -159,6 +159,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
                             title="Confirm account deletion"
                             description="Are you sure you want to delete your account? This cannot be undone."
                             confirmButtonText="Delete account"
+                            confirmButtonClass="btn-danger"
                             onConfirm={() => this.handleDelete()}
                             onCancel={() => this.hideConfirmDelete()}
                         />

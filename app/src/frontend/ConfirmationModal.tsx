@@ -1,5 +1,6 @@
 import React from 'react';
 
+import './ConfirmationModal.css';
 
 interface ConfirmationModalProps {
     show: boolean,
@@ -18,11 +19,9 @@ const ConfirmationModal: React.FunctionComponent<ConfirmationModalProps> = ({
     cancelButtonClass = '',
     ...props
 }) => {
-    const confirmButtonClassString = `btn btn-block ${confirmButtonClass}`;
-    const cancelButtonClassString = `btn btn-block ${cancelButtonClass}`;
-    const modalClass = `modal ${props.show ? 'show' : ''}`;
+    const modalShowClass = props.show ? 'modal-show': 'modal-hide';
     return (
-        <div className={modalClass} tabIndex={-1} role="dialog">
+        <div className={modalShowClass} tabIndex={-1} role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -42,12 +41,12 @@ const ConfirmationModal: React.FunctionComponent<ConfirmationModalProps> = ({
                     <div className="modal-footer">
                         <button
                             type="button"
-                            className={confirmButtonClassString}
+                            className={`btn btn-block ${confirmButtonClass}`}
                             onClick={() => props.onConfirm()}
                         >{confirmButtonText}</button>
                         <button
                             type="button"
-                            className={cancelButtonClassString}
+                            className={`btn btn-block ${cancelButtonClass}`}
                             onClick={() => props.onCancel()}
                         >Cancel</button>
                     </div>
