@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, FormEvent } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import ErrorBox from './error-box';
+import ConfirmationModal from './ConfirmationModal';
 
 class MyAccountPage extends Component<any, any> { // TODO: add proper types
     static propTypes = { // TODO: generate propTypes from TS
@@ -20,7 +21,8 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
     constructor(props) {
         super(props);
         this.state = {
-            error: undefined
+            error: undefined,
+            showDeleteConfirm: false
         };
         this.handleLogout = this.handleLogout.bind(this);
         this.handleGenerateKey = this.handleGenerateKey.bind(this);
@@ -64,6 +66,37 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
         }.bind(this)).catch(
             (err) => this.setState({error: err})
         );
+    }
+
+    confirmDelete(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        this.setState({ showDeleteConfirm: true });
+    }
+
+    hideConfirmDelete() {
+        this.setState({ showDeleteConfirm: false });
+    }
+
+    async handleDelete() {
+        this.setState({ error: undefined });
+
+        try {
+            const res = await fetch('/api/users/me', {
+                method: 'DELETE',
+                credentials: 'same-origin'
+            });
+            const data = await res.json();
+            
+            if(data.error) {
+                this.setState({ error: data.error });
+            } else {
+                this.props.logout();
+            }
+        } catch (err) {
+            this.setState({ error: err });
+        } finally {
+            this.hideConfirmDelete();
+        }
     }
 
     render() {
@@ -110,6 +143,25 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
 
                         <h3 className="h3">GitHub</h3>
                         <a href="http://github.com/tomalrussell/colouring-london/">Colouring London Github repository</a>
+
+                        <hr />
+
+                        <h2 className="h2">Account actions</h2>
+                        <form
+                            onSubmit={e => this.confirmDelete(e)}
+                            className="form-group mb-3"
+                        >
+                            <input className="btn btn-danger" type="submit" value="Delete account" />
+                        </form>
+
+                        <ConfirmationModal
+                            show={this.state.showDeleteConfirm}
+                            title="Confirm account deletion"
+                            description="Are you sure you want to delete your account? This cannot be undone."
+                            confirmButtonText="Delete account"
+                            onConfirm={() => this.handleDelete()}
+                            onCancel={() => this.hideConfirmDelete()}
+                        />
 
                     </section>
                 </article>
