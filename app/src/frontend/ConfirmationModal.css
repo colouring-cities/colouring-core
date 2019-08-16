@@ -1,7 +1,7 @@
-.show-modal {
+.modal.modal-show {
     display: block;
 }
 
-.modal-hide {
+.modal.modal-hide {
     display: none;
 }
