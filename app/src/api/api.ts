@@ -7,7 +7,7 @@ import { queryLocation } from './services/search';
 import buildingsRouter from './routes/buildingsRouter';
 
 
-const server = express();
+const server = express.Router()
 
 // parse POSTed json body
 server.use(bodyParser.json());
