@@ -140,4 +140,22 @@ function deleteUser(id) {
     });
 }
 
-export { getUserById, createUser, authUser, getNewUserAPIKey, authAPIUser, deleteUser }
+function logout(session: Express.Session) {
+    return new Promise((resolve, reject) => {
+        session.user_id = undefined;
+        session.destroy(err => {
+            if (err) return reject(err);
+            return resolve();
+        });
+    });
+}
+
+export {
+    getUserById,
+    createUser,
+    authUser,
+    getNewUserAPIKey,
+    authAPIUser,
+    deleteUser,
+    logout
+};

@@ -1,78 +1,20 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import { authUser, createUser, getUserById, getNewUserAPIKey, deleteUser } from './services/user';
+import { authUser, getNewUserAPIKey, logout } from './services/user';
 import { queryLocation } from './services/search';
 
 import buildingsRouter from './routes/buildingsRouter';
+import usersRouter from './routes/usersRouter';
 
 
-const server = express.Router()
+const server = express.Router();
 
 // parse POSTed json body
 server.use(bodyParser.json());
 
 server.use('/buildings', buildingsRouter);
-
-// POST new user
-server.post('/users', function (req, res) {
-    const user = req.body;
-    if (req.session.user_id) {
-        res.send({ error: 'Already signed in' });
-        return
-    }
-
-    if (user.email) {
-        if (user.email != user.confirm_email) {
-            res.send({ error: 'Email did not match confirmation.' });
-            return
-        }
-    } else {
-        user.email = null;
-    }
-
-    createUser(user).then(function (result) {
-        if (result.user_id) {
-            req.session.user_id = result.user_id;
-            res.send({ user_id: result.user_id });
-        } else {
-            req.session.user_id = undefined;
-            res.send({ error: result.error });
-        }
-    }).catch(function (err) {
-        console.error(err);
-        res.send(err)
-    });
-});
-
-// GET own user info
-server.route('/users/me')
-    .get(function (req, res) {
-        if (!req.session.user_id) {
-            res.send({ error: 'Must be logged in' });
-            return
-        }
-
-        getUserById(req.session.user_id).then(function (user) {
-            res.send(user);
-        }).catch(function (error) {
-            res.send(error);
-        });
-    })
-    .delete((req, res) => {
-        if (!req.session.user_id) {
-            return res.send({ error: 'Must be logged in' });
-        }
-        console.log(`Deleting user ${req.session.user_id}`);
-
-        deleteUser(req.session.user_id).then(
-            () => logout(req.session)
-        ).then(() => {
-            res.send({ success: true });
-        }).catch(err => {
-            res.send({ error: err });
-        });
-    })
+server.use('/users', usersRouter);
 
 // POST user auth
 server.post('/login', function (req, res) {
@@ -98,15 +40,6 @@ server.post('/logout', function (req, res) {
     });
 });
 
-function logout(session) {
-    return new Promise((resolve, reject) => {
-        session.user_id = undefined;
-        session.destroy(err => {
-            if (err) return reject(err);
-            return resolve();
-        });
-    });
-}
 
 // POST generate API key
 server.post('/api/key', function (req, res) {
