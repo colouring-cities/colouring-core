@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
 import DataEntry from '../data-components/data-entry';
 import UPRNsDataEntry from '../data-components/uprns-data-entry';
+import InfoBox from '../../components/info-box';
 
 const LocationView = (props) => (
+    <Fragment>
+    <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
     <dl className="data-list">
         <DataEntry
             title="Building Name"
@@ -120,6 +123,7 @@ const LocationView = (props) => (
             // "placeholder": 0
         }
     </dl>
+    </Fragment>
 )
 const LocationContainer = withCopyEdit(LocationView);
 

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import BuildingNotFound from './building-not-found';
 import ContainerHeader from './container-header';
 import Sidebar from './sidebar';
+import ErrorBox from '../components/error-box';
+import InfoBox from '../components/info-box';
 
 /**
  * Shared functionality for view/edit forms
@@ -27,10 +30,27 @@ const withCopyEdit = (WrappedComponent) => {
 
         constructor(props) {
             super(props);
+
+            // create object and spread into state to avoid TS complaining about modifying readonly state
+            let fieldsObj = {};
+            for (const field of props.fields) {
+                fieldsObj[field.slug] = props[field.slug];
+            }
+
             this.state = {
+                error: this.props.error || undefined,
+                like: this.props.like || undefined,
                 copying: false,
-                values_to_copy: {}
+                keys_to_copy: {},
+                ...fieldsObj
             };
+
+            this.handleChange = this.handleChange.bind(this);
+            this.handleCheck = this.handleCheck.bind(this);
+            this.handleLike = this.handleLike.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+            this.handleUpdate = this.handleUpdate.bind(this);
+
             this.toggleCopying = this.toggleCopying.bind(this);
             this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
         }
@@ -49,21 +69,134 @@ const withCopyEdit = (WrappedComponent) => {
          *
          * @param {string} key
          */
-        toggleCopyAttribute(key) {
-            const value = this.props.building[key];
-            const values = this.state.values_to_copy;
-            if(Object.keys(this.state.values_to_copy).includes(key)){
-                delete values[key];
+        toggleCopyAttribute(key: string) {
+            const keys = this.state.keys_to_copy;
+            if(this.state.keys_to_copy[key]){
+                delete keys[key];
             } else {
-                values[key] = value;
+                keys[key] = true;
             }
             this.setState({
-                values_to_copy: values
+                keys_to_copy: keys
             })
         }
 
+        /**
+         * Handle changes on typical inputs
+         * - e.g. input[type=text], radio, select, textare
+         *
+         * @param {DocumentEvent} event
+         */
+        handleChange(event) {
+            const target = event.target;
+            let value = (target.value === '')? null : target.value;
+            const name = target.name;
+
+            // special transform - consider something data driven before adding 'else if's
+            if (name === 'location_postcode' && value !== null) {
+                value = value.toUpperCase();
+            }
+            this.setState({
+                [name]: value
+            });
+        }
+
+        /**
+         * Handle changes on checkboxes
+         * - e.g. input[type=checkbox]
+         *
+         * @param {DocumentEvent} event
+         */
+        handleCheck(event) {
+            const target = event.target;
+            const value = target.checked;
+            const name = target.name;
+
+            this.setState({
+                [name]: value
+            });
+        }
+
+        /**
+         * Handle update directly
+         * - e.g. as callback from MultiTextInput where we set a list of strings
+         *
+         * @param {String} key
+         * @param {*} value
+         */
+        handleUpdate(key, value) {
+            this.setState({
+                [key]: value
+            });
+        }
+
+        /**
+         * Handle likes separately
+         * - like/love reaction is limited to set/unset per user
+         *
+         * @param {DocumentEvent} event
+         */
+        handleLike(event) {
+            event.preventDefault();
+            const like = event.target.checked;
+
+            fetch(`/building/${this.props.building_id}/like.json`, {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'same-origin',
+                body: JSON.stringify({like: like})
+            }).then(
+                res => res.json()
+            ).then(function(res){
+                if (res.error) {
+                    this.setState({error: res.error})
+                } else {
+                    this.props.selectBuilding(res);
+                    this.setState({
+                        likes_total: res.likes_total
+                    })
+                }
+            }.bind(this)).catch(
+                (err) => this.setState({error: err})
+            );
+        }
+
+        handleSubmit(event) {
+            event.preventDefault();
+            this.setState({error: undefined})
+
+            fetch(`/building/${this.props.building_id}.json`, {
+                method: 'POST',
+                body: JSON.stringify(this.state),
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'same-origin'
+            }).then(
+                res => res.json()
+            ).then(function(res){
+                if (res.error) {
+                    this.setState({error: res.error})
+                } else {
+                    this.props.selectBuilding(res);
+                }
+            }.bind(this)).catch(
+                (err) => this.setState({error: err})
+            );
+        }
+
         render() {
-            const data_string = JSON.stringify(this.state.values_to_copy);
+            if (this.state.mode === 'edit' && !this.props.user){
+                return <Redirect to="/sign-up.html" />
+            }
+
+            const values_to_copy = {}
+            for (const key of Object.keys(this.state.keys_to_copy)) {
+                values_to_copy[key] = this.state[key]
+            }
+            const data_string = JSON.stringify(values_to_copy);
             const copy = {
                 copying: this.state.copying,
                 toggleCopying: this.toggleCopying,
@@ -72,14 +205,55 @@ const withCopyEdit = (WrappedComponent) => {
             }
             return this.props.building?
                 <Sidebar>
-                    <section id={this.props.slug} className="data-section">
-                        <ContainerHeader
-                            {...this.props}
-                            data_string={data_string}
-                            copy={copy}
-                            />
-                        <WrappedComponent {...this.props} copy={copy} />
-                    </section>
+                <section
+                    id={this.props.slug}
+                    className="data-section">
+                <form
+                    action={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
+                    method="POST"
+                    onSubmit={this.handleSubmit}>
+                    <ContainerHeader
+                        {...this.props}
+                        data_string={data_string}
+                        copy={copy}
+                        />
+                    <ErrorBox msg={this.state.error} />
+                    {
+                        (this.props.mode === 'edit' && this.props.inactive)?
+                            <InfoBox
+                                msg={`We're not collecting data on ${this.props.title.toLowerCase()} yet - check back soon.`}
+                                />
+                        : null
+                    }
+                    <WrappedComponent
+                        {...this.props}
+                        copy={copy}
+                        handleChange={this.handleChange}
+                        handleCheck={this.handleCheck}
+                        handleLike={this.handleLike}
+                        handleUpdate={this.handleUpdate}
+                        />
+                    {
+                        (this.props.mode === 'edit' && !this.props.inactive)?
+                            <Fragment>
+                            <InfoBox
+                                msg="Colouring may take a few seconds - try zooming the map or hitting refresh after saving (we're working on making this smoother)." />
+                                {
+                                    this.props.slug === 'like'? // special-case for likes
+                                        null :
+                                        <div className="buttons-container">
+                                            <button
+                                                type="submit"
+                                                className="btn btn-primary">
+                                                Save
+                                            </button>
+                                        </div>
+                                }
+                            </Fragment>
+                        : null
+                    }
+                </form>
+                </section>
                 </Sidebar>
             : <BuildingNotFound mode="view" />
         }
