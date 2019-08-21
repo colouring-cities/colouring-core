@@ -90,8 +90,20 @@ server.get('/search', function (req, res) {
     });
 })
 
+server.use((err, req, res, next) => {
+    if (res.headersSent) {
+        return next(err);
+    }
+
+    if (err != undefined) {
+        console.log('Global error handler: ', err);
+        res.status(500).send({ error: 'Server error' });
+    }
+});
+
 server.use((req, res) => {
     res.status(404).json({ error: 'Resource not found'});
 })
+
 
 export default server;
