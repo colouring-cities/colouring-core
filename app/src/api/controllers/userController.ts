@@ -1,4 +1,10 @@
+import { URL } from 'url';
+
+import express from 'express';
+
 import * as userService from '../services/user';
+import * as passwordResetService from '../services/passwordReset';
+import { TokenVerificationError } from '../services/passwordReset';
 
 function createUser(req, res) {
     const user = req.body;
@@ -58,8 +64,42 @@ function deleteCurrentUser(req, res) {
     });
 }
 
+async function resetPassword(req: express.Request, res: express.Response) {
+    throw new Error('adsd');
+    if(req.body == undefined || (req.body.email == undefined && req.body.token == undefined)) {
+        return res.send({ error: 'Expected an email address or password reset token in the request body' });
+    }
+
+    if(req.body.email != undefined) {
+        // first stage: send reset token to email address
+
+        // this relies on the API being on the same hostname as the frontend
+        const { origin } = new URL(req.protocol + '://' + req.headers.host);
+        await passwordResetService.sendPasswordResetToken(req.body.email, origin);
+
+        return res.status(202).send({ success: true });
+    } else if (req.body.token != undefined) {
+        // second stage: verify token and reset password
+        if (req.body.password == undefined) {
+            return res.send({ error: 'Expected a new password' });
+        }
+        try {
+            await passwordResetService.resetPassword(req.body.token, req.body.password);
+        } catch (err) {
+            if (err instanceof TokenVerificationError) {
+                return res.send({ error: 'Could not verify token' });
+            }
+
+            throw err;
+        }
+
+        return res.send({ success: true });
+    }
+}
+
 export default {
     createUser,
     getCurrentUser,
     deleteCurrentUser,
+    resetPassword
 };
