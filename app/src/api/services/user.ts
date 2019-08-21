@@ -86,6 +86,21 @@ function getUserById(id) {
     });
 }
 
+function getUserByEmail(email: string) {
+    return db.one(
+        `SELECT
+            user_id, username, email
+        FROM
+            users
+        WHERE
+            email = $1
+        `, [email]
+    ).catch(function(error) {
+        console.error('Error:', error);
+        return undefined;
+    });
+}
+
 function getNewUserAPIKey(id) {
     return db.one(
         `UPDATE
@@ -152,6 +167,7 @@ function logout(session: Express.Session) {
 
 export {
     getUserById,
+    getUserByEmail,
     createUser,
     authUser,
     getNewUserAPIKey,
