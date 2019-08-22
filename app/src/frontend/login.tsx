@@ -111,6 +111,8 @@ class Login extends Component<any, any> { // TODO: add proper types
                             <label htmlFor="show_password" className="form-check-label">Show password?</label>
                         </div>
 
+                        <Link to="/forgotten-password.html">Forgotten password?</Link>
+
                         <div className="buttons-container">
                             <input type="submit" value="Log In" className="btn btn-primary" />
                         </div>

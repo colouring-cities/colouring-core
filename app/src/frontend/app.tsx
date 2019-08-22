@@ -20,6 +20,8 @@ import Welcome from './welcome';
 import { parseCategoryURL } from '../parse';
 import PrivacyPolicyPage from './privacy-policy';
 import ContributorAgreementPage from './contributor-agreement';
+import ForgottenPassword from './forgotten-password';
+import PasswordReset from './password-reset';
 
 /**
  * App component
@@ -247,6 +249,8 @@ class App extends React.Component<any, any> { // TODO: add proper types
                         <Route exact path="/login.html">
                             <Login user={this.state.user} login={this.login} />
                         </Route>
+                        <Route exact path="/forgotten-password.html" component={ForgottenPassword} />
+                        <Route exact path="/password-reset.html" component={PasswordReset} />
                         <Route exact path="/sign-up.html">
                             <SignUp user={this.state.user} login={this.login} />
                         </Route>
