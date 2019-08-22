@@ -65,7 +65,6 @@ function deleteCurrentUser(req, res) {
 }
 
 async function resetPassword(req: express.Request, res: express.Response) {
-    throw new Error('adsd');
     if(req.body == undefined || (req.body.email == undefined && req.body.token == undefined)) {
         return res.send({ error: 'Expected an email address or password reset token in the request body' });
     }
