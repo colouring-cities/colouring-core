@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './ConfirmationModal.css';
+import './confirmation-modal.css';
 
 interface ConfirmationModalProps {
     show: boolean,

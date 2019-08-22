@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import ErrorBox from './error-box';
-import ConfirmationModal from './ConfirmationModal';
+import ConfirmationModal from './confirmation-modal';
 
 class MyAccountPage extends Component<any, any> { // TODO: add proper types
     static propTypes = { // TODO: generate propTypes from TS
