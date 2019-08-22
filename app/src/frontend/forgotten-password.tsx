@@ -5,7 +5,7 @@ import ErrorBox from './error-box';
 interface ForgottenPasswordState {
     success: boolean;
     error: string;
-    inputs: any;
+    email: string;
     emailUsed: string;
 }
 
@@ -15,26 +15,25 @@ export default class ForgottenPassword extends React.Component<{}, ForgottenPass
         this.state = {
             error: undefined,
             success: undefined,
-            inputs: {
-                email: ''
-            },
+            email: undefined,
             emailUsed: undefined
         };
     }
 
     handleChange(event: ChangeEvent<HTMLInputElement>) {
-        this.setState({ inputs: { [event.target.name]: event.target.value } });
+        const { name, value } = event.currentTarget;
+        this.setState({ [name]: value } as any);
     }
     
     async handleSubmit(event: FormEvent) {
         event.preventDefault();
         this.setState({ error: undefined, success: undefined });
 
-        const emailSent = this.state.inputs.email;
+        const emailSent = this.state.email;
         try {
             const res = await fetch('/api/users/password', {
                 method: 'PUT',
-                body: JSON.stringify(this.state.inputs),
+                body: JSON.stringify({ email: emailSent }),
                 headers: {
                     'Content-Type': 'application/json'
                 }
