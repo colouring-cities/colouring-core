@@ -25,6 +25,7 @@ module.exports = {
                 MAIL_SERVER_PORT: 587,
                 MAIL_SERVER_USER: "mail_username",
                 MAIL_SERVER_PASSWORD: "longrandompassword",
+                WEBAPP_ORIGIN: "http://localhost:3000",
             }
         }
     ]
