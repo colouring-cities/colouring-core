@@ -120,10 +120,10 @@ const withCopyEdit = (WrappedComponent) => {
          * Handle update directly
          * - e.g. as callback from MultiTextInput where we set a list of strings
          *
-         * @param {String} key
+         * @param {String} name
          * @param {*} value
          */
-        handleUpdate(key: string, value: any) {
+        handleUpdate(name: string, value: any) {
             this.updateBuildingState(name, value);
         }
 

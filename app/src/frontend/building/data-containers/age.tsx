@@ -66,7 +66,7 @@ const AgeView = (props) => (
             value={props.building.date_link}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             tooltip="URL for age and date reference"
             placeholder="https://..."
             />
