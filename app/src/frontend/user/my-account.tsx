@@ -2,7 +2,7 @@ import React, { Component, FormEvent } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import ConfirmationModal from '../confirmation-modal';
+import ConfirmationModal from '../components/confirmation-modal';
 import ErrorBox from '../components/error-box';
 
 class MyAccountPage extends Component<any, any> { // TODO: add proper types

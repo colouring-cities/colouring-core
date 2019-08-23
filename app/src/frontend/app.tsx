@@ -22,8 +22,8 @@ import Login from './user/login';
 import MyAccountPage from './user/my-account';
 import SignUp from './user/signup';
 
-import ForgottenPassword from './forgotten-password';
-import PasswordReset from './password-reset';
+import ForgottenPassword from './user/forgotten-password';
+import PasswordReset from './user/password-reset';
 
 import { parseCategoryURL } from '../parse';
 

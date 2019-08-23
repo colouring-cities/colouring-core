@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { RouteComponentProps, Redirect } from 'react-router';
 
-import ErrorBox from './error-box';
+import ErrorBox from '../components/error-box';
 import { Link } from 'react-router-dom';
 
 interface PasswordResetState {
@@ -88,7 +88,7 @@ export default class PasswordReset extends React.Component<RouteComponentProps, 
             return <Redirect to="/my-account.html" />;
         }
         return (
-            
+
             <article>
                 <section className="main-col">
                     <h1 className="h2">Forgotten password</h1>

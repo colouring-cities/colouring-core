@@ -1,6 +1,6 @@
 import React, { FormEvent, ChangeEvent } from 'react';
-import InfoBox from './info-box';
-import ErrorBox from './error-box';
+import InfoBox from '../components/info-box';
+import ErrorBox from '../components/error-box';
 
 interface ForgottenPasswordState {
     success: boolean;
@@ -24,7 +24,7 @@ export default class ForgottenPassword extends React.Component<{}, ForgottenPass
         const { name, value } = event.currentTarget;
         this.setState({ [name]: value } as any);
     }
-    
+
     async handleSubmit(event: FormEvent) {
         event.preventDefault();
         this.setState({ error: undefined, success: undefined });
