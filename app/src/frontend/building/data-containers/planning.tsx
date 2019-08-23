@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
 import DataEntry from '../data-components/data-entry';
@@ -7,7 +7,7 @@ import DataEntry from '../data-components/data-entry';
 * Planning view/edit section
 */
 const PlanningView = (props) => (
-    <dl className="data-list">
+    <Fragment>
         <DataEntry
             title="Planning portal link"
             slug="planning_portal_link"
@@ -213,7 +213,7 @@ const PlanningView = (props) => (
         {
             // "type": "text"
         }
-    </dl>
+    </Fragment>
 )
 const PlanningContainer = withCopyEdit(PlanningView);
 

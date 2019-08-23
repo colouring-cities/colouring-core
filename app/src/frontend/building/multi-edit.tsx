@@ -41,14 +41,14 @@ const MultiEdit = (props) => {
                 <header className={`section-header view ${cat} active`}>
                     <a><h3 className="h3">{title}</h3></a>
                 </header>
-                <dl className='data-list'>
+                <Fragment>
                 {
                     Object.keys(data).map((key => {
                         const label = fieldTitleFromSlug(key);
                         return <DataEntry key={key} label={label} value={data[key]}/>
                     }))
                 }
-                </dl>
+                </Fragment>
                 <form className='buttons-container'>
                     <InfoBox msg='Click buildings to colour using the data above' />
 

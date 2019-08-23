@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
 import LikeDataEntry from '../data-components/like-data-entry';
@@ -7,12 +7,12 @@ import LikeDataEntry from '../data-components/like-data-entry';
 * Like view/edit section
 */
 const LikeView = (props) => (
-    <dl className="data-list">
+    <Fragment>
         <LikeDataEntry
             value={props.building.likes_total}
             user_building_like={props.building_like}
             />
-    </dl>
+    </Fragment>
 )
 const LikeContainer = withCopyEdit(LikeView);
 

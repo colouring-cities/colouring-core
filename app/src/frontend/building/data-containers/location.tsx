@@ -8,7 +8,7 @@ import InfoBox from '../../components/info-box';
 const LocationView = (props) => (
     <Fragment>
     <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
-    <dl className="data-list">
+    <Fragment>
         <DataEntry
             title="Building Name"
             slug="location_name"
@@ -122,7 +122,7 @@ const LocationView = (props) => (
             // "step": 0.0001,
             // "placeholder": 0
         }
-    </dl>
+    </Fragment>
     </Fragment>
 )
 const LocationContainer = withCopyEdit(LocationView);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
 import DataEntry from '../data-components/data-entry';
@@ -7,7 +7,7 @@ import DataEntry from '../data-components/data-entry';
 * Size view/edit section
 */
 const SizeView = (props) => (
-    <dl className="data-list">
+    <Fragment>
         <DataEntry
             title="Core storeys"
             slug="size_storeys_core"
@@ -145,7 +145,7 @@ const SizeView = (props) => (
             //     "Other"
             // ]
         }
-    </dl>
+    </Fragment>
 )
 const SizeContainer = withCopyEdit(SizeView);
 

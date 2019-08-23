@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
 import DataEntry from '../data-components/data-entry';
@@ -7,7 +7,7 @@ import DataEntry from '../data-components/data-entry';
 * Age view/edit section
 */
 const AgeView = (props) => (
-    <dl className="data-list">
+    <Fragment>
         <DataEntry
             title="Year built (best estimate)"
             slug="date_year"
@@ -76,7 +76,7 @@ const AgeView = (props) => (
             tooltip="URL for age and date reference"
             // "placeholder": "https://..."
             />
-    </dl>
+    </Fragment>
 )
 const AgeContainer = withCopyEdit(AgeView);
 
