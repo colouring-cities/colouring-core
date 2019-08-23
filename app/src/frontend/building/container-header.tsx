@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import { BackIcon, EditIcon }from '../components/icons';
+import { BackIcon, EditIcon, ViewIcon }from '../components/icons';
 
 
 const ContainerHeader: React.FunctionComponent<any> = (props) => (
@@ -46,13 +46,21 @@ const ContainerHeader: React.FunctionComponent<any> = (props) => (
             }
             {
                 !props.inactive && !props.copy.copying?
-                    <NavLink
-                        className="icon-button edit"
-                        title="Edit data"
-                        to={`/edit/${props.cat}/building/${props.building.building_id}.html`}>
-                        Edit
-                        <EditIcon />
-                    </NavLink>
+                    (props.mode === 'edit')?
+                        <NavLink
+                            className="icon-button view"
+                            title="View data"
+                            to={`/view/${props.cat}/building/${props.building.building_id}.html`}>
+                            View
+                            <ViewIcon />
+                        </NavLink>
+                        : <NavLink
+                            className="icon-button edit"
+                            title="Edit data"
+                            to={`/edit/${props.cat}/building/${props.building.building_id}.html`}>
+                            Edit
+                            <EditIcon />
+                        </NavLink>
                 : null
             }
         </nav>

@@ -5,7 +5,7 @@ import React from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle, faPaintBrush, faInfoCircle, faTimes, faCheck, faCheckDouble,
-    faAngleLeft, faCaretDown, faSearch } from '@fortawesome/free-solid-svg-icons'
+    faAngleLeft, faCaretDown, faSearch, faEye } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
     faQuestionCircle,
@@ -16,7 +16,8 @@ library.add(
     faCheckDouble,
     faAngleLeft,
     faCaretDown,
-    faSearch
+    faSearch,
+    faEye
 );
 
 const HelpIcon = () => (
@@ -29,6 +30,10 @@ const InfoIcon = () => (
 
 const EditIcon = () => (
     <FontAwesomeIcon icon="paint-brush" />
+);
+
+const ViewIcon = () => (
+    <FontAwesomeIcon icon="eye" />
 );
 
 const CloseIcon = () => (
@@ -55,4 +60,15 @@ const SearchIcon = () => (
     <FontAwesomeIcon icon="search" />
 );
 
-export { HelpIcon, InfoIcon, EditIcon, CloseIcon, SaveIcon, SaveDoneIcon, BackIcon, DownIcon, SearchIcon };
+export {
+    HelpIcon,
+    InfoIcon,
+    EditIcon,
+    ViewIcon,
+    CloseIcon,
+    SaveIcon,
+    SaveDoneIcon,
+    BackIcon,
+    DownIcon,
+    SearchIcon
+};

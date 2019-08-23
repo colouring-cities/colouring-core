@@ -114,10 +114,14 @@
 }
 .svg-inline--fa.fa-w-11,
 .svg-inline--fa.fa-w-16,
+.svg-inline--fa.fa-w-18,
 .svg-inline--fa.fa-w-8 {
     width: 30px;
 }
-.icon-button.edit:hover svg {
+.icon-button.edit:active svg,
+.icon-button.edit:hover svg,
+.icon-button.view:active svg,
+.icon-button.view:hover svg {
     color: rgb(11, 225, 225);
 }
 .icon-button.help,
