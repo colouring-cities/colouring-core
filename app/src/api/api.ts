@@ -1,49 +1,20 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import { authUser, createUser, getUserById, getNewUserAPIKey, deleteUser } from './services/user';
+import { authUser, createUser, getUserById, getNewUserAPIKey, deleteUser, logout } from './services/user';
 import { queryLocation } from './services/search';
 
 import buildingsRouter from './routes/buildingsRouter';
+import usersRouter from './routes/usersRouter';
 
 
-const server = express();
+const server = express.Router();
 
 // parse POSTed json body
 server.use(bodyParser.json());
 
 server.use('/buildings', buildingsRouter);
-
-// POST new user
-server.post('/users', function (req, res) {
-    const user = req.body;
-    if (req.session.user_id) {
-        res.send({ error: 'Already signed in' });
-        return
-    }
-
-    if (user.email) {
-        if (user.email != user.confirm_email) {
-            res.send({ error: 'Email did not match confirmation.' });
-            return
-        }
-    } else {
-        user.email = null;
-    }
-
-    createUser(user).then(function (result) {
-        if (result.user_id) {
-            req.session.user_id = result.user_id;
-            res.send({ user_id: result.user_id });
-        } else {
-            req.session.user_id = undefined;
-            res.send({ error: result.error });
-        }
-    }).catch(function (err) {
-        console.error(err);
-        res.send(err)
-    });
-});
+server.use('/users', usersRouter);
 
 // GET own user info
 server.route('/users/me')
@@ -98,16 +69,6 @@ server.post('/logout', function (req, res) {
     });
 });
 
-function logout(session) {
-    return new Promise((resolve, reject) => {
-        session.user_id = undefined;
-        session.destroy(err => {
-            if (err) return reject(err);
-            return resolve();
-        });
-    });
-}
-
 // POST generate API key
 server.post('/api/key', function (req, res) {
     if (!req.session.user_id) {
@@ -157,8 +118,20 @@ server.get('/search', function (req, res) {
     });
 })
 
+server.use((err, req, res, next) => {
+    if (res.headersSent) {
+        return next(err);
+    }
+
+    if (err != undefined) {
+        console.log('Global error handler: ', err);
+        res.status(500).send({ error: 'Server error' });
+    }
+});
+
 server.use((req, res) => {
     res.status(404).json({ error: 'Resource not found'});
 })
+
 
 export default server;
