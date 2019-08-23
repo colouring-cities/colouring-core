@@ -13,15 +13,20 @@ const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
                 disabled={props.disabled}
                 copy={props.copy}
             />
-            <input className="form-control" type="text"
-                id={props.slug}
-                name={props.slug}
-                value={props.value || ''}
-                maxLength={props.maxLength}
-                disabled={props.mode === 'view' || props.disabled}
-                placeholder={props.placeholder}
-                onChange={props.onChange}
-            />
+            <div className="form-check">
+                <input className="form-check-input" type="checkbox"
+                    id={props.slug}
+                    name={props.slug}
+                    checked={!!props.value}
+                    disabled={props.mode === 'view' || props.disabled}
+                    onChange={props.onChange}
+                    />
+                <label
+                    htmlFor={props.slug}
+                    className="form-check-label">
+                    {props.title}
+                </label>
+            </div>
         </Fragment>
     );
 }

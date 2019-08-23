@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { DataTitleCopyable } from './data-title';
 
-const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
+const NumericDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
     return (
         <Fragment>
             <DataTitleCopyable
@@ -13,11 +13,15 @@ const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
                 disabled={props.disabled}
                 copy={props.copy}
             />
-            <input className="form-control" type="text"
+            <input
+                className="form-control"
+                type="number"
                 id={props.slug}
                 name={props.slug}
                 value={props.value || ''}
-                maxLength={props.maxLength}
+                step={props.step || 1}
+                max={props.max}
+                min={props.min || 0}
                 disabled={props.mode === 'view' || props.disabled}
                 placeholder={props.placeholder}
                 onChange={props.onChange}
@@ -26,14 +30,16 @@ const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
     );
 }
 
-DataEntry.propTypes = {
+NumericDataEntry.propTypes = {
     title: PropTypes.string,
     slug: PropTypes.string,
     tooltip: PropTypes.string,
     disabled: PropTypes.bool,
     value: PropTypes.any,
     placeholder: PropTypes.string,
-    maxLength: PropTypes.number,
+    max: PropTypes.number,
+    min: PropTypes.number,
+    step: PropTypes.number,
     onChange: PropTypes.func,
     copy: PropTypes.shape({
         copying: PropTypes.bool,
@@ -42,4 +48,4 @@ DataEntry.propTypes = {
     })
 }
 
-export default DataEntry;
+export default NumericDataEntry;

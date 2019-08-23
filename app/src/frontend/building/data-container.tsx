@@ -31,18 +31,12 @@ const withCopyEdit = (WrappedComponent) => {
         constructor(props) {
             super(props);
 
-            // create object and spread into state to avoid TS complaining about modifying readonly state
-            let fieldsObj = {};
-            for (const field of props.fields) {
-                fieldsObj[field.slug] = props[field.slug];
-            }
-
             this.state = {
                 error: this.props.error || undefined,
                 like: this.props.like || undefined,
                 copying: false,
                 keys_to_copy: {},
-                ...fieldsObj
+                building: this.props.building
             };
 
             this.handleChange = this.handleChange.bind(this);
@@ -81,11 +75,20 @@ const withCopyEdit = (WrappedComponent) => {
             })
         }
 
+        updateBuildingState(key, value) {
+            const building = {...this.state.building};
+            building[key] = value;
+
+            this.setState({
+                building: building
+            });
+        }
+
         /**
          * Handle changes on typical inputs
          * - e.g. input[type=text], radio, select, textare
          *
-         * @param {DocumentEvent} event
+         * @param {*} event
          */
         handleChange(event) {
             const target = event.target;
@@ -96,25 +99,21 @@ const withCopyEdit = (WrappedComponent) => {
             if (name === 'location_postcode' && value !== null) {
                 value = value.toUpperCase();
             }
-            this.setState({
-                [name]: value
-            });
+            this.updateBuildingState(name, value);
         }
 
         /**
          * Handle changes on checkboxes
          * - e.g. input[type=checkbox]
          *
-         * @param {DocumentEvent} event
+         * @param {*} event
          */
         handleCheck(event) {
             const target = event.target;
             const value = target.checked;
             const name = target.name;
 
-            this.setState({
-                [name]: value
-            });
+            this.updateBuildingState(name, value);
         }
 
         /**
@@ -124,23 +123,21 @@ const withCopyEdit = (WrappedComponent) => {
          * @param {String} key
          * @param {*} value
          */
-        handleUpdate(key, value) {
-            this.setState({
-                [key]: value
-            });
+        handleUpdate(key: string, value: any) {
+            this.updateBuildingState(name, value);
         }
 
         /**
          * Handle likes separately
          * - like/love reaction is limited to set/unset per user
          *
-         * @param {DocumentEvent} event
+         * @param {*} event
          */
         handleLike(event) {
             event.preventDefault();
             const like = event.target.checked;
 
-            fetch(`/building/${this.props.building_id}/like.json`, {
+            fetch(`/api/buildings/${this.props.building.building_id}/like.json`, {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json'
@@ -154,9 +151,7 @@ const withCopyEdit = (WrappedComponent) => {
                     this.setState({error: res.error})
                 } else {
                     this.props.selectBuilding(res);
-                    this.setState({
-                        likes_total: res.likes_total
-                    })
+                    this.updateBuildingState('likes_total', res.likes_total);
                 }
             }.bind(this)).catch(
                 (err) => this.setState({error: err})
@@ -167,9 +162,9 @@ const withCopyEdit = (WrappedComponent) => {
             event.preventDefault();
             this.setState({error: undefined})
 
-            fetch(`/building/${this.props.building_id}.json`, {
+            fetch(`/api/buildings/${this.props.building.building_id}.json`, {
                 method: 'POST',
-                body: JSON.stringify(this.state),
+                body: JSON.stringify(this.state.building),
                 headers:{
                     'Content-Type': 'application/json'
                 },
@@ -194,29 +189,29 @@ const withCopyEdit = (WrappedComponent) => {
 
             const values_to_copy = {}
             for (const key of Object.keys(this.state.keys_to_copy)) {
-                values_to_copy[key] = this.state[key]
+                values_to_copy[key] = this.state.building[key]
             }
             const data_string = JSON.stringify(values_to_copy);
             const copy = {
                 copying: this.state.copying,
                 toggleCopying: this.toggleCopying,
                 toggleCopyAttribute: this.toggleCopyAttribute,
-                copyingKey: (key) => Object.keys(this.state.values_to_copy).includes(key)
+                copyingKey: (key) => this.state.keys_to_copy[key]
             }
             return this.props.building?
                 <Sidebar>
                 <section
                     id={this.props.slug}
                     className="data-section">
+                <ContainerHeader
+                    {...this.props}
+                    data_string={data_string}
+                    copy={copy}
+                    />
                 <form
-                    action={`/edit/${this.props.slug}/building/${this.props.building_id}.html`}
+                    action={`/edit/${this.props.slug}/building/${this.props.building.building_id}.html`}
                     method="POST"
                     onSubmit={this.handleSubmit}>
-                    <ContainerHeader
-                        {...this.props}
-                        data_string={data_string}
-                        copy={copy}
-                        />
                     <ErrorBox msg={this.state.error} />
                     {
                         (this.props.mode === 'edit' && this.props.inactive)?
@@ -226,12 +221,13 @@ const withCopyEdit = (WrappedComponent) => {
                         : null
                     }
                     <WrappedComponent
-                        {...this.props}
+                        building={this.state.building}
+                        mode={this.props.mode}
                         copy={copy}
-                        handleChange={this.handleChange}
-                        handleCheck={this.handleCheck}
-                        handleLike={this.handleLike}
-                        handleUpdate={this.handleUpdate}
+                        onChange={this.handleChange}
+                        onCheck={this.handleCheck}
+                        onLike={this.handleLike}
+                        onUpdate={this.handleUpdate}
                         />
                     {
                         (this.props.mode === 'edit' && !this.props.inactive)?

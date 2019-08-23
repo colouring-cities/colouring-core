@@ -1,80 +1,74 @@
 import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
-import DataEntry from '../data-components/data-entry';
+import MultiDataEntry from '../data-components/multi-data-entry';
+import NumericDataEntry from '../data-components/numeric-data-entry';
+import SelectDataEntry from '../data-components/select-data-entry';
+import TextboxDataEntry from '../data-components/textbox-data-entry';
+import YearDataEntry from '../data-components/year-data-entry';
 
 /**
 * Age view/edit section
 */
 const AgeView = (props) => (
     <Fragment>
-        <DataEntry
-            title="Year built (best estimate)"
-            slug="date_year"
-            value={props.building.date_year}
-            copy={props.copy}
-            // "type": "year_estimator"
+        <YearDataEntry
+            year={props.building.date_year}
+            upper={props.building.date_upper}
+            lower={props.building.date_lower}
+            mode={props.mode}
+            onChange={props.onChange}
             />
-        <DataEntry
-            title="Latest possible start year"
-            slug="date_upper"
-            value={props.building.date_upper}
-            copy={props.copy}
-            // "type": "number", "step": 1,
-            tooltip="This should be the latest year in which building could have started."
-            />
-        <DataEntry
-            title="Earliest possible start date"
-            slug="date_lower"
-            value={props.building.date_lower}
-            copy={props.copy}
-            // "type": "number", "step": 1,
-            tooltip="This should be the earliest year in which building could have started."
-            />
-        <DataEntry
+        <NumericDataEntry
             title="Facade year"
             slug="facade_year"
             value={props.building.facade_year}
+            mode={props.mode}
             copy={props.copy}
-            // "type": "number", "step": 1,
+            onChange={props.onChange}
+            step={1}
             tooltip="Best estimate"
             />
-        <DataEntry
+        <SelectDataEntry
             title="Source of information"
             slug="date_source"
             value={props.building.date_source}
+            mode={props.mode}
             copy={props.copy}
-            // "type": "text_list",
+            onChange={props.onChange}
             tooltip="Source for the main start date"
-            // "options": [
-            //     "Survey of London",
-            //     "Pevsner Guides",
-            //     "Local history publication",
-            //     "National Heritage List for England",
-            //     "Historical map",
-            //     "Archive research",
-            //     "Expert knowledge of building",
-            //     "Other book",
-            //     "Other website",
-            //     "Other"
-            // ]
+            placeholder=""
+            options={[
+                "Survey of London",
+                "Pevsner Guides",
+                "Local history publication",
+                "National Heritage List for England",
+                "Historical map",
+                "Archive research",
+                "Expert knowledge of building",
+                "Other book",
+                "Other website",
+                "Other"
+            ]}
             />
-        <DataEntry
+        <TextboxDataEntry
             title="Source details"
             slug="date_source_detail"
             value={props.building.date_source_detail}
+            mode={props.mode}
             copy={props.copy}
-            // "type": "text_long",
+            onChange={props.onChange}
             tooltip="References for date source (max 500 characters)"
             />
-        <DataEntry
+        <MultiDataEntry
             title="Text and Image Links"
             slug="date_link"
             value={props.building.date_link}
+            mode={props.mode}
             copy={props.copy}
-            // "type": "text_multi",
+            onChange={props.onChange}
             tooltip="URL for age and date reference"
-            // "placeholder": "https://..."
+            placeholder="https://..."
             />
     </Fragment>
 )

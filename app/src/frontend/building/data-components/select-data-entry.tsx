@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { DataTitleCopyable } from './data-title';
 
-const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
+const SelectDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
     return (
         <Fragment>
             <DataTitleCopyable
@@ -13,27 +13,30 @@ const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
                 disabled={props.disabled}
                 copy={props.copy}
             />
-            <input className="form-control" type="text"
-                id={props.slug}
-                name={props.slug}
+            <select className="form-control"
+                id={props.slug} name={props.slug}
                 value={props.value || ''}
-                maxLength={props.maxLength}
                 disabled={props.mode === 'view' || props.disabled}
-                placeholder={props.placeholder}
-                onChange={props.onChange}
-            />
+                onChange={props.handleChange}>
+                <option value="">{props.placeholder}</option>
+                {
+                    props.options.map(option => (
+                        <option key={option} value={option}>{option}</option>
+                    ))
+                }
+            </select>
         </Fragment>
     );
 }
 
-DataEntry.propTypes = {
+SelectDataEntry.propTypes = {
     title: PropTypes.string,
     slug: PropTypes.string,
     tooltip: PropTypes.string,
     disabled: PropTypes.bool,
     value: PropTypes.any,
     placeholder: PropTypes.string,
-    maxLength: PropTypes.number,
+    options: PropTypes.arrayOf(PropTypes.string),
     onChange: PropTypes.func,
     copy: PropTypes.shape({
         copying: PropTypes.bool,
@@ -42,4 +45,4 @@ DataEntry.propTypes = {
     })
 }
 
-export default DataEntry;
+export default SelectDataEntry;

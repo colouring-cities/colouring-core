@@ -19,10 +19,9 @@ DataTitle.propTypes = {
 
 const DataTitleCopyable: React.FunctionComponent<any> = (props) => { // TODO: remove any
     return (
-        <dt>
-            { props.title }
+        <div className="data-title">
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
-            { (props.copy.copying && props.slug && !props.disabled)?
+            { (props.copy && props.copy.copying && props.slug && !props.disabled)?
                 <div className="icon-buttons">
                     <label className="icon-button copy">
                         Copy
@@ -34,7 +33,10 @@ const DataTitleCopyable: React.FunctionComponent<any> = (props) => { // TODO: re
                 </div>
                 : null
             }
-        </dt>
+            <label htmlFor={props.slug}>
+                { props.title }
+            </label>
+        </div>
     );
 }
 

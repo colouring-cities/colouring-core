@@ -8,29 +8,35 @@ const LikeDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove
     const data_string = JSON.stringify({like: true});
     return (
         <Fragment>
-            <dt>
-                Number of likes
+            <div className="data-title">
                 <Tooltip text="People who like the building and think it contributes to the city." />
                 <div className="icon-buttons">
                     <NavLink
                         to={`/multi-edit/like.html?data=${data_string}`}
-                        className="icon-button copy">
-                        Copy
+                        className="icon-button like">
+                        Like more
                     </NavLink>
                 </div>
-            </dt>
-            <dd>
+                <label>Number of likes</label>
+            </div>
+            <p>
                 {
                     (props.value != null)?
                         (props.value === 1)?
                             `${props.value} person likes this building`
                             : `${props.value} people like this building`
-                        : '\u00A0'
+                        : "0 people like this building so far - you could be the first!"
                 }
-            </dd>
-            {
-                (props.user_building_like)? <dd>&hellip;including you!</dd> : ''
-            }
+            </p>
+            <input className="form-check-input" type="checkbox"
+                id="like" name="like"
+                checked={!!props.building_like}
+                disabled={props.mode === 'view'}
+                onChange={props.handleLike}
+            />
+            <label htmlFor="like" className="form-check-label">
+                I like this building and think it contributes to the city!
+            </label>
         </Fragment>
     );
 }

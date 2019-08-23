@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { DataTitleCopyable } from './data-title';
 
-const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
+const TextboxDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
     return (
         <Fragment>
             <DataTitleCopyable
@@ -13,20 +13,22 @@ const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
                 disabled={props.disabled}
                 copy={props.copy}
             />
-            <input className="form-control" type="text"
+            <textarea
+                className="form-control"
                 id={props.slug}
                 name={props.slug}
                 value={props.value || ''}
-                maxLength={props.maxLength}
+                maxLength={props.max_length}
+                rows={5}
                 disabled={props.mode === 'view' || props.disabled}
                 placeholder={props.placeholder}
                 onChange={props.onChange}
-            />
+                ></textarea>
         </Fragment>
     );
 }
 
-DataEntry.propTypes = {
+TextboxDataEntry.propTypes = {
     title: PropTypes.string,
     slug: PropTypes.string,
     tooltip: PropTypes.string,
@@ -42,4 +44,4 @@ DataEntry.propTypes = {
     })
 }
 
-export default DataEntry;
+export default TextboxDataEntry;

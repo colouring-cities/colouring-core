@@ -148,8 +148,7 @@
 .icon-button.save:hover svg {
     color: rgb(11, 225, 72);
 }
-label .icon-buttons,
-.data-list dt .icon-buttons {
+.data-title .icon-buttons {
     float: right;
 }
 
@@ -224,4 +223,14 @@ label .icon-buttons,
 .data-list dd ul {
     list-style: none;
     padding-left: 0;
+}
+.data-section .data-link-list {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+}
+.data-link-list li {
+    border-color: #6c757d;
+    border-radius: 0;
 }
