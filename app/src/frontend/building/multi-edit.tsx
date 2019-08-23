@@ -4,9 +4,10 @@ import { parse } from 'query-string';
 import PropTypes from 'prop-types';
 
 import Sidebar from './sidebar';
-import CONFIG from './fields-config.json';
 import InfoBox from '../components/info-box';
 import { sanitiseURL } from '../helpers';
+
+const CONFIG = [];
 
 const MultiEdit = (props) => {
     if (!props.user){
