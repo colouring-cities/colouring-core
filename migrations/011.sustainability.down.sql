@@ -9,7 +9,8 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS sust_dec;
 -- DEC date
 ALTER TABLE buildings DROP COLUMN IF EXISTS sust_dec_date;
 
---TODO: DEC certifcate number, is there an online store for these?
+--DEC certifcate lmk key, this would be lmkkey, no online lookup but can scrape through API. Numeric (25)
+ALTER TABLE buildings DROP COLUMN IF EXISTS sust_dec_lmkey;
 
 -- Aggregate EPC rating (Estimated) for a building, derived from inidividual certificates
 ALTER TABLE buildings DROP COLUMN IF EXISTS sust_aggregate_estimate_epc;
@@ -17,10 +18,11 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS sust_aggregate_estimate_epc;
 -- Last significant retrofit date YYYY
 ALTER TABLE buildings DROP COLUMN IF EXISTS sust_retrofit_date;
 
---TODO : Embodied carbon
+--How much embodied carbon? One for ML, tons CO2 int
+ALTER TABLE buildings DROP COLUMN IF EXISTS sust_embodied_carbon;
 
---TODO : Life expectancy minimum
+--Life expectancy of the building, via further analysis
+ALTER TABLE buildings DROP COLUMN IF EXISTS sust_life_expectancy;
 
---TODO : Average lifespan for typology
-
---TODO : Adaptability rating
+--Average lifespan of typology based on statistical analysis of similar stock
+ALTER TABLE buildings DROP COLUMN IF EXISTS sust_lifespan_average;

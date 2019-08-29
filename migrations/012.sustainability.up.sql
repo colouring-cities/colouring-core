@@ -56,3 +56,12 @@ ALTER TABLE buildings
 -- Last significant retrofit date YYYY
 ALTER TABLE buildings
     ADD COLUMN IF NOT EXISTS sust_retrofit_date smallint;
+
+--How much embodied carbon? One for ML, tons CO2 int
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS sust_embodied_carbon numeric(7,2);
+
+--Life expectancy of the building, via further analysis
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS sust_life_expectancy smallint;
+
+--Average lifespan of typology based on statistical analysis of similar stock
+ALTER TABLE buildings ADD COLUMN IF NOTE EXISTS sust_lifespan_average smallint;
