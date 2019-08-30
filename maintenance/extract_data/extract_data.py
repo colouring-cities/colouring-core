@@ -54,7 +54,7 @@ def db_to_csv(connection, query):
 
 def get_extract_zip_file_path(current_time):
     base_dir = Path(os.environ['EXTRACTS_DIRECTORY'])
-    file_name = f"data-extract-{current_time:%Y-%m-%d}.zip"
+    file_name = f"data-extract-{current_time:%Y-%m-%d-%H_%M_%S}.zip"
     return base_dir / file_name
 
 
