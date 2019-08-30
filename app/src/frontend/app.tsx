@@ -22,6 +22,7 @@ import PrivacyPolicyPage from './privacy-policy';
 import ContributorAgreementPage from './contributor-agreement';
 import ForgottenPassword from './forgotten-password';
 import PasswordReset from './password-reset';
+import DataExtracts from './data-extracts';
 
 /**
  * App component
@@ -263,6 +264,7 @@ class App extends React.Component<any, any> { // TODO: add proper types
                         </Route>
                         <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
                         <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
+                        <Route exact path="/data-extracts.html" component={DataExtracts} />
                         <Route component={NotFound} />
                     </Switch>
                 </main>
