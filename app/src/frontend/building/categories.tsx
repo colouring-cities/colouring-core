@@ -138,7 +138,7 @@ const Category = (props) => (
             <p className="description">{props.desc}</p>
         </NavLink>
         <a className="icon-button help" href={props.help}>
-            More info
+            More
         </a>
     </li>
 )
