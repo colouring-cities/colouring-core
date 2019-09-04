@@ -143,7 +143,7 @@ class ColouringMap extends Component<any, ColouringMapState> { // TODO: add prop
             : '/tiles/base_night/{z}/{x}/{y}.png'
 
         return (
-            <Fragment>
+            <div className="map-container">
                 <Map
                     center={position}
                     zoom={this.state.zoom}
@@ -177,7 +177,7 @@ class ColouringMap extends Component<any, ColouringMapState> { // TODO: add prop
                         </Fragment>
                     ) : null
                 }
-            </Fragment>
+            </div>
         );
     }
 }
