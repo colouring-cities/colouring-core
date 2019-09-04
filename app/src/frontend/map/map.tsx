@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import { LatLngExpression } from 'leaflet';
 import PropTypes from 'prop-types';
+import React, { Component, Fragment } from 'react';
 import { Map, TileLayer, ZoomControl, AttributionControl } from 'react-leaflet-universal';
 
 import '../../../node_modules/leaflet/dist/leaflet.css'
@@ -13,10 +14,16 @@ import ThemeSwitcher from './theme-switcher';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
+interface ColouringMapState {
+    theme: 'light' | 'night';
+    lat: number;
+    lng: number;
+    zoom: number;
+}
 /**
  * Map area
  */
-class ColouringMap extends Component<any, any> { // TODO: add proper types
+class ColouringMap extends Component<any, ColouringMapState> { // TODO: add proper types
     static propTypes = { // TODO: generate propTypes from TS
         building: PropTypes.object,
         revision_id: PropTypes.number,
@@ -91,7 +98,7 @@ class ColouringMap extends Component<any, any> { // TODO: add proper types
     }
 
     render() {
-        const position = [this.state.lat, this.state.lng];
+        const position: LatLngExpression = [this.state.lat, this.state.lng];
 
         // baselayer
         const key = OS_API_KEY
