@@ -30,19 +30,24 @@ class Header extends React.Component<any, any> { // TODO: add proper types
     render() {
         return (
             <header className="main-header">
-                <nav className="navbar navbar-light navbar-expand-md">
-                    <span className="navbar-brand">
+                <nav className="navbar navbar-light navbar-expand-lg">
+                    <span className="navbar-brand align-self-start">
                         <Logo/>
                     </span>
                     <button className="navbar-toggler navbar-toggler-right" type="button"
-                        onClick={this.handleClick} aria-expanded="false" aria-label="Toggle navigation">
+                        onClick={this.handleClick} aria-expanded={!this.state.collapseMenu} aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className={this.state.collapseMenu ? 'collapse navbar-collapse' : 'navbar-collapse'}>
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
+                                <NavLink to="/view/categories.html" className="nav-link">
+                                    View/Edit Maps
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
                                 <a className="nav-link" href="https://pages.colouring.london">
-                                    Hello
+                                    About
                                 </a>
                             </li>
                             <li className="nav-item">
@@ -51,22 +56,12 @@ class Header extends React.Component<any, any> { // TODO: add proper types
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/view/categories.html" className="nav-link">
-                                    View/Edit Maps
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="https://pages.colouring.london/about">
-                                    More about
-                                </a>
-                            </li>
-                            <li className="nav-item">
                                 <a className="nav-link" href="https://pages.colouring.london/whoisinvolved">
                                     Who&rsquo;s Involved?
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="https://www.pages.colouring.london/data-ethics">
+                                <a className="nav-link" href="https://pages.colouring.london/data-ethics">
                                     Data Ethics
                                 </a>
                             </li>
@@ -80,7 +75,7 @@ class Header extends React.Component<any, any> { // TODO: add proper types
                                     (
                                         <li className="nav-item">
                                             <NavLink to="/my-account.html" className="nav-link">
-                                                My account (Logged in as {this.props.user.username})
+                                                Account <span className="shorten-username">({this.props.user.username})</span>
                                             </NavLink>
                                         </li>
                                     ):
