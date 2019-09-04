@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import './legend.css';
 import { MinorLogo } from '../components/logo';
+import { DownIcon, UpIcon, BackIcon } from '../components/icons';
 
 const LEGEND_CONFIG = {
     location: {
@@ -147,7 +148,20 @@ class Legend extends React.Component<any, any> { // TODO: add proper types
         return (
             <div className="map-legend">
                 <MinorLogo />
-                <h4 className="h4">{ title } {elements.length?<button className="expander-button btn btn-outline-secondary btn-sm" type="button" onClick={this.handleClick} >^</button>:null}</h4>
+                <h4 className="h4">
+                    { title }
+                </h4>
+                {
+                    elements.length > 0 ?
+                        <button className="expander-button btn btn-outline-secondary btn-sm" type="button" onClick={this.handleClick} >
+                            {
+                                this.state.collapseList ?
+                                    <UpIcon /> :
+                                    <DownIcon />
+                            }
+                        </button> :
+                        null
+                }
                 {
                     details.description?
                         <p>{details.description} </p>

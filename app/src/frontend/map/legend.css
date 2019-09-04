@@ -2,28 +2,53 @@
  * Map legend
  */
 .map-legend {
-    z-index: 1000;
     position: absolute;
-    bottom: 50%;
+    bottom: 2.5rem;
     right: 10px;
+    z-index: 1000;
+
     min-width: 12rem;
-    float: right;
+    max-height: 50%;
+    display: flex;
+    flex-direction: column;
+
     background: white;
     border-radius: 4px;
     padding: 0.5rem 0rem 0.25rem;
     border: 1px solid #fff;
     box-shadow: 0px 0px 1px 1px #222222;
 }
-@media (min-width: 768px){
-    .map-legend {
-        bottom: 40px;
+
+.map-legend * {
+    flex: 0;
+}
+
+.map-legend .logo {
+    display: none;
+}
+@media (min-width: 768px) {
+    .map-legend .logo {
+        display: block;
     }
 }
-@media (min-width: 1020px){
+
+/* Prevent legend from overlapping with attribution */
+@media (min-width: 706px){
     .map-legend {
-        bottom: 24px;
+        bottom: 1.5rem;
     }
 }
+@media (min-width: 768px) {
+    .map-legend {
+        bottom: 2.5rem;
+    }
+}
+@media (min-width: 1072px){
+    .map-legend {
+        bottom: 1.5rem;
+    }
+}
+
 .map-legend .h4,
 .map-legend p,
 .data-legend {
@@ -33,30 +58,12 @@
     margin: 0.25rem 0 0.5rem;
 }
 .data-legend {
-    max-height: 80px;
-    max-height: 20vh;
-    overflow-y: auto;
+    overflow: scroll;
     list-style: none;
     margin-bottom: 0;
+    flex: 1;
 }
-@media (min-height: 470px) {
-    .data-legend {
-        max-height: 150px;
-        max-height: 30vh;
-    }
-}
-@media (min-height: 550px) {
-    .data-legend {
-        max-height: 220px;
-        max-height: 40vh;
-    }
-}
-@media (min-height: 670px) {
-    .data-legend {
-        max-height: 330px;
-        max-height: 50vh;
-    }
-}
+
 .data-legend .key {
     display: inline-block;
     width: 1.3rem;
@@ -71,7 +78,20 @@
     opacity: 0.5;
 }
 .expander-button {
-    float: right;	
+    display: inline-block;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    
+    height: 1rem;
+    width: 1rem;
+    line-height: 0.5;
+    padding: 0;
+}
+.expander-button:focus,
+.expander-button:active,
+.expander-button:hover {
+    box-shadow: none;
 }
 @media (min-height: 670px) and (min-width: 768px) {
     .expander-button {
