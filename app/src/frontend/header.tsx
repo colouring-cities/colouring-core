@@ -32,7 +32,9 @@ class Header extends React.Component<any, any> { // TODO: add proper types
             <header className="main-header">
                 <nav className="navbar navbar-light navbar-expand-lg">
                     <span className="navbar-brand align-self-start">
-                        <Logo/>
+                        <NavLink to="/">
+                            <Logo variant='animated'/>
+                        </NavLink>
                     </span>
                     <button className="navbar-toggler navbar-toggler-right" type="button"
                         onClick={this.handleClick} aria-expanded={!this.state.collapseMenu} aria-label="Toggle navigation">

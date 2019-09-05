@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './legend.css';
-import { MinorLogo } from '../components/logo';
+import { Logo } from '../components/logo';
 import { DownIcon, UpIcon, BackIcon } from '../components/icons';
 
 const LEGEND_CONFIG = {
@@ -147,7 +147,7 @@ class Legend extends React.Component<any, any> { // TODO: add proper types
 
         return (
             <div className="map-legend">
-                <MinorLogo />
+                <Logo variant='gray' />
                 <h4 className="h4">
                     { title }
                 </h4>

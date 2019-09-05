@@ -93,8 +93,20 @@
 .expander-button:hover {
     box-shadow: none;
 }
-@media (min-height: 670px) and (min-width: 768px) {
+@media (min-height: 670px) and (min-width: 880px) {
     .expander-button {
         visibility: hidden;
     }
+}
+
+.map-legend .logo {
+    padding: 0 0.5rem 0.5rem;
+}
+.map-legend .logo .logotype {
+    font-size: 1.9rem;
+    margin-bottom: -2px;
+}
+.map-legend .logo .cell {
+    height: 12px;
+    width: 12px;
 }
