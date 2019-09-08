@@ -8,8 +8,7 @@ import { SearchIcon } from '../components/icons';
  */
 class SearchBox extends Component<any, any> { // TODO: add proper types
     static propTypes = { // TODO: generate propTypes from TS
-        onLocate: PropTypes.func,
-        isBuilding: PropTypes.bool
+        onLocate: PropTypes.func
     };
 
     constructor(props) {
@@ -159,7 +158,7 @@ class SearchBox extends Component<any, any> { // TODO: add proper types
             </ul>
             : null;
         return (
-            <div className={`search-box ${this.props.isBuilding? 'building' : ''}`} onKeyDown={this.handleKeyPress}>
+            <div className="search-box" onKeyDown={this.handleKeyPress}>
                 <form onSubmit={this.search} className="form-inline">
                     <div onClick={this.state.smallScreen ? this.expandSearch : null}>
                         <SearchIcon/>

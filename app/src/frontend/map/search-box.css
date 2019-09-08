@@ -5,9 +5,6 @@
     z-index: 1000;
     max-width:80%;
 }
-.building.search-box {
-    top: 0.5rem;
-}
 .search-box form,
 .search-box .search-box-results {
     border-radius: 4px;

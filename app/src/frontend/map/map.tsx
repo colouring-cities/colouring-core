@@ -173,7 +173,7 @@ class ColouringMap extends Component<any, ColouringMapState> { // TODO: add prop
                         <Fragment>
                             <Legend slug={cat} />
                             <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
-                            <SearchBox onLocate={this.handleLocate} isBuilding={isBuilding} />
+                            <SearchBox onLocate={this.handleLocate} />
                         </Fragment>
                     ) : null
                 }
