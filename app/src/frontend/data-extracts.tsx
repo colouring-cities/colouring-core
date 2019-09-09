@@ -53,7 +53,15 @@ export default class DataExtracts extends React.Component<{}, DataExtractsState>
                         this.state.previousExtracts && this.state.previousExtracts.length > 0 ?
                             (<div>
                                 <h1 className="h3">Older extracts</h1>
-                                {this.state.previousExtracts.map(e => <ExtractDownloadLink {...e} />)}
+                                <ul>
+                                {
+                                    this.state.previousExtracts.map(e => 
+                                        <li>
+                                            <ExtractDownloadLink {...e} />
+                                        </li>
+                                    )
+                                }
+                                </ul>
                             </div>) : 
                             null
                     }
