@@ -12,7 +12,7 @@ const LikeDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove
                 <Tooltip text="People who like the building and think it contributes to the city." />
                 <div className="icon-buttons">
                     <NavLink
-                        to={`/multi-edit/like.html?data=${data_string}`}
+                        to={`/multi-edit/like?data=${data_string}`}
                         className="icon-button like">
                         Like more
                     </NavLink>

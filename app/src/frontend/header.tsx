@@ -43,7 +43,7 @@ class Header extends React.Component<any, any> { // TODO: add proper types
                     <div className={this.state.collapseMenu ? 'collapse navbar-collapse' : 'navbar-collapse'}>
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <NavLink to="/view/categories.html" className="nav-link">
+                                <NavLink to="/view/categories" className="nav-link">
                                     View/Edit Maps
                                 </NavLink>
                             </li>
