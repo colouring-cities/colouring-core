@@ -3,7 +3,7 @@ import * as dataExtractService from '../services/dataExtract';
 import asyncController from '../routes/asyncController';
 
 
-export const getAllDataExtracts = asyncController(async function(req: express.Request, res: express.Response) {
+const getAllDataExtracts = asyncController(async function(req: express.Request, res: express.Response) {
     try {
         const dataExtracts = await dataExtractService.listDataExtracts();
         res.send({ extracts: dataExtracts });
@@ -12,7 +12,7 @@ export const getAllDataExtracts = asyncController(async function(req: express.Re
     }
 });
 
-export const getDataExtract = asyncController(async function(req: express.Request, res: express.Response) {
+const getDataExtract = asyncController(async function(req: express.Request, res: express.Response) {
     try {
         const extractId = req.params.extract_id;
         const extract = await dataExtractService.getDataExtractById(extractId);
@@ -21,3 +21,8 @@ export const getDataExtract = asyncController(async function(req: express.Reques
         res.send({ error: 'Database error' });
     }
 });
+
+export default {
+    getAllDataExtracts,
+    getDataExtract
+};

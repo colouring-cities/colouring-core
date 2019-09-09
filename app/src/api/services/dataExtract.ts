@@ -14,7 +14,7 @@ interface DataExtract {
     download_path: string;
 }
 
-export async function listDataExtracts(): Promise<DataExtract[]> {
+async function listDataExtracts(): Promise<DataExtract[]> {
     try {
         const extractRecords = await db.many<DataExtractRow>(
             `SELECT
@@ -29,7 +29,7 @@ export async function listDataExtracts(): Promise<DataExtract[]> {
     }
 }
 
-export async function getDataExtractById(extractId: number): Promise<DataExtract> {
+async function getDataExtractById(extractId: number): Promise<DataExtract> {
     try {
         const extractRecord = await db.one<DataExtractRow>(
             `SELECT 
@@ -55,5 +55,10 @@ function getDataExtractFromRow(er: DataExtractRow): DataExtract {
 
 function getDownloadLinkForExtract(extract: DataExtractRow): string {
     const file_name = path.basename(extract.extract_path);
-    return `/downloads/extracts/${file_name}`; // TODO: potentially move base path to env var
+    return `/downloads/extracts/${file_name}` // TODO: potentially move base path to env var
 }
+
+export {
+    listDataExtracts,
+    getDataExtractById
+};
