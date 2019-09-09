@@ -10,6 +10,9 @@ import zipfile
 import psycopg2
 
 
+class ZipFileExistsError(Exception):
+    pass
+
 def get_connection():
     return psycopg2.connect(
         host=os.environ['PGHOST'],
@@ -82,6 +85,9 @@ edit_history_query = read_sql('./export_edit_history.sql')
 
 
 def make_data_extract(current_time, connection, zip_file_path):
+    if zip_file_path.exists():
+        raise ZipFileExistsError('Archive file under specified name already exists')
+
     zip_file_path.parent.mkdir(parents=True, exist_ok=True)
 
     try:
