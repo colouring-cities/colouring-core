@@ -14,6 +14,15 @@ import ThemeSwitcher from './theme-switcher';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
+interface ColouringMapProps {
+    building: any;
+    mode: 'basic' | 'view' | 'edit' | 'multi-edit';
+    category: string;
+    revision_id: number;
+    selectBuilding: any;
+    colourBuilding: any;
+}
+
 interface ColouringMapState {
     theme: 'light' | 'night';
     lat: number;
@@ -23,14 +32,14 @@ interface ColouringMapState {
 /**
  * Map area
  */
-class ColouringMap extends Component<any, ColouringMapState> { // TODO: add proper types
+class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // TODO: add proper types
     static propTypes = { // TODO: generate propTypes from TS
         building: PropTypes.object,
+        mode: PropTypes.string,
+        category: PropTypes.string,
         revision_id: PropTypes.number,
         selectBuilding: PropTypes.func,
-        colourBuilding: PropTypes.func,
-        match: PropTypes.object,
-        history: PropTypes.object
+        colourBuilding: PropTypes.func
     };
 
     constructor(props) {
@@ -44,7 +53,6 @@ class ColouringMap extends Component<any, ColouringMapState> { // TODO: add prop
         this.handleClick = this.handleClick.bind(this);
         this.handleLocate = this.handleLocate.bind(this);
         this.themeSwitch = this.themeSwitch.bind(this);
-        this.getMode = this.getMode.bind(this);
     }
 
     handleLocate(lat, lng, zoom){
@@ -52,21 +60,13 @@ class ColouringMap extends Component<any, ColouringMapState> { // TODO: add prop
             lat: lat,
             lng: lng,
             zoom: zoom
-        })
-    }
-
-    getMode() {
-        const isEdit = this.props.match.url.match('edit')
-        const isMulti = this.props.match.url.match('multi')
-        return isEdit? (isMulti? 'multi' : 'edit') : 'view';
+        });
     }
 
     handleClick(e) {
-        const mode = this.getMode()
-        const lat = e.latlng.lat
-        const lng = e.latlng.lng
-        const newCat = parseCategoryURL(this.props.match.url);
-        const mapCat = newCat || 'age';
+        const mode = this.props.mode;
+        const lat = e.latlng.lat;
+        const lng = e.latlng.lng;
         fetch(
             '/api/buildings/locate?lat='+lat+'&lng='+lng
         ).then(
@@ -74,17 +74,15 @@ class ColouringMap extends Component<any, ColouringMapState> { // TODO: add prop
         ).then(function(data){
             if (data && data.length){
                 const building = data[0];
-                if (mode === 'multi') {
+                if (mode === 'multi-edit') {
                     // colour building directly
                     this.props.colourBuilding(building);
                 } else {
                     this.props.selectBuilding(building);
-                    this.props.history.push(`/${mode}/${mapCat}/building/${building.building_id}.html`);
                 }
             } else {
                 // deselect but keep/return to expected colour theme
                 this.props.selectBuilding(undefined);
-                this.props.history.push(`/${mode}/${mapCat}.html`);
             }
         }.bind(this)).catch(
             (err) => console.error(err)
@@ -101,46 +99,49 @@ class ColouringMap extends Component<any, ColouringMapState> { // TODO: add prop
         const position: LatLngExpression = [this.state.lat, this.state.lng];
 
         // baselayer
-        const key = OS_API_KEY
-        const tilematrixSet = 'EPSG:3857'
+        const key = OS_API_KEY;
+        const tilematrixSet = 'EPSG:3857';
         const layer = (this.state.theme === 'light')? 'Light 3857' : 'Night 3857';
-        const url = `https://api2.ordnancesurvey.co.uk/mapping_api/v1/service/zxy/${tilematrixSet}/${layer}/{z}/{x}/{y}.png?key=${key}`
-        const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines.'
+        const baseUrl = `https://api2.ordnancesurvey.co.uk/mapping_api/v1/service/zxy/${tilematrixSet}/${layer}/{z}/{x}/{y}.png?key=${key}`;
+        const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines.';
+        const baseLayer = <TileLayer 
+            url={baseUrl}
+            attribution={attribution}
+        />;
+
+        const buildingsBaseUrl = `/tiles/base_${this.state.theme}/{z}/{x}/{y}.png`;
+        const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={14} />;
 
         // colour-data tiles
-        const isBuilding = /building/.test(this.props.match.url);
-        const isEdit = /edit/.test(this.props.match.url);
-        const cat = parseCategoryURL(this.props.match.url);
+        const cat = this.props.category;
         const tilesetByCat = {
             age: 'date_year',
             size: 'size_storeys',
             location: 'location',
             like: 'likes',
             planning: 'conservation_area',
-        }
+        };
         const tileset = tilesetByCat[cat];
         // pick revision id to bust browser cache
         const rev = this.props.revision_id;
-        const dataLayer = tileset?
+        const dataLayer = tileset != undefined ?
             <TileLayer
                 key={tileset}
                 url={`/tiles/${tileset}/{z}/{x}/{y}.png?rev=${rev}`}
-                minZoom={9} />
+                minZoom={9}
+            />
             : null;
 
         // highlight
-        const geometryId = (this.props.building) ? this.props.building.geometry_id : undefined;
-        const highlight = `/tiles/highlight/{z}/{x}/{y}.png?highlight=${geometryId}`
-        const highlightLayer = (isBuilding && this.props.building) ?
+        const highlightLayer = this.props.building != undefined ?
             <TileLayer
                 key={this.props.building.building_id}
-                url={highlight}
-                minZoom={14} />
+                url={`/tiles/highlight/{z}/{x}/{y}.png?highlight=${this.props.building.geometry_id}`}
+                minZoom={14} 
+            />
             : null;
 
-        const baseUrl = (this.state.theme === 'light')?
-            '/tiles/base_light/{z}/{x}/{y}.png'
-            : '/tiles/base_night/{z}/{x}/{y}.png'
+        const isEdit = ['edit', 'multi-edit'].includes(this.props.mode);
 
         return (
             <div className="map-container">
@@ -154,23 +155,23 @@ class ColouringMap extends Component<any, ColouringMapState> { // TODO: add prop
                     attributionControl={false}
                     onClick={this.handleClick}
                 >
-                    <TileLayer url={url} attribution={attribution} />
-                    <TileLayer url={baseUrl} minZoom={14} />
+                    { baseLayer }
+                    { buildingBaseLayer }
                     { dataLayer }
                     { highlightLayer }
                     <ZoomControl position="topright" />
-                    <AttributionControl prefix="" />
+                    <AttributionControl />
                 </Map>
                 {
-                    !isBuilding && this.props.match.url !== '/'? (
-                        <div className="map-notice">
-                            <HelpIcon /> {isEdit? 'Click a building to edit' : 'Click a building for details'}
-                        </div>
-                    ) : null
-                }
-                {
-                    this.props.match.url !== '/'? (
+                    this.props.mode !== 'basic'? (
                         <Fragment>
+                            {
+                                this.props.building == undefined ?
+                                    <div className="map-notice">
+                                        <HelpIcon /> {isEdit ? 'Click a building to edit' : 'Click a building for details'}
+                                    </div>
+                                    : null
+                            }
                             <Legend slug={cat} />
                             <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
                             <SearchBox onLocate={this.handleLocate} />
