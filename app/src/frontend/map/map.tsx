@@ -137,7 +137,8 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
             <TileLayer
                 key={this.props.building.building_id}
                 url={`/tiles/highlight/{z}/{x}/{y}.png?highlight=${this.props.building.geometry_id}`}
-                minZoom={14} 
+                minZoom={14}
+                zIndex={100}
             />
             : null;
 
