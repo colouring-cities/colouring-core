@@ -160,7 +160,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
                     { dataLayer }
                     { highlightLayer }
                     <ZoomControl position="topright" />
-                    <AttributionControl />
+                    <AttributionControl prefix=""/>
                 </Map>
                 {
                     this.props.mode !== 'basic'? (
