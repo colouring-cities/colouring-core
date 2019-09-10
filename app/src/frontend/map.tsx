@@ -123,7 +123,7 @@ class ColouringMap extends Component<any, any> { // TODO: add proper types
 
         // highlight
         const geometryId = (this.props.building) ? this.props.building.geometry_id : undefined;
-        const highlight = `/tiles/highlight/{z}/{x}/{y}.png?highlight=${geometryId}`
+        const highlight = `/tiles/highlight/{z}/{x}/{y}.png?highlight=${geometryId}&base=${tileset}`
         const highlightLayer = (isBuilding && this.props.building) ?
             <TileLayer
                 key={this.props.building.building_id}

@@ -147,15 +147,19 @@ function getXYZ(bbox, z) {
     return mercator.xyz(bbox, z, false, '900913')
 }
 
-function renderTile(tileset, z, x, y, geometryId, cb) {
+interface HighlightOptions {
+    geometryId?: number;
+    baseTileset?: string;
+}
+function renderTile(tileset, z, x, y, {geometryId, baseTileset}: HighlightOptions, cb) {
     const bbox = getBbox(z, x, y)
 
     const map = new mapnik.Map(TILE_SIZE, TILE_SIZE, PROJ4_STRING);
     map.bufferSize = TILE_BUFFER_SIZE;
     const layer = new mapnik.Layer('tile', PROJ4_STRING);
 
-    const tableDefinition = (tileset === 'highlight') ?
-        getHighlightTableDefinition(geometryId)
+    const tableDefinition = tileset === 'highlight' ?
+        getHighlightTableDefinition(geometryId, baseTileset)
         : MAP_STYLE_TABLE_DEFINITIONS[tileset];
 
     const conf = Object.assign({ table: tableDefinition }, DATASOURCE_CONFIG)
@@ -187,10 +191,11 @@ function renderTile(tileset, z, x, y, geometryId, cb) {
 }
 
 // highlight single geometry, requires geometryId in the table query
-function getHighlightTableDefinition(geometryId) {
+function getHighlightTableDefinition(geometryId: number, baseLayer: string = 'default') {
     return `(
         SELECT
-            g.geometry_geom
+            g.geometry_geom,
+            '${baseLayer}' as base_layer
         FROM
             geometries as g
         WHERE

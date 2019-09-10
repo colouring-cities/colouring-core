@@ -99,7 +99,7 @@ function renderOrStitchTile(tileset, z, x, y) {
     } else {
 
         return new Promise((resolve, reject) => {
-            renderTile(tileset, z, x, y, undefined, (err, im) => {
+            renderTile(tileset, z, x, y, {}, (err, im) => {
                 if (err) {
                     reject(err)
                     return
@@ -193,9 +193,9 @@ function handleHighlightTileRequest(req, res) {
     }
 
     // highlight layer uses geometry_id to outline a single building
-    const { highlight } = req.query
+    const { highlight, base } = req.query
     const geometryId = strictParseInt(highlight);
-    if (isNaN(geometryId)) {
+    if (isNaN(geometryId) || ( base != undefined && !base.match(/^\w+$/) )) {
         res.status(400).send({ error: 'Bad parameter' })
         return
     }
@@ -204,7 +204,10 @@ function handleHighlightTileRequest(req, res) {
         return emptyTile()
     }
 
-    renderTile('highlight', intZ, intX, intY, geometryId, function (err, im) {
+    renderTile('highlight', intZ, intX, intY, {
+        geometryId,
+        baseTileset: base
+    }, function (err, im) {
         if (err) {throw err}
 
         res.writeHead(200, { 'Content-Type': 'image/png' })

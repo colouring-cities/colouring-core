@@ -35,6 +35,12 @@
     </Style>
     <Style name="highlight">
         <Rule>
+            <Filter>[base_layer] = 'location' or [base_layer] = 'conservation_area'</Filter>
+            <LineSymbolizer stroke="#ff0000aa" stroke-width="4.5" />
+            <LineSymbolizer stroke="#ff0000ff" stroke-width="2.5" />
+        </Rule>
+        <Rule>
+            <ElseFilter />
             <LineSymbolizer stroke="#00ffffaa" stroke-width="4.5" />
             <LineSymbolizer stroke="#00ffffff" stroke-width="2.5" />
         </Rule>
