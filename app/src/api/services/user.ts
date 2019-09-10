@@ -2,6 +2,8 @@
  * User data access
  *
  */
+import { errors } from 'pg-promise';
+
 import db from '../../db';
 
 function createUser(user) {
@@ -64,8 +66,12 @@ function authUser(username, password) {
             return { error: 'Username or password not recognised' }
         }
     }).catch(function (err) {
-        console.error(err);
-        return { error: 'Username or password not recognised' };
+        if (err instanceof errors.QueryResultError) {
+            console.error(`Authentication failed for user ${username}`);
+            return { error: 'Username or password not recognised' };
+        }
+        console.error('Error:', err);
+        return { error: 'Database error' }; 
     })
 }
 
