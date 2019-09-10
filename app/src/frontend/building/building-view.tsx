@@ -10,7 +10,7 @@ import SizeContainer from './data-containers/size';
 import ConstructionContainer from './data-containers/construction';
 import TeamContainer from './data-containers/team';
 import SustainabilityContainer from './data-containers/sustainability';
-import GreeneryContainer from './data-containers/greenery';
+import StreetscapeContainer from './data-containers/streetscape';
 import CommunityContainer from './data-containers/community';
 import PlanningContainer from './data-containers/planning';
 import LikeContainer from './data-containers/like';
@@ -91,13 +91,13 @@ const BuildingView = (props) => {
                 help="https://pages.colouring.london/sustainability"
                 inactive={true}
             />
-        case 'greenery':
-            return <GreeneryContainer
+        case 'streetscape':
+            return <StreetscapeContainer
                 {...props}
                 key={props.building && props.building.building_id}
-                title="Greenery"
-                intro="Is there greenery nearby? Coming soon…"
-                help="https://pages.colouring.london/greenery"
+                title="Streetscape"
+                intro="What's the building's context? Coming soon…"
+                help="https://pages.colouring.london/streetscape"
                 inactive={true}
             />
         case 'community':

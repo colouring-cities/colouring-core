@@ -3,9 +3,9 @@ import React, { Fragment } from 'react';
 import withCopyEdit from '../data-container';
 
 /**
-* Greenery view/edit section
+* Streetscape view/edit section
 */
-const GreeneryView = (props) => (
+const StreetscapeView = (props) => (
     <Fragment>
         <p className="data-intro">{props.intro}</p>
         <ul className="data-list">
@@ -18,6 +18,6 @@ const GreeneryView = (props) => (
         </ul>
     </Fragment>
 )
-const GreeneryContainer = withCopyEdit(GreeneryView);
+const StreetscapeContainer = withCopyEdit(StreetscapeView);
 
-export default GreeneryContainer;
+export default StreetscapeContainer;
