@@ -74,6 +74,17 @@ function renderHTML(context, data, req, res) {
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8" />
+
+        <meta name="twitter:card"              content="summary" />
+        <meta name="twitter:site"              content="@colouringlondon" />
+
+        <meta property="og:url"                content="https://colouring.london" />
+        <meta property="og:type"               content="website" />
+        <meta property="og:title"              content="Colouring London" />
+        <meta property="og:description"        content="Colouring London is a citizen science platform collecting information on every building in London, to help make the city more sustainable. We’re building it at The Bartlett Centre for Advanced Spatial Analysis, University College London." />
+        <meta property="og:locale"             content="en_GB" />
+        <meta property="og:image"              content="https://colouring.london/images/logo-cl.png" />
+
         <title>Colouring London</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <style>
