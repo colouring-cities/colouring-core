@@ -5,6 +5,7 @@ import express from 'express';
 import * as userService from '../services/user';
 import * as passwordResetService from '../services/passwordReset';
 import { TokenVerificationError } from '../services/passwordReset';
+import { ValidationError } from '../validation';
 
 function createUser(req, res) {
     const user = req.body;
@@ -87,6 +88,8 @@ async function resetPassword(req: express.Request, res: express.Response) {
         } catch (err) {
             if (err instanceof TokenVerificationError) {
                 return res.send({ error: 'Could not verify token' });
+            } else if (err instanceof ValidationError) {
+                return res.send({ error: err.message});
             }
 
             throw err;

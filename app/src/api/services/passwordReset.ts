@@ -5,6 +5,7 @@ import nodemailer from 'nodemailer';
 import db from '../../db';
 import * as userService from './user';
 import { transporter } from './email';
+import { validatePassword } from '../validation';
 
 
 /**
@@ -24,6 +25,7 @@ export async function sendPasswordResetToken(email: string, siteOrigin: string):
 }
 
 export async function resetPassword(passwordResetToken: string, newPassword: string): Promise<void> {
+    validatePassword(newPassword);
     const userId = await verifyPasswordResetToken(passwordResetToken);
     if (userId != undefined) {
         await updatePasswordForUser(userId, newPassword);
