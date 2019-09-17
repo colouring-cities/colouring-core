@@ -52,3 +52,43 @@
 .pale-brown {
     background-color: #918e6e;
 }
+
+/**
+ * Category colours
+ */
+.background-location {
+    background-color: #edc40b;
+}
+.background-use {
+    background-color: #f0ee0c;
+}
+.background-type {
+    background-color: #ff9100;
+}
+.background-age {
+    background-color: #ee5f63;
+}
+.background-size {
+    background-color: #ee91bf;
+}
+.background-construction {
+    background-color: #aa7fa7;
+}
+.background-team {
+    background-color: #6f879c;
+}
+.background-sustainability {
+    background-color: #5ec232;
+}
+.background-greenery {
+    background-color: #6dbb8b;
+}
+.background-community {
+    background-color: #65b7ff;
+}
+.background-planning {
+    background-color: #a1a3a9;
+}
+.background-like {
+    background-color: #9c896d;
+}

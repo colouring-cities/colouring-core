@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Logo from './logo';
+import { Logo } from './components/logo';
 import './header.css';
 
 /**
@@ -14,7 +14,7 @@ class Header extends React.Component<any, any> { // TODO: add proper types
             username: PropTypes.string
         })
     };
-    
+
     constructor(props) {
         super(props);
         this.state = {collapseMenu: true};
@@ -51,13 +51,8 @@ class Header extends React.Component<any, any> { // TODO: add proper types
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/view/age.html" className="nav-link">
-                                    View Maps
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink to="/edit/age.html" className="nav-link">
-                                    Add/Edit Data
+                                <NavLink to="/view/categories.html" className="nav-link">
+                                    View/Edit Maps
                                 </NavLink>
                             </li>
                             <li className="nav-item">

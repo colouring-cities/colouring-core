@@ -6,22 +6,26 @@ import { parse } from 'query-string';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import AboutPage from './about';
-import BuildingEdit from './building-edit';
-import BuildingView from './building-view';
-import MultiEdit from './multi-edit';
-import ColouringMap from './map';
+import BuildingView from './building/building-view';
+import ColouringMap from './map/map';
 import Header from './header';
-import Overview from './overview';
-import Login from './login';
-import MyAccountPage from './my-account';
-import SignUp from './signup';
-import Welcome from './welcome';
+import MultiEdit from './building/multi-edit';
+import Categories from './building/categories';
+import Sidebar from './building/sidebar';
+
+import AboutPage from './pages/about';
+import ContributorAgreementPage from './pages/contributor-agreement';
+import PrivacyPolicyPage from './pages/privacy-policy';
+import Welcome from './pages/welcome';
+
+import Login from './user/login';
+import MyAccountPage from './user/my-account';
+import SignUp from './user/signup';
+
+import ForgottenPassword from './user/forgotten-password';
+import PasswordReset from './user/password-reset';
+
 import { parseCategoryURL } from '../parse';
-import PrivacyPolicyPage from './privacy-policy';
-import ContributorAgreementPage from './contributor-agreement';
-import ForgottenPassword from './forgotten-password';
-import PasswordReset from './password-reset';
 
 /**
  * App component
@@ -191,81 +195,77 @@ class App extends React.Component<any, any> { // TODO: add proper types
     }
 
     render() {
+        const building_id = (this.state.building)?
+            this.state.building.building_id
+            : 2503371 // Default to UCL main building. TODO use last selected if any
+        const building = this.state.building;
+        const building_like = this.state.building_like;
         return (
             <Fragment>
-                <Header user={this.state.user} />
-                <main>
-                    <Switch>
-                        <Route exact path="/">
-                            <Welcome />
-                        </Route>
-                        <Route exact path="/view/:cat.html" render={(props) => (
-                            <Overview
-                                {...props}
-                                mode='view' user={this.state.user}
-                            />
-                        ) } />
-                        <Route exact path="/edit/:cat.html" render={(props) => (
-                            <Overview
-                                {...props}
-                                mode='edit' user={this.state.user}
-                            />
-                        ) } />
-                        <Route exact path="/multi-edit/:cat.html" render={(props) => (
-                            <MultiEdit
-                                {...props}
-                                user={this.state.user}
-                            />
-                        ) } />
-                        <Route exact path="/view/:cat/building/:building.html" render={(props) => (
-                            <BuildingView
-                                {...props}
-                                {...this.state.building}
-                                user={this.state.user}
-                                building_like={this.state.building_like}
-                            />
-                        ) } />
-                        <Route exact path="/edit/:cat/building/:building.html" render={(props) => (
-                            <BuildingEdit
-                                {...props}
-                                {...this.state.building}
-                                user={this.state.user}
-                                building_like={this.state.building_like}
-                                selectBuilding={this.selectBuilding}
-                            />
-                        ) } />
-                    </Switch>
-                    <Switch>
-                        <Route exact path="/(multi-edit.*|edit.*|view.*)?" render={(props) => (
-                            <ColouringMap
-                                {...props}
-                                building={this.state.building}
-                                revision_id={this.state.revision_id}
-                                selectBuilding={this.selectBuilding}
-                                colourBuilding={this.colourBuilding}
-                            />
-                        ) } />
-                        <Route exact path="/about.html" component={AboutPage} />
-                        <Route exact path="/login.html">
-                            <Login user={this.state.user} login={this.login} />
-                        </Route>
-                        <Route exact path="/forgotten-password.html" component={ForgottenPassword} />
-                        <Route exact path="/password-reset.html" component={PasswordReset} />
-                        <Route exact path="/sign-up.html">
-                            <SignUp user={this.state.user} login={this.login} />
-                        </Route>
-                        <Route exact path="/my-account.html">
-                            <MyAccountPage
-                                user={this.state.user}
-                                updateUser={this.updateUser}
-                                logout={this.logout}
-                            />
-                        </Route>
-                        <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
-                        <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
-                        <Route component={NotFound} />
-                    </Switch>
-                </main>
+            <Header user={this.state.user} />
+            <main>
+            <Switch>
+                <Route exact path="/">
+                    <Welcome />
+                </Route>
+                <Route exact path="/view/categories.html">
+                    <Sidebar>
+                        <Categories mode="view" building_id={building_id} />
+                    </Sidebar>
+                </Route>
+                <Route exact path="/edit/categories.html">
+                    <Sidebar>
+                        <Categories mode="edit" building_id={building_id} />
+                    </Sidebar>
+                </Route>
+                <Route exact path="/multi-edit/:cat.html" render={(props) => (
+                    <MultiEdit
+                        {...props}
+                        user={this.state.user}
+                    />
+                ) } />
+                <Route exact path="/:mode/:cat/building/:building.html" render={(props) => (
+                    <BuildingView
+                        mode={props.match.params.mode}
+                        cat={props.match.params.cat}
+                        building={this.state.building}
+                        building_like={this.state.building_like}
+                        selectBuilding={this.selectBuilding}
+                        user={this.state.user}
+                    />
+                ) } />
+            </Switch>
+            <Switch>
+                <Route exact path="/(multi-edit.*|edit.*|view.*)?" render={(props) => (
+                    <ColouringMap
+                        {...props}
+                        building={this.state.building}
+                        revision_id={this.state.revision_id}
+                        selectBuilding={this.selectBuilding}
+                        colourBuilding={this.colourBuilding}
+                    />
+                ) } />
+                <Route exact path="/about.html" component={AboutPage} />
+                <Route exact path="/login.html">
+                    <Login user={this.state.user} login={this.login} />
+                </Route>
+                <Route exact path="/forgotten-password.html" component={ForgottenPassword} />
+                <Route exact path="/password-reset.html" component={PasswordReset} />
+                <Route exact path="/sign-up.html">
+                    <SignUp user={this.state.user} login={this.login} />
+                </Route>
+                <Route exact path="/my-account.html">
+                    <MyAccountPage
+                        user={this.state.user}
+                        updateUser={this.updateUser}
+                        logout={this.logout}
+                    />
+                </Route>
+                <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
+                <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
+                <Route component={NotFound} />
+            </Switch>
+            </main>
             </Fragment>
         );
     }
