@@ -7,7 +7,7 @@ import express from 'express';
 
 import { strictParseInt } from '../parse';
 import { TileParams } from './types';
-import { mainRenderer } from './rendererDefinition';
+import { mainRenderer, allTilesets } from './rendererDefinition';
 import asyncController from '../api/routes/asyncController';
 
 const handleTileRequest = asyncController(async function (req: express.Request, res: express.Response) {
@@ -37,6 +37,8 @@ router.get('/:tileset/:z/:x/:y(\\d+):scale(@\\dx)?.png', handleTileRequest);
 function parseTileParams(params: any): TileParams {
     const { tileset, z, x, y, scale } = params;
 
+    if (!allTilesets.includes(tileset)) throw new Error('Invalid value for tileset');
+    
     const intZ = strictParseInt(z);
     if (isNaN(intZ)) throw new Error('Invalid value for z');
 

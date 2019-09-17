@@ -6,7 +6,12 @@ import { BranchingRenderer } from "./renderers/branchingRenderer";
 import { WindowedRenderer } from "./renderers/windowedRenderer";
 import { BlankRenderer } from "./renderers/blankRenderer";
 import { DatasourceRenderer } from "./renderers/datasourceRenderer";
-import { getBuildingsDataConfig, getHighlightDataConfig } from "./dataDefinition";
+import { getBuildingsDataConfig, getHighlightDataConfig, BUILDING_LAYER_DEFINITIONS } from "./dataDefinition";
+
+/**
+ * A list of all tilesets handled by the tile server
+ */
+const allTilesets = ['highlight', ...Object.keys(BUILDING_LAYER_DEFINITIONS)];
 
 const buildingDataRenderer = new DatasourceRenderer(getBuildingsDataConfig);
 
@@ -67,6 +72,7 @@ const mainRenderer = new WindowedRenderer(
 );
 
 export {
+    allTilesets,
     mainRenderer,
     tileCache
 };

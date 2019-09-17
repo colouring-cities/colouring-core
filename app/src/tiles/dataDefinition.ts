@@ -129,6 +129,7 @@ function getHighlightDataConfig(tileset: string, dataParams: any): DataConfig {
 }
 
 export {
+    BUILDING_LAYER_DEFINITIONS,
     getBuildingsDataConfig,
     getHighlightDataConfig
 };
