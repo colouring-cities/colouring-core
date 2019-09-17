@@ -109,7 +109,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
             attribution={attribution}
         />;
 
-        const buildingsBaseUrl = `/tiles/base_${this.state.theme}/{z}/{x}/{y}.png`;
+        const buildingsBaseUrl = `/tiles/base_${this.state.theme}/{z}/{x}/{y}{r}.png`;
         const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={14} />;
 
         // colour-data tiles
@@ -127,7 +127,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
         const dataLayer = tileset != undefined ?
             <TileLayer
                 key={tileset}
-                url={`/tiles/${tileset}/{z}/{x}/{y}.png?rev=${rev}`}
+                url={`/tiles/${tileset}/{z}/{x}/{y}{r}.png?rev=${rev}`}
                 minZoom={9}
             />
             : null;
@@ -136,7 +136,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
         const highlightLayer = this.props.building != undefined ?
             <TileLayer
                 key={this.props.building.building_id}
-                url={`/tiles/highlight/{z}/{x}/{y}.png?highlight=${this.props.building.geometry_id}`}
+                url={`/tiles/highlight/{z}/{x}/{y}{r}.png?highlight=${this.props.building.geometry_id}&base=${tileset}`}
                 minZoom={14}
                 zIndex={100}
             />
@@ -155,6 +155,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
                     zoomControl={false}
                     attributionControl={false}
                     onClick={this.handleClick}
+                    detectRetina={true}
                 >
                     { baseLayer }
                     { buildingBaseLayer }
