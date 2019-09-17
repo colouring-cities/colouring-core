@@ -108,8 +108,9 @@ function getHighlightDataConfig(tileset: string, dataParams: any): DataConfig {
     let { highlight, base } = dataParams;
 
     highlight = strictParseInt(highlight);
+    base = base || 'default';
 
-    if(isNaN(highlight) || base == undefined || base.match(/^\w+$/) == undefined) {
+    if(isNaN(highlight) || base.match(/^\w+$/) == undefined) {
         throw new Error('Bad parameters for highlight layer');
     }
 
