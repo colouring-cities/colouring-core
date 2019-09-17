@@ -72,8 +72,7 @@ async function resetPassword(req: express.Request, res: express.Response) {
     if(req.body.email != undefined) {
         // first stage: send reset token to email address
 
-        // this relies on the API being on the same hostname as the frontend
-        const { origin } = new URL(req.protocol + '://' + req.headers.host);
+        const origin = getWebAppOrigin();
         await passwordResetService.sendPasswordResetToken(req.body.email, origin);
 
         return res.status(202).send({ success: true });
@@ -94,6 +93,14 @@ async function resetPassword(req: express.Request, res: express.Response) {
 
         return res.send({ success: true });
     }
+}
+
+function getWebAppOrigin() : string {
+    const origin = process.env.WEBAPP_ORIGIN;
+    if (origin == undefined) {
+        throw new Error('WEBAPP_ORIGIN not defined');
+    }
+    return origin;
 }
 
 export default {
