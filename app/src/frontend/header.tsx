@@ -19,12 +19,19 @@ class Header extends React.Component<any, any> { // TODO: add proper types
         super(props);
         this.state = {collapseMenu: true};
         this.handleClick = this.handleClick.bind(this);
+        this.handleNavigate = this.handleNavigate.bind(this);
     }
 
     handleClick() {
         this.setState(state => ({
             collapseMenu: !state.collapseMenu
         }));
+    }
+
+    handleNavigate() {
+        this.setState({
+            collapseMenu: true
+        });
     }
 
     render() {
@@ -43,7 +50,7 @@ class Header extends React.Component<any, any> { // TODO: add proper types
                     <div className={this.state.collapseMenu ? 'collapse navbar-collapse' : 'navbar-collapse'}>
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <NavLink to="/view/categories" className="nav-link">
+                                <NavLink to="/view/categories" className="nav-link" onClick={this.handleNavigate}>
                                     View/Edit Maps
                                 </NavLink>
                             </li>
@@ -76,7 +83,7 @@ class Header extends React.Component<any, any> { // TODO: add proper types
                                 this.props.user?
                                     (
                                         <li className="nav-item">
-                                            <NavLink to="/my-account.html" className="nav-link">
+                                            <NavLink to="/my-account.html" className="nav-link" onClick={this.handleNavigate}>
                                                 Account <span className="shorten-username">({this.props.user.username})</span>
                                             </NavLink>
                                         </li>
@@ -84,12 +91,12 @@ class Header extends React.Component<any, any> { // TODO: add proper types
                                     (
                                         <Fragment>
                                             <li className="nav-item">
-                                                <NavLink to="/login.html" className="nav-link">
+                                                <NavLink to="/login.html" className="nav-link" onClick={this.handleNavigate}>
                                                     Log in
                                                 </NavLink>
                                             </li>
                                             <li className="nav-item">
-                                                <NavLink to="/sign-up.html" className="nav-link">
+                                                <NavLink to="/sign-up.html" className="nav-link" onClick={this.handleNavigate}>
                                                     Sign up
                                                 </NavLink>
                                             </li>
