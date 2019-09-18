@@ -85,6 +85,16 @@ function renderHTML(context, data, req, res) {
         <meta property="og:locale"             content="en_GB" />
         <meta property="og:image"              content="https://colouring.london/images/logo-cl.png" />
 
+        <link rel="manifest" href="site.webmanifest">
+        
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="Colouring London">
+        <link rel="apple-touch-icon" href="icon-192x192.png">
+
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="icon" sizes="192x192" href="icon-192x192.png">
+
         <title>Colouring London</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <style>
