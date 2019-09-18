@@ -58,7 +58,7 @@
     margin: 0.25rem 0 0.5rem;
 }
 .data-legend {
-    overflow: scroll;
+    overflow: auto;
     list-style: none;
     margin-bottom: 0;
     flex: 1;
