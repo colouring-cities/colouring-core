@@ -10,11 +10,5 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS landuse_mutiple_use;
 -- Land use, how many different uses?
 ALTER TABLE buildings DROP COLUMN IF EXISTS landuse_number_of_uses;
 
--- Land use NLUD class, this might be multiple and should match number of uses input
-ALTER TABLE buildings DROP COLUMN IF EXISTS landuse_class;
-
--- Land use NLUD group, can only be one  - prepopulated if mixed
-ALTER TABLE buildings DROP COLUMN IF EXISTS landuse_group;
-
--- Land use NLUD order, can only be one - prepopulated if mixed
-ALTER TABLE buildings DROP COLUMN IF EXISTS landuse_order;
+--Land use class, group and order will be stored in a new table
+DROP TABLE building_landuse IF EXISTS CASCADE;  
