@@ -15,7 +15,7 @@ function validateUsername(username: string): void {
 function validatePassword(password: string): void {
     if (password == undefined) throw new ValidationError('Password is required');
     if (password.length < 8) throw new ValidationError('Password must be at least 8 characters long');
-    if (password.length > 70) throw new ValidationError('Password must be at most 70 characters long');
+    if (password.length > 128) throw new ValidationError('Password must be at most 128 characters long');
 }
 
 export {
