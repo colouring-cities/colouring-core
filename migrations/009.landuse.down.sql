@@ -8,5 +8,10 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS landuse_mutiple_use;
 -- Land use, how many different uses?
 ALTER TABLE buildings DROP COLUMN IF EXISTS landuse_number_of_uses;
 
+<<<<<<< HEAD
 -- Land use is table with 3 levels order > group > class
 DROP TABLE IF EXISTS landuse_classifications;
+=======
+--Land use class, group and order will be stored in a new table
+DROP TABLE building_landuse IF EXISTS CASCADE;  
+>>>>>>> 68a9fd1b80ddfe8a206ff1d946c7b94ae83d1264
