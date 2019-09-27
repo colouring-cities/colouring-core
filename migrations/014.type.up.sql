@@ -4,7 +4,7 @@ ALTER TABLE buildings
 
 -- Building attachment, ENUM: Detached, Semi-detached, End-Terrace, Mid-Terrace
 CREATE TYPE building_attachment_form
-AS ENUM ('Deatched',
+AS ENUM ('Detached',
     'Semi-Detached',
     'End-Terrace',
     'Mid-Terrace',
