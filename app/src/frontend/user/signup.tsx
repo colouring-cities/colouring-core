@@ -94,6 +94,10 @@ class SignUp extends Component<any, any> { // TODO: add proper types
                             className="form-control" type="text"
                             value={this.state.username} onChange={this.handleChange}
                             placeholder="not-your-real-name" required
+                            minLength={4}
+                            maxLength={30}
+                            pattern="\w+"
+                            title="Usernames can contain only letters, numbers and the underscore"
                         />
 
                         <label htmlFor="email">Email (optional)</label>
@@ -115,6 +119,8 @@ class SignUp extends Component<any, any> { // TODO: add proper types
                             type={(this.state.show_password)? 'text': 'password'}
                             value={this.state.password} onChange={this.handleChange}
                             required
+                            minLength={8}
+                            maxLength={128}
                         />
 
                         <div className="form-check">

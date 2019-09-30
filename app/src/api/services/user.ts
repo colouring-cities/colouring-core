@@ -5,14 +5,18 @@
 import { errors } from 'pg-promise';
 
 import db from '../../db';
+import { validateUsername, ValidationError, validatePassword } from '../validation';
 
 function createUser(user) {
-    if (!user.password || user.password.length < 8) {
-        return Promise.reject({ error: 'Password must be at least 8 characters' })
+    try {
+        validateUsername(user.username);
+        validatePassword(user.password);
+    } catch(err) {
+        if (err instanceof ValidationError) {
+            return Promise.reject({ error: err.message });
+        } else throw err;
     }
-    if (user.password.length > 70) {
-        return Promise.reject({ error: 'Password must be at most 70 characters' })
-    }
+    
     return db.one(
         `INSERT
         INTO users (
