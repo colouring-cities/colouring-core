@@ -6,6 +6,7 @@ import * as userService from '../services/user';
 import * as passwordResetService from '../services/passwordReset';
 import { TokenVerificationError } from '../services/passwordReset';
 import asyncController from '../routes/asyncController';
+import { ValidationError } from '../validation';
 
 function createUser(req, res) {
     const user = req.body;
@@ -73,8 +74,7 @@ const resetPassword = asyncController(async function(req: express.Request, res: 
     if(req.body.email != undefined) {
         // first stage: send reset token to email address
 
-        // this relies on the API being on the same hostname as the frontend
-        const { origin } = new URL(req.protocol + '://' + req.headers.host);
+        const origin = getWebAppOrigin();
         await passwordResetService.sendPasswordResetToken(req.body.email, origin);
 
         return res.status(202).send({ success: true });
@@ -88,6 +88,8 @@ const resetPassword = asyncController(async function(req: express.Request, res: 
         } catch (err) {
             if (err instanceof TokenVerificationError) {
                 return res.send({ error: 'Could not verify token' });
+            } else if (err instanceof ValidationError) {
+                return res.send({ error: err.message});
             }
 
             throw err;
@@ -96,6 +98,14 @@ const resetPassword = asyncController(async function(req: express.Request, res: 
         return res.send({ success: true });
     }
 });
+
+function getWebAppOrigin() : string {
+    const origin = process.env.WEBAPP_ORIGIN;
+    if (origin == undefined) {
+        throw new Error('WEBAPP_ORIGIN not defined');
+    }
+    return origin;
+}
 
 export default {
     createUser,

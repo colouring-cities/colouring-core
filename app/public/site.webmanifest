@@ -1,0 +1,14 @@
+{
+    "short_name": "Colouring London",
+    "name": "Colouring London",
+    "icons": [
+        {
+            "src": "icon-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ],
+    "start_url": "/",
+    "background_color": "#ffffff",
+    "theme_color": "#fffff"
+}

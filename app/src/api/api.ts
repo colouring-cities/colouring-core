@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import { authUser, createUser, getUserById, getNewUserAPIKey, deleteUser, logout } from './services/user';
+import { authUser, getNewUserAPIKey, logout } from './services/user';
 import { queryLocation } from './services/search';
 
 import buildingsRouter from './routes/buildingsRouter';
@@ -17,35 +17,6 @@ server.use(bodyParser.json());
 server.use('/buildings', buildingsRouter);
 server.use('/users', usersRouter);
 server.use('/extracts', extractsRouter);
-
-// GET own user info
-server.route('/users/me')
-    .get(function (req, res) {
-        if (!req.session.user_id) {
-            res.send({ error: 'Must be logged in' });
-            return
-        }
-
-        getUserById(req.session.user_id).then(function (user) {
-            res.send(user);
-        }).catch(function (error) {
-            res.send(error);
-        });
-    })
-    .delete((req, res) => {
-        if (!req.session.user_id) {
-            return res.send({ error: 'Must be logged in' });
-        }
-        console.log(`Deleting user ${req.session.user_id}`);
-
-        deleteUser(req.session.user_id).then(
-            () => logout(req.session)
-        ).then(() => {
-            res.send({ success: true });
-        }).catch(err => {
-            res.send({ error: err });
-        });
-    })
 
 // POST user auth
 server.post('/login', function (req, res) {
