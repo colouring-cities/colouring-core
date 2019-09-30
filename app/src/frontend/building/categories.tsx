@@ -70,19 +70,19 @@ const Categories = (props) => (
             building_id={props.building_id}
         />
         <Category
-            title="Sustainability"
-            desc="Performance"
-            slug="sustainability"
-            help="https://pages.colouring.london/sustainability"
+            title="Streetscape"
+            desc="Environment"
+            slug="streetscape"
+            help="https://pages.colouring.london/streetscape"
             inactive={true}
             mode={props.mode}
             building_id={props.building_id}
         />
         <Category
-            title="Greenery"
-            desc="Green context"
-            slug="greenery"
-            help="https://pages.colouring.london/greenery"
+            title="Sustainability"
+            desc="Performance"
+            slug="sustainability"
+            help="https://pages.colouring.london/sustainability"
             inactive={true}
             mode={props.mode}
             building_id={props.building_id}

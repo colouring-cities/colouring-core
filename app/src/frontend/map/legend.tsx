@@ -71,8 +71,8 @@ const LEGEND_CONFIG = {
         title: 'Sustainability',
         elements: []
     },
-    greenery: {
-        title: 'Greenery',
+    streetscape: {
+        title: 'Streetscape',
         elements: []
     },
     planning: {
