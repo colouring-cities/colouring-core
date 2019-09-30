@@ -9,7 +9,7 @@ import Header from './header';
 import AboutPage from './pages/about';
 import ContributorAgreementPage from './pages/contributor-agreement';
 import PrivacyPolicyPage from './pages/privacy-policy';
-import DataExtracts from './data-extracts';
+import DataExtracts from './pages/data-extracts';
 
 import Login from './user/login';
 import MyAccountPage from './user/my-account';

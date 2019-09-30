@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import { dateReviver } from '../helpers';
+import { dateReviver } from '../../helpers';
 
 interface ExtractViewModel {
     extract_id: number;
