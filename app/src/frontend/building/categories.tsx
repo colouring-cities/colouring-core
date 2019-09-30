@@ -2,8 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Sidebar from './sidebar';
-
 import './categories.css'
 
 const Categories = (props) => (
@@ -124,11 +122,15 @@ Categories.propTypes = {
     building_id: PropTypes.number
 }
 
-const Category = (props) => (
+const Category = (props) => {
+    let categoryLink = `/${props.mode}/${props.slug}`;
+    if (props.building_id != undefined) categoryLink += `/${props.building_id}`;
+    
+    return (
     <li className={`category-block ${props.slug} background-${props.slug}`}>
         <NavLink
             className="category-link"
-            to={`/${props.mode}/${props.slug}/building/${props.building_id}.html`}
+            to={categoryLink}
             title={
                 (props.inactive)?
                     'Coming soon… Click more info for details.'
@@ -138,10 +140,11 @@ const Category = (props) => (
             <p className="description">{props.desc}</p>
         </NavLink>
         <a className="icon-button help" href={props.help}>
-            More info
+            More
         </a>
     </li>
-)
+    );
+}
 
 Category.propTypes = {
     title: PropTypes.string,

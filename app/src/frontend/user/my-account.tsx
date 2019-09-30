@@ -116,7 +116,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
                         <ErrorBox msg={this.state.error} />
                         <form onSubmit={this.handleLogout}>
                             <div className="buttons-container">
-                                <Link to="/edit/age.html" className="btn btn-warning">Start colouring</Link>
+                                <Link to="/edit/age" className="btn btn-warning">Start colouring</Link>
                                 <input className="btn btn-secondary" type="submit" value="Log out"/>
                             </div>
                         </form>

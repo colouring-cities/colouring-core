@@ -2,9 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
-import BuildingNotFound from './building-not-found';
 import ContainerHeader from './container-header';
-import Sidebar from './sidebar';
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
 
@@ -198,8 +196,7 @@ const withCopyEdit = (WrappedComponent) => {
                 toggleCopyAttribute: this.toggleCopyAttribute,
                 copyingKey: (key) => this.state.keys_to_copy[key]
             }
-            return this.props.building?
-                <Sidebar>
+            return (
                 <section
                     id={this.props.slug}
                     className="data-section">
@@ -207,51 +204,54 @@ const withCopyEdit = (WrappedComponent) => {
                     {...this.props}
                     data_string={data_string}
                     copy={copy}
-                    />
-                <form
-                    action={`/edit/${this.props.slug}/building/${this.props.building.building_id}.html`}
-                    method="POST"
-                    onSubmit={this.handleSubmit}>
-                    <ErrorBox msg={this.state.error} />
-                    {
-                        (this.props.mode === 'edit' && this.props.inactive)?
-                            <InfoBox
-                                msg={`We're not collecting data on ${this.props.title.toLowerCase()} yet - check back soon.`}
+                />
+                {
+                    this.props.building != undefined ?
+                    <form
+                        action={`/edit/${this.props.slug}/${this.props.building.building_id}`}
+                        method="POST"
+                        onSubmit={this.handleSubmit}>
+                        <ErrorBox msg={this.state.error} />
+                        {
+                            (this.props.mode === 'edit' && this.props.inactive) ?
+                                <InfoBox
+                                    msg={`We're not collecting data on ${this.props.title.toLowerCase()} yet - check back soon.`}
                                 />
-                        : null
-                    }
-                    <WrappedComponent
-                        building={this.state.building}
-                        mode={this.props.mode}
-                        copy={copy}
-                        onChange={this.handleChange}
-                        onCheck={this.handleCheck}
-                        onLike={this.handleLike}
-                        onUpdate={this.handleUpdate}
+                                : null
+                        }
+                        <WrappedComponent
+                            building={this.state.building}
+                            mode={this.props.mode}
+                            copy={copy}
+                            onChange={this.handleChange}
+                            onCheck={this.handleCheck}
+                            onLike={this.handleLike}
+                            onUpdate={this.handleUpdate}
                         />
-                    {
-                        (this.props.mode === 'edit' && !this.props.inactive)?
-                            <Fragment>
-                            <InfoBox
-                                msg="Colouring may take a few seconds - try zooming the map or hitting refresh after saving (we're working on making this smoother)." />
-                                {
-                                    this.props.slug === 'like'? // special-case for likes
-                                        null :
-                                        <div className="buttons-container">
-                                            <button
-                                                type="submit"
-                                                className="btn btn-primary">
-                                                Save
-                                            </button>
-                                        </div>
-                                }
-                            </Fragment>
-                        : null
-                    }
-                </form>
+                        {
+                            (this.props.mode === 'edit' && !this.props.inactive) ?
+                                <Fragment>
+                                    <InfoBox
+                                        msg="Colouring may take a few seconds - try zooming the map or hitting refresh after saving (we're working on making this smoother)." />
+                                    {
+                                        this.props.slug === 'like' ? // special-case for likes
+                                            null :
+                                            <div className="buttons-container">
+                                                <button
+                                                    type="submit"
+                                                    className="btn btn-primary">
+                                                    Save
+                                        </button>
+                                            </div>
+                                    }
+                                </Fragment>
+                                : null
+                        }
+                    </form>
+                    : <InfoBox msg="Select a building to view data"></InfoBox>
+                }
                 </section>
-                </Sidebar>
-            : <BuildingNotFound mode="view" />
+            );
         }
     }
 }

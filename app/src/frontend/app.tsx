@@ -1,31 +1,30 @@
 import React, { Fragment } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { parse } from 'query-string';
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import BuildingView from './building/building-view';
-import ColouringMap from './map/map';
 import Header from './header';
-import MultiEdit from './building/multi-edit';
-import Categories from './building/categories';
-import Sidebar from './building/sidebar';
 
 import AboutPage from './pages/about';
 import ContributorAgreementPage from './pages/contributor-agreement';
 import PrivacyPolicyPage from './pages/privacy-policy';
-import Welcome from './pages/welcome';
 
 import Login from './user/login';
 import MyAccountPage from './user/my-account';
 import SignUp from './user/signup';
-
 import ForgottenPassword from './user/forgotten-password';
 import PasswordReset from './user/password-reset';
 
-import { parseCategoryURL } from '../parse';
+import MapApp from './map-app';
+
+
+interface AppProps {
+    user?: any;
+    building?: any;
+    building_like?: boolean;
+}
 
 /**
  * App component
@@ -39,35 +38,28 @@ import { parseCategoryURL } from '../parse';
  *   map or other pages are rendered, based on the URL. Use a react-router-dom <Link /> in
  *   child components to navigate without a full page reload.
  */
-class App extends React.Component<any, any> { // TODO: add proper types
+class App extends React.Component<AppProps, any> { // TODO: add proper types
     static propTypes = { // TODO: generate propTypes from TS
         user: PropTypes.object,
         building: PropTypes.object,
         building_like: PropTypes.bool
-    }
+    };
 
-    constructor(props) {
+    constructor(props: Readonly<AppProps>) {
         super(props);
-        // set building revision id, default 0
-        const rev = (props.building)? +props.building.revision_id : 0;
+        
         this.state = {
-            user: props.user,
-            building: props.building,
-            building_like: props.building_like,
-            revision_id: rev
+            user: props.user
         };
         this.login = this.login.bind(this);
         this.updateUser = this.updateUser.bind(this);
         this.logout = this.logout.bind(this);
-        this.selectBuilding = this.selectBuilding.bind(this);
-        this.colourBuilding = this.colourBuilding.bind(this);
-        this.increaseRevision = this.increaseRevision.bind(this);
     }
 
     login(user) {
         if (user.error) {
             this.logout();
-            return
+            return;
         }
         this.setState({user: user});
     }
@@ -80,171 +72,12 @@ class App extends React.Component<any, any> { // TODO: add proper types
         this.setState({user: undefined});
     }
 
-    increaseRevision(revisionId) {
-        revisionId = +revisionId;
-        // bump revision id, only ever increasing
-        if (revisionId > this.state.revision_id){
-            this.setState({revision_id: revisionId})
-        }
-    }
-
-    selectBuilding(building) {
-        this.increaseRevision(building.revision_id);
-        // get UPRNs and update
-        fetch(`/api/buildings/${building.building_id}/uprns.json`, {
-            method: 'GET',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin'
-        }).then(
-            res => res.json()
-        ).then((res) => {
-            if (res.error) {
-                console.error(res);
-            } else {
-                building.uprns = res.uprns;
-                this.setState({building: building});
-            }
-        }).catch((err) => {
-            console.error(err)
-            this.setState({building: building});
-        });
-
-        // get if liked and update
-        fetch(`/api/buildings/${building.building_id}/like.json`, {
-            method: 'GET',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin'
-        }).then(
-            res => res.json()
-        ).then((res) => {
-            if (res.error) {
-                console.error(res);
-            } else {
-                this.setState({building_like: res.like});
-            }
-        }).catch((err) => {
-            console.error(err)
-            this.setState({building_like: false});
-        });
-    }
-
-    /**
-     * Colour building
-     *
-     * Used in multi-edit mode to colour buildings on map click
-     *
-     * Pulls data from URL to form update
-     *
-     * @param {object} building
-     */
-    colourBuilding(building) {
-        const cat = parseCategoryURL(window.location.pathname);
-        const q = parse(window.location.search);
-        const data = (cat === 'like')? {like: true}: JSON.parse(q.data as string); // TODO: verify what happens if data is string[]
-        if (cat === 'like'){
-            this.likeBuilding(building.building_id)
-        } else {
-            this.updateBuilding(building.building_id, data)
-        }
-    }
-
-    likeBuilding(buildingId) {
-        fetch(`/api/buildings/${buildingId}/like.json`, {
-            method: 'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin',
-            body: JSON.stringify({like: true})
-        }).then(
-            res => res.json()
-        ).then(function(res){
-            if (res.error) {
-                console.error({error: res.error})
-            } else {
-                this.increaseRevision(res.revision_id);
-            }
-        }.bind(this)).catch(
-            (err) => console.error({error: err})
-        );
-    }
-
-    updateBuilding(buildingId, data){
-        fetch(`/api/buildings/${buildingId}.json`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin'
-        }).then(
-            res => res.json()
-        ).then(res => {
-            if (res.error) {
-                console.error({error: res.error})
-            } else {
-                this.increaseRevision(res.revision_id);
-            }
-        }).catch(
-            (err) => console.error({error: err})
-        );
-    }
-
     render() {
-        const building_id = (this.state.building)?
-            this.state.building.building_id
-            : 2503371 // Default to UCL main building. TODO use last selected if any
-        const building = this.state.building;
-        const building_like = this.state.building_like;
         return (
             <Fragment>
             <Header user={this.state.user} />
             <main>
             <Switch>
-                <Route exact path="/">
-                    <Welcome />
-                </Route>
-                <Route exact path="/view/categories.html">
-                    <Sidebar>
-                        <Categories mode="view" building_id={building_id} />
-                    </Sidebar>
-                </Route>
-                <Route exact path="/edit/categories.html">
-                    <Sidebar>
-                        <Categories mode="edit" building_id={building_id} />
-                    </Sidebar>
-                </Route>
-                <Route exact path="/multi-edit/:cat.html" render={(props) => (
-                    <MultiEdit
-                        {...props}
-                        user={this.state.user}
-                    />
-                ) } />
-                <Route exact path="/:mode/:cat/building/:building.html" render={(props) => (
-                    <BuildingView
-                        mode={props.match.params.mode}
-                        cat={props.match.params.cat}
-                        building={this.state.building}
-                        building_like={this.state.building_like}
-                        selectBuilding={this.selectBuilding}
-                        user={this.state.user}
-                    />
-                ) } />
-            </Switch>
-            <Switch>
-                <Route exact path="/(multi-edit.*|edit.*|view.*)?" render={(props) => (
-                    <ColouringMap
-                        {...props}
-                        building={this.state.building}
-                        revision_id={this.state.revision_id}
-                        selectBuilding={this.selectBuilding}
-                        colourBuilding={this.colourBuilding}
-                    />
-                ) } />
                 <Route exact path="/about.html" component={AboutPage} />
                 <Route exact path="/login.html">
                     <Login user={this.state.user} login={this.login} />
@@ -263,6 +96,14 @@ class App extends React.Component<any, any> { // TODO: add proper types
                 </Route>
                 <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
                 <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
+                <Route exact path={["/", "/:mode(view|edit|multi-edit)/:category/:building(\\d+)?"]} render={(props) => (
+                    <MapApp
+                        {...props}
+                        building={this.props.building}
+                        building_like={this.props.building_like}
+                        user={this.state.user}
+                    />
+                )} />
                 <Route component={NotFound} />
             </Switch>
             </main>

@@ -17,7 +17,7 @@ const Welcome = () => (
         volunteers of all ages and abilities to test and provide feedback on the site as we
         build it.
         </p>
-        <Link to="/view/categories.html"
+        <Link to="/view/categories"
             className="btn btn-outline-dark btn-lg btn-block">
             Start Colouring Here!
         </Link>

@@ -25,8 +25,8 @@ const MultiEdit = (props) => {
                     <form className='buttons-container'>
                         <InfoBox msg='Click all the buildings that you like and think contribute to the city!' />
 
-                        <Link to='/view/like.html' className='btn btn-secondary'>Back to view</Link>
-                        <Link to='/edit/like.html' className='btn btn-secondary'>Back to edit</Link>
+                        <Link to='/view/like' className='btn btn-secondary'>Back to view</Link>
+                        <Link to='/edit/like' className='btn btn-secondary'>Back to edit</Link>
                     </form>
                 </section>
             </Sidebar>
@@ -53,8 +53,8 @@ const MultiEdit = (props) => {
                 <form className='buttons-container'>
                     <InfoBox msg='Click buildings to colour using the data above' />
 
-                    <Link to={`/view/${cat}.html`} className='btn btn-secondary'>Back to view</Link>
-                    <Link to={`/edit/${cat}.html`} className='btn btn-secondary'>Back to edit</Link>
+                    <Link to={`/view/${cat}`} className='btn btn-secondary'>Back to view</Link>
+                    <Link to={`/edit/${cat}`} className='btn btn-secondary'>Back to edit</Link>
                 </form>
             </section>
         </Sidebar>

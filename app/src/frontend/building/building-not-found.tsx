@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import Sidebar from './sidebar';
 import InfoBox from '../components/info-box';
 
 
@@ -11,12 +10,12 @@ interface BuildingNotFoundProps {
 }
 
 const BuildingNotFound: React.FunctionComponent<BuildingNotFoundProps> = (props) => (
-  <Sidebar>
+  <Fragment>
     <InfoBox msg="We can't find that one anywhere - try the map again?" />
     <div className="buttons-container ml-3 mr-3">
-        <Link to={`/${props.mode}/categories.html`} className="btn btn-secondary">Back to categories</Link>
+        <Link to={`/${props.mode}/categories`} className="btn btn-secondary">Back to categories</Link>
     </div>
-  </Sidebar>
+  </Fragment>
 );
 
 BuildingNotFound.propTypes = {

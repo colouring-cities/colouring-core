@@ -5,9 +5,6 @@
     z-index: 1000;
     max-width:80%;
 }
-.building.search-box {
-    top: 0.5rem;
-}
 .search-box form,
 .search-box .search-box-results {
     border-radius: 4px;
@@ -46,11 +43,6 @@
    margin-right: 0.1rem;
 }
 @media (min-width: 768px) {
-    /* for large screens adopt the conventional search box position */
-    .search-box{
-        top: 3.625rem;
-        left: 25.5rem;
-    }
     /* The following is a fix (?) for the truncation of the "Search for postcode" text  */
     .form-inline .form-control {
         width: 200px;

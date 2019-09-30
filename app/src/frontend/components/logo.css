@@ -5,8 +5,7 @@
      font-family: 'glacial_cl', sans-serif;
      text-transform: uppercase;
  }
-.logo,
-.logo.navbar-brand {
+.logo {
     display: block;
     padding: 0;
     color: #000;
@@ -27,19 +26,7 @@
     font-size: 0.625em;
     letter-spacing: 0;
 }
-.map-legend .logo {
-    padding: 0 0.5rem 0.5rem;
-}
-.map-legend .logo .logotype {
-    font-size: 1.9rem;
-    margin-bottom: -2px;
-}
-.map-legend .logo .row .cell {
-    background-color: #ccc;
-    height: 12px;
-    width: 12px;
-    animation: none !important;
-}
+
 .logo .grid {
     position: relative;
     top: -1px;
@@ -60,51 +47,56 @@
     height: 14px;
     margin: 0 3px 0 0;
 }
-.logo .row:nth-child(1) .cell:nth-child(1) {
+
+.logo.gray .cell {
+    background-color: #ccc;
+}
+
+.logo.animated .row:nth-child(1) .cell:nth-child(1) {
     animation: pulse 87s infinite;
     animation-delay: -1.5s;
 }
-.logo .row:nth-child(1) .cell:nth-child(2) {
+.logo.animated .row:nth-child(1) .cell:nth-child(2) {
     animation: pulse 52s infinite;
     animation-delay: -0.5s;
 }
-.logo .row:nth-child(1) .cell:nth-child(3) {
+.logo.animated .row:nth-child(1) .cell:nth-child(3) {
     animation: pulse 79s infinite;
     animation-delay: -6s;
 }
-.logo .row:nth-child(1) .cell:nth-child(4) {
+.logo.animated .row:nth-child(1) .cell:nth-child(4) {
     animation: pulse 55s infinite;
     animation-delay: -10s;
 }
-.logo .row:nth-child(2) .cell:nth-child(1) {
+.logo.animated .row:nth-child(2) .cell:nth-child(1) {
     animation: pulse 64s infinite;
     animation-delay: -7.2s;
 }
-.logo .row:nth-child(2) .cell:nth-child(2) {
+.logo.animated .row:nth-child(2) .cell:nth-child(2) {
     animation: pulse 98s infinite;
     animation-delay: -25s;
 }
-.logo .row:nth-child(2) .cell:nth-child(3) {
+.logo.animated .row:nth-child(2) .cell:nth-child(3) {
     animation: pulse 51s infinite;
     animation-delay: -35s;
 }
-.logo .row:nth-child(2) .cell:nth-child(4) {
+.logo.animated .row:nth-child(2) .cell:nth-child(4) {
     animation: pulse 76s infinite;
     animation-delay: -20s;
 }
-.logo .row:nth-child(3) .cell:nth-child(1) {
+.logo.animated .row:nth-child(3) .cell:nth-child(1) {
     animation: pulse 52s infinite;
     animation-delay: -3.5s;
 }
-.logo .row:nth-child(3) .cell:nth-child(2) {
+.logo.animated .row:nth-child(3) .cell:nth-child(2) {
     animation: pulse 79s infinite;
     animation-delay: -8.5s;
 }
-.logo .row:nth-child(3) .cell:nth-child(3) {
+.logo.animated .row:nth-child(3) .cell:nth-child(3) {
     animation: pulse 65s infinite;
     animation-delay: -4s;
 }
-.logo .row:nth-child(3) .cell:nth-child(4) {
+.logo.animated .row:nth-child(3) .cell:nth-child(4) {
     animation: pulse 54s infinite;
     animation-delay: -17s;
 }

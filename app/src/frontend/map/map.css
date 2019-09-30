@@ -8,25 +8,34 @@
     box-shadow: 0px 0px 1px 1px #222;
     visibility: hidden;
 }
+
+.map-container {
+    flex: 1;
+    position: relative;
+}
 .leaflet-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    height: 100%;
+    width: 100%;
 }
 .leaflet-container .leaflet-control-zoom {
     border: 1px solid #fff;
     box-shadow: 0 0 1px 1px #222;
 }
+
+.leaflet-container .leaflet-control-attribution {
+    width: 100%;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.7);
+}
+
 .leaflet-grab {
     cursor: crosshair;
 }
 @media (min-width: 768px){
     /* Only show the "Click a building ..." notice for larger screens */
     .map-notice {
-        left: 25.5rem;
-        top: 0.5rem;
+        left: 0.5rem;
+        top: 3.5rem;
         visibility: visible;
     }
 }

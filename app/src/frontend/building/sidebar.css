@@ -2,51 +2,25 @@
  * Sidebar layout
  */
 .info-container {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    bottom: 3rem;
+    order: 1;
     padding: 0 0 2em;
     background: #fff;
-    z-index: 1000;
-    overflow-y: auto;
+    overflow-y: scroll;
+    height: 40%;
 }
+
 .info-container h2:first-child {
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
     margin-left: -0.1em;
     padding: 0 0.75rem;
 }
-#root .leaflet-container .leaflet-control-attribution {
-    width: 100%;
-    height: 3rem;
-    background: #fff;
-    background: rgba(255, 255, 255, 0.7);
-}
-.leaflet-right{
-    left: 0;
-}
-@media (min-width: 380px){
-    .info-container {
-        bottom: 2rem;
-    }
-    #root .leaflet-container .leaflet-control-attribution {
-        height: 2rem;
-    }
-}
+
 @media (min-width: 768px){
     .info-container {
-        top: 0;
-        left: 0;
-        width: 25rem;
-        bottom: 0;
-    }
-    .leaflet-right{
-        left: 25rem;
-    }
-    #root .leaflet-container .leaflet-control-attribution {
-        height: auto;
+        order: 0;
+        height: unset;
+        width: 23rem;
     }
 }
 
