@@ -31,7 +31,7 @@ const BUILDING_LAYER_DEFINITIONS = {
             buildings as b
         WHERE
             g.geometry_id = b.geometry_id
-    ) as outline`,
+    ) as date_year`,
     size_storeys: `(
         SELECT
             (
@@ -44,7 +44,7 @@ const BUILDING_LAYER_DEFINITIONS = {
             buildings as b
         WHERE
             g.geometry_id = b.geometry_id
-    ) as outline`,
+    ) as size_stories`,
     location: `(
         SELECT
             (
@@ -76,7 +76,7 @@ const BUILDING_LAYER_DEFINITIONS = {
         WHERE
             g.geometry_id = b.geometry_id
             AND b.likes_total > 0
-    ) as location`,
+    ) as likes`,
     conservation_area: `(
         SELECT
             g.geometry_geom
@@ -86,7 +86,17 @@ const BUILDING_LAYER_DEFINITIONS = {
         WHERE
             g.geometry_id = b.geometry_id
             AND b.planning_in_conservation_area = true
-    ) as conservation_area`
+    ) as conservation_area`,
+    sust_dec: `(
+        SELECT
+            b.sust_dec::text as sust_dec,
+            g.geometry_geom
+        FROM
+            geometries as g,
+            buildings as b
+        WHERE
+            g.geometry_id = b.geometry_id
+    ) as sust_dec`
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';
