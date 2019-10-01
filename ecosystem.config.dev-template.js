@@ -26,6 +26,7 @@ module.exports = {
                 MAIL_SERVER_USER: "mail_username",
                 MAIL_SERVER_PASSWORD: "longrandompassword",
                 WEBAPP_ORIGIN: "http://localhost:3000",
+                EXTRACTS_DIRECTORY: "/path/to/extracts",
             }
         }
     ]
