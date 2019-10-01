@@ -125,7 +125,8 @@ class TileCache {
 
     private cacheLocation({tileset, z, x, y, scale}: TileParams): CacheLocation {
         const dir = `${this.basePath}/${tileset}/${z}/${x}`;
-        const fname = `${dir}/${y}@${scale}x.png`;
+        const scaleSuffix = scale === 1 ? '' : `@${scale}x`;
+        const fname = `${dir}/${y}${scaleSuffix}.png`;
         return { dir, fname };
     }
 
