@@ -9,6 +9,7 @@ interface ExtractViewModel {
 }
 
 interface DataExtractsState {
+    extracts: ExtractViewModel[];
     latestExtract: ExtractViewModel;
     previousExtracts: ExtractViewModel[];
 }
@@ -18,6 +19,7 @@ export default class DataExtracts extends React.Component<{}, DataExtractsState>
         super(props);
 
         this.state = {
+            extracts: undefined,
             latestExtract: undefined,
             previousExtracts: undefined
         };
@@ -32,22 +34,32 @@ export default class DataExtracts extends React.Component<{}, DataExtractsState>
 
         
 
-        this.setState({ latestExtract: extracts[0], previousExtracts: extracts.slice(1) });
+        this.setState({ extracts: extracts, latestExtract: extracts[0], previousExtracts: extracts.slice(1) });
     }
 
     render() {
+
         return (
             <article>
                 <section className="main-col">
                     <h1 className="h2">Open data extracts</h1>
                     <p>Choose one of the links below to download an archive containing the open data collected on the Colouring London platform</p>
                     {
-                        this.state.latestExtract == undefined ?
+                        this.state.extracts == undefined ?
                             <p>Loading extracts...</p> :
+                            (
+                                this.state.extracts.length === 0 ?
+                                    <p>No extracts available</p> :
+                                    null
+                            )
+                    }
+                    {
+                        this.state.latestExtract != undefined ?
                             <div>
                                 <h1 className="h3">Latest extract</h1>
                                 <ExtractDownloadLink {...this.state.latestExtract} />
-                            </div>
+                            </div> :
+                            null
                     }
                     {
                         this.state.previousExtracts && this.state.previousExtracts.length > 0 ?
