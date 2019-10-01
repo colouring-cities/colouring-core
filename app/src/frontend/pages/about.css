@@ -1,0 +1,54 @@
+
+/**
+ * Carousel
+ */
+ .carousel {
+    position: relative;
+}
+.carousel-control {
+    display: none;
+}
+.carousel.active .carousel-control {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1.75em;
+    border: 0;
+    background-color: #fff;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.carousel.active .carousel-control:hover,
+.carousel.active .carousel-control:active,
+.carousel.active .carousel-control:focus {
+    border: 0;
+    outline: none;
+    opacity: 0.6;
+}
+.carousel button::-moz-focus-inner {
+    border:0;
+}
+.carousel-control.next {
+    right: -1em;
+    background-image: url('../images/arrow-next.png');
+}
+.carousel-control.back {
+    left: -1em;
+    background-image: url('../images/arrow-back.png');
+}
+.carousel-content {
+    padding: 0;
+    list-style: none;
+}
+.carousel-content li {
+    text-align: center;
+}
+.carousel.active .carousel-content li {
+    display: none;
+}
+.carousel.active .carousel-content li.current {
+    display: block;
+}

@@ -5,6 +5,7 @@ import nodemailer from 'nodemailer';
 import db from '../../db';
 import * as userService from './user';
 import { transporter } from './email';
+import { validatePassword } from '../validation';
 
 
 /**
@@ -12,7 +13,7 @@ import { transporter } from './email';
  * @param email the email address for which to generate a password reset token
  * @param siteOrigin the origin of the website, without a path element - e.g. https://beta.colouring.london
  */
-export async function sendPasswordResetToken(email: string, siteOrigin: string): Promise<void> {
+async function sendPasswordResetToken(email: string, siteOrigin: string): Promise<void> {
     const user = await userService.getUserByEmail(email);
 
     // if no user found for email, do nothing
@@ -23,7 +24,8 @@ export async function sendPasswordResetToken(email: string, siteOrigin: string):
     await transporter.sendMail(message);
 }
 
-export async function resetPassword(passwordResetToken: string, newPassword: string): Promise<void> {
+async function resetPassword(passwordResetToken: string, newPassword: string): Promise<void> {
+    validatePassword(newPassword);
     const userId = await verifyPasswordResetToken(passwordResetToken);
     if (userId != undefined) {
         await updatePasswordForUser(userId, newPassword);
@@ -33,7 +35,7 @@ export async function resetPassword(passwordResetToken: string, newPassword: str
     }
 }
 
-export class TokenVerificationError extends Error {
+class TokenVerificationError extends Error {
     constructor(message: string) {
         super(message);
         this.name = "TokenVerificationError";
@@ -119,3 +121,8 @@ async function updatePasswordForUser(userId: string, newPassword: string): Promi
         `, [newPassword, userId]);
 }
 
+export {
+    sendPasswordResetToken,
+    resetPassword,
+    TokenVerificationError
+};

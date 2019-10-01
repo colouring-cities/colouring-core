@@ -1,0 +1,210 @@
+/**
+ * Sidebar layout
+ */
+.info-container {
+    order: 1;
+    padding: 0 0 2em;
+    background: #fff;
+    overflow-y: scroll;
+    height: 40%;
+}
+
+.info-container h2:first-child {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    margin-left: -0.1em;
+    padding: 0 0.75rem;
+}
+
+@media (min-width: 768px){
+    .info-container {
+        order: 0;
+        height: unset;
+        width: 23rem;
+    }
+}
+
+/**
+ * Data section headers
+ */
+.section-header {
+    display: block;
+    position: relative;
+    clear: both;
+    text-decoration: none;
+    color: #222;
+    padding: 0.75rem 0.25rem 0.5rem 0;
+}
+.section-header h2,
+.section-header .icon-buttons {
+    display: inline-block;
+}
+.section-header .icon-buttons {
+    position: absolute;
+    right: 0;
+    top: 7px;
+    padding: 0.7rem 0.5rem 0.5rem 0;
+}
+.icon-buttons .icon-button {
+    margin-left: 7px;
+}
+
+/**
+ * Icon buttons
+ */
+.icon-button {
+    display: inline-block;
+    background-color: transparent;
+    font-size: 0.8333rem;
+
+    outline: none;
+    border: none;
+
+    color: #222;
+    vertical-align: top;
+}
+.icon-button:hover {
+    color: #222;
+    text-decoration: none;
+    cursor: pointer;
+}
+.icon-button.tooltip-hint {
+    padding: 0;
+}
+.icon-button svg {
+    background-color: transparent;
+    transition: background-color color 0.2s;
+    display: inline-block;
+
+    color: #222;
+    margin-top: 2px;
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+    border-radius: 15px;
+    margin: 0 0.05rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+.svg-inline--fa.fa-w-11,
+.svg-inline--fa.fa-w-16,
+.svg-inline--fa.fa-w-18,
+.svg-inline--fa.fa-w-8 {
+    width: 30px;
+}
+.icon-button.edit:active svg,
+.icon-button.edit:hover svg,
+.icon-button.view:active svg,
+.icon-button.view:hover svg {
+    color: rgb(11, 225, 225);
+}
+.icon-button.help,
+.icon-button.copy {
+    margin-top: 4px;
+}
+.data-section label .icon-buttons .icon-button.copy {
+    margin-top: 0px;
+}
+.icon-button.copy:hover,
+.icon-button.help:hover {
+    color: rgb(0, 81, 255)
+}
+.icon-button.tooltip-hint.active svg,
+.icon-button.tooltip-hint:hover svg {
+    color: rgb(255, 11, 245);
+}
+.icon-button.close-edit svg {
+    margin-top: -1px;
+}
+.icon-button.close-edit:hover svg {
+    color: rgb(255, 72, 11)
+}
+.icon-button.save:hover svg {
+    color: rgb(11, 225, 72);
+}
+.data-title .icon-buttons {
+    float: right;
+}
+
+/* Back button */
+.icon-button.back,
+.icon-button.back:hover {
+    padding: 5px 1px;
+    background-color: transparent;
+}
+.icon-button.back:hover svg {
+    background-color: transparent;
+}
+
+/**
+ * Data list sections
+ */
+.data-section .h3 {
+    margin: 0;
+}
+.data-intro {
+    padding: 0 0.5rem 0 2.25rem;
+    margin-top: 0.5rem;
+}
+.data-section p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+.data-section ul {
+    padding-left: 3.333rem;
+    font-size: 1rem;
+}
+.data-section li {
+    margin-bottom: 0.3rem;
+}
+.data-list {
+    margin: 0;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+.data-section form {
+    padding: 0 0.75rem;
+}
+.data-list a {
+    color: #555;
+}
+.data-list a:focus,
+.data-list a:active,
+.data-list a:hover {
+    color: #222;
+}
+.data-list dt,
+.data-section label {
+    display: block;
+    margin: 0.5em 0 0;
+    font-size: 0.8333rem;
+    font-weight: normal;
+    color: #555;
+}
+.data-section input,
+.data-section textarea,
+.data-section select {
+    margin: 0 0 0.5em 0;
+}
+.data-list dd {
+    margin: 0 0 0.5rem;
+    line-height: 1.5;
+    white-space: pre;
+}
+.data-list .no-data {
+    color: #999;
+}
+.data-list dd ul {
+    list-style: none;
+    padding-left: 0;
+}
+.data-section .data-link-list {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+}
+.data-link-list li {
+    border-color: #6c757d;
+    border-radius: 0;
+}

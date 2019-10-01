@@ -23,7 +23,7 @@ function strictParseInt(value) {
  * @returns {number|undefined}
  */
 function parseBuildingURL(url) {
-    const re = /\/building\/([^/]+).html/;
+    const re = /\/(\d+)$/;
     const matches = re.exec(url);
 
     if (matches && matches.length >= 2) {

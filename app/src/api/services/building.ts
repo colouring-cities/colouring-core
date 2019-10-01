@@ -3,7 +3,8 @@
  *
  */
 import db from '../../db';
-import { removeAllAtBbox } from '../../tiles/cache';
+import { tileCache } from '../../tiles/rendererDefinition';
+import { BoundingBox } from '../../tiles/types';
 
 // data type note: PostgreSQL bigint (64-bit) is handled as string in JavaScript, because of
 // JavaScript numerics are 64-bit double, giving only partial coverage.
@@ -314,8 +315,8 @@ function privateQueryBuildingBBOX(buildingId){
 
 function expireBuildingTileCache(buildingId) {
     privateQueryBuildingBBOX(buildingId).then((bbox) => {
-        const buildingBbox = [bbox.xmax, bbox.ymax, bbox.xmin, bbox.ymin]
-        removeAllAtBbox(buildingBbox);
+        const buildingBbox: BoundingBox = [bbox.xmax, bbox.ymax, bbox.xmin, bbox.ymin];
+        tileCache.removeAllAtBbox(buildingBbox);
     })
 }
 
