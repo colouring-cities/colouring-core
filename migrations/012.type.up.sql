@@ -1,7 +1,3 @@
---Original building use, this is same NLUD fields as current building use
-ALTER TABLE buildings
-    ADD COLUMN IF NOT EXISTS original_building_use;
-
 -- Building attachment, ENUM: Detached, Semi-detached, End-Terrace, Mid-Terrace
 CREATE TYPE building_attachment_form
 AS ENUM ('Detached',
