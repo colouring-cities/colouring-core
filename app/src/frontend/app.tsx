@@ -6,10 +6,10 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 import Header from './header';
-
 import AboutPage from './pages/about';
 import ContributorAgreementPage from './pages/contributor-agreement';
 import PrivacyPolicyPage from './pages/privacy-policy';
+import DataExtracts from './pages/data-extracts';
 
 import Login from './user/login';
 import MyAccountPage from './user/my-account';
@@ -96,6 +96,7 @@ class App extends React.Component<AppProps, any> { // TODO: add proper types
                 </Route>
                 <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
                 <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
+                <Route exact path="/data-extracts.html" component={DataExtracts} />
                 <Route exact path={["/", "/:mode(view|edit|multi-edit)/:category/:building(\\d+)?"]} render={(props) => (
                     <MapApp
                         {...props}

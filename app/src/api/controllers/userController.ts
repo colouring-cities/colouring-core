@@ -5,6 +5,7 @@ import express from 'express';
 import * as userService from '../services/user';
 import * as passwordResetService from '../services/passwordReset';
 import { TokenVerificationError } from '../services/passwordReset';
+import asyncController from '../routes/asyncController';
 import { ValidationError } from '../validation';
 
 function createUser(req, res) {
@@ -65,7 +66,7 @@ function deleteCurrentUser(req, res) {
     });
 }
 
-async function resetPassword(req: express.Request, res: express.Response) {
+const resetPassword = asyncController(async function(req: express.Request, res: express.Response) {
     if(req.body == undefined || (req.body.email == undefined && req.body.token == undefined)) {
         return res.send({ error: 'Expected an email address or password reset token in the request body' });
     }
@@ -96,7 +97,7 @@ async function resetPassword(req: express.Request, res: express.Response) {
 
         return res.send({ success: true });
     }
-}
+});
 
 function getWebAppOrigin() : string {
     const origin = process.env.WEBAPP_ORIGIN;

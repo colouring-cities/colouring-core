@@ -55,6 +55,11 @@ class Header extends React.Component<any, any> { // TODO: add proper types
                                 </NavLink>
                             </li>
                             <li className="nav-item">
+                                <NavLink to="/data-extracts.html" className="nav-link">
+                                    Downloads
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
                                 <a className="nav-link" href="https://pages.colouring.london">
                                     About
                                 </a>

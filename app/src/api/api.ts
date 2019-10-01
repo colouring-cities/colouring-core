@@ -6,6 +6,7 @@ import { queryLocation } from './services/search';
 
 import buildingsRouter from './routes/buildingsRouter';
 import usersRouter from './routes/usersRouter';
+import extractsRouter from './routes/extractsRouter';
 
 
 const server = express.Router();
@@ -15,6 +16,7 @@ server.use(bodyParser.json());
 
 server.use('/buildings', buildingsRouter);
 server.use('/users', usersRouter);
+server.use('/extracts', extractsRouter);
 
 // POST user auth
 server.post('/login', function (req, res) {

@@ -1,5 +1,6 @@
 {
-    "rules": {
-      
-    }
+  "defaultSeverity": "warning",
+  "rules": {
+    "eofline": true
   }
+}
