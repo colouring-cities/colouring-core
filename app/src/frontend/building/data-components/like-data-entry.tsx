@@ -32,7 +32,7 @@ const LikeDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove
                 id="like" name="like"
                 checked={!!props.building_like}
                 disabled={props.mode === 'view'}
-                onChange={props.handleLike}
+                onChange={props.onLike}
             />
             <label htmlFor="like" className="form-check-label">
                 I like this building and think it contributes to the city!
