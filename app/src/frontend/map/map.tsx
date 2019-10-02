@@ -77,8 +77,10 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
                 if (mode === 'multi-edit') {
                     // colour building directly
                     this.props.colourBuilding(building);
-                } else {
+                } else if (this.props.building == undefined || building.building_id !== this.props.building.building_id){
                     this.props.selectBuilding(building);
+                } else {
+                    this.props.selectBuilding(undefined);
                 }
             } else {
                 // deselect but keep/return to expected colour theme
