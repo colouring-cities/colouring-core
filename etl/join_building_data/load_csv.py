@@ -1,5 +1,13 @@
 """Join csv data to buildings
 
+Example usage (replace URL with test/staging/localhost as necessary, API key with real key for
+the appropriate site):
+
+    python load_csv.py \
+        https://colouring.london \
+        a0a00000-0a00-0aaa-a0a0-0000aaaa0000 \
+        data.csv
+
 This script uses the HTTP API, and can process CSV files which identify buildings by id, TOID,
 UPRN.
 
@@ -32,35 +40,41 @@ def main(base_url, api_key, source_file):
     """Read from file, update buildings
     """
     with open(source_file, 'r') as source:
-        reader = csv.reader(source)
+        reader = csv.DictReader(source)
         for line in reader:
             building_id = find_building(line, base_url)
 
             if building_id is None:
                 continue
 
-            update_building(building_id, line, api_key, base_url)
+            response_code, response_data = update_building(building_id, line, api_key, base_url)
+            if response_code != 200:
+                print('ERROR', building_id, response_code, response_data)
 
 
 def update_building(building_id, data, api_key, base_url):
     """Save data to a building
     """
     r = requests.post(
-        "{}/buildings/{}.json?api_key={}".format(base_url, building_id, api_key),
+        "{}/api/buildings/{}.json".format(base_url, building_id),
+        params={'api_key': api_key},
         json=data
     )
+    return r.status_code, r.json()
 
 
 def find_building(data, base_url):
     if 'toid' in data:
         building_id = find_by_reference(base_url, 'toid', data['toid'])
-        print("match_by_toid", data['toid'], building_id)
-        return building_id
+        if building_id is not None:
+            print("match_by_toid", data['toid'], building_id)
+            return building_id
 
     if 'uprn' in data:
         building_id =  find_by_reference(base_url, 'uprn', data['uprn'])
-        print("match_by_uprn", data['uprn'], building_id)
-        return building_id
+        if building_id is not None:
+            print("match_by_uprn", data['uprn'], building_id)
+            return building_id
 
     print("no_match", data)
     return None
@@ -69,13 +83,13 @@ def find_building(data, base_url):
 def find_by_reference(base_url, ref_key, ref_id):
     """Find building_id by TOID or UPRN
     """
-    r = requests.get(base_url + "/buildings/reference", params={
+    r = requests.get("{}/api/buildings/reference".format(base_url), params={
         'key': ref_key,
         'id': ref_id
     })
     buildings = r.json()
 
-    if buildings and len(buildings) == 1:
+    if buildings and 'error' not in buildings and len(buildings) == 1:
         building_id = buildings[0]['building_id']
     else:
         building_id = None
