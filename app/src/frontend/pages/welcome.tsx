@@ -8,7 +8,7 @@ const Welcome = () => (
         <h1 className="h1">Welcome to Colouring London</h1>
 
         <p className="lead">
-        Colouring London is a citizen science platform collecting information on every
+        Colouring London is a knowledge exchange platform collecting information on every
         building in London, to help make the city more sustainable. We&rsquo;re building it at The
         Bartlett Centre for Advanced Spatial Analysis, University College London.
         </p>
