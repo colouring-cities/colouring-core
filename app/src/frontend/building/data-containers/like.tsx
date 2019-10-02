@@ -12,7 +12,7 @@ const LikeView = (props) => (
             value={props.building.likes_total}
             mode={props.mode}
             onLike={props.onLike}
-            user_building_like={props.building_like}
+            building_like={props.building_like}
             />
     </Fragment>
 )
