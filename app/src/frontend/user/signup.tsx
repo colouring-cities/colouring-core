@@ -106,7 +106,7 @@ class SignUp extends Component<any, any> { // TODO: add proper types
                             value={this.state.email} onChange={this.handleChange}
                             placeholder="someone@example.com"
                         />
-
+                        <InfoBox msg="Please note that if you forget your password, you will only be able to recover your account if you provide an email address." />
                         <label htmlFor="confirm_email">Confirm email (optional)</label>
                         <input name="confirm_email" id="confirm_email"
                             className="form-control" type="email"
@@ -147,13 +147,13 @@ class SignUp extends Component<any, any> { // TODO: add proper types
                             </label>
                         </div>
 
-                        <div className="buttons-container">
+                        <div className="buttons-container with-space">
                             <input type="submit" value="Sign Up" className="btn btn-primary" />
                         </div>
 
                         Do you already have an account?
 
-                        <div className="buttons-container">
+                        <div className="buttons-container with-space">
                             <Link to="login.html" className="btn btn-outline-dark">Log in</Link>
                         </div>
 

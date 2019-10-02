@@ -113,13 +113,13 @@ class Login extends Component<any, any> { // TODO: add proper types
 
                         <Link to="/forgotten-password.html">Forgotten password?</Link>
 
-                        <div className="buttons-container">
+                        <div className="buttons-container with-space">
                             <input type="submit" value="Log In" className="btn btn-primary" />
                         </div>
 
                         Would you like to create an account instead?
 
-                        <div className="buttons-container">
+                        <div className="buttons-container with-space">
                             <Link to="sign-up.html" className="btn btn-outline-dark">Sign Up</Link>
                         </div>
 
