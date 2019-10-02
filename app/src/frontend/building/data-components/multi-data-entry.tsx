@@ -13,7 +13,7 @@ class MultiDataEntry extends Component<any, any> { // TODO: add proper types
         value: PropTypes.arrayOf(PropTypes.string),
         placeholder: PropTypes.string,
         disabled: PropTypes.bool,
-        handleChange: PropTypes.func,
+        onChange: PropTypes.func,
         copy: PropTypes.bool,
         toggleCopyAttribute: PropTypes.func,
         copying: PropTypes.bool
