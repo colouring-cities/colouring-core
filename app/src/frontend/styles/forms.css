@@ -28,7 +28,7 @@ label {
 }
 .buttons-container.with-space {
     margin-top: 1rem;
-    padding: 0 0.75rem;
+    /* padding: 0 0.75rem; */
 }
 .buttons-container .btn {
     margin-bottom: 0.25rem;

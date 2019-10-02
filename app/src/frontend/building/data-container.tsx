@@ -211,12 +211,29 @@ const withCopyEdit = (WrappedComponent) => {
                         action={`/edit/${this.props.slug}/${this.props.building.building_id}`}
                         method="POST"
                         onSubmit={this.handleSubmit}>
-                        <ErrorBox msg={this.state.error} />
                         {
                             (this.props.inactive) ?
                                 <InfoBox
                                     msg={`We're not collecting data on ${this.props.title.toLowerCase()} yet - check back soon.`}
                                 />
+                                : null
+                        }
+                        {
+                            (this.props.mode === 'edit' && !this.props.inactive) ?
+                                <Fragment>
+                                    <ErrorBox msg={this.state.error} />
+                                    {
+                                        this.props.slug === 'like' ? // special-case for likes
+                                            null :
+                                            <div className="buttons-container with-space">
+                                                <button
+                                                    type="submit"
+                                                    className="btn btn-primary">
+                                                    Save
+                                                </button>
+                                            </div>
+                                    }
+                                </Fragment>
                                 : null
                         }
                         <WrappedComponent
@@ -229,23 +246,6 @@ const withCopyEdit = (WrappedComponent) => {
                             onLike={this.handleLike}
                             onUpdate={this.handleUpdate}
                         />
-                        {
-                            (this.props.mode === 'edit' && !this.props.inactive) ?
-                                <Fragment>
-                                    {
-                                        this.props.slug === 'like' ? // special-case for likes
-                                            null :
-                                            <div className="buttons-container">
-                                                <button
-                                                    type="submit"
-                                                    className="btn btn-primary">
-                                                    Save
-                                                </button>
-                                            </div>
-                                    }
-                                </Fragment>
-                                : null
-                        }
                     </form>
                     :
                     <form>
