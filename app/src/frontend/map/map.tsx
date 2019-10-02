@@ -120,7 +120,8 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
             location: 'location',
             like: 'likes',
             planning: 'conservation_area',
-            sustainability: 'sust_dec'
+            sustainability: 'sust_dec',
+            type: 'building_attachment_form',
         };
         const tileset = tilesetByCat[cat];
         // pick revision id to bust browser cache

@@ -23,7 +23,12 @@ const LEGEND_CONFIG = {
     },
     type: {
         title: 'Type',
-        elements: []
+        elements: [
+            { color: "#f2a2b9", text: "Detached" },
+            { color: "#ab8fb0", text: "Semi-Detached" },
+            { color: "#3891d1", text: "End-Terrace" },
+            { color: "#226291", text: "Mid-Terrace" }
+        ]
     },
     age: {
         title: 'Age',

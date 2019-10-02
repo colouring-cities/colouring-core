@@ -43,9 +43,9 @@ const BuildingView = (props) => {
             return <TypeContainer
                 {...props}
                 key={props.building && props.building.building_id}
-                inactive={true}
+                inactive={false}
                 title="Type"
-                intro="How were buildings previously used? Coming soon…"
+                intro="How were buildings previously used?"
                 help="https://www.pages.colouring.london/buildingtypology"
             />
         case 'age':
