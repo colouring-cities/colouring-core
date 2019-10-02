@@ -17,6 +17,7 @@ const AgeView = (props) => (
             upper={props.building.date_upper}
             lower={props.building.date_lower}
             mode={props.mode}
+            copy={props.copy}
             onChange={props.onChange}
             />
         <NumericDataEntry
