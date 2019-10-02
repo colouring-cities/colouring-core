@@ -1,4 +1,4 @@
-SELECT
+COPY (SELECT
     building_id,
     ref_toid,
     ref_osm_id,
@@ -16,6 +16,7 @@ SELECT
     date_upper,
     date_source,
     date_source_detail,
+    date_link,
     facade_year,
     facade_upper,
     facade_lower,
@@ -34,6 +35,8 @@ SELECT
     planning_conservation_area_name,
     planning_in_list,
     planning_list_id,
+    planning_list_cat,
+    planning_list_grade,
     planning_heritage_at_risk_id,
     planning_world_list_id,
     planning_in_glher,
@@ -44,8 +47,7 @@ SELECT
     planning_in_local_list,
     planning_local_list_url,
     planning_in_historic_area_assessment,
-    planning_historic_area_assessment_url,
-    planning_list_cat,
-    planning_list_grade,
-    date_link
-FROM buildings
+    planning_historic_area_assessment_url
+FROM buildings)
+TO '/tmp/building_attributes.csv'
+WITH CSV HEADER

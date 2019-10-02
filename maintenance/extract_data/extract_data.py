@@ -22,39 +22,6 @@ def get_connection():
     )
 
 
-def fetch_with_server_side_cursor(
-    connection,
-    query,
-    on_row,
-    row_batch_size=10000
-):
-    with connection.cursor('server_side') as cur:
-        cur.itersize = row_batch_size
-        cur.execute(query)
-
-        header_saved = False
-
-        for row in cur:
-            if not header_saved:
-                columns = [c[0] for c in cur.description]
-                on_row(columns)
-                header_saved = True
-            on_row(row)
-
-
-def db_to_csv(connection, query):
-    string_io = StringIO()
-    writer = csv.writer(string_io)
-
-    fetch_with_server_side_cursor(
-        connection,
-        query,
-        lambda row: writer.writerow(row)
-    )
-
-    return string_io.getvalue()
-
-
 def get_extract_zip_file_path(current_time):
     base_dir = Path(os.environ['EXTRACTS_DIRECTORY'])
     file_name = f"data-extract-{current_time:%Y-%m-%d-%H_%M_%S}.zip"
@@ -79,27 +46,30 @@ def read_sql(rel_path_from_script):
     return sql_path.read_text()
 
 
-building_attr_query = read_sql('./export_attributes.sql')
-building_uprn_query = read_sql('./export_uprns.sql')
-edit_history_query = read_sql('./export_edit_history.sql')
 
 
 def make_data_extract(current_time, connection, zip_file_path):
     if zip_file_path.exists():
         raise ZipFileExistsError('Archive file under specified name already exists')
 
+    # Execute data dump as Postgres COPY commands, write from server to /tmp
+    with connection.cursor() as cur:
+        cur.execute(read_sql('./export_attributes.sql'))
+
+    with connection.cursor() as cur:
+        cur.execute(read_sql('./export_uprns.sql'))
+
+    with connection.cursor() as cur:
+        cur.execute(read_sql('./export_edit_history.sql'))
+
     zip_file_path.parent.mkdir(parents=True, exist_ok=True)
 
     try:
         with zipfile.ZipFile(zip_file_path, mode='w') as newzip:
-            newzip.writestr('building_attributes.csv',
-                            db_to_csv(connection, building_attr_query))
-            newzip.writestr('building_uprns.csv',
-                            db_to_csv(connection, building_uprn_query))
-            newzip.writestr('edit_history.csv',
-                            db_to_csv(connection, edit_history_query))
-
-            # TODO: add README
+            newzip.write('README.txt')
+            newzip.write('/tmp/building_attributes.csv', arcname='building_attributes.csv')
+            newzip.write('/tmp/building_uprns.csv', arcname='building_uprns.csv')
+            newzip.write('/tmp/edit_history.csv', arcname='edit_history.csv')
 
         add_extract_record_to_database(connection, zip_file_path, current_time)
     except:
