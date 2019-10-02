@@ -221,6 +221,7 @@ const withCopyEdit = (WrappedComponent) => {
                         }
                         <WrappedComponent
                             building={this.state.building}
+                            building_like={this.props.building_like}
                             mode={this.props.mode}
                             copy={copy}
                             onChange={this.handleChange}
