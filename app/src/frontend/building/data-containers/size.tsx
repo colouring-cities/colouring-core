@@ -51,6 +51,7 @@ const SizeView = (props) => (
         <NumericDataEntry
             title="Height to eaves (m)"
             slug="size_height_eaves"
+            disabled={true}
             value={props.building.size_height_eaves}
             mode={props.mode}
             copy={props.copy}

@@ -133,7 +133,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
 
                         <hr/>
 
-                        <h2 className="h2">Techical details</h2>
+                        <h2 className="h2">Technical details</h2>
                         <p>Are you a software developer? If so, you might be interested in these.</p>
                         <h3 className="h3">API key</h3>
                         <p>{this.props.user.api_key? this.props.user.api_key : '-'}</p>
@@ -141,8 +141,8 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
                             <input className="btn btn-warning" type="submit" value="Generate API key"/>
                         </form>
 
-                        <h3 className="h3">GitHub</h3>
-                        <a href="http://github.com/tomalrussell/colouring-london/">Colouring London Github repository</a>
+                        <h3 className="h3">Open Source Code</h3>
+                        Colouring London site code is developed at <a href="http://github.com/tomalrussell/colouring-london/">colouring-london</a> on Github
 
                         <hr />
 

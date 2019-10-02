@@ -8,8 +8,6 @@ const ContributorAgreementPage : React.SFC<any> = () => (
         <section className='main-col'>
             <h1>Contributor Agreement</h1>
 
-            <InfoBox msg="This is a draft contributor agreement." />
-
             <h2 className='h2'>Open data</h2>
 
             <p>

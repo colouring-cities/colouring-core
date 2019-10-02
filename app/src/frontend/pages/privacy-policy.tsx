@@ -7,7 +7,6 @@ const PrivacyPolicyPage: React.SFC<any> = () => (
     <article>
         <section className='main-col'>
             <h1 className='h1'>Colouring London Privacy Policy </ h1>
-            <InfoBox msg="This is a draft privacy policy." />
             <p>
                 This privacy policy explains how Colouring London uses the personal data we collect from you when you use our website. Colouring London is a research project developed by the Bartlett Centre for Advanced Spatial Analysis (CASA) at UCL. Colouring London is registered for data protection purposes with the UCL data protection office.
             </p>
@@ -28,6 +27,9 @@ const PrivacyPolicyPage: React.SFC<any> = () => (
             <h2 className='h2'>What purposes do we use your data?</h2>
             <p>
                 Colouring London uses your personal data to enable you to login to access and contribute to the Colouring London project and to provide a personalised user experience when you are logged in. We will not share your personal data (such as your email address) with any other parties or use your personal data for any purposes other than the Colouring London project.
+            </p>
+            <p>
+                If you request a password reset, an automated email will be sent using <a href="https://www.mailgun.com/">Mailgun</a>, who process the email in order to deliver it to your email address. Mailgun retain personal data they process on behalf of Colouring London for as long as is needed to provide email services. Mailgun will retain the personal information as necessary to comply with their legal obligations, resolve disputes, and enforce their agreements.
             </p>
 
             <h2 className='h2'>What is the legal basis for processing your data?</h2>
@@ -95,7 +97,7 @@ const PrivacyPolicyPage: React.SFC<any> = () => (
 
             <h2 className='h2'>Changes to this privacy policy</h2>
             <p>
-                Changes to this privacy policy will be notified via the Colouring London website. This privacy policy was last updated on 13 August 2019.
+                Changes to this privacy policy will be notified via the Colouring London website. This privacy policy was last updated on 2 October 2019 to add a paragraph on password reset emails. The previous update was on 13 August 2019.
             </p>
 
             <h2 className='h2'>Who do I contact with questions?</h2>
