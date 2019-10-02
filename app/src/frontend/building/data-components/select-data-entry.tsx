@@ -17,7 +17,7 @@ const SelectDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remo
                 id={props.slug} name={props.slug}
                 value={props.value || ''}
                 disabled={props.mode === 'view' || props.disabled}
-                onChange={props.handleChange}>
+                onChange={props.onChange}>
                 <option value="">{props.placeholder}</option>
                 {
                     props.options.map(option => (
