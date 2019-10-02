@@ -14,7 +14,7 @@ AS ENUM ('Outstanding',
     'Unclassified');
 
 ALTER TABLE buildings
-    ADD COLUMN IF NOT EXISTS sust_breeam_rating sust_breeam_rating DEFAULT 'Unclassified';
+    ADD COLUMN IF NOT EXISTS sust_breeam_rating sust_breeam_rating;
 
 -- Date of BREEAM
 ALTER TABLE buildings
