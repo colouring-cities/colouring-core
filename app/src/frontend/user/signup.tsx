@@ -142,8 +142,9 @@ class SignUp extends Component<any, any> { // TODO: add proper types
                                 required />
                             <label className="form-check-label" htmlFor="confirm_conditions">
                                 I confirm that I have read and agree to the <Link
-                                    to="/privacy-policy.html">privacy policy</Link> and <Link
-                                    to="/contributor-agreement.html">contributor agreement</Link>.
+                                    to="/privacy-policy.html">privacy policy</Link>, <Link
+                                    to="/contributor-agreement.html">contributor agreement</Link> and <Link
+                                    to="/data-accuracy.html">data accuracy agreement</Link>.
                             </label>
                         </div>
 
