@@ -133,7 +133,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
 
                         <hr/>
 
-                        <h2 className="h2">Techical details</h2>
+                        <h2 className="h2">Technical details</h2>
                         <p>Are you a software developer? If so, you might be interested in these.</p>
                         <h3 className="h3">API key</h3>
                         <p>{this.props.user.api_key? this.props.user.api_key : '-'}</p>
