@@ -232,8 +232,6 @@ const withCopyEdit = (WrappedComponent) => {
                         {
                             (this.props.mode === 'edit' && !this.props.inactive) ?
                                 <Fragment>
-                                    <InfoBox
-                                        msg="Colouring may take a few seconds - try zooming the map or hitting refresh after saving (we're working on making this smoother)." />
                                     {
                                         this.props.slug === 'like' ? // special-case for likes
                                             null :
