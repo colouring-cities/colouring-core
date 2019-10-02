@@ -142,11 +142,17 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
     colourBuilding(building) {
         const cat = this.props.match.params.category;
         const q = parse(window.location.search);
-        const data = (cat === 'like') ? { like: true } : JSON.parse(q.data as string); // TODO: verify what happens if data is string[]
+
         if (cat === 'like') {
             this.likeBuilding(building.building_id)
         } else {
-            this.updateBuilding(building.building_id, data)
+            try {
+                // TODO: verify what happens if data is string[]
+                const data = JSON.parse(q.data as string);
+                this.updateBuilding(building.building_id, data)
+            } catch (error) {
+                console.error(error, q)
+            }
         }
     }
 

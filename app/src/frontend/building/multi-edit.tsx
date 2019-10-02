@@ -34,7 +34,20 @@ const MultiEdit = (props) => {
     }
 
     const q = parse(props.location.search);
-    const data = JSON.parse(q.data as string) // TODO: verify what happens when data is string[]
+
+    let data: object;
+    if (cat === 'like'){
+        data = { like: true }
+    } else {
+        try {
+            // TODO: verify what happens if data is string[]
+            data = JSON.parse(q.data as string);
+        } catch (error) {
+            console.error(error, q)
+            data = {}
+        }
+    }
+
     const title = sectionTitleFromCat(cat);
     return (
         <Sidebar>
