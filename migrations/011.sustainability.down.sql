@@ -26,3 +26,8 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS sust_life_expectancy;
 
 --Average lifespan of typology based on statistical analysis of similar stock
 ALTER TABLE buildings DROP COLUMN IF EXISTS sust_lifespan_average;
+
+
+DROP TYPE IF EXISTS sust_breeam_rating;
+DROP TYPE IF EXISTS sust_dec;
+DROP TYPE IF EXISTS sust_aggregate_estimate_epc;
