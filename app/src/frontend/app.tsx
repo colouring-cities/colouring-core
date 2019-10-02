@@ -18,6 +18,7 @@ import ForgottenPassword from './user/forgotten-password';
 import PasswordReset from './user/password-reset';
 
 import MapApp from './map-app';
+import ContactPage from './pages/contact';
 
 
 interface AppProps {
@@ -97,6 +98,7 @@ class App extends React.Component<AppProps, any> { // TODO: add proper types
                 <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
                 <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
                 <Route exact path="/data-extracts.html" component={DataExtracts} />
+                <Route exact path="/contact.html" component={ContactPage} />
                 <Route exact path={["/", "/:mode(view|edit|multi-edit)/:category/:building(\\d+)?"]} render={(props) => (
                     <MapApp
                         {...props}

@@ -55,7 +55,7 @@ class Header extends React.Component<any, any> { // TODO: add proper types
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/data-extracts.html" className="nav-link">
+                                <NavLink to="/data-extracts.html" className="nav-link" onClick={this.handleNavigate}>
                                     Downloads
                                 </NavLink>
                             </li>
@@ -83,6 +83,11 @@ class Header extends React.Component<any, any> { // TODO: add proper types
                                 <a className="nav-link" href="https://discuss.colouring.london">
                                     Discuss
                                 </a>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink to="/contact.html" className="nav-link" onClick={this.handleNavigate}>
+                                    Contact
+                                </NavLink>
                             </li>
                             {
                                 this.props.user?

@@ -27,6 +27,7 @@ main {
 @media(min-width: 768px) {
     main {
         flex-direction: row;
+        justify-content: center;
     }
  }
 /**
