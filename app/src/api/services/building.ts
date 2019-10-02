@@ -371,6 +371,8 @@ const BUILDING_FIELD_WHITELIST = new Set([
     // 'sust_aggregate_estimate_epc',
     'sust_retrofit_date',
     // 'sust_life_expectancy',
+    'building_attachment_form',
+    'date_change_building_use',
 ]);
 
 /**

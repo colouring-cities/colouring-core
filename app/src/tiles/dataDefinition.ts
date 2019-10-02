@@ -96,7 +96,17 @@ const BUILDING_LAYER_DEFINITIONS = {
             buildings as b
         WHERE
             g.geometry_id = b.geometry_id
-    ) as sust_dec`
+    ) as sust_dec`,
+    building_attachment_form: `(
+        SELECT
+            b.building_attachment_form::text as building_attachment_form,
+            g.geometry_geom
+        FROM
+            geometries as g,
+            buildings as b
+        WHERE
+            g.geometry_id = b.geometry_id
+    ) as building_attachment_form`,
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';

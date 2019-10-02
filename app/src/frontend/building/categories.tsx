@@ -29,7 +29,7 @@ const Categories = (props) => (
             desc="Building type"
             slug="type"
             help="https://pages.colouring.london/buildingtypology"
-            inactive={true}
+            inactive={false}
             mode={props.mode}
             building_id={props.building_id}
         />

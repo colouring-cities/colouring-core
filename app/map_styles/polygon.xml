@@ -202,6 +202,24 @@
             <PolygonSymbolizer fill="#e31d23" />
         </Rule>
     </Style>
+    <Style name="building_attachment_form">
+        <Rule>
+            <Filter>[building_attachment_form] = "Detached"</Filter>
+            <PolygonSymbolizer fill="#f2a2b9" />
+        </Rule>
+        <Rule>
+            <Filter>[building_attachment_form] = "Semi-Detached"</Filter>
+            <PolygonSymbolizer fill="#ab8fb0" />
+        </Rule>
+        <Rule>
+            <Filter>[building_attachment_form] = "End-Terrace"</Filter>
+            <PolygonSymbolizer fill="#3891d1" />
+        </Rule>
+        <Rule>
+            <Filter>[building_attachment_form] = "Mid-Terrace"</Filter>
+            <PolygonSymbolizer fill="#226291" />
+        </Rule>
+    </Style>
     <Style name="likes">
         <Rule>
             <Filter>[likes] &gt;= 10</Filter>
