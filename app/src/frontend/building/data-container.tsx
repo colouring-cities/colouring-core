@@ -213,7 +213,7 @@ const withCopyEdit = (WrappedComponent) => {
                         onSubmit={this.handleSubmit}>
                         <ErrorBox msg={this.state.error} />
                         {
-                            (this.props.mode === 'edit' && this.props.inactive) ?
+                            (this.props.inactive) ?
                                 <InfoBox
                                     msg={`We're not collecting data on ${this.props.title.toLowerCase()} yet - check back soon.`}
                                 />
@@ -240,14 +240,36 @@ const withCopyEdit = (WrappedComponent) => {
                                                     type="submit"
                                                     className="btn btn-primary">
                                                     Save
-                                        </button>
+                                                </button>
                                             </div>
                                     }
                                 </Fragment>
                                 : null
                         }
                     </form>
-                    : <InfoBox msg="Select a building to view data"></InfoBox>
+                    :
+                    <form>
+                        {
+                            (this.props.inactive)?
+                            <Fragment>
+                            <InfoBox
+                                msg={`We're not collecting data on ${this.props.title.toLowerCase()} yet - check back soon.`}
+                            />
+                            <WrappedComponent
+                                building={undefined}
+                                building_like={undefined}
+                                mode={this.props.mode}
+                                copy={copy}
+                                onChange={this.handleChange}
+                                onCheck={this.handleCheck}
+                                onLike={this.handleLike}
+                                onUpdate={this.handleUpdate}
+                            />
+                            </Fragment>
+                            :
+                            <InfoBox msg="Select a building to view data"></InfoBox>
+                        }
+                    </form>
                 }
                 </section>
             );
