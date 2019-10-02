@@ -8,7 +8,8 @@
     z-index: 1000;
 
     min-width: 12rem;
-    max-height: 50%;
+    max-height: 60%;
+    
     display: flex;
     flex-direction: column;
 
