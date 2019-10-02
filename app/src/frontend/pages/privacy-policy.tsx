@@ -7,7 +7,6 @@ const PrivacyPolicyPage: React.SFC<any> = () => (
     <article>
         <section className='main-col'>
             <h1 className='h1'>Colouring London Privacy Policy </ h1>
-            <InfoBox msg="This is a draft privacy policy." />
             <p>
                 This privacy policy explains how Colouring London uses the personal data we collect from you when you use our website. Colouring London is a research project developed by the Bartlett Centre for Advanced Spatial Analysis (CASA) at UCL. Colouring London is registered for data protection purposes with the UCL data protection office.
             </p>
