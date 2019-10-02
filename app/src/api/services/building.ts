@@ -366,6 +366,11 @@ const BUILDING_FIELD_WHITELIST = new Set([
     'planning_local_list_url',
     'planning_in_historic_area_assessment',
     'planning_historic_area_assessment_url',
+    'sust_breeam_rating',
+    'sust_dec',
+    // 'sust_aggregate_estimate_epc',
+    'sust_retrofit_date',
+    // 'sust_life_expectancy',
 ]);
 
 /**

@@ -83,7 +83,7 @@ const Categories = (props) => (
             desc="Performance"
             slug="sustainability"
             help="https://pages.colouring.london/sustainability"
-            inactive={true}
+            inactive={false}
             mode={props.mode}
             building_id={props.building_id}
         />
