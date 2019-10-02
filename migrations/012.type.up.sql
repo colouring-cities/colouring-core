@@ -3,11 +3,10 @@ CREATE TYPE building_attachment_form
 AS ENUM ('Detached',
     'Semi-Detached',
     'End-Terrace',
-    'Mid-Terrace',
-    'Unknown');
+    'Mid-Terrace');
 
 ALTER TABLE buildings
-    ADD COLUMN IF NOT EXISTS building_attachment_form building_attachment_form DEFAULT 'Unknown';
+    ADD COLUMN IF NOT EXISTS building_attachment_form building_attachment_form;
 
 -- [Disabled for launch] Date of change of use
 -- This needs to pair with demolition
