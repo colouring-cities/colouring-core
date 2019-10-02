@@ -74,6 +74,7 @@ const LEGEND_CONFIG = {
     },
     sustainability: {
         title: 'Sustainability',
+        description: 'DEC Rating',
         elements: [
             { color: "#007f3d", text: 'A' },
             { color: "#2c9f29", text: 'B' },
