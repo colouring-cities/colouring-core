@@ -35,7 +35,7 @@ const Categories = (props) => (
         />
         <Category
             title="Age"
-            desc="Age and history"
+            desc="Age & history"
             slug="age"
             help="https://pages.colouring.london/age"
             inactive={false}
@@ -44,7 +44,7 @@ const Categories = (props) => (
         />
         <Category
             title="Size &amp; Shape"
-            desc="Form and scale"
+            desc="Form & scale"
             slug="size"
             help="https://pages.colouring.london/shapeandsize"
             inactive={false}
@@ -53,7 +53,7 @@ const Categories = (props) => (
         />
         <Category
             title="Construction"
-            desc="Methods and materials"
+            desc="Methods & materials"
             slug="construction"
             help="https://pages.colouring.london/construction"
             inactive={true}
@@ -62,7 +62,7 @@ const Categories = (props) => (
         />
         <Category
             title="Team"
-            desc="Builder and designer"
+            desc="Builder & designer"
             slug="team"
             help="https://pages.colouring.london/team"
             inactive={true}
@@ -136,12 +136,11 @@ const Category = (props) => {
                     'Coming soon… Click more info for details.'
                     : 'View/Edit Map'
             }>
-            <h3 className="category">{props.title}</h3>
-            <p className="description">{props.desc}</p>
+                <div className="category-title-container">
+                    <h3 className="category">{props.title}</h3>
+                    <p className="description">{props.desc}</p>
+                </div>
         </NavLink>
-        <a className="icon-button help" href={props.help}>
-            More
-        </a>
     </li>
     );
 }
