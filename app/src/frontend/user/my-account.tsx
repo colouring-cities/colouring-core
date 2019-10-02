@@ -141,8 +141,8 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
                             <input className="btn btn-warning" type="submit" value="Generate API key"/>
                         </form>
 
-                        <h3 className="h3">GitHub</h3>
-                        <a href="http://github.com/tomalrussell/colouring-london/">Colouring London Github repository</a>
+                        <h3 className="h3">Open Source Code</h3>
+                        Colouring London site code is developed at <a href="http://github.com/tomalrussell/colouring-london/">colouring-london</a> on Github
 
                         <hr />
 
