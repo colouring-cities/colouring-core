@@ -87,9 +87,9 @@ const BuildingView = (props) => {
                 {...props}
                 key={props.building && props.building.building_id}
                 title="Sustainability"
-                intro="Are buildings energy efficient? Coming soon…"
+                intro="Are buildings energy efficient?"
                 help="https://pages.colouring.london/sustainability"
-                inactive={true}
+                inactive={false}
             />
         case 'streetscape':
             return <StreetscapeContainer

@@ -69,7 +69,15 @@ const LEGEND_CONFIG = {
     },
     sustainability: {
         title: 'Sustainability',
-        elements: []
+        elements: [
+            { color: "#007f3d", text: 'A' },
+            { color: "#2c9f29", text: 'B' },
+            { color: "#9dcb3c", text: 'C' },
+            { color: "#fff200", text: 'D' },
+            { color: "#f7af1d", text: 'E' },
+            { color: "#ed6823", text: 'F' },
+            { color: "#e31d23", text: 'G' },
+        ]
     },
     streetscape: {
         title: 'Streetscape',

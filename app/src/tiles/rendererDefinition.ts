@@ -32,7 +32,7 @@ const renderOrStitchRenderer = new BranchingRenderer(
 const tileCache = new TileCache(
     process.env.TILECACHE_PATH,
     {
-        tilesets: ['date_year', 'size_storeys', 'location', 'likes', 'conservation_area'],
+        tilesets: ['date_year', 'size_storeys', 'location', 'likes', 'conservation_area', 'sust_dec'],
         minZoom: 9,
         maxZoom: 18,
         scales: [1, 2]
