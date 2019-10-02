@@ -80,9 +80,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         const mode = this.props.match.params.mode || 'view';
         const category = this.props.match.params.category || 'age';
 
-        if (building == undefined || 
-            (this.state.building != undefined &&
-                building.building_id === this.state.building.building_id)) {
+        if (building == undefined) {
             this.setState({ building: undefined });
             this.props.history.push(`/${mode}/${category}`);
             return;
