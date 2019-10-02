@@ -61,19 +61,19 @@ const Categories = (props) => (
             building_id={props.building_id}
         />
         <Category
-            title="Team"
-            desc="Builder & designer"
-            slug="team"
-            help="https://pages.colouring.london/team"
+            title="Streetscape"
+            desc="Environment"
+            slug="streetscape"
+            help="https://pages.colouring.london/streetscape"
             inactive={true}
             mode={props.mode}
             building_id={props.building_id}
         />
         <Category
-            title="Streetscape"
-            desc="Environment"
-            slug="streetscape"
-            help="https://pages.colouring.london/streetscape"
+            title="Team"
+            desc="Builder & designer"
+            slug="team"
+            help="https://pages.colouring.london/team"
             inactive={true}
             mode={props.mode}
             building_id={props.building_id}
