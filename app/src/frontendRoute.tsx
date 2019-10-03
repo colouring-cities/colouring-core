@@ -83,7 +83,7 @@ function renderHTML(context, data, req, res) {
         <meta property="og:title"              content="Colouring London" />
         <meta property="og:description"        content="Colouring London is a citizen science platform collecting information on every building in London, to help make the city more sustainable. We’re building it at The Bartlett Centre for Advanced Spatial Analysis, University College London." />
         <meta property="og:locale"             content="en_GB" />
-        <meta property="og:image"              content="https://colouring.london/images/logo-cl.png" />
+        <meta property="og:image"              content="https://colouring.london/images/logo-cl-square.png" />
 
         <link rel="manifest" href="site.webmanifest">
         
