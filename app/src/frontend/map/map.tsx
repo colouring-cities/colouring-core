@@ -83,8 +83,11 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
                     this.props.selectBuilding(undefined);
                 }
             } else {
-                // deselect but keep/return to expected colour theme
-                this.props.selectBuilding(undefined);
+                if (mode !== 'multi-edit') {
+                    // deselect but keep/return to expected colour theme
+                    // except if in multi-edit (never select building, only colour on click)
+                    this.props.selectBuilding(undefined);
+                }
             }
         }.bind(this)).catch(
             (err) => console.error(err)
@@ -106,7 +109,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
         const layer = (this.state.theme === 'light')? 'Light 3857' : 'Night 3857';
         const baseUrl = `https://api2.ordnancesurvey.co.uk/mapping_api/v1/service/zxy/${tilematrixSet}/${layer}/{z}/{x}/{y}.png?key=${key}`;
         const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>';
-        const baseLayer = <TileLayer 
+        const baseLayer = <TileLayer
             url={baseUrl}
             attribution={attribution}
         />;
