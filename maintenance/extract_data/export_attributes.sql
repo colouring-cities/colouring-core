@@ -11,6 +11,7 @@ COPY (SELECT
     location_postcode,
     location_latitude,
     location_longitude,
+    building_attachment_form,
     date_year,
     date_lower,
     date_upper,
@@ -29,7 +30,9 @@ COPY (SELECT
     size_floor_area_ground,
     size_floor_area_total,
     size_width_frontage,
-    likes_total,
+    sust_breeam_rating,
+    sust_dec,
+    sust_retrofit_date,
     planning_portal_link,
     planning_in_conservation_area,
     planning_conservation_area_name,
@@ -47,7 +50,8 @@ COPY (SELECT
     planning_in_local_list,
     planning_local_list_url,
     planning_in_historic_area_assessment,
-    planning_historic_area_assessment_url
+    planning_historic_area_assessment_url,
+    likes_total
 FROM buildings)
 TO '/tmp/building_attributes.csv'
 WITH CSV HEADER

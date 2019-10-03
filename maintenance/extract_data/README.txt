@@ -41,6 +41,7 @@ This is the main table, containing almost all data collected by Colouring London
 - `location_postcode`: postcode
 - `location_latitude`: latitude
 - `location_longitude`: longitude
+- `building_attachment_form`: building attachment form
 - `date_year`: year built
 - `date_lower`: lower bound on year built
 - `date_upper`: upper bound on year built
@@ -59,7 +60,9 @@ This is the main table, containing almost all data collected by Colouring London
 - `size_floor_area_ground`: ground floor floor area in square metres
 - `size_floor_area_total`: total floor area in square metres
 - `size_width_frontage`: width of frontage in metres
-- `likes_total`: number of times the building has been liked by Colouring London users
+- `sust_breeam_rating`: BREEAM rating
+- `sust_dec`: DEC rating
+- `sust_retrofit_date`: year of last significant retrofit
 - `planning_portal_link`: link to an entry on https://www.planningportal.co.uk/
 - `planning_in_conservation_area`: in a conservation area? (True/False)
 - `planning_conservation_area_name`: conservation area name
@@ -78,6 +81,7 @@ This is the main table, containing almost all data collected by Colouring London
 - `planning_local_list_url`: local list reference link
 - `planning_in_historic_area_assessment`: within a historic area assessment? (True/False)
 - `planning_historic_area_assessment_url`: historic area assessment reference link
+- `likes_total`: number of times the building has been liked by Colouring London users
 
 
 ## Building UPRNs
