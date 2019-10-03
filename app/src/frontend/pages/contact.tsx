@@ -18,6 +18,17 @@ const ContactPage = () => (
             <p>For press enquiries please contact the Bartlett Press and Communications team at <a href="mailto:architecture@ucl.ac.uk">architecture@ucl.ac.uk</a></p>
 
             <p>
+            If you capture images from the maps on Colouring London, please credit our
+            contributors (who collected the data) and Ordnance Survey
+            (who provided the basemaps and building geometries) as follows:
+            </p>
+            <p>
+            <pre><code>
+            Colouring London https://colouring.london Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines.
+            </code></pre>
+            </p>
+            <hr />
+            <p>
                 <img className="d-block mx-auto" src="images/logo-cl.png"></img>
             </p>
         </section>
