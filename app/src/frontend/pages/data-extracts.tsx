@@ -45,7 +45,7 @@ export default class DataExtracts extends React.Component<{}, DataExtractsState>
                 <section className="main-col">
                     <h1 className="h2">Open data extracts</h1>
                     <p>Choose one of the links below to download an archive containing the open data collected on the Colouring London platform</p>
-                    <p>By downloading data extracts from this site, you agree to the <NavLink to="/data-accuracy.html">data accuracy agreement </NavLink></p>
+                    <p>By downloading data extracts from this site, you agree to the <NavLink to="/data-accuracy.html">data accuracy agreement </NavLink> and the <NavLink to="/ordnance-survey-uprn.html">Ordnance Survey terms of UPRN usage</NavLink>.</p>
                     {
                         this.state.extracts == undefined ?
                             <p>Loading extracts...</p> :
