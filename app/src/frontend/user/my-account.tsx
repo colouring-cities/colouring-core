@@ -107,11 +107,17 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
                         <h1 className="h1">Welcome, {this.props.user.username}!</h1>
                         <p>
 
-                        Colouring London is under active development, Please <a href="https://discuss.colouring.london/">discuss
+                        Colouring London is under active development. Please <a href="https://discuss.colouring.london/">discuss
                         suggestions for improvements</a> and <a
                                 href="https://github.com/tomalrussell/colouring-london/issues">
                         report issues or problems</a>.
 
+                        </p>
+                        <p>
+                        For reference, here are the <Link
+                        to="/privacy-policy.html">privacy policy</Link>, <Link
+                        to="/contributor-agreement.html">contributor agreement</Link> and <Link
+                        to="/data-accuracy.html">data accuracy agreement</Link>.
                         </p>
                         <ErrorBox msg={this.state.error} />
                         <form onSubmit={this.handleLogout}>
