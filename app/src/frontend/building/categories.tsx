@@ -64,7 +64,7 @@ const Categories = (props) => (
             title="Streetscape"
             desc="Environment"
             slug="streetscape"
-            help="https://pages.colouring.london/streetscape"
+            help="https://pages.colouring.london/greenery"
             inactive={true}
             mode={props.mode}
             building_id={props.building_id}
@@ -125,7 +125,7 @@ Categories.propTypes = {
 const Category = (props) => {
     let categoryLink = `/${props.mode}/${props.slug}`;
     if (props.building_id != undefined) categoryLink += `/${props.building_id}`;
-    
+
     return (
     <li className={`category-block ${props.slug} background-${props.slug}`}>
         <NavLink
