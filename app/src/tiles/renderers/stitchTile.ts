@@ -18,35 +18,40 @@ async function stitchTile({ tileset, z, x, y, scale }: TileParams, dataParams: a
         [nextXY.maxX, nextXY.maxY]
     ].map(([x, y]) => renderTile({ tileset, z: nextZ, x, y, scale }, dataParams)));
 
-    // not possible to chain overlays in a single pipeline, but there may still be a better
-    // way to create image buffer here (four tiles resize to one at the next zoom level)
-    // instead of repeatedly creating `sharp` objects, to png, to buffer...
-    return sharp({
+    const compositedBuffer = await sharp({
         create: {
             width: tileSize * 2,
             height: tileSize * 2,
             channels: 4,
             background: { r: 0, g: 0, b: 0, alpha: 0 }
         }
-    }).overlayWith(
-        topLeft, { gravity: sharp.gravity.northwest }
-    ).png().toBuffer().then((buf) => {
-        return sharp(buf).overlayWith(
-            topRight, { gravity: sharp.gravity.northeast }
-        ).png().toBuffer()
-    }).then((buf) => {
-        return sharp(buf).overlayWith(
-            bottomLeft, { gravity: sharp.gravity.southwest }
-        ).png().toBuffer()
-    }).then((buf) => {
-        return sharp(buf).overlayWith(
-            bottomRight, { gravity: sharp.gravity.southeast }
-        ).png().toBuffer()
-    }).then((buf) => {
-        return sharp(buf
-        ).resize(tileSize, tileSize, { fit: 'inside' }
-        ).png().toBuffer()
-    })
+    }).composite([
+        {
+            input: topLeft,
+            top: 0,
+            left: 0
+        },
+        {
+            input: topRight,
+            top: 0, 
+            left: tileSize
+        },
+        {
+            input: bottomLeft,
+            top: tileSize,
+            left: 0
+        },
+        {
+            input: bottomRight,
+            top: tileSize,
+            left: tileSize
+        }
+    ]).png().toBuffer();
+    
+    return sharp(compositedBuffer)
+        .resize(tileSize, tileSize, {fit: 'inside'})
+        .png()
+        .toBuffer();
 }
 
 export {
