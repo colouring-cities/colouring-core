@@ -111,6 +111,14 @@ const BUILDING_LAYER_DEFINITIONS = {
 
 const GEOMETRY_FIELD = 'geometry_geom';
 
+function getBuildingLayerNames() {
+    return Object.keys(BUILDING_LAYER_DEFINITIONS);
+}
+
+function getAllLayerNames() {
+    return ['highlight', ...getBuildingLayerNames()];
+}
+
 function getBuildingsDataConfig(tileset: string, dataParams: any): DataConfig {
     const table = BUILDING_LAYER_DEFINITIONS[tileset];
 
@@ -149,7 +157,8 @@ function getHighlightDataConfig(tileset: string, dataParams: any): DataConfig {
 }
 
 export {
-    BUILDING_LAYER_DEFINITIONS,
+    getBuildingLayerNames,
+    getAllLayerNames,
     getBuildingsDataConfig,
     getHighlightDataConfig
 };

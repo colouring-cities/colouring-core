@@ -70,7 +70,9 @@ class TileCache {
         /** Domain definition for the cache */
         private cacheDomain: CacheDomain,
         /** Function for defining custom caching rules (optional) */
-        private shouldCacheFn?: (TileParams) => boolean
+        private shouldCacheFn?: (TileParams) => boolean,
+        /** Function for defining whether the tileset should be cleared when clearing cache for bounding box */
+        private shouldBulkClearTilesetFn?: (tileset: string) => boolean
     ) {}
 
     async get(tileParams: TileParams): Promise<Image> {
@@ -108,6 +110,8 @@ class TileCache {
     async removeAllAtBbox(bbox: BoundingBox): Promise<void[]> {
         const removePromises: Promise<void>[] = [];
         for (const tileset of this.cacheDomain.tilesets) {
+            if(!this.shouldBulkClearTileset(tileset)) continue;
+
             for (let z = this.cacheDomain.minZoom; z <= this.cacheDomain.maxZoom; z++) {
                 let tileBounds = getXYZ(bbox, z)
                 for (let x = tileBounds.minX; x <= tileBounds.maxX; x++) {
@@ -136,6 +140,10 @@ class TileCache {
             this.cacheDomain.maxZoom >= tileParams.z &&
             this.cacheDomain.scales.includes(tileParams.scale) &&
             (this.shouldCacheFn == undefined || this.shouldCacheFn(tileParams));
+    }
+
+    private shouldBulkClearTileset(tileset: string): boolean {
+        return this.shouldCacheFn == undefined || this.shouldBulkClearTilesetFn(tileset);
     }
 }
 

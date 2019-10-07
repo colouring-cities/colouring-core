@@ -1,6 +1,6 @@
 import { TileCache } from "./tileCache";
 import { BoundingBox, TileParams, Tile } from "./types";
-import { getBuildingsDataConfig, getHighlightDataConfig, BUILDING_LAYER_DEFINITIONS } from "./dataDefinition";
+import { getBuildingsDataConfig, getHighlightDataConfig, getAllLayerNames, getBuildingLayerNames } from "./dataDefinition";
 import { isOutsideExtent } from "./util";
 import { renderDataSourceTile } from "./renderers/renderDataSourceTile";
 import { getTileWithCaching } from "./renderers/getTileWithCaching";
@@ -10,7 +10,7 @@ import { createBlankTile } from "./renderers/createBlankTile";
 /**
  * A list of all tilesets handled by the tile server
  */
-const allTilesets = ['highlight', ...Object.keys(BUILDING_LAYER_DEFINITIONS)];
+const allTilesets = getAllLayerNames();
 
 /**
  * Zoom level when we switch from rendering direct from database to instead composing tiles
@@ -27,14 +27,19 @@ const EXTENT_BBOX: BoundingBox = [-61149.622628, 6667754.851372, 28128.826409, 6
 const tileCache = new TileCache(
     process.env.TILECACHE_PATH,
     {
-        tilesets: ['date_year', 'size_storeys', 'location', 'likes', 'conservation_area', 'sust_dec', 'building_attachment_form'],
+        tilesets: getBuildingLayerNames(),
         minZoom: 9,
         maxZoom: 18,
         scales: [1, 2]
     },
+
+    // cache age data and base building outlines for more zoom levels than other layers
     ({ tileset, z }: TileParams) => (tileset === 'date_year' && z <= 16) ||
         ((tileset === 'base_light' || tileset === 'base_night') && z <= 17) ||
-        z <= 13
+        z <= 13,
+    
+    // don't clear base_light and base_night on bounding box cache clear
+    (tileset: string) => tileset !== 'base_light' && tileset !== 'base_night'
 );
 
 const renderBuildingTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getBuildingsDataConfig);
