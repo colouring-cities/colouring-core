@@ -1,21 +1,16 @@
 import { TileCache } from "./tileCache";
-import { BoundingBox, TileParams } from "./types";
-import { StitchRenderer } from "./renderers/stitchRenderer";
-import { CachedRenderer } from "./renderers/cachedRenderer";
-import { BranchingRenderer } from "./renderers/branchingRenderer";
-import { WindowedRenderer } from "./renderers/windowedRenderer";
-import { BlankRenderer } from "./renderers/blankRenderer";
-import { DatasourceRenderer } from "./renderers/datasourceRenderer";
+import { BoundingBox, TileParams, Tile } from "./types";
 import { getBuildingsDataConfig, getHighlightDataConfig, BUILDING_LAYER_DEFINITIONS } from "./dataDefinition";
+import { isOutsideExtent } from "./util";
+import { renderDataSourceTile } from "./renderers/renderDataSourceTile";
+import { getTileWithCaching } from "./renderers/getTileWithCaching";
+import { stitchTile } from "./renderers/stitchTile";
+import { createBlankTile } from "./renderers/createBlankTile";
 
 /**
  * A list of all tilesets handled by the tile server
  */
 const allTilesets = ['highlight', ...Object.keys(BUILDING_LAYER_DEFINITIONS)];
-
-const buildingDataRenderer = new DatasourceRenderer(getBuildingsDataConfig);
-
-const stitchRenderer = new StitchRenderer(undefined); // depends recurrently on cache, so parameter will be set later
 
 /**
  * Zoom level when we switch from rendering direct from database to instead composing tiles
@@ -23,11 +18,11 @@ const stitchRenderer = new StitchRenderer(undefined); // depends recurrently on 
  */
 const STITCH_THRESHOLD = 12;
 
-const renderOrStitchRenderer = new BranchingRenderer(
-    ({ z }) => z <= STITCH_THRESHOLD,
-    stitchRenderer, // refer to the prepared stitch renderer
-    buildingDataRenderer
-);
+/**
+ * Hard-code extent so we can short-circuit rendering and return empty/transparent tiles outside the area of interest
+ * bbox in CRS epsg:3857 in form: [w, s, e, n]
+ */
+const EXTENT_BBOX: BoundingBox = [-61149.622628, 6667754.851372, 28128.826409, 6744803.375884];
 
 const tileCache = new TileCache(
     process.env.TILECACHE_PATH,
@@ -42,37 +37,36 @@ const tileCache = new TileCache(
         z <= 13
 );
 
-const cachedRenderer = new CachedRenderer(
-    tileCache,
-    renderOrStitchRenderer
-);
+const renderBuildingTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getBuildingsDataConfig);
+const renderHighlightTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getHighlightDataConfig);
 
-// set up stitch renderer to use the data renderer with caching
-stitchRenderer.tileRenderer = cachedRenderer;
+function cacheOrCreateBuildingTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
+    return getTileWithCaching(tileParams, dataParams, tileCache, stitchOrRenderBuildingTile);
+}
 
-const highlightRenderer = new DatasourceRenderer(getHighlightDataConfig);
+function stitchOrRenderBuildingTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
+    if (tileParams.z <= STITCH_THRESHOLD) {
+        // stitch tile, using cache recursively
+        return stitchTile(tileParams, dataParams, cacheOrCreateBuildingTile);
+    } else {
+        return renderBuildingTile(tileParams, dataParams);
+    }
+}
 
-const highlightOrBuildingRenderer = new BranchingRenderer(
-    ({ tileset }) => tileset === 'highlight',
-    highlightRenderer,
-    cachedRenderer
-);
+function renderTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
+    if (isOutsideExtent(tileParams, EXTENT_BBOX)) {
+        return createBlankTile();
+    }
 
-const blankRenderer = new BlankRenderer();
+    if (tileParams.tileset === 'highlight') {
+        return renderHighlightTile(tileParams, dataParams);
+    }
 
-/**
- * Hard-code extent so we can short-circuit rendering and return empty/transparent tiles outside the area of interest
- * bbox in CRS epsg:3857 in form: [w, s, e, n]
- */
-const EXTENT_BBOX: BoundingBox = [-61149.622628, 6667754.851372, 28128.826409, 6744803.375884];
-const mainRenderer = new WindowedRenderer(
-    EXTENT_BBOX,
-    highlightOrBuildingRenderer,
-    blankRenderer
-);
+    return cacheOrCreateBuildingTile(tileParams, dataParams);
+}
 
 export {
     allTilesets,
-    mainRenderer,
+    renderTile,
     tileCache
 };

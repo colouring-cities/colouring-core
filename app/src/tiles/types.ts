@@ -1,4 +1,5 @@
 import { Image } from 'mapnik';
+import { Sharp } from 'sharp';
 
 /**
  * Bounding box in the format [w, s, e, n]
@@ -32,12 +33,26 @@ interface TileParams {
     scale: number;
 }
 
+interface DataConfig {
+    table: string;
+    geometry_field: string;
+}
+
+type TableDefinitionFunction = (tileset: string, dataParams: any) => DataConfig;
+
+type Tile = Image | Sharp;
+type RendererFunction = (tileParams: TileParams, dataParams: any) => Promise<Tile>;
+
 interface TileRenderer {
-    getTile(tileParams: TileParams, dataParams: any): Promise<Image>
+    getTile: RendererFunction
 }
 
 export {
     BoundingBox,
     TileParams,
-    TileRenderer
+    TileRenderer,
+    Tile,
+    RendererFunction,
+    DataConfig, 
+    TableDefinitionFunction
 };

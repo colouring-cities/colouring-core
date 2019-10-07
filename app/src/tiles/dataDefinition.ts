@@ -1,5 +1,5 @@
 import { strictParseInt } from "../parse";
-import { DataConfig } from "./renderers/datasourceRenderer";
+import { DataConfig } from "./types";
 
 const BUILDING_LAYER_DEFINITIONS = {
     base_light: `(

@@ -7,7 +7,7 @@ import express from 'express';
 
 import { strictParseInt } from '../parse';
 import { TileParams } from './types';
-import { mainRenderer, allTilesets } from './rendererDefinition';
+import { renderTile, allTilesets } from './rendererDefinition';
 import asyncController from '../api/routes/asyncController';
 
 const handleTileRequest = asyncController(async function (req: express.Request, res: express.Response) {
@@ -20,7 +20,7 @@ const handleTileRequest = asyncController(async function (req: express.Request, 
     }
     
     try {
-        const im = await mainRenderer.getTile(tileParams, dataParams);
+        const im = await renderTile(tileParams, dataParams);
         res.writeHead(200, { 'Content-Type': 'image/png' });
         res.end(im);
     } catch(err) {
