@@ -26,26 +26,10 @@ async function stitchTile({ tileset, z, x, y, scale }: TileParams, dataParams: a
             background: { r: 0, g: 0, b: 0, alpha: 0 }
         }
     }).composite([
-        {
-            input: topLeft,
-            top: 0,
-            left: 0
-        },
-        {
-            input: topRight,
-            top: 0, 
-            left: tileSize
-        },
-        {
-            input: bottomLeft,
-            top: tileSize,
-            left: 0
-        },
-        {
-            input: bottomRight,
-            top: tileSize,
-            left: tileSize
-        }
+        {input: topLeft, gravity: sharp.gravity.northwest},
+        {input: topRight, gravity: sharp.gravity.northeast},
+        {input: bottomLeft, gravity: sharp.gravity.southwest},
+        {input: bottomRight, gravity: sharp.gravity.southeast}
     ]).png().toBuffer();
     
     return sharp(compositedBuffer)
