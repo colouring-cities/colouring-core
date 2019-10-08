@@ -34,7 +34,7 @@ const tileCache = new TileCache(
     {
         tilesets: ['date_year', 'size_storeys', 'location', 'likes', 'conservation_area', 'sust_dec', 'building_attachment_form'],
         minZoom: 9,
-        maxZoom: 18,
+        maxZoom: 19,
         scales: [1, 2]
     },
     ({ tileset, z }: TileParams) => (tileset === 'date_year' && z <= 16) ||
