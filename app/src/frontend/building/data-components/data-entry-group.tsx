@@ -1,46 +1,34 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 
 import './data-entry-group.css';
 import { RightIcon, DownIcon } from "../../components/icons";
 
-interface DataEntryProps {
+interface DataEntryGroupProps {
+    /** Name of the group */
     name: string;
+    /** Whether the group should be collapsed initially */
+    collapsed?: boolean;
 }
 
-interface DataEntryState {
-    collapsed: boolean;
-}
+const DataEntryGroup: React.FunctionComponent<DataEntryGroupProps> = (props) => {
+    const {collapsed: initialCollapsed = true} = props;
 
-class DataEntryGroup extends React.Component<DataEntryProps, DataEntryState> {
-    constructor(props) {
-        super(props);
+    const [collapsed, setCollapsed] = useState(initialCollapsed);
 
-        this.state = {
-            collapsed: true
-        };
-
-        this.toggle = this.toggle.bind(this);
-    }
-
-    toggle() {
-        this.setState((state) => ({
-            collapsed: !state.collapsed
-        }));
-    }
-
-    render() {
-        return (
-            <Fragment>
-                <div className='data-entry-group-header' onClick={this.toggle}>
-                    <CollapseIcon collapsed={this.state.collapsed} />
-                    <span className='data-entry-group-title'>{this.props.name}</span>
-                </div>
-                <div className={`data-entry-group-body ${this.state.collapsed ? 'collapse' : ''}`}>
-                    {this.props.children}
-                </div>
-            </Fragment>
-        );
-    }
+    return (
+        <Fragment>
+            <div className='data-entry-group-header' onClick={() => setCollapsed(!collapsed)}>
+                <CollapseIcon collapsed={collapsed} />
+                <span className='data-entry-group-title'>
+                    {props.name}
+                    <span className='data-entry-group-count'>{` (${React.Children.count(props.children)} attributes)`}</span>
+                </span>
+            </div>
+            <div className={`data-entry-group-body ${collapsed ? 'collapse' : ''}`}>
+                {props.children}
+            </div>
+        </Fragment>
+    );
 }
 
 const CollapseIcon: React.FunctionComponent<{collapsed: boolean}> = (props) => (
