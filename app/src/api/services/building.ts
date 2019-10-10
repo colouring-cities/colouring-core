@@ -18,116 +18,121 @@ const serializable = new TransactionMode({
     readOnly: false
 });
 
-function queryBuildingsAtPoint(lng, lat) {
-    return db.manyOrNone(
-        `SELECT b.*
-        FROM buildings as b, geometries as g
-        WHERE
-            b.geometry_id = g.geometry_id
-        AND
-            ST_Intersects(
-                ST_Transform(
-                    ST_SetSRID(ST_Point($1, $2), 4326),
-                    3857
-                ),
-                geometry_geom
-            )
-        `,
-        [lng, lat]
-    ).catch(function (error) {
-        console.error(error);
-        return undefined;
-    });
-}
-
-function queryBuildingsByReference(key, id) {
-    if (key === 'toid') {
-        return db.manyOrNone(
-            `SELECT
-                *
-            FROM
-                buildings
+async function queryBuildingsAtPoint(lng: number, lat: number) {
+    try {
+        return await db.manyOrNone(
+            `SELECT b.*
+            FROM buildings as b, geometries as g
             WHERE
-                ref_toid = $1
-            `,
-            [id]
-        ).catch(function (error) {
-            console.error(error);
-            return undefined;
-        });
-    }
-    if (key === 'uprn') {
-        return db.manyOrNone(
-            `SELECT
-                b.*
-            FROM
-                buildings as b, building_properties as p
-            WHERE
-                b.building_id = p.building_id
+                b.geometry_id = g.geometry_id
             AND
-                p.uprn = $1
+                ST_Intersects(
+                    ST_Transform(
+                        ST_SetSRID(ST_Point($1, $2), 4326),
+                        3857
+                    ),
+                    geometry_geom
+                )
             `,
-            [id]
-        ).catch(function (error) {
-            console.error(error);
-            return undefined;
-        });
+            [lng, lat]
+        );
+    } catch(error) {
+        console.error(error);
+        return undefined;
     }
-    return Promise.resolve({ error: 'Key must be UPRN or TOID' });
 }
 
-function getBuildingById(id) {
-    return db.one(
-        'SELECT * FROM buildings WHERE building_id = $1',
-        [id]
-    ).then((building) => {
-        return getBuildingEditHistory(id).then((edit_history) => {
-            building.edit_history = edit_history
-            return building
-        })
-    }).catch(function (error) {
+async function queryBuildingsByReference(key: string, ref: string) {
+    try {
+        if (key === 'toid') {
+            return await db.manyOrNone(
+                `SELECT
+                    *
+                FROM
+                    buildings
+                WHERE
+                    ref_toid = $1
+                `,
+                [ref]
+            );
+        } else if (key === 'uprn') {
+            return await db.manyOrNone(
+                `SELECT
+                    b.*
+                FROM
+                    buildings as b, building_properties as p
+                WHERE
+                    b.building_id = p.building_id
+                AND
+                    p.uprn = $1
+                `,
+                [ref]
+            );
+        } else {
+            return { error: 'Key must be UPRN or TOID' };
+        }
+    } catch(err) {
+        console.error(err);
+        return undefined;
+    }
+}
+
+async function getBuildingById(id: number) {
+    try {
+        const building = await db.one(
+            'SELECT * FROM buildings WHERE building_id = $1',
+            [id]
+        );
+
+        building.edit_history = await getBuildingEditHistory(id);
+
+        return building;
+    } catch(error) {
         console.error(error);
         return undefined;
-    });
+    }
 }
 
-function getBuildingEditHistory(id) {
-    return db.manyOrNone(
-        `SELECT log_id as revision_id, forward_patch, reverse_patch, date_trunc('minute', log_timestamp), username
-        FROM logs, users
-        WHERE building_id = $1 AND logs.user_id = users.user_id`,
-        [id]
-    ).then((data) => {
-        return data
-    }).catch(function (error) {
+async function getBuildingEditHistory(id: number) {
+    try {
+        return await db.manyOrNone(
+            `SELECT log_id as revision_id, forward_patch, reverse_patch, date_trunc('minute', log_timestamp), username
+            FROM logs, users
+            WHERE building_id = $1 AND logs.user_id = users.user_id`,
+            [id]
+        );
+    } catch(error) {
         console.error(error);
-        return []
-    });
+        return [];
+    }
 }
 
-function getBuildingLikeById(buildingId, userId) {
-    return db.oneOrNone(
-        'SELECT true as like FROM building_user_likes WHERE building_id = $1 and user_id = $2 LIMIT 1',
-        [buildingId, userId]
-    ).then(res => {
-        return res && res.like
-    }).catch(function (error) {
-        console.error(error);
-        return undefined;
-    });
-}
-
-function getBuildingUPRNsById(id) {
-    return db.any(
-        'SELECT uprn, parent_uprn FROM building_properties WHERE building_id = $1',
-        [id]
-    ).catch(function (error) {
+async function getBuildingLikeById(buildingId: number, userId: string) {
+    try {
+        const res = await db.oneOrNone(
+            'SELECT true as like FROM building_user_likes WHERE building_id = $1 and user_id = $2 LIMIT 1',
+            [buildingId, userId]
+        );
+        return res && res.like;
+    } catch(error) {
         console.error(error);
         return undefined;
-    });
+    }
 }
 
-function saveBuilding(buildingId, building, userId) {
+async function getBuildingUPRNsById(id: number) {
+    try {
+        return await db.any(
+            'SELECT uprn, parent_uprn FROM building_properties WHERE building_id = $1',
+            [id]
+        );
+    } catch(error) {
+        console.error(error);
+        return undefined;
+    }
+}
+
+async function saveBuilding(buildingId: number, building: any, userId: string) { // TODO add proper building type
     // remove read-only fields from consideration
     delete building.building_id;
     delete building.revision_id;
@@ -138,162 +143,172 @@ function saveBuilding(buildingId, building, userId) {
     // - insert changeset
     // - update to latest state
     // commit or rollback (repeated-read sufficient? or serializable?)
-    return db.tx(t => {
-        return t.one(
-            'SELECT * FROM buildings WHERE building_id = $1 FOR UPDATE;',
-            [buildingId]
-        ).then(oldBuilding => {
+    try {
+        await db.tx(async t => {
+            const oldBuilding = await t.one(
+                'SELECT * FROM buildings WHERE building_id = $1 FOR UPDATE;',
+                [buildingId]
+            );
+
             const patches = compare(oldBuilding, building, BUILDING_FIELD_WHITELIST);
             console.log('Patching', buildingId, patches)
-            const forward = patches[0];
-            const reverse = patches[1];
+            const [forward, reverse] = patches;
             if (Object.keys(forward).length === 0) {
-                return Promise.reject('No change provided')
+                throw 'No change provided';
             }
-            return t.one(
-                `INSERT INTO logs (
-                    forward_patch, reverse_patch, building_id, user_id
-                ) VALUES (
-                    $1:json, $2:json, $3, $4
-                ) RETURNING log_id
-                `,
-                [forward, reverse, buildingId, userId]
-            ).then(revision => {
-                const sets = db.$config.pgp.helpers.sets(forward);
-                console.log('Setting', buildingId, sets)
-                return t.one(
-                    `UPDATE
-                        buildings
-                    SET
-                        revision_id = $1,
-                        $2:raw
-                    WHERE
-                        building_id = $3
-                    RETURNING
-                        *
+
+            const revision = await t.one(
+                    `INSERT INTO logs (
+                        forward_patch, reverse_patch, building_id, user_id
+                    ) VALUES (
+                        $1:json, $2:json, $3, $4
+                    ) RETURNING log_id
                     `,
-                    [revision.log_id, sets, buildingId]
-                ).then((data) => {
-                    expireBuildingTileCache(buildingId)
-                    return data
-                })
-            });
+                    [forward, reverse, buildingId, userId]
+            );
+
+            const sets = db.$config.pgp.helpers.sets(forward);
+            console.log('Setting', buildingId, sets);
+
+            const data = await t.one(
+                `UPDATE
+                    buildings
+                SET
+                    revision_id = $1,
+                    $2:raw
+                WHERE
+                    building_id = $3
+                RETURNING
+                    *
+                `,
+                [revision.log_id, sets, buildingId]
+            );
+
+            expireBuildingTileCache(buildingId);
+
+            return data;
         });
-    }).catch(function (error) {
+    } catch(error) {
         console.error(error);
         return { error: error };
-    });
+    }
 }
 
-function likeBuilding(buildingId, userId) {
+async function likeBuilding(buildingId: number, userId: string) {
     // start transaction around save operation
     // - insert building-user like
     // - count total likes
     // - insert changeset
     // - update building to latest state
     // commit or rollback (serializable - could be more compact?)
-    return db.tx({mode: serializable}, t => {
-        return t.none(
-            'INSERT INTO building_user_likes ( building_id, user_id ) VALUES ($1, $2);',
-            [buildingId, userId]
-        ).then(() => {
-            return t.one(
+    try {
+        await db.tx({mode: serializable}, async t => {
+            await t.none(
+                'INSERT INTO building_user_likes ( building_id, user_id ) VALUES ($1, $2);',
+                [buildingId, userId]
+            );
+
+            const building = await t.one(
                 'SELECT count(*) as likes FROM building_user_likes WHERE building_id = $1;',
                 [buildingId]
-            ).then(building => {
-                return t.one(
-                    `INSERT INTO logs (
-                        forward_patch, building_id, user_id
-                    ) VALUES (
-                        $1:json, $2, $3
-                    ) RETURNING log_id
-                    `,
-                    [{ likes_total: building.likes }, buildingId, userId]
-                ).then(revision => {
-                    return t.one(
-                        `UPDATE buildings
-                        SET
-                            revision_id = $1,
-                            likes_total = $2
-                        WHERE
-                            building_id = $3
-                        RETURNING
-                            *
-                        `,
-                        [revision.log_id, building.likes, buildingId]
-                    ).then((data) => {
-                        expireBuildingTileCache(buildingId)
-                        return data
-                    })
-                })
-            });
+            );
+
+            const revision = await t.one(
+                `INSERT INTO logs (
+                    forward_patch, building_id, user_id
+                ) VALUES (
+                    $1:json, $2, $3
+                ) RETURNING log_id
+                `,
+                [{ likes_total: building.likes }, buildingId, userId]
+            );
+
+            const data = await t.one(
+                `UPDATE buildings
+                SET
+                    revision_id = $1,
+                    likes_total = $2
+                WHERE
+                    building_id = $3
+                RETURNING
+                    *
+                `,
+                [revision.log_id, building.likes, buildingId]
+            );
+
+            expireBuildingTileCache(buildingId);
+
+            return data;
         });
-    }).catch(function (error) {
+    } catch (error) {
         console.error(error);
         if (error.detail && error.detail.includes('already exists')) {
             // 'already exists' is thrown if user already liked it
             return { error: 'It looks like you already like that building!' };
         } else {
-            return undefined
+            return undefined;
         }
-    });
+    }
 }
 
-function unlikeBuilding(buildingId, userId) {
+async function unlikeBuilding(buildingId: number, userId: string) {
     // start transaction around save operation
     // - insert building-user like
     // - count total likes
     // - insert changeset
     // - update building to latest state
     // commit or rollback (serializable - could be more compact?)
-    return db.tx({mode: serializable}, t => {
-        return t.none(
-            'DELETE FROM building_user_likes WHERE building_id = $1 AND user_id = $2;',
-            [buildingId, userId]
-        ).then(() => {
-            return t.one(
+    try {
+        await db.tx({mode: serializable}, async t => {
+            await t.none(
+                'DELETE FROM building_user_likes WHERE building_id = $1 AND user_id = $2;',
+                [buildingId, userId]
+            );
+
+            const building = await t.one(
                 'SELECT count(*) as likes FROM building_user_likes WHERE building_id = $1;',
                 [buildingId]
-            ).then(building => {
-                return t.one(
-                    `INSERT INTO logs (
-                        forward_patch, building_id, user_id
-                    ) VALUES (
-                        $1:json, $2, $3
-                    ) RETURNING log_id
-                    `,
-                    [{ likes_total: building.likes }, buildingId, userId]
-                ).then(revision => {
-                    return t.one(
-                        `UPDATE buildings
-                        SET
-                            revision_id = $1,
-                            likes_total = $2
-                        WHERE
-                            building_id = $3
-                        RETURNING
-                            *
-                        `,
-                        [revision.log_id, building.likes, buildingId]
-                    ).then((data) => {
-                        expireBuildingTileCache(buildingId)
-                        return data
-                    })
-                })
-            });
+            );
+
+            const revision = await t.one(
+                `INSERT INTO logs (
+                    forward_patch, building_id, user_id
+                ) VALUES (
+                    $1:json, $2, $3
+                ) RETURNING log_id
+                `,
+                [{ likes_total: building.likes }, buildingId, userId]
+            );
+
+            const data = await t.one(
+                `UPDATE buildings
+                SET
+                    revision_id = $1,
+                    likes_total = $2
+                WHERE
+                    building_id = $3
+                RETURNING
+                    *
+                `,
+                [revision.log_id, building.likes, buildingId]
+            );
+
+            expireBuildingTileCache(buildingId);
+
+            return data;
         });
-    }).catch(function (error) {
+    } catch(error) {
         console.error(error);
         if (error.detail && error.detail.includes('already exists')) {
             // 'already exists' is thrown if user already liked it
             return { error: 'It looks like you already like that building!' };
         } else {
-            return undefined
+            return undefined;
         }
-    });
+    }
 }
 
-function privateQueryBuildingBBOX(buildingId){
+function privateQueryBuildingBBOX(buildingId: number){
     return db.one(
         `SELECT
             ST_XMin(envelope) as xmin,
@@ -310,14 +325,13 @@ function privateQueryBuildingBBOX(buildingId){
                 b.building_id = $1
         ) as envelope`,
         [buildingId]
-    )
+    );
 }
 
-function expireBuildingTileCache(buildingId) {
-    privateQueryBuildingBBOX(buildingId).then((bbox) => {
-        const buildingBbox: BoundingBox = [bbox.xmax, bbox.ymax, bbox.xmin, bbox.ymin];
-        tileCache.removeAllAtBbox(buildingBbox);
-    })
+async function expireBuildingTileCache(buildingId: number) {
+    const bbox = await privateQueryBuildingBBOX(buildingId)
+    const buildingBbox: BoundingBox = [bbox.xmax, bbox.ymax, bbox.xmin, bbox.ymin];
+    tileCache.removeAllAtBbox(buildingBbox);
 }
 
 const BUILDING_FIELD_WHITELIST = new Set([
@@ -385,16 +399,16 @@ const BUILDING_FIELD_WHITELIST = new Set([
  * @param {Set} whitelist
  * @returns {[object, object]}
  */
-function compare(oldObj, newObj, whitelist) {
-    const reverse = {}
-    const forward = {}
+function compare(oldObj: object, newObj: object, whitelist: Set<string>): [object, object] {
+    const reverse = {};
+    const forward = {};
     for (const [key, value] of Object.entries(newObj)) {
         if (oldObj[key] !== value && whitelist.has(key)) {
             reverse[key] = oldObj[key];
             forward[key] = value;
         }
     }
-    return [forward, reverse]
+    return [forward, reverse];
 }
 
 export {

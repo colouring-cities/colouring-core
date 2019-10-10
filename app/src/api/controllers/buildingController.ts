@@ -1,147 +1,139 @@
+import express from 'express';
 import * as buildingService from '../services/building';
 import * as userService from '../services/user';
+import asyncController from '../routes/asyncController';
 
 
 // GET buildings
 // not implemented - may be useful to GET all buildings, paginated
 
 // GET buildings at point
-function getBuildingsByLocation(req, res) {
+const getBuildingsByLocation = asyncController(async (req: express.Request, res: express.Response) => {
     const { lng, lat } = req.query;
-    buildingService.queryBuildingsAtPoint(lng, lat).then(function (result) {
+    try {
+        const result = await buildingService.queryBuildingsAtPoint(lng, lat);
         res.send(result);
-    }).catch(function (error) {
+    } catch (error) {
         console.error(error);
-        res.send({ error: 'Database error' })
-    })
-}
+        res.send({ error: 'Database error' });
+    }
+});
 
 // GET buildings by reference (UPRN/TOID or other identifier)
-function getBuildingsByReference(req, res) {
+const getBuildingsByReference = asyncController(async (req: express.Request, res: express.Response) => {
     const { key, id } = req.query;
-    buildingService.queryBuildingsByReference(key, id).then(function (result) {
+    try {
+        const result = await buildingService.queryBuildingsByReference(key, id);
         res.send(result);
-    }).catch(function (error) {
+    } catch (error) {
         console.error(error);
-        res.send({ error: 'Database error' })
-    })
-}
+        res.send({ error: 'Database error' });
+    }
+});
 
 // GET individual building, POST building updates
-function getBuildingById(req, res) {
+const getBuildingById = asyncController(async (req: express.Request, res: express.Response) => {
     const { building_id } = req.params;
-    buildingService.getBuildingById(building_id).then(function (result) {
+    try {
+        const result = await buildingService.getBuildingById(building_id);
         res.send(result);
-    }).catch(function (error) {
+    } catch(error) {
         console.error(error);
-        res.send({ error: 'Database error' })
-    })
-}
+        res.send({ error: 'Database error' });
+    }
+});
 
-function updateBuildingById(req, res) {
+const updateBuildingById = asyncController(async (req: express.Request, res: express.Response) => {
     if (req.session.user_id) {
-        updateBuilding(req, res, req.session.user_id);
+        await updateBuilding(req, res, req.session.user_id);
     } else if (req.query.api_key) {
-        userService.authAPIUser(req.query.api_key)
-            .then(function (user) {
-                updateBuilding(req, res, user.user_id)
-            })
-            .catch(function (err) {
-                console.error(err);
-                res.send({ error: 'Must be logged in' });
-            });
+        try {
+            const user = await userService.authAPIUser(req.query.api_key);
+            await updateBuilding(req, res, user.user_id);
+        } catch(err) {
+            console.error(err);
+            res.send({ error: 'Must be logged in' });
+        }
     } else {
         res.send({ error: 'Must be logged in' });
     }
-}
+});
 
-function updateBuilding(req, res, userId) {
+async function updateBuilding(req: express.Request, res: express.Response, userId: string) {
     const { building_id } = req.params;
-    const building = req.body;
-    buildingService.saveBuilding(building_id, building, userId).then(building => {
+    let building = req.body;
+
+    try {
+        building = await buildingService.saveBuilding(building_id, building, userId);
+
         if (building.error) {
-            res.send(building)
-            return
+            return res.send(building);
         }
         if (typeof (building) === 'undefined') {
-            res.send({ error: 'Database error' })
-            return
+            return res.send({ error: 'Database error' });
         }
-        res.send(building)
-    }).catch(
-        () => res.send({ error: 'Database error' })
-    )
+        res.send(building);
+    } catch(err) {
+        res.send({ error: 'Database errror' });
+    }
 }
 
 // GET building UPRNs
-function getBuildingUPRNsById(req, res) {
+const getBuildingUPRNsById = asyncController(async (req: express.Request, res: express.Response) => {
     const { building_id } = req.params;
-    buildingService.getBuildingUPRNsById(building_id).then(function (result) {
+    try {
+        const result = await buildingService.getBuildingUPRNsById(building_id);
+
         if (typeof (result) === 'undefined') {
-            res.send({ error: 'Database error' })
-            return
+            return res.send({ error: 'Database error' });
         }
-        res.send({
-            uprns: result
-        });
-    }).catch(function (error) {
+        res.send({uprns: result});
+    } catch(error) {
         console.error(error);
-        res.send({ error: 'Database error' })
-    })
-}
+        res.send({ error: 'Database error' });
+    }
+});
 
 // GET/POST like building
-function getBuildingLikeById(req, res) {
+const getBuildingLikeById = asyncController(async (req: express.Request, res: express.Response) => {
     if (!req.session.user_id) {
-        res.send({ like: false });  // not logged in, so cannot have liked
-        return
+        return res.send({ like: false });  // not logged in, so cannot have liked
     }
     const { building_id } = req.params;
-    buildingService.getBuildingLikeById(building_id, req.session.user_id).then(like => {
-        // any value returned means like
-        res.send({ like: like })
-    }).catch(
-        () => res.send({ error: 'Database error' })
-    )
-}
+    try {
+        const like = await buildingService.getBuildingLikeById(building_id, req.session.user_id);
 
-function updateBuildingLikeById(req, res) {
-    if (!req.session.user_id) {
-        res.send({ error: 'Must be logged in' });
-        return
+        // any value returned means like
+        res.send({ like: like });
+    } catch(error) {
+        res.send({ error: 'Database error' })
     }
+});
+
+const updateBuildingLikeById = asyncController(async (req: express.Request, res: express.Response) => {
+    if (!req.session.user_id) {
+        return res.send({ error: 'Must be logged in' });
+    }
+
     const { building_id } = req.params;
     const { like } = req.body;
-    if (like) {
-        buildingService.likeBuilding(building_id, req.session.user_id).then(building => {
-            if (building.error) {
-                res.send(building)
-                return
-            }
-            if (typeof (building) === 'undefined') {
-                res.send({ error: 'Database error' })
-                return
-            }
-            res.send(building)
-        }).catch(
-            () => res.send({ error: 'Database error' })
-        )
-    } else {
-        buildingService.unlikeBuilding(building_id, req.session.user_id).then(building => {
-            if (building.error) {
-                res.send(building)
-                return
-            }
-            if (typeof (building) === 'undefined') {
-                res.send({ error: 'Database error' })
-                return
-            }
-            res.send(building)
-        }).catch(
-            () => res.send({ error: 'Database error' })
-        )
+
+    try {
+        const building = like ?
+            await buildingService.likeBuilding(building_id, req.session.user_id) :
+            await buildingService.unlikeBuilding(building_id, req.session.user_id);
+        
+        if (building.error) {
+            return res.send(building);
+        }
+        if (typeof (building) === 'undefined') {
+            return res.send({ error: 'Database error' });
+        }
+        res.send(building);
+    } catch(error) {
+        res.send({ error: 'Database error' });
     }
-}
+});
 
 export default {
     getBuildingsByLocation,
