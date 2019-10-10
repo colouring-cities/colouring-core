@@ -144,7 +144,7 @@ async function saveBuilding(buildingId: number, building: any, userId: string) {
     // - update to latest state
     // commit or rollback (repeated-read sufficient? or serializable?)
     try {
-        await db.tx(async t => {
+        return await db.tx(async t => {
             const oldBuilding = await t.one(
                 'SELECT * FROM buildings WHERE building_id = $1 FOR UPDATE;',
                 [buildingId]
@@ -202,7 +202,7 @@ async function likeBuilding(buildingId: number, userId: string) {
     // - update building to latest state
     // commit or rollback (serializable - could be more compact?)
     try {
-        await db.tx({mode: serializable}, async t => {
+        return await db.tx({mode: serializable}, async t => {
             await t.none(
                 'INSERT INTO building_user_likes ( building_id, user_id ) VALUES ($1, $2);',
                 [buildingId, userId]
@@ -259,7 +259,7 @@ async function unlikeBuilding(buildingId: number, userId: string) {
     // - update building to latest state
     // commit or rollback (serializable - could be more compact?)
     try {
-        await db.tx({mode: serializable}, async t => {
+        return await db.tx({mode: serializable}, async t => {
             await t.none(
                 'DELETE FROM building_user_likes WHERE building_id = $1 AND user_id = $2;',
                 [buildingId, userId]

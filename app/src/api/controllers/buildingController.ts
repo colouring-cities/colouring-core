@@ -61,20 +61,20 @@ const updateBuildingById = asyncController(async (req: express.Request, res: exp
 
 async function updateBuilding(req: express.Request, res: express.Response, userId: string) {
     const { building_id } = req.params;
-    let building = req.body;
+    const buildingUpdate = req.body;
 
     try {
-        building = await buildingService.saveBuilding(building_id, building, userId);
+        const building = await buildingService.saveBuilding(building_id, buildingUpdate, userId);
 
-        if (building.error) {
-            return res.send(building);
-        }
         if (typeof (building) === 'undefined') {
             return res.send({ error: 'Database error' });
         }
+        if (building.error) {
+            return res.send(building);
+        }
         res.send(building);
     } catch(err) {
-        res.send({ error: 'Database errror' });
+        res.send({ error: 'Database error' });
     }
 }
 
