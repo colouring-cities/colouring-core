@@ -105,7 +105,7 @@ class App extends React.Component<AppProps, any> { // TODO: add proper types
                 <Route exact path="/data-accuracy.html" component={DataAccuracyPage} />
                 <Route exact path="/data-extracts.html" component={DataExtracts} />
                 <Route exact path="/contact.html" component={ContactPage} />
-                <Route exact path={["/", "/:mode(view|edit|multi-edit)/:category/:building(\\d+)?"]} render={(props) => (
+                <Route exact path={["/", "/:mode(view|edit|multi-edit)/:category?/:building(\\d+)?"]} render={(props) => (
                     <MapApp
                         {...props}
                         building={this.props.building}

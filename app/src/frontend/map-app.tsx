@@ -234,9 +234,9 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                             />
                         </Sidebar>
                     </Route>
-                    <Route exact path="/(view|edit|multi-edit)">
-                        <Redirect to="/view/categories" />
-                    </Route>
+                    <Route exact path="/:mode(view|edit|multi-edit)"
+                        render={props => (<Redirect to={`/${props.match.params.mode}/categories`} />)} 
+                    />
                 </Switch>
                 <ColouringMap
                     building={this.state.building}
