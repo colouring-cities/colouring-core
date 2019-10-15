@@ -3,8 +3,18 @@ import { Link, NavLink } from 'react-router-dom';
 
 import { BackIcon, EditIcon, ViewIcon }from '../components/icons';
 
+interface ContainerHeaderProps {
+    cat: string;
+    mode: 'view' | 'edit' | 'multi-edit';
+    building: any;
+    title: string;
+    copy: any;
+    inactive?: boolean;
+    data_string: string;
+    help: string;
+}
 
-const ContainerHeader: React.FunctionComponent<any> = (props) => (
+const ContainerHeader: React.FunctionComponent<ContainerHeaderProps> = (props) => (
     <header className={`section-header view ${props.cat} background-${props.cat}`}>
         <Link className="icon-button back" to={`/${props.mode}/categories${props.building != undefined ? `/${props.building.building_id}` : ''}`}>
             <BackIcon />

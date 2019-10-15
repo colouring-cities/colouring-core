@@ -5,6 +5,28 @@ import { Redirect } from 'react-router-dom';
 import ContainerHeader from './container-header';
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
+import { Building } from '../models/building';
+import { User } from '../models/user';
+
+interface DataContainerProps {
+    title: string;
+    cat: string;
+    intro: string;
+    help: string;
+    inactive?: boolean;
+
+    user: User;
+    mode: 'view' | 'edit' | 'multi-edit';
+    building: Building;
+    building_like: boolean;
+}
+
+interface DataContainerState {
+    error: string;
+    copying: boolean;
+    keys_to_copy: object;
+    building: Building
+}
 
 /**
  * Shared functionality for view/edit forms
@@ -15,14 +37,15 @@ import InfoBox from '../components/info-box';
  * @param WrappedComponent
  */
 const withCopyEdit = (WrappedComponent) => {
-    return class extends React.Component<any, any> { // TODO: add proper types
+    return class DataContainer extends React.Component<DataContainerProps, DataContainerState> { // TODO: add proper types
+        static displayName = 'DataContainer';
+
         static propTypes = { // TODO: generate propTypes from TS
             title: PropTypes.string,
             slug: PropTypes.string,
             intro: PropTypes.string,
             help: PropTypes.string,
             inactive: PropTypes.bool,
-            building_id: PropTypes.number,
             children: PropTypes.node
         };
 
@@ -30,8 +53,7 @@ const withCopyEdit = (WrappedComponent) => {
             super(props);
 
             this.state = {
-                error: this.props.error || undefined,
-                like: this.props.like || undefined,
+                error: undefined,
                 copying: false,
                 keys_to_copy: {},
                 building: this.props.building
@@ -62,7 +84,7 @@ const withCopyEdit = (WrappedComponent) => {
          * @param {string} key
          */
         toggleCopyAttribute(key: string) {
-            const keys = this.state.keys_to_copy;
+            const keys = {...this.state.keys_to_copy};
             if(this.state.keys_to_copy[key]){
                 delete keys[key];
             } else {
@@ -181,7 +203,7 @@ const withCopyEdit = (WrappedComponent) => {
         }
 
         render() {
-            if (this.state.mode === 'edit' && !this.props.user){
+            if (this.props.mode === 'edit' && !this.props.user){
                 return <Redirect to="/sign-up.html" />
             }
 
@@ -198,60 +220,17 @@ const withCopyEdit = (WrappedComponent) => {
             }
             return (
                 <section
-                    id={this.props.slug}
+                    id={this.props.cat}
                     className="data-section">
                 <ContainerHeader
                     {...this.props}
                     data_string={data_string}
                     copy={copy}
                 />
+                <div className="section-body">
                 {
-                    this.props.building != undefined ?
-                    <form
-                        action={`/edit/${this.props.slug}/${this.props.building.building_id}`}
-                        method="POST"
-                        onSubmit={this.handleSubmit}>
-                        {
-                            (this.props.inactive) ?
-                                <InfoBox
-                                    msg={`We're not collecting data on ${this.props.title.toLowerCase()} yet - check back soon.`}
-                                />
-                                : null
-                        }
-                        {
-                            (this.props.mode === 'edit' && !this.props.inactive) ?
-                                <Fragment>
-                                    <ErrorBox msg={this.state.error} />
-                                    {
-                                        this.props.slug === 'like' ? // special-case for likes
-                                            null :
-                                            <div className="buttons-container with-space">
-                                                <button
-                                                    type="submit"
-                                                    className="btn btn-primary">
-                                                    Save
-                                                </button>
-                                            </div>
-                                    }
-                                </Fragment>
-                                : null
-                        }
-                        <WrappedComponent
-                            building={this.state.building}
-                            building_like={this.props.building_like}
-                            mode={this.props.mode}
-                            copy={copy}
-                            onChange={this.handleChange}
-                            onCheck={this.handleCheck}
-                            onLike={this.handleLike}
-                            onUpdate={this.handleUpdate}
-                        />
-                    </form>
-                    :
-                    <form>
-                        {
-                            (this.props.inactive)?
-                            <Fragment>
+                    this.props.inactive ?
+                        <Fragment>
                             <InfoBox
                                 msg={`We're not collecting data on ${this.props.title.toLowerCase()} yet - check back soon.`}
                             />
@@ -265,12 +244,44 @@ const withCopyEdit = (WrappedComponent) => {
                                 onLike={this.handleLike}
                                 onUpdate={this.handleUpdate}
                             />
-                            </Fragment>
-                            :
+                        </Fragment> :
+                        this.props.building != undefined ?
+                            <form
+                                action={`/edit/${this.props.cat}/${this.props.building.building_id}`}
+                                method="POST"
+                                onSubmit={this.handleSubmit}>
+                                {
+                                    (this.props.mode === 'edit' && !this.props.inactive) ?
+                                        <Fragment>
+                                            <ErrorBox msg={this.state.error} />
+                                            {
+                                                this.props.cat === 'like' ? // special-case for likes
+                                                    null :
+                                                    <div className="buttons-container with-space">
+                                                        <button
+                                                            type="submit"
+                                                            className="btn btn-primary">
+                                                            Save
+                                                        </button>
+                                                    </div>
+                                            }
+                                        </Fragment>
+                                        : null
+                                }
+                                <WrappedComponent
+                                    building={this.state.building}
+                                    building_like={this.props.building_like}
+                                    mode={this.props.mode}
+                                    copy={copy}
+                                    onChange={this.handleChange}
+                                    onCheck={this.handleCheck}
+                                    onLike={this.handleLike}
+                                    onUpdate={this.handleUpdate}
+                                />
+                            </form> :
                             <InfoBox msg="Select a building to view data"></InfoBox>
-                        }
-                    </form>
                 }
+                </div>
                 </section>
             );
         }

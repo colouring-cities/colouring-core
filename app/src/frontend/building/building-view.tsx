@@ -14,13 +14,24 @@ import StreetscapeContainer from './data-containers/streetscape';
 import CommunityContainer from './data-containers/community';
 import PlanningContainer from './data-containers/planning';
 import LikeContainer from './data-containers/like';
+import { Building } from '../models/building';
+
+
+interface BuildingViewProps {
+    cat: string;
+    mode: 'view' | 'edit' | 'multi-edit';
+    building: Building;
+    building_like: boolean;
+    user: any;
+    selectBuilding: (building:any) => void
+}
 
 /**
  * Top-level container for building view/edit form
  *
  * @param props
  */
-const BuildingView = (props) => {
+const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
     switch (props.cat) {
         case 'location':
             return <LocationContainer

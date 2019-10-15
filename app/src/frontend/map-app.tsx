@@ -199,7 +199,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
     }
 
     render() {
-        const mode = this.props.match.params.mode || 'basic';
+        const mode = this.props.match.params.mode;
 
         let category = this.state.category || 'age';
 
@@ -240,7 +240,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                 </Switch>
                 <ColouringMap
                     building={this.state.building}
-                    mode={mode}
+                    mode={mode || 'basic'}
                     category={category}
                     revision_id={this.state.revision_id}
                     selectBuilding={this.selectBuilding}
