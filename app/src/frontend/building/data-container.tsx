@@ -7,6 +7,7 @@ import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
 import { Building } from '../models/building';
 import { User } from '../models/user';
+import { compareObjects } from '../helpers';
 
 interface DataContainerProps {
     title: string;
@@ -19,13 +20,15 @@ interface DataContainerProps {
     mode: 'view' | 'edit' | 'multi-edit';
     building: Building;
     building_like: boolean;
+    selectBuilding: (building: Building) => void
 }
 
 interface DataContainerState {
     error: string;
     copying: boolean;
     keys_to_copy: {[key: string]: boolean};
-    building: Building
+    currentBuildingId: number;
+    buildingEdits: Partial<Building>;
 }
 
 interface CopyProps {
@@ -63,7 +66,8 @@ const withCopyEdit = (WrappedComponent) => {
                 error: undefined,
                 copying: false,
                 keys_to_copy: {},
-                building: this.props.building
+                buildingEdits: {},
+                currentBuildingId: undefined
             };
 
             this.handleChange = this.handleChange.bind(this);
@@ -74,6 +78,17 @@ const withCopyEdit = (WrappedComponent) => {
 
             this.toggleCopying = this.toggleCopying.bind(this);
             this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
+        }
+
+        static getDerivedStateFromProps(props, state) {
+            if(props.building != undefined && props.building.building_id !== state.currentBuildingId) {
+                return {
+                    buildingEdits: {},
+                    currentBuildingId: props.building.building_id
+                };
+            }
+
+            return null;
         }
 
         /**
@@ -102,18 +117,33 @@ const withCopyEdit = (WrappedComponent) => {
             })
         }
 
-        updateBuildingState(key, value) {
-            const building = {...this.state.building};
-            building[key] = value;
+        isEdited() {
+            const edits = this.state.buildingEdits;
+            // check if the edits object has any fields
+            return Object.entries(edits).length !== 0;
+        }
+
+        getEditedBuilding() {
+            if(this.isEdited()) {
+                return Object.assign({}, this.props.building, this.state.buildingEdits);
+            } else {
+                return {...this.props.building};
+            }
+        }
+
+        updateBuildingState(key: string, value: any) {
+            const newBuilding = this.getEditedBuilding();
+            newBuilding[key] = value;
+            const [forwardPatch] = compareObjects(this.props.building, newBuilding);
 
             this.setState({
-                building: building
+                buildingEdits: forwardPatch
             });
         }
 
         /**
          * Handle changes on typical inputs
-         * - e.g. input[type=text], radio, select, textare
+         * - e.g. input[type=text], radio, select, textarea
          *
          * @param {*} event
          */
@@ -185,28 +215,29 @@ const withCopyEdit = (WrappedComponent) => {
             );
         }
 
-        handleSubmit(event) {
+        async handleSubmit(event) {
             event.preventDefault();
-            this.setState({error: undefined})
+            this.setState({error: undefined});
 
-            fetch(`/api/buildings/${this.props.building.building_id}.json`, {
-                method: 'POST',
-                body: JSON.stringify(this.state.building),
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'same-origin'
-            }).then(
-                res => res.json()
-            ).then(function(res){
-                if (res.error) {
-                    this.setState({error: res.error})
+            try {
+                const res = await fetch(`/api/buildings/${this.props.building.building_id}.json`, {
+                    method: 'POST',
+                    body: JSON.stringify(this.state.buildingEdits),
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'same-origin'
+                });
+                const data = await res.json();
+                
+                if (data.error) {
+                    this.setState({error: data.error})
                 } else {
-                    this.props.selectBuilding(res);
+                    this.props.selectBuilding(data);
                 }
-            }.bind(this)).catch(
-                (err) => this.setState({error: err})
-            );
+            } catch(err) {
+                this.setState({error: err});
+            }
         }
 
         render() {
@@ -214,9 +245,11 @@ const withCopyEdit = (WrappedComponent) => {
                 return <Redirect to="/sign-up.html" />
             }
 
+            const currentBuilding = this.getEditedBuilding();
+
             const values_to_copy = {}
             for (const key of Object.keys(this.state.keys_to_copy)) {
-                values_to_copy[key] = this.state.building[key]
+                values_to_copy[key] = currentBuilding[key]
             }
             const data_string = JSON.stringify(values_to_copy);
             const copy: CopyProps = {
@@ -262,21 +295,21 @@ const withCopyEdit = (WrappedComponent) => {
                                         <Fragment>
                                             <ErrorBox msg={this.state.error} />
                                             {
-                                                this.props.cat === 'like' ? // special-case for likes
-                                                    null :
+                                                this.isEdited() && this.props.cat !== 'like' ? // special-case for likes
                                                     <div className="buttons-container with-space">
                                                         <button
                                                             type="submit"
                                                             className="btn btn-primary">
                                                             Save
                                                         </button>
-                                                    </div>
+                                                    </div> :
+                                                    null
                                             }
                                         </Fragment>
                                         : null
                                 }
                                 <WrappedComponent
-                                    building={this.state.building}
+                                    building={currentBuilding}
                                     building_like={this.props.building_like}
                                     mode={this.props.mode}
                                     copy={copy}

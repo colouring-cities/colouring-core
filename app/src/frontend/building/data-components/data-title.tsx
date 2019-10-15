@@ -29,7 +29,7 @@ interface DataTitleCopyableProps {
     tooltip: string;
     slug: string;
     disabled?: boolean;
-    copy: any; // TODO: type should be CopyProps, but that clashes with propTypes in some obscure way
+    copy?: any; // TODO: type should be CopyProps, but that clashes with propTypes in some obscure way
 }
 
 const DataTitleCopyable: React.FunctionComponent<DataTitleCopyableProps> = (props) => { // TODO: remove any

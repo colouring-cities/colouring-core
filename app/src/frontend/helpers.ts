@@ -36,4 +36,16 @@ function sanitiseURL(string){
   return `${url_.protocol}//${url_.hostname}${url_.pathname || ''}${url_.search || ''}${url_.hash || ''}`
 }
 
-export { sanitiseURL }
+function compareObjects(objA: object, objB: object): [object, object] {
+    const reverse = {}
+    const forward = {}
+    for (const [key, value] of Object.entries(objB)) {
+        if (objA[key] !== value) {
+            reverse[key] = objA[key];
+            forward[key] = value;
+        }
+    }
+    return [forward, reverse];
+}
+
+export { sanitiseURL, compareObjects }

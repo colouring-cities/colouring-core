@@ -23,7 +23,7 @@ interface BuildingViewProps {
     building: Building;
     building_like: boolean;
     user: any;
-    selectBuilding: (building:any) => void
+    selectBuilding: (building: Building) => void
 }
 
 /**
@@ -36,7 +36,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'location':
             return <LocationContainer
                 {...props}
-                key={props.building && props.building.building_id}
                 title="Location"
                 help="https://pages.colouring.london/location"
                 intro="Where are the buildings? Address, location and cross-references."
@@ -44,7 +43,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'use':
             return <UseContainer
                 {...props}
-                key={props.building && props.building.building_id}
                 inactive={true}
                 title="Land Use"
                 intro="How are buildings used, and how does use change over time? Coming soon…"
@@ -53,7 +51,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'type':
             return <TypeContainer
                 {...props}
-                key={props.building && props.building.building_id}
                 inactive={false}
                 title="Type"
                 intro="How were buildings previously used?"
@@ -62,7 +59,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'age':
             return <AgeContainer
                 {...props}
-                key={props.building && props.building.building_id}
                 title="Age"
                 help="https://pages.colouring.london/age"
                 intro="Building age data can support energy analysis and help predict long-term change."
@@ -70,7 +66,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'size':
             return <SizeContainer
                 {...props}
-                key={props.building && props.building.building_id}
                 title="Size &amp; Shape"
                 intro="How big are buildings?"
                 help="https://pages.colouring.london/shapeandsize"
@@ -78,7 +73,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'construction':
             return <ConstructionContainer
                 {...props}
-                key={props.building && props.building.building_id}
                 title="Construction"
                 intro="How are buildings built? Coming soon…"
                 help="https://pages.colouring.london/construction"
@@ -87,7 +81,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'team':
             return <TeamContainer
                 {...props}
-                key={props.building && props.building.building_id}
                 title="Team"
                 intro="Who built the buildings? Coming soon…"
                 help="https://pages.colouring.london/team"
@@ -96,7 +89,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'sustainability':
             return <SustainabilityContainer
                 {...props}
-                key={props.building && props.building.building_id}
                 title="Sustainability"
                 intro="Are buildings energy efficient?"
                 help="https://pages.colouring.london/sustainability"
@@ -105,7 +97,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'streetscape':
             return <StreetscapeContainer
                 {...props}
-                key={props.building && props.building.building_id}
                 title="Streetscape"
                 intro="What's the building's context? Coming soon…"
                 help="https://pages.colouring.london/streetscape"
@@ -114,7 +105,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'community':
             return <CommunityContainer
                 {...props}
-                key={props.building && props.building.building_id}
                 title="Community"
                 intro="How does this building work for the local community?"
                 help="https://pages.colouring.london/community"
@@ -123,7 +113,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'planning':
             return <PlanningContainer
                 {...props}
-                key={props.building && props.building.building_id}
                 title="Planning"
                 intro="Planning controls relating to protection and reuse."
                 help="https://pages.colouring.london/planning"
@@ -131,7 +120,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'like':
             return <LikeContainer
                 {...props}
-                key={props.building && props.building.building_id}
                 title="Like Me!"
                 intro="Do you like the building and think it contributes to the city?"
                 help="https://pages.colouring.london/likeme"
