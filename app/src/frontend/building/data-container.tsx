@@ -24,8 +24,15 @@ interface DataContainerProps {
 interface DataContainerState {
     error: string;
     copying: boolean;
-    keys_to_copy: object;
+    keys_to_copy: {[key: string]: boolean};
     building: Building
+}
+
+interface CopyProps {
+    copying: boolean;
+    toggleCopying: () => void;
+    toggleCopyAttribute: (key: string) => void;
+    copyingKey: (key: string) => boolean;
 }
 
 /**
@@ -212,11 +219,11 @@ const withCopyEdit = (WrappedComponent) => {
                 values_to_copy[key] = this.state.building[key]
             }
             const data_string = JSON.stringify(values_to_copy);
-            const copy = {
+            const copy: CopyProps = {
                 copying: this.state.copying,
                 toggleCopying: this.toggleCopying,
                 toggleCopyAttribute: this.toggleCopyAttribute,
-                copyingKey: (key) => this.state.keys_to_copy[key]
+                copyingKey: (key: string) => this.state.keys_to_copy[key]
             }
             return (
                 <section
@@ -289,3 +296,7 @@ const withCopyEdit = (WrappedComponent) => {
 }
 
 export default withCopyEdit;
+
+export {
+    CopyProps
+};

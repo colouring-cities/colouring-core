@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 import Tooltip from '../../components/tooltip';
 
-const DataTitle: React.FunctionComponent<any> = (props) => {
+
+interface DataTitleProps {
+    title: string;
+    tooltip: string;
+}
+
+const DataTitle: React.FunctionComponent<DataTitleProps> = (props) => {
     return (
         <dt>
             { props.title }
@@ -17,7 +23,16 @@ DataTitle.propTypes = {
     tooltip: PropTypes.string
 }
 
-const DataTitleCopyable: React.FunctionComponent<any> = (props) => { // TODO: remove any
+
+interface DataTitleCopyableProps {
+    title: string;
+    tooltip: string;
+    slug: string;
+    disabled?: boolean;
+    copy: any; // TODO: type should be CopyProps, but that clashes with propTypes in some obscure way
+}
+
+const DataTitleCopyable: React.FunctionComponent<DataTitleCopyableProps> = (props) => { // TODO: remove any
     return (
         <div className="data-title">
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
@@ -48,7 +63,8 @@ DataTitleCopyable.propTypes = {
     copy: PropTypes.shape({
         copying: PropTypes.bool,
         copyingKey: PropTypes.func,
-        toggleCopyAttribute: PropTypes.func
+        toggleCopyAttribute: PropTypes.func,
+        toggleCopying: PropTypes.func
     })
 }
 
