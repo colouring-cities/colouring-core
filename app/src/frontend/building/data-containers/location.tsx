@@ -26,7 +26,7 @@ const LocationView = (props) => (
             value={props.building.location_number}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             step={1}
             />
         <DataEntry
@@ -96,8 +96,8 @@ const LocationView = (props) => (
             mode={props.mode}
             copy={props.copy}
             step={0.0001}
-            placeholder={51}
-            onChange={props.onChange}
+            placeholder="51"
+            onChange={props.onUpdate}
             />
         <NumericDataEntry
             title="Longitude"
@@ -106,8 +106,8 @@ const LocationView = (props) => (
             mode={props.mode}
             copy={props.copy}
             step={0.0001}
-            placeholder={0}
-            onChange={props.onChange}
+            placeholder="0"
+            onChange={props.onUpdate}
             />
     </Fragment>
 )

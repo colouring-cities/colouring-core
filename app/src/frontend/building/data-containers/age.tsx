@@ -18,7 +18,7 @@ const AgeView = (props) => (
             lower={props.building.date_lower}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             />
         <NumericDataEntry
             title="Facade year"
@@ -26,7 +26,7 @@ const AgeView = (props) => (
             value={props.building.facade_year}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             step={1}
             tooltip="Best estimate"
             />

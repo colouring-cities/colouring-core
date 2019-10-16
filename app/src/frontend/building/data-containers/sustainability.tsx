@@ -18,11 +18,6 @@ const BreeamRatingOptions = [
 * Sustainability view/edit section
 */
 const SustainabilityView = (props) => {
-    const dataEntryProps = {
-        mode: props.mode,
-        copy: props.copy,
-        onChange: props.onChange
-    };
     return (
         <Fragment>
             <SelectDataEntry
@@ -31,7 +26,9 @@ const SustainabilityView = (props) => {
                 value={props.building.sust_breeam_rating}
                 tooltip="(Building Research Establishment Environmental Assessment Method) May not be present for many buildings"
                 options={BreeamRatingOptions}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
             <SelectDataEntry
                 title="DEC Rating"
@@ -39,7 +36,9 @@ const SustainabilityView = (props) => {
                 value={props.building.sust_dec}
                 tooltip="(Display Energy Certificate) Any public building should have (and display) a DEC. Showing how the energy use for that building compares to other buildings with same use"
                 options={EnergyCategoryOptions}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
             <SelectDataEntry
                 title="EPC Rating"
@@ -48,7 +47,9 @@ const SustainabilityView = (props) => {
                 tooltip="(Energy Performance Certifcate) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher maybe rented"
                 options={EnergyCategoryOptions}
                 disabled={true}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
             <NumericDataEntry
                 title="Last significant retrofit"
@@ -58,7 +59,9 @@ const SustainabilityView = (props) => {
                 step={1}
                 min={1086}
                 max={new Date().getFullYear()}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onUpdate}
             />
             <NumericDataEntry
                 title="Expected lifespan for typology"
@@ -67,7 +70,9 @@ const SustainabilityView = (props) => {
                 step={1}
                 min={1}
                 disabled={true}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onUpdate}
             />
         </Fragment>
     );

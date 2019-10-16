@@ -19,7 +19,7 @@ const SizeView = (props) => (
                 mode={props.mode}
                 copy={props.copy}
                 tooltip="How many storeys between the pavement and start of roof?"
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 step={1}
                 />
             <NumericDataEntry
@@ -29,7 +29,7 @@ const SizeView = (props) => (
                 mode={props.mode}
                 copy={props.copy}
                 tooltip="How many storeys above start of roof?"
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 step={1}
                 />
             <NumericDataEntry
@@ -39,7 +39,7 @@ const SizeView = (props) => (
                 mode={props.mode}
                 copy={props.copy}
                 tooltip="How many storeys below pavement level?"
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 step={1}
                 />
         </DataEntryGroup>
@@ -50,7 +50,7 @@ const SizeView = (props) => (
                 value={props.building.size_height_apex}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 step={0.1}
                 />
             <NumericDataEntry
@@ -60,7 +60,7 @@ const SizeView = (props) => (
                 value={props.building.size_height_eaves}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 step={0.1}
                 />
         </DataEntryGroup>
@@ -71,7 +71,7 @@ const SizeView = (props) => (
                 value={props.building.size_floor_area_ground}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 step={0.1}
                 />
             <NumericDataEntry
@@ -80,7 +80,7 @@ const SizeView = (props) => (
                 value={props.building.size_floor_area_total}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 step={0.1}
                 />
         </DataEntryGroup>
@@ -90,7 +90,7 @@ const SizeView = (props) => (
             value={props.building.size_width_frontage}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             step={0.1}
             />
         <NumericDataEntry
@@ -99,7 +99,7 @@ const SizeView = (props) => (
             value={props.building.size_plot_area_total}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             step={0.1}
             disabled={true}
             />
@@ -109,7 +109,7 @@ const SizeView = (props) => (
             value={props.building.size_far_ratio}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             step={0.1}
             disabled={true}
             />

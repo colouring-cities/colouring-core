@@ -3,7 +3,24 @@ import PropTypes from 'prop-types';
 
 import { DataTitleCopyable } from './data-title';
 
-const NumericDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
+
+interface NumericDataEntryProps {
+    slug: string;
+    title: string;
+    tooltip?: string;
+    disabled?: boolean;
+    copy: any; // CopyProps clashes with propTypes
+    mode: 'view' | 'edit' | 'multi-edit';
+    onChange: (key: string, value: any) => void;
+
+    value?: number;
+    placeholder?: string;
+    step?: number;
+    min?: number;
+    max?: number;
+}
+
+const NumericDataEntry: React.FunctionComponent<NumericDataEntryProps> = (props) => {
     return (
         <Fragment>
             <DataTitleCopyable
@@ -24,7 +41,12 @@ const NumericDataEntry: React.FunctionComponent<any> = (props) => { // TODO: rem
                 min={props.min || 0}
                 disabled={props.mode === 'view' || props.disabled}
                 placeholder={props.placeholder}
-                onChange={props.onChange}
+                onChange={e => 
+                    props.onChange(
+                        props.slug,
+                        e.target.value === '' ? null : parseFloat(e.target.value)
+                    )
+                }
             />
         </Fragment>
     );
