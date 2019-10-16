@@ -81,10 +81,14 @@ const withCopyEdit = (WrappedComponent) => {
         }
 
         static getDerivedStateFromProps(props, state) {
-            if(props.building != undefined && props.building.building_id !== state.currentBuildingId) {
+            const newBuildingId = props.building == undefined ? undefined : props.building.building_id;
+            if(newBuildingId !== state.currentBuildingId) {
                 return {
+                    error: undefined,
+                    copying: false,
+                    keys_to_copy: {},
                     buildingEdits: {},
-                    currentBuildingId: props.building.building_id
+                    currentBuildingId: newBuildingId
                 };
             }
 
