@@ -28,13 +28,13 @@ const LikeDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove
                         : "0 people like this building so far - you could be the first!"
                 }
             </p>
-            <input className="form-check-input" type="checkbox"
-                id="like_check" name="like"
-                checked={!!props.building_like}
-                disabled={props.mode === 'view'}
-                onChange={props.onLike}
-            />
-            <label htmlFor="like_check" className="form-check-label">
+            <label className="form-check-label">
+                <input className="form-check-input" type="checkbox"
+                    name="like"
+                    checked={!!props.building_like}
+                    disabled={props.mode === 'view'}
+                    onChange={props.onLike}
+                />
                 I like this building and think it contributes to the city!
             </label>
         </Fragment>
