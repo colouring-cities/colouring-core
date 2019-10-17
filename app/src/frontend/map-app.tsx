@@ -9,6 +9,7 @@ import MultiEdit from './building/multi-edit';
 import BuildingView from './building/building-view';
 import ColouringMap from './map/map';
 import { parse } from 'query-string';
+import { Building } from './models/building';
 
 interface MapAppRouteParams {
     mode: 'view' | 'edit' | 'multi-edit';
@@ -17,7 +18,7 @@ interface MapAppRouteParams {
 }
 
 interface MapAppProps extends RouteComponentProps<MapAppRouteParams> {
-    building: any;
+    building: Building;
     building_like: boolean;
     user: any;
 }
@@ -25,7 +26,7 @@ interface MapAppProps extends RouteComponentProps<MapAppRouteParams> {
 interface MapAppState {
     category: string;
     revision_id: number;
-    building: any;
+    building: Building;
     building_like: boolean;
 }
 
@@ -76,7 +77,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         }
     }
 
-    selectBuilding(building) {
+    selectBuilding(building: Building) {
         const mode = this.props.match.params.mode || 'view';
         const category = this.props.match.params.category || 'age';
 

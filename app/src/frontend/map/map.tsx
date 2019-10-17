@@ -11,11 +11,12 @@ import Legend from './legend';
 import { parseCategoryURL } from '../../parse';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
+import { Building } from '../models/building';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
 interface ColouringMapProps {
-    building: any;
+    building: Building;
     mode: 'basic' | 'view' | 'edit' | 'multi-edit';
     category: string;
     revision_id: number;

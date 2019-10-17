@@ -8,9 +8,9 @@ interface BaseDataEntryProps {
     title: string;
     tooltip?: string;
     disabled?: boolean;
-    copy: any; // CopyProps clashes with propTypes
-    mode: 'view' | 'edit' | 'multi-edit';
-    onChange: (key: string, value: any) => void;
+    copy?: any; // CopyProps clashes with propTypes
+    mode?: 'view' | 'edit' | 'multi-edit';
+    onChange?: (key: string, value: any) => void;
 }
 
 interface DataEntryProps extends BaseDataEntryProps {
