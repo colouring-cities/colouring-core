@@ -28,7 +28,7 @@ const SustainabilityView = (props) => {
                 options={BreeamRatingOptions}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
             />
             <SelectDataEntry
                 title="DEC Rating"
@@ -38,7 +38,7 @@ const SustainabilityView = (props) => {
                 options={EnergyCategoryOptions}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
             />
             <SelectDataEntry
                 title="EPC Rating"
@@ -49,7 +49,7 @@ const SustainabilityView = (props) => {
                 disabled={true}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
             />
             <NumericDataEntry
                 title="Last significant retrofit"

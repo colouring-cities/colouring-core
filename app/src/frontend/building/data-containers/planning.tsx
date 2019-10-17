@@ -58,7 +58,7 @@ const PlanningView = (props) => (
                 value={props.building.planning_list_cat}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 options={[
                     "Listed Building",
                     "Scheduled Monument",
@@ -73,7 +73,7 @@ const PlanningView = (props) => (
                 value={props.building.planning_list_grade}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 options={[
                     "I",
                     "II*",

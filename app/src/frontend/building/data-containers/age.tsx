@@ -36,7 +36,7 @@ const AgeView = (props) => (
             value={props.building.date_source}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             tooltip="Source for the main start date"
             placeholder=""
             options={[

@@ -26,7 +26,7 @@ const TypeView = (props) => {
                 options={AttachmentFormOptions}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
             />
             <NumericDataEntry
                 title="When did use change?"

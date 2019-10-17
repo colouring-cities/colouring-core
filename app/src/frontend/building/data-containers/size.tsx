@@ -119,7 +119,7 @@ const SizeView = (props) => (
             value={props.building.size_configuration}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             disabled={true}
             options={[
                 "Detached",
@@ -135,7 +135,7 @@ const SizeView = (props) => (
             value={props.building.size_roof_shape}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             disabled={true}
             options={[
                 "Flat",
