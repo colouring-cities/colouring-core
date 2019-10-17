@@ -2,8 +2,14 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { DataTitleCopyable } from './data-title';
+import { BaseDataEntryProps } from './data-entry';
 
-const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
+interface CheckboxDataEntryProps extends BaseDataEntryProps {
+    value: boolean;
+}
+
+
+const CheckboxDataEntry: React.FunctionComponent<CheckboxDataEntryProps> = (props) => {
     return (
         <Fragment>
             <DataTitleCopyable
@@ -19,7 +25,7 @@ const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
                     name={props.slug}
                     checked={!!props.value}
                     disabled={props.mode === 'view' || props.disabled}
-                    onChange={props.onChange}
+                    onChange={e => props.onChange(props.slug, e.target.checked)}
                     />
                 <label
                     htmlFor={props.slug}
@@ -31,14 +37,12 @@ const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
     );
 }
 
-DataEntry.propTypes = {
+CheckboxDataEntry.propTypes = {
     title: PropTypes.string,
     slug: PropTypes.string,
     tooltip: PropTypes.string,
     disabled: PropTypes.bool,
     value: PropTypes.any,
-    placeholder: PropTypes.string,
-    maxLength: PropTypes.number,
     onChange: PropTypes.func,
     copy: PropTypes.shape({
         copying: PropTypes.bool,
@@ -47,4 +51,4 @@ DataEntry.propTypes = {
     })
 }
 
-export default DataEntry;
+export default CheckboxDataEntry;
