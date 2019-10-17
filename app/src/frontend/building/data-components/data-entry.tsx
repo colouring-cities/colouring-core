@@ -37,9 +37,12 @@ const DataEntry: React.FunctionComponent<DataEntryProps> = (props) => {
                 disabled={props.mode === 'view' || props.disabled}
                 placeholder={props.placeholder}
                 onChange={e =>
-                    e.target.value === '' ?
-                        null :
-                        props.onChange(props.slug, e.target.value)
+                    props.onChange(
+                        props.slug,
+                        e.target.value === '' ?
+                            null :
+                            e.target.value
+                    )
                 }
             />
         </Fragment>

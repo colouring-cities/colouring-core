@@ -42,7 +42,12 @@ const TypeView = (props) => {
             />
             <DataEntry
                 title="Original building use"
+                slug=""
                 tooltip="What was the building originally used for when it was built? I.e. If it was Victorian warehouse which is now an office this would be warehouse"
+                value={undefined}
+                copy={props.copy}
+                mode={props.mode}
+                onChange={props.onUpdate}
                 disabled={true}
             />
         </Fragment>
