@@ -2,17 +2,10 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { DataTitleCopyable } from './data-title';
+import { BaseDataEntryProps } from './data-entry';
 
 
-interface NumericDataEntryProps {
-    slug: string;
-    title: string;
-    tooltip?: string;
-    disabled?: boolean;
-    copy: any; // CopyProps clashes with propTypes
-    mode: 'view' | 'edit' | 'multi-edit';
-    onChange: (key: string, value: any) => void;
-
+interface NumericDataEntryProps extends BaseDataEntryProps {
     value?: number;
     placeholder?: string;
     step?: number;

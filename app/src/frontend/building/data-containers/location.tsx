@@ -15,7 +15,7 @@ const LocationView = (props) => (
             value={props.building.location_name}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             tooltip="May not be needed for many buildings."
             placeholder="Building name (if any)"
             disabled={true}
@@ -35,7 +35,7 @@ const LocationView = (props) => (
             value={props.building.location_street}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             disabled={true}
             />
         <DataEntry
@@ -44,7 +44,7 @@ const LocationView = (props) => (
             value={props.building.location_line_two}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             disabled={true}
             />
         <DataEntry
@@ -53,7 +53,7 @@ const LocationView = (props) => (
             value={props.building.location_town}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             />
         <DataEntry
             title="Postcode"
@@ -61,7 +61,7 @@ const LocationView = (props) => (
             value={props.building.location_postcode}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             maxLength={8}
             />
         <DataEntry
@@ -71,7 +71,7 @@ const LocationView = (props) => (
             mode={props.mode}
             copy={props.copy}
             tooltip="Ordnance Survey Topography Layer ID (to be filled automatically)"
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             disabled={true}
             />
         <UPRNsDataEntry
@@ -87,7 +87,7 @@ const LocationView = (props) => (
             copy={props.copy}
             tooltip="OpenStreetMap feature ID"
             maxLength={20}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             />
         <NumericDataEntry
             title="Latitude"

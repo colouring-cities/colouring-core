@@ -17,7 +17,7 @@ const PlanningView = (props) => (
             value={props.building.planning_portal_link}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             />
         <DataEntryGroup name="Listing and protections" >
             <CheckboxDataEntry
@@ -34,7 +34,7 @@ const PlanningView = (props) => (
                 value={props.building.planning_conservation_area_name}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 />
             <CheckboxDataEntry
                 title="Is listed on the National Heritage List for England?"
@@ -50,7 +50,7 @@ const PlanningView = (props) => (
                 value={props.building.planning_list_id}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 />
             <SelectDataEntry
                 title="National Heritage List for England list type"
@@ -87,7 +87,7 @@ const PlanningView = (props) => (
                 value={props.building.planning_heritage_at_risk_id}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 />
             <DataEntry
                 title="World heritage list id"
@@ -95,7 +95,7 @@ const PlanningView = (props) => (
                 value={props.building.planning_world_list_id}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 />
             <CheckboxDataEntry
                 title="In the Greater London Historic Environment Record?"
@@ -111,7 +111,7 @@ const PlanningView = (props) => (
                 value={props.building.planning_glher_url}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 />
             <CheckboxDataEntry
                 title="In an Architectural Priority Area?"
@@ -127,7 +127,7 @@ const PlanningView = (props) => (
                 value={props.building.planning_apa_name}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 />
             <DataEntry
                 title="Architectural Priority Area tier"
@@ -135,7 +135,7 @@ const PlanningView = (props) => (
                 value={props.building.planning_apa_tier}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 />
             <CheckboxDataEntry
                 title="Is locally listed?"
@@ -151,7 +151,7 @@ const PlanningView = (props) => (
                 value={props.building.planning_local_list_url}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 />
             <CheckboxDataEntry
                 title="Within a historic area assessment?"
@@ -167,7 +167,7 @@ const PlanningView = (props) => (
                 value={props.building.planning_historic_area_assessment_url}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 />
         </DataEntryGroup>
         <DataEntryGroup name="Demolition and demolition history">
@@ -195,7 +195,7 @@ const PlanningView = (props) => (
                 value={props.building.planning_demolition_history}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onChange}
+                onChange={props.onUpdate}
                 disabled={true}
                 />
         </DataEntryGroup>
