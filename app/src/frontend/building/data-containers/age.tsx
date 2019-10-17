@@ -58,7 +58,7 @@ const AgeView = (props) => (
             value={props.building.date_source_detail}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onUpdate}
             tooltip="References for date source (max 500 characters)"
             />
         <MultiDataEntry
