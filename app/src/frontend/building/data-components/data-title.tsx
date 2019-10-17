@@ -32,7 +32,7 @@ interface DataTitleCopyableProps {
     copy?: any; // TODO: type should be CopyProps, but that clashes with propTypes in some obscure way
 }
 
-const DataTitleCopyable: React.FunctionComponent<DataTitleCopyableProps> = (props) => { // TODO: remove any
+const DataTitleCopyable: React.FunctionComponent<DataTitleCopyableProps> = (props) => {
     return (
         <div className="data-title">
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }

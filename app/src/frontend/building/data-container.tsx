@@ -47,7 +47,7 @@ interface CopyProps {
  * @param WrappedComponent
  */
 const withCopyEdit = (WrappedComponent) => {
-    return class DataContainer extends React.Component<DataContainerProps, DataContainerState> { // TODO: add proper types
+    return class DataContainer extends React.Component<DataContainerProps, DataContainerState> {
         static displayName = 'DataContainer';
 
         static propTypes = { // TODO: generate propTypes from TS

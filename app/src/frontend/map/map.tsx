@@ -32,7 +32,7 @@ interface ColouringMapState {
 /**
  * Map area
  */
-class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // TODO: add proper types
+class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
     static propTypes = { // TODO: generate propTypes from TS
         building: PropTypes.object,
         mode: PropTypes.string,
