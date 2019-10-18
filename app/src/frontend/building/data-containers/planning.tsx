@@ -24,7 +24,7 @@ const PlanningView = (props) => (
             value={props.building.planning_in_conservation_area}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onCheck}
             />
         <DataEntry
             title="Conservation area name"
@@ -40,7 +40,7 @@ const PlanningView = (props) => (
             value={props.building.planning_in_list}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onCheck}
             />
         <DataEntry
             title="National Heritage List for England list id"
@@ -101,7 +101,7 @@ const PlanningView = (props) => (
             value={props.building.planning_in_glher}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onCheck}
             />
         <DataEntry
             title="Greater London Historic Environment Record link"
@@ -117,7 +117,7 @@ const PlanningView = (props) => (
             value={props.building.planning_in_apa}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onCheck}
             />
         <DataEntry
             title="Architectural Priority Area name"
@@ -141,7 +141,7 @@ const PlanningView = (props) => (
             value={props.building.planning_in_local_list}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onCheck}
             />
         <DataEntry
             title="Local list link"
@@ -157,7 +157,7 @@ const PlanningView = (props) => (
             value={props.building.planning_in_historic_area_assessment}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onCheck}
             />
         <DataEntry
             title="Historic area assessment link"
@@ -173,7 +173,7 @@ const PlanningView = (props) => (
             value={props.building.planning_demolition_proposed}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onCheck}
             disabled={true}
             />
         <CheckboxDataEntry
@@ -182,7 +182,7 @@ const PlanningView = (props) => (
             value={props.building.planning_demolition_complete}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onChange}
+            onChange={props.onCheck}
             disabled={true}
             />
         <DataEntry
