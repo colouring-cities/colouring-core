@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
+import { CategoryViewProps } from './category-view-props';
 
 /**
  * Use view/edit section
  */
-const UseView = (props) => (
+const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <p className="data-intro">{props.intro}</p>
         <ul>

@@ -5,8 +5,9 @@ import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import UPRNsDataEntry from '../data-components/uprns-data-entry';
 import InfoBox from '../../components/info-box';
+import { CategoryViewProps } from './category-view-props';
 
-const LocationView = (props) => (
+const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
         <DataEntry
@@ -15,7 +16,7 @@ const LocationView = (props) => (
             value={props.building.location_name}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             tooltip="May not be needed for many buildings."
             placeholder="Building name (if any)"
             disabled={true}
@@ -26,7 +27,7 @@ const LocationView = (props) => (
             value={props.building.location_number}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             step={1}
             />
         <DataEntry
@@ -35,7 +36,7 @@ const LocationView = (props) => (
             value={props.building.location_street}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             disabled={true}
             />
         <DataEntry
@@ -44,7 +45,7 @@ const LocationView = (props) => (
             value={props.building.location_line_two}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             disabled={true}
             />
         <DataEntry
@@ -53,7 +54,7 @@ const LocationView = (props) => (
             value={props.building.location_town}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             />
         <DataEntry
             title="Postcode"
@@ -61,8 +62,9 @@ const LocationView = (props) => (
             value={props.building.location_postcode}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             maxLength={8}
+            valueTransform={x=>x.toUpperCase()}
             />
         <DataEntry
             title="TOID"
@@ -71,7 +73,7 @@ const LocationView = (props) => (
             mode={props.mode}
             copy={props.copy}
             tooltip="Ordnance Survey Topography Layer ID (to be filled automatically)"
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             disabled={true}
             />
         <UPRNsDataEntry
@@ -87,7 +89,7 @@ const LocationView = (props) => (
             copy={props.copy}
             tooltip="OpenStreetMap feature ID"
             maxLength={20}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             />
         <NumericDataEntry
             title="Latitude"
@@ -97,7 +99,7 @@ const LocationView = (props) => (
             copy={props.copy}
             step={0.0001}
             placeholder="51"
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             />
         <NumericDataEntry
             title="Longitude"
@@ -107,7 +109,7 @@ const LocationView = (props) => (
             copy={props.copy}
             step={0.0001}
             placeholder="0"
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             />
     </Fragment>
 )

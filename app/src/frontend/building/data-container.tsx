@@ -8,6 +8,7 @@ import InfoBox from '../components/info-box';
 import { Building } from '../models/building';
 import { User } from '../models/user';
 import { compareObjects } from '../helpers';
+import { CategoryViewProps, CopyProps } from './data-containers/category-view-props';
 
 interface DataContainerProps {
     title: string;
@@ -31,13 +32,6 @@ interface DataContainerState {
     buildingEdits: Partial<Building>;
 }
 
-interface CopyProps {
-    copying: boolean;
-    toggleCopying: () => void;
-    toggleCopyAttribute: (key: string) => void;
-    copyingKey: (key: string) => boolean;
-}
-
 /**
  * Shared functionality for view/edit forms
  *
@@ -46,10 +40,8 @@ interface CopyProps {
  *
  * @param WrappedComponent
  */
-const withCopyEdit = (WrappedComponent) => {
+const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) => {
     return class DataContainer extends React.Component<DataContainerProps, DataContainerState> {
-        static displayName = 'DataContainer';
-
         static propTypes = { // TODO: generate propTypes from TS
             title: PropTypes.string,
             slug: PropTypes.string,
@@ -71,10 +63,8 @@ const withCopyEdit = (WrappedComponent) => {
             };
 
             this.handleChange = this.handleChange.bind(this);
-            this.handleCheck = this.handleCheck.bind(this);
             this.handleLike = this.handleLike.bind(this);
             this.handleSubmit = this.handleSubmit.bind(this);
-            this.handleUpdate = this.handleUpdate.bind(this);
 
             this.toggleCopying = this.toggleCopying.bind(this);
             this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
@@ -146,45 +136,13 @@ const withCopyEdit = (WrappedComponent) => {
         }
 
         /**
-         * Handle changes on typical inputs
-         * - e.g. input[type=text], radio, select, textarea
-         *
-         * @param {*} event
-         */
-        handleChange(event) {
-            const target = event.target;
-            let value = (target.value === '')? null : target.value;
-            const name = target.name;
-
-            // special transform - consider something data driven before adding 'else if's
-            if (name === 'location_postcode' && value !== null) {
-                value = value.toUpperCase();
-            }
-            this.updateBuildingState(name, value);
-        }
-
-        /**
-         * Handle changes on checkboxes
-         * - e.g. input[type=checkbox]
-         *
-         * @param {*} event
-         */
-        handleCheck(event) {
-            const target = event.target;
-            const value = target.checked;
-            const name = target.name;
-
-            this.updateBuildingState(name, value);
-        }
-
-        /**
          * Handle update directly
          * - e.g. as callback from MultiTextInput where we set a list of strings
          *
          * @param {String} name
          * @param {*} value
          */
-        handleUpdate(name: string, value: any) {
+        handleChange(name: string, value: any) {
             this.updateBuildingState(name, value);
         }
 
@@ -194,29 +152,27 @@ const withCopyEdit = (WrappedComponent) => {
          *
          * @param {*} event
          */
-        handleLike(event) {
-            event.preventDefault();
-            const like = event.target.checked;
-
-            fetch(`/api/buildings/${this.props.building.building_id}/like.json`, {
-                method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'same-origin',
-                body: JSON.stringify({like: like})
-            }).then(
-                res => res.json()
-            ).then(function(res){
-                if (res.error) {
-                    this.setState({error: res.error})
+        async handleLike(like: boolean) {
+            try {
+                const res = await fetch(`/api/buildings/${this.props.building.building_id}/like.json`, {
+                    method: 'POST',
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'same-origin',
+                    body: JSON.stringify({like: like})
+                });
+                const data = await res.json();
+                
+                if (data.error) {
+                    this.setState({error: data.error})
                 } else {
-                    this.props.selectBuilding(res);
-                    this.updateBuildingState('likes_total', res.likes_total);
+                    this.props.selectBuilding(data);
+                    this.updateBuildingState('likes_total', data.likes_total);
                 }
-            }.bind(this)).catch(
-                (err) => this.setState({error: err})
-            );
+            } catch(err) {
+                this.setState({error: err});
+            }
         }
 
         async handleSubmit(event) {
@@ -261,7 +217,7 @@ const withCopyEdit = (WrappedComponent) => {
                 toggleCopying: this.toggleCopying,
                 toggleCopyAttribute: this.toggleCopyAttribute,
                 copyingKey: (key: string) => this.state.keys_to_copy[key]
-            }
+            };
             return (
                 <section
                     id={this.props.cat}
@@ -279,14 +235,13 @@ const withCopyEdit = (WrappedComponent) => {
                                 msg={`We're not collecting data on ${this.props.title.toLowerCase()} yet - check back soon.`}
                             />
                             <WrappedComponent
+                                intro={this.props.intro}
                                 building={undefined}
                                 building_like={undefined}
                                 mode={this.props.mode}
                                 copy={copy}
                                 onChange={this.handleChange}
-                                onCheck={this.handleCheck}
                                 onLike={this.handleLike}
-                                onUpdate={this.handleUpdate}
                             />
                         </Fragment> :
                         this.props.building != undefined ?
@@ -313,14 +268,13 @@ const withCopyEdit = (WrappedComponent) => {
                                         : null
                                 }
                                 <WrappedComponent
+                                    intro={this.props.intro}
                                     building={currentBuilding}
                                     building_like={this.props.building_like}
                                     mode={this.props.mode}
                                     copy={copy}
                                     onChange={this.handleChange}
-                                    onCheck={this.handleCheck}
                                     onLike={this.handleLike}
-                                    onUpdate={this.handleUpdate}
                                 />
                             </form> :
                             <InfoBox msg="Select a building to view data"></InfoBox>
@@ -333,7 +287,3 @@ const withCopyEdit = (WrappedComponent) => {
 }
 
 export default withCopyEdit;
-
-export {
-    CopyProps
-};

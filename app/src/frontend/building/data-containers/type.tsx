@@ -4,6 +4,7 @@ import withCopyEdit from '../data-container';
 import SelectDataEntry from '../data-components/select-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import DataEntry from '../data-components/data-entry';
+import { CategoryViewProps } from './category-view-props';
 
 const AttachmentFormOptions = [
     "Detached",
@@ -15,7 +16,7 @@ const AttachmentFormOptions = [
 /**
 * Type view/edit section
 */
-const TypeView = (props) => {
+const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
             <SelectDataEntry
@@ -26,7 +27,7 @@ const TypeView = (props) => {
                 options={AttachmentFormOptions}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onUpdate}
+                onChange={props.onChange}
             />
             <NumericDataEntry
                 title="When did use change?"
@@ -38,7 +39,7 @@ const TypeView = (props) => {
                 step={1}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onUpdate}
+                onChange={props.onChange}
             />
             <DataEntry
                 title="Original building use"
@@ -47,7 +48,7 @@ const TypeView = (props) => {
                 value={undefined}
                 copy={props.copy}
                 mode={props.mode}
-                onChange={props.onUpdate}
+                onChange={props.onChange}
                 disabled={true}
             />
         </Fragment>

@@ -17,6 +17,7 @@ interface DataEntryProps extends BaseDataEntryProps {
     value: string;
     maxLength?: number;
     placeholder?: string;
+    valueTransform?: (string) => string
 }
 
 const DataEntry: React.FunctionComponent<DataEntryProps> = (props) => {
@@ -36,14 +37,13 @@ const DataEntry: React.FunctionComponent<DataEntryProps> = (props) => {
                 maxLength={props.maxLength}
                 disabled={props.mode === 'view' || props.disabled}
                 placeholder={props.placeholder}
-                onChange={e =>
-                    props.onChange(
-                        props.slug,
-                        e.target.value === '' ?
-                            null :
-                            e.target.value
-                    )
-                }
+                onChange={e => {
+                    const transform = props.valueTransform || (x => x);
+                    const val = e.target.value === '' ?
+                                    null :
+                                    transform(e.target.value);
+                    props.onChange(props.slug, val);
+                }}
             />
         </Fragment>
     );

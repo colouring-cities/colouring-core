@@ -4,6 +4,7 @@ import withCopyEdit from '../data-container';
 import DataEntry from '../data-components/data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
+import { CategoryViewProps } from './category-view-props';
 
 const EnergyCategoryOptions = ["A", "B", "C", "D", "E", "F", "G"];
 const BreeamRatingOptions = [
@@ -17,7 +18,7 @@ const BreeamRatingOptions = [
 /**
 * Sustainability view/edit section
 */
-const SustainabilityView = (props) => {
+const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
             <SelectDataEntry
@@ -28,7 +29,7 @@ const SustainabilityView = (props) => {
                 options={BreeamRatingOptions}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onUpdate}
+                onChange={props.onChange}
             />
             <SelectDataEntry
                 title="DEC Rating"
@@ -38,7 +39,7 @@ const SustainabilityView = (props) => {
                 options={EnergyCategoryOptions}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onUpdate}
+                onChange={props.onChange}
             />
             <SelectDataEntry
                 title="EPC Rating"
@@ -49,7 +50,7 @@ const SustainabilityView = (props) => {
                 disabled={true}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onUpdate}
+                onChange={props.onChange}
             />
             <NumericDataEntry
                 title="Last significant retrofit"
@@ -61,7 +62,7 @@ const SustainabilityView = (props) => {
                 max={new Date().getFullYear()}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onUpdate}
+                onChange={props.onChange}
             />
             <NumericDataEntry
                 title="Expected lifespan for typology"
@@ -72,7 +73,7 @@ const SustainabilityView = (props) => {
                 disabled={true}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onUpdate}
+                onChange={props.onChange}
             />
         </Fragment>
     );

@@ -4,11 +4,12 @@ import withCopyEdit from '../data-container';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
+import { CategoryViewProps } from './category-view-props';
 
 /**
 * Size view/edit section
 */
-const SizeView = (props) => (
+const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <DataEntryGroup name="Storeys" collapsed={false}>
 
@@ -19,7 +20,7 @@ const SizeView = (props) => (
                 mode={props.mode}
                 copy={props.copy}
                 tooltip="How many storeys between the pavement and start of roof?"
-                onChange={props.onUpdate}
+                onChange={props.onChange}
                 step={1}
                 />
             <NumericDataEntry
@@ -29,7 +30,7 @@ const SizeView = (props) => (
                 mode={props.mode}
                 copy={props.copy}
                 tooltip="How many storeys above start of roof?"
-                onChange={props.onUpdate}
+                onChange={props.onChange}
                 step={1}
                 />
             <NumericDataEntry
@@ -39,7 +40,7 @@ const SizeView = (props) => (
                 mode={props.mode}
                 copy={props.copy}
                 tooltip="How many storeys below pavement level?"
-                onChange={props.onUpdate}
+                onChange={props.onChange}
                 step={1}
                 />
         </DataEntryGroup>
@@ -50,7 +51,7 @@ const SizeView = (props) => (
                 value={props.building.size_height_apex}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onUpdate}
+                onChange={props.onChange}
                 step={0.1}
                 />
             <NumericDataEntry
@@ -60,7 +61,7 @@ const SizeView = (props) => (
                 value={props.building.size_height_eaves}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onUpdate}
+                onChange={props.onChange}
                 step={0.1}
                 />
         </DataEntryGroup>
@@ -71,7 +72,7 @@ const SizeView = (props) => (
                 value={props.building.size_floor_area_ground}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onUpdate}
+                onChange={props.onChange}
                 step={0.1}
                 />
             <NumericDataEntry
@@ -80,7 +81,7 @@ const SizeView = (props) => (
                 value={props.building.size_floor_area_total}
                 mode={props.mode}
                 copy={props.copy}
-                onChange={props.onUpdate}
+                onChange={props.onChange}
                 step={0.1}
                 />
         </DataEntryGroup>
@@ -90,7 +91,7 @@ const SizeView = (props) => (
             value={props.building.size_width_frontage}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             step={0.1}
             />
         <NumericDataEntry
@@ -99,7 +100,7 @@ const SizeView = (props) => (
             value={props.building.size_plot_area_total}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             step={0.1}
             disabled={true}
             />
@@ -109,7 +110,7 @@ const SizeView = (props) => (
             value={props.building.size_far_ratio}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             step={0.1}
             disabled={true}
             />
@@ -119,7 +120,7 @@ const SizeView = (props) => (
             value={props.building.size_configuration}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             disabled={true}
             options={[
                 "Detached",
@@ -135,7 +136,7 @@ const SizeView = (props) => (
             value={props.building.size_roof_shape}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             disabled={true}
             options={[
                 "Flat",
