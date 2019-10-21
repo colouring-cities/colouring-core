@@ -29,4 +29,7 @@ router.route('/:building_id/like.json')
     .get(buildingController.getBuildingLikeById)
     .post(buildingController.updateBuildingLikeById);
 
+router.route('/:building_id/history.json')
+    .get(buildingController.getBuildingEditHistoryById);
+
 export default router;

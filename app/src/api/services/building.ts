@@ -409,6 +409,7 @@ export {
     queryBuildingsByReference,
     getBuildingById,
     getBuildingLikeById,
+    getBuildingEditHistory,
     getBuildingUPRNsById,
     saveBuilding,
     likeBuilding,

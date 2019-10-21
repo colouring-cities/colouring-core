@@ -110,6 +110,17 @@ const getBuildingLikeById = asyncController(async (req: express.Request, res: ex
     }
 });
 
+const getBuildingEditHistoryById = asyncController(async (req: express.Request, res: express.Response) => {
+    const { building_id } = req.params;
+    try {
+        const editHistory = await buildingService.getBuildingEditHistory(building_id);
+
+        res.send({ history: editHistory });
+    } catch(error) {
+        res.send({ error: 'Database error' });
+    }
+});
+
 const updateBuildingLikeById = asyncController(async (req: express.Request, res: express.Response) => {
     if (!req.session.user_id) {
         return res.send({ error: 'Must be logged in' });
@@ -142,5 +153,6 @@ export default {
     updateBuildingById,
     getBuildingUPRNsById,
     getBuildingLikeById,
-    updateBuildingLikeById
+    updateBuildingLikeById,
+    getBuildingEditHistoryById
 };
