@@ -29,6 +29,7 @@ interface DataContainerState {
     copying: boolean;
     keys_to_copy: {[key: string]: boolean};
     currentBuildingId: number;
+    currentBuildingRevisionId: number;
     buildingEdits: Partial<Building>;
 }
 
@@ -59,10 +60,12 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                 copying: false,
                 keys_to_copy: {},
                 buildingEdits: {},
-                currentBuildingId: undefined
+                currentBuildingId: undefined,
+                currentBuildingRevisionId: undefined
             };
 
             this.handleChange = this.handleChange.bind(this);
+            this.handleReset = this.handleReset.bind(this);
             this.handleLike = this.handleLike.bind(this);
             this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -72,13 +75,15 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
 
         static getDerivedStateFromProps(props, state) {
             const newBuildingId = props.building == undefined ? undefined : props.building.building_id;
-            if(newBuildingId !== state.currentBuildingId) {
+            const newBuildingRevisionId = props.building == undefined ? undefined : props.building.revision_id;
+            if(newBuildingId !== state.currentBuildingId || newBuildingRevisionId > state.currentBuildingRevisionId) {
                 return {
                     error: undefined,
                     copying: false,
                     keys_to_copy: {},
                     buildingEdits: {},
-                    currentBuildingId: newBuildingId
+                    currentBuildingId: newBuildingId,
+                    currentBuildingRevisionId: newBuildingRevisionId
                 };
             }
 
@@ -117,6 +122,12 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
             return Object.entries(edits).length !== 0;
         }
 
+        clearEdits() {
+            this.setState({
+                buildingEdits: {}
+            });
+        }
+
         getEditedBuilding() {
             if(this.isEdited()) {
                 return Object.assign({}, this.props.building, this.state.buildingEdits);
@@ -144,6 +155,10 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
          */
         handleChange(name: string, value: any) {
             this.updateBuildingState(name, value);
+        }
+
+        handleReset() {
+            this.clearEdits();
         }
 
         /**
@@ -218,6 +233,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                 toggleCopyAttribute: this.toggleCopyAttribute,
                 copyingKey: (key: string) => this.state.keys_to_copy[key]
             };
+            const edited = this.isEdited();
             return (
                 <section
                     id={this.props.cat}
@@ -254,13 +270,26 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                                         <Fragment>
                                             <ErrorBox msg={this.state.error} />
                                             {
-                                                this.isEdited() && this.props.cat !== 'like' ? // special-case for likes
+                                                this.props.cat !== 'like' ? // special-case for likes
                                                     <div className="buttons-container with-space">
                                                         <button
                                                             type="submit"
-                                                            className="btn btn-primary">
+                                                            className="btn btn-primary"
+                                                            disabled={!edited}
+                                                            aria-disabled={!edited}>
                                                             Save
                                                         </button>
+                                                        {
+                                                            edited ?
+                                                                <button
+                                                                    type="button"
+                                                                    className="btn btn-warning"
+                                                                    onClick={this.handleReset}
+                                                                    >
+                                                                    Discard changes
+                                                                </button> :
+                                                                null
+                                                        }
                                                     </div> :
                                                     null
                                             }
