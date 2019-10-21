@@ -135,7 +135,7 @@ async function getBuildingUPRNsById(id: number) {
 
 async function saveBuilding(buildingId: number, building: any, userId: string) { // TODO add proper building type
     try {
-        return await updateBuildingData(buildingId, userId, null, async (t) => {
+        return await updateBuildingData(buildingId, userId, async () => {
             // remove read-only fields from consideration
             delete building.building_id;
             delete building.revision_id;
@@ -156,16 +156,16 @@ async function likeBuilding(buildingId: number, userId: string) {
             buildingId,
             userId,
             async (t) => {
+                // return total like count after update
+                return getBuildingLikeCount(buildingId, t);
+            },
+            async (t) => {
                 // insert building-user like
                 await t.none(
                     'INSERT INTO building_user_likes ( building_id, user_id ) VALUES ($1, $2);',
                     [buildingId, userId]
                 );
             },
-            async (t) => {
-                // return total like count after update
-                return getBuildingLikeCount(buildingId, t);
-            }
         );
     } catch (error) {
         console.error(error);
@@ -184,6 +184,10 @@ async function unlikeBuilding(buildingId: number, userId: string) {
             buildingId,
             userId,
             async (t) => {
+                // return total like count after update
+                return getBuildingLikeCount(buildingId, t);
+            },
+            async (t) => {
                 // remove building-user like
                 const result = await t.result(
                     'DELETE FROM building_user_likes WHERE building_id = $1 AND user_id = $2;',
@@ -194,10 +198,6 @@ async function unlikeBuilding(buildingId: number, userId: string) {
                     throw new Error('No change');
                 }
             },
-            async (t) => {
-                // return total like count after update
-                return getBuildingLikeCount(buildingId, t);
-            }
         );
     } catch(error) {
         console.error(error);
@@ -235,21 +235,22 @@ function getBuildingLikeCount(buildingId: number, t: ITask<unknown>) {
 }
 
 /**
- * 
+ * Carry out an update of the buildings data. Allows for running any custom database operations before the main update.
+ * All db hooks get passed a transaction.
  * @param buildingId The ID of the building to update
  * @param userId The ID of the user updating the data
- * @param customDbAction Any db operations to carry out before updating the buildings table
- * @param updateAction Function returning the set of attribute to update for the building
+ * @param getUpdateValue Function returning the set of attribute to update for the building
+ * @param preUpdateDbAction Any db operations to carry out before updating the buildings table (mostly intended for updating the user likes table)
  */
 async function updateBuildingData(
     buildingId: number,
     userId: string,
-    customDbAction: (t: ITask<any>) => Promise<void>,
-    getUpdateValue: (t: ITask<any>) => Promise<object>
+    getUpdateValue: (t: ITask<any>) => Promise<object>,
+    preUpdateDbAction?: (t: ITask<any>) => Promise<void>,
 ) {
     return await db.tx({mode: serializable}, async t => {
-        if (customDbAction != undefined) {
-            await customDbAction(t);
+        if (preUpdateDbAction != undefined) {
+            await preUpdateDbAction(t);
         }
 
         const update = await getUpdateValue(t);
