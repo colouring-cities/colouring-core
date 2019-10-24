@@ -9,13 +9,6 @@
     height: 40%;
 }
 
-.info-container h2:first-child {
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
-    margin-left: -0.1em;
-    padding: 0 0.75rem;
-}
-
 @media (min-width: 768px){
     .info-container {
         order: 0;
@@ -99,7 +92,8 @@
     color: rgb(11, 225, 225);
 }
 .icon-button.help,
-.icon-button.copy {
+.icon-button.copy,
+.icon-button.history {
     margin-top: 4px;
 }
 .data-section label .icon-buttons .icon-button.copy {

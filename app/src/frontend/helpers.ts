@@ -36,4 +36,27 @@ function sanitiseURL(string){
   return `${url_.protocol}//${url_.hostname}${url_.pathname || ''}${url_.search || ''}${url_.hash || ''}`
 }
 
-export { sanitiseURL }
+function arrayToDictionary<T>(arr: T[], keyAccessor: (obj: T) => string): {[key: string]: T[]} {
+    return arr.reduce((obj, item) => {
+        (obj[keyAccessor(item)] = obj[keyAccessor(item)] || []).push(item);
+        return obj;
+    }, {});
+}
+
+/**
+ * Parse a string containing 
+ * @param isoUtcDate a date string in ISO8601 format
+ * 
+ */
+function parseDate(isoUtcDate: string): Date {
+    const [year, month, day, hour, minute, second, millisecond] = isoUtcDate.match(/^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d).(\d{3})Z$/)
+        .splice(1)
+        .map(x => parseInt(x, 10));
+    return new Date(Date.UTC(year, month-1, day, hour, minute, second, millisecond));
+}
+
+export {
+    sanitiseURL,
+    arrayToDictionary,
+    parseDate
+};
