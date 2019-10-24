@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import NumericDataEntry from './numeric-data-entry';
+import { dataFields } from '../../data_fields';
 
 class YearDataEntry extends Component<any, any> { // TODO: add proper types
     static propTypes = { // TODO: generate propTypes from TS
@@ -35,7 +36,7 @@ class YearDataEntry extends Component<any, any> { // TODO: add proper types
         return (
             <Fragment>
                 <NumericDataEntry
-                    title="Year built (best estimate)"
+                    title={dataFields.date_year.title}
                     slug="date_year"
                     value={props.year}
                     mode={props.mode}
@@ -44,24 +45,24 @@ class YearDataEntry extends Component<any, any> { // TODO: add proper types
                     // "type": "year_estimator"
                     />
                 <NumericDataEntry
-                    title="Latest possible start year"
+                    title={dataFields.date_upper.title}
                     slug="date_upper"
                     value={props.upper}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
                     step={1}
-                    tooltip="This should be the latest year in which building could have started."
+                    tooltip={dataFields.date_upper.tooltip}
                     />
                 <NumericDataEntry
-                    title="Earliest possible start date"
+                    title={dataFields.date_lower.title}
                     slug="date_lower"
                     value={props.lower}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
                     step={1}
-                    tooltip="This should be the earliest year in which building could have started."
+                    tooltip={dataFields.date_lower.tooltip}
                     />
             </Fragment>
         )
