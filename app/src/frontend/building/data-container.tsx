@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 
 import ContainerHeader from './container-header';
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
+import { CopyControl } from './header-buttons/copy-control';
+import { ViewEditControl } from './header-buttons/view-edit-control';
 
 /**
  * Shared functionality for view/edit forms
@@ -196,15 +198,56 @@ const withCopyEdit = (WrappedComponent) => {
                 toggleCopyAttribute: this.toggleCopyAttribute,
                 copyingKey: (key) => this.state.keys_to_copy[key]
             }
+
+            const headerBackLink = `/${this.props.mode}/categories${this.props.building != undefined ? `/${this.props.building.building_id}` : ''}`;
             return (
                 <section
                     id={this.props.slug}
                     className="data-section">
                 <ContainerHeader
-                    {...this.props}
-                    data_string={data_string}
-                    copy={copy}
-                />
+                    cat={this.props.cat}
+                    backLink={headerBackLink}
+                    title={this.props.title}
+                >
+                {
+                    this.props.help && !copy.copying?
+                        <a
+                            className="icon-button help"
+                            title="Find out more"
+                            href={this.props.help}>
+                            Info
+                        </a>
+                    : null
+                }
+                {
+                    this.props.building != undefined && !this.props.inactive ?
+                        <>
+                            <CopyControl
+                                cat={this.props.cat}
+                                data_string={data_string}
+                                copying={copy.copying}
+                                toggleCopying={copy.toggleCopying}
+                            />
+                            {
+                                !copy.copying ?
+                                <>
+                                    <NavLink
+                                        className="icon-button history"
+                                        to={`/${this.props.mode}/${this.props.cat}/${this.props.building.building_id}/history`}
+                                    >History</NavLink>
+                                    <ViewEditControl
+                                        cat={this.props.cat}
+                                        mode={this.props.mode}
+                                        building={this.props.building}
+                                    />
+                                </>
+                                :
+                                null
+                            }
+                        </>
+                    : null
+                }
+                </ContainerHeader>
                 {
                     this.props.building != undefined ?
                     <form
