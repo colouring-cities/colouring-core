@@ -5,6 +5,7 @@ import DataEntry from '../data-components/data-entry';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
+import { dataFields } from '../../data_fields';
 
 /**
 * Planning view/edit section
@@ -12,7 +13,7 @@ import { DataEntryGroup } from '../data-components/data-entry-group';
 const PlanningView = (props) => (
     <Fragment>
         <DataEntry
-            title="Planning portal link"
+            title={dataFields.planning_portal_link.title}
             slug="planning_portal_link"
             value={props.building.planning_portal_link}
             mode={props.mode}
@@ -21,7 +22,7 @@ const PlanningView = (props) => (
             />
         <DataEntryGroup name="Listing and protections" >
             <CheckboxDataEntry
-                title="In a conservation area?"
+                title={dataFields.planning_in_conservation_area.title}
                 slug="planning_in_conservation_area"
                 value={props.building.planning_in_conservation_area}
                 mode={props.mode}
@@ -29,7 +30,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <DataEntry
-                title="Conservation area name"
+                title={dataFields.planning_conservation_area_name.title}
                 slug="planning_conservation_area_name"
                 value={props.building.planning_conservation_area_name}
                 mode={props.mode}
@@ -37,7 +38,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <CheckboxDataEntry
-                title="Is listed on the National Heritage List for England?"
+                title={dataFields.planning_in_list.title}
                 slug="planning_in_list"
                 value={props.building.planning_in_list}
                 mode={props.mode}
@@ -45,7 +46,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <DataEntry
-                title="National Heritage List for England list id"
+                title={dataFields.planning_list_id.title}
                 slug="planning_list_id"
                 value={props.building.planning_list_id}
                 mode={props.mode}
@@ -53,7 +54,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <SelectDataEntry
-                title="National Heritage List for England list type"
+                title={dataFields.planning_list_cat.title}
                 slug="planning_list_cat"
                 value={props.building.planning_list_cat}
                 mode={props.mode}
@@ -68,7 +69,7 @@ const PlanningView = (props) => (
                 ]}
                 />
             <SelectDataEntry
-                title="Listing grade"
+                title={dataFields.planning_list_grade.title}
                 slug="planning_list_grade"
                 value={props.building.planning_list_grade}
                 mode={props.mode}
@@ -82,7 +83,7 @@ const PlanningView = (props) => (
                 ]}
                 />
             <DataEntry
-                title="Heritage at risk list id"
+                title={dataFields.planning_heritage_at_risk_id.title}
                 slug="planning_heritage_at_risk_id"
                 value={props.building.planning_heritage_at_risk_id}
                 mode={props.mode}
@@ -90,7 +91,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <DataEntry
-                title="World heritage list id"
+                title={dataFields.planning_world_list_id.title}
                 slug="planning_world_list_id"
                 value={props.building.planning_world_list_id}
                 mode={props.mode}
@@ -98,7 +99,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <CheckboxDataEntry
-                title="In the Greater London Historic Environment Record?"
+                title={dataFields.planning_in_glher.title}
                 slug="planning_in_glher"
                 value={props.building.planning_in_glher}
                 mode={props.mode}
@@ -106,7 +107,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <DataEntry
-                title="Greater London Historic Environment Record link"
+                title={dataFields.planning_glher_url.title}
                 slug="planning_glher_url"
                 value={props.building.planning_glher_url}
                 mode={props.mode}
@@ -114,7 +115,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <CheckboxDataEntry
-                title="In an Architectural Priority Area?"
+                title={dataFields.planning_in_apa.title}
                 slug="planning_in_apa"
                 value={props.building.planning_in_apa}
                 mode={props.mode}
@@ -122,7 +123,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <DataEntry
-                title="Architectural Priority Area name"
+                title={dataFields.planning_apa_name.title}
                 slug="planning_apa_name"
                 value={props.building.planning_apa_name}
                 mode={props.mode}
@@ -130,7 +131,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <DataEntry
-                title="Architectural Priority Area tier"
+                title={dataFields.planning_apa_tier.title}
                 slug="planning_apa_tier"
                 value={props.building.planning_apa_tier}
                 mode={props.mode}
@@ -138,7 +139,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <CheckboxDataEntry
-                title="Is locally listed?"
+                title={dataFields.planning_in_local_list.title}
                 slug="planning_in_local_list"
                 value={props.building.planning_in_local_list}
                 mode={props.mode}
@@ -146,7 +147,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <DataEntry
-                title="Local list link"
+                title={dataFields.planning_local_list_url.title}
                 slug="planning_local_list_url"
                 value={props.building.planning_local_list_url}
                 mode={props.mode}
@@ -154,7 +155,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <CheckboxDataEntry
-                title="Within a historic area assessment?"
+                title={dataFields.planning_in_historic_area_assessment.title}
                 slug="planning_in_historic_area_assessment"
                 value={props.building.planning_in_historic_area_assessment}
                 mode={props.mode}
@@ -162,7 +163,7 @@ const PlanningView = (props) => (
                 onChange={props.onChange}
                 />
             <DataEntry
-                title="Historic area assessment link"
+                title={dataFields.planning_historic_area_assessment_url.title}
                 slug="planning_historic_area_assessment_url"
                 value={props.building.planning_historic_area_assessment_url}
                 mode={props.mode}
@@ -172,7 +173,7 @@ const PlanningView = (props) => (
         </DataEntryGroup>
         <DataEntryGroup name="Demolition and demolition history">
             <CheckboxDataEntry
-                title="Is the building proposed for demolition?"
+                title={dataFields.planning_demolition_proposed.title}
                 slug="planning_demolition_proposed"
                 value={props.building.planning_demolition_proposed}
                 mode={props.mode}
@@ -181,7 +182,7 @@ const PlanningView = (props) => (
                 disabled={true}
                 />
             <CheckboxDataEntry
-                title="Has the building been demolished?"
+                title={dataFields.planning_demolition_complete.title}
                 slug="planning_demolition_complete"
                 value={props.building.planning_demolition_complete}
                 mode={props.mode}
@@ -190,7 +191,7 @@ const PlanningView = (props) => (
                 disabled={true}
                 />
             <DataEntry
-                title="Dates of construction and demolition of previous buildings on site"
+                title={dataFields.planning_demolition_history.title}
                 slug="planning_demolition_history"
                 value={props.building.planning_demolition_history}
                 mode={props.mode}

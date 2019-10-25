@@ -5,23 +5,24 @@ import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import UPRNsDataEntry from '../data-components/uprns-data-entry';
 import InfoBox from '../../components/info-box';
+import { dataFields } from '../../data_fields';
 
 const LocationView = (props) => (
     <Fragment>
         <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
         <DataEntry
-            title="Building Name"
+            title={dataFields.location_name.title}
             slug="location_name"
             value={props.building.location_name}
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
-            tooltip="May not be needed for many buildings."
+            tooltip={dataFields.location_name.tooltip}
             placeholder="Building name (if any)"
             disabled={true}
             />
         <NumericDataEntry
-            title="Building number"
+            title={dataFields.location_number.title}
             slug="location_number"
             value={props.building.location_number}
             mode={props.mode}
@@ -30,7 +31,7 @@ const LocationView = (props) => (
             step={1}
             />
         <DataEntry
-            title="Street"
+            title={dataFields.location_street.title}
             slug="location_street"
             value={props.building.location_street}
             mode={props.mode}
@@ -39,7 +40,7 @@ const LocationView = (props) => (
             disabled={true}
             />
         <DataEntry
-            title="Address line 2"
+            title={dataFields.location_line_two.title}
             slug="location_line_two"
             value={props.building.location_line_two}
             mode={props.mode}
@@ -48,7 +49,7 @@ const LocationView = (props) => (
             disabled={true}
             />
         <DataEntry
-            title="Town"
+            title={dataFields.location_town.title}
             slug="location_town"
             value={props.building.location_town}
             mode={props.mode}
@@ -56,7 +57,7 @@ const LocationView = (props) => (
             onChange={props.onChange}
             />
         <DataEntry
-            title="Postcode"
+            title={dataFields.location_postcode.title}
             slug="location_postcode"
             value={props.building.location_postcode}
             mode={props.mode}
@@ -65,32 +66,32 @@ const LocationView = (props) => (
             maxLength={8}
             />
         <DataEntry
-            title="TOID"
+            title={dataFields.ref_toid.title}
             slug="ref_toid"
             value={props.building.ref_toid}
             mode={props.mode}
             copy={props.copy}
-            tooltip="Ordnance Survey Topography Layer ID (to be filled automatically)"
+            tooltip={dataFields.ref_toid.tooltip}
             onChange={props.onChange}
             disabled={true}
             />
         <UPRNsDataEntry
-            title="UPRNs"
+            title={dataFields.uprns.title}
             value={props.building.uprns}
-            tooltip="Unique Property Reference Numbers (to be filled automatically)"
+            tooltip={dataFields.uprns.tooltip}
             />
         <DataEntry
-            title="OSM ID"
+            title={dataFields.ref_osm_id.title}
             slug="ref_osm_id"
             value={props.building.ref_osm_id}
             mode={props.mode}
             copy={props.copy}
-            tooltip="OpenStreetMap feature ID"
+            tooltip={dataFields.ref_osm_id.tooltip}
             maxLength={20}
             onChange={props.onChange}
             />
         <NumericDataEntry
-            title="Latitude"
+            title={dataFields.location_latitude.title}
             slug="location_latitude"
             value={props.building.location_latitude}
             mode={props.mode}
@@ -100,7 +101,7 @@ const LocationView = (props) => (
             onChange={props.onChange}
             />
         <NumericDataEntry
-            title="Longitude"
+            title={dataFields.location_longitude.title}
             slug="location_longitude"
             value={props.building.location_longitude}
             mode={props.mode}
