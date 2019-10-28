@@ -103,7 +103,7 @@ const LEGEND_CONFIG = {
         title: 'Like Me',
         elements: [
             { color: '#bd0026', text: '👍👍👍 ≥100' },
-            { color: '#e31a1c', text: '👍👍 70–100' },
+            { color: '#e31a1c', text: '👍👍 70–99' },
             { color: '#fc4e2a', text: '👍 40-69' },
             { color: '#fd8d3c', text: '👍 15-39' },
             { color: '#feb24c', text: '👍 5-14' },
