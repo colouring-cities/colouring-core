@@ -222,27 +222,27 @@
     </Style>
     <Style name="likes">
         <Rule>
-            <Filter>[likes] &gt;= 10</Filter>
+            <Filter>[likes] &gt;= 100</Filter>
             <PolygonSymbolizer fill="#bd0026" />
         </Rule>
         <Rule>
-            <Filter>[likes] &gt;= 5 and [likes] &lt; 10</Filter>
+            <Filter>[likes] &gt;= 70 and [likes] &lt; 100</Filter>
             <PolygonSymbolizer fill="#e31a1c" />
         </Rule>
         <Rule>
-            <Filter>[likes] &gt;= 4 and [likes] &lt; 5</Filter>
+            <Filter>[likes] &gt;= 40 and [likes] &lt; 70</Filter>
             <PolygonSymbolizer fill="#fc4e2a" />
         </Rule>
         <Rule>
-            <Filter>[likes] &gt;= 3 and [likes] &lt; 4</Filter>
+            <Filter>[likes] &gt;= 15 and [likes] &lt; 40</Filter>
             <PolygonSymbolizer fill="#fd8d3c" />
         </Rule>
         <Rule>
-            <Filter>[likes] &gt;= 2 and [likes] &lt; 3</Filter>
+            <Filter>[likes] &gt;= 5 and [likes] &lt; 15</Filter>
             <PolygonSymbolizer fill="#feb24c" />
         </Rule>
         <Rule>
-            <Filter>[likes] &lt; 2</Filter>
+            <Filter>[likes] &lt; 5</Filter>
             <PolygonSymbolizer fill="#fed976" />
         </Rule>
     </Style>

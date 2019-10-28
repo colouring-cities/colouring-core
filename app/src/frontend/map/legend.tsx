@@ -102,12 +102,12 @@ const LEGEND_CONFIG = {
     like: {
         title: 'Like Me',
         elements: [
-            { color: '#bd0026', text: '👍👍👍 ≥10' },
-            { color: '#e31a1c', text: '👍👍 5–10' },
-            { color: '#fc4e2a', text: '👍 4' },
-            { color: '#fd8d3c', text: '👍 3' },
-            { color: '#feb24c', text: '👍 2' },
-            { color: '#fed976', text: '👍 1' },
+            { color: '#bd0026', text: '👍👍👍 ≥100' },
+            { color: '#e31a1c', text: '👍👍 70–100' },
+            { color: '#fc4e2a', text: '👍 40-69' },
+            { color: '#fd8d3c', text: '👍 15-39' },
+            { color: '#feb24c', text: '👍 5-14' },
+            { color: '#fed976', text: '👍 1-4' },
         ]
     }
 };
