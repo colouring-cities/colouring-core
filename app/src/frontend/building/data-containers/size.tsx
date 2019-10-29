@@ -114,22 +114,6 @@ const SizeView = (props) => (
             disabled={true}
             />
         <SelectDataEntry
-            title="Configuration (semi/detached, end/terrace)"
-            slug="size_configuration"
-            value={props.building.size_configuration}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
-            disabled={true}
-            options={[
-                "Detached",
-                "Semi-detached",
-                "Terrace",
-                "End terrace",
-                "Block"
-            ]}
-            />
-        <SelectDataEntry
             title="Roof shape"
             slug="size_roof_shape"
             value={props.building.size_roof_shape}
