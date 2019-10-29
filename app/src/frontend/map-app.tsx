@@ -9,6 +9,7 @@ import MultiEdit from './building/multi-edit';
 import BuildingView from './building/building-view';
 import ColouringMap from './map/map';
 import { parse } from 'query-string';
+import { Building } from './models/building';
 
 interface MapAppRouteParams {
     mode: 'view' | 'edit' | 'multi-edit';
@@ -17,7 +18,7 @@ interface MapAppRouteParams {
 }
 
 interface MapAppProps extends RouteComponentProps<MapAppRouteParams> {
-    building: any;
+    building: Building;
     building_like: boolean;
     user: any;
     revisionId: number;
@@ -26,7 +27,7 @@ interface MapAppProps extends RouteComponentProps<MapAppRouteParams> {
 interface MapAppState {
     category: string;
     revision_id: number;
-    building: any;
+    building: Building;
     building_like: boolean;
 }
 
@@ -95,7 +96,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         }
     }
 
-    selectBuilding(building) {
+    selectBuilding(building: Building) {
         const mode = this.props.match.params.mode || 'view';
         const category = this.props.match.params.category || 'age';
 
@@ -218,8 +219,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
     }
 
     render() {
-        console.log(this.state.revision_id);
-        const mode = this.props.match.params.mode || 'basic';
+        const mode = this.props.match.params.mode;
 
         let category = this.state.category || 'age';
 
@@ -254,13 +254,13 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                             />
                         </Sidebar>
                     </Route>
-                    <Route exact path="/(view|edit|multi-edit)">
-                        <Redirect to="/view/categories" />
-                    </Route>
+                    <Route exact path="/:mode(view|edit|multi-edit)"
+                        render={props => (<Redirect to={`/${props.match.params.mode}/categories`} />)} 
+                    />
                 </Switch>
                 <ColouringMap
                     building={this.state.building}
-                    mode={mode}
+                    mode={mode || 'basic'}
                     category={category}
                     revision_id={this.state.revision_id}
                     selectBuilding={this.selectBuilding}

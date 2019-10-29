@@ -5,8 +5,9 @@ import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import UPRNsDataEntry from '../data-components/uprns-data-entry';
 import InfoBox from '../../components/info-box';
+import { CategoryViewProps } from './category-view-props';
 
-const LocationView = (props) => (
+const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
         <DataEntry
@@ -63,6 +64,7 @@ const LocationView = (props) => (
             copy={props.copy}
             onChange={props.onChange}
             maxLength={8}
+            valueTransform={x=>x.toUpperCase()}
             />
         <DataEntry
             title="TOID"
@@ -96,7 +98,7 @@ const LocationView = (props) => (
             mode={props.mode}
             copy={props.copy}
             step={0.0001}
-            placeholder={51}
+            placeholder="51"
             onChange={props.onChange}
             />
         <NumericDataEntry
@@ -106,7 +108,7 @@ const LocationView = (props) => (
             mode={props.mode}
             copy={props.copy}
             step={0.0001}
-            placeholder={0}
+            placeholder="0"
             onChange={props.onChange}
             />
     </Fragment>

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 import { Map, TileLayer, ZoomControl, AttributionControl, GeoJSON } from 'react-leaflet-universal';
+import { GeoJsonObject } from 'geojson';
 
 import '../../../node_modules/leaflet/dist/leaflet.css'
 import './map.css'
@@ -9,12 +10,12 @@ import { HelpIcon } from '../components/icons';
 import Legend from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
-import { GeoJsonObject } from 'geojson';
+import { Building } from '../models/building';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
 interface ColouringMapProps {
-    building: any;
+    building: Building;
     mode: 'basic' | 'view' | 'edit' | 'multi-edit';
     category: string;
     revision_id: number;
@@ -32,7 +33,7 @@ interface ColouringMapState {
 /**
  * Map area
  */
-class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // TODO: add proper types
+class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
     static propTypes = { // TODO: generate propTypes from TS
         building: PropTypes.object,
         mode: PropTypes.string,

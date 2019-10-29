@@ -5,11 +5,12 @@ import DataEntry from '../data-components/data-entry';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
+import { CategoryViewProps } from './category-view-props';
 
 /**
 * Planning view/edit section
 */
-const PlanningView = (props) => (
+const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <DataEntry
             title="Planning portal link"

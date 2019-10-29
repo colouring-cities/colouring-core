@@ -2,11 +2,12 @@ import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
 import DataEntry from '../data-components/data-entry';
+import { CategoryViewProps } from './category-view-props';
 
 /**
 * Team view/edit section
 */
-const TeamView = (props) => (
+const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <p className="data-intro">{props.intro}</p>
         <ul>

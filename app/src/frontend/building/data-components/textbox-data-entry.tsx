@@ -2,8 +2,15 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { DataTitleCopyable } from './data-title';
+import { BaseDataEntryProps } from './data-entry';
 
-const TextboxDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
+interface TextboxDataEntryProps extends BaseDataEntryProps {
+    value: string;
+    placeholder?: string;
+    maxLength?: number;
+}
+
+const TextboxDataEntry: React.FunctionComponent<TextboxDataEntryProps> = (props) => {
     return (
         <Fragment>
             <DataTitleCopyable
@@ -18,11 +25,18 @@ const TextboxDataEntry: React.FunctionComponent<any> = (props) => { // TODO: rem
                 id={props.slug}
                 name={props.slug}
                 value={props.value || ''}
-                maxLength={props.max_length}
+                maxLength={props.maxLength}
                 rows={5}
                 disabled={props.mode === 'view' || props.disabled}
                 placeholder={props.placeholder}
-                onChange={props.onChange}
+                onChange={e => 
+                    props.onChange(
+                        props.slug,
+                        e.target.value === '' ?
+                            null :
+                            e.target.value
+                    )
+                }
                 ></textarea>
         </Fragment>
     );
