@@ -5,14 +5,25 @@ import PropTypes from 'prop-types';
 import { Logo } from './components/logo';
 import './header.css';
 
+
+interface HeaderProps {
+    user: any;
+    animateLogo: boolean;
+}
+
+interface HeaderState {
+    collapseMenu: boolean;
+}
+
 /**
  * Render the main header using a responsive design
  */
-class Header extends React.Component<any, any> { // TODO: add proper types
+class Header extends React.Component<HeaderProps, HeaderState> { // TODO: add proper types
     static propTypes = { // TODO: generate propTypes from TS
         user: PropTypes.shape({
             username: PropTypes.string
-        })
+        }),
+        animateLogo: PropTypes.bool
     };
 
     constructor(props) {
@@ -40,7 +51,7 @@ class Header extends React.Component<any, any> { // TODO: add proper types
                 <nav className="navbar navbar-light navbar-expand-lg">
                     <span className="navbar-brand align-self-start">
                         <NavLink to="/">
-                            <Logo variant='animated'/>
+                            <Logo variant={this.props.animateLogo ? 'animated' : 'default'}/>
                         </NavLink>
                     </span>
                     <button className="navbar-toggler navbar-toggler-right" type="button"

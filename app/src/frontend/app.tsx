@@ -28,6 +28,7 @@ interface AppProps {
     user?: any;
     building?: any;
     building_like?: boolean;
+    revisionId: number;
 }
 
 /**
@@ -48,6 +49,8 @@ class App extends React.Component<AppProps, any> { // TODO: add proper types
         building: PropTypes.object,
         building_like: PropTypes.bool
     };
+
+    static mapAppPaths = ['/', '/:mode(view|edit|multi-edit)/:category/:building(\\d+)?'];
 
     constructor(props: Readonly<AppProps>) {
         super(props);
@@ -79,7 +82,14 @@ class App extends React.Component<AppProps, any> { // TODO: add proper types
     render() {
         return (
             <Fragment>
-            <Header user={this.state.user} />
+            <Switch>
+                <Route exact path={App.mapAppPaths}>
+                    <Header user={this.state.user} animateLogo={false} />
+                </Route>
+                <Route>
+                    <Header user={this.state.user} animateLogo={true} />
+                </Route>
+            </Switch>
             <main>
             <Switch>
                 <Route exact path="/about.html" component={AboutPage} />
@@ -105,12 +115,13 @@ class App extends React.Component<AppProps, any> { // TODO: add proper types
                 <Route exact path="/data-accuracy.html" component={DataAccuracyPage} />
                 <Route exact path="/data-extracts.html" component={DataExtracts} />
                 <Route exact path="/contact.html" component={ContactPage} />
-                <Route exact path={["/", "/:mode(view|edit|multi-edit)/:category?/:building(\\d+)?"]} render={(props) => (
+                <Route exact path={App.mapAppPaths} render={(props) => (
                     <MapApp
                         {...props}
                         building={this.props.building}
                         building_like={this.props.building_like}
                         user={this.state.user}
+                        revisionId={this.props.revisionId}
                     />
                 )} />
                 <Route component={NotFound} />

@@ -21,6 +21,7 @@ interface MapAppProps extends RouteComponentProps<MapAppRouteParams> {
     building: Building;
     building_like: boolean;
     user: any;
+    revisionId: number;
 }
 
 interface MapAppState {
@@ -41,12 +42,9 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
     constructor(props: Readonly<MapAppProps>) {
         super(props);
 
-        // set building revision id, default 0
-        const rev = props.building != undefined ? +props.building.revision_id : 0;
-
         this.state = {
             category: this.getCategory(props.match.params.category),
-            revision_id: rev,
+            revision_id: props.revisionId || 0,
             building: props.building,
             building_like: props.building_like
         };
@@ -60,6 +58,27 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         const newCategory = this.getCategory(props.match.params.category);
         if (newCategory != undefined) {
             this.setState({ category: newCategory });
+        }
+    }
+
+    componentDidMount() {
+        this.fetchLatestRevision();
+    }
+
+    async fetchLatestRevision() {
+        try {
+            const res = await fetch(`/api/buildings/revision`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'same-origin'
+            });
+            const data = await res.json();
+            
+            this.increaseRevision(data.latestRevisionId);
+        } catch(error) {
+            console.error(error);
         }
     }
 
