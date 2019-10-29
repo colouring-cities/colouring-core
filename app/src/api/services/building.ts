@@ -19,6 +19,19 @@ const serializable = new TransactionMode({
     readOnly: false
 });
 
+async function getLatestRevisionId() {
+    try {
+        const data = await db.oneOrNone(
+            `SELECT MAX(log_id) from logs`
+        );
+        return data == undefined ? undefined : data.max;
+    } catch(err) {
+        console.error(err);
+        return undefined;
+    }
+}
+
+
 async function queryBuildingsAtPoint(lng: number, lat: number) {
     try {
         return await db.manyOrNone(
@@ -412,5 +425,6 @@ export {
     getBuildingUPRNsById,
     saveBuilding,
     likeBuilding,
-    unlikeBuilding
+    unlikeBuilding,
+    getLatestRevisionId
 };
