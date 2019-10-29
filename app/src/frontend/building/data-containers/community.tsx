@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
+import { CategoryViewProps } from './category-view-props';
 
 /**
 * Community view/edit section
 */
-const CommunityView = (props) => (
+const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <p className="data-intro">{props.intro}</p>
         <ul className="data-list">

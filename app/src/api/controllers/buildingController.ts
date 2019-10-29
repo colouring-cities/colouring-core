@@ -146,6 +146,15 @@ const updateBuildingLikeById = asyncController(async (req: express.Request, res:
     }
 });
 
+const getLatestRevisionId = asyncController(async (req: express.Request, res: express.Response) => {
+    try {
+        const revisionId = await buildingService.getLatestRevisionId();
+        res.send({latestRevisionId: revisionId});
+    } catch(error) {
+        res.send({ error: 'Database error' });
+    }
+});
+
 export default {
     getBuildingsByLocation,
     getBuildingsByReference,
@@ -154,5 +163,6 @@ export default {
     getBuildingUPRNsById,
     getBuildingLikeById,
     updateBuildingLikeById,
-    getBuildingEditHistoryById
+    getBuildingEditHistoryById,
+    getLatestRevisionId
 };

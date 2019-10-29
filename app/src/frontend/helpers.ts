@@ -62,8 +62,21 @@ function parseDate(isoUtcDate: string): Date {
     return new Date(Date.UTC(year, month-1, day, hour, minute, second, millisecond));
 }
 
+function compareObjects(objA: object, objB: object): [object, object] {
+    const reverse = {}
+    const forward = {}
+    for (const [key, value] of Object.entries(objB)) {
+        if (objA[key] !== value) {
+            reverse[key] = objA[key];
+            forward[key] = value;
+        }
+    }
+    return [forward, reverse];
+}
+
 export {
-    sanitiseURL,
-    arrayToDictionary,
-    parseDate
+  sanitiseURL,
+  arrayToDictionary,
+  parseDate,
+  compareObjects
 };

@@ -5,11 +5,12 @@ import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import { dataFields } from '../../data_fields';
+import { CategoryViewProps } from './category-view-props';
 
 /**
 * Size view/edit section
 */
-const SizeView = (props) => (
+const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <DataEntryGroup name="Storeys" collapsed={false}>
 

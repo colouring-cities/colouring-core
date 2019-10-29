@@ -4,7 +4,15 @@ import PropTypes from 'prop-types';
 
 import Tooltip from '../../components/tooltip';
 
-const LikeDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
+
+interface LikeDataEntryProps {
+    mode: 'view' | 'edit' | 'multi-edit';
+    userLike: boolean;
+    totalLikes: number;
+    onLike: (userLike: boolean) => void;
+}
+
+const LikeDataEntry: React.FunctionComponent<LikeDataEntryProps> = (props) => {
     const data_string = JSON.stringify({like: true});
     return (
         <Fragment>
@@ -21,20 +29,20 @@ const LikeDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove
             </div>
             <p>
                 {
-                    (props.value != null)?
-                        (props.value === 1)?
-                            `${props.value} person likes this building`
-                            : `${props.value} people like this building`
+                    (props.totalLikes != null)?
+                        (props.totalLikes === 1)?
+                            `${props.totalLikes} person likes this building`
+                            : `${props.totalLikes} people like this building`
                         : "0 people like this building so far - you could be the first!"
                 }
             </p>
-            <input className="form-check-input" type="checkbox"
-                id="like" name="like"
-                checked={!!props.building_like}
-                disabled={props.mode === 'view'}
-                onChange={props.onLike}
-            />
-            <label htmlFor="like" className="form-check-label">
+            <label className="form-check-label">
+                <input className="form-check-input" type="checkbox"
+                    name="like"
+                    checked={!!props.userLike}
+                    disabled={props.mode === 'view'}
+                    onChange={e => props.onLike(e.target.checked)}
+                />
                 I like this building and think it contributes to the city!
             </label>
         </Fragment>
@@ -42,8 +50,10 @@ const LikeDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove
 }
 
 LikeDataEntry.propTypes = {
-    value: PropTypes.any,
-    user_building_like: PropTypes.bool
-}
+    // mode: PropTypes.string,
+    userLike: PropTypes.bool,
+    totalLikes: PropTypes.number,
+    onLike: PropTypes.func
+};
 
 export default LikeDataEntry;

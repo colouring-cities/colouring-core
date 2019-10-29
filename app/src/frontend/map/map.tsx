@@ -1,21 +1,21 @@
-import { LatLngExpression } from 'leaflet';
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
-import { Map, TileLayer, ZoomControl, AttributionControl } from 'react-leaflet-universal';
+import { Map, TileLayer, ZoomControl, AttributionControl, GeoJSON } from 'react-leaflet-universal';
+import { GeoJsonObject } from 'geojson';
 
 import '../../../node_modules/leaflet/dist/leaflet.css'
 import './map.css'
 
 import { HelpIcon } from '../components/icons';
 import Legend from './legend';
-import { parseCategoryURL } from '../../parse';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
+import { Building } from '../models/building';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
 interface ColouringMapProps {
-    building: any;
+    building: Building;
     mode: 'basic' | 'view' | 'edit' | 'multi-edit';
     category: string;
     revision_id: number;
@@ -28,11 +28,12 @@ interface ColouringMapState {
     lat: number;
     lng: number;
     zoom: number;
+    boundary: GeoJsonObject;
 }
 /**
  * Map area
  */
-class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // TODO: add proper types
+class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
     static propTypes = { // TODO: generate propTypes from TS
         building: PropTypes.object,
         mode: PropTypes.string,
@@ -48,7 +49,8 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
             theme: 'night',
             lat: 51.5245255,
             lng: -0.1338422,
-            zoom: 16
+            zoom: 16,
+            boundary: undefined,
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleLocate = this.handleLocate.bind(this);
@@ -100,8 +102,20 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
         this.setState({theme: newTheme});
     }
 
+    async getBoundary() {
+        const res = await fetch('/geometries/boundary-detailed.geojson');
+        const data = await res.json() as GeoJsonObject;
+        this.setState({
+            boundary: data
+        });
+    }
+
+    componentDidMount() {
+        this.getBoundary();
+    }
+
     render() {
-        const position: LatLngExpression = [this.state.lat, this.state.lng];
+        const position: [number, number] = [this.state.lat, this.state.lng];
 
         // baselayer
         const key = OS_API_KEY;
@@ -116,6 +130,11 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
 
         const buildingsBaseUrl = `/tiles/base_${this.state.theme}/{z}/{x}/{y}{r}.png`;
         const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={14} />;
+
+
+        const boundaryStyleFn = () => ({color: '#bbb', fill: false});
+        const boundaryLayer = this.state.boundary && 
+                <GeoJSON data={this.state.boundary} style={boundaryStyleFn}/>;
 
         // colour-data tiles
         const cat = this.props.category;
@@ -166,6 +185,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> { // 
                 >
                     { baseLayer }
                     { buildingBaseLayer }
+                    { boundaryLayer }
                     { dataLayer }
                     { highlightLayer }
                     <ZoomControl position="topright" />

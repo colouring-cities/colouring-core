@@ -19,9 +19,10 @@ interface MapAppRouteParams {
 }
 
 interface MapAppProps extends RouteComponentProps<MapAppRouteParams> {
-    building: any;
+    building: Building;
     building_like: boolean;
     user: any;
+    revisionId: number;
 }
 
 interface MapAppState {
@@ -42,12 +43,9 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
     constructor(props: Readonly<MapAppProps>) {
         super(props);
 
-        // set building revision id, default 0
-        const rev = props.building != undefined ? +props.building.revision_id : 0;
-
         this.state = {
             category: this.getCategory(props.match.params.category),
-            revision_id: rev,
+            revision_id: props.revisionId || 0,
             building: props.building,
             building_like: props.building_like
         };
@@ -61,6 +59,27 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         const newCategory = this.getCategory(props.match.params.category);
         if (newCategory != undefined) {
             this.setState({ category: newCategory });
+        }
+    }
+
+    componentDidMount() {
+        this.fetchLatestRevision();
+    }
+
+    async fetchLatestRevision() {
+        try {
+            const res = await fetch(`/api/buildings/revision`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'same-origin'
+            });
+            const data = await res.json();
+            
+            this.increaseRevision(data.latestRevisionId);
+        } catch(error) {
+            console.error(error);
         }
     }
 
@@ -78,7 +97,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         }
     }
 
-    selectBuilding(building) {
+    selectBuilding(building: Building) {
         const mode = this.props.match.params.mode || 'view';
         const category = this.props.match.params.category || 'age';
 
@@ -201,7 +220,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
     }
 
     render() {
-        const mode = this.props.match.params.mode || 'basic';
+        const mode = this.props.match.params.mode;
 
         let category = this.state.category || 'age';
 
@@ -241,13 +260,13 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                             <EditHistory building={this.state.building} />
                         </Sidebar>
                     </Route>
-                    <Route exact path="/(view|edit|multi-edit)">
-                        <Redirect to="/view/categories" />
-                    </Route>
+                    <Route exact path="/:mode(view|edit|multi-edit)"
+                        render={props => (<Redirect to={`/${props.match.params.mode}/categories`} />)} 
+                    />
                 </Switch>
                 <ColouringMap
                     building={this.state.building}
-                    mode={mode}
+                    mode={mode || 'basic'}
                     category={category}
                     revision_id={this.state.revision_id}
                     selectBuilding={this.selectBuilding}

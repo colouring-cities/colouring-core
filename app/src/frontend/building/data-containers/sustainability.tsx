@@ -5,6 +5,7 @@ import DataEntry from '../data-components/data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import { dataFields } from '../../data_fields';
+import { CategoryViewProps } from './category-view-props';
 
 const EnergyCategoryOptions = ["A", "B", "C", "D", "E", "F", "G"];
 const BreeamRatingOptions = [
@@ -18,12 +19,7 @@ const BreeamRatingOptions = [
 /**
 * Sustainability view/edit section
 */
-const SustainabilityView = (props) => {
-    const dataEntryProps = {
-        mode: props.mode,
-        copy: props.copy,
-        onChange: props.onChange
-    };
+const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
             <SelectDataEntry
@@ -32,7 +28,9 @@ const SustainabilityView = (props) => {
                 value={props.building.sust_breeam_rating}
                 tooltip={dataFields.sust_breeam_rating.tooltip}
                 options={BreeamRatingOptions}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
             <SelectDataEntry
                 title={dataFields.sust_dec.title}
@@ -40,7 +38,9 @@ const SustainabilityView = (props) => {
                 value={props.building.sust_dec}
                 tooltip={dataFields.sust_dec.tooltip}
                 options={EnergyCategoryOptions}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
             <SelectDataEntry
                 title={dataFields.sust_aggregate_estimate_epc.title}
@@ -49,7 +49,9 @@ const SustainabilityView = (props) => {
                 tooltip={dataFields.sust_aggregate_estimate_epc.tooltip}
                 options={EnergyCategoryOptions}
                 disabled={true}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
             <NumericDataEntry
                 title={dataFields.sust_retrofit_date.title}
@@ -59,7 +61,9 @@ const SustainabilityView = (props) => {
                 step={1}
                 min={1086}
                 max={new Date().getFullYear()}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
             <NumericDataEntry
                 title={dataFields.sust_life_expectancy.title}
@@ -68,7 +72,9 @@ const SustainabilityView = (props) => {
                 step={1}
                 min={1}
                 disabled={true}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
         </Fragment>
     );

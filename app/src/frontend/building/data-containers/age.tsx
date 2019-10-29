@@ -7,11 +7,12 @@ import SelectDataEntry from '../data-components/select-data-entry';
 import TextboxDataEntry from '../data-components/textbox-data-entry';
 import YearDataEntry from '../data-components/year-data-entry';
 import { dataFields } from '../../data_fields';
+import { CategoryViewProps } from './category-view-props';
 
 /**
 * Age view/edit section
 */
-const AgeView = (props) => (
+const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <YearDataEntry
             year={props.building.date_year}
@@ -68,7 +69,7 @@ const AgeView = (props) => (
             value={props.building.date_link}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
+            onChange={props.onChange}
             tooltip={dataFields.date_link.tooltip}
             placeholder="https://..."
             />
