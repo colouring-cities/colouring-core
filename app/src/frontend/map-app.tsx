@@ -60,6 +60,27 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         }
     }
 
+    componentDidMount() {
+        this.fetchLatestRevision();
+    }
+
+    async fetchLatestRevision() {
+        try {
+            const res = await fetch(`/api/buildings/revision`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'same-origin'
+            });
+            const data = await res.json();
+            
+            this.increaseRevision(data.latestRevisionId);
+        } catch(error) {
+            console.error(error);
+        }
+    }
+
     getCategory(category: string) {
         if (category === 'categories') return undefined;
 
@@ -197,6 +218,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
     }
 
     render() {
+        console.log(this.state.revision_id);
         const mode = this.props.match.params.mode || 'basic';
 
         let category = this.state.category || 'age';
