@@ -20,6 +20,7 @@ interface MapAppProps extends RouteComponentProps<MapAppRouteParams> {
     building: any;
     building_like: boolean;
     user: any;
+    revisionId: number;
 }
 
 interface MapAppState {
@@ -40,12 +41,9 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
     constructor(props: Readonly<MapAppProps>) {
         super(props);
 
-        // set building revision id, default 0
-        const rev = props.building != undefined ? +props.building.revision_id : 0;
-
         this.state = {
             category: this.getCategory(props.match.params.category),
-            revision_id: rev,
+            revision_id: props.revisionId || 0,
             building: props.building,
             building_like: props.building_like
         };

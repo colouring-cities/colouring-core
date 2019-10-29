@@ -28,6 +28,7 @@ interface AppProps {
     user?: any;
     building?: any;
     building_like?: boolean;
+    revisionId: number;
 }
 
 /**
@@ -111,6 +112,7 @@ class App extends React.Component<AppProps, any> { // TODO: add proper types
                         building={this.props.building}
                         building_like={this.props.building_like}
                         user={this.state.user}
+                        revisionId={this.props.revisionId}
                     />
                 )} />
                 <Route component={NotFound} />
