@@ -28,7 +28,7 @@ const EditHistory: React.FunctionComponent<EditHistoryProps> = (props) => {
     
     return (
         <>
-            <ContainerHeader title="Edit history" backLink='.' />
+            <ContainerHeader title="Edit history" backLink='.' cat='edit-history' />
 
             <ul className="edit-history-list">
                 {history && history.map(entry => (
