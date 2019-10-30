@@ -112,7 +112,8 @@ async function getBuildingEditHistory(id: number) {
         return await db.manyOrNone(
             `SELECT log_id as revision_id, forward_patch, reverse_patch, date_trunc('minute', log_timestamp), username
             FROM logs, users
-            WHERE building_id = $1 AND logs.user_id = users.user_id`,
+            WHERE building_id = $1 AND logs.user_id = users.user_id
+            ORDER BY log_timestamp DESC`,
             [id]
         );
     } catch(error) {
@@ -422,6 +423,7 @@ export {
     queryBuildingsByReference,
     getBuildingById,
     getBuildingLikeById,
+    getBuildingEditHistory,
     getBuildingUPRNsById,
     saveBuilding,
     likeBuilding,

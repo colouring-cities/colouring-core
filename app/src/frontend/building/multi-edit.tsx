@@ -7,6 +7,7 @@ import Sidebar from './sidebar';
 import InfoBox from '../components/info-box';
 import { BackIcon }from '../components/icons';
 import DataEntry from './data-components/data-entry';
+import { dataFields } from '../data_fields';
 
 
 const MultiEdit = (props) => {
@@ -63,9 +64,10 @@ const MultiEdit = (props) => {
                     <InfoBox msg='Click buildings one at a time to colour using the data below' />
                 {
                     Object.keys(data).map((key => {
+                        const info = dataFields[key] || {};
                         return (
                         <DataEntry
-                            title={key}
+                            title={info.title || `Unknown field (${key})`}
                             slug={key}
                             disabled={true}
                             value={data[key]}

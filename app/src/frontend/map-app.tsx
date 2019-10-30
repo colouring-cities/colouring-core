@@ -9,6 +9,7 @@ import MultiEdit from './building/multi-edit';
 import BuildingView from './building/building-view';
 import ColouringMap from './map/map';
 import { parse } from 'query-string';
+import { EditHistory } from './building/edit-history/edit-history';
 import { Building } from './models/building';
 
 interface MapAppRouteParams {
@@ -220,6 +221,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
 
     render() {
         const mode = this.props.match.params.mode;
+        const viewEditMode = mode === 'multi-edit' ? undefined : mode;
 
         let category = this.state.category || 'age';
 
@@ -245,13 +247,18 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                     <Route exact path="/:mode/:cat/:building?">
                         <Sidebar>
                             <BuildingView
-                                mode={mode}
+                                mode={viewEditMode}
                                 cat={category}
                                 building={this.state.building}
                                 building_like={this.state.building_like}
                                 selectBuilding={this.selectBuilding}
                                 user={this.props.user}
                             />
+                        </Sidebar>
+                    </Route>
+                    <Route exact path="/:mode/:cat/:building/history">
+                        <Sidebar>
+                            <EditHistory building={this.state.building} />
                         </Sidebar>
                     </Route>
                     <Route exact path="/:mode(view|edit|multi-edit)"

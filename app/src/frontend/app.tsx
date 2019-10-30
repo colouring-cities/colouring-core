@@ -50,7 +50,7 @@ class App extends React.Component<AppProps, any> { // TODO: add proper types
         building_like: PropTypes.bool
     };
 
-    static mapAppPaths = ['/', '/:mode(view|edit|multi-edit)/:category/:building(\\d+)?'];
+    static mapAppPaths = ['/', '/:mode(view|edit|multi-edit)/:category/:building(\\d+)?/(history)?'];
 
     constructor(props: Readonly<AppProps>) {
         super(props);
