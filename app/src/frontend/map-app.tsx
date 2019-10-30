@@ -221,6 +221,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
 
     render() {
         const mode = this.props.match.params.mode;
+        const viewEditMode = mode === 'multi-edit' ? undefined : mode;
 
         let category = this.state.category || 'age';
 
@@ -246,7 +247,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                     <Route exact path="/:mode/:cat/:building?">
                         <Sidebar>
                             <BuildingView
-                                mode={mode}
+                                mode={viewEditMode}
                                 cat={category}
                                 building={this.state.building}
                                 building_like={this.state.building_like}

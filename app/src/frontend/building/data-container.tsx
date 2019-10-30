@@ -20,7 +20,7 @@ interface DataContainerProps {
     inactive?: boolean;
 
     user: User;
-    mode: 'view' | 'edit' | 'multi-edit';
+    mode: 'view' | 'edit';
     building: Building;
     building_like: boolean;
     selectBuilding: (building: Building) => void
