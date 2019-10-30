@@ -1,10 +1,15 @@
+.edit-history-category-summary {
+    margin-top: 1.5rem;
+}
+
 .edit-history-category-summary ul {
     list-style: none;
-    padding-left: 1em;
+    padding-left: 0.5em;
 }
 
 .edit-history-category-title {
-    font-size: 1rem;
+    font-size: 0.9em;
+    font-weight: 600;
 }
 
 .edit-history-diff {
