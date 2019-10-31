@@ -226,24 +226,28 @@
             <PolygonSymbolizer fill="#bd0026" />
         </Rule>
         <Rule>
-            <Filter>[likes] &gt;= 70 and [likes] &lt; 100</Filter>
+            <Filter>[likes] &gt;= 50 and [likes] &lt; 100</Filter>
             <PolygonSymbolizer fill="#e31a1c" />
         </Rule>
         <Rule>
-            <Filter>[likes] &gt;= 40 and [likes] &lt; 70</Filter>
+            <Filter>[likes] &gt;= 20 and [likes] &lt; 50</Filter>
             <PolygonSymbolizer fill="#fc4e2a" />
         </Rule>
         <Rule>
-            <Filter>[likes] &gt;= 15 and [likes] &lt; 40</Filter>
+            <Filter>[likes] &gt;= 10 and [likes] &lt; 20</Filter>
             <PolygonSymbolizer fill="#fd8d3c" />
         </Rule>
         <Rule>
-            <Filter>[likes] &gt;= 5 and [likes] &lt; 15</Filter>
+            <Filter>[likes] &gt;= 3 and [likes] &lt; 10</Filter>
             <PolygonSymbolizer fill="#feb24c" />
         </Rule>
         <Rule>
-            <Filter>[likes] &lt; 5</Filter>
+            <Filter>[likes] = 2</Filter>
             <PolygonSymbolizer fill="#fed976" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] = 1</Filter>
+            <PolygonSymbolizer fill="#ffe8a9" />
         </Rule>
     </Style>
 </Map>
