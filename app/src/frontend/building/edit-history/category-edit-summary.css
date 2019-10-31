@@ -1,0 +1,28 @@
+.edit-history-category-summary {
+    margin-top: 1.5rem;
+}
+
+.edit-history-category-summary ul {
+    list-style: none;
+    padding-left: 0.5em;
+}
+
+.edit-history-category-title {
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.edit-history-diff {
+    padding: 0 0.2rem;
+    padding-top:0.15rem;
+    border-radius: 2px;
+}
+.edit-history-diff.old {
+    background-color: #f8d9bc;
+    color: #c24e00;
+    text-decoration: line-through;
+}
+.edit-history-diff.new {
+    background-color: #b6dcff;
+    color: #0064c2;
+}

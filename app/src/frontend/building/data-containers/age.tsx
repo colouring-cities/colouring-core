@@ -6,11 +6,13 @@ import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import TextboxDataEntry from '../data-components/textbox-data-entry';
 import YearDataEntry from '../data-components/year-data-entry';
+import { dataFields } from '../../data_fields';
+import { CategoryViewProps } from './category-view-props';
 
 /**
 * Age view/edit section
 */
-const AgeView = (props) => (
+const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <YearDataEntry
             year={props.building.date_year}
@@ -21,23 +23,23 @@ const AgeView = (props) => (
             onChange={props.onChange}
             />
         <NumericDataEntry
-            title="Facade year"
+            title={dataFields.facade_year.title}
             slug="facade_year"
             value={props.building.facade_year}
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
             step={1}
-            tooltip="Best estimate"
+            tooltip={dataFields.facade_year.tooltip}
             />
         <SelectDataEntry
-            title="Source of information"
+            title={dataFields.date_source.title}
             slug="date_source"
             value={props.building.date_source}
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
-            tooltip="Source for the main start date"
+            tooltip={dataFields.date_source.tooltip}
             placeholder=""
             options={[
                 "Survey of London",
@@ -53,22 +55,22 @@ const AgeView = (props) => (
             ]}
             />
         <TextboxDataEntry
-            title="Source details"
+            title={dataFields.date_source_detail.title}
             slug="date_source_detail"
             value={props.building.date_source_detail}
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
-            tooltip="References for date source (max 500 characters)"
+            tooltip={dataFields.date_source_detail.tooltip}
             />
         <MultiDataEntry
-            title="Text and Image Links"
+            title={dataFields.date_link.title}
             slug="date_link"
             value={props.building.date_link}
             mode={props.mode}
             copy={props.copy}
-            onChange={props.onUpdate}
-            tooltip="URL for age and date reference"
+            onChange={props.onChange}
+            tooltip={dataFields.date_link.tooltip}
             placeholder="https://..."
             />
     </Fragment>

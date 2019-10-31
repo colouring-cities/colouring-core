@@ -5,15 +5,8 @@
     order: 1;
     padding: 0 0 2em;
     background: #fff;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 40%;
-}
-
-.info-container h2:first-child {
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
-    margin-left: -0.1em;
-    padding: 0 0.75rem;
 }
 
 @media (min-width: 768px){
@@ -34,6 +27,14 @@
     text-decoration: none;
     color: #222;
     padding: 0.75rem 0.25rem 0.5rem 0;
+    z-index: 1000;
+}
+
+@media (min-width: 768px) {
+    .section-header {
+        position: sticky;
+        top: 0;
+    }
 }
 .section-header h2,
 .section-header .icon-buttons {
@@ -99,7 +100,8 @@
     color: rgb(11, 225, 225);
 }
 .icon-button.help,
-.icon-button.copy {
+.icon-button.copy,
+.icon-button.history {
     margin-top: 4px;
 }
 .data-section label .icon-buttons .icon-button.copy {
@@ -139,6 +141,11 @@
 /**
  * Data list sections
  */
+
+ .section-body {
+     margin-top: 0.75em;
+     padding: 0 0.75em;
+ }
 .data-section .h3 {
     margin: 0;
 }
@@ -162,9 +169,7 @@
     padding-left: 0.75rem;
     padding-right: 0.75rem;
 }
-.data-section form {
-    padding: 0 0.75rem;
-}
+
 .data-list a {
     color: #555;
 }

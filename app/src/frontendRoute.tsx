@@ -12,7 +12,8 @@ import { getUserById } from './api/services/user';
 import {
     getBuildingById,
     getBuildingLikeById,
-    getBuildingUPRNsById
+    getBuildingUPRNsById,
+    getLatestRevisionId
 } from './api/services/building';
 
 
@@ -36,8 +37,9 @@ function frontendRoute(req: express.Request, res: express.Response) {
         userId ? getUserById(userId) : undefined,
         isBuilding ? getBuildingById(buildingId) : undefined,
         isBuilding ? getBuildingUPRNsById(buildingId) : undefined,
-        (isBuilding && userId) ? getBuildingLikeById(buildingId, userId) : false
-    ]).then(function ([user, building, uprns, buildingLike]) {
+        (isBuilding && userId) ? getBuildingLikeById(buildingId, userId) : false,
+        getLatestRevisionId()
+    ]).then(function ([user, building, uprns, buildingLike, latestRevisionId]) {
         if (isBuilding && typeof (building) === 'undefined') {
             context.status = 404;
         }
@@ -47,12 +49,14 @@ function frontendRoute(req: express.Request, res: express.Response) {
         if (data.building != null) {
             data.building.uprns = uprns;
         }
+        data.latestRevisionId = latestRevisionId;
         renderHTML(context, data, req, res);
     }).catch(error => {
         console.error(error);
         data.user = undefined;
         data.building = undefined;
         data.building_like = undefined;
+        data.latestRevisionId = 0;
         context.status = 500;
         renderHTML(context, data, req, res);
     });
@@ -61,7 +65,12 @@ function frontendRoute(req: express.Request, res: express.Response) {
 function renderHTML(context, data, req, res) {
     const markup = renderToString(
         <StaticRouter context={context} location={req.url}>
-            <App user={data.user} building={data.building} building_like={data.building_like} />
+            <App
+                user={data.user}
+                building={data.building}
+                building_like={data.building_like}
+                revisionId={data.latestRevisionId}
+            />
         </StaticRouter>
     );
 

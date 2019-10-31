@@ -2,8 +2,16 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { DataTitleCopyable } from './data-title';
+import { BaseDataEntryProps } from './data-entry';
 
-const SelectDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
+interface SelectDataEntryProps extends BaseDataEntryProps {
+    value: string;
+    placeholder?: string;
+    options: string[];
+}
+
+
+const SelectDataEntry: React.FunctionComponent<SelectDataEntryProps> = (props) => {
     return (
         <Fragment>
             <DataTitleCopyable
@@ -17,7 +25,14 @@ const SelectDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remo
                 id={props.slug} name={props.slug}
                 value={props.value || ''}
                 disabled={props.mode === 'view' || props.disabled}
-                onChange={props.onChange}>
+                onChange={e => 
+                    props.onChange(
+                        props.slug,
+                        e.target.value === '' ?
+                            null :
+                            e.target.value
+                    )}
+            >
                 <option value="">{props.placeholder}</option>
                 {
                     props.options.map(option => (
