@@ -1,10 +1,18 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 
-import Tooltip from '../../components/tooltip';
 import DataTitle from './data-title';
 
-const UPRNsDataEntry = (props) => {
+
+interface UPRNsDataEntryProps {
+    title: string;
+    tooltip: string;
+    value: {
+        uprn: string;
+        parent_uprn?: string;
+    }[];
+}
+
+const UPRNsDataEntry: React.FC<UPRNsDataEntryProps> = (props) => {
     const uprns = props.value || [];
     const noParent = uprns.filter(uprn => uprn.parent_uprn == null);
     const withParent = uprns.filter(uprn => uprn.parent_uprn != null);
@@ -46,15 +54,6 @@ const UPRNsDataEntry = (props) => {
             </dd>
         </Fragment>
     )
-}
-
-UPRNsDataEntry.propTypes = {
-    title: PropTypes.string,
-    tooltip: PropTypes.string,
-    value: PropTypes.arrayOf(PropTypes.shape({
-        uprn: PropTypes.string.isRequired,
-        parent_uprn: PropTypes.string
-    }))
-}
+};
 
 export default UPRNsDataEntry;

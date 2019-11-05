@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -22,13 +21,19 @@ import ContactPage from './pages/contact';
 import DataAccuracyPage from './pages/data-accuracy';
 import OrdnanceSurveyLicencePage from './pages/ordnance-survey-licence';
 import OrdnanceSurveyUprnPage from './pages/ordnance-survey-uprn';
+import { Building } from './models/building';
+import { User } from './models/user';
 
 
 interface AppProps {
-    user?: any;
-    building?: any;
+    user?: User;
+    building?: Building;
     building_like?: boolean;
     revisionId: number;
+}
+
+interface AppState {
+    user?: User;
 }
 
 /**
@@ -43,13 +48,7 @@ interface AppProps {
  *   map or other pages are rendered, based on the URL. Use a react-router-dom <Link /> in
  *   child components to navigate without a full page reload.
  */
-class App extends React.Component<AppProps, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        user: PropTypes.object,
-        building: PropTypes.object,
-        building_like: PropTypes.bool
-    };
-
+class App extends React.Component<AppProps, AppState> {
     static mapAppPaths = ['/', '/:mode(view|edit|multi-edit)/:category/:building(\\d+)?/(history)?'];
 
     constructor(props: Readonly<AppProps>) {

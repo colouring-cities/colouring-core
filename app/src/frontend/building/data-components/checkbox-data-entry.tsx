@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import { DataTitleCopyable } from './data-title';
 import { BaseDataEntryProps } from './data-entry';
@@ -7,7 +6,6 @@ import { BaseDataEntryProps } from './data-entry';
 interface CheckboxDataEntryProps extends BaseDataEntryProps {
     value: boolean;
 }
-
 
 const CheckboxDataEntry: React.FunctionComponent<CheckboxDataEntryProps> = (props) => {
     return (
@@ -35,20 +33,6 @@ const CheckboxDataEntry: React.FunctionComponent<CheckboxDataEntryProps> = (prop
             </div>
         </Fragment>
     );
-}
-
-CheckboxDataEntry.propTypes = {
-    title: PropTypes.string,
-    slug: PropTypes.string,
-    tooltip: PropTypes.string,
-    disabled: PropTypes.bool,
-    value: PropTypes.any,
-    onChange: PropTypes.func,
-    copy: PropTypes.shape({
-        copying: PropTypes.bool,
-        copyingKey: PropTypes.func,
-        toggleCopyAttribute: PropTypes.func
-    })
 }
 
 export default CheckboxDataEntry;

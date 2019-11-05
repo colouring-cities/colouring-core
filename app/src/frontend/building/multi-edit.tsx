@@ -1,16 +1,23 @@
-import React, { Fragment } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React from 'react';
+import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 import { parse } from 'query-string';
-import PropTypes from 'prop-types';
 
 import Sidebar from './sidebar';
 import InfoBox from '../components/info-box';
 import { BackIcon }from '../components/icons';
 import DataEntry from './data-components/data-entry';
 import { dataFields } from '../data_fields';
+import { User } from '../models/user';
 
+interface MultiEditRouteParams {
+    cat: string;
+}
 
-const MultiEdit = (props) => {
+interface MultiEditProps extends RouteComponentProps<MultiEditRouteParams> {
+    user?: User;
+}
+
+const MultiEdit: React.FC<MultiEditProps> = (props) => {
     if (!props.user){
         return <Redirect to="/sign-up.html" />
     }
@@ -83,12 +90,6 @@ const MultiEdit = (props) => {
             </section>
         </Sidebar>
     );
-}
-
-MultiEdit.propTypes = {
-    user: PropTypes.object,
-    match: PropTypes.object,
-    location: PropTypes.object
 }
 
 export default MultiEdit;

@@ -1,23 +1,19 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import NumericDataEntry from './numeric-data-entry';
 import { dataFields } from '../../data_fields';
+import { CopyProps } from '../data-containers/category-view-props';
 
-class YearDataEntry extends Component<any, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        year: PropTypes.number,
-        upper: PropTypes.number,
-        lower: PropTypes.number,
-        mode: PropTypes.string,
-        onChange: PropTypes.func,
-        copy: PropTypes.shape({
-            copying: PropTypes.bool,
-            copyingKey: PropTypes.func,
-            toggleCopyAttribute: PropTypes.func
-        })
-    };
+interface YearDataEntryProps {
+    year: number;
+    upper: number;
+    lower: number;
+    copy?: CopyProps;
+    mode?: 'view' | 'edit' | 'multi-edit';
+    onChange?: (key: string, value: any) => void;
+}
 
+class YearDataEntry extends Component<YearDataEntryProps, any> {
     constructor(props) {
         super(props);
         this.state = {

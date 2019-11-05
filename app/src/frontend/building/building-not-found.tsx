@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import InfoBox from '../components/info-box';
@@ -17,9 +16,5 @@ const BuildingNotFound: React.FunctionComponent<BuildingNotFoundProps> = (props)
     </div>
   </Fragment>
 );
-
-BuildingNotFound.propTypes = {
-  mode: PropTypes.string
-}
 
 export default BuildingNotFound;

@@ -1,23 +1,23 @@
 import React, { Component, FormEvent } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import ConfirmationModal from '../components/confirmation-modal';
 import ErrorBox from '../components/error-box';
+import { User } from '../models/user';
 
-class MyAccountPage extends Component<any, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        user: PropTypes.shape({
-            username: PropTypes.string,
-            email: PropTypes.string,
-            registered: PropTypes.instanceOf(Date), // TODO: check if fix correct
-            api_key: PropTypes.string,
-            error: PropTypes.object
-        }),
-        updateUser: PropTypes.func,
-        logout: PropTypes.func
-    };
+interface MyAccountPageProps {
+    user: User;
+    updateUser: (user: User) => void;
+    logout: () => void;
+}
 
+interface MyAccountPageState {
+    showDeleteConfirm: boolean;
+    error: string;
+}
+
+
+class MyAccountPage extends Component<MyAccountPageProps, MyAccountPageState> {
     constructor(props) {
         super(props);
         this.state = {

@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Switch, Route, RouteComponentProps, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import Welcome from './pages/welcome';
 import Sidebar from './building/sidebar';
@@ -19,10 +18,10 @@ interface MapAppRouteParams {
 }
 
 interface MapAppProps extends RouteComponentProps<MapAppRouteParams> {
-    building: Building;
-    building_like: boolean;
-    user: any;
-    revisionId: number;
+    building?: Building;
+    building_like?: boolean;
+    user?: any;
+    revisionId?: number;
 }
 
 interface MapAppState {
@@ -33,13 +32,6 @@ interface MapAppState {
 }
 
 class MapApp extends React.Component<MapAppProps, MapAppState> {
-    static propTypes = {
-        category: PropTypes.string,
-        revision_id: PropTypes.number,
-        building: PropTypes.object,
-        building_like: PropTypes.bool,
-        user: PropTypes.object
-    };
     constructor(props: Readonly<MapAppProps>) {
         super(props);
 
@@ -235,7 +227,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                     </Route>
                     <Route exact path="/:mode/categories/:building?">
                         <Sidebar>
-                            <Categories mode={mode} building_id={building_id} />
+                            <Categories mode={mode || 'view'} building_id={building_id} />
                         </Sidebar>
                     </Route>
                     <Route exact path="/multi-edit/:cat" render={(props) => (

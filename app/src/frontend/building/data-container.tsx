@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { Redirect, NavLink } from 'react-router-dom';
 
 import ContainerHeader from './container-header';
@@ -19,10 +18,10 @@ interface DataContainerProps {
     help: string;
     inactive?: boolean;
 
-    user: User;
+    user?: User;
     mode: 'view' | 'edit';
-    building: Building;
-    building_like: boolean;
+    building?: Building;
+    building_like?: boolean;
     selectBuilding: (building: Building) => void
 }
 
@@ -45,15 +44,6 @@ interface DataContainerState {
  */
 const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) => {
     return class DataContainer extends React.Component<DataContainerProps, DataContainerState> {
-        static propTypes = { // TODO: generate propTypes from TS
-            title: PropTypes.string,
-            slug: PropTypes.string,
-            intro: PropTypes.string,
-            help: PropTypes.string,
-            inactive: PropTypes.bool,
-            children: PropTypes.node
-        };
-
         constructor(props) {
             super(props);
 
