@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 import { Map, TileLayer, ZoomControl, AttributionControl, GeoJSON } from 'react-leaflet-universal';
 import { GeoJsonObject } from 'geojson';
@@ -15,12 +14,12 @@ import { Building } from '../models/building';
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
 interface ColouringMapProps {
-    building: Building;
+    building?: Building;
     mode: 'basic' | 'view' | 'edit' | 'multi-edit';
     category: string;
     revision_id: number;
-    selectBuilding: any;
-    colourBuilding: any;
+    selectBuilding: (building: Building) => void;
+    colourBuilding: (building: Building) => void;
 }
 
 interface ColouringMapState {
@@ -34,15 +33,6 @@ interface ColouringMapState {
  * Map area
  */
 class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
-    static propTypes = { // TODO: generate propTypes from TS
-        building: PropTypes.object,
-        mode: PropTypes.string,
-        category: PropTypes.string,
-        revision_id: PropTypes.number,
-        selectBuilding: PropTypes.func,
-        colourBuilding: PropTypes.func
-    };
-
     constructor(props) {
         super(props);
         this.state = {

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent } from 'react';
+import React, { FormEvent } from 'react';
 import { RouteComponentProps, Redirect } from 'react-router';
 
 import ErrorBox from '../components/error-box';

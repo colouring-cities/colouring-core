@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
 import SupporterLogos from '../components/supporter-logos';
+import { User } from '../models/user';
 
-class SignUp extends Component<any, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        login: PropTypes.func.isRequired,
-        user: PropTypes.object
-    };
+interface SignUpProps {
+    login: (user: User) => void;
+    user: User;
+}
 
+interface SignUpState {
+    username: string;
+    email: string;
+    confirm_email: string;
+    show_password: boolean;
+    password: string;
+    confirm_conditions: boolean;
+    error: string;
+}
+
+class SignUp extends Component<SignUpProps, SignUpState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,7 +29,7 @@ class SignUp extends Component<any, any> { // TODO: add proper types
             email: '',
             confirm_email: '',
             password: '',
-            show_password: '',
+            show_password: false,
             confirm_conditions: false,
             error: undefined
         };
@@ -31,11 +41,11 @@ class SignUp extends Component<any, any> { // TODO: add proper types
     handleChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
+        const name: keyof SignUpState = target.name;
 
         this.setState({
             [name]: value
-        });
+        } as Pick<SignUpState, keyof SignUpState>);
     }
 
     handleSubmit(event) {

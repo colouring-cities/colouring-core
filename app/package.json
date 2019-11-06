@@ -37,6 +37,8 @@
     "sharp": "^0.22.1"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.2.0",
+    "@babel/plugin-syntax-typescript": "^7.3.3",
     "@types/express": "^4.17.0",
     "@types/express-session": "^1.15.13",
     "@types/jest": "^24.0.17",
@@ -51,6 +53,7 @@
     "@types/sharp": "^0.22.2",
     "@types/webpack-env": "^1.14.0",
     "babel-eslint": "^10.0.2",
+    "babel-plugin-typescript-to-proptypes": "^0.17.1",
     "eslint": "^5.16.0",
     "eslint-plugin-jest": "^22.15.0",
     "eslint-plugin-react": "^7.14.3",

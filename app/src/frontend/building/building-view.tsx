@@ -20,9 +20,9 @@ import { Building } from '../models/building';
 interface BuildingViewProps {
     cat: string;
     mode: 'view' | 'edit';
-    building: Building;
-    building_like: boolean;
-    user: any;
+    building?: Building;
+    building_like?: boolean;
+    user?: any;
     selectBuilding: (building: Building) => void
 }
 

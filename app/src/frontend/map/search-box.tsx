@@ -1,16 +1,35 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import './search-box.css';
 import { SearchIcon } from '../components/icons';
+import { Point } from 'geojson';
+
+interface SearchResult {
+    type: string;
+    attributes: {
+        label: string;
+        zoom: number;
+    };
+    geometry: Point
+}
+
+
+interface SearchBoxProps {
+    onLocate: (lat: number, lng: number, zoom: number) => void
+}
+
+interface SearchBoxState {
+    q: string;
+    results: SearchResult[];
+    fetching: boolean;
+    collapsedSearch: boolean;
+    smallScreen: boolean;
+}
+
 /**
  * Search for location
  */
-class SearchBox extends Component<any, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        onLocate: PropTypes.func
-    };
-
+class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
     constructor(props) {
         super(props);
         this.state = {
