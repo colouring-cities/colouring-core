@@ -1,14 +1,13 @@
 {
-    "env": {
-        "development": {
-            "plugins": [
-                "@babel/plugin-syntax-jsx",
-                "@babel/plugin-syntax-typescript",
-                ["babel-plugin-typescript-to-proptypes", {
-                    "implicitChildren": true,
-                    "typeCheck": true
-                }]
-            ]
-        }
-    }
+    "plugins": [
+        "@babel/plugin-syntax-jsx",
+        "@babel/plugin-syntax-typescript",
+        [
+            "babel-plugin-typescript-to-proptypes",
+            {
+                "implicitChildren": true,
+                "typeCheck": true
+            }
+        ]
+    ]
 }
