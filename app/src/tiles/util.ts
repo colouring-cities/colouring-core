@@ -1,6 +1,6 @@
 import SphericalMercator from '@mapbox/sphericalmercator';
 
-import { TileParams } from './types';
+import { TileParams, BoundingBox } from './types';
 
 const TILE_SIZE = 256;
 
@@ -20,9 +20,15 @@ function formatParams({ tileset, z, x, y, scale }: TileParams): string {
     return `${tileset}/${z}/${x}/${y}@${scale}x`;
 }
 
+function isOutsideExtent({ x, y, z }: TileParams, bbox: BoundingBox) {
+    const xy = getXYZ(bbox, z);
+    return xy.minY > y || xy.maxY < y || xy.minX > x || xy.maxX < x;
+}
+
 export {
     TILE_SIZE,
     getBbox,
     getXYZ,
-    formatParams
+    formatParams,
+    isOutsideExtent
 };
