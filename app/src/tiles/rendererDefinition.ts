@@ -1,11 +1,11 @@
-import { TileCache } from "./tileCache";
-import { BoundingBox, TileParams, Tile } from "./types";
-import { getBuildingsDataConfig, getHighlightDataConfig, getAllLayerNames, getBuildingLayerNames } from "./dataDefinition";
-import { isOutsideExtent } from "./util";
-import { renderDataSourceTile } from "./renderers/renderDataSourceTile";
-import { getTileWithCaching } from "./renderers/getTileWithCaching";
-import { stitchTile } from "./renderers/stitchTile";
+import { getAllLayerNames, getBuildingLayerNames, getBuildingsDataConfig, getHighlightDataConfig } from "./dataDefinition";
 import { createBlankTile } from "./renderers/createBlankTile";
+import { getTileWithCaching } from "./renderers/getTileWithCaching";
+import { renderDataSourceTile } from "./renderers/renderDataSourceTile";
+import { stitchTile } from "./renderers/stitchTile";
+import { TileCache } from "./tileCache";
+import { BoundingBox, Tile, TileParams } from "./types";
+import { isOutsideExtent } from "./util";
 
 /**
  * A list of all tilesets handled by the tile server

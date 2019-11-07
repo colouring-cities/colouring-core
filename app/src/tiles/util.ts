@@ -1,6 +1,6 @@
 import SphericalMercator from '@mapbox/sphericalmercator';
 
-import { TileParams, BoundingBox } from './types';
+import { BoundingBox, TileParams } from './types';
 
 const TILE_SIZE = 256;
 

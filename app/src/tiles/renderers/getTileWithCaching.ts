@@ -1,5 +1,5 @@
-import { TileParams, RendererFunction, Tile } from "../types";
 import { TileCache } from "../tileCache";
+import { RendererFunction, Tile, TileParams } from "../types";
 
 
 async function getTileWithCaching(tileParams: TileParams, dataParams: any, tileCache: TileCache, renderTile: RendererFunction): Promise<Tile> {

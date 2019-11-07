@@ -16,12 +16,12 @@
 // Using node-fs package to patch fs
 // for node >10 we could drop this in favour of fs.mkdir (which has recursive option)
 // and then use stdlib `import fs from 'fs';`
+import { Image } from 'mapnik';
 import fs from 'node-fs';
 import { promisify } from 'util'
-import { Image } from 'mapnik';
 
-import { TileParams, BoundingBox } from './types';
-import { getXYZ, formatParams } from './util';
+import { BoundingBox, TileParams } from './types';
+import { formatParams, getXYZ } from './util';
 
 // TODO: switch to modern node and use built-in fs with promise-based API
 const readFile = promisify(fs.readFile),

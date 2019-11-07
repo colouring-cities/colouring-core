@@ -5,10 +5,11 @@
  */
 import express from 'express';
 
-import { strictParseInt } from '../parse';
-import { TileParams } from './types';
-import { renderTile, allTilesets } from './rendererDefinition';
 import asyncController from '../api/routes/asyncController';
+import { strictParseInt } from '../parse';
+
+import { allTilesets, renderTile } from './rendererDefinition';
+import { TileParams } from './types';
 
 const handleTileRequest = asyncController(async function (req: express.Request, res: express.Response) {
     try {

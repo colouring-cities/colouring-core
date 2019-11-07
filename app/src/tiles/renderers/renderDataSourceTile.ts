@@ -1,10 +1,9 @@
-import path from 'path';
-
 import mapnik from "mapnik";
-
-import { TileParams, Tile, TableDefinitionFunction } from "../types";
-import { getBbox, TILE_SIZE } from "../util";
+import path from 'path';
 import { promisify } from "util";
+
+import { TableDefinitionFunction, Tile, TileParams } from "../types";
+import { getBbox, TILE_SIZE } from "../util";
 
 
 const TILE_BUFFER_SIZE = 64;
