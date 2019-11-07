@@ -33,6 +33,6 @@ const CheckboxDataEntry: React.FunctionComponent<CheckboxDataEntryProps> = (prop
             </div>
         </Fragment>
     );
-}
+};
 
 export default CheckboxDataEntry;

@@ -107,7 +107,7 @@ const getBuildingLikeById = asyncController(async (req: express.Request, res: ex
         // any value returned means like
         res.send({ like: like });
     } catch(error) {
-        res.send({ error: 'Database error' })
+        res.send({ error: 'Database error' });
     }
 });
 

@@ -38,6 +38,6 @@ const ContributorAgreementPage : React.SFC<any> = () => (
             </div>
         </section>
     </article>
-)
+);
 
 export default ContributorAgreementPage;

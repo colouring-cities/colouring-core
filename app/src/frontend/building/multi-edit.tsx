@@ -20,7 +20,7 @@ interface MultiEditProps extends RouteComponentProps<MultiEditRouteParams> {
 
 const MultiEdit: React.FC<MultiEditProps> = (props) => {
     if (!props.user){
-        return <Redirect to="/sign-up.html" />
+        return <Redirect to="/sign-up.html" />;
     }
     const cat = props.match.params.cat;
     if (cat === 'like') {
@@ -46,14 +46,14 @@ const MultiEdit: React.FC<MultiEditProps> = (props) => {
 
     let data: object;
     if (cat === 'like'){
-        data = { like: true }
+        data = { like: true };
     } else {
         try {
             // TODO: verify what happens if data is string[]
             data = JSON.parse(q.data as string);
         } catch (error) {
-            console.error(error, q)
-            data = {}
+            console.error(error, q);
+            data = {};
         }
     }
 
@@ -80,7 +80,7 @@ const MultiEdit: React.FC<MultiEditProps> = (props) => {
                             disabled={true}
                             value={data[key]}
                             />
-                        )
+                        );
                     }))
                 }
                 </form>
@@ -91,6 +91,6 @@ const MultiEdit: React.FC<MultiEditProps> = (props) => {
             </section>
         </Sidebar>
     );
-}
+};
 
 export default MultiEdit;

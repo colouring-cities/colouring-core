@@ -71,9 +71,9 @@ async function authUser(username: string, password: string) {
         );
 
         if (user && user.auth_ok) {
-            return { user_id: user.user_id }
+            return { user_id: user.user_id };
         } else {
-            return { error: 'Username or password not recognised' }
+            return { error: 'Username or password not recognised' };
         }
     } catch(err) {
         if (err instanceof errors.QueryResultError) {
@@ -99,7 +99,7 @@ async function getUserById(id: string) {
             ]
         );
     } catch(error) {
-        console.error('Error:', error)
+        console.error('Error:', error);
         return undefined;
     }
 }
@@ -137,7 +137,7 @@ async function getNewUserAPIKey(id: string) {
             ]
         );
     } catch(error) {
-        console.error('Error:', error)
+        console.error('Error:', error);
         return { error: 'Failed to generate new API key.' };
     }
 }
@@ -156,7 +156,7 @@ async function authAPIUser(key: string) {
             ]
         );
     } catch(error) {
-        console.error('Error:', error)
+        console.error('Error:', error);
         return undefined;
     }
 }

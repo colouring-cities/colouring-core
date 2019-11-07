@@ -27,7 +27,7 @@ function parseBuildingURL(url) {
     const matches = re.exec(url);
 
     if (matches && matches.length >= 2) {
-        return strictParseInt(matches[1])
+        return strictParseInt(matches[1]);
     }
     return undefined;
 }

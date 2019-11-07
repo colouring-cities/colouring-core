@@ -203,7 +203,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 />
         </DataEntryGroup>
     </Fragment>
-)
+);
 const PlanningContainer = withCopyEdit(PlanningView);
 
-export default PlanningContainer
+export default PlanningContainer;

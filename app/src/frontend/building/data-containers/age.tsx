@@ -75,7 +75,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             placeholder="https://..."
             />
     </Fragment>
-)
+);
 const AgeContainer = withCopyEdit(AgeView);
 
 export default AgeContainer;

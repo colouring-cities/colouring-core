@@ -114,7 +114,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             onChange={props.onChange}
             />
     </Fragment>
-)
+);
 const LocationContainer = withCopyEdit(LocationView);
 
 export default LocationContainer;

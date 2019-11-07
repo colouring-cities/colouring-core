@@ -41,7 +41,7 @@ const EditHistory: React.FunctionComponent<EditHistoryProps> = (props) => {
             </ul>
         </>
     );
-}
+};
 
 export {
     EditHistory

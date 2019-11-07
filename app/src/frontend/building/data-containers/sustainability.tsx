@@ -78,7 +78,7 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
             />
         </Fragment>
     );
-    }
+    };
 const SustainabilityContainer = withCopyEdit(SustainabilityView);
 
 export default SustainabilityContainer;

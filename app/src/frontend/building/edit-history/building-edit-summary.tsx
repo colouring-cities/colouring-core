@@ -9,7 +9,7 @@ import { CategoryEditSummary } from './category-edit-summary';
 import './building-edit-summary.css';
 
 interface BuildingEditSummaryProps {
-    historyEntry: EditHistoryEntry
+    historyEntry: EditHistoryEntry;
 }
 
 function formatDate(dt: Date) {
@@ -47,7 +47,7 @@ const BuildingEditSummary: React.FunctionComponent<BuildingEditSummaryProps> = p
             }
         </div>
     );
-}
+};
 
 export {
     BuildingEditSummary

@@ -19,7 +19,7 @@ const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             <li>Building shading</li>
         </ul>
     </Fragment>
-)
+);
 const StreetscapeContainer = withCopyEdit(StreetscapeView);
 
 export default StreetscapeContainer;

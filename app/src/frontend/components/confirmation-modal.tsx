@@ -3,14 +3,14 @@ import React from 'react';
 import './confirmation-modal.css';
 
 interface ConfirmationModalProps {
-    show: boolean,
-    title: string,
-    description: string,
-    confirmButtonText?: string,
-    confirmButtonClass?: string,
-    cancelButtonClass?: string,
-    onConfirm: () => void,
-    onCancel: () => void
+    show: boolean;
+    title: string;
+    description: string;
+    confirmButtonText?: string;
+    confirmButtonClass?: string;
+    cancelButtonClass?: string;
+    onConfirm: () => void;
+    onCancel: () => void;
 }
 
 const ConfirmationModal: React.FunctionComponent<ConfirmationModalProps> = ({

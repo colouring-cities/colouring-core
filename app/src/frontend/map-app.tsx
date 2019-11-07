@@ -85,7 +85,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         revisionId = +revisionId;
         // bump revision id, only ever increasing
         if (revisionId > this.state.revision_id) {
-            this.setState({ revision_id: revisionId })
+            this.setState({ revision_id: revisionId });
         }
     }
 
@@ -117,7 +117,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                 this.setState({ building: building });
             }
         }).catch((err) => {
-            console.error(err)
+            console.error(err);
             this.setState({ building: building });
         });
 
@@ -138,7 +138,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                 this.props.history.push(`/${mode}/${category}/${building.building_id}`);
             }
         }).catch((err) => {
-            console.error(err)
+            console.error(err);
             this.setState({ building_like: false });
         });
     }
@@ -157,14 +157,14 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         const q = parse(window.location.search);
 
         if (cat === 'like') {
-            this.likeBuilding(building.building_id)
+            this.likeBuilding(building.building_id);
         } else {
             try {
                 // TODO: verify what happens if data is string[]
                 const data = JSON.parse(q.data as string);
-                this.updateBuilding(building.building_id, data)
+                this.updateBuilding(building.building_id, data);
             } catch (error) {
-                console.error(error, q)
+                console.error(error, q);
             }
         }
     }
@@ -181,7 +181,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
             res => res.json()
         ).then(function (res) {
             if (res.error) {
-                console.error({ error: res.error })
+                console.error({ error: res.error });
             } else {
                 this.increaseRevision(res.revision_id);
             }
@@ -202,7 +202,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
             res => res.json()
         ).then(res => {
             if (res.error) {
-                console.error({ error: res.error })
+                console.error({ error: res.error });
             } else {
                 this.increaseRevision(res.revision_id);
             }

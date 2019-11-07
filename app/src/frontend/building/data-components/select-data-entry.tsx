@@ -41,6 +41,6 @@ const SelectDataEntry: React.FunctionComponent<SelectDataEntryProps> = (props) =
             </select>
         </Fragment>
     );
-}
+};
 
 export default SelectDataEntry;

@@ -49,7 +49,7 @@ const ConstructionView = (props) => (
             }
         </ul>
     </Fragment>
-)
+);
 const ConstructionContainer = withCopyEdit(ConstructionView);
 
 export default ConstructionContainer;

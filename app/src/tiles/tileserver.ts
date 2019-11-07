@@ -31,7 +31,7 @@ const handleTileRequest = asyncController(async function (req: express.Request, 
 });
 
 // tiles router
-const router = express.Router()
+const router = express.Router();
 
 router.get('/:tileset/:z/:x/:y(\\d+):scale(@\\dx)?.png', handleTileRequest);
 

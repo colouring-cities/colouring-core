@@ -32,7 +32,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             }
         </ul>
     </Fragment>
-)
+);
 const UseContainer = withCopyEdit(UseView);
 
 export default UseContainer;

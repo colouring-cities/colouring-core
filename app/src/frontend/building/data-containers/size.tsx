@@ -147,7 +147,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             ]}
             />
     </Fragment>
-)
+);
 const SizeContainer = withCopyEdit(SizeView);
 
 export default SizeContainer;

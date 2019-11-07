@@ -28,7 +28,7 @@ server.post('/login', function (req, res) {
         res.send(user);
     }).catch(function (error) {
         res.send(error);
-    })
+    });
 });
 
 // POST user logout
@@ -45,7 +45,7 @@ server.post('/logout', function (req, res) {
 server.post('/api/key', function (req, res) {
     if (!req.session.user_id) {
         res.send({ error: 'Must be logged in' });
-        return
+        return;
     }
 
     getNewUserAPIKey(req.session.user_id).then(function (apiKey) {
@@ -53,7 +53,7 @@ server.post('/api/key', function (req, res) {
     }).catch(function (error) {
         res.send(error);
     });
-})
+});
 
 // GET search
 server.get('/search', function (req, res) {
@@ -61,20 +61,20 @@ server.get('/search', function (req, res) {
     if (!searchTerm) {
         res.send({
             error: 'Please provide a search term'
-        })
-        return
+        });
+        return;
     }
     queryLocation(searchTerm).then((results) => {
         if (typeof (results) === 'undefined') {
             res.send({
                 error: 'Database error'
-            })
-            return
+            });
+            return;
         }
         res.send({
             results: results.map(item => {
                 // map from DB results to GeoJSON Feature objects
-                const geom = JSON.parse(item.st_asgeojson)
+                const geom = JSON.parse(item.st_asgeojson);
                 return {
                     type: 'Feature',
                     attributes: {
@@ -82,13 +82,13 @@ server.get('/search', function (req, res) {
                         zoom: item.zoom || 9
                     },
                     geometry: geom
-                }
+                };
             })
-        })
+        });
     }).catch(function (error) {
         res.send(error);
     });
-})
+});
 
 server.use((err, req, res, next) => {
     if (res.headersSent) {
@@ -103,7 +103,7 @@ server.use((err, req, res, next) => {
 
 server.use((req, res) => {
     res.status(404).json({ error: 'Resource not found'});
-})
+});
 
 
 export default server;

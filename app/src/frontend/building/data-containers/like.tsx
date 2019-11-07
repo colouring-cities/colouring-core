@@ -17,7 +17,7 @@ const LikeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             onLike={props.onLike}
             />
     </Fragment>
-)
+);
 const LikeContainer = withCopyEdit(LikeView);
 
 export default LikeContainer;

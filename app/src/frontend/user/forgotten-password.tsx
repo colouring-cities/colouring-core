@@ -80,6 +80,6 @@ export default class ForgottenPassword extends React.Component<{}, ForgottenPass
                     </form>
                 </section>
             </article>
-        )
+        );
     }
 }

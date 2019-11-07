@@ -9,8 +9,8 @@ import Legend from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
 
-import '../../../node_modules/leaflet/dist/leaflet.css'
-import './map.css'
+import '../../../node_modules/leaflet/dist/leaflet.css';
+import './map.css';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
@@ -84,7 +84,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             }
         }.bind(this)).catch(
             (err) => console.error(err)
-        )
+        );
     }
 
     themeSwitch(e) {

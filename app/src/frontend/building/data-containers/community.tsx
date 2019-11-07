@@ -28,7 +28,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => (
             }
         </ul>
     </Fragment>
-)
+);
 const CommunityContainer = withCopyEdit(CommunityView);
 
 export default CommunityContainer;

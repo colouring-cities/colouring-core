@@ -18,7 +18,7 @@
 // and then use stdlib `import fs from 'fs';`
 import { Image } from 'mapnik';
 import fs from 'node-fs';
-import { promisify } from 'util'
+import { promisify } from 'util';
 
 import { BoundingBox, TileParams } from './types';
 import { formatParams, getXYZ } from './util';
@@ -113,7 +113,7 @@ class TileCache {
             if(!this.shouldBulkClearTileset(tileset)) continue;
 
             for (let z = this.cacheDomain.minZoom; z <= this.cacheDomain.maxZoom; z++) {
-                let tileBounds = getXYZ(bbox, z)
+                let tileBounds = getXYZ(bbox, z);
                 for (let x = tileBounds.minX; x <= tileBounds.maxX; x++) {
                     for (let y = tileBounds.minY; y <= tileBounds.maxY; y++) {
                         for (const scale of this.cacheDomain.scales) {

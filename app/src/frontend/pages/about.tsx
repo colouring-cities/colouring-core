@@ -141,7 +141,7 @@ const AboutPage = () => (
                 onSubmit={function() {window.open(
                     'https://tinyletter.com/colouringlondon',
                     'popupwindow',
-                    'scrollbars=yes,width=800,height=600'); return true}}>
+                    'scrollbars=yes,width=800,height=600'); return true;}}>
                 <h3 className="h1">Keep in touch</h3>
                 <p>
 

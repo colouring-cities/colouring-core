@@ -69,7 +69,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps> {
                                     key={index}
                                     className="form-control">
                                     <a href={sanitiseURL(item)}>{item}</a>
-                                </li>
+                                </li>;
                             })
                         }
                         </ul>
@@ -98,7 +98,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps> {
                 onClick={this.add}
                 disabled={props.mode === 'view'}
                 className="btn btn-outline-dark">+</button>
-        </Fragment>
+        </Fragment>;
     }
 }
 

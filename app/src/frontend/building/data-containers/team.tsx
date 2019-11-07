@@ -25,7 +25,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => (
             }
         </ul>
     </Fragment>
-)
+);
 const TeamContainer = withCopyEdit(TeamView);
 
 export default TeamContainer;

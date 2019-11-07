@@ -39,6 +39,6 @@ const TextboxDataEntry: React.FunctionComponent<TextboxDataEntryProps> = (props)
                 ></textarea>
         </Fragment>
     );
-}
+};
 
 export default TextboxDataEntry;

@@ -116,6 +116,6 @@ const PrivacyPolicyPage: React.SFC<any> = () => (
             </div>
         </section>
     </article>
-)
+);
 
 export default PrivacyPolicyPage;

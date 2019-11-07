@@ -55,7 +55,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
             />
         </Fragment>
     );
-    }
+    };
 const TypeContainer = withCopyEdit(TypeView);
 
 export default TypeContainer;

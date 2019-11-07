@@ -117,6 +117,6 @@ export default class PasswordReset extends React.Component<RouteComponentProps, 
                     </form>
                 </section>
             </article>
-        )
+        );
     }
 }

@@ -46,6 +46,6 @@ const LikeDataEntry: React.FunctionComponent<LikeDataEntryProps> = (props) => {
             </label>
         </Fragment>
     );
-}
+};
 
 export default LikeDataEntry;

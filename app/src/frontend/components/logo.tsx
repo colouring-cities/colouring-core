@@ -45,6 +45,6 @@ const LogoGrid: React.FunctionComponent = () => (
             <div className="cell background-like"></div>
         </div>
     </div>
-)
+);
 
 export { Logo };

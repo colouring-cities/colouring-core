@@ -13,6 +13,7 @@
             { "name": "libraries", "match": ".*", "order": 10 }
         ]
       }
-    ]
+    ],
+    "semicolon": true
   }
 }

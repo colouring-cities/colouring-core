@@ -42,6 +42,6 @@ const NumericDataEntry: React.FunctionComponent<NumericDataEntryProps> = (props)
             />
         </Fragment>
     );
-}
+};
 
 export default NumericDataEntry;

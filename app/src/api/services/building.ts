@@ -277,7 +277,7 @@ async function updateBuildingData(
 
         console.log(update);
         const patches = compare(oldBuilding, update);
-        console.log('Patching', buildingId, patches)
+        console.log('Patching', buildingId, patches);
         const [forward, reverse] = patches;
         if (Object.keys(forward).length === 0) {
             throw 'No change provided';
@@ -337,7 +337,7 @@ function privateQueryBuildingBBOX(buildingId: number){
 }
 
 async function expireBuildingTileCache(buildingId: number) {
-    const bbox = await privateQueryBuildingBBOX(buildingId)
+    const bbox = await privateQueryBuildingBBOX(buildingId);
     const buildingBbox: BoundingBox = [bbox.xmax, bbox.ymax, bbox.xmin, bbox.ymin];
     tileCache.removeAllAtBbox(buildingBbox);
 }

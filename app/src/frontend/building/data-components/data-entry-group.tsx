@@ -30,7 +30,7 @@ const DataEntryGroup: React.FunctionComponent<DataEntryGroupProps> = (props) => 
             </div>
         </Fragment>
     );
-}
+};
 
 const CollapseIcon: React.FunctionComponent<{collapsed: boolean}> = (props) => (
     <span className="collapse-icon">
