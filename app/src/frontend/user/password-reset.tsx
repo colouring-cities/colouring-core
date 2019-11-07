@@ -1,8 +1,8 @@
 import React, { FormEvent } from 'react';
-import { RouteComponentProps, Redirect } from 'react-router';
+import { Redirect, RouteComponentProps } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import ErrorBox from '../components/error-box';
-import { Link } from 'react-router-dom';
 
 interface PasswordResetState {
     error: string;

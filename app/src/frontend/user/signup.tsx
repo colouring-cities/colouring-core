@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';

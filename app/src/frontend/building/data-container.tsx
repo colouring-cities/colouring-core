@@ -1,15 +1,16 @@
 import React, { Fragment } from 'react';
-import { Redirect, NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
-import ContainerHeader from './container-header';
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
-import { CopyControl } from './header-buttons/copy-control';
-import { ViewEditControl } from './header-buttons/view-edit-control';
+import { compareObjects } from '../helpers';
 import { Building } from '../models/building';
 import { User } from '../models/user';
-import { compareObjects } from '../helpers';
+
+import ContainerHeader from './container-header';
 import { CategoryViewProps, CopyProps } from './data-containers/category-view-props';
+import { CopyControl } from './header-buttons/copy-control';
+import { ViewEditControl } from './header-buttons/view-edit-control';
 
 interface DataContainerProps {
     title: string;

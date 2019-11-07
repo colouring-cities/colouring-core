@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 
 import { sanitiseURL } from '../../helpers';
-import { DataTitleCopyable } from './data-title';
+
 import { BaseDataEntryProps } from './data-entry';
+import { DataTitleCopyable } from './data-title';
 
 
 interface MultiDataEntryProps extends BaseDataEntryProps {

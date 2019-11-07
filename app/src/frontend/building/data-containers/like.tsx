@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 
-import withCopyEdit from '../data-container';
 import LikeDataEntry from '../data-components/like-data-entry';
+import withCopyEdit from '../data-container';
+
 import { CategoryViewProps } from './category-view-props';
 
 /**

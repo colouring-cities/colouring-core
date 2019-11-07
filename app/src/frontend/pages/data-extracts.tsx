@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import { dateReviver } from '../../helpers';
-import { NavLink } from 'react-router-dom';
 
 interface ExtractViewModel {
     extract_id: number;

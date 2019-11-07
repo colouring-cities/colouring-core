@@ -1,20 +1,18 @@
 import express from 'express';
 import React from 'react';
-import { StaticRouter } from 'react-router-dom';
-
 import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
 import serialize from 'serialize-javascript';
 
-import App from './frontend/app';
-
-import { parseBuildingURL } from './parse';
-import { getUserById } from './api/services/user';
 import {
     getBuildingById,
     getBuildingLikeById,
     getBuildingUPRNsById,
     getLatestRevisionId
 } from './api/services/building';
+import { getUserById } from './api/services/user';
+import App from './frontend/app';
+import { parseBuildingURL } from './parse';
 
 
 // reference packed assets

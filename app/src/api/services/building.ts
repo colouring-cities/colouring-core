@@ -2,10 +2,11 @@
  * Building data access
  *
  */
+import { ITask } from 'pg-promise';
+
 import db from '../../db';
 import { tileCache } from '../../tiles/rendererDefinition';
 import { BoundingBox } from '../../tiles/types';
-import { ITask } from 'pg-promise';
 
 // data type note: PostgreSQL bigint (64-bit) is handled as string in JavaScript, because of
 // JavaScript numerics are 64-bit double, giving only partial coverage.

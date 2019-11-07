@@ -1,15 +1,15 @@
-import React, { Fragment } from 'react';
-import { Switch, Route, RouteComponentProps, Redirect } from 'react-router-dom';
-
-import Welcome from './pages/welcome';
-import Sidebar from './building/sidebar';
-import Categories from './building/categories';
-import MultiEdit from './building/multi-edit';
-import BuildingView from './building/building-view';
-import ColouringMap from './map/map';
 import { parse } from 'query-string';
+import React, { Fragment } from 'react';
+import { Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
+
+import BuildingView from './building/building-view';
+import Categories from './building/categories';
 import { EditHistory } from './building/edit-history/edit-history';
+import MultiEdit from './building/multi-edit';
+import Sidebar from './building/sidebar';
+import ColouringMap from './map/map';
 import { Building } from './models/building';
+import Welcome from './pages/welcome';
 
 interface MapAppRouteParams {
     mode: 'view' | 'edit' | 'multi-edit';

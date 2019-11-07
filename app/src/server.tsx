@@ -4,15 +4,14 @@
  * - entry-point to shared React App
  *
  */
-import express from 'express';
-
-import session from 'express-session';
 import pgConnect from 'connect-pg-simple';
+import express from 'express';
+import session from 'express-session';
 
-import db from './db';
-import tileserver from './tiles/tileserver';
 import apiServer from './api/api';
+import db from './db';
 import frontendRoute from './frontendRoute';
+import tileserver from './tiles/tileserver';
 
 // create server
 const server = express();

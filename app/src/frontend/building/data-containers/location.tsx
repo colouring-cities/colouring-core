@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 
-import withCopyEdit from '../data-container';
+import InfoBox from '../../components/info-box';
+import { dataFields } from '../../data_fields';
 import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import UPRNsDataEntry from '../data-components/uprns-data-entry';
-import InfoBox from '../../components/info-box';
-import { dataFields } from '../../data_fields';
+import withCopyEdit from '../data-container';
+
 import { CategoryViewProps } from './category-view-props';
 
 const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (

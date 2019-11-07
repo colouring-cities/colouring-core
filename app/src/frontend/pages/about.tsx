@@ -1,8 +1,9 @@
 import React from 'react';
 
-import SupporterLogos from '../components/supporter-logos';
-import './about.css';
 import Categories from '../building/categories';
+import SupporterLogos from '../components/supporter-logos';
+
+import './about.css';
 
 const AboutPage = () => (
     <article>

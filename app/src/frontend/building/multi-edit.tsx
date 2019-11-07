@@ -1,13 +1,14 @@
+import { parse } from 'query-string';
 import React from 'react';
 import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
-import { parse } from 'query-string';
 
-import Sidebar from './sidebar';
+import { BackIcon } from '../components/icons';
 import InfoBox from '../components/info-box';
-import { BackIcon }from '../components/icons';
-import DataEntry from './data-components/data-entry';
 import { dataFields } from '../data_fields';
 import { User } from '../models/user';
+
+import DataEntry from './data-components/data-entry';
+import Sidebar from './sidebar';
 
 interface MultiEditRouteParams {
     cat: string;

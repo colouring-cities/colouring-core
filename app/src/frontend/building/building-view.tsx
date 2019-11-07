@@ -1,20 +1,20 @@
 import React from 'react';
 
-import BuildingNotFound from './building-not-found';
-
-import LocationContainer from './data-containers/location';
-import UseContainer from './data-containers/use';
-import TypeContainer from './data-containers/type';
-import AgeContainer from './data-containers/age';
-import SizeContainer from './data-containers/size';
-import ConstructionContainer from './data-containers/construction';
-import TeamContainer from './data-containers/team';
-import SustainabilityContainer from './data-containers/sustainability';
-import StreetscapeContainer from './data-containers/streetscape';
-import CommunityContainer from './data-containers/community';
-import PlanningContainer from './data-containers/planning';
-import LikeContainer from './data-containers/like';
 import { Building } from '../models/building';
+
+import BuildingNotFound from './building-not-found';
+import AgeContainer from './data-containers/age';
+import CommunityContainer from './data-containers/community';
+import ConstructionContainer from './data-containers/construction';
+import LikeContainer from './data-containers/like';
+import LocationContainer from './data-containers/location';
+import PlanningContainer from './data-containers/planning';
+import SizeContainer from './data-containers/size';
+import StreetscapeContainer from './data-containers/streetscape';
+import SustainabilityContainer from './data-containers/sustainability';
+import TeamContainer from './data-containers/team';
+import TypeContainer from './data-containers/type';
+import UseContainer from './data-containers/use';
 
 
 interface BuildingViewProps {

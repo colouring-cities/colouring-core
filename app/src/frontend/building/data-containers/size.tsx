@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
 
-import withCopyEdit from '../data-container';
+import { dataFields } from '../../data_fields';
+import { DataEntryGroup } from '../data-components/data-entry-group';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
-import { DataEntryGroup } from '../data-components/data-entry-group';
-import { dataFields } from '../../data_fields';
+import withCopyEdit from '../data-container';
+
 import { CategoryViewProps } from './category-view-props';
 
 /**

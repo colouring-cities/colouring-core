@@ -1,8 +1,9 @@
+import { Point } from 'geojson';
 import React, { Component } from 'react';
 
-import './search-box.css';
 import { SearchIcon } from '../components/icons';
-import { Point } from 'geojson';
+
+import './search-box.css';
 
 interface SearchResult {
     type: string;

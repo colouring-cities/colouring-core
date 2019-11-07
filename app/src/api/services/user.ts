@@ -3,10 +3,10 @@
  *
  */
 import { errors } from 'pg-promise';
+import { promisify } from 'util';
 
 import db from '../../db';
-import { validateUsername, ValidationError, validatePassword } from '../validation';
-import { promisify } from 'util';
+import { validatePassword, validateUsername, ValidationError } from '../validation';
 
 
 async function createUser(user) {

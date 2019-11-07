@@ -1,12 +1,11 @@
-import express from 'express';
 import bodyParser from 'body-parser';
-
-import { authUser, getNewUserAPIKey, logout } from './services/user';
-import { queryLocation } from './services/search';
+import express from 'express';
 
 import buildingsRouter from './routes/buildingsRouter';
-import usersRouter from './routes/usersRouter';
 import extractsRouter from './routes/extractsRouter';
+import usersRouter from './routes/usersRouter';
+import { queryLocation } from './services/search';
+import { authUser, getNewUserAPIKey, logout } from './services/user';
 
 
 const server = express.Router();

@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 
-import { DataTitleCopyable } from './data-title';
 import { CopyProps } from '../data-containers/category-view-props';
+
+import { DataTitleCopyable } from './data-title';
 
 interface BaseDataEntryProps {
     slug: string;

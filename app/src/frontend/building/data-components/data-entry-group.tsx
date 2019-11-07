@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from "react";
 
+import { DownIcon, RightIcon } from "../../components/icons";
+
 import './data-entry-group.css';
-import { RightIcon, DownIcon } from "../../components/icons";
 
 interface DataEntryGroupProps {
     /** Name of the group */

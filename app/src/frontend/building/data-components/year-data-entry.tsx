@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 
-import NumericDataEntry from './numeric-data-entry';
 import { dataFields } from '../../data_fields';
 import { CopyProps } from '../data-containers/category-view-props';
+
+import NumericDataEntry from './numeric-data-entry';
 
 interface YearDataEntryProps {
     year: number;

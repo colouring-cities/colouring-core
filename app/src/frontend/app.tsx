@@ -1,28 +1,26 @@
 import React, { Fragment } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
+
+import Header from './header';
+import MapApp from './map-app';
+import { Building } from './models/building';
+import { User } from './models/user';
+import AboutPage from './pages/about';
+import ContactPage from './pages/contact';
+import ContributorAgreementPage from './pages/contributor-agreement';
+import DataAccuracyPage from './pages/data-accuracy';
+import DataExtracts from './pages/data-extracts';
+import OrdnanceSurveyLicencePage from './pages/ordnance-survey-licence';
+import OrdnanceSurveyUprnPage from './pages/ordnance-survey-uprn';
+import PrivacyPolicyPage from './pages/privacy-policy';
+import ForgottenPassword from './user/forgotten-password';
+import Login from './user/login';
+import MyAccountPage from './user/my-account';
+import PasswordReset from './user/password-reset';
+import SignUp from './user/signup';
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
-
-import Header from './header';
-import AboutPage from './pages/about';
-import ContributorAgreementPage from './pages/contributor-agreement';
-import PrivacyPolicyPage from './pages/privacy-policy';
-import DataExtracts from './pages/data-extracts';
-
-import Login from './user/login';
-import MyAccountPage from './user/my-account';
-import SignUp from './user/signup';
-import ForgottenPassword from './user/forgotten-password';
-import PasswordReset from './user/password-reset';
-
-import MapApp from './map-app';
-import ContactPage from './pages/contact';
-import DataAccuracyPage from './pages/data-accuracy';
-import OrdnanceSurveyLicencePage from './pages/ordnance-survey-licence';
-import OrdnanceSurveyUprnPage from './pages/ordnance-survey-uprn';
-import { Building } from './models/building';
-import { User } from './models/user';
 
 
 interface AppProps {

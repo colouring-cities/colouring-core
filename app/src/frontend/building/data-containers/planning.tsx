@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 
-import withCopyEdit from '../data-container';
-import DataEntry from '../data-components/data-entry';
-import CheckboxDataEntry from '../data-components/checkbox-data-entry';
-import SelectDataEntry from '../data-components/select-data-entry';
-import { DataEntryGroup } from '../data-components/data-entry-group';
 import { dataFields } from '../../data_fields';
+import CheckboxDataEntry from '../data-components/checkbox-data-entry';
+import DataEntry from '../data-components/data-entry';
+import { DataEntryGroup } from '../data-components/data-entry-group';
+import SelectDataEntry from '../data-components/select-data-entry';
+import withCopyEdit from '../data-container';
+
 import { CategoryViewProps } from './category-view-props';
 
 /**

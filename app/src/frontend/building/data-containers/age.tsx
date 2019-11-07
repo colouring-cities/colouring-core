@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
 
-import withCopyEdit from '../data-container';
+import { dataFields } from '../../data_fields';
 import MultiDataEntry from '../data-components/multi-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import TextboxDataEntry from '../data-components/textbox-data-entry';
 import YearDataEntry from '../data-components/year-data-entry';
-import { dataFields } from '../../data_fields';
+import withCopyEdit from '../data-container';
+
 import { CategoryViewProps } from './category-view-props';
 
 /**

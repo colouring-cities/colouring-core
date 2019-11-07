@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
 
-import withCopyEdit from '../data-container';
-import SelectDataEntry from '../data-components/select-data-entry';
-import NumericDataEntry from '../data-components/numeric-data-entry';
-import DataEntry from '../data-components/data-entry';
 import { dataFields } from '../../data_fields';
+import DataEntry from '../data-components/data-entry';
+import NumericDataEntry from '../data-components/numeric-data-entry';
+import SelectDataEntry from '../data-components/select-data-entry';
+import withCopyEdit from '../data-container';
+
 import { CategoryViewProps } from './category-view-props';
 
 const AttachmentFormOptions = [

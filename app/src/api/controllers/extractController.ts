@@ -1,6 +1,7 @@
 import express from 'express';
-import * as dataExtractService from '../services/dataExtract';
+
 import asyncController from '../routes/asyncController';
+import * as dataExtractService from '../services/dataExtract';
 
 
 const getAllDataExtracts = asyncController(async function(req: express.Request, res: express.Response) {

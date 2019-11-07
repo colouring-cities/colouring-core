@@ -1,11 +1,9 @@
-import { URL } from 'url';
-
 import express from 'express';
 
-import * as userService from '../services/user';
+import asyncController from '../routes/asyncController';
 import * as passwordResetService from '../services/passwordReset';
 import { TokenVerificationError } from '../services/passwordReset';
-import asyncController from '../routes/asyncController';
+import * as userService from '../services/user';
 import { ValidationError } from '../validation';
 
 const createUser = asyncController(async (req: express.Request, res: express.Response) => {

@@ -1,6 +1,18 @@
 {
   "defaultSeverity": "warning",
   "rules": {
-    "eofline": true
+    "eofline": true,
+    "ordered-imports": [
+      true,
+      {
+        "grouped-imports": true,
+        "groups": [
+            { "name": "css", "match": "\\.css$", "order": 40 },
+            { "name": "parent directories", "match": "^\\.\\.", "order": 20 },
+            { "name": "current directory", "match": "^\\.", "order": 30 },
+            { "name": "libraries", "match": ".*", "order": 10 }
+        ]
+      }
+    ]
   }
 }
