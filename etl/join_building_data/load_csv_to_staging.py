@@ -1,8 +1,8 @@
 """Join csv data to buildings
 Example usage (replace URL with test/staging/localhost as necessary, API key with real key for
 the appropriate site):
-    python load_csv.py \
-        https://colouring.london \
+    python load_csv_to_staging.py \
+        https://clstaging.casa.ucl.ac.uk \
         a0a00000-0a00-0aaa-a0a0-0000aaaa0000 \
         data.csv
 This script uses the HTTP API, and can process CSV files which identify buildings by id, TOID,
