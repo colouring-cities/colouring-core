@@ -56,6 +56,7 @@ def update_building(building_id, data, api_key, base_url):
         json=data,
         verify=False
     )
+    print(r)
     return r.status_code, r.json()
 
 
