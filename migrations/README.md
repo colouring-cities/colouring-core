@@ -53,3 +53,6 @@ Set or update passwords:
 ```bash
 psql -c "ALTER USER appusername WITH PASSWORD 'longsecurerandompassword';"
 ```
+
+# File naming syntax
+Initial up and down migrations as `###.name.up.sql` file number should be sequential and incremental to last migrations file number is same for up/down. If adjusting a prior migration syntax is `###.name.up.sql` 
