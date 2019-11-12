@@ -116,10 +116,12 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         const baseLayer = <TileLayer
             url={baseUrl}
             attribution={attribution}
+            maxNativeZoom={18}
+            maxZoom={19}
         />;
 
         const buildingsBaseUrl = `/tiles/base_${this.state.theme}/{z}/{x}/{y}{r}.png`;
-        const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={14} />;
+        const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={14} maxZoom={19}/>;
 
 
         const boundaryStyleFn = () => ({color: '#bbb', fill: false});
@@ -145,6 +147,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                 key={tileset}
                 url={`/tiles/${tileset}/{z}/{x}/{y}{r}.png?rev=${rev}`}
                 minZoom={9}
+                maxZoom={19}
             />
             : null;
 
@@ -153,7 +156,8 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             <TileLayer
                 key={this.props.building.building_id}
                 url={`/tiles/highlight/{z}/{x}/{y}{r}.png?highlight=${this.props.building.geometry_id}&base=${tileset}`}
-                minZoom={14}
+                minZoom={13}
+                maxZoom={19}
                 zIndex={100}
             />
             : null;
@@ -166,7 +170,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     center={position}
                     zoom={this.state.zoom}
                     minZoom={9}
-                    maxZoom={18}
+                    maxZoom={19}
                     doubleClickZoom={false}
                     zoomControl={false}
                     attributionControl={false}
