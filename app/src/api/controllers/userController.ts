@@ -8,23 +8,22 @@ import { TokenVerificationError } from '../services/passwordReset';
 import asyncController from '../routes/asyncController';
 import { ValidationError } from '../validation';
 
-function createUser(req, res) {
+const createUser = asyncController(async (req: express.Request, res: express.Response) => {
     const user = req.body;
     if (req.session.user_id) {
-        res.send({ error: 'Already signed in' });
-        return;
+        return res.send({ error: 'Already signed in' });
     }
 
     if (user.email) {
         if (user.email != user.confirm_email) {
-            res.send({ error: 'Email did not match confirmation.' });
-            return;
+            return res.send({ error: 'Email did not match confirmation.' });
         }
     } else {
         user.email = null;
     }
 
-    userService.createUser(user).then(function (result) {
+    try {
+        const result = await userService.createUser(user);
         if (result.user_id) {
             req.session.user_id = result.user_id;
             res.send({ user_id: result.user_id });
@@ -32,39 +31,40 @@ function createUser(req, res) {
             req.session.user_id = undefined;
             res.send({ error: result.error });
         }
-    }).catch(function (err) {
+    } catch(err) {
         console.error(err);
         res.send(err);
-    });
-}
+    }
+});
 
-function getCurrentUser(req, res) {
+const getCurrentUser = asyncController(async (req: express.Request, res: express.Response) => {
     if (!req.session.user_id) {
-        res.send({ error: 'Must be logged in' });
-        return;
+        return res.send({ error: 'Must be logged in' });
     }
 
-    userService.getUserById(req.session.user_id).then(function (user) {
+    try {
+        const user = await userService.getUserById(req.session.user_id);
         res.send(user);
-    }).catch(function (error) {
+    } catch(error) {
         res.send(error);
-    });
-}
+    }
+});
 
-function deleteCurrentUser(req, res) {
+const deleteCurrentUser = asyncController(async (req: express.Request, res: express.Response) => {
     if (!req.session.user_id) {
         return res.send({ error: 'Must be logged in' });
     }
     console.log(`Deleting user ${req.session.user_id}`);
 
-    userService.deleteUser(req.session.user_id).then(
-        () => userService.logout(req.session)
-    ).then(() => {
+    try {
+        await userService.deleteUser(req.session.user_id);
+        await userService.logout(req.session);
+
         res.send({ success: true });
-    }).catch(err => {
+    } catch(err) {
         res.send({ error: err });
-    });
-}
+    }
+});
 
 const resetPassword = asyncController(async function(req: express.Request, res: express.Response) {
     if(req.body == undefined || (req.body.email == undefined && req.body.token == undefined)) {

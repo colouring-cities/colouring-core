@@ -3,7 +3,24 @@ import PropTypes from 'prop-types';
 
 import { DataTitleCopyable } from './data-title';
 
-const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
+interface BaseDataEntryProps {
+    slug: string;
+    title: string;
+    tooltip?: string;
+    disabled?: boolean;
+    copy?: any; // CopyProps clashes with propTypes
+    mode?: 'view' | 'edit' | 'multi-edit';
+    onChange?: (key: string, value: any) => void;
+}
+
+interface DataEntryProps extends BaseDataEntryProps {
+    value: string;
+    maxLength?: number;
+    placeholder?: string;
+    valueTransform?: (string) => string
+}
+
+const DataEntry: React.FunctionComponent<DataEntryProps> = (props) => {
     return (
         <Fragment>
             <DataTitleCopyable
@@ -20,7 +37,13 @@ const DataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
                 maxLength={props.maxLength}
                 disabled={props.mode === 'view' || props.disabled}
                 placeholder={props.placeholder}
-                onChange={props.onChange}
+                onChange={e => {
+                    const transform = props.valueTransform || (x => x);
+                    const val = e.target.value === '' ?
+                                    null :
+                                    transform(e.target.value);
+                    props.onChange(props.slug, val);
+                }}
             />
         </Fragment>
     );
@@ -43,3 +66,6 @@ DataEntry.propTypes = {
 }
 
 export default DataEntry;
+export {
+    BaseDataEntryProps
+};

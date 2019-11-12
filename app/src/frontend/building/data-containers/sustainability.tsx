@@ -4,6 +4,8 @@ import withCopyEdit from '../data-container';
 import DataEntry from '../data-components/data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
+import { dataFields } from '../../data_fields';
+import { CategoryViewProps } from './category-view-props';
 
 const EnergyCategoryOptions = ["A", "B", "C", "D", "E", "F", "G"];
 const BreeamRatingOptions = [
@@ -17,57 +19,62 @@ const BreeamRatingOptions = [
 /**
 * Sustainability view/edit section
 */
-const SustainabilityView = (props) => {
-    const dataEntryProps = {
-        mode: props.mode,
-        copy: props.copy,
-        onChange: props.onChange
-    };
+const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
             <SelectDataEntry
-                title="BREEAM Rating"
+                title={dataFields.sust_breeam_rating.title}
                 slug="sust_breeam_rating"
                 value={props.building.sust_breeam_rating}
-                tooltip="(Building Research Establishment Environmental Assessment Method) May not be present for many buildings"
+                tooltip={dataFields.sust_breeam_rating.tooltip}
                 options={BreeamRatingOptions}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
             <SelectDataEntry
-                title="DEC Rating"
+                title={dataFields.sust_dec.title}
                 slug="sust_dec"
                 value={props.building.sust_dec}
-                tooltip="(Display Energy Certificate) Any public building should have (and display) a DEC. Showing how the energy use for that building compares to other buildings with same use"
+                tooltip={dataFields.sust_dec.tooltip}
                 options={EnergyCategoryOptions}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
             <SelectDataEntry
-                title="EPC Rating"
+                title={dataFields.sust_aggregate_estimate_epc.title}
                 slug="sust_aggregate_estimate_epc"
                 value={props.building.sust_aggregate_estimate_epc}
-                tooltip="(Energy Performance Certifcate) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher maybe rented"
+                tooltip={dataFields.sust_aggregate_estimate_epc.tooltip}
                 options={EnergyCategoryOptions}
                 disabled={true}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
             <NumericDataEntry
-                title="Last significant retrofit"
+                title={dataFields.sust_retrofit_date.title}
                 slug="sust_retrofit_date"
                 value={props.building.sust_retrofit_date}
-                tooltip="Date of last major building refurbishment"
+                tooltip={dataFields.sust_retrofit_date.tooltip}
                 step={1}
                 min={1086}
                 max={new Date().getFullYear()}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
             <NumericDataEntry
-                title="Expected lifespan for typology"
+                title={dataFields.sust_life_expectancy.title}
                 slug="sust_life_expectancy"
                 value={props.building.sust_life_expectancy}
                 step={1}
                 min={1}
                 disabled={true}
-                {...dataEntryProps}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
             />
         </Fragment>
     );

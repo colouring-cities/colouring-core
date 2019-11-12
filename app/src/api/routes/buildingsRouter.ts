@@ -14,6 +14,8 @@ router.get('/locate', buildingController.getBuildingsByLocation);
 // GET buildings by reference (UPRN/TOID or other identifier)
 router.get('/reference', buildingController.getBuildingsByReference);
 
+router.get('/revision', buildingController.getLatestRevisionId);
+
 router.route('/:building_id.json')
     // GET individual building
     .get(buildingController.getBuildingById)
@@ -28,5 +30,8 @@ router.get('/:building_id/uprns.json', buildingController.getBuildingUPRNsById);
 router.route('/:building_id/like.json')
     .get(buildingController.getBuildingLikeById)
     .post(buildingController.updateBuildingLikeById);
+
+router.route('/:building_id/history.json')
+    .get(buildingController.getBuildingEditHistoryById);
 
 export default router;

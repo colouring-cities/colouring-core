@@ -1,0 +1,17 @@
+.data-entry-group-header {
+    cursor: pointer;
+    position: relative;
+}
+.data-entry-group-header .data-entry-group-title {
+    position: absolute;
+    left: 1rem;
+}
+
+.data-entry-group-count {
+    font-size: 0.8em;
+    color: gray;
+}
+
+.data-entry-group-body {
+    padding-left: 1rem;
+}

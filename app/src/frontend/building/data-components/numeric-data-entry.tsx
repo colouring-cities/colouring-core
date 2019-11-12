@@ -2,8 +2,18 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { DataTitleCopyable } from './data-title';
+import { BaseDataEntryProps } from './data-entry';
 
-const NumericDataEntry: React.FunctionComponent<any> = (props) => { // TODO: remove any
+
+interface NumericDataEntryProps extends BaseDataEntryProps {
+    value?: number;
+    placeholder?: string;
+    step?: number;
+    min?: number;
+    max?: number;
+}
+
+const NumericDataEntry: React.FunctionComponent<NumericDataEntryProps> = (props) => {
     return (
         <Fragment>
             <DataTitleCopyable
@@ -24,7 +34,12 @@ const NumericDataEntry: React.FunctionComponent<any> = (props) => { // TODO: rem
                 min={props.min || 0}
                 disabled={props.mode === 'view' || props.disabled}
                 placeholder={props.placeholder}
-                onChange={props.onChange}
+                onChange={e => 
+                    props.onChange(
+                        props.slug,
+                        e.target.value === '' ? null : parseFloat(e.target.value)
+                    )
+                }
             />
         </Fragment>
     );

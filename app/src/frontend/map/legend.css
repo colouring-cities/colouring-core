@@ -3,7 +3,7 @@
  */
 .map-legend {
     position: absolute;
-    bottom: 2.5rem;
+    bottom: 3.5rem;
     right: 10px;
     z-index: 1000;
 
@@ -34,7 +34,12 @@
 }
 
 /* Prevent legend from overlapping with attribution */
-@media (min-width: 706px){
+@media(min-width: 392px) {
+    .map-legend {
+        bottom: 2.5rem;
+    }
+}
+@media (min-width: 760px){
     .map-legend {
         bottom: 1.5rem;
     }
@@ -44,7 +49,7 @@
         bottom: 2.5rem;
     }
 }
-@media (min-width: 1072px){
+@media (min-width: 1129px){
     .map-legend {
         bottom: 1.5rem;
     }

@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 
 import Sidebar from './sidebar';
 import InfoBox from '../components/info-box';
-import { sanitiseURL } from '../helpers';
+import { BackIcon }from '../components/icons';
+import DataEntry from './data-components/data-entry';
+import { dataFields } from '../data_fields';
 
-const CONFIG = [];
 
 const MultiEdit = (props) => {
     if (!props.user){
@@ -19,8 +20,8 @@ const MultiEdit = (props) => {
         return (
             <Sidebar>
                 <section className='data-section'>
-                    <header className={`section-header view ${cat} active`}>
-                        <a><h3 className="h3">Like me!</h3></a>
+                    <header className={`section-header view ${cat} background-${cat}`}>
+                        <h2 className="h2">Like me!</h2>
                     </header>
                     <form className='buttons-container'>
                         <InfoBox msg='Click all the buildings that you like and think contribute to the city!' />
@@ -34,25 +35,48 @@ const MultiEdit = (props) => {
     }
 
     const q = parse(props.location.search);
-    const data = JSON.parse(q.data as string) // TODO: verify what happens when data is string[]
-    const title = sectionTitleFromCat(cat);
+
+    let data: object;
+    if (cat === 'like'){
+        data = { like: true }
+    } else {
+        try {
+            // TODO: verify what happens if data is string[]
+            data = JSON.parse(q.data as string);
+        } catch (error) {
+            console.error(error, q)
+            data = {}
+        }
+    }
+
     return (
         <Sidebar>
             <section className='data-section'>
-                <header className={`section-header view ${cat} active`}>
-                    <a><h3 className="h3">{title}</h3></a>
+                <header className={`section-header view ${cat} background-${cat}`}>
+                    <Link
+                        className="icon-button back"
+                        to={`/edit/${cat}`}>
+                        <BackIcon />
+                    </Link>
+                    <h2 className="h2">Copy {cat} data</h2>
                 </header>
-                <Fragment>
+                <form>
+                    <InfoBox msg='Click buildings one at a time to colour using the data below' />
                 {
                     Object.keys(data).map((key => {
-                        const label = fieldTitleFromSlug(key);
-                        return <DataEntry key={key} label={label} value={data[key]}/>
+                        const info = dataFields[key] || {};
+                        return (
+                        <DataEntry
+                            title={info.title || `Unknown field (${key})`}
+                            slug={key}
+                            disabled={true}
+                            value={data[key]}
+                            />
+                        )
                     }))
                 }
-                </Fragment>
+                </form>
                 <form className='buttons-container'>
-                    <InfoBox msg='Click buildings to colour using the data above' />
-
                     <Link to={`/view/${cat}`} className='btn btn-secondary'>Back to view</Link>
                     <Link to={`/edit/${cat}`} className='btn btn-secondary'>Back to edit</Link>
                 </form>
@@ -65,65 +89,6 @@ MultiEdit.propTypes = {
     user: PropTypes.object,
     match: PropTypes.object,
     location: PropTypes.object
-}
-
-const DataEntry = (props) => {
-    let content;
-
-    if (props.value != null && props.value !== '') {
-        if (typeof(props.value) === 'boolean') {
-            content = (props.value)? 'Yes' : 'No'
-        } else if (Array.isArray(props.value)) {
-            if (props.value.length) {
-                content = <ul>{
-                    props.value.map((item, index) => {
-                        return <li key={index}><a href={sanitiseURL(item)}>{item}</a></li>
-                    })
-                }</ul>
-            } else {
-                content = '\u00A0'
-            }
-        } else {
-            content = props.value
-        }
-    } else {
-        content = '\u00A0'
-    }
-
-    return (
-        <Fragment>
-            <dt>{props.label}</dt>
-            <dd>{content}</dd>
-        </Fragment>
-    )
-}
-
-function sectionTitleFromCat(cat) {
-    for (let index = 0; index < CONFIG.length; index++) {
-        const section = CONFIG[index];
-        if (section.slug === cat) {
-            return section.title
-        }
-    }
-    return undefined
-}
-
-function fieldTitleFromSlug(slug) {
-    const fields = CONFIG.reduce(
-        (prev, section) => {
-            const el = prev.concat(
-                section.fields.filter(
-                    (field: any) => field.slug === slug // TODO: remove any
-                )
-            )
-            return el
-        }, []
-    )
-    if (fields.length === 1 && fields[0].title) {
-        return fields[0].title
-    } else {
-        console.error('Expected single match, got', fields)
-    }
 }
 
 export default MultiEdit;

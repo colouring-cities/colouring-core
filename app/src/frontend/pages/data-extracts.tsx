@@ -45,6 +45,9 @@ export default class DataExtracts extends React.Component<{}, DataExtractsState>
                 <section className="main-col">
                     <h1 className="h2">Open data extracts</h1>
                     <p>
+                    Choose one of the links below to download an archive containing the open data collected on the Colouring London platform
+                    </p>
+                    <p>
                     Colouring London contributions are open data, licensed under the <a href="http://opendatacommons.org/licenses/odbl/">Open Data Commons Open Database License</a> (ODbL) by Colouring London contributors.
                     </p>
                     <p>
@@ -54,8 +57,9 @@ export default class DataExtracts extends React.Component<{}, DataExtractsState>
                     Choose one of the links below to download an archive containing the open data collected on the Colouring London platform.
                     </p>
                     <p>
-                    By downloading data extracts from this site, you agree to the <Link to="/data-accuracy.html">data accuracy agreement </Link>.
+                    By downloading data extracts from this site, you agree to the <Link to="/data-accuracy.html">data accuracy agreement and the <Link to="/ordnance-survey-uprn.html">Ordnance Survey terms of UPRN usage</Link>.
                     </p>
+
                     {
                         this.state.extracts == undefined ?
                             <p>Loading extracts...</p> :
