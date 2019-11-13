@@ -22,6 +22,9 @@ const Welcome = () => (
         please read our <a href="https://www.pages.colouring.london/data-ethics">data ethics policy</a> and
         credit Colouring London if you use or share our maps or data.
         </p>
+        <p className="lead">
+            We collect our building data from many sources. Though we are unable to vouch for their accuracy, we are currently experimenting with a range of features including 'data source', 'edit history', and 'entry verification', to assist you in checking reliability and judging how suitable the data are for your intended use.
+        </p>
         <Link to="/view/categories"
             className="btn btn-outline-dark btn-lg btn-block">
             Start Colouring Here!
