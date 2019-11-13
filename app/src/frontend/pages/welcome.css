@@ -29,3 +29,8 @@
 .welcome-float .lead {
     font-size: 1.15em;
 }
+
+.welcome-float .lead a {
+    color: #333;
+    border-bottom-color: #333;
+}
