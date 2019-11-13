@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './app.css';
+
 import Header from './header';
 import MapApp from './map-app';
 import { Building } from './models/building';
@@ -18,9 +21,6 @@ import Login from './user/login';
 import MyAccountPage from './user/my-account';
 import PasswordReset from './user/password-reset';
 import SignUp from './user/signup';
-
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import './app.css';
 
 
 interface AppProps {

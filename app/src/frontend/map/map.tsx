@@ -2,15 +2,15 @@ import { GeoJsonObject } from 'geojson';
 import React, { Component, Fragment } from 'react';
 import { AttributionControl, GeoJSON, Map, TileLayer, ZoomControl } from 'react-leaflet-universal';
 
+import 'leaflet/dist/leaflet.css';
+import './map.css';
+
 import { HelpIcon } from '../components/icons';
 import { Building } from '../models/building';
 
 import Legend from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
-
-import '../../../node_modules/leaflet/dist/leaflet.css';
-import './map.css';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 

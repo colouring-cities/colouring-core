@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import './header.css';
+
 import { Logo } from './components/logo';
 import { User } from './models/user';
-
-import './header.css';
 
 
 interface HeaderProps {

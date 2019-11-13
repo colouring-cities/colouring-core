@@ -1,12 +1,12 @@
 import React from 'react';
 
+import './building-edit-summary.css';
+
 import { dataFields } from '../../data_fields';
 import { arrayToDictionary, parseDate } from '../../helpers';
 import { EditHistoryEntry } from '../../models/edit-history-entry';
 
 import { CategoryEditSummary } from './category-edit-summary';
-
-import './building-edit-summary.css';
 
 interface BuildingEditSummaryProps {
     historyEntry: EditHistoryEntry;
