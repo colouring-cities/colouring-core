@@ -53,7 +53,7 @@ const UPRNsDataEntry: React.FC<UPRNsDataEntryProps> = (props) => {
                 }
             </dd>
         </Fragment>
-    )
+    );
 };
 
 export default UPRNsDataEntry;

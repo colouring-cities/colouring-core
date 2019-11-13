@@ -5,7 +5,7 @@ import InfoBox from '../components/info-box';
 
 
 interface BuildingNotFoundProps {
-  mode: string
+  mode: string;
 }
 
 const BuildingNotFound: React.FunctionComponent<BuildingNotFoundProps> = (props) => (

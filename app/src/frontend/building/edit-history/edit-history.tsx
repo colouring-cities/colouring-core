@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { EditHistoryEntry } from '../models/edit-history-entry';
+import React, { useEffect, useState } from 'react';
+
+import { Building } from '../../models/building';
+import { EditHistoryEntry } from '../../models/edit-history-entry';
+import ContainerHeader from '../container-header';
+
 import { BuildingEditSummary } from './building-edit-summary';
 
 import './edit-history.css';
-import { Building } from '../../models/building';
-import ContainerHeader from '../container-header';
 
 interface EditHistoryProps {
     building: Building;
@@ -39,7 +41,7 @@ const EditHistory: React.FunctionComponent<EditHistoryProps> = (props) => {
             </ul>
         </>
     );
-}
+};
 
 export {
     EditHistory

@@ -15,8 +15,8 @@ const DataTitle: React.FunctionComponent<DataTitleProps> = (props) => {
             { props.title }
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
         </dt>
-    )
-}
+    );
+};
 
 
 interface DataTitleCopyableProps {
@@ -48,7 +48,7 @@ const DataTitleCopyable: React.FunctionComponent<DataTitleCopyableProps> = (prop
             </label>
         </div>
     );
-}
+};
 
 export default DataTitle;
-export { DataTitleCopyable }
+export { DataTitleCopyable };

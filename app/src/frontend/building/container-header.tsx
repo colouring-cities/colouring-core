@@ -19,6 +19,6 @@ const ContainerHeader: React.FunctionComponent<ContainerHeaderProps> = (props) =
             {props.children}
         </nav>
     </header>
-)
+);
 
 export default ContainerHeader;

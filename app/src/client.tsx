@@ -2,9 +2,9 @@
  * Client-side entry point to shared frontend React App
  *
  */
-import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import { hydrate } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './frontend/app';
 

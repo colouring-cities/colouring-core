@@ -44,7 +44,7 @@ type Tile = Image | Sharp;
 type RendererFunction = (tileParams: TileParams, dataParams: any) => Promise<Tile>;
 
 interface TileRenderer {
-    getTile: RendererFunction
+    getTile: RendererFunction;
 }
 
 export {

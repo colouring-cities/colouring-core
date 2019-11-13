@@ -1,7 +1,8 @@
 import React from 'react';
-import { Building } from '../../models/building';
 import { NavLink } from 'react-router-dom';
-import { ViewIcon, EditIcon } from '../../components/icons';
+
+import { EditIcon, ViewIcon } from '../../components/icons';
+import { Building } from '../../models/building';
 
 interface ViewEditControlProps {
     cat: string;

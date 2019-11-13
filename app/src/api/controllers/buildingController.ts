@@ -1,7 +1,8 @@
 import express from 'express';
+
+import asyncController from '../routes/asyncController';
 import * as buildingService from '../services/building';
 import * as userService from '../services/user';
-import asyncController from '../routes/asyncController';
 
 
 // GET buildings
@@ -106,7 +107,7 @@ const getBuildingLikeById = asyncController(async (req: express.Request, res: ex
         // any value returned means like
         res.send({ like: like });
     } catch(error) {
-        res.send({ error: 'Database error' })
+        res.send({ error: 'Database error' });
     }
 });
 

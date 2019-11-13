@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 
-import NumericDataEntry from './numeric-data-entry';
 import { dataFields } from '../../data_fields';
 import { CopyProps } from '../data-containers/category-view-props';
+
+import NumericDataEntry from './numeric-data-entry';
 
 interface YearDataEntryProps {
     year: number;
@@ -22,7 +23,7 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
             lower: props.lower,
             decade: Math.floor(props.year / 10) * 10,
             century: Math.floor(props.year / 100) * 100
-        }
+        };
     }
     // TODO add dropdown for decade, century
     // TODO roll in first/last year estimate
@@ -61,7 +62,7 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     tooltip={dataFields.date_lower.tooltip}
                     />
             </Fragment>
-        )
+        );
     }
 }
 

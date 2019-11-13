@@ -1,6 +1,6 @@
 import SphericalMercator from '@mapbox/sphericalmercator';
 
-import { TileParams, BoundingBox } from './types';
+import { BoundingBox, TileParams } from './types';
 
 const TILE_SIZE = 256;
 
@@ -13,7 +13,7 @@ function getBbox(z, x, y) {
 }
 
 function getXYZ(bbox, z) {
-    return mercator.xyz(bbox, z, false, '900913')
+    return mercator.xyz(bbox, z, false, '900913');
 }
 
 function formatParams({ tileset, z, x, y, scale }: TileParams): string {

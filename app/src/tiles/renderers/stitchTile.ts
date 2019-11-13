@@ -1,6 +1,6 @@
 import sharp from 'sharp';
 
-import { TileParams, RendererFunction, Tile } from "../types";
+import { RendererFunction, Tile, TileParams } from "../types";
 import { getBbox, getXYZ, TILE_SIZE } from "../util";
 
 

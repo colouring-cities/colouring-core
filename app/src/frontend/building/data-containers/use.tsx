@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
+
 import { CategoryViewProps } from './category-view-props';
 
 /**
@@ -31,7 +32,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             }
         </ul>
     </Fragment>
-)
+);
 const UseContainer = withCopyEdit(UseView);
 
 export default UseContainer;

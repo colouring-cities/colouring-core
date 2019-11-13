@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
-import { DataTitleCopyable } from './data-title';
 import { BaseDataEntryProps } from './data-entry';
+import { DataTitleCopyable } from './data-title';
 
 interface SelectDataEntryProps extends BaseDataEntryProps {
     value: string;
@@ -41,6 +41,6 @@ const SelectDataEntry: React.FunctionComponent<SelectDataEntryProps> = (props) =
             </select>
         </Fragment>
     );
-}
+};
 
 export default SelectDataEntry;

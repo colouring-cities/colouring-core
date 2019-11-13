@@ -1,8 +1,9 @@
 import React from 'react';
 
-import './legend.css';
+import { DownIcon, UpIcon } from '../components/icons';
 import { Logo } from '../components/logo';
-import { DownIcon, UpIcon, BackIcon } from '../components/icons';
+
+import './legend.css';
 
 const LEGEND_CONFIG = {
     location: {

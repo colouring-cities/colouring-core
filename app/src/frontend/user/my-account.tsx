@@ -39,7 +39,7 @@ class MyAccountPage extends Component<MyAccountPageProps, MyAccountPageState> {
             res => res.json()
         ).then(function(res){
             if (res.error) {
-                this.setState({error: res.error})
+                this.setState({error: res.error});
             } else {
                 this.props.logout();
             }
@@ -59,7 +59,7 @@ class MyAccountPage extends Component<MyAccountPageProps, MyAccountPageState> {
             res => res.json()
         ).then(function(res){
             if (res.error) {
-                this.setState({error: res.error})
+                this.setState({error: res.error});
             } else {
                 this.props.updateUser(res);
             }
@@ -176,7 +176,7 @@ class MyAccountPage extends Component<MyAccountPageProps, MyAccountPageState> {
         } else {
             return (
                 <Redirect to="/login.html" />
-            )
+            );
         }
     }
 }

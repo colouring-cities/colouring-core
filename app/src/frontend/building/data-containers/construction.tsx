@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
-import DataEntry from '../data-components/data-entry';
 
 /**
 * Construction view/edit section
@@ -50,7 +49,7 @@ const ConstructionView = (props) => (
             }
         </ul>
     </Fragment>
-)
+);
 const ConstructionContainer = withCopyEdit(ConstructionView);
 
 export default ConstructionContainer;

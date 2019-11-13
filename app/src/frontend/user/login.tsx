@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
@@ -7,7 +7,7 @@ import SupporterLogos from '../components/supporter-logos';
 import { User } from '../models/user';
 
 interface LoginProps {
-    user: User,
+    user: User;
     login: (user: User) => void;
 }
 
@@ -37,7 +37,7 @@ class Login extends Component<LoginProps, any> {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({error: undefined})
+        this.setState({error: undefined});
 
         fetch('/api/login', {
             method: 'POST',
@@ -50,7 +50,7 @@ class Login extends Component<LoginProps, any> {
             res => res.json()
         ).then(function(res){
             if (res.error) {
-                this.setState({error: res.error})
+                this.setState({error: res.error});
             } else {
                 fetch('/api/users/me', {
                     credentials: 'same-origin'
@@ -58,13 +58,13 @@ class Login extends Component<LoginProps, any> {
                     (res) => res.json()
                 ).then(user => {
                     if (user.error) {
-                        this.setState({error: user.error})
+                        this.setState({error: user.error});
                     } else {
-                        this.props.login(user)
+                        this.props.login(user);
                     }
                 }).catch(
                     (err) => this.setState({error: err})
-                )
+                );
             }
         }.bind(this)).catch(
             (err) => this.setState({error: err})
@@ -73,7 +73,7 @@ class Login extends Component<LoginProps, any> {
 
     render() {
         if (this.props.user && !this.props.user.error) {
-            return <Redirect to="/my-account.html" />
+            return <Redirect to="/my-account.html" />;
         }
         return (
             <article>
@@ -130,7 +130,7 @@ class Login extends Component<LoginProps, any> {
                     <SupporterLogos />
                 </section>
             </article>
-        )
+        );
     }
 }
 

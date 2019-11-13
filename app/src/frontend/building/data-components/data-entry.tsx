@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 
-import { DataTitleCopyable } from './data-title';
 import { CopyProps } from '../data-containers/category-view-props';
+
+import { DataTitleCopyable } from './data-title';
 
 interface BaseDataEntryProps {
     slug: string;
@@ -17,7 +18,7 @@ interface DataEntryProps extends BaseDataEntryProps {
     value?: string;
     maxLength?: number;
     placeholder?: string;
-    valueTransform?: (string) => string
+    valueTransform?: (string) => string;
 }
 
 const DataEntry: React.FunctionComponent<DataEntryProps> = (props) => {
@@ -47,7 +48,7 @@ const DataEntry: React.FunctionComponent<DataEntryProps> = (props) => {
             />
         </Fragment>
     );
-}
+};
 
 export default DataEntry;
 export {

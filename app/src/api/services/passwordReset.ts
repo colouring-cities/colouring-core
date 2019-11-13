@@ -1,11 +1,12 @@
-import url, { URL } from 'url';
-import { errors } from 'pg-promise';
 import nodemailer from 'nodemailer';
+import { errors } from 'pg-promise';
+import url, { URL } from 'url';
 
 import db from '../../db';
-import * as userService from './user';
-import { transporter } from './email';
 import { validatePassword } from '../validation';
+
+import { transporter } from './email';
+import * as userService from './user';
 
 
 /**

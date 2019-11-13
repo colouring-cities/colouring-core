@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 
 import { sanitiseURL } from '../../helpers';
-import { DataTitleCopyable } from './data-title';
+
 import { BaseDataEntryProps } from './data-entry';
+import { DataTitleCopyable } from './data-title';
 
 
 interface MultiDataEntryProps extends BaseDataEntryProps {
@@ -68,7 +69,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps> {
                                     key={index}
                                     className="form-control">
                                     <a href={sanitiseURL(item)}>{item}</a>
-                                </li>
+                                </li>;
                             })
                         }
                         </ul>
@@ -97,7 +98,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps> {
                 onClick={this.add}
                 disabled={props.mode === 'view'}
                 className="btn btn-outline-dark">+</button>
-        </Fragment>
+        </Fragment>;
     }
 }
 

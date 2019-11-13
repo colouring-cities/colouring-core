@@ -1,7 +1,8 @@
 import React from 'react';
 
-import './category-edit-summary.css';
 import { FieldEditSummary } from './field-edit-summary';
+
+import './category-edit-summary.css';
 
 interface CategoryEditSummaryProps {
     category: string;

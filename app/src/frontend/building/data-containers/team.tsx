@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
-import DataEntry from '../data-components/data-entry';
+
 import { CategoryViewProps } from './category-view-props';
 
 /**
@@ -25,7 +25,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => (
             }
         </ul>
     </Fragment>
-)
+);
 const TeamContainer = withCopyEdit(TeamView);
 
 export default TeamContainer;

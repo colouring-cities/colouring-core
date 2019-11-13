@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
-import { DataTitleCopyable } from './data-title';
 import { BaseDataEntryProps } from './data-entry';
+import { DataTitleCopyable } from './data-title';
 
 interface CheckboxDataEntryProps extends BaseDataEntryProps {
     value: boolean;
@@ -33,6 +33,6 @@ const CheckboxDataEntry: React.FunctionComponent<CheckboxDataEntryProps> = (prop
             </div>
         </Fragment>
     );
-}
+};
 
 export default CheckboxDataEntry;

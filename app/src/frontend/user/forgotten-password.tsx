@@ -1,6 +1,7 @@
-import React, { FormEvent, ChangeEvent } from 'react';
-import InfoBox from '../components/info-box';
+import React, { ChangeEvent, FormEvent } from 'react';
+
 import ErrorBox from '../components/error-box';
+import InfoBox from '../components/info-box';
 
 interface ForgottenPasswordState {
     success: boolean;
@@ -79,6 +80,6 @@ export default class ForgottenPassword extends React.Component<{}, ForgottenPass
                     </form>
                 </section>
             </article>
-        )
+        );
     }
 }

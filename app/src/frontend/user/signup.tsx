@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
@@ -50,7 +50,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({error: undefined})
+        this.setState({error: undefined});
 
         fetch('/api/users', {
             method: 'POST',
@@ -63,7 +63,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
             res => res.json()
         ).then(function(res){
             if (res.error) {
-                this.setState({error: res.error})
+                this.setState({error: res.error});
             } else {
                 fetch('/api/users/me', {
                     credentials: 'same-origin'
@@ -73,7 +73,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
                     (user) => this.props.login(user)
                 ).catch(
                     (err) => this.setState({error: err})
-                )
+                );
             }
         }.bind(this)).catch(
             (err) => this.setState({error: err})
@@ -82,7 +82,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
 
     render() {
         if (this.props.user) {
-            return <Redirect to="/my-account.html" />
+            return <Redirect to="/my-account.html" />;
         }
         return (
             <article>
@@ -175,7 +175,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
                     <SupporterLogos />
                 </section>
             </article>
-        )
+        );
     }
 }
 

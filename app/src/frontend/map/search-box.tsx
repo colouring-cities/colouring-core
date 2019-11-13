@@ -1,8 +1,9 @@
+import { Point } from 'geojson';
 import React, { Component } from 'react';
 
-import './search-box.css';
 import { SearchIcon } from '../components/icons';
-import { Point } from 'geojson';
+
+import './search-box.css';
 
 interface SearchResult {
     type: string;
@@ -10,12 +11,12 @@ interface SearchResult {
         label: string;
         zoom: number;
     };
-    geometry: Point
+    geometry: Point;
 }
 
 
 interface SearchBoxProps {
-    onLocate: (lat: number, lng: number, zoom: number) => void
+    onLocate: (lat: number, lng: number, zoom: number) => void;
 }
 
 interface SearchBoxState {
@@ -40,7 +41,7 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
             collapsedSearch: true,
             //is this a small screen device? if not we will disable collapse option
             smallScreen: false
-        }
+        };
         this.handleChange = this.handleChange.bind(this);
         this.search = this.search.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -93,7 +94,7 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
         e.preventDefault();
         this.setState({
             fetching: true
-        })
+        });
 
         fetch(
             '/api/search?q='+this.state.q
@@ -104,23 +105,23 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
                 this.setState({
                     results: data.results,
                     fetching: false
-                })
+                });
             } else {
                 console.error(data);
 
                 this.setState({
                     results: [],
                     fetching: false
-                })
+                });
             }
         }).catch((err) => {
-            console.error(err)
+            console.error(err);
 
             this.setState({
                 results: [],
                 fetching: false
-            })
-        })
+            });
+        });
     }
 
     componentDidMount() {
@@ -148,7 +149,7 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
                <div className="collapse-btn" onClick={this.expandSearch}>
 		    <SearchIcon />
 		</div>
-            )
+            );
         }
 
         const resultsList = this.state.results.length?
@@ -159,7 +160,7 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
                         const lng = result.geometry.coordinates[0];
                         const lat = result.geometry.coordinates[1];
                         const zoom = result.attributes.zoom;
-                        const href = `?lng=${lng}&lat=${lat}&zoom=${zoom}`
+                        const href = `?lng=${lng}&lat=${lat}&zoom=${zoom}`;
                         return (
                             <li key={result.attributes.label}>
                                 <a
@@ -171,7 +172,7 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
                                     href={href}
                                 >{`${label.substring(0, 4)} ${label.substring(4, 7)}`}</a>
                             </li>
-                        )
+                        );
                     })
                 }
             </ul>
@@ -196,7 +197,7 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
                 </form>
                 { resultsList }
             </div>
-        )
+        );
     }
 }
 

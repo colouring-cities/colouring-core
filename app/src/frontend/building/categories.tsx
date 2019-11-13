@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './categories.css'
+import './categories.css';
 
 interface CategoriesProps {
     mode: 'view' | 'edit' | 'multi-edit';
@@ -119,7 +119,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             building_id={props.building_id}
         />
     </ol>
-)
+);
 
 interface CategoryProps {
     mode: 'view' | 'edit' | 'multi-edit';
@@ -152,6 +152,6 @@ const Category: React.FC<CategoryProps> = (props) => {
         </NavLink>
     </li>
     );
-}
+};
 
 export default Categories;
