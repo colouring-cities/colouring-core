@@ -17,11 +17,18 @@ const Welcome = () => (
         volunteers of all ages and abilities to test and provide feedback on the site as we
         build it.
         </p>
+        <p className="lead">
+        All of the data we collect is made <Link to="/data-extracts.html">openly available</Link> &ndash;
+        please read our <a href="https://www.pages.colouring.london/data-ethics">data ethics policy</a> and
+        credit Colouring London if you use or share our maps or data.
+        </p>
         <Link to="/view/categories"
             className="btn btn-outline-dark btn-lg btn-block">
             Start Colouring Here!
         </Link>
+        <p>
         <img src="images/supporter-logos.png" alt="Colouring London collaborating organisations: The Bartlett UCL, Ordnance Survey, Historic England, Greater London Authority" />
+        </p>
     </div>
 );
 
