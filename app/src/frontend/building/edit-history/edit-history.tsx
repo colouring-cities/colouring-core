@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
+import './edit-history.css';
+
 import { Building } from '../../models/building';
 import { EditHistoryEntry } from '../../models/edit-history-entry';
 import ContainerHeader from '../container-header';
 
 import { BuildingEditSummary } from './building-edit-summary';
-
-import './edit-history.css';
 
 interface EditHistoryProps {
     building: Building;
