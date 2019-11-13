@@ -2,7 +2,7 @@ import { GeoJsonObject } from 'geojson';
 import React, { Component, Fragment } from 'react';
 import { AttributionControl, GeoJSON, Map, TileLayer, ZoomControl } from 'react-leaflet-universal';
 
-import '../../../node_modules/leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css';
 import './map.css';
 
 import { HelpIcon } from '../components/icons';

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 import Header from './header';
