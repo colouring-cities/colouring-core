@@ -11,6 +11,8 @@ export enum Category {
     Community = 'Community',
     Planning = 'Planning',
     Like = 'Like',
+
+    Unknown = 'Unknown'
 }
 
 export const categories = {
@@ -78,6 +80,18 @@ export const categoriesOrder: Category[] = [
     Category.Planning,
     Category.Like,
 ];
+
+/**
+ * This interface is used only in code which uses dataFields, not in the dataFields definition itself
+ * Cannot make dataFields an indexed type ({[key: string]: DataFieldDefinition}),
+ * because then we wouldn't have type-checking for whether a given key exists on dataFields,
+ * e.g. dataFields.foo_bar would not be highlighted as an error.
+ */
+export interface DataFieldDefinition {
+    category: Category;
+    title: string;
+    tooltip?: string;
+}
 
 export const dataFields = {
     location_name: {

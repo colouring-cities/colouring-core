@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './building-edit-summary.css';
 
-import { dataFields } from '../../data_fields';
+import { Category, DataFieldDefinition, dataFields } from '../../data_fields';
 import { arrayToDictionary, parseDate } from '../../helpers';
 import { EditHistoryEntry } from '../../models/edit-history-entry';
 
@@ -26,22 +26,26 @@ function formatDate(dt: Date) {
     });
 }
 
+function enrichHistoryEntries(forwardPatch: object, reversePatch: object) {
+    return Object
+        .entries(forwardPatch)
+        .map(([key, value]) => {
+            const info = dataFields[key] as DataFieldDefinition;
+            return {
+                title: info.title || `Unknown field (${key})`,
+                category: info.category || Category.Unknown,
+                value: value,
+                oldValue: reversePatch && reversePatch[key]
+            };
+        });
+}
+
 const BuildingEditSummary: React.FunctionComponent<BuildingEditSummaryProps> = ({
     historyEntry,
     showBuildingId = false,
     hyperlinkCategories = false
 }) => {
-    const entriesWithMetadata = Object
-            .entries(historyEntry.forward_patch)
-            .map(([key, value]) => {
-                const info = dataFields[key] || {};
-                return {
-                    title: info.title || `Unknown field (${key})`,
-                    category: info.category || 'Unknown',
-                    value: value,
-                    oldValue: historyEntry.reverse_patch && historyEntry.reverse_patch[key]
-                };
-            });
+    const entriesWithMetadata = enrichHistoryEntries(historyEntry.forward_patch, historyEntry.reverse_patch);
     const entriesByCategory = arrayToDictionary(entriesWithMetadata, x => x.category);
 
     const categoryHyperlinkTemplate = hyperlinkCategories && historyEntry.building_id != undefined ?
@@ -61,7 +65,7 @@ const BuildingEditSummary: React.FunctionComponent<BuildingEditSummaryProps> = (
             {
                 Object.entries(entriesByCategory).map(([category, fields]) => 
                     <CategoryEditSummary
-                        category={category}
+                        category={category as keyof typeof Category} // https://github.com/microsoft/TypeScript/issues/14106
                         fields={fields}
                         hyperlinkCategory={hyperlinkCategories}
                         hyperlinkTemplate={categoryHyperlinkTemplate}
