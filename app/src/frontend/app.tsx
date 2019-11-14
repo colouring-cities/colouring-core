@@ -9,6 +9,7 @@ import MapApp from './map-app';
 import { Building } from './models/building';
 import { User } from './models/user';
 import AboutPage from './pages/about';
+import ChangesPage from './pages/changes';
 import ContactPage from './pages/contact';
 import ContributorAgreementPage from './pages/contributor-agreement';
 import DataAccuracyPage from './pages/data-accuracy';
@@ -112,6 +113,7 @@ class App extends React.Component<AppProps, AppState> {
                 <Route exact path="/data-accuracy.html" component={DataAccuracyPage} />
                 <Route exact path="/data-extracts.html" component={DataExtracts} />
                 <Route exact path="/contact.html" component={ContactPage} />
+                <Route exact path="/history.html" component={ChangesPage} />
                 <Route exact path={App.mapAppPaths} render={(props) => (
                     <MapApp
                         {...props}
