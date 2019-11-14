@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 
+import * as editHistoryController from './controllers/editHistoryController';
 import buildingsRouter from './routes/buildingsRouter';
 import extractsRouter from './routes/extractsRouter';
 import usersRouter from './routes/usersRouter';
@@ -16,6 +17,8 @@ server.use(bodyParser.json());
 server.use('/buildings', buildingsRouter);
 server.use('/users', usersRouter);
 server.use('/extracts', extractsRouter);
+
+server.get('/history', editHistoryController.getGlobalEditHistory);
 
 // POST user auth
 server.post('/login', function (req, res) {

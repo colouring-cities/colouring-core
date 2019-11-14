@@ -1,17 +1,70 @@
 export enum Category {
     Location = 'Location',
-    LandUse = 'Land Use',
+    LandUse = 'LandUse',
     Type = 'Type',
     Age = 'Age',
-    SizeShape = 'Size & Shape',
+    SizeShape = 'SizeShape',
     Construction = 'Construction',
     Streetscape = 'Streetscape',
     Team = 'Team',
     Sustainability = 'Sustainability',
     Community = 'Community',
     Planning = 'Planning',
-    Like = 'Like Me!'
+    Like = 'Like',
+
+    Unknown = 'Unknown'
 }
+
+export const categories = {
+    [Category.Location]: {
+        slug: 'location',
+        name: 'Location'
+    },
+    [Category.LandUse]: {
+        slug: 'use',
+        name: 'Land Use'
+    },
+    [Category.Type]: {
+        slug: 'type',
+        name: 'Type'
+    },
+    [Category.Age]: {
+        slug: 'age',
+        name: 'Age'
+    },
+    [Category.SizeShape]: {
+        slug: 'size',
+        name: 'Size & Shape'
+    },
+    [Category.Construction]: {
+        slug: 'construction',
+        name: 'Construction'
+    },
+    [Category.Streetscape]: {
+        slug: 'streetscape',
+        name: 'Streetscape'
+    },
+    [Category.Team]: {
+        slug: 'team',
+        name: 'Team'
+    },
+    [Category.Sustainability]: {
+        slug: 'sustainability',
+        name: 'Sustainability'
+    },
+    [Category.Community]: {
+        slug: 'community',
+        name: 'Community'
+    },
+    [Category.Planning]: {
+        slug: 'planning',
+        name: 'Planning'
+    },
+    [Category.Like]: {
+        slug: 'like',
+        name: 'Like Me!'
+    }
+};
 
 export const categoriesOrder: Category[] = [
     Category.Location,
@@ -27,6 +80,18 @@ export const categoriesOrder: Category[] = [
     Category.Planning,
     Category.Like,
 ];
+
+/**
+ * This interface is used only in code which uses dataFields, not in the dataFields definition itself
+ * Cannot make dataFields an indexed type ({[key: string]: DataFieldDefinition}),
+ * because then we wouldn't have type-checking for whether a given key exists on dataFields,
+ * e.g. dataFields.foo_bar would not be highlighted as an error.
+ */
+export interface DataFieldDefinition {
+    category: Category;
+    title: string;
+    tooltip?: string;
+}
 
 export const dataFields = {
     location_name: {
