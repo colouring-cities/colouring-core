@@ -106,7 +106,7 @@ async function getUserById(id: string) {
 
 async function getUserByEmail(email: string) {
     try {
-        return db.one(
+        return await db.one(
             `SELECT
                 user_id, username, email
             FROM
@@ -123,7 +123,7 @@ async function getUserByEmail(email: string) {
 
 async function getNewUserAPIKey(id: string) {
     try{
-        return db.one(
+        return await db.one(
             `UPDATE
                 users
             SET
