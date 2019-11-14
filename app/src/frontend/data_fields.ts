@@ -1,17 +1,68 @@
 export enum Category {
     Location = 'Location',
-    LandUse = 'Land Use',
+    LandUse = 'LandUse',
     Type = 'Type',
     Age = 'Age',
-    SizeShape = 'Size & Shape',
+    SizeShape = 'SizeShape',
     Construction = 'Construction',
     Streetscape = 'Streetscape',
     Team = 'Team',
     Sustainability = 'Sustainability',
     Community = 'Community',
     Planning = 'Planning',
-    Like = 'Like Me!'
+    Like = 'Like',
 }
+
+export const categories = {
+    [Category.Location]: {
+        slug: 'location',
+        name: 'Location'
+    },
+    [Category.LandUse]: {
+        slug: 'use',
+        name: 'Land Use'
+    },
+    [Category.Type]: {
+        slug: 'type',
+        name: 'Type'
+    },
+    [Category.Age]: {
+        slug: 'age',
+        name: 'Age'
+    },
+    [Category.SizeShape]: {
+        slug: 'size',
+        name: 'Size & Shape'
+    },
+    [Category.Construction]: {
+        slug: 'construction',
+        name: 'Construction'
+    },
+    [Category.Streetscape]: {
+        slug: 'streetscape',
+        name: 'Streetscape'
+    },
+    [Category.Team]: {
+        slug: 'team',
+        name: 'Team'
+    },
+    [Category.Sustainability]: {
+        slug: 'sustainability',
+        name: 'Sustainability'
+    },
+    [Category.Community]: {
+        slug: 'community',
+        name: 'Community'
+    },
+    [Category.Planning]: {
+        slug: 'planning',
+        name: 'Planning'
+    },
+    [Category.Like]: {
+        slug: 'like',
+        name: 'Like Me!'
+    }
+};
 
 export const categoriesOrder: Category[] = [
     Category.Location,
