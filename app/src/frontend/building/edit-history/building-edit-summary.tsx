@@ -30,7 +30,7 @@ function enrichHistoryEntries(forwardPatch: object, reversePatch: object) {
     return Object
         .entries(forwardPatch)
         .map(([key, value]) => {
-            const info = dataFields[key] as DataFieldDefinition;
+            const info = dataFields[key] || {} as DataFieldDefinition;
             return {
                 title: info.title || `Unknown field (${key})`,
                 category: info.category || Category.Unknown,
