@@ -3,10 +3,10 @@
  *
  */
 import { errors } from 'pg-promise';
+import { promisify } from 'util';
 
 import db from '../../db';
-import { validateUsername, ValidationError, validatePassword } from '../validation';
-import { promisify } from 'util';
+import { validatePassword, validateUsername, ValidationError } from '../validation';
 
 
 async function createUser(user) {
@@ -71,9 +71,9 @@ async function authUser(username: string, password: string) {
         );
 
         if (user && user.auth_ok) {
-            return { user_id: user.user_id }
+            return { user_id: user.user_id };
         } else {
-            return { error: 'Username or password not recognised' }
+            return { error: 'Username or password not recognised' };
         }
     } catch(err) {
         if (err instanceof errors.QueryResultError) {
@@ -99,14 +99,14 @@ async function getUserById(id: string) {
             ]
         );
     } catch(error) {
-        console.error('Error:', error)
+        console.error('Error:', error);
         return undefined;
     }
 }
 
 async function getUserByEmail(email: string) {
     try {
-        return db.one(
+        return await db.one(
             `SELECT
                 user_id, username, email
             FROM
@@ -123,7 +123,7 @@ async function getUserByEmail(email: string) {
 
 async function getNewUserAPIKey(id: string) {
     try{
-        return db.one(
+        return await db.one(
             `UPDATE
                 users
             SET
@@ -137,7 +137,7 @@ async function getNewUserAPIKey(id: string) {
             ]
         );
     } catch(error) {
-        console.error('Error:', error)
+        console.error('Error:', error);
         return { error: 'Failed to generate new API key.' };
     }
 }
@@ -156,7 +156,7 @@ async function authAPIUser(key: string) {
             ]
         );
     } catch(error) {
-        console.error('Error:', error)
+        console.error('Error:', error);
         return undefined;
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Tooltip from '../../components/tooltip';
+import { CopyProps } from '../data-containers/category-view-props';
 
 
 interface DataTitleProps {
@@ -15,21 +15,16 @@ const DataTitle: React.FunctionComponent<DataTitleProps> = (props) => {
             { props.title }
             { props.tooltip? <Tooltip text={ props.tooltip } /> : null }
         </dt>
-    )
-}
-
-DataTitle.propTypes = {
-    title: PropTypes.string,
-    tooltip: PropTypes.string
-}
+    );
+};
 
 
 interface DataTitleCopyableProps {
     title: string;
-    tooltip: string;
+    tooltip?: string;
     slug: string;
     disabled?: boolean;
-    copy?: any; // TODO: type should be CopyProps, but that clashes with propTypes in some obscure way
+    copy?: CopyProps;
 }
 
 const DataTitleCopyable: React.FunctionComponent<DataTitleCopyableProps> = (props) => {
@@ -53,20 +48,7 @@ const DataTitleCopyable: React.FunctionComponent<DataTitleCopyableProps> = (prop
             </label>
         </div>
     );
-}
-
-DataTitleCopyable.propTypes = {
-    title: PropTypes.string,
-    tooltip: PropTypes.string,
-    slug: PropTypes.string,
-    disabled: PropTypes.bool,
-    copy: PropTypes.shape({
-        copying: PropTypes.bool,
-        copyingKey: PropTypes.func,
-        toggleCopyAttribute: PropTypes.func,
-        toggleCopying: PropTypes.func
-    })
-}
+};
 
 export default DataTitle;
-export { DataTitleCopyable }
+export { DataTitleCopyable };

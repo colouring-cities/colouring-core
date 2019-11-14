@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+
+import { CopyProps } from '../data-containers/category-view-props';
 
 import { DataTitleCopyable } from './data-title';
 
@@ -8,16 +9,16 @@ interface BaseDataEntryProps {
     title: string;
     tooltip?: string;
     disabled?: boolean;
-    copy?: any; // CopyProps clashes with propTypes
+    copy?: CopyProps; // CopyProps clashes with propTypes
     mode?: 'view' | 'edit' | 'multi-edit';
     onChange?: (key: string, value: any) => void;
 }
 
 interface DataEntryProps extends BaseDataEntryProps {
-    value: string;
+    value?: string;
     maxLength?: number;
     placeholder?: string;
-    valueTransform?: (string) => string
+    valueTransform?: (string) => string;
 }
 
 const DataEntry: React.FunctionComponent<DataEntryProps> = (props) => {
@@ -47,23 +48,7 @@ const DataEntry: React.FunctionComponent<DataEntryProps> = (props) => {
             />
         </Fragment>
     );
-}
-
-DataEntry.propTypes = {
-    title: PropTypes.string,
-    slug: PropTypes.string,
-    tooltip: PropTypes.string,
-    disabled: PropTypes.bool,
-    value: PropTypes.any,
-    placeholder: PropTypes.string,
-    maxLength: PropTypes.number,
-    onChange: PropTypes.func,
-    copy: PropTypes.shape({
-        copying: PropTypes.bool,
-        copyingKey: PropTypes.func,
-        toggleCopyAttribute: PropTypes.func
-    })
-}
+};
 
 export default DataEntry;
 export {

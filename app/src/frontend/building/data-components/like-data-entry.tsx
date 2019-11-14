@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import Tooltip from '../../components/tooltip';
 
@@ -47,13 +46,6 @@ const LikeDataEntry: React.FunctionComponent<LikeDataEntryProps> = (props) => {
             </label>
         </Fragment>
     );
-}
-
-LikeDataEntry.propTypes = {
-    // mode: PropTypes.string,
-    userLike: PropTypes.bool,
-    totalLikes: PropTypes.number,
-    onLike: PropTypes.func
 };
 
 export default LikeDataEntry;

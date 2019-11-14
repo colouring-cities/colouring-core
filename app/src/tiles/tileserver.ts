@@ -5,10 +5,11 @@
  */
 import express from 'express';
 
-import { strictParseInt } from '../parse';
-import { TileParams } from './types';
-import { mainRenderer, allTilesets } from './rendererDefinition';
 import asyncController from '../api/routes/asyncController';
+import { strictParseInt } from '../parse';
+
+import { allTilesets, renderTile } from './rendererDefinition';
+import { TileParams } from './types';
 
 const handleTileRequest = asyncController(async function (req: express.Request, res: express.Response) {
     try {
@@ -20,7 +21,7 @@ const handleTileRequest = asyncController(async function (req: express.Request, 
     }
     
     try {
-        const im = await mainRenderer.getTile(tileParams, dataParams);
+        const im = await renderTile(tileParams, dataParams);
         res.writeHead(200, { 'Content-Type': 'image/png' });
         res.end(im);
     } catch(err) {
@@ -30,7 +31,7 @@ const handleTileRequest = asyncController(async function (req: express.Request, 
 });
 
 // tiles router
-const router = express.Router()
+const router = express.Router();
 
 router.get('/:tileset/:z/:x/:y(\\d+):scale(@\\dx)?.png', handleTileRequest);
 

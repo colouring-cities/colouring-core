@@ -1,23 +1,20 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+
+import { dataFields } from '../../data_fields';
+import { CopyProps } from '../data-containers/category-view-props';
 
 import NumericDataEntry from './numeric-data-entry';
-import { dataFields } from '../../data_fields';
 
-class YearDataEntry extends Component<any, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        year: PropTypes.number,
-        upper: PropTypes.number,
-        lower: PropTypes.number,
-        mode: PropTypes.string,
-        onChange: PropTypes.func,
-        copy: PropTypes.shape({
-            copying: PropTypes.bool,
-            copyingKey: PropTypes.func,
-            toggleCopyAttribute: PropTypes.func
-        })
-    };
+interface YearDataEntryProps {
+    year: number;
+    upper: number;
+    lower: number;
+    copy?: CopyProps;
+    mode?: 'view' | 'edit' | 'multi-edit';
+    onChange?: (key: string, value: any) => void;
+}
 
+class YearDataEntry extends Component<YearDataEntryProps, any> {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,7 +23,7 @@ class YearDataEntry extends Component<any, any> { // TODO: add proper types
             lower: props.lower,
             decade: Math.floor(props.year / 10) * 10,
             century: Math.floor(props.year / 100) * 100
-        }
+        };
     }
     // TODO add dropdown for decade, century
     // TODO roll in first/last year estimate
@@ -65,7 +62,7 @@ class YearDataEntry extends Component<any, any> { // TODO: add proper types
                     tooltip={dataFields.date_lower.tooltip}
                     />
             </Fragment>
-        )
+        );
     }
 }
 

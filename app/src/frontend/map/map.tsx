@@ -1,26 +1,26 @@
-import PropTypes from 'prop-types';
-import React, { Component, Fragment } from 'react';
-import { Map, TileLayer, ZoomControl, AttributionControl, GeoJSON } from 'react-leaflet-universal';
 import { GeoJsonObject } from 'geojson';
+import React, { Component, Fragment } from 'react';
+import { AttributionControl, GeoJSON, Map, TileLayer, ZoomControl } from 'react-leaflet-universal';
 
-import '../../../node_modules/leaflet/dist/leaflet.css'
-import './map.css'
+import 'leaflet/dist/leaflet.css';
+import './map.css';
 
 import { HelpIcon } from '../components/icons';
+import { Building } from '../models/building';
+
 import Legend from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
-import { Building } from '../models/building';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
 interface ColouringMapProps {
-    building: Building;
+    building?: Building;
     mode: 'basic' | 'view' | 'edit' | 'multi-edit';
     category: string;
     revision_id: number;
-    selectBuilding: any;
-    colourBuilding: any;
+    selectBuilding: (building: Building) => void;
+    colourBuilding: (building: Building) => void;
 }
 
 interface ColouringMapState {
@@ -34,15 +34,6 @@ interface ColouringMapState {
  * Map area
  */
 class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
-    static propTypes = { // TODO: generate propTypes from TS
-        building: PropTypes.object,
-        mode: PropTypes.string,
-        category: PropTypes.string,
-        revision_id: PropTypes.number,
-        selectBuilding: PropTypes.func,
-        colourBuilding: PropTypes.func
-    };
-
     constructor(props) {
         super(props);
         this.state = {
@@ -93,7 +84,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             }
         }.bind(this)).catch(
             (err) => console.error(err)
-        )
+        );
     }
 
     themeSwitch(e) {
@@ -126,10 +117,12 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         const baseLayer = <TileLayer
             url={baseUrl}
             attribution={attribution}
+            maxNativeZoom={18}
+            maxZoom={19}
         />;
 
         const buildingsBaseUrl = `/tiles/base_${this.state.theme}/{z}/{x}/{y}{r}.png`;
-        const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={14} />;
+        const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={14} maxZoom={19}/>;
 
 
         const boundaryStyleFn = () => ({color: '#bbb', fill: false});
@@ -155,6 +148,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                 key={tileset}
                 url={`/tiles/${tileset}/{z}/{x}/{y}{r}.png?rev=${rev}`}
                 minZoom={9}
+                maxZoom={19}
             />
             : null;
 
@@ -163,7 +157,8 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             <TileLayer
                 key={this.props.building.building_id}
                 url={`/tiles/highlight/{z}/{x}/{y}{r}.png?highlight=${this.props.building.geometry_id}&base=${tileset}`}
-                minZoom={14}
+                minZoom={13}
+                maxZoom={19}
                 zIndex={100}
             />
             : null;
@@ -176,7 +171,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     center={position}
                     zoom={this.state.zoom}
                     minZoom={9}
-                    maxZoom={18}
+                    maxZoom={19}
                     doubleClickZoom={false}
                     zoomControl={false}
                     attributionControl={false}

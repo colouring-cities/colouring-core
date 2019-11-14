@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './logo.css';
 
 interface LogoProps {
@@ -44,6 +45,6 @@ const LogoGrid: React.FunctionComponent = () => (
             <div className="cell background-like"></div>
         </div>
     </div>
-)
+);
 
 export { Logo };

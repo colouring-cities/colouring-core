@@ -1,10 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-import './categories.css'
+import './categories.css';
 
-const Categories = (props) => (
+interface CategoriesProps {
+    mode: 'view' | 'edit' | 'multi-edit';
+    building_id?: number;
+}
+
+const Categories: React.FC<CategoriesProps> = (props) => (
     <ol className="data-category-list">
         <Category
             title="Location"
@@ -115,14 +119,19 @@ const Categories = (props) => (
             building_id={props.building_id}
         />
     </ol>
-)
+);
 
-Categories.propTypes = {
-    mode: PropTypes.string,
-    building_id: PropTypes.number
+interface CategoryProps {
+    mode: 'view' | 'edit' | 'multi-edit';
+    building_id?: number;
+    slug: string;
+    title: string;
+    desc: string;
+    help: string;
+    inactive: boolean;
 }
 
-const Category = (props) => {
+const Category: React.FC<CategoryProps> = (props) => {
     let categoryLink = `/${props.mode}/${props.slug}`;
     if (props.building_id != undefined) categoryLink += `/${props.building_id}`;
 
@@ -143,16 +152,6 @@ const Category = (props) => {
         </NavLink>
     </li>
     );
-}
-
-Category.propTypes = {
-    title: PropTypes.string,
-    desc: PropTypes.string,
-    slug: PropTypes.string,
-    help: PropTypes.string,
-    inactive: PropTypes.bool,
-    mode: PropTypes.string,
-    building_id: PropTypes.number
-}
+};
 
 export default Categories;

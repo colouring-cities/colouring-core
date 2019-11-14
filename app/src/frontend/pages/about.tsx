@@ -1,8 +1,9 @@
 import React from 'react';
 
-import SupporterLogos from '../components/supporter-logos';
 import './about.css';
+
 import Categories from '../building/categories';
+import SupporterLogos from '../components/supporter-logos';
 
 const AboutPage = () => (
     <article>
@@ -140,7 +141,7 @@ const AboutPage = () => (
                 onSubmit={function() {window.open(
                     'https://tinyletter.com/colouringlondon',
                     'popupwindow',
-                    'scrollbars=yes,width=800,height=600'); return true}}>
+                    'scrollbars=yes,width=800,height=600'); return true;}}>
                 <h3 className="h1">Keep in touch</h3>
                 <p>
 

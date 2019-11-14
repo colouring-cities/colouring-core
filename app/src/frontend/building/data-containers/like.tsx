@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 
-import withCopyEdit from '../data-container';
 import LikeDataEntry from '../data-components/like-data-entry';
+import withCopyEdit from '../data-container';
+
 import { CategoryViewProps } from './category-view-props';
 
 /**
@@ -16,7 +17,7 @@ const LikeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             onLike={props.onLike}
             />
     </Fragment>
-)
+);
 const LikeContainer = withCopyEdit(LikeView);
 
 export default LikeContainer;

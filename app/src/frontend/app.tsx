@@ -1,34 +1,38 @@
 import React, { Fragment } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link, Route, Switch } from 'react-router-dom';
 
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 import Header from './header';
-import AboutPage from './pages/about';
-import ContributorAgreementPage from './pages/contributor-agreement';
-import PrivacyPolicyPage from './pages/privacy-policy';
-import DataExtracts from './pages/data-extracts';
-
-import Login from './user/login';
-import MyAccountPage from './user/my-account';
-import SignUp from './user/signup';
-import ForgottenPassword from './user/forgotten-password';
-import PasswordReset from './user/password-reset';
-
 import MapApp from './map-app';
+import { Building } from './models/building';
+import { User } from './models/user';
+import AboutPage from './pages/about';
+import ChangesPage from './pages/changes';
 import ContactPage from './pages/contact';
+import ContributorAgreementPage from './pages/contributor-agreement';
 import DataAccuracyPage from './pages/data-accuracy';
+import DataExtracts from './pages/data-extracts';
 import OrdnanceSurveyLicencePage from './pages/ordnance-survey-licence';
 import OrdnanceSurveyUprnPage from './pages/ordnance-survey-uprn';
+import PrivacyPolicyPage from './pages/privacy-policy';
+import ForgottenPassword from './user/forgotten-password';
+import Login from './user/login';
+import MyAccountPage from './user/my-account';
+import PasswordReset from './user/password-reset';
+import SignUp from './user/signup';
 
 
 interface AppProps {
-    user?: any;
-    building?: any;
+    user?: User;
+    building?: Building;
     building_like?: boolean;
     revisionId: number;
+}
+
+interface AppState {
+    user?: User;
 }
 
 /**
@@ -43,13 +47,7 @@ interface AppProps {
  *   map or other pages are rendered, based on the URL. Use a react-router-dom <Link /> in
  *   child components to navigate without a full page reload.
  */
-class App extends React.Component<AppProps, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        user: PropTypes.object,
-        building: PropTypes.object,
-        building_like: PropTypes.bool
-    };
-
+class App extends React.Component<AppProps, AppState> {
     static mapAppPaths = ['/', '/:mode(view|edit|multi-edit)/:category/:building(\\d+)?/(history)?'];
 
     constructor(props: Readonly<AppProps>) {
@@ -115,6 +113,7 @@ class App extends React.Component<AppProps, any> { // TODO: add proper types
                 <Route exact path="/data-accuracy.html" component={DataAccuracyPage} />
                 <Route exact path="/data-extracts.html" component={DataExtracts} />
                 <Route exact path="/contact.html" component={ContactPage} />
+                <Route exact path="/history.html" component={ChangesPage} />
                 <Route exact path={App.mapAppPaths} render={(props) => (
                     <MapApp
                         {...props}

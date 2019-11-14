@@ -1,23 +1,23 @@
 import React, { Component, FormEvent } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import ConfirmationModal from '../components/confirmation-modal';
 import ErrorBox from '../components/error-box';
+import { User } from '../models/user';
 
-class MyAccountPage extends Component<any, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        user: PropTypes.shape({
-            username: PropTypes.string,
-            email: PropTypes.string,
-            registered: PropTypes.instanceOf(Date), // TODO: check if fix correct
-            api_key: PropTypes.string,
-            error: PropTypes.object
-        }),
-        updateUser: PropTypes.func,
-        logout: PropTypes.func
-    };
+interface MyAccountPageProps {
+    user: User;
+    updateUser: (user: User) => void;
+    logout: () => void;
+}
 
+interface MyAccountPageState {
+    showDeleteConfirm: boolean;
+    error: string;
+}
+
+
+class MyAccountPage extends Component<MyAccountPageProps, MyAccountPageState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,7 +39,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
             res => res.json()
         ).then(function(res){
             if (res.error) {
-                this.setState({error: res.error})
+                this.setState({error: res.error});
             } else {
                 this.props.logout();
             }
@@ -59,7 +59,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
             res => res.json()
         ).then(function(res){
             if (res.error) {
-                this.setState({error: res.error})
+                this.setState({error: res.error});
             } else {
                 this.props.updateUser(res);
             }
@@ -107,11 +107,17 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
                         <h1 className="h1">Welcome, {this.props.user.username}!</h1>
                         <p>
 
-                        Colouring London is under active development, Please <a href="https://discuss.colouring.london/">discuss
+                        Colouring London is under active development. Please <a href="https://discuss.colouring.london/">discuss
                         suggestions for improvements</a> and <a
                                 href="https://github.com/tomalrussell/colouring-london/issues">
                         report issues or problems</a>.
 
+                        </p>
+                        <p>
+                        For reference, here are the <Link
+                        to="/privacy-policy.html">privacy policy</Link>, <Link
+                        to="/contributor-agreement.html">contributor agreement</Link> and <Link
+                        to="/data-accuracy.html">data accuracy agreement</Link>.
                         </p>
                         <ErrorBox msg={this.state.error} />
                         <form onSubmit={this.handleLogout}>
@@ -170,7 +176,7 @@ class MyAccountPage extends Component<any, any> { // TODO: add proper types
         } else {
             return (
                 <Redirect to="/login.html" />
-            )
+            );
         }
     }
 }

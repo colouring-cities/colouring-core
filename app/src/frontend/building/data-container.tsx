@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { Redirect, NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
-import ContainerHeader from './container-header';
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
-import { CopyControl } from './header-buttons/copy-control';
-import { ViewEditControl } from './header-buttons/view-edit-control';
+import { compareObjects } from '../helpers';
 import { Building } from '../models/building';
 import { User } from '../models/user';
-import { compareObjects } from '../helpers';
+
+import ContainerHeader from './container-header';
 import { CategoryViewProps, CopyProps } from './data-containers/category-view-props';
+import { CopyControl } from './header-buttons/copy-control';
+import { ViewEditControl } from './header-buttons/view-edit-control';
 
 interface DataContainerProps {
     title: string;
@@ -19,11 +19,11 @@ interface DataContainerProps {
     help: string;
     inactive?: boolean;
 
-    user: User;
+    user?: User;
     mode: 'view' | 'edit';
-    building: Building;
-    building_like: boolean;
-    selectBuilding: (building: Building) => void
+    building?: Building;
+    building_like?: boolean;
+    selectBuilding: (building: Building) => void;
 }
 
 interface DataContainerState {
@@ -45,15 +45,6 @@ interface DataContainerState {
  */
 const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) => {
     return class DataContainer extends React.Component<DataContainerProps, DataContainerState> {
-        static propTypes = { // TODO: generate propTypes from TS
-            title: PropTypes.string,
-            slug: PropTypes.string,
-            intro: PropTypes.string,
-            help: PropTypes.string,
-            inactive: PropTypes.bool,
-            children: PropTypes.node
-        };
-
         constructor(props) {
             super(props);
 
@@ -98,7 +89,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
         toggleCopying() {
             this.setState({
                 copying: !this.state.copying
-            })
+            });
         }
 
         /**
@@ -115,7 +106,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
             }
             this.setState({
                 keys_to_copy: keys
-            })
+            });
         }
 
         isEdited() {
@@ -182,7 +173,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                 const data = await res.json();
                 
                 if (data.error) {
-                    this.setState({error: data.error})
+                    this.setState({error: data.error});
                 } else {
                     this.props.selectBuilding(data);
                     this.updateBuildingState('likes_total', data.likes_total);
@@ -208,7 +199,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                 const data = await res.json();
                 
                 if (data.error) {
-                    this.setState({error: data.error})
+                    this.setState({error: data.error});
                 } else {
                     this.props.selectBuilding(data);
                 }
@@ -219,14 +210,14 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
 
         render() {
             if (this.props.mode === 'edit' && !this.props.user){
-                return <Redirect to="/sign-up.html" />
+                return <Redirect to="/sign-up.html" />;
             }
 
             const currentBuilding = this.getEditedBuilding();
 
-            const values_to_copy = {}
+            const values_to_copy = {};
             for (const key of Object.keys(this.state.keys_to_copy)) {
-                values_to_copy[key] = currentBuilding[key]
+                values_to_copy[key] = currentBuilding[key];
             }
             const data_string = JSON.stringify(values_to_copy);
             const copy: CopyProps = {
@@ -234,7 +225,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                 toggleCopying: this.toggleCopying,
                 toggleCopyAttribute: this.toggleCopyAttribute,
                 copyingKey: (key: string) => this.state.keys_to_copy[key]
-            }
+            };
 
             const headerBackLink = `/${this.props.mode}/categories${this.props.building != undefined ? `/${this.props.building.building_id}` : ''}`;
             const edited = this.isEdited();
@@ -356,7 +347,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                 </section>
             );
         }
-    }
-}
+    };
+};
 
 export default withCopyEdit;

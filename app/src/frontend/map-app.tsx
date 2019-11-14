@@ -1,16 +1,17 @@
-import React, { Fragment } from 'react';
-import { Switch, Route, RouteComponentProps, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
-
-import Welcome from './pages/welcome';
-import Sidebar from './building/sidebar';
-import Categories from './building/categories';
-import MultiEdit from './building/multi-edit';
-import BuildingView from './building/building-view';
-import ColouringMap from './map/map';
 import { parse } from 'query-string';
+import React, { Fragment } from 'react';
+import { Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
+
+import { strictParseInt } from '../parse';
+
+import BuildingView from './building/building-view';
+import Categories from './building/categories';
 import { EditHistory } from './building/edit-history/edit-history';
+import MultiEdit from './building/multi-edit';
+import Sidebar from './building/sidebar';
+import ColouringMap from './map/map';
 import { Building } from './models/building';
+import Welcome from './pages/welcome';
 
 interface MapAppRouteParams {
     mode: 'view' | 'edit' | 'multi-edit';
@@ -19,10 +20,10 @@ interface MapAppRouteParams {
 }
 
 interface MapAppProps extends RouteComponentProps<MapAppRouteParams> {
-    building: Building;
-    building_like: boolean;
-    user: any;
-    revisionId: number;
+    building?: Building;
+    building_like?: boolean;
+    user?: any;
+    revisionId?: number;
 }
 
 interface MapAppState {
@@ -33,13 +34,6 @@ interface MapAppState {
 }
 
 class MapApp extends React.Component<MapAppProps, MapAppState> {
-    static propTypes = {
-        category: PropTypes.string,
-        revision_id: PropTypes.number,
-        building: PropTypes.object,
-        building_like: PropTypes.bool,
-        user: PropTypes.object
-    };
     constructor(props: Readonly<MapAppProps>) {
         super(props);
 
@@ -64,6 +58,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
 
     componentDidMount() {
         this.fetchLatestRevision();
+        this.fetchBuildingData();
     }
 
     async fetchLatestRevision() {
@@ -83,6 +78,52 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         }
     }
 
+    /**
+     * Fetches building data if a building is selected but no data provided through 
+     * props (from server-side rendering)
+     */
+    async fetchBuildingData() {
+        if(this.props.match.params.building != undefined && this.props.building == undefined) {
+            try {
+                // TODO: simplify API calls, create helpers for fetching data
+                const buildingId = strictParseInt(this.props.match.params.building);
+                let [building, building_uprns, building_like] = await Promise.all([
+                    fetch(`/api/buildings/${buildingId}.json`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'same-origin'
+                    }).then(res => res.json()),
+                    fetch(`/api/buildings/${buildingId}/uprns.json`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'same-origin'
+                    }).then(res => res.json()),
+                    fetch(`/api/buildings/${buildingId}/like.json`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }, 
+                        credentials: 'same-origin'
+                    }).then(res => res.json())
+                ]);
+
+                building.uprns = building_uprns.uprns;
+
+                this.setState({
+                    building: building,
+                    building_like: building_like.like
+                });
+            } catch(error) {
+                console.error(error);
+                // TODO: add UI for API errors
+            }
+        }
+    }
+
     getCategory(category: string) {
         if (category === 'categories') return undefined;
 
@@ -93,7 +134,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         revisionId = +revisionId;
         // bump revision id, only ever increasing
         if (revisionId > this.state.revision_id) {
-            this.setState({ revision_id: revisionId })
+            this.setState({ revision_id: revisionId });
         }
     }
 
@@ -125,7 +166,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                 this.setState({ building: building });
             }
         }).catch((err) => {
-            console.error(err)
+            console.error(err);
             this.setState({ building: building });
         });
 
@@ -146,7 +187,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                 this.props.history.push(`/${mode}/${category}/${building.building_id}`);
             }
         }).catch((err) => {
-            console.error(err)
+            console.error(err);
             this.setState({ building_like: false });
         });
     }
@@ -165,14 +206,14 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         const q = parse(window.location.search);
 
         if (cat === 'like') {
-            this.likeBuilding(building.building_id)
+            this.likeBuilding(building.building_id);
         } else {
             try {
                 // TODO: verify what happens if data is string[]
                 const data = JSON.parse(q.data as string);
-                this.updateBuilding(building.building_id, data)
+                this.updateBuilding(building.building_id, data);
             } catch (error) {
-                console.error(error, q)
+                console.error(error, q);
             }
         }
     }
@@ -189,7 +230,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
             res => res.json()
         ).then(function (res) {
             if (res.error) {
-                console.error({ error: res.error })
+                console.error({ error: res.error });
             } else {
                 this.increaseRevision(res.revision_id);
             }
@@ -210,7 +251,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
             res => res.json()
         ).then(res => {
             if (res.error) {
-                console.error({ error: res.error })
+                console.error({ error: res.error });
             } else {
                 this.increaseRevision(res.revision_id);
             }
@@ -235,7 +276,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                     </Route>
                     <Route exact path="/:mode/categories/:building?">
                         <Sidebar>
-                            <Categories mode={mode} building_id={building_id} />
+                            <Categories mode={mode || 'view'} building_id={building_id} />
                         </Sidebar>
                     </Route>
                     <Route exact path="/multi-edit/:cat" render={(props) => (

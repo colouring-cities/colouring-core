@@ -1,11 +1,11 @@
 /**
  * Mini-library of icons
  */
-import React from 'react'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faQuestionCircle, faPaintBrush, faInfoCircle, faTimes, faCheck, faCheckDouble,
-    faAngleLeft, faCaretDown, faSearch, faEye, faCaretUp, faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faAngleLeft, faCaretDown, faCaretRight, faCaretUp, faCheck, faCheckDouble,
+    faEye, faInfoCircle, faPaintBrush, faQuestionCircle, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 
 library.add(
     faQuestionCircle,

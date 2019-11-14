@@ -1,6 +1,7 @@
-import React, { FormEvent, ChangeEvent } from 'react';
-import InfoBox from '../components/info-box';
+import React, { ChangeEvent, FormEvent } from 'react';
+
 import ErrorBox from '../components/error-box';
+import InfoBox from '../components/info-box';
 
 interface ForgottenPasswordState {
     success: boolean;
@@ -61,7 +62,7 @@ export default class ForgottenPassword extends React.Component<{}, ForgottenPass
                     <ErrorBox msg={this.state.error} />
                     <InfoBox msg="">
                         {this.state.success ?
-                            `A password reset link has been sent to ${this.state.emailUsed}. Please check your inbox.` :
+                            `If the email address is registered on Colouring London, a password reset link will be sent to ${this.state.emailUsed}. Please check your inbox.` :
                             null
                         }
                     </InfoBox>
@@ -79,6 +80,6 @@ export default class ForgottenPassword extends React.Component<{}, ForgottenPass
                     </form>
                 </section>
             </article>
-        )
+        );
     }
 }

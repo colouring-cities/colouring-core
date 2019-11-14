@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './legend.css';
+
+import { DownIcon, UpIcon } from '../components/icons';
 import { Logo } from '../components/logo';
-import { DownIcon, UpIcon, BackIcon } from '../components/icons';
 
 const LEGEND_CONFIG = {
     location: {
@@ -114,13 +114,15 @@ const LEGEND_CONFIG = {
 };
 
 
-class Legend extends React.Component<any, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        slug: PropTypes.string,
-        color: PropTypes.string,
-        text: PropTypes.string
-    };
+interface LegendProps {
+    slug: string;
+}
 
+interface LegendState {
+    collapseList: boolean;
+}
+
+class Legend extends React.Component<LegendProps, LegendState> {
     constructor(props) {
         super(props);
         this.state = {collapseList: false};

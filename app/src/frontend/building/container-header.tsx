@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { BackIcon, EditIcon, ViewIcon }from '../components/icons';
+import { BackIcon }from '../components/icons';
 
 interface ContainerHeaderProps {
     cat?: string;
@@ -19,6 +19,6 @@ const ContainerHeader: React.FunctionComponent<ContainerHeaderProps> = (props) =
             {props.children}
         </nav>
     </header>
-)
+);
 
 export default ContainerHeader;

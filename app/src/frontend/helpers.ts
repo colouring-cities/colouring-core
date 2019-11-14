@@ -1,27 +1,27 @@
 import urlapi from 'url';
 
 function sanitiseURL(string){
-  let url_
+  let url_;
 
   // http or https
   if (!(string.substring(0, 7) === 'http://' || string.substring(0, 8) === 'https://')){
-      return null
+      return null;
   }
 
   try {
-      url_ = document.createElement('a')
-      url_.href = string
+      url_ = document.createElement('a');
+      url_.href = string;
   } catch (error) {
       try {
-          url_ = urlapi.parse(string)
+          url_ = urlapi.parse(string);
       } catch (error) {
-          return null
+          return null;
       }
   }
 
   // required (www.example.com)
   if (!url_.hostname || url_.hostname === '' || url_.hostname === 'localhost'){
-      return null
+      return null;
   }
 
   // optional (/some/path)
@@ -33,7 +33,7 @@ function sanitiseURL(string){
   // optional (#anchor)
   // url_.hash;
 
-  return `${url_.protocol}//${url_.hostname}${url_.pathname || ''}${url_.search || ''}${url_.hash || ''}`
+  return `${url_.protocol}//${url_.hostname}${url_.pathname || ''}${url_.search || ''}${url_.hash || ''}`;
 }
 
 /**
@@ -63,8 +63,8 @@ function parseDate(isoUtcDate: string): Date {
 }
 
 function compareObjects(objA: object, objB: object): [object, object] {
-    const reverse = {}
-    const forward = {}
+    const reverse = {};
+    const forward = {};
     for (const [key, value] of Object.entries(objB)) {
         if (objA[key] !== value) {
             reverse[key] = objA[key];

@@ -1,16 +1,36 @@
+import { Point } from 'geojson';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import './search-box.css';
+
 import { SearchIcon } from '../components/icons';
+
+interface SearchResult {
+    type: string;
+    attributes: {
+        label: string;
+        zoom: number;
+    };
+    geometry: Point;
+}
+
+
+interface SearchBoxProps {
+    onLocate: (lat: number, lng: number, zoom: number) => void;
+}
+
+interface SearchBoxState {
+    q: string;
+    results: SearchResult[];
+    fetching: boolean;
+    collapsedSearch: boolean;
+    smallScreen: boolean;
+}
+
 /**
  * Search for location
  */
-class SearchBox extends Component<any, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        onLocate: PropTypes.func
-    };
-
+class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +41,7 @@ class SearchBox extends Component<any, any> { // TODO: add proper types
             collapsedSearch: true,
             //is this a small screen device? if not we will disable collapse option
             smallScreen: false
-        }
+        };
         this.handleChange = this.handleChange.bind(this);
         this.search = this.search.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -74,7 +94,7 @@ class SearchBox extends Component<any, any> { // TODO: add proper types
         e.preventDefault();
         this.setState({
             fetching: true
-        })
+        });
 
         fetch(
             '/api/search?q='+this.state.q
@@ -85,23 +105,23 @@ class SearchBox extends Component<any, any> { // TODO: add proper types
                 this.setState({
                     results: data.results,
                     fetching: false
-                })
+                });
             } else {
                 console.error(data);
 
                 this.setState({
                     results: [],
                     fetching: false
-                })
+                });
             }
         }).catch((err) => {
-            console.error(err)
+            console.error(err);
 
             this.setState({
                 results: [],
                 fetching: false
-            })
-        })
+            });
+        });
     }
 
     componentDidMount() {
@@ -129,7 +149,7 @@ class SearchBox extends Component<any, any> { // TODO: add proper types
                <div className="collapse-btn" onClick={this.expandSearch}>
 		    <SearchIcon />
 		</div>
-            )
+            );
         }
 
         const resultsList = this.state.results.length?
@@ -140,7 +160,7 @@ class SearchBox extends Component<any, any> { // TODO: add proper types
                         const lng = result.geometry.coordinates[0];
                         const lat = result.geometry.coordinates[1];
                         const zoom = result.attributes.zoom;
-                        const href = `?lng=${lng}&lat=${lat}&zoom=${zoom}`
+                        const href = `?lng=${lng}&lat=${lat}&zoom=${zoom}`;
                         return (
                             <li key={result.attributes.label}>
                                 <a
@@ -152,7 +172,7 @@ class SearchBox extends Component<any, any> { // TODO: add proper types
                                     href={href}
                                 >{`${label.substring(0, 4)} ${label.substring(4, 7)}`}</a>
                             </li>
-                        )
+                        );
                     })
                 }
             </ul>
@@ -177,7 +197,7 @@ class SearchBox extends Component<any, any> { // TODO: add proper types
                 </form>
                 { resultsList }
             </div>
-        )
+        );
     }
 }
 

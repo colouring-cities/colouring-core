@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import InfoBox from '../components/info-box';
-
 const PrivacyPolicyPage: React.SFC<any> = () => (
     <article>
         <section className='main-col'>
@@ -118,6 +116,6 @@ const PrivacyPolicyPage: React.SFC<any> = () => (
             </div>
         </section>
     </article>
-)
+);
 
 export default PrivacyPolicyPage;

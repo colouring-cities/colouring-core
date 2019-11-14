@@ -1,23 +1,17 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import { sanitiseURL } from '../../helpers';
+
+import { BaseDataEntryProps } from './data-entry';
 import { DataTitleCopyable } from './data-title';
 
 
-class MultiDataEntry extends Component<any, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        slug: PropTypes.string,
-        title: PropTypes.string,
-        tooltip: PropTypes.string,
-        value: PropTypes.arrayOf(PropTypes.string),
-        placeholder: PropTypes.string,
-        disabled: PropTypes.bool,
-        onChange: PropTypes.func,
-        copy: PropTypes.bool,
-        toggleCopyAttribute: PropTypes.func,
-        copying: PropTypes.bool
-    };
+interface MultiDataEntryProps extends BaseDataEntryProps {
+    value: string[];
+    placeholder: string;
+}
+
+class MultiDataEntry extends Component<MultiDataEntryProps> {
 
     constructor(props) {
         super(props);
@@ -75,7 +69,7 @@ class MultiDataEntry extends Component<any, any> { // TODO: add proper types
                                     key={index}
                                     className="form-control">
                                     <a href={sanitiseURL(item)}>{item}</a>
-                                </li>
+                                </li>;
                             })
                         }
                         </ul>
@@ -104,7 +98,7 @@ class MultiDataEntry extends Component<any, any> { // TODO: add proper types
                 onClick={this.add}
                 disabled={props.mode === 'view'}
                 className="btn btn-outline-dark">+</button>
-        </Fragment>
+        </Fragment>;
     }
 }
 

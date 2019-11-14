@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from "react";
 
 import './data-entry-group.css';
-import { RightIcon, DownIcon } from "../../components/icons";
+
+import { DownIcon, RightIcon } from "../../components/icons";
 
 interface DataEntryGroupProps {
     /** Name of the group */
@@ -29,7 +30,7 @@ const DataEntryGroup: React.FunctionComponent<DataEntryGroupProps> = (props) => 
             </div>
         </Fragment>
     );
-}
+};
 
 const CollapseIcon: React.FunctionComponent<{collapsed: boolean}> = (props) => (
     <span className="collapse-icon">

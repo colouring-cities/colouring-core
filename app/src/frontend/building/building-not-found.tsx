@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import InfoBox from '../components/info-box';
 
 
 interface BuildingNotFoundProps {
-  mode: string
+  mode: string;
 }
 
 const BuildingNotFound: React.FunctionComponent<BuildingNotFoundProps> = (props) => (
@@ -17,9 +16,5 @@ const BuildingNotFound: React.FunctionComponent<BuildingNotFoundProps> = (props)
     </div>
   </Fragment>
 );
-
-BuildingNotFound.propTypes = {
-  mode: PropTypes.string
-}
 
 export default BuildingNotFound;

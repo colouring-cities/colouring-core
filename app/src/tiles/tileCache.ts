@@ -16,12 +16,12 @@
 // Using node-fs package to patch fs
 // for node >10 we could drop this in favour of fs.mkdir (which has recursive option)
 // and then use stdlib `import fs from 'fs';`
-import fs from 'node-fs';
-import { promisify } from 'util'
 import { Image } from 'mapnik';
+import fs from 'node-fs';
+import { promisify } from 'util';
 
-import { TileParams, BoundingBox } from './types';
-import { getXYZ, formatParams } from './util';
+import { BoundingBox, TileParams } from './types';
+import { formatParams, getXYZ } from './util';
 
 // TODO: switch to modern node and use built-in fs with promise-based API
 const readFile = promisify(fs.readFile),
@@ -70,7 +70,9 @@ class TileCache {
         /** Domain definition for the cache */
         private cacheDomain: CacheDomain,
         /** Function for defining custom caching rules (optional) */
-        private shouldCacheFn?: (TileParams) => boolean
+        private shouldCacheFn?: (TileParams) => boolean,
+        /** Function for defining whether the tileset should be cleared when clearing cache for bounding box */
+        private shouldBulkClearTilesetFn?: (tileset: string) => boolean
     ) {}
 
     async get(tileParams: TileParams): Promise<Image> {
@@ -108,8 +110,10 @@ class TileCache {
     async removeAllAtBbox(bbox: BoundingBox): Promise<void[]> {
         const removePromises: Promise<void>[] = [];
         for (const tileset of this.cacheDomain.tilesets) {
+            if(!this.shouldBulkClearTileset(tileset)) continue;
+
             for (let z = this.cacheDomain.minZoom; z <= this.cacheDomain.maxZoom; z++) {
-                let tileBounds = getXYZ(bbox, z)
+                let tileBounds = getXYZ(bbox, z);
                 for (let x = tileBounds.minX; x <= tileBounds.maxX; x++) {
                     for (let y = tileBounds.minY; y <= tileBounds.maxY; y++) {
                         for (const scale of this.cacheDomain.scales) {
@@ -136,6 +140,10 @@ class TileCache {
             this.cacheDomain.maxZoom >= tileParams.z &&
             this.cacheDomain.scales.includes(tileParams.scale) &&
             (this.shouldCacheFn == undefined || this.shouldCacheFn(tileParams));
+    }
+
+    private shouldBulkClearTileset(tileset: string): boolean {
+        return this.shouldCacheFn == undefined || this.shouldBulkClearTilesetFn(tileset);
     }
 }
 

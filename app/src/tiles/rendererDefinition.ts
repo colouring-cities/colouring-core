@@ -1,21 +1,16 @@
+import { getAllLayerNames, getBuildingLayerNames, getBuildingsDataConfig, getHighlightDataConfig } from "./dataDefinition";
+import { createBlankTile } from "./renderers/createBlankTile";
+import { getTileWithCaching } from "./renderers/getTileWithCaching";
+import { renderDataSourceTile } from "./renderers/renderDataSourceTile";
+import { stitchTile } from "./renderers/stitchTile";
 import { TileCache } from "./tileCache";
-import { BoundingBox, TileParams } from "./types";
-import { StitchRenderer } from "./renderers/stitchRenderer";
-import { CachedRenderer } from "./renderers/cachedRenderer";
-import { BranchingRenderer } from "./renderers/branchingRenderer";
-import { WindowedRenderer } from "./renderers/windowedRenderer";
-import { BlankRenderer } from "./renderers/blankRenderer";
-import { DatasourceRenderer } from "./renderers/datasourceRenderer";
-import { getBuildingsDataConfig, getHighlightDataConfig, BUILDING_LAYER_DEFINITIONS } from "./dataDefinition";
+import { BoundingBox, Tile, TileParams } from "./types";
+import { isOutsideExtent } from "./util";
 
 /**
  * A list of all tilesets handled by the tile server
  */
-const allTilesets = ['highlight', ...Object.keys(BUILDING_LAYER_DEFINITIONS)];
-
-const buildingDataRenderer = new DatasourceRenderer(getBuildingsDataConfig);
-
-const stitchRenderer = new StitchRenderer(undefined); // depends recurrently on cache, so parameter will be set later
+const allTilesets = getAllLayerNames();
 
 /**
  * Zoom level when we switch from rendering direct from database to instead composing tiles
@@ -23,56 +18,60 @@ const stitchRenderer = new StitchRenderer(undefined); // depends recurrently on 
  */
 const STITCH_THRESHOLD = 12;
 
-const renderOrStitchRenderer = new BranchingRenderer(
-    ({ z }) => z <= STITCH_THRESHOLD,
-    stitchRenderer, // refer to the prepared stitch renderer
-    buildingDataRenderer
-);
-
-const tileCache = new TileCache(
-    process.env.TILECACHE_PATH,
-    {
-        tilesets: ['date_year', 'size_storeys', 'location', 'likes', 'conservation_area', 'sust_dec', 'building_attachment_form'],
-        minZoom: 9,
-        maxZoom: 18,
-        scales: [1, 2]
-    },
-    ({ tileset, z }: TileParams) => (tileset === 'date_year' && z <= 16) ||
-        ((tileset === 'base_light' || tileset === 'base_night') && z <= 17) ||
-        z <= 13
-);
-
-const cachedRenderer = new CachedRenderer(
-    tileCache,
-    renderOrStitchRenderer
-);
-
-// set up stitch renderer to use the data renderer with caching
-stitchRenderer.tileRenderer = cachedRenderer;
-
-const highlightRenderer = new DatasourceRenderer(getHighlightDataConfig);
-
-const highlightOrBuildingRenderer = new BranchingRenderer(
-    ({ tileset }) => tileset === 'highlight',
-    highlightRenderer,
-    cachedRenderer
-);
-
-const blankRenderer = new BlankRenderer();
-
 /**
  * Hard-code extent so we can short-circuit rendering and return empty/transparent tiles outside the area of interest
  * bbox in CRS epsg:3857 in form: [w, s, e, n]
  */
 const EXTENT_BBOX: BoundingBox = [-61149.622628, 6667754.851372, 28128.826409, 6744803.375884];
-const mainRenderer = new WindowedRenderer(
-    EXTENT_BBOX,
-    highlightOrBuildingRenderer,
-    blankRenderer
+
+const tileCache = new TileCache(
+    process.env.TILECACHE_PATH,
+    {
+        tilesets: getBuildingLayerNames(),
+        minZoom: 9,
+        maxZoom: 19,
+        scales: [1, 2]
+    },
+
+    // cache age data and base building outlines for more zoom levels than other layers
+    ({ tileset, z }: TileParams) => (tileset === 'date_year' && z <= 16) ||
+        ((tileset === 'base_light' || tileset === 'base_night') && z <= 17) ||
+        z <= 13,
+    
+    // don't clear base_light and base_night on bounding box cache clear
+    (tileset: string) => tileset !== 'base_light' && tileset !== 'base_night'
 );
+
+const renderBuildingTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getBuildingsDataConfig);
+const renderHighlightTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getHighlightDataConfig);
+
+function cacheOrCreateBuildingTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
+    return getTileWithCaching(tileParams, dataParams, tileCache, stitchOrRenderBuildingTile);
+}
+
+function stitchOrRenderBuildingTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
+    if (tileParams.z <= STITCH_THRESHOLD) {
+        // stitch tile, using cache recursively
+        return stitchTile(tileParams, dataParams, cacheOrCreateBuildingTile);
+    } else {
+        return renderBuildingTile(tileParams, dataParams);
+    }
+}
+
+function renderTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
+    if (isOutsideExtent(tileParams, EXTENT_BBOX)) {
+        return createBlankTile();
+    }
+
+    if (tileParams.tileset === 'highlight') {
+        return renderHighlightTile(tileParams, dataParams);
+    }
+
+    return cacheOrCreateBuildingTile(tileParams, dataParams);
+}
 
 export {
     allTilesets,
-    mainRenderer,
+    renderTile,
     tileCache
 };

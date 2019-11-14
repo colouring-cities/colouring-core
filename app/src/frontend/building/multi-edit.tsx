@@ -1,18 +1,26 @@
-import React, { Fragment } from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import { parse } from 'query-string';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 
-import Sidebar from './sidebar';
+import { BackIcon } from '../components/icons';
 import InfoBox from '../components/info-box';
-import { BackIcon }from '../components/icons';
-import DataEntry from './data-components/data-entry';
 import { dataFields } from '../data_fields';
+import { User } from '../models/user';
 
+import DataEntry from './data-components/data-entry';
+import Sidebar from './sidebar';
 
-const MultiEdit = (props) => {
+interface MultiEditRouteParams {
+    cat: string;
+}
+
+interface MultiEditProps extends RouteComponentProps<MultiEditRouteParams> {
+    user?: User;
+}
+
+const MultiEdit: React.FC<MultiEditProps> = (props) => {
     if (!props.user){
-        return <Redirect to="/sign-up.html" />
+        return <Redirect to="/sign-up.html" />;
     }
     const cat = props.match.params.cat;
     if (cat === 'like') {
@@ -38,14 +46,14 @@ const MultiEdit = (props) => {
 
     let data: object;
     if (cat === 'like'){
-        data = { like: true }
+        data = { like: true };
     } else {
         try {
             // TODO: verify what happens if data is string[]
             data = JSON.parse(q.data as string);
         } catch (error) {
-            console.error(error, q)
-            data = {}
+            console.error(error, q);
+            data = {};
         }
     }
 
@@ -72,7 +80,7 @@ const MultiEdit = (props) => {
                             disabled={true}
                             value={data[key]}
                             />
-                        )
+                        );
                     }))
                 }
                 </form>
@@ -83,12 +91,6 @@ const MultiEdit = (props) => {
             </section>
         </Sidebar>
     );
-}
-
-MultiEdit.propTypes = {
-    user: PropTypes.object,
-    match: PropTypes.object,
-    location: PropTypes.object
-}
+};
 
 export default MultiEdit;

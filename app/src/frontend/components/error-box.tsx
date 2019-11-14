@@ -1,7 +1,10 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 
-function ErrorBox(props){
+interface ErrorBoxProps {
+    msg: string;
+}
+
+const ErrorBox: React.FC<ErrorBoxProps> = (props) => {
     if (props.msg) {
         console.error(props.msg);
     }
@@ -12,7 +15,7 @@ function ErrorBox(props){
                     (
                         <div className="alert alert-danger" role="alert">
                             {
-                                (typeof props.msg === 'string' || props.msg instanceof String)?
+                                typeof props.msg === 'string' ?
                                     props.msg
                                     : 'Unexpected error'
                             }
@@ -21,10 +24,6 @@ function ErrorBox(props){
             }
         </Fragment>
     );
-}
-
-ErrorBox.propTypes = {
-    msg: PropTypes.string
-}
+};
 
 export default ErrorBox;

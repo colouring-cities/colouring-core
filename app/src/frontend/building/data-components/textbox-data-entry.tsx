@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 
-import { DataTitleCopyable } from './data-title';
 import { BaseDataEntryProps } from './data-entry';
+import { DataTitleCopyable } from './data-title';
 
 interface TextboxDataEntryProps extends BaseDataEntryProps {
     value: string;
@@ -40,22 +39,6 @@ const TextboxDataEntry: React.FunctionComponent<TextboxDataEntryProps> = (props)
                 ></textarea>
         </Fragment>
     );
-}
-
-TextboxDataEntry.propTypes = {
-    title: PropTypes.string,
-    slug: PropTypes.string,
-    tooltip: PropTypes.string,
-    disabled: PropTypes.bool,
-    value: PropTypes.any,
-    placeholder: PropTypes.string,
-    maxLength: PropTypes.number,
-    onChange: PropTypes.func,
-    copy: PropTypes.shape({
-        copying: PropTypes.bool,
-        copyingKey: PropTypes.func,
-        toggleCopyAttribute: PropTypes.func
-    })
-}
+};
 
 export default TextboxDataEntry;

@@ -1,13 +1,14 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
+
+import './header.css';
 
 import { Logo } from './components/logo';
-import './header.css';
+import { User } from './models/user';
 
 
 interface HeaderProps {
-    user: any;
+    user: User;
     animateLogo: boolean;
 }
 
@@ -18,14 +19,7 @@ interface HeaderState {
 /**
  * Render the main header using a responsive design
  */
-class Header extends React.Component<HeaderProps, HeaderState> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        user: PropTypes.shape({
-            username: PropTypes.string
-        }),
-        animateLogo: PropTypes.bool
-    };
-
+class Header extends React.Component<HeaderProps, HeaderState> {
     constructor(props) {
         super(props);
         this.state = {collapseMenu: true};

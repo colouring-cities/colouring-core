@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
+
 import { CategoryViewProps } from './category-view-props';
 
 /**
@@ -18,7 +19,7 @@ const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             <li>Building shading</li>
         </ul>
     </Fragment>
-)
+);
 const StreetscapeContainer = withCopyEdit(StreetscapeView);
 
 export default StreetscapeContainer;

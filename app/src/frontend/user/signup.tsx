@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link, Redirect } from 'react-router-dom';
 
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
 import SupporterLogos from '../components/supporter-logos';
+import { User } from '../models/user';
 
-class SignUp extends Component<any, any> { // TODO: add proper types
-    static propTypes = { // TODO: generate propTypes from TS
-        login: PropTypes.func.isRequired,
-        user: PropTypes.object
-    };
+interface SignUpProps {
+    login: (user: User) => void;
+    user: User;
+}
 
+interface SignUpState {
+    username: string;
+    email: string;
+    confirm_email: string;
+    show_password: boolean;
+    password: string;
+    confirm_conditions: boolean;
+    error: string;
+}
+
+class SignUp extends Component<SignUpProps, SignUpState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,7 +29,7 @@ class SignUp extends Component<any, any> { // TODO: add proper types
             email: '',
             confirm_email: '',
             password: '',
-            show_password: '',
+            show_password: false,
             confirm_conditions: false,
             error: undefined
         };
@@ -31,16 +41,16 @@ class SignUp extends Component<any, any> { // TODO: add proper types
     handleChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
+        const name: keyof SignUpState = target.name;
 
         this.setState({
             [name]: value
-        });
+        } as Pick<SignUpState, keyof SignUpState>);
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({error: undefined})
+        this.setState({error: undefined});
 
         fetch('/api/users', {
             method: 'POST',
@@ -53,7 +63,7 @@ class SignUp extends Component<any, any> { // TODO: add proper types
             res => res.json()
         ).then(function(res){
             if (res.error) {
-                this.setState({error: res.error})
+                this.setState({error: res.error});
             } else {
                 fetch('/api/users/me', {
                     credentials: 'same-origin'
@@ -63,7 +73,7 @@ class SignUp extends Component<any, any> { // TODO: add proper types
                     (user) => this.props.login(user)
                 ).catch(
                     (err) => this.setState({error: err})
-                )
+                );
             }
         }.bind(this)).catch(
             (err) => this.setState({error: err})
@@ -72,7 +82,7 @@ class SignUp extends Component<any, any> { // TODO: add proper types
 
     render() {
         if (this.props.user) {
-            return <Redirect to="/my-account.html" />
+            return <Redirect to="/my-account.html" />;
         }
         return (
             <article>
@@ -165,7 +175,7 @@ class SignUp extends Component<any, any> { // TODO: add proper types
                     <SupporterLogos />
                 </section>
             </article>
-        )
+        );
     }
 }
 
