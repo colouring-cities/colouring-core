@@ -47,9 +47,14 @@ def main(base_url, api_key, source_file):
             if building_id is None:
                 continue
 
+            if 'sust_dec' in line and line['sust_dec'] == '':
+                del line['sust_dec']
+
             response_code, response_data = update_building(building_id, line, api_key, base_url)
             if response_code != 200:
                 print('ERROR', building_id, response_code, response_data)
+            else:
+                print('DEBUG', building_id, response_code, response_data)
 
 
 def update_building(building_id, data, api_key, base_url):
@@ -64,6 +69,9 @@ def update_building(building_id, data, api_key, base_url):
 
 
 def find_building(data, base_url):
+    if 'building_id' in data:
+        return data['building_id']
+
     if 'toid' in data:
         building_id = find_by_reference(base_url, 'toid', data['toid'])
         if building_id is not None:
