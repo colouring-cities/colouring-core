@@ -28,7 +28,7 @@ const DataEntry: React.FunctionComponent<DataEntryProps> = (props) => {
                 slug={props.slug}
                 title={props.title}
                 tooltip={props.tooltip}
-                disabled={props.disabled}
+                disabled={props.disabled || props.value == undefined || props.value == ''}
                 copy={props.copy}
             />
             <input className="form-control" type="text"
