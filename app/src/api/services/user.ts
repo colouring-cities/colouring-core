@@ -60,7 +60,10 @@ async function authUser(username: string, password: string) {
                 user_id,
                 (
                     pass = crypt($2, pass)
-                ) AS auth_ok
+                ) AS auth_ok,
+                is_blocked,
+                blocked_on,
+                blocked_reason
             FROM users
             WHERE
             username = $1
@@ -71,6 +74,9 @@ async function authUser(username: string, password: string) {
         );
 
         if (user && user.auth_ok) {
+            if (user.is_blocked) {
+                return { error: `Account temporarily blocked.${user.blocked_reason == undefined ? '' : ' Reason: '+user.blocked_reason}` };
+            }
             return { user_id: user.user_id };
         } else {
             return { error: 'Username or password not recognised' };
