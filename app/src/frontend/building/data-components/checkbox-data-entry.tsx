@@ -14,7 +14,7 @@ const CheckboxDataEntry: React.FunctionComponent<CheckboxDataEntryProps> = (prop
                 slug={props.slug}
                 title={props.title}
                 tooltip={props.tooltip}
-                disabled={props.disabled}
+                disabled={props.disabled || props.value == undefined}
                 copy={props.copy}
             />
             <div className="form-check">

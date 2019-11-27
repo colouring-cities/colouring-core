@@ -13,3 +13,13 @@ export function dateReviver(name, value) {
     }
     return value;
 }
+
+
+export function parseJsonOrDefault(jsonString: string) {
+    try {
+        return JSON.parse(jsonString);
+    } catch(error) {
+        console.error(error);
+        return null;
+    }
+}
