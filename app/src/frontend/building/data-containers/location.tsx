@@ -31,6 +31,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             copy={props.copy}
             onChange={props.onChange}
             step={1}
+            min={1}
             />
         <DataEntry
             title={dataFields.location_street.title}
@@ -99,8 +100,10 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             value={props.building.location_latitude}
             mode={props.mode}
             copy={props.copy}
-            step={0.0001}
-            placeholder="51"
+            step={0.00001}
+            min={-90}
+            max={90}
+            placeholder="Latitude, e.g. 51.5467"
             onChange={props.onChange}
             />
         <NumericDataEntry
@@ -109,8 +112,10 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             value={props.building.location_longitude}
             mode={props.mode}
             copy={props.copy}
-            step={0.0001}
-            placeholder="0"
+            step={0.00001}
+            min={-180}
+            max={180}
+            placeholder="Longitude, e.g. -0.0586"
             onChange={props.onChange}
             />
     </Fragment>
