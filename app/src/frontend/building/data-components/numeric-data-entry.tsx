@@ -27,10 +27,10 @@ const NumericDataEntry: React.FunctionComponent<NumericDataEntryProps> = (props)
                 type="number"
                 id={props.slug}
                 name={props.slug}
-                value={props.value || ''}
-                step={props.step || 1}
+                value={props.value == undefined ? '' : props.value}
+                step={props.step == undefined ? 1 : props.step}
                 max={props.max}
-                min={props.min || 0}
+                min={props.min}
                 disabled={props.mode === 'view' || props.disabled}
                 placeholder={props.placeholder}
                 onChange={e => 

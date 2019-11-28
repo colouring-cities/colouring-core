@@ -24,6 +24,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 tooltip={dataFields.size_storeys_core.tooltip}
                 onChange={props.onChange}
                 step={1}
+                min={0}
                 />
             <NumericDataEntry
                 title={dataFields.size_storeys_attic.title}
@@ -34,6 +35,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 tooltip={dataFields.size_storeys_attic.tooltip}
                 onChange={props.onChange}
                 step={1}
+                min={0}
                 />
             <NumericDataEntry
                 title={dataFields.size_storeys_basement.title}
@@ -44,6 +46,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 tooltip={dataFields.size_storeys_basement.tooltip}
                 onChange={props.onChange}
                 step={1}
+                min={0}
                 />
         </DataEntryGroup>
         <DataEntryGroup name="Height">
@@ -55,6 +58,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 copy={props.copy}
                 onChange={props.onChange}
                 step={0.1}
+                min={0}
                 />
             <NumericDataEntry
                 title={dataFields.size_height_eaves.title}
@@ -65,6 +69,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 copy={props.copy}
                 onChange={props.onChange}
                 step={0.1}
+                min={0}
                 />
         </DataEntryGroup>
         <DataEntryGroup name="Floor area">
@@ -76,6 +81,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 copy={props.copy}
                 onChange={props.onChange}
                 step={0.1}
+                min={0}
                 />
             <NumericDataEntry
                 title={dataFields.size_floor_area_total.title}
@@ -85,6 +91,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 copy={props.copy}
                 onChange={props.onChange}
                 step={0.1}
+                min={0}
                 />
         </DataEntryGroup>
         <NumericDataEntry
@@ -95,6 +102,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             copy={props.copy}
             onChange={props.onChange}
             step={0.1}
+            min={0}
             />
         <NumericDataEntry
             title={dataFields.size_plot_area_total.title}
@@ -104,6 +112,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             copy={props.copy}
             onChange={props.onChange}
             step={0.1}
+            min={0}
             disabled={true}
             />
         <NumericDataEntry
@@ -114,6 +123,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             copy={props.copy}
             onChange={props.onChange}
             step={0.1}
+            min={0}
             disabled={true}
             />
         <SelectDataEntry
