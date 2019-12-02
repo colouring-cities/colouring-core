@@ -18,8 +18,20 @@ const LEGEND_CONFIG = {
         ]
     },
     use: {
-        title: 'Use',
-        elements: []
+        title: 'Land Use',
+        elements: [
+            { color: '#52403C', text: 'Agriculture And Fisheries' },
+            { color: '#73ccd1', text: 'Community Services' },
+            { color: '#898944', text: 'Defence' },
+            { color: '#f5f58f', text: 'Industry And Business' },
+            { color: '#e5050d', text: 'Mixed Use' },
+            { color: '#ffbfbf', text: 'Recreation And Leisure' },
+            { color: '#4a54a6', text: 'Residential' },
+            { color: '#ff8c00', text: 'Retail' },
+            { color: '#b3de69', text: 'Transport' },
+            { color: '#cccccc', text: 'Utilities And Infrastructure' },
+            { color: '#ffffff', text: 'Vacant And Derelict' },
+        ]
     },
     type: {
         title: 'Type',
