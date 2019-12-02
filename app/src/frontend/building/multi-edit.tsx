@@ -2,6 +2,8 @@ import { parse } from 'query-string';
 import React from 'react';
 import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 
+import { parseJsonOrDefault } from '../../helpers';
+import ErrorBox from '../components/error-box';
 import { BackIcon } from '../components/icons';
 import InfoBox from '../components/info-box';
 import { dataFields } from '../data_fields';
@@ -10,25 +12,22 @@ import { User } from '../models/user';
 import DataEntry from './data-components/data-entry';
 import Sidebar from './sidebar';
 
-interface MultiEditRouteParams {
-    cat: string;
-}
-
-interface MultiEditProps extends RouteComponentProps<MultiEditRouteParams> {
+interface MultiEditProps {
     user?: User;
+    category: string;
+    dataString: string;
 }
 
 const MultiEdit: React.FC<MultiEditProps> = (props) => {
     if (!props.user){
         return <Redirect to="/sign-up.html" />;
     }
-    const cat = props.match.params.cat;
-    if (cat === 'like') {
+    if (props.category === 'like') {
         // special case for likes
         return (
             <Sidebar>
                 <section className='data-section'>
-                    <header className={`section-header view ${cat} background-${cat}`}>
+                    <header className={`section-header view ${props.category} background-${props.category}`}>
                         <h2 className="h2">Like me!</h2>
                     </header>
                     <form className='buttons-container'>
@@ -42,34 +41,34 @@ const MultiEdit: React.FC<MultiEditProps> = (props) => {
         );
     }
 
-    const q = parse(props.location.search);
+    let data = parseJsonOrDefault(props.dataString);
 
-    let data: object;
-    if (cat === 'like'){
-        data = { like: true };
-    } else {
-        try {
-            // TODO: verify what happens if data is string[]
-            data = JSON.parse(q.data as string);
-        } catch (error) {
-            console.error(error, q);
-            data = {};
-        }
+    let error: string;
+    if(data == null) {
+        error = 'Invalid parameters supplied';
+        data = {};
+    } else if(Object.values(data).some(x => x == undefined)) {
+        error = 'Cannot copy empty values';
+        data = {};
     }
 
     return (
         <Sidebar>
             <section className='data-section'>
-                <header className={`section-header view ${cat} background-${cat}`}>
+                <header className={`section-header view ${props.category} background-${props.category}`}>
                     <Link
                         className="icon-button back"
-                        to={`/edit/${cat}`}>
+                        to={`/edit/${props.category}`}>
                         <BackIcon />
                     </Link>
-                    <h2 className="h2">Copy {cat} data</h2>
+                    <h2 className="h2">Copy {props.category} data</h2>
                 </header>
                 <form>
-                    <InfoBox msg='Click buildings one at a time to colour using the data below' />
+                    {
+                        error ?
+                            <ErrorBox msg={error} /> :
+                            <InfoBox msg='Click buildings one at a time to colour using the data below' />
+                    }
                 {
                     Object.keys(data).map((key => {
                         const info = dataFields[key] || {};
@@ -85,8 +84,8 @@ const MultiEdit: React.FC<MultiEditProps> = (props) => {
                 }
                 </form>
                 <form className='buttons-container'>
-                    <Link to={`/view/${cat}`} className='btn btn-secondary'>Back to view</Link>
-                    <Link to={`/edit/${cat}`} className='btn btn-secondary'>Back to edit</Link>
+                    <Link to={`/view/${props.category}`} className='btn btn-secondary'>Back to view</Link>
+                    <Link to={`/edit/${props.category}`} className='btn btn-secondary'>Back to edit</Link>
                 </form>
             </section>
         </Sidebar>

@@ -6,7 +6,7 @@ async function getGlobalEditHistory() {
             `SELECT log_id as revision_id, forward_patch, reverse_patch, date_trunc('minute', log_timestamp), username, building_id
             FROM logs, users
             WHERE logs.user_id = users.user_id
-                AND log_timestamp >= now() - interval '21 days'
+                AND log_timestamp >= now() - interval '7 days'
             ORDER BY log_timestamp DESC`
         );
     } catch (error) {

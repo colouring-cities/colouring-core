@@ -16,7 +16,7 @@ const TextboxDataEntry: React.FunctionComponent<TextboxDataEntryProps> = (props)
                 slug={props.slug}
                 title={props.title}
                 tooltip={props.tooltip}
-                disabled={props.disabled}
+                disabled={props.disabled || props.value == undefined}
                 copy={props.copy}
             />
             <textarea

@@ -1,7 +1,8 @@
-import { parse } from 'query-string';
+import { parse as parseQuery } from 'query-string';
 import React, { Fragment } from 'react';
 import { Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
 
+import { parseJsonOrDefault } from '../helpers';
 import { strictParseInt } from '../parse';
 
 import BuildingView from './building/building-view';
@@ -130,6 +131,13 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         return category;
     }
 
+    getMultiEditDataString(): string {
+        const q = parseQuery(this.props.location.search);
+        if(Array.isArray(q.data)) {
+            throw new Error('Invalid format');
+        } else return q.data;
+    }
+
     increaseRevision(revisionId) {
         revisionId = +revisionId;
         // bump revision id, only ever increasing
@@ -199,21 +207,19 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
      *
      * Pulls data from URL to form update
      *
-     * @param {object} building
+     * @param {Building} building
      */
-    colourBuilding(building) {
+    colourBuilding(building: Building) {
         const cat = this.props.match.params.category;
-        const q = parse(window.location.search);
-
+        
         if (cat === 'like') {
             this.likeBuilding(building.building_id);
         } else {
-            try {
-                // TODO: verify what happens if data is string[]
-                const data = JSON.parse(q.data as string);
+            const data = parseJsonOrDefault(this.getMultiEditDataString());
+
+            
+            if (data != undefined && !Object.values(data).some(x => x == undefined)) {
                 this.updateBuilding(building.building_id, data);
-            } catch (error) {
-                console.error(error, q);
             }
         }
     }
@@ -281,7 +287,8 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                     </Route>
                     <Route exact path="/multi-edit/:cat" render={(props) => (
                         <MultiEdit
-                            {...props}
+                            category={category}
+                            dataString={this.getMultiEditDataString()}
                             user={this.props.user}
                         />
                     )} />
