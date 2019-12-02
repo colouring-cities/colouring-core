@@ -27,4 +27,4 @@ REFERENCES bulk_sources.nlud_classification_order_group ("level");
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS original_landuse_class text ARRAY[250];
 
 -- Land use order, singular. Client and db constrained.
-ALTER TABLE buildings ADD COLUMN IF NOT EXISTS original_landuse_order;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS original_landuse_order text;

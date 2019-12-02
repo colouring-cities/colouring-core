@@ -12,7 +12,7 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS current_landuse_class;
 ALTER TABLE buildings DROP COLUMN IF EXISTS current_landuse_order;
 
 --Land use class, group and order will be stored in a new table
-DROP TABLE building_landuse IF EXISTS CASCADE;
+DROP TABLE IF EXISTS building_landuse CASCADE;
 
 --===========================================
 --
