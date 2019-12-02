@@ -2,7 +2,7 @@
  * User data access
  *
  */
-import db from '../db';
+import db from '../../db';
 
 function createUser(user) {
     if (!user.password || user.password.length < 8) {
@@ -86,6 +86,21 @@ function getUserById(id) {
     });
 }
 
+function getUserByEmail(email: string) {
+    return db.one(
+        `SELECT
+            user_id, username, email
+        FROM
+            users
+        WHERE
+            email = $1
+        `, [email]
+    ).catch(function(error) {
+        console.error('Error:', error);
+        return undefined;
+    });
+}
+
 function getNewUserAPIKey(id) {
     return db.one(
         `UPDATE
@@ -122,4 +137,41 @@ function authAPIUser(key) {
     });
 }
 
-export { getUserById, createUser, authUser, getNewUserAPIKey, authAPIUser }
+function deleteUser(id) {
+    return db.none(
+        `UPDATE users
+        SET
+            email = null,
+            pass = null,
+            api_key = null,
+            username = concat('deleted_', cast(user_id as char(13))),
+            is_deleted = true,
+            deleted_on = now() at time zone 'utc'
+        WHERE user_id = $1
+        `, [id]
+    ).catch((error) => {
+        console.error('Error:', error);
+        return {error: 'Database error'};
+    });
+}
+
+function logout(session: Express.Session) {
+    return new Promise((resolve, reject) => {
+        session.user_id = undefined;
+        session.destroy(err => {
+            if (err) return reject(err);
+            return resolve();
+        });
+    });
+}
+
+export {
+    getUserById,
+    getUserByEmail,
+    createUser,
+    authUser,
+    getNewUserAPIKey,
+    authAPIUser,
+    deleteUser,
+    logout
+};

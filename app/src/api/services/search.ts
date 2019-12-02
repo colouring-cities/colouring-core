@@ -6,7 +6,7 @@
  * - this DOES expose geometry, another reason to keep this clearly separated from building
  *   data
  */
-import db from '../db';
+import db from '../../db';
 
 function queryLocation(term) {
     const limit = 5;

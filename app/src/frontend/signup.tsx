@@ -6,7 +6,12 @@ import ErrorBox from './error-box';
 import InfoBox from './info-box';
 import SupporterLogos from './supporter-logos';
 
-class SignUp extends Component {
+class SignUp extends Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        login: PropTypes.func.isRequired,
+        user: PropTypes.object
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -37,7 +42,7 @@ class SignUp extends Component {
         event.preventDefault();
         this.setState({error: undefined})
 
-        fetch('/users', {
+        fetch('/api/users', {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers:{
@@ -50,7 +55,7 @@ class SignUp extends Component {
             if (res.error) {
                 this.setState({error: res.error})
             } else {
-                fetch('/users/me', {
+                fetch('/api/users/me', {
                     credentials: 'same-origin'
                 }).then(
                     (res) => res.json()
@@ -130,9 +135,9 @@ class SignUp extends Component {
                                 onChange={this.handleChange}
                                 required />
                             <label className="form-check-label" htmlFor="confirm_conditions">
-                                I confirm that I have read and agree to the <a
-                                    href="/privacy-policy">privacy policy</a> and <a
-                                    href="/user-agreement">contributor agreement</a>.
+                                I confirm that I have read and agree to the <Link
+                                    to="/privacy-policy.html">privacy policy</Link> and <Link
+                                    to="/contributor-agreement.html">contributor agreement</Link>.
                             </label>
                         </div>
 
@@ -155,11 +160,6 @@ class SignUp extends Component {
             </article>
         )
     }
-}
-
-SignUp.propTypes = {
-    login: PropTypes.func.isRequired,
-    user: PropTypes.object
 }
 
 export default SignUp;

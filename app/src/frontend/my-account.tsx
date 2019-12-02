@@ -1,14 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component, FormEvent } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import ErrorBox from './error-box';
+import ConfirmationModal from './confirmation-modal';
 
-class MyAccountPage extends Component {
+class MyAccountPage extends Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        user: PropTypes.shape({
+            username: PropTypes.string,
+            email: PropTypes.string,
+            registered: PropTypes.instanceOf(Date), // TODO: check if fix correct
+            api_key: PropTypes.string,
+            error: PropTypes.object
+        }),
+        updateUser: PropTypes.func,
+        logout: PropTypes.func
+    };
+
     constructor(props) {
         super(props);
         this.state = {
-            error: undefined
+            error: undefined,
+            showDeleteConfirm: false
         };
         this.handleLogout = this.handleLogout.bind(this);
         this.handleGenerateKey = this.handleGenerateKey.bind(this);
@@ -18,7 +32,7 @@ class MyAccountPage extends Component {
         event.preventDefault();
         this.setState({error: undefined});
 
-        fetch('/logout', {
+        fetch('/api/logout', {
             method: 'POST',
             credentials: 'same-origin'
         }).then(
@@ -38,7 +52,7 @@ class MyAccountPage extends Component {
         event.preventDefault();
         this.setState({error: undefined});
 
-        fetch('/api/key', {
+        fetch('/api/api/key', {
             method: 'POST',
             credentials: 'same-origin'
         }).then(
@@ -52,6 +66,37 @@ class MyAccountPage extends Component {
         }.bind(this)).catch(
             (err) => this.setState({error: err})
         );
+    }
+
+    confirmDelete(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        this.setState({ showDeleteConfirm: true });
+    }
+
+    hideConfirmDelete() {
+        this.setState({ showDeleteConfirm: false });
+    }
+
+    async handleDelete() {
+        this.setState({ error: undefined });
+
+        try {
+            const res = await fetch('/api/users/me', {
+                method: 'DELETE',
+                credentials: 'same-origin'
+            });
+            const data = await res.json();
+            
+            if(data.error) {
+                this.setState({ error: data.error });
+            } else {
+                this.props.logout();
+            }
+        } catch (err) {
+            this.setState({ error: err });
+        } finally {
+            this.hideConfirmDelete();
+        }
     }
 
     render() {
@@ -69,7 +114,7 @@ class MyAccountPage extends Component {
 
                         </p>
                         <ErrorBox msg={this.state.error} />
-                        <form method="POST" action="/logout" onSubmit={this.handleLogout}>
+                        <form onSubmit={this.handleLogout}>
                             <div className="buttons-container">
                                 <Link to="/edit/age.html" className="btn btn-warning">Start colouring</Link>
                                 <input className="btn btn-secondary" type="submit" value="Log out"/>
@@ -92,12 +137,32 @@ class MyAccountPage extends Component {
                         <p>Are you a software developer? If so, you might be interested in these.</p>
                         <h3 className="h3">API key</h3>
                         <p>{this.props.user.api_key? this.props.user.api_key : '-'}</p>
-                        <form method="POST" action="/api/key" onSubmit={this.handleGenerateKey} className="form-group mb-3">
+                        <form onSubmit={this.handleGenerateKey} className="form-group mb-3">
                             <input className="btn btn-warning" type="submit" value="Generate API key"/>
                         </form>
 
                         <h3 className="h3">GitHub</h3>
                         <a href="http://github.com/tomalrussell/colouring-london/">Colouring London Github repository</a>
+
+                        <hr />
+
+                        <h2 className="h2">Account actions</h2>
+                        <form
+                            onSubmit={e => this.confirmDelete(e)}
+                            className="form-group mb-3"
+                        >
+                            <input className="btn btn-danger" type="submit" value="Delete account" />
+                        </form>
+
+                        <ConfirmationModal
+                            show={this.state.showDeleteConfirm}
+                            title="Confirm account deletion"
+                            description="Are you sure you want to delete your account? This cannot be undone."
+                            confirmButtonText="Delete account"
+                            confirmButtonClass="btn-danger"
+                            onConfirm={() => this.handleDelete()}
+                            onCancel={() => this.hideConfirmDelete()}
+                        />
 
                     </section>
                 </article>
@@ -108,18 +173,6 @@ class MyAccountPage extends Component {
             )
         }
     }
-}
-
-MyAccountPage.propTypes = {
-    user: PropTypes.shape({
-        username: PropTypes.string,
-        email: PropTypes.string,
-        registered: PropTypes.date,
-        api_key: PropTypes.string,
-        error: PropTypes.object
-    }),
-    updateUser: PropTypes.func,
-    logout: PropTypes.func
 }
 
 export default MyAccountPage;

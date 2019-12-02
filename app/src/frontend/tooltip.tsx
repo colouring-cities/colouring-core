@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import './tooltip.css';
 import { InfoIcon } from './icons';
 
-class Tooltip extends Component {
+class Tooltip extends Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        text: PropTypes.string
+    };
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -42,10 +46,6 @@ class Tooltip extends Component {
             </div>
         );
     }
-}
-
-Tooltip.propTypes = {
-    text: PropTypes.string
 }
 
 export default Tooltip;

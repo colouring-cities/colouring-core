@@ -6,8 +6,12 @@ import { SearchIcon } from './icons';
 /**
  * Search for location
  */
-class SearchBox extends Component {
-
+class SearchBox extends Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        onLocate: PropTypes.func,
+        isBuilding: PropTypes.bool
+    };
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -74,7 +78,7 @@ class SearchBox extends Component {
         })
 
         fetch(
-            '/search?q='+this.state.q
+            '/api/search?q='+this.state.q
         ).then(
             (res) => res.json()
         ).then((data) => {
@@ -156,7 +160,7 @@ class SearchBox extends Component {
             : null;
         return (
             <div className={`search-box ${this.props.isBuilding? 'building' : ''}`} onKeyDown={this.handleKeyPress}>
-                <form action="/search" method="GET" onSubmit={this.search} className="form-inline">
+                <form onSubmit={this.search} className="form-inline">
                     <div onClick={this.state.smallScreen ? this.expandSearch : null}>
                         <SearchIcon/>
                     </div>
@@ -176,11 +180,6 @@ class SearchBox extends Component {
             </div>
         )
     }
-}
-
-SearchBox.propTypes = {
-    onLocate: PropTypes.func,
-    isBuilding: PropTypes.bool
 }
 
 export default SearchBox;

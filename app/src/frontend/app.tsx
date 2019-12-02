@@ -18,6 +18,10 @@ import MyAccountPage from './my-account';
 import SignUp from './signup';
 import Welcome from './welcome';
 import { parseCategoryURL } from '../parse';
+import PrivacyPolicyPage from './privacy-policy';
+import ContributorAgreementPage from './contributor-agreement';
+import ForgottenPassword from './forgotten-password';
+import PasswordReset from './password-reset';
 
 /**
  * App component
@@ -31,7 +35,13 @@ import { parseCategoryURL } from '../parse';
  *   map or other pages are rendered, based on the URL. Use a react-router-dom <Link /> in
  *   child components to navigate without a full page reload.
  */
-class App extends React.Component {
+class App extends React.Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        user: PropTypes.object,
+        building: PropTypes.object,
+        building_like: PropTypes.bool
+    }
+
     constructor(props) {
         super(props);
         // set building revision id, default 0
@@ -77,7 +87,7 @@ class App extends React.Component {
     selectBuilding(building) {
         this.increaseRevision(building.revision_id);
         // get UPRNs and update
-        fetch(`/building/${building.building_id}/uprns.json`, {
+        fetch(`/api/buildings/${building.building_id}/uprns.json`, {
             method: 'GET',
             headers:{
                 'Content-Type': 'application/json'
@@ -98,7 +108,7 @@ class App extends React.Component {
         });
 
         // get if liked and update
-        fetch(`/building/${building.building_id}/like.json`, {
+        fetch(`/api/buildings/${building.building_id}/like.json`, {
             method: 'GET',
             headers:{
                 'Content-Type': 'application/json'
@@ -130,7 +140,7 @@ class App extends React.Component {
     colourBuilding(building) {
         const cat = parseCategoryURL(window.location.pathname);
         const q = parse(window.location.search);
-        const data = (cat === 'like')? {like: true}: JSON.parse(q.data);
+        const data = (cat === 'like')? {like: true}: JSON.parse(q.data as string); // TODO: verify what happens if data is string[]
         if (cat === 'like'){
             this.likeBuilding(building.building_id)
         } else {
@@ -139,7 +149,7 @@ class App extends React.Component {
     }
 
     likeBuilding(buildingId) {
-        fetch(`/building/${buildingId}/like.json`, {
+        fetch(`/api/buildings/${buildingId}/like.json`, {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -160,7 +170,7 @@ class App extends React.Component {
     }
 
     updateBuilding(buildingId, data){
-        fetch(`/building/${buildingId}.json`, {
+        fetch(`/api/buildings/${buildingId}.json`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers:{
@@ -239,6 +249,8 @@ class App extends React.Component {
                         <Route exact path="/login.html">
                             <Login user={this.state.user} login={this.login} />
                         </Route>
+                        <Route exact path="/forgotten-password.html" component={ForgottenPassword} />
+                        <Route exact path="/password-reset.html" component={PasswordReset} />
                         <Route exact path="/sign-up.html">
                             <SignUp user={this.state.user} login={this.login} />
                         </Route>
@@ -249,18 +261,14 @@ class App extends React.Component {
                                 logout={this.logout}
                             />
                         </Route>
+                        <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
+                        <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
                         <Route component={NotFound} />
                     </Switch>
                 </main>
             </Fragment>
         );
     }
-}
-
-App.propTypes = {
-    user: PropTypes.object,
-    building: PropTypes.object,
-    building_like: PropTypes.bool
 }
 
 /**

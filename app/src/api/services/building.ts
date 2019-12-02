@@ -2,8 +2,8 @@
  * Building data access
  *
  */
-import db from '../db';
-import { removeAllAtBbox } from '../tiles/cache';
+import db from '../../db';
+import { removeAllAtBbox } from '../../tiles/cache';
 
 // data type note: PostgreSQL bigint (64-bit) is handled as string in JavaScript, because of
 // JavaScript numerics are 64-bit double, giving only partial coverage.
@@ -72,7 +72,7 @@ function queryBuildingsByReference(key, id) {
             return undefined;
         });
     }
-    return { error: 'Key must be UPRN or TOID' };
+    return Promise.resolve({ error: 'Key must be UPRN or TOID' });
 }
 
 function getBuildingById(id) {

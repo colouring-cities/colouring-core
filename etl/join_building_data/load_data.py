@@ -89,7 +89,7 @@ def save_data(building_id, data, api_key, base_url):
     """Save data to a building
     """
     r = requests.post(
-        "{}/building/{}.json?api_key={}".format(base_url, building_id, api_key),
+        "{}/buildings/{}.json?api_key={}".format(base_url, building_id, api_key),
         json=data
     )
 

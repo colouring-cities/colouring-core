@@ -65,8 +65,8 @@ const LEGEND_CONFIG = {
         title: 'Team',
         elements: []
     },
-    energy: {
-        title: 'Energy',
+    sustainability: {
+        title: 'Sustainability',
         elements: []
     },
     greenery: {
@@ -97,7 +97,12 @@ const LEGEND_CONFIG = {
 };
 
 
-class Legend extends React.Component {
+class Legend extends React.Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        slug: PropTypes.string,
+        color: PropTypes.string,
+        text: PropTypes.string
+    };
 
     constructor(props) {
         super(props);
@@ -193,13 +198,6 @@ class Legend extends React.Component {
 
     }
 
-}
-
-
-Legend.propTypes = {
-    slug: PropTypes.string,
-    color: PropTypes.string,
-    text: PropTypes.string
 }
 
 export default Legend;

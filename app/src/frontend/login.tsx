@@ -6,7 +6,12 @@ import ErrorBox from './error-box';
 import InfoBox from './info-box';
 import SupporterLogos from './supporter-logos';
 
-class Login extends Component {
+class Login extends Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        login: PropTypes.func,
+        user: PropTypes.object
+    };
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -34,7 +39,7 @@ class Login extends Component {
         event.preventDefault();
         this.setState({error: undefined})
 
-        fetch('/login', {
+        fetch('/api/login', {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers:{
@@ -47,7 +52,7 @@ class Login extends Component {
             if (res.error) {
                 this.setState({error: res.error})
             } else {
-                fetch('/users/me', {
+                fetch('/api/users/me', {
                     credentials: 'same-origin'
                 }).then(
                     (res) => res.json()
@@ -106,6 +111,8 @@ class Login extends Component {
                             <label htmlFor="show_password" className="form-check-label">Show password?</label>
                         </div>
 
+                        <Link to="/forgotten-password.html">Forgotten password?</Link>
+
                         <div className="buttons-container">
                             <input type="submit" value="Log In" className="btn btn-primary" />
                         </div>
@@ -125,11 +132,6 @@ class Login extends Component {
             </article>
         )
     }
-}
-
-Login.propTypes = {
-    login: PropTypes.func,
-    user: PropTypes.object
 }
 
 export default Login;

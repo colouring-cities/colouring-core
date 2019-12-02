@@ -16,8 +16,16 @@ const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 /**
  * Map area
  */
-class ColouringMap extends Component {
-
+class ColouringMap extends Component<any, any> { // TODO: add proper types
+    static propTypes = { // TODO: generate propTypes from TS
+        building: PropTypes.object,
+        revision_id: PropTypes.number,
+        selectBuilding: PropTypes.func,
+        colourBuilding: PropTypes.func,
+        match: PropTypes.object,
+        history: PropTypes.object
+    };
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -53,7 +61,7 @@ class ColouringMap extends Component {
         const newCat = parseCategoryURL(this.props.match.url);
         const mapCat = newCat || 'age';
         fetch(
-            '/buildings/locate?lat='+lat+'&lng='+lng
+            '/api/buildings/locate?lat='+lat+'&lng='+lng
         ).then(
             (res) => res.json()
         ).then(function(data){
@@ -165,15 +173,6 @@ class ColouringMap extends Component {
             </Fragment>
         );
     }
-}
-
-ColouringMap.propTypes = {
-    building: PropTypes.object,
-    revision_id: PropTypes.number,
-    selectBuilding: PropTypes.func,
-    colourBuilding: PropTypes.func,
-    match: PropTypes.object,
-    history: PropTypes.object
 }
 
 export default ColouringMap;
