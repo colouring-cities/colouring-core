@@ -139,6 +139,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             planning: 'conservation_area',
             sustainability: 'sust_dec',
             type: 'building_attachment_form',
+            use: 'landuse'
         };
         const tileset = tilesetByCat[cat];
         // pick revision id to bust browser cache

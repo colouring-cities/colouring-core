@@ -250,4 +250,50 @@
             <PolygonSymbolizer fill="#ffe8a9" />
         </Rule>
     </Style>
+    <Style name="landuse">
+        <Rule>
+            <Filter>[current_landuse_order] = "Agriculture And Fisheries"</Filter>
+            <PolygonSymbolizer fill="#52403C" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Recreation And Leisure"</Filter>
+            <PolygonSymbolizer fill="#ffbfbf" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Transport"</Filter>
+            <PolygonSymbolizer fill="#b3de69" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Utilities And Infrastructure"</Filter>
+            <PolygonSymbolizer fill="#cccccc" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Residential"</Filter>
+            <PolygonSymbolizer fill="#4a54a6" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Community Services"</Filter>
+            <PolygonSymbolizer fill="#73ccd1" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Retail"</Filter>
+            <PolygonSymbolizer fill="#ff8c00" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Industry And Business"</Filter>
+            <PolygonSymbolizer fill="#f5f58f" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Vacant And Derelict"</Filter>
+            <PolygonSymbolizer fill="#ffffff" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Defence"</Filter>
+            <PolygonSymbolizer fill="#898944" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Mixed Use"</Filter>
+            <PolygonSymbolizer fill="#e5050d" />
+        </Rule>
+    </Style>
 </Map>
