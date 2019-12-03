@@ -97,6 +97,6 @@ async function deriveOrderFromGroup(groups: string[]): Promise<string> {
     if(orders.length === 1) {
         return orders[0];
     } else if (orders.length > 1) {
-        return 'Mixed use';
+        return 'Mixed Use';
     } else return null;
 }

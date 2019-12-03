@@ -35,7 +35,7 @@ VALUES
 ('U060','Utilities And Infrastructure','order',NULL,True),
 ('U110','Vacant And Derelict','order',NULL,True),
 --We have created a landuse order that does not exist for mixed use
-('U140','Mixed use','order',NULL,True),
+('U140','Mixed Use','order',NULL,True),
 
 -- group
 ('U011','Agriculture','group','U010', True),
