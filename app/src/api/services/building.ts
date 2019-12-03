@@ -92,12 +92,16 @@ async function queryBuildingsByReference(key: string, ref: string) {
     }
 }
 
-async function getBuildingById(id: number) {
-    try {
-        const building = await db.one(
+async function getCurrentBuildingDataById(id: number) {
+    return db.one(
             'SELECT * FROM buildings WHERE building_id = $1',
             [id]
         );
+}
+
+async function getBuildingById(id: number) {
+    try {
+        const building = await getCurrentBuildingDataById(id);
 
         building.edit_history = await getBuildingEditHistory(id);
 
@@ -422,6 +426,7 @@ function compare(oldObj: object, newObj: object): [object, object] {
 export {
     queryBuildingsAtPoint,
     queryBuildingsByReference,
+    getCurrentBuildingDataById,
     getBuildingById,
     getBuildingLikeById,
     getBuildingEditHistory,
