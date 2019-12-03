@@ -43,7 +43,7 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         case 'use':
             return <UseContainer
                 {...props}
-                inactive={true}
+                inactive={false}
                 title="Land Use"
                 intro="How are buildings used, and how does use change over time? Coming soon…"
                 help="https://pages.colouring.london/use"

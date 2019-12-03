@@ -10,6 +10,9 @@ function formatValue(value: any) {
     if(typeof value === 'boolean') {
         return value ? 'Yes' : 'No';
     }
+    if(Array.isArray(value)) {
+        return value.map(v => `"${v}"`).join(', ');
+    }
     return value;
 }
 
