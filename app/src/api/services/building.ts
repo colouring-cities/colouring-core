@@ -8,6 +8,8 @@ import db from '../../db';
 import { tileCache } from '../../tiles/rendererDefinition';
 import { BoundingBox } from '../../tiles/types';
 
+import { processBuildingUpdate } from './domainLogic/processBuildingUpdate';
+
 // data type note: PostgreSQL bigint (64-bit) is handled as string in JavaScript, because of
 // JavaScript numerics are 64-bit double, giving only partial coverage.
 
@@ -94,9 +96,9 @@ async function queryBuildingsByReference(key: string, ref: string) {
 
 async function getCurrentBuildingDataById(id: number) {
     return db.one(
-            'SELECT * FROM buildings WHERE building_id = $1',
-            [id]
-        );
+        'SELECT * FROM buildings WHERE building_id = $1',
+        [id]
+    );
 }
 
 async function getBuildingById(id: number) {
@@ -155,13 +157,15 @@ async function getBuildingUPRNsById(id: number) {
 async function saveBuilding(buildingId: number, building: any, userId: string) { // TODO add proper building type
     try {
         return await updateBuildingData(buildingId, userId, async () => {
+            const processedBuilding = await processBuildingUpdate(building);
+            
             // remove read-only fields from consideration
-            delete building.building_id;
-            delete building.revision_id;
-            delete building.geometry_id;
+            delete processedBuilding.building_id;
+            delete processedBuilding.revision_id;
+            delete processedBuilding.geometry_id;
 
             // return whitelisted fields to update
-            return pickAttributesToUpdate(building, BUILDING_FIELD_WHITELIST);
+            return pickAttributesToUpdate(processedBuilding, BUILDING_FIELD_WHITELIST);
         });
     } catch(error) {
         console.error(error);
@@ -399,6 +403,10 @@ const BUILDING_FIELD_WHITELIST = new Set([
     // 'sust_life_expectancy',
     'building_attachment_form',
     'date_change_building_use',
+
+    'current_landuse_class',
+    'current_landuse_group',
+    'current_landuse_order'
 ]);
 
 /**

@@ -23,3 +23,7 @@ export function parseJsonOrDefault(jsonString: string) {
         return null;
     }
 }
+
+export function hasAnyOwnProperty(obj: {}, keys: string[]) {
+    return keys.some(k => obj.hasOwnProperty(k));
+}
