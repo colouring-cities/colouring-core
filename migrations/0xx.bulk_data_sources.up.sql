@@ -15,7 +15,6 @@ CREATE TABLE IF NOT EXISTS reference_tables.landuse_classifications (
 -- https://land.copernicus.eu/eagle/files/eagle-related-projects/22_NLUD_v44.pdf
 
 -- The is_used column is set based on whether we plan to use a given order/class for urban buildings.
--- Groups as a whole are currently unused.
 
 INSERT INTO reference_tables.landuse_classifications
 (landuse_id, description, level, parent_id, is_used)
