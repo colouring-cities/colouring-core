@@ -27,3 +27,10 @@ export function parseJsonOrDefault(jsonString: string) {
 export function hasAnyOwnProperty(obj: {}, keys: string[]) {
     return keys.some(k => obj.hasOwnProperty(k));
 }
+
+export function isNullishOrEmpty(obj: any) {
+    return obj == undefined || isEmptyArray(obj);
+}
+export function isEmptyArray(obj: any) {
+    return Array.isArray(obj) && obj.length === 0;
+}

@@ -158,7 +158,7 @@ async function getBuildingUPRNsById(id: number) {
 async function saveBuilding(buildingId: number, building: any, userId: string) { // TODO add proper building type
     try {
         return await updateBuildingData(buildingId, userId, async () => {
-            const processedBuilding = await processBuildingUpdate(building);
+            const processedBuilding = await processBuildingUpdate(buildingId, building);
             
             // remove read-only fields from consideration
             delete processedBuilding.building_id;
