@@ -2,6 +2,7 @@
  * Building data access
  *
  */
+import * as _ from 'lodash';
 import { ITask } from 'pg-promise';
 
 import db from '../../db';
@@ -423,7 +424,7 @@ function compare(oldObj: object, newObj: object): [object, object] {
     const reverse = {};
     const forward = {};
     for (const [key, value] of Object.entries(newObj)) {
-        if (oldObj[key] != value) {
+        if (!_.isEqual(oldObj[key], value)) {
             reverse[key] = oldObj[key];
             forward[key] = value;
         }
