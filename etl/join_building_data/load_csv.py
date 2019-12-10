@@ -64,6 +64,11 @@ def update_building(building_id, data, api_key, base_url):
 
 
 def find_building(data, base_url):
+    if 'building_id' in data:
+        building_id = data['building_id']
+        if building_id is not None:
+            print("match_by_building_id", building_id)
+            return building_id
     if 'toid' in data:
         building_id = find_by_reference(base_url, 'toid', data['toid'])
         if building_id is not None:
