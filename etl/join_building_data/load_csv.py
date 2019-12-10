@@ -8,6 +8,17 @@ the appropriate site):
         a0a00000-0a00-0aaa-a0a0-0000aaaa0000 \
         data.csv
 
+The optional last argument specifies which columns should be parsed as JSON values.
+This is required for example for columns of array type to be processed by the API correctly.
+Otherwise, those values would be treated as a string and not an array.
+
+An example usage with the json_columns argument (other values in the example are placeholders):
+    python load_csv.py \
+        https://colouring.london \
+        a0a00000-0a00-0aaa-a0a0-0000aaaa0000 \
+        data.csv \
+        current_landuse_group,date_url
+
 This script uses the HTTP API, and can process CSV files which identify buildings by id, TOID,
 UPRN.
 
@@ -23,6 +34,7 @@ The process:
             - else lookup by toid
             - else lookup by uprn
             - else locate building by representative point
+        - (optional) parse JSON column values
         - update building
 
 TODO extend to allow latitude,longitude or easting,northing columns and lookup by location.
@@ -36,13 +48,14 @@ import sys
 import requests
 
 
-def main(base_url, api_key, source_file):
+def main(base_url, api_key, source_file, json_columns):
     """Read from file, update buildings
     """
     with open(source_file, 'r') as source:
         reader = csv.DictReader(source)
         for line in reader:
             building_id = find_building(line, base_url)
+            line = parse_json_columns(line, json_columns)
 
             if building_id is None:
                 continue
@@ -101,15 +114,22 @@ def find_by_reference(base_url, ref_key, ref_id):
 
     return building_id
 
+def parse_json_columns(row, json_columns):
+    for col in json_columns:
+        row[col] = json.loads(row[col])
+
+    return row
 
 if __name__ == '__main__':
     try:
         url, api_key, filename = sys.argv[1], sys.argv[2], sys.argv[3]
     except IndexError:
         print(
-            "Usage: {} <URL> <api_key> ./path/to/data.csv".format(
+            "Usage: {} <URL> <api_key> ./path/to/data.csv [<json_columns>]".format(
             os.path.basename(__file__)
         ))
         exit()
 
-    main(url, api_key, filename)
+    json_columns = sys.argv[4].split(',') if len(sys.argv) > 4 else []
+
+    main(url, api_key, filename, json_columns)
