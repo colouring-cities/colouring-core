@@ -13,18 +13,3 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS current_landuse_group;
 
 -- Land use order, singular. Client and db constrained.
 ALTER TABLE buildings DROP COLUMN IF EXISTS current_landuse_order;
-
-
-
---===========================================
---
--- We also collect original landuse, structure & process is as current land use
--- We don't currently collect intermediate historic uses
---
---===========================================
-
--- Original Land use class or classes, array object, client constrained.
-ALTER TABLE buildings DROP COLUMN IF EXISTS original_landuse_class;
-
--- Land use order, singular. Client and db constrained.
-ALTER TABLE buildings DROP COLUMN IF EXISTS original_landuse_order;
