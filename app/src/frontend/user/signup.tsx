@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
+import { apiGet, apiPost } from '../apiHelpers';
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
 import SupporterLogos from '../components/supporter-logos';
@@ -48,36 +49,21 @@ class SignUp extends Component<SignUpProps, SignUpState> {
         } as Pick<SignUpState, keyof SignUpState>);
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         this.setState({error: undefined});
 
-        fetch('/api/users', {
-            method: 'POST',
-            body: JSON.stringify(this.state),
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin'
-        }).then(
-            res => res.json()
-        ).then(function(res){
-            if (res.error) {
-                this.setState({error: res.error});
+        try {
+            const res = await apiPost('/api/users', this.state);
+            if(res.error) {
+                this.setState({ error: res.error });
             } else {
-                fetch('/api/users/me', {
-                    credentials: 'same-origin'
-                }).then(
-                    (res) => res.json()
-                ).then(
-                    (user) => this.props.login(user)
-                ).catch(
-                    (err) => this.setState({error: err})
-                );
+                const user = await apiGet('/api/users/me');
+                this.props.login(user);
             }
-        }.bind(this)).catch(
-            (err) => this.setState({error: err})
-        );
+        } catch(err) {
+            this.setState({error: err});
+        }
     }
 
     render() {

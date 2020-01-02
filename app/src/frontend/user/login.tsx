@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
+import { apiGet, apiPost } from '../apiHelpers';
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
 import SupporterLogos from '../components/supporter-logos';
@@ -39,24 +40,13 @@ class Login extends Component<LoginProps, any> {
         event.preventDefault();
         this.setState({error: undefined});
 
-        fetch('/api/login', {
-            method: 'POST',
-            body: JSON.stringify(this.state),
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin'
-        }).then(
-            res => res.json()
-        ).then(function(res){
+        apiPost('/api/login', this.state)
+        .then(res => {
             if (res.error) {
                 this.setState({error: res.error});
             } else {
-                fetch('/api/users/me', {
-                    credentials: 'same-origin'
-                }).then(
-                    (res) => res.json()
-                ).then(user => {
+                apiGet('/api/users/me')
+                .then(user => {
                     if (user.error) {
                         this.setState({error: user.error});
                     } else {
@@ -66,7 +56,7 @@ class Login extends Component<LoginProps, any> {
                     (err) => this.setState({error: err})
                 );
             }
-        }.bind(this)).catch(
+        }).catch(
             (err) => this.setState({error: err})
         );
     }

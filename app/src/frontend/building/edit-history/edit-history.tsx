@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import './edit-history.css';
 
+import { apiGet } from '../../apiHelpers';
 import { Building } from '../../models/building';
 import { EditHistoryEntry } from '../../models/edit-history-entry';
 import ContainerHeader from '../container-header';
@@ -17,10 +18,9 @@ const EditHistory: React.FunctionComponent<EditHistoryProps> = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch(`/api/buildings/${props.building.building_id}/history.json`);
-            const data = await res.json();
+            const {history} = await apiGet(`/api/buildings/${props.building.building_id}/history.json`);
 
-            setHistory(data.history);
+            setHistory(history);
         };
 
         if (props.building != undefined) { // only call fn if there is a building provided

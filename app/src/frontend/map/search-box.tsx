@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 import './search-box.css';
 
+import { apiGet } from '../apiHelpers';
 import { SearchIcon } from '../components/icons';
 
 interface SearchResult {
@@ -96,11 +97,8 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
             fetching: true
         });
 
-        fetch(
-            '/api/search?q='+this.state.q
-        ).then(
-            (res) => res.json()
-        ).then((data) => {
+        apiGet(`/api/search?q=${this.state.q}`)
+        .then((data) => {
             if (data && data.results){
                 this.setState({
                     results: data.results,
