@@ -35,7 +35,7 @@ async function apiRequest(
         body: data == undefined ? null : JSON.stringify(data),
     });
 
-    const reviver = options?.jsonReviver;
+    const reviver = options == undefined ? undefined : options.jsonReviver;
     if (reviver != undefined) {
         return JSON.parse(await res.text(), reviver);
     } else {
