@@ -1,5 +1,6 @@
 import express from 'express';
 
+import { parseIntParam } from '../helpers';
 import asyncController from '../routes/asyncController';
 import * as buildingService from '../services/building';
 import * as userService from '../services/user';
@@ -34,7 +35,7 @@ const getBuildingsByReference = asyncController(async (req: express.Request, res
 
 // GET individual building, POST building updates
 const getBuildingById = asyncController(async (req: express.Request, res: express.Response) => {
-    const buildingId = parseBuildingId(req.params.building_id);
+    const buildingId = parseIntParam(req.params.building_id);
 
     try {
         const result = await buildingService.getBuildingById(buildingId);
@@ -62,7 +63,7 @@ const updateBuildingById = asyncController(async (req: express.Request, res: exp
 });
 
 async function updateBuilding(req: express.Request, res: express.Response, userId: string) {
-    const buildingId = parseBuildingId(req.params.building_id);
+    const buildingId = parseIntParam(req.params.building_id);
 
     const buildingUpdate = req.body;
 
@@ -83,7 +84,7 @@ async function updateBuilding(req: express.Request, res: express.Response, userI
 
 // GET building UPRNs
 const getBuildingUPRNsById = asyncController(async (req: express.Request, res: express.Response) => {
-    const buildingId = parseBuildingId(req.params.building_id);
+    const buildingId = parseIntParam(req.params.building_id);
 
     try {
         const result = await buildingService.getBuildingUPRNsById(buildingId);
@@ -104,7 +105,7 @@ const getBuildingLikeById = asyncController(async (req: express.Request, res: ex
         return res.send({ like: false });  // not logged in, so cannot have liked
     }
 
-    const buildingId = parseBuildingId(req.params.building_id);
+    const buildingId = parseIntParam(req.params.building_id);
     
     try {
         const like = await buildingService.getBuildingLikeById(buildingId, req.session.user_id);
@@ -117,7 +118,7 @@ const getBuildingLikeById = asyncController(async (req: express.Request, res: ex
 });
 
 const getBuildingEditHistoryById = asyncController(async (req: express.Request, res: express.Response) => {
-    const buildingId = parseBuildingId(req.params.building_id);
+    const buildingId = parseIntParam(req.params.building_id);
 
     try {
         const editHistory = await buildingService.getBuildingEditHistory(buildingId);
@@ -133,7 +134,7 @@ const updateBuildingLikeById = asyncController(async (req: express.Request, res:
         return res.send({ error: 'Must be logged in' });
     }
 
-    const buildingId = parseBuildingId(req.params.building_id);
+    const buildingId = parseIntParam(req.params.building_id);
     const { like } = req.body;
 
     try {
@@ -161,14 +162,6 @@ const getLatestRevisionId = asyncController(async (req: express.Request, res: ex
         res.send({ error: 'Database error' });
     }
 });
-
-function parseBuildingId(building_id: string) {
-    const result = parseInt(building_id, 10);
-    if(isNaN(result)) {
-        throw new Error('Invalid building ID format');
-    }
-    return result;
-}
 
 export default {
     getBuildingsByLocation,
