@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { dateReviver } from '../../helpers';
+import { apiGet } from '../apiHelpers';
 
 
 interface ExtractViewModel {
@@ -28,11 +29,9 @@ export default class DataExtracts extends React.Component<{}, DataExtractsState>
     }
 
     async componentDidMount() {
-        const res = await fetch('/api/extracts');
-        const data = JSON.parse(await res.text(), dateReviver);
+        let data = await apiGet('/api/extracts', { jsonReviver: dateReviver});
         const extracts = (data.extracts as ExtractViewModel[])
-            .sort((a, b) => a.extracted_on.valueOf() - b.extracted_on.valueOf())
-            .reverse();
+            .sort((a, b) => b.extracted_on.valueOf() - a.extracted_on.valueOf());
 
 
 
