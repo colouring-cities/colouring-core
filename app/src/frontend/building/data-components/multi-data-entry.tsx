@@ -3,49 +3,57 @@ import React, { Component, Fragment } from 'react';
 import { sanitiseURL } from '../../helpers';
 
 import { BaseDataEntryProps } from './data-entry';
+import { TextDataEntryInput, TextDataEntryInputProps } from './data-entry-input';
 import { DataTitleCopyable } from './data-title';
 
 
-interface MultiDataEntryProps extends BaseDataEntryProps {
+interface MultiDataEntryProps extends BaseDataEntryProps, TextDataEntryInputProps {
     value: string[];
-    placeholder: string;
 }
 
-class MultiDataEntry extends Component<MultiDataEntryProps> {
+interface MultiDataEntryState {
+    newValue: string;
+}
+
+class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState> {
 
     constructor(props) {
         super(props);
+        this.state = {
+            newValue: ''
+        };
+        
+        this.setNewValue = this.setNewValue.bind(this);
         this.edit = this.edit.bind(this);
-        this.add = this.add.bind(this);
+        this.addNew = this.addNew.bind(this);
         this.remove = this.remove.bind(this);
         this.getValues = this.getValues.bind(this);
     }
 
     getValues() {
-        return (this.props.value && this.props.value.length)? this.props.value : [null];
+        return this.props.value == undefined ? [] : this.props.value;
     }
 
-    edit(event) {
-        const editIndex = +event.target.dataset.index;
-        const editItem = event.target.value;
-        const oldValues = this.getValues();
-        const values = oldValues.map((item, i) => {
-            return i === editIndex ? editItem : item;
-        });
+    setNewValue(value: string) {
+        this.setState({newValue: value});
+    }
+
+    edit(index: number, value: string) {
+        let values = this.getValues();
+        values.splice(index, 1, value);
         this.props.onChange(this.props.slug, values);
     }
-
-    add(event) {
+    addNew(event) {
         event.preventDefault();
-        const values = this.getValues().concat('');
+        const values = this.getValues().concat(this.state.newValue);
+        this.setState({newValue: ''});
         this.props.onChange(this.props.slug, values);
     }
 
     remove(event){
         const removeIndex = +event.target.dataset.index;
-        const values = this.getValues().filter((_, i) => {
-            return i !== removeIndex;
-        });
+        const values = this.getValues();
+        values.splice(removeIndex, 1);
         this.props.onChange(this.props.slug, values);
     }
 
@@ -74,30 +82,45 @@ class MultiDataEntry extends Component<MultiDataEntryProps> {
                         }
                         </ul>
                     :'\u00A0'
-                : values.map((item, i) => (
-                    <div className="input-group" key={i}>
-                        <input className="form-control" type="text"
-                            key={`${props.slug}-${i}`} name={`${props.slug}-${i}`}
-                            data-index={i}
-                            value={item || ''}
-                            placeholder={props.placeholder}
+                : <>
+                    {values.map((val, i) => (
+                        <div className="input-group" key={i}>
+                            <TextDataEntryInput
+                                slug={`${props.slug}-${i}`}
+                                value={val}
+                                disabled={props.disabled}
+                                onChange={(key, val) => this.edit(i, val)}
+
+                                maxLength={props.maxLength}
+                                placeholder={props.placeholder}
+                                valueTransform={props.valueTransform}
+                            />
+                            <div className="input-group-append">
+                                <button type="button" onClick={this.remove}
+                                    title="Remove"
+                                    data-index={i} className="btn btn-outline-dark">✕</button>
+                            </div>
+                        </div>
+                    ))}
+                    <div className="input-group">
+                        <TextDataEntryInput
+                            slug='new'
+                            value={this.state.newValue}
                             disabled={props.disabled}
-                            onChange={this.edit}
+                            onChange={(key, val) => this.setNewValue(val)}
+
+                            maxLength={props.maxLength}
+                            placeholder={props.placeholder}
+                            valueTransform={props.valueTransform}
                         />
                         <div className="input-group-append">
-                            <button type="button" onClick={this.remove}
-                                title="Remove"
-                                data-index={i} className="btn btn-outline-dark">✕</button>
+                            <button type="button" onClick={this.addNew}
+                                title="Add to list"
+                                className="btn btn-outline-dark">Add to list</button>
                         </div>
                     </div>
-                ))
+                </>
             }
-            <button
-                type="button"
-                title="Add"
-                onClick={this.add}
-                disabled={props.mode === 'view'}
-                className="btn btn-outline-dark">+</button>
         </Fragment>;
     }
 }
