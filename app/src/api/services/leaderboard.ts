@@ -12,7 +12,7 @@ async function getLeaders(number_limit: number, time_limit: number) {
                 AND NOT (users.username = 'colouringlondon')
 		GROUP by users.username
 		ORDER BY number_edits DESC
-		LIMIT $2`, [number_limit, time_limit]
+		LIMIT $2`, [time_limit, number_limit]
 	    );
 			
 	}else{

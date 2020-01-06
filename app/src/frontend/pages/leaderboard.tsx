@@ -22,7 +22,7 @@ import './leaderboard.css';
     }
 
 
-class LeaderBoardPage extends Component<LeaderboardProps, LeaderboardState> {
+class LeaderboardPage extends Component<LeaderboardProps, LeaderboardState> {
 
     constructor(props) {
         super(props);
@@ -99,7 +99,7 @@ class LeaderBoardPage extends Component<LeaderboardProps, LeaderboardState> {
             const number_edits = u.number_edits;
          
 	    return (
-		<tr key={i}>
+		<tr key={username}>
                     <td>{i+1}</td>
 		    <td>{username}</td>
 		    <td>{number_edits}</td>
@@ -145,5 +145,5 @@ class LeaderBoardPage extends Component<LeaderboardProps, LeaderboardState> {
 }
 
 
-export default LeaderBoardPage;
+export default LeaderboardPage;
 
