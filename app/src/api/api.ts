@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 
+import autofillController from './controllers/autofillController';
 import * as editHistoryController from './controllers/editHistoryController';
 import buildingsRouter from './routes/buildingsRouter';
 import extractsRouter from './routes/extractsRouter';
@@ -19,6 +20,7 @@ server.use('/users', usersRouter);
 server.use('/extracts', extractsRouter);
 
 server.get('/history', editHistoryController.getGlobalEditHistory);
+server.get('/autofill', autofillController.getAutofillOptions);
 
 // POST user auth
 server.post('/login', function (req, res) {
