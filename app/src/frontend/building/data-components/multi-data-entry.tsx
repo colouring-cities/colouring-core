@@ -50,16 +50,16 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
         this.props.onChange(this.props.slug, values);
     }
 
-    remove(event){
-        const removeIndex = +event.target.dataset.index;
+    remove(index: number){
         const values = this.getValues();
-        values.splice(removeIndex, 1);
+        values.splice(index, 1);
         this.props.onChange(this.props.slug, values);
     }
 
     render() {
         const values = this.getValues();
         const props = this.props;
+        const isDisabled = props.mode === 'view' || props.disabled;
         return <Fragment>
             <DataTitleCopyable
                 slug={props.slug}
@@ -67,59 +67,55 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                 tooltip={props.tooltip}
                 disabled={props.disabled || props.value == undefined || props.value.length === 0}
             />
+            <ul className="data-link-list">
             {
-                (props.mode === 'view')?
-                    (props.value && props.value.length)?
-                        <ul className="data-link-list">
-                        {
-                            props.value.map((item, index) => {
-                                return <li
-                                    key={index}
-                                    className="form-control">
-                                    <a href={sanitiseURL(item)}>{item}</a>
-                                </li>;
-                            })
-                        }
-                        </ul>
-                    :'\u00A0'
-                : <>
-                    {values.map((val, i) => (
-                        <div className="input-group" key={i}>
-                            <TextDataEntryInput
-                                slug={`${props.slug}-${i}`}
-                                value={val}
-                                disabled={props.disabled}
-                                onChange={(key, val) => this.edit(i, val)}
-
-                                maxLength={props.maxLength}
-                                placeholder={props.placeholder}
-                                valueTransform={props.valueTransform}
-                            />
-                            <div className="input-group-append">
-                                <button type="button" onClick={this.remove}
-                                    title="Remove"
-                                    data-index={i} className="btn btn-outline-dark">✕</button>
-                            </div>
-                        </div>
-                    ))}
-                    <div className="input-group">
+                values.length === 0 &&
+                <div>No elements</div>
+            }
+            {
+                values.map((val, i) => (
+                    <li className="input-group" key={i}>
                         <TextDataEntryInput
-                            slug='new'
-                            value={this.state.newValue}
-                            disabled={props.disabled}
-                            onChange={(key, val) => this.setNewValue(val)}
+                            slug={`${props.slug}-${i}`}
+                            value={val}
+                            disabled={isDisabled}
+                            onChange={(key, val) => this.edit(i, val)}
 
                             maxLength={props.maxLength}
                             placeholder={props.placeholder}
                             valueTransform={props.valueTransform}
                         />
-                        <div className="input-group-append">
-                            <button type="button" onClick={this.addNew}
-                                title="Add to list"
-                                className="btn btn-outline-dark">Add to list</button>
-                        </div>
+                        {
+                            !isDisabled &&
+                            <div className="input-group-append">
+                                <button type="button" onClick={e => this.remove(i)}
+                                    title="Remove"
+                                    data-index={i} className="btn btn-outline-dark">✕</button>
+                            </div>
+                        }
+                    </li>
+                ))
+            }
+            </ul>
+            {
+                !isDisabled &&
+                <div className="input-group">
+                    <TextDataEntryInput 
+                        slug='new'
+                        value={this.state.newValue}
+                        disabled={props.disabled}
+                        onChange={(key, val) => this.setNewValue(val)}
+
+                        maxLength={props.maxLength}
+                        placeholder={props.placeholder}
+                        valueTransform={props.valueTransform}
+                    />
+                    <div className="input-group-append">
+                        <button type="button" onClick={this.addNew}
+                            title="Add to list"
+                            className="btn btn-outline-dark">Add to list</button>
                     </div>
-                </>
+                </div>
             }
         </Fragment>;
     }
