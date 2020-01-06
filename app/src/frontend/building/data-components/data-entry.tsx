@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 import { CopyProps } from '../data-containers/category-view-props';
 
-import { TextDataEntryInput, TextDataEntryInputProps } from './data-entry-input';
+import { DataEntryInput, TextDataEntryInputProps } from './data-entry-input';
 import { DataTitleCopyable } from './data-title';
 
 interface BaseDataEntryProps {
@@ -29,7 +29,7 @@ const DataEntry: React.FC<DataEntryProps> = (props) => {
                 disabled={props.disabled || props.value == undefined || props.value == ''}
                 copy={props.copy}
             />
-            <TextDataEntryInput
+            <DataEntryInput
                 slug={props.slug}
                 value={props.value}
                 onChange={props.onChange}

@@ -7,7 +7,7 @@ const autofillFunctionMap = {
 function getLanduseClassOptions(value: string) {
     return db.manyOrNone(`
         SELECT landuse_id AS id, description as value, similarity(description, $1) AS similarity
-        FROM reference_tables.building_landuse_class
+        FROM reference_tables.buildings_landuse_class
         WHERE description % $1
         ORDER BY similarity DESC, description
         `, [value]

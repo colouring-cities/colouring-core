@@ -13,22 +13,22 @@ import { CategoryViewProps } from './category-view-props';
  */
 const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        <InfoBox msg="This category is currently read-only. We are working on enabling its editing soon." />
         <MultiDataEntry
             title={dataFields.current_landuse_class.title}
             slug="current_landuse_class"
             value={props.building.current_landuse_class}
-            mode="view"
+            mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
             // tooltip={dataFields.current_landuse_class.tooltip}
             placeholder="New land use class..."
+            autofill={true}
         />
         <MultiDataEntry
             title={dataFields.current_landuse_group.title}
             slug="current_landuse_group"
             value={props.building.current_landuse_group}
-            mode="view"
+            mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
             // tooltip={dataFields.current_landuse_class.tooltip}
@@ -38,7 +38,8 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             title={dataFields.current_landuse_order.title}
             slug="current_landuse_order"
             value={props.building.current_landuse_order}
-            mode="view"
+            mode={props.mode}
+            disabled={true}
             copy={props.copy}
             onChange={props.onChange}
         />

@@ -1,0 +1,9 @@
+.autofill-dropdown {
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    max-height: 5em;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

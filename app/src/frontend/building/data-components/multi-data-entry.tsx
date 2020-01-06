@@ -1,9 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
-import { sanitiseURL } from '../../helpers';
-
 import { BaseDataEntryProps } from './data-entry';
-import { TextDataEntryInput, TextDataEntryInputProps } from './data-entry-input';
+import { DataEntryInput, TextDataEntryInputProps } from './data-entry-input';
 import { DataTitleCopyable } from './data-title';
 
 
@@ -75,8 +73,8 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
             {
                 values.map((val, i) => (
                     <li className="input-group" key={i}>
-                        <TextDataEntryInput
-                            slug={`${props.slug}-${i}`}
+                        <DataEntryInput
+                            slug={props.slug}
                             value={val}
                             disabled={isDisabled}
                             onChange={(key, val) => this.edit(i, val)}
@@ -84,6 +82,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                             maxLength={props.maxLength}
                             placeholder={props.placeholder}
                             valueTransform={props.valueTransform}
+                            autofill={props.autofill}
                         />
                         {
                             !isDisabled &&
@@ -100,8 +99,8 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
             {
                 !isDisabled &&
                 <div className="input-group">
-                    <TextDataEntryInput 
-                        slug='new'
+                    <DataEntryInput
+                        slug={props.slug}
                         value={this.state.newValue}
                         disabled={props.disabled}
                         onChange={(key, val) => this.setNewValue(val)}
@@ -109,6 +108,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                         maxLength={props.maxLength}
                         placeholder={props.placeholder}
                         valueTransform={props.valueTransform}
+                        autofill={props.autofill}
                     />
                     <div className="input-group-append">
                         <button type="button" onClick={this.addNew}

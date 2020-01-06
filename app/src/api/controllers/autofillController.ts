@@ -6,7 +6,7 @@ const getAutofillOptions = asyncController(async (req, res) => {
 
     const options = await autofillService.getAutofillOptions(field_name, field_value);
 
-    res.send(options);
+    res.send({ options: options });
 });
 
 export default {
