@@ -68,7 +68,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
             <ul className="data-link-list">
             {
                 values.length === 0 &&
-                <div>No elements</div>
+                <div>No entries</div>
             }
             {
                 values.map((val, i) => (
@@ -113,7 +113,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                     <div className="input-group-append">
                         <button type="button" onClick={this.addNew}
                             title="Add to list"
-                            className="btn btn-outline-dark">Add to list</button>
+                            className="btn btn-outline-dark">+</button>
                     </div>
                 </div>
             }
