@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './autofillDropdown.css';
 
 import { apiGet } from '../../../apiHelpers';
+import { useThrottledValue } from '../../../hooks/useThrottledValue';
 
 interface AutofillDropdownProps {
     fieldName: string;
@@ -21,6 +22,9 @@ interface AutofillOption {
 export const AutofillDropdown: React.FC<AutofillDropdownProps> =  props => {
     const [options, setOptions] = useState<AutofillOption[]>(null);
 
+    // use both throttled and debounced field value as trigger for update
+    const throttledFieldValue = useThrottledValue(props.fieldValue, 1000);
+
     useEffect(() => {
         const doAsync = async () => {
             if (!props.editing || props.fieldValue === '') return setOptions(null);
@@ -34,7 +38,7 @@ export const AutofillDropdown: React.FC<AutofillDropdownProps> =  props => {
         };
 
         doAsync();
-    }, [props.editing, props.fieldName, props.fieldValue]);
+    }, [props.editing, props.fieldName, throttledFieldValue]);
 
     if (!props.editing || options == undefined) return null;
 
