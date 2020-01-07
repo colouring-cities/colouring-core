@@ -69,16 +69,18 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                 tooltip={props.tooltip}
                 disabled={props.disabled || props.value == undefined || props.value.length === 0}
             />
-            <ul className="data-link-list">
+            <ul id={props.slug} className="data-link-list">
             {
                 values.length === 0 &&
                 <div>No entries</div>
             }
             {
                 values.map((val, i) => (
-                    <li className="input-group" key={i}>
+                    <li className="input-group" key={i /* is as key prevents input component recreation on edit */}>
                         <DataEntryInput
                             slug={props.slug}
+                            name={`${props.slug}-${i}`}
+                            id={`${props.slug}-${i}`}
                             value={val}
                             disabled={isDisabled}
                             onChange={(key, val) => this.edit(i, val)}
@@ -105,6 +107,8 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                 <div className="input-group">
                     <DataEntryInput
                         slug={props.slug}
+                        name={`${props.slug}-new`}
+                        id={`${props.slug}-new`}
                         value={this.state.newValue}
                         disabled={props.disabled}
                         onChange={(key, val) => this.setNewValue(val)}

@@ -5,6 +5,7 @@ import { AutofillDropdown } from './autofill/autofillDropdown';
 export interface TextDataEntryInputProps {
     slug: string;
     name?: string;
+    id?: string;
     onChange?: (key: string, val: any) => void;
 
     maxLength?: number;
@@ -16,6 +17,8 @@ export interface TextDataEntryInputProps {
 
 export const DataEntryInput: React.FC<TextDataEntryInputProps & {value?: string}> = props => {
     const [isEditing, setEditing] = useState(false);
+    const nameAttr = props.name || props.slug;
+    const idAttr = props.id || props.slug;
 
     const handleChange = (value: string) => {
         console.log(value);
@@ -27,17 +30,18 @@ export const DataEntryInput: React.FC<TextDataEntryInputProps & {value?: string}
     };
 
     return (
-        <div
-            onFocus={e => setEditing(true)}
-            onBlur={e => setEditing(false)}
-        >
+        <>
             <input className="form-control" type="text"
-                name={props.slug}
+                id={idAttr}
+                name={nameAttr}
                 value={props.value || ''}
                 maxLength={props.maxLength}
                 disabled={props.disabled}
                 placeholder={props.placeholder}
                 onChange={e => handleChange(e.target.value)}
+                onInput={e => setEditing(true)}
+                onFocus={e => setEditing(true)}
+                onBlur={e => setEditing(false)}
             />
             {
                 props.autofill &&
@@ -49,6 +53,6 @@ export const DataEntryInput: React.FC<TextDataEntryInputProps & {value?: string}
                     fieldValue={props.value}
                 />
             }
-        </div>
+        </>
     );
 };

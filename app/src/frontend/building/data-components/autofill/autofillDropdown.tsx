@@ -27,14 +27,14 @@ export const AutofillDropdown: React.FC<AutofillDropdownProps> =  props => {
 
     useEffect(() => {
         const doAsync = async () => {
-            if (!props.editing || props.fieldValue === '') return setOptions(null);
+            if (!props.editing || (props.fieldValue === '' && options == null)) return setOptions(null);
 
             const url = `/api/autofill?field_name=${props.fieldName}&field_value=${props.fieldValue}`;
-            const { options } = await apiGet(url);
+            const { options: newOptions } = await apiGet(url);
 
             if (!props.editing) return;
 
-            setOptions(options);
+            setOptions(newOptions);
         };
 
         doAsync();
@@ -47,6 +47,7 @@ export const AutofillDropdown: React.FC<AutofillDropdownProps> =  props => {
             {
                 options.map(option =>
                     <div
+                        key={option.id}
                         onMouseDown={e => /* prevent input blur */ e.preventDefault()}
                         onClick={e => {
                             props.onSelect(option.value);
