@@ -32,24 +32,28 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
         return this.props.value == undefined ? [] : this.props.value;
     }
 
+    cloneValues() {
+        return this.getValues().slice();
+    }
+
     setNewValue(value: string) {
         this.setState({newValue: value});
     }
 
     edit(index: number, value: string) {
-        let values = this.getValues();
+        let values = this.cloneValues();
         values.splice(index, 1, value);
         this.props.onChange(this.props.slug, values);
     }
     addNew(event) {
         event.preventDefault();
-        const values = this.getValues().concat(this.state.newValue);
+        const values = this.cloneValues().concat(this.state.newValue);
         this.setState({newValue: ''});
         this.props.onChange(this.props.slug, values);
     }
 
     remove(index: number){
-        const values = this.getValues();
+        const values = this.cloneValues();
         values.splice(index, 1);
         this.props.onChange(this.props.slug, values);
     }
