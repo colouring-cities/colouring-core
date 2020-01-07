@@ -29,6 +29,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             slug="current_landuse_group"
             value={props.building.current_landuse_group}
             mode={props.mode}
+            disabled={(props.building.current_landuse_class || []).length !== 0}
             copy={props.copy}
             onChange={props.onChange}
             // tooltip={dataFields.current_landuse_class.tooltip}
