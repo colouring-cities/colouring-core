@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import InfoBox from '../../components/info-box';
 import { dataFields } from '../../data_fields';
 import DataEntry from '../data-components/data-entry';
-import MultiDataEntry from '../data-components/multi-data-entry';
+import MultiDataEntry from '../data-components/multi-data-entry/multi-data-entry';
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';

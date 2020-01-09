@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react';
 
-import { BaseDataEntryProps } from './data-entry';
-import { DataEntryInput, TextDataEntryInputProps } from './data-entry-input';
-import { DataTitleCopyable } from './data-title';
+import './multi-data-entry.css';
+
+import { BaseDataEntryProps } from '../data-entry';
+import { DataEntryInput, TextDataEntryInputProps } from '../data-entry-input';
+import { DataTitleCopyable } from '../data-title';
 
 
 interface MultiDataEntryProps extends BaseDataEntryProps, TextDataEntryInputProps {
@@ -18,7 +20,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
     constructor(props) {
         super(props);
         this.state = {
-            newValue: ''
+            newValue: null
         };
         
         this.setNewValue = this.setNewValue.bind(this);
@@ -47,6 +49,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
     }
     addNew(event) {
         event.preventDefault();
+        if (this.state.newValue == undefined) return;
         const values = this.cloneValues().concat(this.state.newValue);
         this.setState({newValue: ''});
         this.props.onChange(this.props.slug, values);
@@ -73,7 +76,9 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                 <ul className="data-link-list">
                 {
                     values.length === 0 &&
-                    <div>No entries</div>
+                    <div className="input-group">
+                        <input className="form-control no-entries" type="text" value="No entries" disabled={true} />
+                    </div>
                 }
                 {
                     values.map((val, i) => (
@@ -87,7 +92,6 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                                 onChange={(key, val) => this.edit(i, val)}
 
                                 maxLength={props.maxLength}
-                                placeholder={props.placeholder}
                                 valueTransform={props.valueTransform}
                                 autofill={props.autofill}
                             />
@@ -120,9 +124,12 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                             autofill={props.autofill}
                         />
                         <div className="input-group-append">
-                            <button type="button" onClick={this.addNew}
+                            <button type="button"
+                                className="btn btn-outline-dark"
                                 title="Add to list"
-                                className="btn btn-outline-dark">+</button>
+                                onClick={this.addNew}
+                                disabled={this.state.newValue == undefined}
+                            >+</button>
                         </div>
                     </div>
                 }
