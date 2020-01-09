@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { AutofillDropdown } from './autofill/autofillDropdown';
+import { AutofillDropdown } from './autofill-dropdown/autofill-dropdown';
 
 export interface TextDataEntryInputProps {
     slug: string;

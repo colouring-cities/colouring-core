@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useThrottle } from 'use-throttle';
 
-import './autofillDropdown.css';
+import './autofill-dropdown.css';
 
 import { apiGet } from '../../../apiHelpers';
 
