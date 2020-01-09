@@ -69,62 +69,64 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                 tooltip={props.tooltip}
                 disabled={props.disabled || props.value == undefined || props.value.length === 0}
             />
-            <ul id={props.slug} className="data-link-list">
-            {
-                values.length === 0 &&
-                <div>No entries</div>
-            }
-            {
-                values.map((val, i) => (
-                    <li className="input-group" key={i /* is as key prevents input component recreation on edit */}>
+            <div id={`${props.slug}-wrapper`}>
+                <ul className="data-link-list">
+                {
+                    values.length === 0 &&
+                    <div>No entries</div>
+                }
+                {
+                    values.map((val, i) => (
+                        <li className="input-group" key={i /* i as key prevents input component recreation on edit */}>
+                            <DataEntryInput
+                                slug={props.slug}
+                                name={`${props.slug}-${i}`}
+                                id={`${props.slug}-${i}`}
+                                value={val}
+                                disabled={isDisabled}
+                                onChange={(key, val) => this.edit(i, val)}
+
+                                maxLength={props.maxLength}
+                                placeholder={props.placeholder}
+                                valueTransform={props.valueTransform}
+                                autofill={props.autofill}
+                            />
+                            {
+                                !isDisabled &&
+                                <div className="input-group-append">
+                                    <button type="button" onClick={e => this.remove(i)}
+                                        title="Remove"
+                                        data-index={i} className="btn btn-outline-dark">✕</button>
+                                </div>
+                            }
+                        </li>
+                    ))
+                }
+                </ul>
+                {
+                    !isDisabled &&
+                    <div className="input-group">
                         <DataEntryInput
                             slug={props.slug}
-                            name={`${props.slug}-${i}`}
-                            id={`${props.slug}-${i}`}
-                            value={val}
-                            disabled={isDisabled}
-                            onChange={(key, val) => this.edit(i, val)}
+                            name={`${props.slug}`}
+                            id={`${props.slug}`}
+                            value={this.state.newValue}
+                            disabled={props.disabled}
+                            onChange={(key, val) => this.setNewValue(val)}
 
                             maxLength={props.maxLength}
                             placeholder={props.placeholder}
                             valueTransform={props.valueTransform}
                             autofill={props.autofill}
                         />
-                        {
-                            !isDisabled &&
-                            <div className="input-group-append">
-                                <button type="button" onClick={e => this.remove(i)}
-                                    title="Remove"
-                                    data-index={i} className="btn btn-outline-dark">✕</button>
-                            </div>
-                        }
-                    </li>
-                ))
-            }
-            </ul>
-            {
-                !isDisabled &&
-                <div className="input-group">
-                    <DataEntryInput
-                        slug={props.slug}
-                        name={`${props.slug}-new`}
-                        id={`${props.slug}-new`}
-                        value={this.state.newValue}
-                        disabled={props.disabled}
-                        onChange={(key, val) => this.setNewValue(val)}
-
-                        maxLength={props.maxLength}
-                        placeholder={props.placeholder}
-                        valueTransform={props.valueTransform}
-                        autofill={props.autofill}
-                    />
-                    <div className="input-group-append">
-                        <button type="button" onClick={this.addNew}
-                            title="Add to list"
-                            className="btn btn-outline-dark">+</button>
+                        <div className="input-group-append">
+                            <button type="button" onClick={this.addNew}
+                                title="Add to list"
+                                className="btn btn-outline-dark">+</button>
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </Fragment>;
     }
 }
