@@ -5,6 +5,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "clean": "rm -rf build",
     "start": "razzle start",
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
@@ -35,7 +36,8 @@
     "react-leaflet-universal": "^1.2.0",
     "react-router-dom": "^5.0.1",
     "serialize-javascript": "^2.1.1",
-    "sharp": "^0.22.1"
+    "sharp": "^0.22.1",
+    "use-throttle": "0.0.3"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.7.4",
