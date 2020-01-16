@@ -13,7 +13,7 @@ import { CategoryViewProps } from './category-view-props';
 */
 const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        <DataEntryGroup name="Storeys" collapsed={false}>
+        <DataEntryGroup name="Storeys">
 
             <NumericDataEntry
                 title={dataFields.size_storeys_core.title}
@@ -49,7 +49,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 min={0}
                 />
         </DataEntryGroup>
-        <DataEntryGroup name="Height">
+        <DataEntryGroup name="Height" collapsed={false}>
             <NumericDataEntry
                 title={dataFields.size_height_apex.title}
                 slug="size_height_apex"
