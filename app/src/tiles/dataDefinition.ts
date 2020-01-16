@@ -48,7 +48,7 @@ const BUILDING_LAYER_DEFINITIONS = {
     ) as size_stories`,
     size_height: `(
         SELECT
-            b.size_height_apex,
+            b.size_height_apex as size_height,
             g.geometry_geom
         FROM
             geometries as g,
