@@ -89,6 +89,44 @@
             <PolygonSymbolizer fill="#800026" />
         </Rule>
     </Style>
+    <Style name="size_height">
+        <Rule>
+            <Filter>[size_height] &lt; 5.55</Filter>
+            <PolygonSymbolizer fill="#f7f4f9" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 5.55 and [size_height] &lt; 7.73</Filter>
+            <PolygonSymbolizer fill="#e7e1ef" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 7.73 and [size_height] &lt; 1.138</Filter>
+            <PolygonSymbolizer fill="#d4b9da" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 1.138 and [size_height] &lt; 1.845</Filter>
+            <PolygonSymbolizer fill="#c994c7" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 1.845 and [size_height] &lt; 3.505</Filter>
+            <PolygonSymbolizer fill="#df65b0" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 3.505 and [size_height] &lt; 8.930</Filter>
+            <PolygonSymbolizer fill="#e7298a" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 8.930 and [size_height] &lt; 15.179</Filter>
+            <PolygonSymbolizer fill="#ce1256" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 15.179 and [size_height] &lt; 99.999</Filter>
+            <PolygonSymbolizer fill="#980043" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 99.999</Filter>
+            <PolygonSymbolizer fill="#67001f" />
+        </Rule>
+    </Style>
     <Style name="date_year">
         <Rule>
             <Filter>[date_year] &gt;= 2000</Filter>
