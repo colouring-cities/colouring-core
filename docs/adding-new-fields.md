@@ -20,6 +20,7 @@ The second section would be required when adding a new category or when changing
 
 #### In data extracts
 1. Add the field to the select list in the COPY query in `maintenance/extract_data/export_attributes.sql` 
+2. Add a description of the field to the `README.txt` file
 
 ### Adding an attribute which is used to colour the map
 
