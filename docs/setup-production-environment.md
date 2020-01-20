@@ -32,6 +32,10 @@ Install Postgres and associated tools
 
 `sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev`
 
+Install Python 3 and pip
+
+`sudo apt-get install python3 python3-pip`
+
 
 Install Nginx
 
@@ -302,6 +306,21 @@ To stop the colouring-london app type:
 
 
 ***
+
+#### Set up data extracts
+
+Install requirements for the maintenance Python scripts
+
+`cd /var/www/colouring-london/maintenance`
+
+`sudo pip3 install -r requirements.txt`
+
+The maintenance scripts might need environment variables present at the time of execution, notably the database connection details.
+If running the scripts manually, the variables can be provided just before execution, for example
+
+`PGHOST=localhost PGPORT=5432 PGDATABASE=dbname PGUSER=username PGPASSWORD=secretpassword EXTRACTS_DIRECTORY=/var/www/colouring-london/downloads python3 maintenance/extract_data/extract_data.py`
+
+If the maintenance script is to be run on a schedule, the variables should be loaded before running the script, for example from a `.env` file.
 
 
 #### Set up SSL - TO DO
