@@ -30,10 +30,7 @@ export default class DataExtracts extends React.Component<{}, DataExtractsState>
 
     async componentDidMount() {
         let data = await apiGet('/api/extracts', { jsonReviver: dateReviver});
-        const extracts = (data.extracts as ExtractViewModel[])
-            .sort((a, b) => b.extracted_on.valueOf() - a.extracted_on.valueOf());
-
-
+        const extracts = (data.extracts as ExtractViewModel[]);
 
         this.setState({ extracts: extracts, latestExtract: extracts[0], previousExtracts: extracts.slice(1) });
     }
