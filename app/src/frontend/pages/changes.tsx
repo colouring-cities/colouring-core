@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { apiGet } from '../apiHelpers';
 import { BuildingEditSummary } from '../building/edit-history/building-edit-summary';
 import InfoBox from '../components/info-box';
 import { EditHistoryEntry } from '../models/edit-history-entry';
@@ -9,10 +10,9 @@ const ChangesPage = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch(`/api/history`);
-            const data = await res.json();
+            const {history} = await apiGet(`/api/history`);
 
-            setHistory(data.history);
+            setHistory(history);
         };
 
         fetchData();
