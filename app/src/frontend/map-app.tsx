@@ -5,6 +5,7 @@ import { Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
 import { parseJsonOrDefault } from '../helpers';
 import { strictParseInt } from '../parse';
 
+import { apiGet, apiPost } from './apiHelpers';
 import BuildingView from './building/building-view';
 import Categories from './building/categories';
 import { EditHistory } from './building/edit-history/edit-history';
@@ -64,16 +65,9 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
 
     async fetchLatestRevision() {
         try {
-            const res = await fetch(`/api/buildings/revision`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'same-origin'
-            });
-            const data = await res.json();
+            const {latestRevisionId} = await apiGet(`/api/buildings/revision`);
             
-            this.increaseRevision(data.latestRevisionId);
+            this.increaseRevision(latestRevisionId);
         } catch(error) {
             console.error(error);
         }
@@ -89,27 +83,9 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                 // TODO: simplify API calls, create helpers for fetching data
                 const buildingId = strictParseInt(this.props.match.params.building);
                 let [building, building_uprns, building_like] = await Promise.all([
-                    fetch(`/api/buildings/${buildingId}.json`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        credentials: 'same-origin'
-                    }).then(res => res.json()),
-                    fetch(`/api/buildings/${buildingId}/uprns.json`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        credentials: 'same-origin'
-                    }).then(res => res.json()),
-                    fetch(`/api/buildings/${buildingId}/like.json`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }, 
-                        credentials: 'same-origin'
-                    }).then(res => res.json())
+                    apiGet(`/api/buildings/${buildingId}.json`),
+                    apiGet(`/api/buildings/${buildingId}/uprns.json`),
+                    apiGet(`/api/buildings/${buildingId}/like.json`)
                 ]);
 
                 building.uprns = building_uprns.uprns;
@@ -158,15 +134,8 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
 
         this.increaseRevision(building.revision_id);
         // get UPRNs and update
-        fetch(`/api/buildings/${building.building_id}/uprns.json`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin'
-        }).then(
-            res => res.json()
-        ).then((res) => {
+        apiGet(`/api/buildings/${building.building_id}/uprns.json`)
+        .then((res) => {
             if (res.error) {
                 console.error(res);
             } else {
@@ -179,15 +148,8 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
         });
 
         // get if liked and update
-        fetch(`/api/buildings/${building.building_id}/like.json`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin'
-        }).then(
-            res => res.json()
-        ).then((res) => {
+        apiGet(`/api/buildings/${building.building_id}/like.json`)
+        .then((res) => {
             if (res.error) {
                 console.error(res);
             } else {
@@ -225,37 +187,21 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
     }
 
     likeBuilding(buildingId) {
-        fetch(`/api/buildings/${buildingId}/like.json`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin',
-            body: JSON.stringify({ like: true })
-        }).then(
-            res => res.json()
-        ).then(function (res) {
+        apiPost(`/api/buildings/${buildingId}/like.json`, { like: true })
+        .then(res => {
             if (res.error) {
                 console.error({ error: res.error });
             } else {
                 this.increaseRevision(res.revision_id);
             }
-        }.bind(this)).catch(
+        }).catch(
             (err) => console.error({ error: err })
         );
     }
 
     updateBuilding(buildingId, data) {
-        fetch(`/api/buildings/${buildingId}.json`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin'
-        }).then(
-            res => res.json()
-        ).then(res => {
+        apiPost(`/api/buildings/${buildingId}.json`, data)
+        .then(res => {
             if (res.error) {
                 console.error({ error: res.error });
             } else {

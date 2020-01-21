@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 
+import { apiPost } from '../apiHelpers';
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
 import { compareObjects } from '../helpers';
@@ -162,15 +163,10 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
          */
         async handleLike(like: boolean) {
             try {
-                const res = await fetch(`/api/buildings/${this.props.building.building_id}/like.json`, {
-                    method: 'POST',
-                    headers:{
-                        'Content-Type': 'application/json'
-                    },
-                    credentials: 'same-origin',
-                    body: JSON.stringify({like: like})
-                });
-                const data = await res.json();
+                const data = await apiPost(
+                    `/api/buildings/${this.props.building.building_id}/like.json`,
+                    {like: like}
+                );
                 
                 if (data.error) {
                     this.setState({error: data.error});
@@ -188,15 +184,10 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
             this.setState({error: undefined});
 
             try {
-                const res = await fetch(`/api/buildings/${this.props.building.building_id}.json`, {
-                    method: 'POST',
-                    body: JSON.stringify(this.state.buildingEdits),
-                    headers:{
-                        'Content-Type': 'application/json'
-                    },
-                    credentials: 'same-origin'
-                });
-                const data = await res.json();
+                const data = await apiPost(
+                    `/api/buildings/${this.props.building.building_id}.json`,
+                    this.state.buildingEdits
+                );
                 
                 if (data.error) {
                     this.setState({error: data.error});
