@@ -68,7 +68,7 @@ Now set appropriate permissions on the `colouring-london` directory
 
 First define a couple of convenience variables:
 
-`NODE_VERSION=v8.11.3`
+`NODE_VERSION=v12.14.1`
 
 `DISTRO=linux-x64`
 
@@ -107,7 +107,7 @@ Now upgrade the `npm` package manager to the most recent release with global pri
 
 `sudo su root`
 
-`export NODEJS_HOME=/usr/local/lib/node/node-v8.11.3/bin/`
+`export NODEJS_HOME=/usr/local/lib/node/node-v12.14.1/bin/`
 
 `export PATH=$NODEJS_HOME:$PATH`
 
@@ -240,7 +240,7 @@ Perform a global install of PM2
 
 `sudo su root`
 
-`export NODEJS_HOME=/usr/local/lib/node/node-v8.11.3/bin/`
+`export NODEJS_HOME=/usr/local/lib/node/node-v12.14.1/bin/`
 
 `export PATH=$NODEJS_HOME:$PATH`
 
