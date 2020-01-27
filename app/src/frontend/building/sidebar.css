@@ -3,25 +3,41 @@
  */
 .info-container {
     position: absolute;
-    top: 85px;
+    top: 75px;
     left: 0;
     bottom: 0;
-    overflow-y: auto;
     width: 95%;
-    padding: 0 0 2em;
-    background: #fff;
-    z-index: 1000;
+    width: calc(100% - 40px);
+    z-index: 1001;
     transition: transform 0.3s;
+    transform: translateX(0);
+}
+.info-container.offscreen {
     transform: translateX(-100%);
 }
-.info-container.onscreen {
-    transform: translateX(0);
+.info-container-collapse {
+    position: absolute;
+    right: -32px;
+    top: 2rem;
+    padding: 2.5rem 0rem;
+    border-radius: 0 .25rem .25rem 0;
 }
 @media (min-width: 768px){
     .info-container {
         width: 480px; /* to match .main-header menu width */
-       transform: translateX(0);
     }
+    .info-container.offscreen {
+        transform: translateX(0);
+    }
+    .info-container-collapse {
+        display: none;
+    }
+}
+.info-container-inner {
+    overflow-y: auto;
+    height: 100%;
+    padding: 0 0 2em;
+    background: #fff;
 }
 
 /**
