@@ -34,3 +34,15 @@ export function isNullishOrEmpty(obj: any) {
 export function isEmptyArray(obj: any) {
     return Array.isArray(obj) && obj.length === 0;
 }
+
+type AccessorFunction<T, V> = (obj: T) => V;
+
+type CompareFunction<T> = (a: T, b: T) => number;
+
+export function numAsc<T, V extends number | bigint>(accessor: AccessorFunction<T, V>): CompareFunction<T>{
+    return (a: T, b: T) => Number(accessor(a) - accessor(b));
+}
+
+export function numDesc<T, V extends number | bigint>(accessor: AccessorFunction<T, V>): CompareFunction<T> {
+    return (a: T, b: T) => Number(accessor(b) - accessor(a));
+}
