@@ -1,20 +1,28 @@
-import db from '../../db';
+import { EditHistoryEntry } from '../../frontend/models/edit-history-entry';
+import { getHistoryAfterId, getHistoryBeforeId, getIdNewerThan, getIdOlderThan, getLatestHistory } from '../dataAccess/editHistory';
 
-async function getGlobalEditHistory() {
-    try {
-        return await db.manyOrNone(
-            `SELECT log_id as revision_id, forward_patch, reverse_patch, date_trunc('minute', log_timestamp) as revision_timestamp, username, building_id
-            FROM logs, users
-            WHERE logs.user_id = users.user_id
-                AND log_timestamp >= now() - interval '7 days'
-            ORDER BY log_timestamp DESC`
-        );
-    } catch (error) {
-        console.error(error);
-        return [];
+async function getGlobalEditHistory(beforeId?: string, afterId?: string, count: number = 100) {
+    // limited set of records. Expected to be already ordered from newest to oldest
+    let editHistoryRecords: EditHistoryEntry[];
+
+    if(afterId != undefined) {
+        editHistoryRecords = await getHistoryAfterId(afterId, count);
+    } else if (beforeId != undefined) {
+        editHistoryRecords = await getHistoryBeforeId(beforeId, count);
+    } else {
+        editHistoryRecords = await getLatestHistory(count);
     }
-}
 
+    const newer = getIdNewerThan(editHistoryRecords[0]?.revision_id);
+    const older = getIdOlderThan(editHistoryRecords[editHistoryRecords.length-1]?.revision_id);
+    return {
+        history: editHistoryRecords,
+        paging: {
+            has_newer: newer != undefined,
+            has_older: older != undefined
+        }
+    };
+}
 
 export {
     getGlobalEditHistory
