@@ -50,7 +50,12 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                     </span>
                     <button className="navbar-toggler navbar-toggler-right" type="button"
                         onClick={this.handleClick} aria-expanded={!this.state.collapseMenu} aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                        Menu&nbsp;
+                        {
+                            this.state.collapseMenu ?
+                                <span className="navbar-toggler-icon"></span>
+                                : <span className="close">&times;</span>
+                        }
                     </button>
                     <div className={this.state.collapseMenu ? 'collapse navbar-collapse' : 'navbar-collapse'}>
                         <ul className="navbar-nav flex-column">

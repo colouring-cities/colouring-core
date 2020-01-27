@@ -7,14 +7,20 @@
     left: 0;
     bottom: 0;
     overflow-y: auto;
-    width: 100%;
+    width: 95%;
     padding: 0 0 2em;
     background: #fff;
+    z-index: 1000;
+    transition: transform 0.3s;
+    transform: translateX(-100%);
 }
-
-@media (min-width: 480px){
+.info-container.onscreen {
+    transform: translateX(0);
+}
+@media (min-width: 768px){
     .info-container {
         width: 480px; /* to match .main-header menu width */
+       transform: translateX(0);
     }
 }
 

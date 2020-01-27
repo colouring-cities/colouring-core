@@ -10,6 +10,9 @@ body {
 /**
  * Text pages
  */
+article {
+    margin-top: 85px;
+}
 article section {
     overflow: hidden;
     margin: 2.25em 0 4em;
