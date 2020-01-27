@@ -42,8 +42,8 @@ class Header extends React.Component<HeaderProps, HeaderState> {
     render() {
         return (
             <header className="main-header">
-                <nav className="navbar navbar-light navbar-expand-lg">
-                    <span className="navbar-brand align-self-start">
+                <nav className="navbar navbar-light">
+                    <span className="navbar-brand">
                         <NavLink to="/">
                             <Logo variant={this.props.animateLogo ? 'animated' : 'default'}/>
                         </NavLink>
@@ -53,7 +53,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className={this.state.collapseMenu ? 'collapse navbar-collapse' : 'navbar-collapse'}>
-                        <ul className="navbar-nav ml-auto">
+                        <ul className="navbar-nav flex-column">
                             <li className="nav-item">
                                 <NavLink to="/view/categories" className="nav-link" onClick={this.handleNavigate}>
                                     View/Edit Maps

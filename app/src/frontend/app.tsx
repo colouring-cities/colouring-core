@@ -52,7 +52,7 @@ class App extends React.Component<AppProps, AppState> {
 
     constructor(props: Readonly<AppProps>) {
         super(props);
-        
+
         this.state = {
             user: props.user
         };
@@ -88,7 +88,6 @@ class App extends React.Component<AppProps, AppState> {
                     <Header user={this.state.user} animateLogo={true} />
                 </Route>
             </Switch>
-            <main>
             <Switch>
                 <Route exact path="/about.html" component={AboutPage} />
                 <Route exact path="/login.html">
@@ -125,7 +124,6 @@ class App extends React.Component<AppProps, AppState> {
                 )} />
                 <Route component={NotFound} />
             </Switch>
-            </main>
             </Fragment>
         );
     }

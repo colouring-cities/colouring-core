@@ -2,18 +2,19 @@
  * Sidebar layout
  */
 .info-container {
-    order: 1;
+    position: absolute;
+    top: 85px;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    width: 100%;
     padding: 0 0 2em;
     background: #fff;
-    overflow-y: auto;
-    height: 40%;
 }
 
-@media (min-width: 768px){
+@media (min-width: 480px){
     .info-container {
-        order: 0;
-        height: unset;
-        width: 23rem;
+        width: 480px; /* to match .main-header menu width */
     }
 }
 

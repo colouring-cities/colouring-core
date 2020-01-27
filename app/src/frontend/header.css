@@ -2,8 +2,18 @@
  * Main header
  */
 .main-header {
+    z-index: 3000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
     text-decoration: none;
-    border-bottom: 2px solid #222;
+}
+@media (min-width: 480px){
+    .main-header {
+        width: 480px; /* to match .info-container menu width */
+    }
 }
 .main-header .navbar {
     padding: 0.5em 0.5em 0.5em;
@@ -11,18 +21,7 @@
 .main-header .navbar-brand {
     margin: 0 1em 0 0;
 }
-
-.main-header .shorten-username {
-    text-overflow: '…)';
-    white-space: nowrap;
-    overflow: hidden;
-    display: inline-block;
-    vertical-align: bottom;
-    max-width: 70vw;
-}
-
-@media (min-width: 768px) {
-    .main-header .shorten-username {
-        max-width: 5vw;
-    }
+.main-header .navbar-collapse {
+    height: calc(100vh - 80px);
+    overflow-y: auto;
 }
