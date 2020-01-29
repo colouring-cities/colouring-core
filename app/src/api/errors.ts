@@ -5,13 +5,13 @@
  * https://stackoverflow.com/questions/41102060/typescript-extending-error-class
  */
 
-class UserInputError extends Error {
+export class UserInputError extends Error {
     constructor(message?: string) {
         super(message);
     }
 }
 
-class RequestParameterError extends UserInputError {
+export class RequestParameterError extends UserInputError {
     public paramName: string;
 
     constructor(message?: string) {
@@ -19,19 +19,19 @@ class RequestParameterError extends UserInputError {
     }
 }
 
-class ParamRequiredError extends RequestParameterError {
+export class ParamRequiredError extends RequestParameterError {
     constructor(message?: string) {
         super(message);
     }
 }
 
-class ParamOutOfBoundsError extends RequestParameterError {
+export class ParamOutOfBoundsError extends RequestParameterError {
     constructor(message?: string) {
         super(message);
     }
 }
 
-class ParamInvalidFormatError extends RequestParameterError {
+export class ParamInvalidFormatError extends RequestParameterError {
     constructor(message?: string) {
         super(message);
     }

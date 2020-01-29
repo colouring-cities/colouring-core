@@ -1,5 +1,7 @@
 import { strictParseInt } from '../parse';
 
+import { ParamInvalidFormatError, ParamRequiredError, RequestParameterError } from './errors';
+
 
 export function processParam<T>(params: object, paramName: string, processingFn: (x: string) => T, required: boolean = false) {
     const stringValue = params[paramName];
@@ -37,4 +39,6 @@ export function checkRegexParam(param: string, regex: RegExp): string {
     if(param.match(regex) == undefined) {
         throw new ParamInvalidFormatError(`Invalid format: does not match regular expression ${regex}`);
     }
+    
+    return param;
 }
