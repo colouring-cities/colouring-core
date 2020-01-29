@@ -23,9 +23,9 @@ export function getHistoryAfterId(id: string, count: number): Promise<EditHistor
         SELECT * FROM (
             ${baseQuery}
             WHERE log_id > $1
-            ORDER BY log_id ASC
+            ORDER BY revision_id ASC
             LIMIT $2
-        ) AS result_asc ORDER BY log_id DESC`,
+        ) AS result_asc ORDER BY revision_id DESC`,
         [id, count]
     );
 }
@@ -34,7 +34,7 @@ export function getHistoryBeforeId(id: string, count: number): Promise<EditHisto
     return db.manyOrNone(`
         ${baseQuery}
         WHERE log_id < $1
-        ORDER BY log_id DESC
+        ORDER BY revision_id DESC
         LIMIT $2
     `, [id, count]);
 }
@@ -42,23 +42,27 @@ export function getHistoryBeforeId(id: string, count: number): Promise<EditHisto
 export async function getLatestHistory(count: number) : Promise<EditHistoryEntry[]> {
     return await db.manyOrNone(`
         ${baseQuery}
-        ORDER BY log_id DESC
+        ORDER BY revision_id DESC
         LIMIT $1
     `, [count]);
 }
 
 export async function getIdOlderThan(id: string): Promise<string> {
-    return await db.oneOrNone(`
-        SELECT MAX(log_id) as log_id
+    const result = await db.oneOrNone<{revision_id:string}>(`
+        SELECT MAX(log_id) as revision_id
         FROM logs
         WHERE log_id < $1
     `, [id]);
+
+    return result?.revision_id;
 }
 
 export async function getIdNewerThan(id: string): Promise<string> {
-    return await db.oneOrNone(`
-        SELECT MIN(log_id) as log_id
+    const result = await db.oneOrNone<{revision_id:string}>(`
+        SELECT MIN(log_id) as revision_id
         FROM logs
         WHERE log_id > $1
     `, [id]);
+
+    return result?.revision_id;
 }

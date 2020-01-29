@@ -13,8 +13,8 @@ async function getGlobalEditHistory(beforeId?: string, afterId?: string, count: 
         editHistoryRecords = await getLatestHistory(count);
     }
 
-    const newer = getIdNewerThan(editHistoryRecords[0]?.revision_id);
-    const older = getIdOlderThan(editHistoryRecords[editHistoryRecords.length-1]?.revision_id);
+    const newer = await getIdNewerThan(editHistoryRecords[0]?.revision_id);
+    const older = await getIdOlderThan(editHistoryRecords[editHistoryRecords.length-1]?.revision_id);
     return {
         history: editHistoryRecords,
         paging: {
