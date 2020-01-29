@@ -93,14 +93,28 @@ server.get('/search', function (req, res) {
     });
 });
 
-server.use((err, req, res, next) => {
+server.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
     if (res.headersSent) {
         return next(err);
     }
 
     if (err != undefined) {
         console.log('Global error handler: ', err);
-        res.status(500).send({ error: 'Server error' });
+        
+        if (err instanceof UserInputError) {
+            let errorMessage: string;
+
+            if(err instanceof RequestParameterError) {
+                errorMessage = `Problem with parameter ${err.paramName}: ${err.message}`;
+            } else {
+                errorMessage = err.message;
+            }
+
+            res.status(400).send({ error: errorMessage });
+        } else {
+            res.status(500).send({ error: 'Server error' });
+        }
+        
     }
 });
 
