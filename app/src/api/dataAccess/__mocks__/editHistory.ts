@@ -1,5 +1,5 @@
 import { EditHistoryEntry } from '../../../frontend/models/edit-history-entry';
-import { numDesc } from '../../../helpers';
+import { numAsc, numDesc } from '../../../helpers';
 
 const mockEditHistory =
     jest.genMockFromModule('../editHistory') as typeof import('../editHistory') & {
@@ -16,22 +16,16 @@ mockEditHistory.getHistoryAfterId = function(id: string, count: number): Promise
     return Promise.resolve(
         mockData
             .filter(x => BigInt(x.revision_id) > BigInt(id))
+            .sort(numAsc(x => BigInt(x.revision_id)))
             .slice(0, count)
+            .sort(numDesc(x => BigInt(x.revision_id)))
     );
 };
 
 mockEditHistory.getHistoryBeforeId = function(id: string, count: number): Promise<EditHistoryEntry[]> {
+    let filteredData = id == undefined ? mockData : mockData.filter(x => BigInt(x.revision_id) < BigInt(id));
     return Promise.resolve(
-        mockData
-            .filter(x => BigInt(x.revision_id) < BigInt(id))
-            .slice(0, count)
-    );
-};
-
-mockEditHistory.getLatestHistory = function(count: number): Promise<EditHistoryEntry[]> {
-    
-    return Promise.resolve(
-        mockData
+        filteredData
             .slice(0, count)
     );
 };

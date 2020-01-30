@@ -31,20 +31,23 @@ export function getHistoryAfterId(id: string, count: number): Promise<EditHistor
 }
 
 export function getHistoryBeforeId(id: string, count: number): Promise<EditHistoryEntry[]> {
-    return db.manyOrNone(`
-        ${baseQuery}
-        WHERE log_id < $1
-        ORDER BY revision_id DESC
-        LIMIT $2
-    `, [id, count]);
-}
-
-export async function getLatestHistory(count: number) : Promise<EditHistoryEntry[]> {
-    return await db.manyOrNone(`
-        ${baseQuery}
-        ORDER BY revision_id DESC
-        LIMIT $1
-    `, [count]);
+    if(id == undefined) {
+        
+        return db.any(`
+            ${baseQuery}
+            ORDER BY revision_id DESC
+            LIMIT $1
+        `, [count]);
+        
+    } else {
+        
+        return db.any(`
+            ${baseQuery}
+            WHERE log_id < $1
+            ORDER BY revision_id DESC
+            LIMIT $2
+        `, [id, count]);
+    }
 }
 
 export async function getIdOlderThan(id: string): Promise<string> {
