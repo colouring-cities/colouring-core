@@ -9,14 +9,13 @@ const mockEditHistory =
 let mockData: EditHistoryEntry[] = [];
 
 mockEditHistory.__setHistory = function(mockHistoryData: EditHistoryEntry[]) {
-    mockData = mockHistoryData;
+    mockData = mockHistoryData.sort(numDesc(x => BigInt(x.revision_id)));
 };
 
 mockEditHistory.getHistoryAfterId = function(id: string, count: number): Promise<EditHistoryEntry[]> {
     return Promise.resolve(
         mockData
             .filter(x => BigInt(x.revision_id) > BigInt(id))
-            .sort(numDesc(x => BigInt(x.revision_id)))
             .slice(0, count)
     );
 };
@@ -25,16 +24,15 @@ mockEditHistory.getHistoryBeforeId = function(id: string, count: number): Promis
     return Promise.resolve(
         mockData
             .filter(x => BigInt(x.revision_id) < BigInt(id))
-            .sort(numDesc(x => BigInt(x.revision_id)))
             .slice(0, count)
     );
 };
 
 mockEditHistory.getLatestHistory = function(count: number): Promise<EditHistoryEntry[]> {
+    
     return Promise.resolve(
         mockData
-            .slice(mockData.length - count, mockData.length)
-            .sort(numDesc(x => BigInt(x.revision_id)))
+            .slice(0, count)
     );
 };
 
