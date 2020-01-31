@@ -46,3 +46,15 @@ export function numAsc<T, V extends number | bigint>(accessor: AccessorFunction<
 export function numDesc<T, V extends number | bigint>(accessor: AccessorFunction<T, V>): CompareFunction<T> {
     return (a: T, b: T) => Number(accessor(b) - accessor(a));
 }
+
+/** 
+ * As of Jan 2020, bigint literals e.g. 1n can only be used with TS target esnext
+ * which then doesn't transpile the null conditional/coalescing operators and breaks on Node 12
+ * So BigInt(1) needs to be used here
+ * */ 
+export function incBigInt(bigStr: string): string {
+    return bigStr == undefined ? bigStr : String(BigInt(bigStr) + BigInt(1));
+}
+export function decBigInt(bigStr: string): string {
+    return bigStr == undefined ? bigStr : String(BigInt(bigStr) - BigInt(1));
+}

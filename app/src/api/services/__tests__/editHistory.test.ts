@@ -1,5 +1,6 @@
 import { EditHistoryEntry } from '../../../frontend/models/edit-history-entry';
 import * as editHistoryData from '../../dataAccess/editHistory'; // manually mocked
+import { UserInputError } from '../../errors';
 import { getGlobalEditHistory } from '../editHistory';
 
 jest.mock('../../dataAccess/editHistory');
@@ -19,10 +20,16 @@ function generateHistory(n: number, firstId: number = 100) {
 
 describe('getGlobalEditHistory()', () => {
     
-    beforeEach(() => {
-        mockedEditHistoryData.__setHistory(
-            generateHistory(20)
-        );
+    beforeEach(() => mockedEditHistoryData.__setHistory(generateHistory(20)));
+
+    afterEach(() => jest.clearAllMocks());
+
+    it.each([
+        [null, null],
+        ['100', null],
+        [null, '100']
+    ])('Should error when requesting non-positive number of records', (beforeId: string, afterId: string) => {
+        expect(getGlobalEditHistory(beforeId, afterId, 0)).rejects.toBeInstanceOf(UserInputError);
     });
     
     describe('getting history before a point', () => {
@@ -37,7 +44,9 @@ describe('getGlobalEditHistory()', () => {
             [
                 [null, 3, ['119', '118', '117']],
                 [null, 6, ['119', '118', '117', '116', '115', '114']],
-                ['118', 0, []],
+                ['118', 1, ['117']],
+                ['104', 10, ['103', '102','101', '100']],
+                ['100', 2, []]
             ]
         )('should return the N records before the specified ID in descending order [beforeId: %p, count: %p]', async (
             beforeId: string, count: number, ids: string[]
@@ -48,43 +57,39 @@ describe('getGlobalEditHistory()', () => {
         });
 
         it.each([
-            [null, 4, true, false],
-            [null, 10, true, false],
-            [null, 20, false, false],
-            [null, 30, false, false],
-            ['50', 10, false, true],
-            ['100', 10, false, true],
-            ['105', 2, true, true],
-        ])('should indicate if there are any newer or older records [beforeId: %p, count: %p]', async (
-            beforeId: string, count: number, hasOlder: boolean, hasNewer: boolean
+            [null, 4, null],
+            [null, 10, null],
+            [null, 20, null],
+            [null, 30, null],
+            ['50', 10, '99'],
+            ['100', 10, '99'],
+            ['130', 10, null],
+            ['105', 2, '104'],
+            ['120', 20, null],
+        ])('should detect if there are any newer records left [beforeId: %p, count: %p]', async (
+            beforeId: string, count: number, idForNewerQuery: string
         ) => {
             const result = await getGlobalEditHistory(beforeId, null, count);
 
-            expect(result.paging.has_older).toBe(hasOlder);
-            expect(result.paging.has_newer).toBe(hasNewer);
+            expect(result.paging.id_for_newer_query).toBe(idForNewerQuery);
         });
 
+        it.each([
+            [null, 4, '116'],
+            [null, 10, '110'],
+            [null, 20, null],
+            [null, 30, null],
+            ['50', 10, null],
+            ['100', 10, null],
+            ['130', 10, '110'],
+            ['105', 2, '103'],
+            ['120', 20, null],
+        ])('should detect if there are any older records left [beforeId: %p, count: %p]', async (
+            beforeId: string, count: number, idForOlderQuery: string
+        ) => {
+            const result = await getGlobalEditHistory(beforeId, null, count);
 
-        it('should not return more than 100 entries', async () => {
-            mockedEditHistoryData.__setHistory(
-                generateHistory(200)
-            );
-
-            const result = await getGlobalEditHistory(null, null, 200);
-
-            expect(result.paging.has_older).toBeTruthy();
-            expect(result.history.length).toBe(100);
-        });
-
-        it('should default to 100 entries', async () => {
-            mockedEditHistoryData.__setHistory(
-                generateHistory(200)
-            );
-
-            const result = await getGlobalEditHistory(null, null, 200);
-
-            expect(result.paging.has_older).toBeTruthy();
-            expect(result.history.length).toBe(100);
+            expect(result.paging.id_for_older_query).toBe(idForOlderQuery);
         });
     });
 
@@ -104,17 +109,66 @@ describe('getGlobalEditHistory()', () => {
         });
 
         it.each([
-            ['99', 10, false, true],
-            ['110', 5, true, true],
-            ['119', 20, true, false],
-            ['99', 20, false, false]
-        ])('should indicate if there are any newer or older records [afterId: %p, count: %p]', async (
-            afterId: string, count: number, hasOlder:boolean, hasNewer: boolean
+            ['99', 10, '109'],
+            ['110', 5, '115'],
+            ['119', 20, null],
+            ['99', 20, null],
+        ])('should detect if there are any newer records left [afterId: %p, count: %p]', async (
+            afterId: string, count: number, idForNewerQuery: string
         ) => {
             const result = await getGlobalEditHistory(null, afterId, count);
 
-            expect(result.paging.has_older).toBe(hasOlder);
-            expect(result.paging.has_newer).toBe(hasNewer);
+            expect(result.paging.id_for_newer_query).toBe(idForNewerQuery);
         });
+
+        it.each([
+            ['99', 10, null],
+            ['110', 5, '111'],
+            ['119', 20, '120'],
+            ['99', 20, null],
+        ])('should detect if there are any older records left [afterId: %p, count: %p]', async (
+            afterId: string, count: number, idForOlderQuery: string
+        ) => {
+            const result = await getGlobalEditHistory(null, afterId, count);
+
+            expect(result.paging.id_for_older_query).toBe(idForOlderQuery);
+        });
+        
+    });
+
+    describe('result count limit', () => {
+
+        it.each([
+            [null, null],
+            [null, '100'],
+            ['300', null]
+        ])('should not return more than 100 entries (beforeId: %p, afterId: %p)', async (
+            beforeId: string, afterId: string
+        ) => {
+            mockedEditHistoryData.__setHistory(
+                generateHistory(200)
+            );
+
+            const result = await getGlobalEditHistory(beforeId, afterId, 200);
+
+            expect(result.history.length).toBe(100);
+        });
+
+        it.each([
+            [null, null],
+            [null, '100'],
+            ['300', null]
+        ])('should default to 100 entries', async (
+            beforeId: string, afterId: string
+        ) => {
+            mockedEditHistoryData.__setHistory(
+                generateHistory(200)
+            );
+
+            const result = await getGlobalEditHistory(beforeId, afterId);
+
+            expect(result.history.length).toBe(100);
+        });
+
     });
 });
