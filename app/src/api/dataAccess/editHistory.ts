@@ -1,5 +1,6 @@
 import db from '../../db';
 import { EditHistoryEntry } from '../../frontend/models/edit-history-entry';
+import { DatabaseError } from '../errors/general';
 
 const baseQuery = `
         SELECT
@@ -19,53 +20,69 @@ export function getHistoryAfterId(id: string, count: number): Promise<EditHistor
      * (like the other queries). The inner select is sorted in ascending order
      * so that the right rows are returned when limiting the result set.
      */
-    return db.manyOrNone(`
-        SELECT * FROM (
-            ${baseQuery}
-            WHERE log_id > $1
-            ORDER BY revision_id ASC
-            LIMIT $2
-        ) AS result_asc ORDER BY revision_id DESC`,
-        [id, count]
-    );
+    try {
+        return db.any(`
+            SELECT * FROM (
+                ${baseQuery}
+                WHERE log_id > $1
+                ORDER BY revision_id ASC
+                LIMIT $2
+            ) AS result_asc ORDER BY revision_id DESC`,
+            [id, count]
+        );
+    } catch(err) {
+        throw new DatabaseError(err);
+    }
 }
 
 export function getHistoryBeforeId(id: string, count: number): Promise<EditHistoryEntry[]> {
-    if(id == undefined) {
-        
-        return db.any(`
-            ${baseQuery}
-            ORDER BY revision_id DESC
-            LIMIT $1
-        `, [count]);
-        
-    } else {
-        
-        return db.any(`
-            ${baseQuery}
-            WHERE log_id < $1
-            ORDER BY revision_id DESC
-            LIMIT $2
-        `, [id, count]);
+    try {
+        if(id == undefined) {
+            
+            return db.any(`
+                ${baseQuery}
+                ORDER BY revision_id DESC
+                LIMIT $1
+            `, [count]);
+            
+        } else {
+            
+            return db.any(`
+                ${baseQuery}
+                WHERE log_id < $1
+                ORDER BY revision_id DESC
+                LIMIT $2
+            `, [id, count]);
+        }
+    } catch(err) {
+        throw new DatabaseError(err);
     }
 }
 
 export async function getIdOlderThan(id: string): Promise<string> {
-    const result = await db.oneOrNone<{revision_id:string}>(`
-        SELECT MAX(log_id) as revision_id
-        FROM logs
-        WHERE log_id < $1
-    `, [id]);
+    try {
+        const result = await db.oneOrNone<{revision_id:string}>(`
+            SELECT MAX(log_id) as revision_id
+            FROM logs
+            WHERE log_id < $1
+        `, [id]);
 
-    return result?.revision_id;
+        return result?.revision_id;
+    } catch(err) {
+        throw new DatabaseError(err);
+    }
 }
 
 export async function getIdNewerThan(id: string): Promise<string> {
-    const result = await db.oneOrNone<{revision_id:string}>(`
-        SELECT MIN(log_id) as revision_id
-        FROM logs
-        WHERE log_id > $1
-    `, [id]);
+    try {
+        const result = await db.oneOrNone<{revision_id:string}>(`
+            SELECT MIN(log_id) as revision_id
+            FROM logs
+            WHERE log_id > $1
+        `, [id]);
 
-    return result?.revision_id;
+        return result?.revision_id;
+    } catch(err) {
+        throw new DatabaseError(err);
+    }
 }

@@ -1,6 +1,7 @@
 import express from 'express';
 
-import { UserInputError } from '../errors';
+import { ApiParamError, ApiUserError } from '../errors/api';
+import { ArgumentError } from '../errors/general';
 import { checkRegexParam, parsePositiveIntParam, processParam } from '../parameters';
 import asyncController from "../routes/asyncController";
 import * as editHistoryService from '../services/editHistory';
@@ -13,15 +14,19 @@ const getGlobalEditHistory = asyncController(async (req: express.Request, res: e
     const count: number = processParam(req.query, 'count', parsePositiveIntParam);
 
     if(afterId != undefined && beforeId != undefined) {
-        throw new UserInputError('Cannot specify both after_id and before_id parameters');
+        throw new ApiUserError('Cannot specify both after_id and before_id parameters');
     }
 
     try {
         const result = await editHistoryService.getGlobalEditHistory(beforeId, afterId, count);
         res.send(result);
     } catch(error) {
-        console.error(error);
-        res.send({ error: 'Database error' });
+        if(error instanceof ArgumentError && error.argumentName === 'count') {
+            const apiErr = new ApiParamError(error.message, 'count');
+            throw apiErr;
+        }
+
+        throw error;
     }
 });
 

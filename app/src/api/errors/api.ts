@@ -5,34 +5,40 @@
  * https://stackoverflow.com/questions/41102060/typescript-extending-error-class
  */
 
-export class UserInputError extends Error {
+export class ApiUserError extends Error {
     constructor(message?: string) {
         super(message);
+        this.name = 'ApiUserError';
     }
 }
 
-export class RequestParameterError extends UserInputError {
+export class ApiParamError extends ApiUserError {
     public paramName: string;
 
-    constructor(message?: string) {
+    constructor(message?: string, paramName?: string) {
         super(message);
+        this.name = 'ApiParamError';
+        this.paramName = paramName;
     }
 }
 
-export class ParamRequiredError extends RequestParameterError {
+export class ApiParamRequiredError extends ApiParamError {
     constructor(message?: string) {
         super(message);
+        this.name = 'ApiParamRequiredError';
     }
 }
 
-export class ParamOutOfBoundsError extends RequestParameterError {
+export class ApiParamOutOfBoundsError extends ApiParamError {
     constructor(message?: string) {
         super(message);
+        this.name = 'ApiParamOutOfBoundsError';
     }
 }
 
-export class ParamInvalidFormatError extends RequestParameterError {
+export class ApiParamInvalidFormatError extends ApiParamError {
     constructor(message?: string) {
         super(message);
+        this.name = 'ApiParamInvalidFormatError';
     }
 }

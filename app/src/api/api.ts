@@ -2,7 +2,8 @@ import bodyParser from 'body-parser';
 import express from 'express';
 
 import * as editHistoryController from './controllers/editHistoryController';
-import { RequestParameterError, UserInputError } from './errors'; 
+import { ApiParamError, ApiUserError } from './errors/api'; 
+import { DatabaseError } from './errors/general';
 import buildingsRouter from './routes/buildingsRouter';
 import extractsRouter from './routes/extractsRouter';
 import usersRouter from './routes/usersRouter';
@@ -102,16 +103,18 @@ server.use((err: any, req: express.Request, res: express.Response, next: express
     if (err != undefined) {
         console.log('Global error handler: ', err);
         
-        if (err instanceof UserInputError) {
+        if (err instanceof ApiUserError) {
             let errorMessage: string;
 
-            if(err instanceof RequestParameterError) {
+            if(err instanceof ApiParamError) {
                 errorMessage = `Problem with parameter ${err.paramName}: ${err.message}`;
             } else {
                 errorMessage = err.message;
             }
 
             res.status(400).send({ error: errorMessage });
+        } else if(err instanceof DatabaseError){
+            res.status(500).send({ error: 'Database error' });
         } else {
             res.status(500).send({ error: 'Server error' });
         }

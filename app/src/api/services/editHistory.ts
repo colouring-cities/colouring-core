@@ -1,10 +1,10 @@
 import { EditHistoryEntry } from '../../frontend/models/edit-history-entry';
 import { decBigInt, incBigInt } from '../../helpers';
 import { getHistoryAfterId, getHistoryBeforeId, getIdNewerThan, getIdOlderThan } from '../dataAccess/editHistory';
-import { UserInputError } from '../errors';
+import { ArgumentError } from '../errors/general';
 
 async function getGlobalEditHistory(beforeId?: string, afterId?: string, count: number = 100) {
-    if(count <= 0) throw new UserInputError('cannot request less than 1 history record');
+    if(count <= 0) throw new ArgumentError('cannot request less than 1 history record', 'count');
     if(count > 100) count = 100;
 
     // limited set of records. Expected to be already ordered from newest to oldest

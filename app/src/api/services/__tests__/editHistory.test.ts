@@ -1,6 +1,6 @@
 import { EditHistoryEntry } from '../../../frontend/models/edit-history-entry';
 import * as editHistoryData from '../../dataAccess/editHistory'; // manually mocked
-import { UserInputError } from '../../errors';
+import { ArgumentError } from '../../errors/general';
 import { getGlobalEditHistory } from '../editHistory';
 
 jest.mock('../../dataAccess/editHistory');
@@ -28,8 +28,10 @@ describe('getGlobalEditHistory()', () => {
         [null, null],
         ['100', null],
         [null, '100']
-    ])('Should error when requesting non-positive number of records', (beforeId: string, afterId: string) => {
-        expect(getGlobalEditHistory(beforeId, afterId, 0)).rejects.toBeInstanceOf(UserInputError);
+    ])('Should error when requesting non-positive number of records', async (beforeId: string, afterId: string) => {
+        let resultPromise = getGlobalEditHistory(beforeId, afterId, 0);
+        await expect(resultPromise).rejects.toBeInstanceOf(ArgumentError);
+        await expect(resultPromise).rejects.toHaveProperty('argumentName', 'count');
     });
     
     describe('getting history before a point', () => {
