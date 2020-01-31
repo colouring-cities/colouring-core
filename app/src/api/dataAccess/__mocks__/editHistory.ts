@@ -1,6 +1,11 @@
 import { EditHistoryEntry } from '../../../frontend/models/edit-history-entry';
 import { numAsc, numDesc } from '../../../helpers';
 
+/**
+ * Create an object mocking all method of editHistory dataAccess
+ * The type is set to reflect the type of that module, with added methods
+ * used when testing
+ */
 const mockEditHistory =
     jest.genMockFromModule('../editHistory') as typeof import('../editHistory') & {
         __setHistory: (mockHistoryData: EditHistoryEntry[]) => void
@@ -44,7 +49,6 @@ const {
     __setHistory,
     getHistoryAfterId,
     getHistoryBeforeId,
-    getLatestHistory,
     getIdNewerThan,
     getIdOlderThan
 } = mockEditHistory;
@@ -53,7 +57,6 @@ export {
     __setHistory,
     getHistoryAfterId,
     getHistoryBeforeId,
-    getLatestHistory,
     getIdNewerThan,
     getIdOlderThan
 };

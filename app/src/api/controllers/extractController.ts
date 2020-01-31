@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { parseIntParam, processParam } from '../parameters';
+import { parsePositiveIntParam, processParam } from '../parameters';
 import asyncController from '../routes/asyncController';
 import * as dataExtractService from '../services/dataExtract';
 
@@ -15,7 +15,7 @@ const getAllDataExtracts = asyncController(async function(req: express.Request, 
 });
 
 const getDataExtract = asyncController(async function(req: express.Request, res: express.Response) {
-    const extractId = processParam(req.params, 'extract_id', parseIntParam, true);
+    const extractId = processParam(req.params, 'extract_id', parsePositiveIntParam, true);
     
     try {
         const extract = await dataExtractService.getDataExtractById(extractId);

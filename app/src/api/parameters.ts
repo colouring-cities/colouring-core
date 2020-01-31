@@ -23,12 +23,12 @@ export function processParam<T>(params: object, paramName: string, processingFn:
     }
 }
 
-export function parseIntParam(param: string) {
+export function parsePositiveIntParam(param: string) {
     if(param == undefined) return undefined;
     
     const result = strictParseInt(param);
     if (isNaN(result)) {
-        throw new ParamInvalidFormatError('Invalid format: not an integer');
+        throw new ParamInvalidFormatError('Invalid format: not a positive integer');
     }
     return result;
 }
