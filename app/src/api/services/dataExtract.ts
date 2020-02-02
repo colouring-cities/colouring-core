@@ -19,7 +19,8 @@ async function listDataExtracts(): Promise<DataExtract[]> {
         const extractRecords = await db.manyOrNone<DataExtractRow>(
             `SELECT
                 extract_id, extracted_on, extract_path
-            FROM bulk_extracts`
+            FROM bulk_extracts
+            ORDER BY extracted_on DESC`
         );
 
         return extractRecords.map(getDataExtractFromRow);

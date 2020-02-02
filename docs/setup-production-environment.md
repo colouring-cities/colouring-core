@@ -32,6 +32,10 @@ Install Postgres and associated tools
 
 `sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev`
 
+Install Python 3 and pip
+
+`sudo apt-get install python3 python3-pip`
+
 
 Install Nginx
 
@@ -68,7 +72,7 @@ Now set appropriate permissions on the `colouring-london` directory
 
 First define a couple of convenience variables:
 
-`NODE_VERSION=v8.11.3`
+`NODE_VERSION=v12.14.1`
 
 `DISTRO=linux-x64`
 
@@ -107,7 +111,7 @@ Now upgrade the `npm` package manager to the most recent release with global pri
 
 `sudo su root`
 
-`export NODEJS_HOME=/usr/local/lib/node/node-v8.11.3/bin/`
+`export NODEJS_HOME=/usr/local/lib/node/node-v12.14.1/bin/`
 
 `export PATH=$NODEJS_HOME:$PATH`
 
@@ -240,7 +244,7 @@ Perform a global install of PM2
 
 `sudo su root`
 
-`export NODEJS_HOME=/usr/local/lib/node/node-v8.11.3/bin/`
+`export NODEJS_HOME=/usr/local/lib/node/node-v12.14.1/bin/`
 
 `export PATH=$NODEJS_HOME:$PATH`
 
@@ -302,6 +306,21 @@ To stop the colouring-london app type:
 
 
 ***
+
+#### Set up data extracts
+
+Install requirements for the maintenance Python scripts
+
+`cd /var/www/colouring-london/maintenance`
+
+`sudo pip3 install -r requirements.txt`
+
+The maintenance scripts might need environment variables present at the time of execution, notably the database connection details.
+If running the scripts manually, the variables can be provided just before execution, for example
+
+`PGHOST=localhost PGPORT=5432 PGDATABASE=dbname PGUSER=username PGPASSWORD=secretpassword EXTRACTS_DIRECTORY=/var/www/colouring-london/downloads python3 maintenance/extract_data/extract_data.py`
+
+If the maintenance script is to be run on a schedule, the variables should be loaded before running the script, for example from a `.env` file.
 
 
 #### Set up SSL - TO DO

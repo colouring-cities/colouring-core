@@ -40,7 +40,7 @@ apt-get install -y \
 #
 
 # node version and platform
-NODE_VERSION=v8.11.3
+NODE_VERSION=v12.14.1
 DISTRO=linux-x64
 
 # download
