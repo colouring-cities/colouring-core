@@ -6,7 +6,7 @@ import BuildingNotFound from './building-not-found';
 import AgeContainer from './data-containers/age';
 import CommunityContainer from './data-containers/community';
 import ConstructionContainer from './data-containers/construction';
-import LikeContainer from './data-containers/like';
+import DynamicsContainer from './data-containers/dynamics';
 import LocationContainer from './data-containers/location';
 import PlanningContainer from './data-containers/planning';
 import SizeContainer from './data-containers/size';
@@ -108,7 +108,6 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
                 title="Community"
                 intro="How does this building work for the local community?"
                 help="https://pages.colouring.london/community"
-                inactive={true}
             />;
         case 'planning':
             return <PlanningContainer
@@ -117,12 +116,13 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
                 intro="Planning controls relating to protection and reuse."
                 help="https://pages.colouring.london/planning"
             />;
-        case 'like':
-            return <LikeContainer
+        case 'dynamics':
+            return <DynamicsContainer
                 {...props}
-                title="Like Me!"
-                intro="Do you like the building and think it contributes to the city?"
-                help="https://pages.colouring.london/likeme"
+                title="Dynamics"
+                intro="How has the site of this building changed over time?"
+                help="https://pages.colouring.london/buildingcategories"
+                inactive={true}
             />;
         default:
             return <BuildingNotFound mode="view" />;

@@ -111,11 +111,11 @@ const LEGEND_CONFIG = {
             { color: '#73ebaf', text: 'within conservation area' },
         ]
     },
-    community: {
-        title: 'Community',
+    dynamics: {
+        title: 'Dynamics',
         elements: []
     },
-    like: {
+    community: {
         title: 'Like Me',
         elements: [
             { color: '#bd0026', text: '👍👍👍👍 100+' },

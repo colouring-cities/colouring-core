@@ -63,6 +63,10 @@
 .section-header .icon-buttons {
     display: inline-block;
 }
+.section-header .h2 {
+    font-size: 1.5rem;
+    margin: 0.25rem 0;
+}
 .section-header .icon-buttons {
     position: absolute;
     right: 0;
@@ -173,7 +177,7 @@
     margin: 0;
 }
 .data-intro {
-    padding: 0 0.5rem 0 2.25rem;
+    padding: 0 0.5rem 0 0;
     margin-top: 0.5rem;
 }
 .data-section p {
@@ -181,7 +185,7 @@
     margin: 0.5rem 0;
 }
 .data-section ul {
-    padding-left: 3.333rem;
+    padding-left: 1.333rem;
     font-size: 1rem;
 }
 .data-section li {
