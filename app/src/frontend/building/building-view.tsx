@@ -44,7 +44,7 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
             return <UseContainer
                 {...props}
                 inactive={false}
-                title="Land Use"
+                title="Current Use"
                 intro="How are buildings used, and how does use change over time? Coming soon…"
                 help="https://pages.colouring.london/use"
             />;
@@ -52,7 +52,7 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
             return <TypeContainer
                 {...props}
                 inactive={false}
-                title="Type"
+                title="Original Use"
                 intro="How were buildings previously used?"
                 help="https://www.pages.colouring.london/buildingtypology"
             />;

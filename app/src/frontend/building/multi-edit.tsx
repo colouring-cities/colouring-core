@@ -1,16 +1,15 @@
-import { parse } from 'query-string';
 import React from 'react';
-import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { parseJsonOrDefault } from '../../helpers';
 import ErrorBox from '../components/error-box';
-import { BackIcon } from '../components/icons';
 import InfoBox from '../components/info-box';
 import { dataFields } from '../data_fields';
 import { User } from '../models/user';
 
 import DataEntry from './data-components/data-entry';
 import Sidebar from './sidebar';
+import Categories from './categories';
 
 interface MultiEditProps {
     user?: User;
@@ -26,6 +25,7 @@ const MultiEdit: React.FC<MultiEditProps> = (props) => {
         // special case for likes
         return (
             <Sidebar>
+                <Categories mode={'view'} />
                 <section className='data-section'>
                     <header className={`section-header view ${props.category} background-${props.category}`}>
                         <h2 className="h2">Like me!</h2>
@@ -54,39 +54,37 @@ const MultiEdit: React.FC<MultiEditProps> = (props) => {
 
     return (
         <Sidebar>
+            <Categories mode={'view'} />
             <section className='data-section'>
                 <header className={`section-header view ${props.category} background-${props.category}`}>
-                    <Link
-                        className="icon-button back"
-                        to={`/edit/${props.category}`}>
-                        <BackIcon />
-                    </Link>
                     <h2 className="h2">Copy {props.category} data</h2>
                 </header>
-                <form>
+                <div className="section-body">
+                    <form>
                     {
                         error ?
                             <ErrorBox msg={error} /> :
                             <InfoBox msg='Click buildings one at a time to colour using the data below' />
                     }
-                {
-                    Object.keys(data).map((key => {
-                        const info = dataFields[key] || {};
-                        return (
-                        <DataEntry
-                            title={info.title || `Unknown field (${key})`}
-                            slug={key}
-                            disabled={true}
-                            value={data[key]}
-                            />
-                        );
-                    }))
-                }
-                </form>
-                <form className='buttons-container'>
-                    <Link to={`/view/${props.category}`} className='btn btn-secondary'>Back to view</Link>
-                    <Link to={`/edit/${props.category}`} className='btn btn-secondary'>Back to edit</Link>
-                </form>
+                    {
+                        Object.keys(data).map((key => {
+                            const info = dataFields[key] || {};
+                            return (
+                            <DataEntry
+                                title={info.title || `Unknown field (${key})`}
+                                slug={key}
+                                disabled={true}
+                                value={data[key]}
+                                />
+                            );
+                        }))
+                    }
+                    </form>
+                    <form className='buttons-container'>
+                        <Link to={`/view/${props.category}`} className='btn btn-secondary'>Back to view</Link>
+                        <Link to={`/edit/${props.category}`} className='btn btn-secondary'>Back to edit</Link>
+                    </form>
+                </div>
             </section>
         </Sidebar>
     );

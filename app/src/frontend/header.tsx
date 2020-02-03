@@ -5,6 +5,7 @@ import './header.css';
 
 import { Logo } from './components/logo';
 import { User } from './models/user';
+import Categories from './building/categories';
 
 
 interface HeaderProps {
@@ -131,6 +132,8 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                             </a>
                         </li>
                     </ul>
+                    <hr />
+                    <Categories mode='view' />
                     <hr />
                     <ul className="navbar-nav flex-column">
                         <li className="nav-item">

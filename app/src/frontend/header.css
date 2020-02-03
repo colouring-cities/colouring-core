@@ -53,6 +53,9 @@
     background: #fff;
     border-right: 1px solid #000;
 }
+.main-header .navbar-collapse > ul:last-child {
+    padding-bottom: 5rem;
+}
 .navbar-collapse.collapse {
     transform: translateY(-100vh);
 }
