@@ -172,7 +172,6 @@ class Legend extends React.Component<LegendProps, LegendState> {
         this.setState({collapseList: (e.target.outerHeight < 670 || e.target.outerWidth < 768)});  // magic number needs to be consistent with CSS expander-button media query
     }
 
-
     render() {
         const details = LEGEND_CONFIG[this.props.slug] || {};
         const title = details.title || "";
@@ -180,7 +179,7 @@ class Legend extends React.Component<LegendProps, LegendState> {
 
         return (
             <div className="map-legend">
-                <Logo variant='gray' />
+                <Logo variant="default" />
                 <h4 className="h4">
                     { title }
                 </h4>
