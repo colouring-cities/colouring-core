@@ -11,7 +11,20 @@ body {
  * Text pages
  */
 article {
-    margin-top: 85px;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 1rem;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+@media (min-width: 990px) {
+    article {
+        top: 0px;
+        left: 480px;
+    }
 }
 article section {
     overflow: hidden;
