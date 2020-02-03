@@ -6,38 +6,33 @@
     position: absolute;
     top: 0;
     left: 0;
+    height: 76px;
     width: 100%;
-    background: #fff;
     text-decoration: none;
-    box-shadow: 2px 0px 2px -2px #000;
 }
-@media (min-width: 768px){
+@media (min-width: 990px){
     .main-header {
         width: 480px; /* to match .info-container menu width */
     }
 }
-.main-header .navbar {
+.main-header.navbar {
     padding: 0;
 }
-.main-header .navbar-brand {
-    margin: 12px;
+.nav-header {
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    border-right: 1px solid #000;
+}
+.nav-header a {
     padding: 0;
-}
-.main-header .navbar-collapse {
-    height: calc(100vh - 76px);
-    overflow-y: auto;
-    transition: height 0.3s;
-}
-.navbar-collapse.collapse {
-    display: block ;
-    height: 0;
-}
-.navbar .nav-link {
-    padding: .5rem 1rem;
+    margin: 0;
 }
 .navbar .navbar-toggler {
     padding: .5rem .75rem .5rem .75rem;
-    margin-right: 12px;
 }
 .navbar .navbar-toggler-icon {
     width: 1em;
@@ -48,4 +43,24 @@
     vertical-align: middle;
     height: 1em;
     padding: 0 3px;
+}
+.main-header .navbar-collapse {
+    height: calc(100vh - 76px);
+    display: block;
+    overflow-y: auto;
+    transition: transform 0.3s;
+    transform: translateY(0);
+    background: #fff;
+    border-right: 1px solid #000;
+}
+.navbar-collapse.collapse {
+    transform: translateY(-100vh);
+}
+.navbar .nav-link {
+    padding: .5rem 1rem;
+}
+.navbar hr {
+    height: 2px;
+    width: auto;
+    margin: 1em;
 }
