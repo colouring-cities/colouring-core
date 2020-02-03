@@ -21,9 +21,8 @@
     background-image: none;
     border-color: #343a40;
 }
-@media (max-width: 768px){
+@media (max-width: 990px){
     .theme-switcher {
         visibility: hidden;
     }
 }
-

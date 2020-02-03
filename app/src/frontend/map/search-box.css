@@ -42,7 +42,7 @@
    padding: 0.25rem 0.2rem;
    margin-right: 0.1rem;
 }
-@media (min-width: 768px) {
+@media (min-width: 990px) {
     /* The following is a fix (?) for the truncation of the "Search for postcode" text  */
     .form-inline .form-control {
         width: 200px;
