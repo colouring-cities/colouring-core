@@ -154,55 +154,27 @@
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1880 and [date_year] &lt; 1900</Filter>
-            <PolygonSymbolizer fill="#bb859b" />
+            <PolygonSymbolizer fill="#961259" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1860 and [date_year] &lt; 1880</Filter>
-            <PolygonSymbolizer fill="#8b3654" />
+            <PolygonSymbolizer fill="#4855a6" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1840 and [date_year] &lt; 1860</Filter>
             <PolygonSymbolizer fill="#8f5385" />
         </Rule>
         <Rule>
-            <Filter>[date_year] &gt;= 1820 and [date_year] &lt; 1840</Filter>
-            <PolygonSymbolizer fill="#56619b" />
-        </Rule>
-        <Rule>
-            <Filter>[date_year] &gt;= 1800 and [date_year] &lt; 1820</Filter>
-            <PolygonSymbolizer fill="#6793b2" />
-        </Rule>
-        <Rule>
-            <Filter>[date_year] &gt;= 1780 and [date_year] &lt; 1800</Filter>
+            <Filter>[date_year] &gt;= 1800 and [date_year] &lt; 1840</Filter>
             <PolygonSymbolizer fill="#83c3b3" />
         </Rule>
         <Rule>
-            <Filter>[date_year] &gt;= 1760 and [date_year] &lt; 1780</Filter>
+            <Filter>[date_year] &gt;= 1700 and [date_year] &lt; 1800</Filter>
             <PolygonSymbolizer fill="#adc88f" />
         </Rule>
         <Rule>
-            <Filter>[date_year] &gt;= 1740 and [date_year] &lt; 1760</Filter>
-            <PolygonSymbolizer fill="#83a663" />
-        </Rule>
-        <Rule>
-            <Filter>[date_year] &gt;= 1720 and [date_year] &lt; 1740</Filter>
-            <PolygonSymbolizer fill="#77852d" />
-        </Rule>
-        <Rule>
-            <Filter>[date_year] &gt;= 1700 and [date_year] &lt; 1720</Filter>
-            <PolygonSymbolizer fill="#69814e" />
-        </Rule>
-        <Rule>
-            <Filter>[date_year] &gt;= 1680 and [date_year] &lt; 1700</Filter>
-            <PolygonSymbolizer fill="#d0c291" />
-        </Rule>
-        <Rule>
-            <Filter>[date_year] &gt;= 1660 and [date_year] &lt; 1680</Filter>
-            <PolygonSymbolizer fill="#918158" />
-        </Rule>
-        <Rule>
-            <Filter>[date_year] &lt; 1660</Filter>
-            <PolygonSymbolizer fill="#7a5732" />
+            <Filter>[date_year] &lt; 1700</Filter>
+            <PolygonSymbolizer fill="#ffffff" />
         </Rule>
     </Style>
     <Style name="conservation_area">
