@@ -49,6 +49,11 @@ article .color-block {
     padding-left: 1em;
     padding-right: 1em;
 }
+@media(min-width: 768px) {
+    .main-col {
+        min-width: 48em;
+    }
+}
 hr {
     display: block;
     height: 1px;
