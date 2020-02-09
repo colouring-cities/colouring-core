@@ -107,7 +107,12 @@ const LEGEND_CONFIG = {
     planning: {
         title: 'Planning',
         elements: [
-            { color: '#73ebaf', text: 'within conservation area' },
+            { color: '#c72e08', text: 'Grade I listed'}, 
+            { color: '#e69800', text: 'Grade II* listed'}, 
+            { color: '#9ebbc9', text: 'Grade II listed'}, 
+            { color: '#ffbea1', text: 'Locally listed'}, 
+            { color: '#ffffff', border: '1px solid #000000', text: 'Scheduled monument'}, 
+            { color: '#aaaaaa', text: 'In conservation area'}
         ]
     },
     community: {
@@ -206,7 +211,7 @@ class Legend extends React.Component<LegendProps, LegendState> {
                                 elements.map((item) => (
 
                                        <li key={item.color} >
-                                            <span className="key" style={ { background: item.color } }>-</span>
+                                            <span className="key" style={ { background: item.color, border: item.border } }>-</span>
                                             { item.text }
                                        </li>
 
