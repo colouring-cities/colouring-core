@@ -99,6 +99,7 @@ const LEGEND_CONFIG = {
     },
     planning: {
         title: 'Planning',
+        disclaimer: 'All data relating to designated buildings should be checked on the National Heritage List for England or local authority websites where used for planning or development purposes',
         elements: [
             { color: '#c72e08', text: 'Grade I listed'}, 
             { color: '#e75b42', text: 'Grade II* listed'}, 
@@ -200,6 +201,10 @@ class Legend extends React.Component<LegendProps, LegendState> {
                 {
                     elements.length?
                         <ul className={this.state.collapseList ? 'collapse data-legend' : 'data-legend'} >
+                            {
+                                details.disclaimer &&
+                                    <p className='legend-disclaimer'>{details.disclaimer}</p>
+                            }
                             {
                                 elements.map((item) => (
 
