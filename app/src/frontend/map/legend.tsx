@@ -111,8 +111,8 @@ const LEGEND_CONFIG = {
             { color: '#e69800', text: 'Grade II* listed'}, 
             { color: '#9ebbc9', text: 'Grade II listed'}, 
             { color: '#ffbea1', text: 'Locally listed'}, 
-            { color: '#ffffff', border: '1px solid #000000', text: 'Scheduled monument'}, 
-            { color: '#aaaaaa', text: 'In conservation area'}
+            { color: '#aaaaaa', border: '1px solid #ffffff', text: 'Scheduled monument'}, 
+            { color: '#eeeeee', border: '1px solid #000000', text: 'In conservation area'}
         ]
     },
     community: {

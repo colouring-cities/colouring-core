@@ -225,12 +225,13 @@
         </Rule>
         <Rule>
             <Filter>[planning_type] = "Scheduled Monument"</Filter>
-            <PolygonSymbolizer fill="#ffffff"/>
-            <LineSymbolizer />
+            <PolygonSymbolizer fill="#aaaaaa"/>
+            <LineSymbolizer stroke="#eeeeee" />
         </Rule>
         <Rule>
             <Filter>[planning_type] = "In Conservation Area"</Filter>
-            <PolygonSymbolizer fill="#aaaaaa"/>
+            <PolygonSymbolizer fill="#ffffff"/>
+            <LineSymbolizer />
         </Rule>
     </Style>
     <Style name="sust_dec">
