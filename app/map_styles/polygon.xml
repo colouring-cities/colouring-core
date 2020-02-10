@@ -146,19 +146,19 @@
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1900 and [date_year] &lt; 1920</Filter>
-            <PolygonSymbolizer fill="#ba221c" />
+            <PolygonSymbolizer fill="#8f5385" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1880 and [date_year] &lt; 1900</Filter>
-            <PolygonSymbolizer fill="#961259" />
+            <PolygonSymbolizer fill="#56619b" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1860 and [date_year] &lt; 1880</Filter>
-            <PolygonSymbolizer fill="#4855a6" />
+            <PolygonSymbolizer fill="#5591d4" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1840 and [date_year] &lt; 1860</Filter>
-            <PolygonSymbolizer fill="#8f5385" />
+            <PolygonSymbolizer fill="#6793b2" />
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1800 and [date_year] &lt; 1840</Filter>
@@ -171,6 +171,7 @@
         <Rule>
             <Filter>[date_year] &lt; 1700</Filter>
             <PolygonSymbolizer fill="#ffffff" />
+            <LineSymbolizer stroke="#888888" />
         </Rule>
     </Style>
     <Style name="conservation_area">
