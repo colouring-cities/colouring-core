@@ -101,11 +101,11 @@ const LEGEND_CONFIG = {
         title: 'Planning',
         elements: [
             { color: '#c72e08', text: 'Grade I listed'}, 
-            { color: '#e69800', text: 'Grade II* listed'}, 
-            { color: '#9ebbc9', text: 'Grade II listed'}, 
-            { color: '#ffbea1', text: 'Locally listed'}, 
-            { color: '#aaaaaa', border: '1px solid #ffffff', text: 'Scheduled monument'}, 
-            { color: '#eeeeee', border: '1px solid #000000', text: 'In conservation area'}
+            { color: '#e75b42', text: 'Grade II* listed'}, 
+            { color: '#ffbea1', text: 'Grade II listed'}, 
+            { color: '#ffe59b', text: 'Scheduled monument'}, 
+            { color: '#858ed4', text: 'Locally listed'}, 
+            { color: '#95beba', text: 'In conservation area'}
         ]
     },
     community: {

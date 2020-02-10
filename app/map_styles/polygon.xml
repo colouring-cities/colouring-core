@@ -186,25 +186,23 @@
         </Rule>
         <Rule>
             <Filter>[planning_type] = "Grade II* Listed"</Filter>
-            <PolygonSymbolizer fill="#e69800"/>
+            <PolygonSymbolizer fill="#e75b42"/>
         </Rule>
         <Rule>
             <Filter>[planning_type] = "Grade II Listed"</Filter>
-            <PolygonSymbolizer fill="#9ebbc9"/>
-        </Rule>
-        <Rule>
-            <Filter>[planning_type] = "Locally Listed"</Filter>
             <PolygonSymbolizer fill="#ffbea1"/>
         </Rule>
         <Rule>
+            <Filter>[planning_type] = "Locally Listed"</Filter>
+            <PolygonSymbolizer fill="#858ed4"/>
+        </Rule>
+        <Rule>
             <Filter>[planning_type] = "Scheduled Monument"</Filter>
-            <PolygonSymbolizer fill="#aaaaaa"/>
-            <LineSymbolizer stroke="#eeeeee" />
+            <PolygonSymbolizer fill="#ffe59b"/>
         </Rule>
         <Rule>
             <Filter>[planning_type] = "In Conservation Area"</Filter>
-            <PolygonSymbolizer fill="#ffffff"/>
-            <LineSymbolizer />
+            <PolygonSymbolizer fill="#95beba"/>
         </Rule>
     </Style>
     <Style name="sust_dec">
