@@ -96,10 +96,10 @@ const BUILDING_LAYER_DEFINITIONS = {
                     WHEN b.planning_list_cat = 'Listed Building' and b.planning_list_grade = 'II*' THEN 'Grade II* Listed'
                     WHEN b.planning_list_cat = 'Listed Building' and b.planning_list_grade = 'II' THEN 'Grade II Listed'
                     WHEN b.planning_in_local_list THEN 'Locally Listed'
-                    WHEN b.planning_in_conservation_area THEN 'In Conservation Area'
                     ELSE 'None'
                 END
-            ) as planning_type
+            ) as listing_type,
+            b.planning_in_conservation_area
         FROM geometries as g
         JOIN buildings as b
         ON g.geometry_id = b.geometry_id

@@ -181,24 +181,30 @@
     </Style>
     <Style name="planning_combined">
         <Rule>
-            <Filter>[planning_type] = "Grade I Listed"</Filter>
+            <Filter>[planning_in_conservation_area] = true</Filter>
+            <PolygonSymbolizer fill="#95beba"/>
+        </Rule>
+        <Rule>
+            <Filter>[listing_type] = "Grade I Listed"</Filter>
             <PolygonSymbolizer fill="#c72e08"/>
         </Rule>
         <Rule>
-            <Filter>[planning_type] = "Grade II* Listed"</Filter>
+            <Filter>[listing_type] = "Grade II* Listed"</Filter>
             <PolygonSymbolizer fill="#e75b42"/>
         </Rule>
         <Rule>
-            <Filter>[planning_type] = "Grade II Listed"</Filter>
+            <Filter>[listing_type] = "Grade II Listed"</Filter>
             <PolygonSymbolizer fill="#ffbea1"/>
         </Rule>
         <Rule>
-            <Filter>[planning_type] = "Locally Listed"</Filter>
+            <Filter>[listing_type] = "Locally Listed"</Filter>
             <PolygonSymbolizer fill="#858ed4"/>
         </Rule>
         <Rule>
-            <Filter>[planning_type] = "In Conservation Area"</Filter>
-            <PolygonSymbolizer fill="#95beba"/>
+            <Filter>[listing_type] != "None" and [planning_in_conservation_area] = true</Filter>
+            <MaxScaleDenominator>68200</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#95beba" stroke-width="2.5"/>
         </Rule>
     </Style>
     <Style name="sust_dec">
