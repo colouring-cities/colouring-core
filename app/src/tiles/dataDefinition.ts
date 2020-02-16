@@ -96,7 +96,6 @@ const BUILDING_LAYER_DEFINITIONS = {
                     WHEN b.planning_list_cat = 'Listed Building' and b.planning_list_grade = 'II*' THEN 'Grade II* Listed'
                     WHEN b.planning_list_cat = 'Listed Building' and b.planning_list_grade = 'II' THEN 'Grade II Listed'
                     WHEN b.planning_in_local_list THEN 'Locally Listed'
-                    WHEN b.planning_list_cat = 'Scheduled Monument' THEN 'Scheduled Monument'
                     WHEN b.planning_in_conservation_area THEN 'In Conservation Area'
                     ELSE 'None'
                 END
@@ -108,7 +107,7 @@ const BUILDING_LAYER_DEFINITIONS = {
             b.planning_in_conservation_area
             OR b.planning_in_local_list
             OR b.planning_list_cat is not null
-    ) as planning_combined`,
+    ) as planning_combined`, 
     conservation_area: `(
         SELECT
             g.geometry_geom

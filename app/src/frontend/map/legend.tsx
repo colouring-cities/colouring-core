@@ -101,12 +101,11 @@ const LEGEND_CONFIG = {
         title: 'Planning',
         disclaimer: 'All data relating to designated buildings should be checked on the National Heritage List for England or local authority websites where used for planning or development purposes',
         elements: [
+            { color: '#95beba', text: 'In conservation area'},
             { color: '#c72e08', text: 'Grade I listed'}, 
             { color: '#e75b42', text: 'Grade II* listed'}, 
-            { color: '#ffbea1', text: 'Grade II listed'}, 
-            { color: '#ffe59b', text: 'Scheduled monument'}, 
+            { color: '#ffbea1', text: 'Grade II listed'},
             { color: '#858ed4', text: 'Locally listed'}, 
-            { color: '#95beba', text: 'In conservation area'}
         ]
     },
     community: {

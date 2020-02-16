@@ -197,10 +197,6 @@
             <PolygonSymbolizer fill="#858ed4"/>
         </Rule>
         <Rule>
-            <Filter>[planning_type] = "Scheduled Monument"</Filter>
-            <PolygonSymbolizer fill="#ffe59b"/>
-        </Rule>
-        <Rule>
             <Filter>[planning_type] = "In Conservation Area"</Filter>
             <PolygonSymbolizer fill="#95beba"/>
         </Rule>
