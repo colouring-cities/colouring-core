@@ -295,7 +295,7 @@
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Transport"</Filter>
-            <PolygonSymbolizer fill="#b3de69" />
+            <PolygonSymbolizer fill="#bee8ff" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Utilities And Infrastructure"</Filter>
