@@ -98,7 +98,7 @@ const LEGEND_CONFIG = {
         elements: []
     },
     planning: {
-        title: 'Planning',
+        title: 'Statutory protections',
         disclaimer: 'All data relating to designated buildings should be checked on the National Heritage List for England or local authority websites where used for planning or development purposes',
         elements: [
             { color: '#95beba', text: 'In conservation area'},
