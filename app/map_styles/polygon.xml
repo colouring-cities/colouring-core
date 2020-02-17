@@ -200,9 +200,23 @@
             <Filter>[listing_type] = "Locally Listed"</Filter>
             <PolygonSymbolizer fill="#858ed4"/>
         </Rule>
+
+        <!-- Conservation area outline -->
         <Rule>
             <Filter>[listing_type] != "None" and [planning_in_conservation_area] = true</Filter>
-            <MaxScaleDenominator>68200</MaxScaleDenominator>
+            <MaxScaleDenominator>34100</MaxScaleDenominator>
+            <MinScaleDenominator>17061</MinScaleDenominator>
+            <LineSymbolizer stroke="#95beba" stroke-width="0.5"/>
+        </Rule>
+        <Rule>
+            <Filter>[listing_type] != "None" and [planning_in_conservation_area] = true</Filter>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>8530</MinScaleDenominator>
+            <LineSymbolizer stroke="#95beba" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[listing_type] != "None" and [planning_in_conservation_area] = true</Filter>
+            <MaxScaleDenominator>8530</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
             <LineSymbolizer stroke="#95beba" stroke-width="2.5"/>
         </Rule>
