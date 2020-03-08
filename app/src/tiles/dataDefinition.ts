@@ -46,6 +46,15 @@ const BUILDING_LAYER_DEFINITIONS = {
         WHERE
             g.geometry_id = b.geometry_id
     ) as size_stories`,
+    size_height: `(
+        SELECT
+            b.size_height_apex as size_height,
+            g.geometry_geom
+        FROM
+            geometries as g,
+            buildings as b
+        WHERE g.geometry_id = b.geometry_id
+    ) as size_height`,
     location: `(
         SELECT
             (

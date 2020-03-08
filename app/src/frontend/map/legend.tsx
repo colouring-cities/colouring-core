@@ -67,13 +67,16 @@ const LEGEND_CONFIG = {
         ]
     },
     size: {
-        title: 'Number of storeys',
+        title: 'Height to apex',
         elements: [
-            { color: '#ffffcc', text: '≥40' },
-            { color: '#fed976', text: '20–39' },
-            { color: '#fd8d3c', text: '10–19' },
-            { color: '#e31a1c', text: '6–9' },
-            { color: '#800026', text: '1–5' },
+            { color: '#f7f4f9', text: '0-5.55'},
+            { color: '#e7e1ef', text: '5.55-7.73'},
+            { color: '#d4b9da', text: '7.73-11.38'},
+            { color: '#c994c7', text: '11.38-18.45'},
+            { color: '#df65b0', text: '18.45-35.05'},
+            { color: '#e7298a', text: '35.05-89.30'},
+            { color: '#ce1256', text: '89.30-152'},
+            { color: '#980043', text: '≥152'}
         ]
     },
     construction: {

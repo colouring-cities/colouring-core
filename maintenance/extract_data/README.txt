@@ -41,7 +41,11 @@ This is the main table, containing almost all data collected by Colouring London
 - `location_postcode`: postcode
 - `location_latitude`: latitude
 - `location_longitude`: longitude
+- `current_landuse_class`: current land use class
+- `current_landuse_group`: current land use group
+- `current_landuse_order`: current land use order
 - `building_attachment_form`: building attachment form
+- `date_change_building_use`: year of last building use change
 - `date_year`: year built
 - `date_lower`: lower bound on year built
 - `date_upper`: upper bound on year built

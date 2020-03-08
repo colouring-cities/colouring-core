@@ -130,7 +130,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         const cat = this.props.category;
         const tilesetByCat = {
             age: 'date_year',
-            size: 'size_storeys',
+            size: 'size_height',
             location: 'location',
             like: 'likes',
             planning: 'conservation_area',
