@@ -1,6 +1,6 @@
 import db from '../../db';
 
-export async function getLanduseGroupFromClass(classes: string[]): Promise<string[]> {
+export async function getLandUseGroupFromClass(classes: string[]): Promise<string[]> {
     if (classes.length === 0) return [];
 
     return (await db.many(

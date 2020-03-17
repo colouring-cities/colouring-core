@@ -15,3 +15,10 @@ export class DatabaseError extends Error {
         this.detail = detail;
     }
 }
+
+export class DomainLogicError extends Error {
+    constructor(message?: string) {
+        super(message);
+        this.name = 'DomainLogicError';
+    }
+}

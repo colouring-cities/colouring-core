@@ -1,8 +1,18 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 import { isNullishOrEmpty } from '../../../helpers';
-import { getLanduseGroupFromClass, getLandUseOrderFromGroup } from '../../dataAccess/landUse';
+import { getLandUseGroupFromClass, getLandUseOrderFromGroup } from '../../dataAccess/landUse';
 import { getCurrentBuildingDataById } from '../building';
+
+export interface LandUseState {
+    landUseClass: string[];
+    landUseGroup: string[];
+    landUseOrder: string;
+}
+
+export async function updateLandUse(landUse: LandUseState, landUseUpdate: Partial<LandUseState>): Promise<LandUseState> {
+    throw new Error('Not implemented');
+}
 
 export async function processCurrentLandUseClassifications(buildingId: number, buildingUpdate: any): Promise<any> {
     let updateData = _.pick(await getCurrentBuildingDataById(buildingId), [
@@ -16,7 +26,7 @@ export async function processCurrentLandUseClassifications(buildingId: number, b
     const updateFrom = getUpdateStartingStage(buildingUpdate);
     if(updateFrom === 'class') {
         updateData.current_landuse_class = buildingUpdate.current_landuse_class;
-        updateData.current_landuse_group = await getLanduseGroupFromClass(updateData.current_landuse_class);
+        updateData.current_landuse_group = await getLandUseGroupFromClass(updateData.current_landuse_class);
         updateData.current_landuse_order = await getLandUseOrderFromGroup(updateData.current_landuse_group);
     } else if (updateFrom === 'group') {
         if (isNullishOrEmpty(updateData.current_landuse_class)) {
