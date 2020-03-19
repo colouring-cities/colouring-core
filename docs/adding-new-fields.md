@@ -27,7 +27,7 @@ The second section would be required when adding a new category or when changing
 All steps from the previous section need to be carried out first.
 
 #### In tileserver
-1. Add a SQL query for calculating the value to be visualised to `BUILDING_LAYER_DEFINITIONS` in `app/tiles/dataDefinition.ts`
+1. Add a SQL query for calculating the value to be visualised to `BUILDING_LAYER_DEFINITIONS` in `app/src/tiles/dataDefinition.ts`
 2. Add Mapnik rendering style in `app/map_styles/polygon.xml`
 
 #### In frontend
