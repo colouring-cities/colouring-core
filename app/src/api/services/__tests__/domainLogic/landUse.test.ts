@@ -1,15 +1,7 @@
 import * as _ from 'lodash';
 
-import { DomainLogicError } from '../../../errors/general';
 import { LandUseState, updateLandUse } from '../../domainLogic/landUse';
 
-const testClassToGroup = {
-    'Animal breeding places': 'Agriculture',
-    'Egg grading place': 'Agriculture',
-    'Fish farm': 'Fisheries',
-    'Brewery': 'Manufacturing',
-    'Business meeting places': 'Offices'
-};
 const testGroupToOrder = {
     'Agriculture': 'Agriculture And Fisheries',
     'Fisheries': 'Agriculture And Fisheries',
@@ -18,12 +10,7 @@ const testGroupToOrder = {
 };
 
 jest.mock('../../../dataAccess/landUse', () => ({
-    getLandUseGroupFromClass: jest.fn((classes: string[]) => {
-        const groups = _.chain(classes).map(c => testClassToGroup[c]).uniq().value();
-
-        return Promise.resolve(groups);
-    }),
-    getLandUseOrderGromGroup: jest.fn((groups: string[]) => {
+    getLandUseOrderFromGroup: jest.fn((groups: string[]) => {
         const orders = _.chain(groups).map(g => testGroupToOrder[g]).uniq().value();
 
         let result: string;
@@ -38,66 +25,73 @@ jest.mock('../../../dataAccess/landUse', () => ({
 describe('updateLandUse()', () => {
 
     beforeEach(() => {
-        jest.resetAllMocks();
+        jest.clearAllMocks();
     });
 
     it.each([
         [{
-            landUseClass: [],
             landUseGroup: [],
             landUseOrder: null
         }, {
-            landUseClass: ['Animal breeding places']
+            landUseGroup: ['Agriculture']
         }, {
-            landUseClass: ['Animal breeding places'],
             landUseGroup: ['Agriculture'],
             landUseOrder: 'Agriculture And Fisheries'
         }],
 
         [{
-            landUseClass: ['Animal breeding places'],
             landUseGroup: ['Agriculture'],
             landUseOrder: 'Agriculture And Fisheries'
         }, {
-            landUseClass: ['Fish farm']
+            landUseGroup: ['Fisheries']
         }, {
-            landUseClass: ['Fish farm'],
             landUseGroup: ['Fisheries'],
             landUseOrder: 'Agriculture And Fisheries'
         }],
 
         [{
-            landUseClass: ['Animal breeding places'],
             landUseGroup: ['Agriculture'],
             landUseOrder: 'Agriculture And Fisheries'
         }, {
-            landUseClass: ['Animal breeding places', 'Business meeting places']
+            landUseGroup: ['Agriculture', 'Offices'],
         }, {
-            landUseClass: ['Animal breeding places', 'Business meeting places'],
             landUseGroup: ['Agriculture', 'Offices'],
             landUseOrder: 'Mixed Use'
         }]
-    ])('Should derive higher level land use classifications from lower level ones',
+    ])('Should derive land use order from group',
         async (landUse: LandUseState, landUseUpdate: Partial<LandUseState>, expectedUpdate: LandUseState) => {
             const result = await updateLandUse(landUse, landUseUpdate);
 
-            expect(result).toBe(expectedUpdate);
+            expect(result).toEqual(expectedUpdate);
         }
     );
 
     it.each([
         [{
-            landUseClass: ['Fish farm'],
-            landUseGroup: ['Fisheries'],
+            landUseGroup: ['Agriculture'],
             landUseOrder: 'Agriculture And Fisheries'
         }, {
             landUseGroup: []
-        }]
-    ])('Should error when update breaks an automatic chain of classifications', 
-        async (landUse: LandUseState, landUseUpdate: Partial<LandUseState>) => {
-            const resultPromise = updateLandUse(landUse, landUseUpdate);
+        }, {
+            landUseGroup: [],
+            landUseOrder: null
+        }],
 
-            expect(resultPromise).rejects.toBeInstanceOf(DomainLogicError);
+        [{
+            landUseGroup: ['Agriculture', 'Offices'],
+            landUseOrder: 'Mixed Use',
+        }, {
+            landUseGroup: ['Agriculture'],
+        }, {
+            landUseGroup: ['Agriculture'],
+            landUseOrder: 'Agriculture And Fisheries'
+        }]
+    ])('Should remove derived land use order when land use group is removed',
+        async (landUse: LandUseState, landUseUpdate: Partial<LandUseState>, expectedUpdate: LandUseState) => {
+            const result = await updateLandUse(landUse, landUseUpdate);
+
+            expect(result).toEqual(expectedUpdate);
         }
     );
+
 });
