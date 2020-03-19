@@ -22,6 +22,8 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             onChange={props.onChange}
             // tooltip={dataFields.current_landuse_class.tooltip}
             placeholder="New land use group..."
+            autofill={true}
+            showAllOptionsOnEmpty={true}
         />
         <DataEntry
             title={dataFields.current_landuse_order.title}

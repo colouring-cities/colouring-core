@@ -33,6 +33,15 @@ export function parsePositiveIntParam(param: string) {
     return result;
 }
 
+export function parseBooleanParam(param: string) {
+    if(param == undefined) return undefined;
+
+    if(param === 'true') return true;
+    if(param === 'false') return false;
+
+    throw new ApiParamInvalidFormatError('Invalid format: not a true/false value');
+}
+
 export function checkRegexParam(param: string, regex: RegExp): string {
     if(param == undefined) return undefined;
 

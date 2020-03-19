@@ -1,28 +1,56 @@
 import db from '../../db';
 
-const autofillFunctionMap = {
-    current_landuse_class: getLanduseClassOptions
+interface AutofillOption {
+    id: string;
+    value: string;
+    similarity?: number;
+}
+
+type GetAutofillOptionsFn = (value: string, all?: boolean) => Promise<AutofillOption[]>;
+
+const autofillFunctionMap : { [fieldName: string] : GetAutofillOptionsFn } = {
+    current_landuse_group: getLanduseGroupOptions,
 };
 
-function getLanduseClassOptions(value: string) {
+
+function getLanduseGroupOptions(value: string, all: boolean = false) {
+    if(all) {
+        return db.manyOrNone(`
+            SELECT
+                landuse_id AS id,
+                description AS value
+            FROM reference_tables.buildings_landuse_group
+            `
+        );
+    }
+
+    let query = buildPartialMatchQuery(value);
+
     return db.manyOrNone(`
         SELECT
             landuse_id AS id,
-            description as value,
-            ts_rank(to_tsvector(description), plainto_tsquery($1)) as similarity
-        FROM reference_tables.buildings_landuse_class
-        WHERE to_tsvector(description) @@ plainto_tsquery($1)
+            description AS value,
+            ts_rank(to_tsvector(description), to_tsquery('simple', $1)) AS similarity
+        FROM reference_tables.buildings_landuse_group
+        WHERE to_tsvector(description) @@ to_tsquery('simple', $1)
         ORDER BY similarity DESC, description
-        `, [value]
+        `, [query]
     );
 }
 
-export function getAutofillOptions(fieldName: string, fieldValue: any) {
+function buildPartialMatchQuery(value: string) {
+    return tokenizeValue(value).map(x => `${x}:*`).join(' & ');
+}
+function tokenizeValue(value: string) {
+    return value.split(/[^\w]+/).filter(x => x !== '');
+}
+
+export function getAutofillOptions(fieldName: string, fieldValue: any, allValues: boolean) {
     const optionsFn = autofillFunctionMap[fieldName];
 
     if (optionsFn == undefined) {
         throw new Error(`Autofill options not available for field '${fieldName}'`);
     }
 
-    return optionsFn(fieldValue);
+    return optionsFn(fieldValue, allValues);
 }

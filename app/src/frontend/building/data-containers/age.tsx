@@ -82,6 +82,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 onChange={props.onChange}
                 tooltip={dataFields.date_link.tooltip}
                 placeholder="https://..."
+                editableEntries={true}
                 />
         </Fragment>
     );

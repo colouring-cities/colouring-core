@@ -9,6 +9,7 @@ import { DataTitleCopyable } from '../data-title';
 
 interface MultiDataEntryProps extends BaseDataEntryProps, TextDataEntryInputProps {
     value: string[];
+    editableEntries: boolean;
 }
 
 interface MultiDataEntryState {
@@ -16,6 +17,10 @@ interface MultiDataEntryState {
 }
 
 class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState> {
+
+    static defaultProps = {
+        editableEntries: false
+    };
 
     constructor(props) {
         super(props);
@@ -51,7 +56,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
         event.preventDefault();
         if (this.state.newValue == undefined) return;
         const values = this.cloneValues().concat(this.state.newValue);
-        this.setState({newValue: ''});
+        this.setState({newValue: null});
         this.props.onChange(this.props.slug, values);
     }
 
@@ -88,12 +93,14 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                                 name={`${props.slug}-${i}`}
                                 id={`${props.slug}-${i}`}
                                 value={val}
-                                disabled={isDisabled}
+                                disabled={!props.editableEntries || isDisabled}
                                 onChange={(key, val) => this.edit(i, val)}
 
                                 maxLength={props.maxLength}
                                 valueTransform={props.valueTransform}
+
                                 autofill={props.autofill}
+                                showAllOptionsOnEmpty={props.showAllOptionsOnEmpty}
                             />
                             {
                                 !isDisabled &&
@@ -122,6 +129,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                             placeholder={props.placeholder}
                             valueTransform={props.valueTransform}
                             autofill={props.autofill}
+                            showAllOptionsOnEmpty={props.showAllOptionsOnEmpty}
                         />
                         <div className="input-group-append">
                             <button type="button"

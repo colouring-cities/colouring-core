@@ -13,6 +13,7 @@ export interface TextDataEntryInputProps {
     placeholder?: string;
     valueTransform?: (val: string) => string;
     autofill?: boolean;
+    showAllOptionsOnEmpty?: boolean;
 }
 
 export const DataEntryInput: React.FC<TextDataEntryInputProps & {value?: string}> = props => {
@@ -51,6 +52,7 @@ export const DataEntryInput: React.FC<TextDataEntryInputProps & {value?: string}
                     onClose={() => setEditing(false)}
                     fieldName={props.slug}
                     fieldValue={props.value}
+                    showAllOptionsOnEmpty={props.showAllOptionsOnEmpty}
                 />
             }
         </>

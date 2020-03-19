@@ -8,6 +8,7 @@ import { apiGet } from '../../../apiHelpers';
 interface AutofillDropdownProps {
     fieldName: string;
     fieldValue: string;
+    showAllOptionsOnEmpty?: boolean;
     editing: boolean;
     onSelect: (val: string) => void;
     onClose: () => void;
@@ -27,9 +28,21 @@ export const AutofillDropdown: React.FC<AutofillDropdownProps> =  props => {
 
     useEffect(() => {
         const doAsync = async () => {
-            if (!props.editing || (props.fieldValue === '' && options == null)) return setOptions(null);
+            if (!props.editing) return setOptions(null);
 
-            const url = `/api/autofill?field_name=${props.fieldName}&field_value=${props.fieldValue}`;
+            let valueParam: string;
+
+            if(props.fieldValue == null) {
+                if(!props.showAllOptionsOnEmpty) {
+                    if(options == null) return setOptions(null);
+                } else {
+                    valueParam = 'all_values=true';
+                }
+            } else {
+                valueParam = `field_value=${props.fieldValue}`;
+            }
+
+            const url = `/api/autofill?field_name=${props.fieldName}&${valueParam}`;
             const { options: newOptions } = await apiGet(url);
 
             if (!props.editing) return;
