@@ -405,7 +405,7 @@ const BUILDING_FIELD_WHITELIST = new Set([
     'building_attachment_form',
     'date_change_building_use',
 
-    'current_landuse_class',
+    // 'current_landuse_class',
     'current_landuse_group',
     'current_landuse_order'
 ]);

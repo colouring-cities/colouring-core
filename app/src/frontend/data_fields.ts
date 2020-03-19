@@ -153,17 +153,13 @@ export const dataFields = {
         title: "Longitude",
     },
 
-    current_landuse_class: {
-        category: Category.LandUse,
-        title: "Current Land Use Class"
-    },
     current_landuse_group: {
         category: Category.LandUse,
-        title: "Current Land Use Group"
+        title: "Current Land Use (Group)"
     },
     current_landuse_order: {
         category: Category.LandUse,
-        title: "Current Land Use Order"
+        title: "Current Land Use (Order)"
     },
 
     building_attachment_form: {

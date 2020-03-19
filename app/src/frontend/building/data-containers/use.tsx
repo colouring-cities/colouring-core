@@ -14,22 +14,10 @@ import { CategoryViewProps } from './category-view-props';
 const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <MultiDataEntry
-            title={dataFields.current_landuse_class.title}
-            slug="current_landuse_class"
-            value={props.building.current_landuse_class}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
-            // tooltip={dataFields.current_landuse_class.tooltip}
-            placeholder="New land use class..."
-            autofill={true}
-        />
-        <MultiDataEntry
             title={dataFields.current_landuse_group.title}
             slug="current_landuse_group"
             value={props.building.current_landuse_group}
             mode={props.mode}
-            disabled={(props.building.current_landuse_class || []).length !== 0}
             copy={props.copy}
             onChange={props.onChange}
             // tooltip={dataFields.current_landuse_class.tooltip}
@@ -44,6 +32,10 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             copy={props.copy}
             onChange={props.onChange}
         />
+        {
+            props.mode != 'view' &&
+            <InfoBox msg="Land use order is automatically derived from the land use groups"></InfoBox>
+        }
     </Fragment>
 );
 const UseContainer = withCopyEdit(UseView);
