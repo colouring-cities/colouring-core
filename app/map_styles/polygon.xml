@@ -286,10 +286,6 @@
     </Style>
     <Style name="landuse">
         <Rule>
-            <Filter>[current_landuse_order] = "Agriculture And Fisheries"</Filter>
-            <PolygonSymbolizer fill="#52403C" />
-        </Rule>
-        <Rule>
             <Filter>[current_landuse_order] = "Recreation And Leisure"</Filter>
             <PolygonSymbolizer fill="#ffbfbf" />
         </Rule>
@@ -316,10 +312,6 @@
         <Rule>
             <Filter>[current_landuse_order] = "Industry And Business"</Filter>
             <PolygonSymbolizer fill="#f5f58f" />
-        </Rule>
-        <Rule>
-            <Filter>[current_landuse_order] = "Vacant And Derelict"</Filter>
-            <PolygonSymbolizer fill="#ffffff" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Defence"</Filter>

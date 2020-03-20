@@ -28,9 +28,7 @@ const LEGEND_CONFIG = {
             { color: '#ffbfbf', text: 'Recreation And Leisure' },
             { color: '#b3de69', text: 'Transport' },
             { color: '#cccccc', text: 'Utilities And Infrastructure' },
-            { color: '#52403C', text: 'Agriculture And Fisheries' },
             { color: '#898944', text: 'Defence' },
-            { color: '#ffffff', text: 'Vacant And Derelict' },
         ]
     },
     type: {
