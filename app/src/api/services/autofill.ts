@@ -30,9 +30,9 @@ function getLanduseGroupOptions(value: string, all: boolean = false) {
         SELECT
             landuse_id AS id,
             description AS value,
-            ts_rank(to_tsvector(description), to_tsquery('simple', $1)) AS similarity
+            ts_rank(to_tsvector('simple', description), to_tsquery('simple', $1)) AS similarity
         FROM reference_tables.buildings_landuse_group
-        WHERE to_tsvector(description) @@ to_tsquery('simple', $1)
+        WHERE to_tsvector('simple', description) @@ to_tsquery('simple', $1)
         ORDER BY similarity DESC, description
         `, [query]
     );
