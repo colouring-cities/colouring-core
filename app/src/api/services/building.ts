@@ -8,6 +8,9 @@ import { ITask } from 'pg-promise';
 import db from '../../db';
 import { tileCache } from '../../tiles/rendererDefinition';
 import { BoundingBox } from '../../tiles/types';
+import * as buildingDataAccess from '../dataAccess/building';
+import * as likeDataAccess from '../dataAccess/like';
+import { UserError } from '../errors/general';
 
 import { processBuildingUpdate } from './domainLogic/processBuildingUpdate';
 
@@ -155,83 +158,50 @@ async function getBuildingUPRNsById(id: number) {
     }
 }
 
-async function saveBuilding(buildingId: number, building: any, userId: string) { // TODO add proper building type
-    try {
-        return await updateBuildingData(buildingId, userId, async () => {
-            const processedBuilding = await processBuildingUpdate(buildingId, building);
-            
-            // remove read-only fields from consideration
-            delete processedBuilding.building_id;
-            delete processedBuilding.revision_id;
-            delete processedBuilding.geometry_id;
+async function saveBuilding(buildingId: number, building: any, userId: string): Promise<object> { // TODO add proper building type
+    return await updateBuildingData(buildingId, userId, async () => {
+        const processedBuilding = await processBuildingUpdate(buildingId, building);
+        
+        // remove read-only fields from consideration
+        delete processedBuilding.building_id;
+        delete processedBuilding.revision_id;
+        delete processedBuilding.geometry_id;
 
-            // return whitelisted fields to update
-            return pickAttributesToUpdate(processedBuilding, BUILDING_FIELD_WHITELIST);
-        });
-    } catch(error) {
-        console.error(error);
-        return { error: error };
-    }
+        // return whitelisted fields to update
+        return pickAttributesToUpdate(processedBuilding, BUILDING_FIELD_WHITELIST);
+    });
 }
 
 async function likeBuilding(buildingId: number, userId: string) {
-    try {
-        return await updateBuildingData(
-            buildingId,
-            userId,
-            async (t) => {
-                // return total like count after update
-                return getBuildingLikeCount(buildingId, t);
-            },
-            async (t) => {
-                // insert building-user like
-                await t.none(
-                    'INSERT INTO building_user_likes ( building_id, user_id ) VALUES ($1, $2);',
-                    [buildingId, userId]
-                );
-            },
-        );
-    } catch (error) {
-        console.error(error);
-        if (error.detail && error.detail.includes('already exists')) {
-            // 'already exists' is thrown if user already liked it
-            return { error: 'It looks like you already like that building!' };
-        } else {
-            return undefined;
-        }
-    }
+    return await updateBuildingData(
+        buildingId,
+        userId,
+        async (t) => {
+            // return total like count after update
+            return {
+                likes_total: await likeDataAccess.getBuildingLikeCount(buildingId, t)
+            };
+        },
+        (t) => {
+            return likeDataAccess.addBuildingUserLike(buildingId, userId, t);
+        },
+    );
 }
 
 async function unlikeBuilding(buildingId: number, userId: string) {
-    try {
-        return await updateBuildingData(
-            buildingId,
-            userId,
-            async (t) => {
-                // return total like count after update
-                return getBuildingLikeCount(buildingId, t);
-            },
-            async (t) => {
-                // remove building-user like
-                const result = await t.result(
-                    'DELETE FROM building_user_likes WHERE building_id = $1 AND user_id = $2;',
-                    [buildingId, userId]
-                );
-
-                if (result.rowCount === 0) {
-                    throw new Error('No change');
-                }
-            },
-        );
-    } catch(error) {
-        console.error(error);
-        if (error.message === 'No change') {
-            // 'No change' is thrown if user doesn't like this building
-            return { error: 'It looks like you have already revoked your like for that building!' };
-        } else {
-            return undefined;
-        }
-    }
+    return await updateBuildingData(
+        buildingId,
+        userId,
+        async (t) => {
+            // return total like count after update
+            return {
+                likes_total: await likeDataAccess.getBuildingLikeCount(buildingId, t)
+            };
+        },
+        async (t) => {
+            return likeDataAccess.removeBuildingUserLike(buildingId, userId, t);
+        },
+    );
 }
 
 // === Utility functions ===
@@ -247,18 +217,6 @@ function pickAttributesToUpdate(obj: any, fieldWhitelist: Set<string>) {
 }
 
 /**
- * 
- * @param buildingId ID of the building to count likes for
- * @param t The database context inside which the count should happen
- */
-function getBuildingLikeCount(buildingId: number, t: ITask<unknown>) {
-    return t.one(
-        'SELECT count(*) as likes_total FROM building_user_likes WHERE building_id = $1;',
-        [buildingId]
-    );
-}
-
-/**
  * Carry out an update of the buildings data. Allows for running any custom database operations before the main update.
  * All db hooks get passed a transaction.
  * @param buildingId The ID of the building to update
@@ -271,7 +229,7 @@ async function updateBuildingData(
     userId: string,
     getUpdateValue: (t: ITask<any>) => Promise<object>,
     preUpdateDbAction?: (t: ITask<any>) => Promise<void>,
-) {
+): Promise<object> {
     return await db.tx({mode: serializable}, async t => {
         if (preUpdateDbAction != undefined) {
             await preUpdateDbAction(t);
@@ -279,49 +237,23 @@ async function updateBuildingData(
 
         const update = await getUpdateValue(t);
 
-        const oldBuilding = await t.one(
-            'SELECT * FROM buildings WHERE building_id = $1 FOR UPDATE;',
-            [buildingId]
-        );
+        const oldBuilding = await buildingDataAccess.getBuildingData(buildingId, true, t);
 
         console.log(update);
         const patches = compare(oldBuilding, update);
         console.log('Patching', buildingId, patches);
         const [forward, reverse] = patches;
         if (Object.keys(forward).length === 0) {
-            throw 'No change provided';
+            throw new UserError('No change provided');
         }
 
-        const revision = await t.one(
-            `INSERT INTO logs (
-                        forward_patch, reverse_patch, building_id, user_id
-                    ) VALUES (
-                        $1:json, $2:json, $3, $4
-                    ) RETURNING log_id
-                    `,
-            [forward, reverse, buildingId, userId]
-        );
+        const revisionId = await buildingDataAccess.insertEditHistoryRevision(buildingId, userId, forward, reverse, t);
 
-        const sets = db.$config.pgp.helpers.sets(forward);
-        console.log('Setting', buildingId, sets);
-
-        const data = await t.one(
-            `UPDATE
-                    buildings
-                SET
-                    revision_id = $1,
-                    $2:raw
-                WHERE
-                    building_id = $3
-                RETURNING
-                    *
-                `,
-            [revision.log_id, sets, buildingId]
-        );
+        const updatedData = await buildingDataAccess.updateBuildingData(buildingId, forward, revisionId, t);
 
         expireBuildingTileCache(buildingId);
 
-        return data;
+        return updatedData;
     });
 }
 

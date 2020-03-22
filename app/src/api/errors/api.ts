@@ -6,39 +6,34 @@
  */
 
 export class ApiUserError extends Error {
-    constructor(message?: string) {
+    public originalError: Error;
+    constructor(message?: string, originalError?: Error) {
         super(message);
         this.name = 'ApiUserError';
+        this.originalError = originalError;
     }
 }
 
 export class ApiParamError extends ApiUserError {
     public paramName: string;
 
-    constructor(message?: string, paramName?: string) {
-        super(message);
+    constructor(message?: string, originalError?: Error, paramName?: string) {
+        super(message, originalError);
         this.name = 'ApiParamError';
         this.paramName = paramName;
     }
 }
 
 export class ApiParamRequiredError extends ApiParamError {
-    constructor(message?: string) {
-        super(message);
+    constructor(message?: string, originalError?: Error) {
+        super(message, originalError);
         this.name = 'ApiParamRequiredError';
     }
 }
 
-export class ApiParamOutOfBoundsError extends ApiParamError {
-    constructor(message?: string) {
-        super(message);
-        this.name = 'ApiParamOutOfBoundsError';
-    }
-}
-
 export class ApiParamInvalidFormatError extends ApiParamError {
-    constructor(message?: string) {
-        super(message);
+    constructor(message?: string, originalError?: Error) {
+        super(message, originalError);
         this.name = 'ApiParamInvalidFormatError';
     }
 }

@@ -103,19 +103,22 @@ server.use((err: any, req: express.Request, res: express.Response, next: express
     }
 
     if (err != undefined) {
-        console.log('Global error handler: ', err);
-        
         if (err instanceof ApiUserError) {
             let errorMessage: string;
-
+            
             if(err instanceof ApiParamError) {
                 errorMessage = `Problem with parameter ${err.paramName}: ${err.message}`;
             } else {
                 errorMessage = err.message;
             }
-
-            res.status(400).send({ error: errorMessage });
-        } else if(err instanceof DatabaseError){
+            
+            return res.status(400).send({ error: errorMessage });
+        }
+        
+        // we need to log the error only if it's not an api user error
+        console.log('Global error handler: ', err);
+        
+        if(err instanceof DatabaseError){
             res.status(500).send({ error: 'Database error' });
         } else {
             res.status(500).send({ error: 'Server error' });
