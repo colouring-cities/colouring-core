@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 
+import { ArgumentError } from '../../../errors/general';
 import { LandUseState, updateLandUse } from '../../domainLogic/landUse';
 
 const testGroupToOrder = {
@@ -8,6 +9,8 @@ const testGroupToOrder = {
     'Manufacturing': 'Industry And Business',
     'Offices': 'Industry And Business'
 };
+
+const testAllowedGroups = Object.keys(testGroupToOrder);
 
 jest.mock('../../../dataAccess/landUse', () => ({
     getLandUseOrderFromGroup: jest.fn((groups: string[]) => {
@@ -19,6 +22,9 @@ jest.mock('../../../dataAccess/landUse', () => ({
         else result = 'Mixed Use';
         
         return Promise.resolve(result);
+    }),
+    isLandUseGroupAllowed: jest.fn((group: string) => {
+        return testAllowedGroups.includes(group);
     })
 }));
 
@@ -93,5 +99,28 @@ describe('updateLandUse()', () => {
             expect(result).toEqual(expectedUpdate);
         }
     );
+
+    it.each([
+        [['Blah'], "'Blah' is not a valid Land Use Group"],
+        [['Agriculture', 'Zonk'], "'Zonk' is not a valid Land Use Group"],
+        [['Zonk', 'Blah'], "'Zonk' is not a valid Land Use Group"]
+    ])('Should throw ArgumentError when invalid land use group supplied', async (groups: string[], message: string) => {
+        const resultPromise = updateLandUse({landUseGroup: [], landUseOrder: null}, { landUseGroup: groups});
+
+        await expect(resultPromise).rejects.toBeInstanceOf(ArgumentError);
+        await expect(resultPromise).rejects.toHaveProperty('argumentName', 'landUseUpdate');
+        await expect(resultPromise).rejects.toHaveProperty('message', message);
+    });
+
+    it('Should throw ArgumentError when duplicate land use groups supplied', async () => {
+        const resultPromise = updateLandUse(
+            {landUseGroup: [], landUseOrder: null},
+            { landUseGroup: ['Agriculture', 'Agriculture']}
+        );
+
+        await expect(resultPromise).rejects.toBeInstanceOf(ArgumentError);
+        await expect(resultPromise).rejects.toHaveProperty('argumentName', 'landUseUpdate');
+        await expect(resultPromise).rejects.toHaveProperty('message', 'Cannot supply duplicate Land Use Groups');
+    });
 
 });

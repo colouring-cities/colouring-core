@@ -36,3 +36,14 @@ export async function getLandUseOrderFromGroup(groups: string[]): Promise<string
         return 'Mixed Use';
     } else return null;
 }
+
+export async function isLandUseGroupAllowed(group: string): Promise<boolean> {
+    let groupResult = await db.oneOrNone(`
+        SELECT landuse_id
+        FROM reference_tables.buildings_landuse_group
+        WHERE description = $1
+        `, [group]
+    );
+
+    return (groupResult != undefined);
+}
