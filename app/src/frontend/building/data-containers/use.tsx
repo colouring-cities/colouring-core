@@ -15,6 +15,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <MultiDataEntry
             title={dataFields.current_landuse_group.title}
+            tooltip={dataFields.current_landuse_group.tooltip}
             slug="current_landuse_group"
             value={props.building.current_landuse_group}
             mode={props.mode}
@@ -27,6 +28,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
         />
         <DataEntry
             title={dataFields.current_landuse_order.title}
+            tooltip={dataFields.current_landuse_order.tooltip}
             slug="current_landuse_order"
             value={props.building.current_landuse_order}
             mode={props.mode}
