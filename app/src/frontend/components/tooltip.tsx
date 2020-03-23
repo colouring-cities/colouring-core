@@ -12,6 +12,33 @@ interface TooltipState {
     active: boolean;
 }
 
+const nonCaptureLingRegex = /\[[^[]+?\]\([^(]+?\)/;
+const linkRegex = /\[([^[]+?)\]\(([^(]+?)\)/;
+
+function markdownLinkToAnchor(link: string) {
+    const m = link.match(linkRegex);
+        return (<a href={m[2]} target="_blank">{m[1]}</a>);
+}
+
+function interweave(arr1: any[], arr2: any[]): any[] {
+    const commonLen = Math.min(arr1.length, arr2.length);
+    const arr = [];
+    for(let i=0; i<commonLen; i++) {
+        arr.push(arr1[i], arr2[i]);
+    }
+    arr.push(...arr1.slice(commonLen), ...arr2.slice(commonLen));
+
+    return arr;
+}
+
+function tooltipTextToComponents(text: string): any[] {
+    let betweenLinks = text.split(nonCaptureLingRegex);
+    if(betweenLinks.length <= 1) return [text];
+    let links = text.match(new RegExp(linkRegex, 'g')).map(markdownLinkToAnchor);
+
+    return interweave(betweenLinks, links);
+}
+
 class Tooltip extends Component<TooltipProps, TooltipState> {
     constructor(props) {
         super(props);
@@ -32,10 +59,10 @@ class Tooltip extends Component<TooltipProps, TooltipState> {
 
     handleBlur(event) {
         if(!event.currentTarget.contains(event.relatedTarget)) {
-        this.setState({
+            this.setState({
                 active: false
-        });
-    }
+            });
+        }
     }
 
     render() {
@@ -51,7 +78,9 @@ class Tooltip extends Component<TooltipProps, TooltipState> {
                         (
                             <div className="tooltip bs-tooltip-bottom">
                                 <div className="arrow"></div>
-                                <div className="tooltip-inner">{this.props.text}</div>
+                                <div className="tooltip-inner">
+                                    {...tooltipTextToComponents(this.props.text)}
+                                </div>
                             </div>
                         )
                         : null
