@@ -18,22 +18,31 @@ class Tooltip extends Component<TooltipProps, TooltipState> {
         this.state = {
             active: false
         };
-        this.handleClick = this.handleClick.bind(this);
+
+        this.toggleVisible = this.toggleVisible.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
 
-    handleClick(event) {
-        event.preventDefault();
+    
+    toggleVisible() {
+        this.setState(state => ({
+                active: !state.active
+        }));
+    }
+
+    handleBlur(event) {
+        if(!event.currentTarget.contains(event.relatedTarget)) {
         this.setState({
-            active: !this.state.active
+                active: false
         });
+    }
     }
 
     render() {
         return (
-            <div className="tooltip-wrap">
-                <button className={(this.state.active? 'active ': '') + 'tooltip-hint icon-button'}
-                    title={this.props.text}
-                    onClick={this.handleClick}>
+            <div className="tooltip-wrap" tabIndex={0} onBlur={this.handleBlur}>
+                <button type="button" className={(this.state.active? 'active ': '') + 'tooltip-hint icon-button'}
+                    onClick={this.toggleVisible}>
                     Hint
                     <InfoIcon />
                 </button>
