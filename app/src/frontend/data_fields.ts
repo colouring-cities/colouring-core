@@ -156,12 +156,12 @@ export const dataFields = {
     current_landuse_group: {
         category: Category.LandUse,
         title: "Current Land Use (Group)",
-        tooltip: "A list of Land Use Groups for the current land use, according to the [National Land Use Database](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)"
+        tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)"
     },
     current_landuse_order: {
         category: Category.LandUse,
         title: "Current Land Use (Order)",
-        tooltip: "Land Use Order for the current land use, according to the [National Land Use Database](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)"
+        tooltip: "Land use Order as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)"
     },
 
     building_attachment_form: {
