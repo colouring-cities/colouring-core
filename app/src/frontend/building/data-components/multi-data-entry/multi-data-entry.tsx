@@ -10,6 +10,10 @@ import { DataTitleCopyable } from '../data-title';
 interface MultiDataEntryProps extends BaseDataEntryProps, TextDataEntryInputProps {
     value: string[];
     editableEntries: boolean;
+    confirmOnEnter: boolean;
+
+    addOnAutofillSelect: boolean;
+    acceptAutofillValuesOnly: boolean;
 }
 
 interface MultiDataEntryState {
@@ -19,7 +23,10 @@ interface MultiDataEntryState {
 class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState> {
 
     static defaultProps = {
-        editableEntries: false
+        editableEntries: false,
+        confirmOnEnter: true,
+        addOnAutofillSelect: false,
+        acceptAutofillValuesOnly: false
     };
 
     constructor(props) {
@@ -32,7 +39,6 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
         this.edit = this.edit.bind(this);
         this.addNew = this.addNew.bind(this);
         this.remove = this.remove.bind(this);
-        this.getValues = this.getValues.bind(this);
     }
 
     getValues() {
@@ -52,10 +58,12 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
         values.splice(index, 1, value);
         this.props.onChange(this.props.slug, values);
     }
-    addNew(event) {
-        event.preventDefault();
-        if (this.state.newValue == undefined) return;
-        const values = this.cloneValues().concat(this.state.newValue);
+    addNew(newValue?: string) {
+        // accept a newValue parameter to handle cases where the value is set and submitted at the same time
+        // (like with autofill select enabled) - but otherwise use the current newValue saved in state
+        const val = newValue ?? this.state.newValue;
+        if (val == undefined) return;
+        const values = this.cloneValues().concat(val);
         this.setState({newValue: null});
         this.props.onChange(this.props.slug, values);
     }
@@ -69,7 +77,8 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
     render() {
         const values = this.getValues();
         const props = this.props;
-        const isDisabled = props.mode === 'view' || props.disabled;
+        const isEditing = props.mode === 'edit';
+        const isDisabled = !isEditing || props.disabled;
         return <Fragment>
             <DataTitleCopyable
                 slug={props.slug}
@@ -80,7 +89,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
             <div id={`${props.slug}-wrapper`}>
                 <ul className="data-link-list">
                 {
-                    values.length === 0 &&
+                    values.length === 0 && !isEditing &&
                     <div className="input-group">
                         <input className="form-control no-entries" type="text" value="No entries" disabled={true} />
                     </div>
@@ -124,18 +133,22 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                             value={this.state.newValue}
                             disabled={props.disabled}
                             onChange={(key, val) => this.setNewValue(val)}
+                            onConfirm={(key, val) => this.addNew(val)}
 
                             maxLength={props.maxLength}
                             placeholder={props.placeholder}
                             valueTransform={props.valueTransform}
+                            confirmOnEnter={props.confirmOnEnter}
+
                             autofill={props.autofill}
                             showAllOptionsOnEmpty={props.showAllOptionsOnEmpty}
+                            confirmOnAutofillSelect={true}
                         />
                         <div className="input-group-append">
                             <button type="button"
                                 className="btn btn-outline-dark"
                                 title="Add to list"
-                                onClick={this.addNew}
+                                onClick={() => this.addNew()}
                                 disabled={this.state.newValue == undefined}
                             >+</button>
                         </div>

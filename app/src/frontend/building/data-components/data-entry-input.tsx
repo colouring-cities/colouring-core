@@ -7,13 +7,17 @@ export interface TextDataEntryInputProps {
     name?: string;
     id?: string;
     onChange?: (key: string, val: any) => void;
+    onConfirm?: (key: string, val: any) => void;
 
     maxLength?: number;
     disabled?: boolean;
     placeholder?: string;
     valueTransform?: (val: string) => string;
+    confirmOnEnter?: boolean;
+
     autofill?: boolean;
     showAllOptionsOnEmpty?: boolean;
+    confirmOnAutofillSelect?: boolean;
 }
 
 export const DataEntryInput: React.FC<TextDataEntryInputProps & {value?: string}> = props => {
@@ -21,13 +25,29 @@ export const DataEntryInput: React.FC<TextDataEntryInputProps & {value?: string}
     const nameAttr = props.name || props.slug;
     const idAttr = props.id || props.slug;
 
-    const handleChange = (value: string) => {
-        console.log(value);
+    const transformValue = (value: string) => {
         const transform = props.valueTransform || (x => x);
         const transformedValue = value === '' ?
                         null :
                         transform(value);
-        props.onChange(props.slug, transformedValue);
+        return transformedValue;
+    };
+
+    const handleChange = (value: string) => {
+        props.onChange?.(props.slug, transformValue(value));
+    };
+    
+    const handleConfirm = () => {
+        props.onConfirm?.(props.slug, props.value);
+    };
+
+    const handleAutofillSelect = (value: string) => {
+        const transformedValue = transformValue(value);
+        if(props.confirmOnAutofillSelect) {
+            props.onConfirm?.(props.slug, transformedValue);
+        } else {
+            props.onChange?.(props.slug, transformedValue);
+        }
     };
 
     return (
@@ -39,6 +59,15 @@ export const DataEntryInput: React.FC<TextDataEntryInputProps & {value?: string}
                 maxLength={props.maxLength}
                 disabled={props.disabled}
                 placeholder={props.placeholder}
+                onKeyDown={e => {
+                    if(e.keyCode === 13) {
+                        // prevent form submit on enter
+                        e.preventDefault();
+                        if(props.confirmOnEnter) {
+                            handleConfirm();
+                        }
+                    }
+                }}
                 onChange={e => handleChange(e.target.value)}
                 onInput={e => setEditing(true)}
                 onFocus={e => setEditing(true)}
@@ -48,7 +77,7 @@ export const DataEntryInput: React.FC<TextDataEntryInputProps & {value?: string}
                 props.autofill &&
                 <AutofillDropdown
                     editing={isEditing}
-                    onSelect={value => handleChange(value)}
+                    onSelect={handleAutofillSelect}
                     onClose={() => setEditing(false)}
                     fieldName={props.slug}
                     fieldValue={props.value}

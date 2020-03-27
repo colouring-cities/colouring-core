@@ -79,7 +79,7 @@ class Tooltip extends Component<TooltipProps, TooltipState> {
                             <div className="tooltip bs-tooltip-bottom">
                                 <div className="arrow"></div>
                                 <div className="tooltip-inner">
-                                    {...tooltipTextToComponents(this.props.text)}
+                                    {tooltipTextToComponents(this.props.text)}
                                 </div>
                             </div>
                         )

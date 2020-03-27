@@ -15,17 +15,22 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <MultiDataEntry
             title={dataFields.current_landuse_group.title}
-            tooltip={dataFields.current_landuse_group.tooltip}
             slug="current_landuse_group"
             value={props.building.current_landuse_group}
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
-            // tooltip={dataFields.current_landuse_class.tooltip}
-            placeholder="New land use group..."
+            confirmOnEnter={true}
+            tooltip={dataFields.current_landuse_group.tooltip}
+            placeholder="Type new land use group here"
             autofill={true}
             showAllOptionsOnEmpty={true}
+            addOnAutofillSelect={true}
         />
+        {
+            props.mode != 'view' &&
+            <InfoBox msg="Land use order is automatically derived from the land use groups"></InfoBox>
+        }
         <DataEntry
             title={dataFields.current_landuse_order.title}
             tooltip={dataFields.current_landuse_order.tooltip}
@@ -36,10 +41,6 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             copy={props.copy}
             onChange={props.onChange}
         />
-        {
-            props.mode != 'view' &&
-            <InfoBox msg="Land use order is automatically derived from the land use groups"></InfoBox>
-        }
     </Fragment>
 );
 const UseContainer = withCopyEdit(UseView);
