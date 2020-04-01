@@ -74,9 +74,8 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
             return <ConstructionContainer
                 {...props}
                 title="Construction"
-                intro="How are buildings built? Coming soon…"
+                intro="How are buildings built?"
                 help="https://pages.colouring.london/construction"
-                inactive={true}
             />;
         case 'team':
             return <TeamContainer
