@@ -11,7 +11,6 @@ COPY (SELECT
     location_postcode,
     location_latitude,
     location_longitude,
-    current_landuse_class,
     current_landuse_group,
     current_landuse_order,
     building_attachment_form,

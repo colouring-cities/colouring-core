@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import InfoBox from '../../components/info-box';
 import { dataFields } from '../../data_fields';
 import DataEntry from '../data-components/data-entry';
-import MultiDataEntry from '../data-components/multi-data-entry';
+import MultiDataEntry from '../data-components/multi-data-entry/multi-data-entry';
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
@@ -13,32 +13,31 @@ import { CategoryViewProps } from './category-view-props';
  */
 const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        <InfoBox msg="This category is currently read-only. We are working on enabling its editing soon." />
-        <MultiDataEntry
-            title={dataFields.current_landuse_class.title}
-            slug="current_landuse_class"
-            value={props.building.current_landuse_class}
-            mode="view"
-            copy={props.copy}
-            onChange={props.onChange}
-            // tooltip={dataFields.current_landuse_class.tooltip}
-            placeholder="New land use class..."
-        />
         <MultiDataEntry
             title={dataFields.current_landuse_group.title}
             slug="current_landuse_group"
             value={props.building.current_landuse_group}
-            mode="view"
+            mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
-            // tooltip={dataFields.current_landuse_class.tooltip}
-            placeholder="New land use group..."
+            confirmOnEnter={true}
+            tooltip={dataFields.current_landuse_group.tooltip}
+            placeholder="Type new land use group here"
+            autofill={true}
+            showAllOptionsOnEmpty={true}
+            addOnAutofillSelect={true}
         />
+        {
+            props.mode != 'view' &&
+            <InfoBox msg="Land use order is automatically derived from the land use groups"></InfoBox>
+        }
         <DataEntry
             title={dataFields.current_landuse_order.title}
+            tooltip={dataFields.current_landuse_order.tooltip}
             slug="current_landuse_order"
             value={props.building.current_landuse_order}
-            mode="view"
+            mode={props.mode}
+            disabled={true}
             copy={props.copy}
             onChange={props.onChange}
         />
