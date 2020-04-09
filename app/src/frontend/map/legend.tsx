@@ -43,25 +43,21 @@ const LEGEND_CONFIG = {
     age: {
         title: 'Age',
         elements: [
-            { color: '#f0eaba', text: '≥2000' },
-            { color: '#fae269', text: '1980–2000' },
-            { color: '#fbaf27', text: '1960–1980' },
-            { color: '#e6711d', text: '1940–1960' },
-            { color: '#d73d3a', text: '1920–1940' },
-            { color: '#ba221c', text: '1900–1920' },
-            { color: '#bb859b', text: '1880–1900' },
-            { color: '#8b3654', text: '1860–1880' },
-            { color: '#8f5385', text: '1840–1860' },
-            { color: '#56619b', text: '1820–1840' },
-            { color: '#6793b2', text: '1800–1820' },
-            { color: '#83c3b3', text: '1780–1800' },
-            { color: '#adc88f', text: '1760–1780' },
-            { color: '#83a663', text: '1740–1760' },
-            { color: '#77852d', text: '1720–1740' },
-            { color: '#69814e', text: '1700–1720' },
-            { color: '#d0c291', text: '1680–1700' },
-            { color: '#918158', text: '1660–1680' },
-            { color: '#7a5732', text: '<1660' },
+            { color: '#fff9b8', text: '>2020' },
+            { color: '#fae269', text: '2000-2019' },
+            { color: '#fbaf27', text: '1980-1999' },
+            { color: '#e6711d', text: '1960-1979' },
+            { color: '#cc1212', text: '1940-1959' },
+            { color: '#8f0303', text: '1920-1939' },
+            { color: '#8f5385', text: '1900-1919' },
+            { color: '#c3e1eb', text: '1880-1899' },
+            { color: '#6a9dba', text: '1860-1879' },
+            { color: '#3b74a3', text: '1840-1859' },
+            { color: '#95ded8', text: '1820-1839' },
+            { color: '#68aba5', text: '1800-1819' },
+            { color: '#acc98f', text: '1750-1799' },
+            { color: '#6d8a51', text: '1700-1749' },
+            { color: '#d0c291', text: '<1700' },
         ]
     },
     size: {
@@ -103,9 +99,14 @@ const LEGEND_CONFIG = {
         elements: []
     },
     planning: {
-        title: 'Planning',
+        title: 'Statutory protections',
+        disclaimer: 'All data relating to designated buildings should be checked on the National Heritage List for England or local authority websites where used for planning or development purposes',
         elements: [
-            { color: '#73ebaf', text: 'within conservation area' },
+            { color: '#95beba', text: 'In conservation area'},
+            { color: '#c72e08', text: 'Grade I listed'}, 
+            { color: '#e75b42', text: 'Grade II* listed'}, 
+            { color: '#ffbea1', text: 'Grade II listed'},
+            { color: '#858ed4', text: 'Locally listed'}, 
         ]
     },
     community: {
@@ -201,10 +202,14 @@ class Legend extends React.Component<LegendProps, LegendState> {
                     elements.length?
                         <ul className={this.state.collapseList ? 'collapse data-legend' : 'data-legend'} >
                             {
+                                details.disclaimer &&
+                                    <p className='legend-disclaimer'>{details.disclaimer}</p>
+                            }
+                            {
                                 elements.map((item) => (
 
                                        <li key={item.color} >
-                                            <span className="key" style={ { background: item.color } }>-</span>
+                                            <span className="key" style={ { background: item.color, border: item.border } }>-</span>
                                             { item.text }
                                        </li>
 

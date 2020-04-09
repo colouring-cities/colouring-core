@@ -7,7 +7,8 @@
     right: 10px;
     z-index: 1000;
 
-    min-width: 12rem;
+    min-width: 14rem;
+    max-width: 14rem;
     max-height: 60%;
     
     display: flex;
@@ -62,6 +63,11 @@
 }
 .map-legend p {
     margin: 0.25rem 0 0.5rem;
+}
+
+.map-legend .legend-disclaimer {
+    font-size: 0.8em;
+    padding:0;
 }
 .data-legend {
     overflow: auto;
