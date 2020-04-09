@@ -90,6 +90,11 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                 </NavLink>
                             </li>
                             <li className="nav-item">
+                                <NavLink to="/leaderboard.html" className="nav-link" onClick={this.handleNavigate}>
+                                    Leaderboard
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
                                 <NavLink to="/contact.html" className="nav-link" onClick={this.handleNavigate}>
                                     Contact
                                 </NavLink>
