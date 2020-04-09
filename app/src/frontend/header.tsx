@@ -58,6 +58,8 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                     </button>
                 </div>
                 <nav className={this.state.collapseMenu ? 'collapse navbar-collapse' : 'navbar-collapse'}>
+                    <Categories mode='view' />
+                    <hr />
                     <ul className="navbar-nav flex-column">
                         <li className="nav-item">
                             <NavLink to="/view/categories" className="nav-link" onClick={this.handleNavigate}>
@@ -132,8 +134,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                             </a>
                         </li>
                     </ul>
-                    <hr />
-                    <Categories mode='view' />
                     <hr />
                     <ul className="navbar-nav flex-column">
                         <li className="nav-item">

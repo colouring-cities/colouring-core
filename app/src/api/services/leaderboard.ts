@@ -6,8 +6,9 @@ async function getLeaders(number_limit: number, time_limit: number) {
     number_limit = Math.min(number_limit, max_limit);
 
     try {
+        let leaders;
         if(time_limit > 0){
-            return await db.manyOrNone(
+            leaders = await db.manyOrNone(
                 `SELECT count(log_id) as number_edits, username
                 FROM logs, users
                 WHERE logs.user_id = users.user_id
@@ -19,7 +20,7 @@ async function getLeaders(number_limit: number, time_limit: number) {
                 LIMIT $2`, [time_limit, number_limit]
             );
         } else {
-            return await db.manyOrNone(
+            leaders = await db.manyOrNone(
                 `SELECT count(log_id) as number_edits, username
                 FROM logs, users
                 WHERE logs.user_id = users.user_id
@@ -30,6 +31,9 @@ async function getLeaders(number_limit: number, time_limit: number) {
                 LIMIT $1`, [number_limit]
             );
         }
+        return leaders.map(d => {
+            return {username: d.username, number_edits: Number(d.number_edits)};
+        })
     } catch(error) {
         console.error(error);
         return [];
