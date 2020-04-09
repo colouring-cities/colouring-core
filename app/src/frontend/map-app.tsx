@@ -224,7 +224,9 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
             <Fragment>
                 <Switch>
                     <Route exact path="/">
-                        <Welcome />
+                        <Sidebar>
+                            <Welcome />
+                        </Sidebar>
                     </Route>
                     <Route exact path="/:mode/categories/:building?">
                         <Sidebar>

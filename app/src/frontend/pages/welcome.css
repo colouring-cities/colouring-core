@@ -1,42 +1,6 @@
 /**
  * Welcome jumbotron
  */
-.welcome-float {
-    position: absolute;
-    z-index: 10000;
-    top: 100px;
-    width: 100%;
-    max-height: 95%;
-    max-height: calc(100%-2em);
-    overflow-y: auto;
-}
-
-.welcome-float.jumbotron {
-    padding: 1em 2.5em 1.5em;
-    background: #fff;
-    background-color: rgba(255,255,255,0.9);
-    box-shadow: #000 0px 0px 2px -1px;
-}
-@media (min-width: 990px) and (max-width: 1199px){
-    .welcome-float {
-        right: 5%;
-        width: 30em;
-        max-height: 80vh;
-    }
-}
-@media (min-width: 1200px){
-    .welcome-float {
-        left: 50%;
-        margin-left: -120px; /* 480 -360 */
-        width: 45em;
-    }
-}
-
-.welcome-float .lead {
-    font-size: 1.2em;
-}
-
-.welcome-float .lead a {
-    color: #333;
-    border-bottom-color: #333;
+.welcome.section-body {
+    padding-bottom: 1rem;
 }
