@@ -55,6 +55,15 @@ const BUILDING_LAYER_DEFINITIONS = {
             buildings as b
         WHERE g.geometry_id = b.geometry_id
     ) as size_height`,
+    construction_core_material: `(
+        SELECT
+            b.core_materials,
+            g.geometry_geom
+        FROM
+            geometries as g,
+            buildings as b
+        WHERE g.geometry_id = b.geometry_id
+    ) as core_materials`,
     location: `(
         SELECT
             (
