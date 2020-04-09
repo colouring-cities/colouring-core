@@ -1,20 +1,35 @@
 /**
  * Main Layout
  */
- main {
+
+html, body, #root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+main {
     position: relative;
-    min-height: 35rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
 }
-@media (min-width: 768px){
+
+@media(min-width: 768px) {
     main {
-        position: absolute;
-        top: 79px; /* matches 79px .main-header */
-        bottom: 0;
-        left: 0;
-        right: 0;
-        min-height: auto;
+        flex-direction: row;
+        justify-content: center;
     }
-}
+ }
 /**
  * Text pages
  */
@@ -33,6 +48,11 @@ article .color-block {
     margin-right: auto;
     padding-left: 1em;
     padding-right: 1em;
+}
+@media(min-width: 768px) {
+    .main-col {
+        min-width: 48em;
+    }
 }
 hr {
     display: block;

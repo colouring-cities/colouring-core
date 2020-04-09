@@ -1,0 +1,50 @@
+.search-box {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 1000;
+    max-width:80%;
+}
+.search-box form,
+.search-box .search-box-results {
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0px 0px 1px 1px #222222;
+}
+.search-box button {
+    margin-bottom: 0;
+}
+.search-box .search-box-results {
+    margin-top: 0.25rem;
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+}
+.search-box-result {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+.collapse-btn {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 1000;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0px 0px 1px 1px #222222;
+}
+.search-box .form-control {
+    padding: 0.1rem 0.1rem;
+    width: 180px;
+}
+.search-box .btn {
+   padding: 0.25rem 0.2rem;
+   margin-right: 0.1rem;
+}
+@media (min-width: 768px) {
+    /* The following is a fix (?) for the truncation of the "Search for postcode" text  */
+    .form-inline .form-control {
+        width: 200px;
+    }
+}

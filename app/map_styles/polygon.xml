@@ -35,6 +35,12 @@
     </Style>
     <Style name="highlight">
         <Rule>
+            <Filter>[base_layer] = 'location' or [base_layer] = 'conservation_area'</Filter>
+            <LineSymbolizer stroke="#ff0000aa" stroke-width="4.5" />
+            <LineSymbolizer stroke="#ff0000ff" stroke-width="2.5" />
+        </Rule>
+        <Rule>
+            <ElseFilter />
             <LineSymbolizer stroke="#00ffffaa" stroke-width="4.5" />
             <LineSymbolizer stroke="#00ffffff" stroke-width="2.5" />
         </Rule>
@@ -81,6 +87,40 @@
         <Rule>
             <Filter>[size_storeys] &gt;= 1 and [size_storeys] &lt; 6</Filter>
             <PolygonSymbolizer fill="#800026" />
+        </Rule>
+    </Style>
+    <Style name="size_height">
+        <Rule>
+            <Filter>[size_height] &lt; 5.55</Filter>
+            <PolygonSymbolizer fill="#f7f4f9" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 5.55 and [size_height] &lt; 7.73</Filter>
+            <PolygonSymbolizer fill="#e7e1ef" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 7.73 and [size_height] &lt; 11.38</Filter>
+            <PolygonSymbolizer fill="#d4b9da" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 11.38 and [size_height] &lt; 18.45</Filter>
+            <PolygonSymbolizer fill="#c994c7" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 18.45 and [size_height] &lt; 35.05</Filter>
+            <PolygonSymbolizer fill="#df65b0" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 35.05 and [size_height] &lt; 89.30</Filter>
+            <PolygonSymbolizer fill="#e7298a" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 89.30 and [size_height] &lt; 152</Filter>
+            <PolygonSymbolizer fill="#ce1256" />
+        </Rule>
+        <Rule>
+            <Filter>[size_height] &gt;= 152</Filter>
+            <PolygonSymbolizer fill="#980043" />
         </Rule>
     </Style>
     <Style name="date_year">
@@ -166,30 +206,128 @@
             <PolygonSymbolizer fill="#73ebaf" />
         </Rule>
     </Style>
+    <Style name="sust_dec">
+        <Rule>
+            <Filter>[sust_dec] = A</Filter>
+            <PolygonSymbolizer fill="#007f3d" />
+        </Rule>
+        <Rule>
+            <Filter>[sust_dec] = B</Filter>
+            <PolygonSymbolizer fill="#2c9f29" />
+        </Rule>
+        <Rule>
+            <Filter>[sust_dec] = C</Filter>
+            <PolygonSymbolizer fill="#9dcb3c" />
+        </Rule>
+        <Rule>
+            <Filter>[sust_dec] = D</Filter>
+            <PolygonSymbolizer fill="#fff200" />
+        </Rule>
+        <Rule>
+            <Filter>[sust_dec] = E</Filter>
+            <PolygonSymbolizer fill="#f7af1d" />
+        </Rule>
+        <Rule>
+            <Filter>[sust_dec] = F</Filter>
+            <PolygonSymbolizer fill="#ed6823" />
+        </Rule>
+        <Rule>
+            <Filter>[sust_dec] = G</Filter>
+            <PolygonSymbolizer fill="#e31d23" />
+        </Rule>
+    </Style>
+    <Style name="building_attachment_form">
+        <Rule>
+            <Filter>[building_attachment_form] = "Detached"</Filter>
+            <PolygonSymbolizer fill="#f2a2b9" />
+        </Rule>
+        <Rule>
+            <Filter>[building_attachment_form] = "Semi-Detached"</Filter>
+            <PolygonSymbolizer fill="#ab8fb0" />
+        </Rule>
+        <Rule>
+            <Filter>[building_attachment_form] = "End-Terrace"</Filter>
+            <PolygonSymbolizer fill="#3891d1" />
+        </Rule>
+        <Rule>
+            <Filter>[building_attachment_form] = "Mid-Terrace"</Filter>
+            <PolygonSymbolizer fill="#226291" />
+        </Rule>
+    </Style>
     <Style name="likes">
         <Rule>
-            <Filter>[likes] &gt;= 10</Filter>
+            <Filter>[likes] &gt;= 100</Filter>
             <PolygonSymbolizer fill="#bd0026" />
         </Rule>
         <Rule>
-            <Filter>[likes] &gt;= 5 and [likes] &lt; 10</Filter>
+            <Filter>[likes] &gt;= 50 and [likes] &lt; 100</Filter>
             <PolygonSymbolizer fill="#e31a1c" />
         </Rule>
         <Rule>
-            <Filter>[likes] &gt;= 4 and [likes] &lt; 5</Filter>
+            <Filter>[likes] &gt;= 20 and [likes] &lt; 50</Filter>
             <PolygonSymbolizer fill="#fc4e2a" />
         </Rule>
         <Rule>
-            <Filter>[likes] &gt;= 3 and [likes] &lt; 4</Filter>
+            <Filter>[likes] &gt;= 10 and [likes] &lt; 20</Filter>
             <PolygonSymbolizer fill="#fd8d3c" />
         </Rule>
         <Rule>
-            <Filter>[likes] &gt;= 2 and [likes] &lt; 3</Filter>
+            <Filter>[likes] &gt;= 3 and [likes] &lt; 10</Filter>
             <PolygonSymbolizer fill="#feb24c" />
         </Rule>
         <Rule>
-            <Filter>[likes] &lt; 2</Filter>
+            <Filter>[likes] = 2</Filter>
             <PolygonSymbolizer fill="#fed976" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] = 1</Filter>
+            <PolygonSymbolizer fill="#ffe8a9" />
+        </Rule>
+    </Style>
+    <Style name="landuse">
+        <Rule>
+            <Filter>[current_landuse_order] = "Agriculture And Fisheries"</Filter>
+            <PolygonSymbolizer fill="#52403C" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Recreation And Leisure"</Filter>
+            <PolygonSymbolizer fill="#ffbfbf" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Transport"</Filter>
+            <PolygonSymbolizer fill="#bee8ff" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Utilities And Infrastructure"</Filter>
+            <PolygonSymbolizer fill="#cccccc" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Residential"</Filter>
+            <PolygonSymbolizer fill="#4a54a6" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Community Services"</Filter>
+            <PolygonSymbolizer fill="#73ccd1" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Retail"</Filter>
+            <PolygonSymbolizer fill="#ff8c00" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Industry And Business"</Filter>
+            <PolygonSymbolizer fill="#f5f58f" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Vacant And Derelict"</Filter>
+            <PolygonSymbolizer fill="#ffffff" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Defence"</Filter>
+            <PolygonSymbolizer fill="#898944" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Mixed Use"</Filter>
+            <PolygonSymbolizer fill="#e5050d" />
         </Rule>
     </Style>
 </Map>

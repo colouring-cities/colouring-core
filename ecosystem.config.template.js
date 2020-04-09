@@ -17,7 +17,13 @@ module.exports = {
                 PGUSER: "username",
                 PGPASSWORD: "longrandomsecret",
                 APP_COOKIE_SECRET: "longrandomsecret",
-                TILECACHE_PATH: "/path/to/tile/cache"
+                TILECACHE_PATH: "/path/to/tile/cache",
+                MAIL_SERVER_HOST: "mail_hostname",
+                MAIL_SERVER_PORT: 587,
+                MAIL_SERVER_USER: "mail_username",
+                MAIL_SERVER_PASSWORD: "longrandompassword",
+                WEBAPP_ORIGIN: "https://beta.colouring.london",
+                EXTRACTS_DIRECTORY:"/path/to/extracts",
             }
         }
     ]

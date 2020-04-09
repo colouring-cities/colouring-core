@@ -23,11 +23,11 @@ function strictParseInt(value) {
  * @returns {number|undefined}
  */
 function parseBuildingURL(url) {
-    const re = /\/building\/([^/]+).html/;
+    const re = /\/(\d+)(\/history)?$/;
     const matches = re.exec(url);
 
     if (matches && matches.length >= 2) {
-        return strictParseInt(matches[1])
+        return strictParseInt(matches[1]);
     }
     return undefined;
 }

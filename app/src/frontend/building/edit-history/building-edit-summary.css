@@ -1,0 +1,18 @@
+.edit-history-entry {
+    border-bottom: 1px solid black;
+    padding: 1em;
+}
+
+
+.edit-history-timestamp {
+    font-size: 0.9em;
+    padding: 0;
+}
+
+.edit-history-username {
+    font-size: 0.9em;
+}
+
+.edit-history-building-id {
+    font-size: 0.9em;
+}

@@ -28,7 +28,7 @@ label {
 }
 .buttons-container.with-space {
     margin-top: 1rem;
-    padding: 0 0.75rem;
+    /* padding: 0 0.75rem; */
 }
 .buttons-container .btn {
     margin-bottom: 0.25rem;
@@ -40,18 +40,4 @@ form .btn {
 .buttons-container.btn-center {
     margin-right: 0;
     text-align: center;
-}
-.btn.btn-half {
-    width: 100%;
-    margin-bottom: 0.25rem;
-}
-@media (min-width: 768px) {
-    .btn.btn-half {
-        width: 49%;
-        margin-left: 0;
-        margin-right: 2%;
-    }
-    .btn.btn-half:nth-child(2n) {
-        margin-right: 0;
-    }
 }

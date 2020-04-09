@@ -1,0 +1,118 @@
+/**
+ * Map legend
+ */
+.map-legend {
+    position: absolute;
+    bottom: 3.5rem;
+    right: 10px;
+    z-index: 1000;
+
+    min-width: 12rem;
+    max-height: 60%;
+    
+    display: flex;
+    flex-direction: column;
+
+    background: white;
+    border-radius: 4px;
+    padding: 0.5rem 0rem 0.25rem;
+    border: 1px solid #fff;
+    box-shadow: 0px 0px 1px 1px #222222;
+}
+
+.map-legend * {
+    flex: 0;
+}
+
+.map-legend .logo {
+    display: none;
+}
+@media (min-width: 768px) {
+    .map-legend .logo {
+        display: block;
+    }
+}
+
+/* Prevent legend from overlapping with attribution */
+@media(min-width: 392px) {
+    .map-legend {
+        bottom: 2.5rem;
+    }
+}
+@media (min-width: 760px){
+    .map-legend {
+        bottom: 1.5rem;
+    }
+}
+@media (min-width: 768px) {
+    .map-legend {
+        bottom: 2.5rem;
+    }
+}
+@media (min-width: 1129px){
+    .map-legend {
+        bottom: 1.5rem;
+    }
+}
+
+.map-legend .h4,
+.map-legend p,
+.data-legend {
+    padding: 0 0.5rem;
+}
+.map-legend p {
+    margin: 0.25rem 0 0.5rem;
+}
+.data-legend {
+    overflow: auto;
+    list-style: none;
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.data-legend .key {
+    display: inline-block;
+    width: 1.3rem;
+    height: 1.3rem;
+    text-indent: -30px;
+    margin: 0.125rem 0.5rem 0.125rem 0;
+    vertical-align: middle;
+    overflow: hidden;
+}
+.map-legend .data-intro {
+    padding: 0 0.5rem;
+    opacity: 0.5;
+}
+.expander-button {
+    display: inline-block;
+    position: absolute;
+    bottom: 1rem;
+    right: 0.5rem;
+    
+    height: 1rem;
+    width: 1rem;
+    line-height: 0.5;
+    padding: 0;
+}
+.expander-button:focus,
+.expander-button:active,
+.expander-button:hover {
+    box-shadow: none;
+}
+@media (min-height: 670px) and (min-width: 880px) {
+    .expander-button {
+        visibility: hidden;
+    }
+}
+
+.map-legend .logo {
+    padding: 0 0.5rem 0.5rem;
+}
+.map-legend .logo .logotype {
+    font-size: 1.9rem;
+    margin-bottom: -2px;
+}
+.map-legend .logo .cell {
+    height: 12px;
+    width: 12px;
+}
