@@ -96,6 +96,27 @@ const BUILDING_LAYER_DEFINITIONS = {
             g.geometry_id = b.geometry_id
             AND b.likes_total > 0
     ) as likes`,
+    planning_combined: `(
+        SELECT
+            g.geometry_geom,
+            (
+                CASE
+                    WHEN b.planning_list_cat = 'Listed Building' and b.planning_list_grade = 'I' THEN 'Grade I Listed'
+                    WHEN b.planning_list_cat = 'Listed Building' and b.planning_list_grade = 'II*' THEN 'Grade II* Listed'
+                    WHEN b.planning_list_cat = 'Listed Building' and b.planning_list_grade = 'II' THEN 'Grade II Listed'
+                    WHEN b.planning_in_local_list THEN 'Locally Listed'
+                    ELSE 'None'
+                END
+            ) as listing_type,
+            b.planning_in_conservation_area
+        FROM geometries as g
+        JOIN buildings as b
+        ON g.geometry_id = b.geometry_id
+        WHERE
+            b.planning_in_conservation_area
+            OR b.planning_in_local_list
+            OR b.planning_list_cat is not null
+    ) as planning_combined`, 
     conservation_area: `(
         SELECT
             g.geometry_geom

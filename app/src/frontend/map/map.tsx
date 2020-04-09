@@ -134,7 +134,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             construction: 'construction_core_material',
             location: 'location',
             like: 'likes',
-            planning: 'conservation_area',
+            planning: 'planning_combined',
             sustainability: 'sust_dec',
             type: 'building_attachment_form',
             use: 'landuse'

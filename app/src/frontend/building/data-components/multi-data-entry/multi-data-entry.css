@@ -1,0 +1,5 @@
+.input-group .no-entries {
+    border-style: dashed;
+    border-color: #aaa;
+    margin-bottom: 0.4em;
+}

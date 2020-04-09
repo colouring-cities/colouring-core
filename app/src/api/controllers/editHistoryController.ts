@@ -22,8 +22,7 @@ const getGlobalEditHistory = asyncController(async (req: express.Request, res: e
         res.send(result);
     } catch(error) {
         if(error instanceof ArgumentError && error.argumentName === 'count') {
-            const apiErr = new ApiParamError(error.message, 'count');
-            throw apiErr;
+            throw new ApiParamError(error.message, error, 'count');
         }
 
         throw error;

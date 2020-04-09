@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 
 import { CopyProps } from '../data-containers/category-view-props';
 
+import { DataEntryInput, TextDataEntryInputProps } from './data-entry-input';
 import { DataTitleCopyable } from './data-title';
 
 interface BaseDataEntryProps {
@@ -14,14 +15,11 @@ interface BaseDataEntryProps {
     onChange?: (key: string, value: any) => void;
 }
 
-interface DataEntryProps extends BaseDataEntryProps {
+interface DataEntryProps extends BaseDataEntryProps, TextDataEntryInputProps {
     value?: string;
-    maxLength?: number;
-    placeholder?: string;
-    valueTransform?: (string) => string;
 }
 
-const DataEntry: React.FunctionComponent<DataEntryProps> = (props) => {
+const DataEntry: React.FC<DataEntryProps> = (props) => {
     return (
         <Fragment>
             <DataTitleCopyable
@@ -31,20 +29,15 @@ const DataEntry: React.FunctionComponent<DataEntryProps> = (props) => {
                 disabled={props.disabled || props.value == undefined || props.value == ''}
                 copy={props.copy}
             />
-            <input className="form-control" type="text"
-                id={props.slug}
-                name={props.slug}
-                value={props.value || ''}
-                maxLength={props.maxLength}
+            <DataEntryInput
+                slug={props.slug}
+                value={props.value}
+                onChange={props.onChange}
                 disabled={props.mode === 'view' || props.disabled}
+                
+                maxLength={props.maxLength}
                 placeholder={props.placeholder}
-                onChange={e => {
-                    const transform = props.valueTransform || (x => x);
-                    const val = e.target.value === '' ?
-                                    null :
-                                    transform(e.target.value);
-                    props.onChange(props.slug, val);
-                }}
+                valueTransform={props.valueTransform}
             />
         </Fragment>
     );

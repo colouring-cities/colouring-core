@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { dataFields } from '../../data_fields';
-import MultiDataEntry from '../data-components/multi-data-entry';
+import MultiDataEntry from '../data-components/multi-data-entry/multi-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import TextboxDataEntry from '../data-components/textbox-data-entry';
@@ -82,6 +82,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 onChange={props.onChange}
                 tooltip={dataFields.date_link.tooltip}
                 placeholder="https://..."
+                editableEntries={true}
                 />
         </Fragment>
     );

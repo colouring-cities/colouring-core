@@ -1,5 +1,7 @@
 import express from 'express';
 
+import { ApiUserError } from '../errors/api';
+import { UserError } from '../errors/general';
 import { parsePositiveIntParam, processParam } from '../parameters';
 import asyncController from '../routes/asyncController';
 import * as buildingService from '../services/building';
@@ -67,19 +69,17 @@ async function updateBuilding(req: express.Request, res: express.Response, userI
 
     const buildingUpdate = req.body;
 
+    let updatedBuilding: object;
     try {
-        const building = await buildingService.saveBuilding(buildingId, buildingUpdate, userId);
-
-        if (typeof (building) === 'undefined') {
-            return res.send({ error: 'Database error' });
+        updatedBuilding = await buildingService.saveBuilding(buildingId, buildingUpdate, userId);
+    } catch(error) {
+        if(error instanceof UserError) {
+            throw new ApiUserError(error.message, error);
         }
-        if (building.error) {
-            return res.send(building);
-        }
-        res.send(building);
-    } catch(err) {
-        res.send({ error: 'Database error' });
+        throw error;
     }
+
+    res.send(updatedBuilding);
 }
 
 // GET building UPRNs
@@ -137,21 +137,20 @@ const updateBuildingLikeById = asyncController(async (req: express.Request, res:
     const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
     const { like } = req.body;
 
+    let updatedBuilding: object;
     try {
-        const building = like ?
+        updatedBuilding = like ?
             await buildingService.likeBuilding(buildingId, req.session.user_id) :
             await buildingService.unlikeBuilding(buildingId, req.session.user_id);
-        
-        if (building.error) {
-            return res.send(building);
-        }
-        if (typeof (building) === 'undefined') {
-            return res.send({ error: 'Database error' });
-        }
-        res.send(building);
     } catch(error) {
-        res.send({ error: 'Database error' });
+        if(error instanceof UserError) {
+            throw new ApiUserError(error.message, error);
+        }
+        
+        throw error;
     }
+
+    res.send(updatedBuilding);
 });
 
 const getLatestRevisionId = asyncController(async (req: express.Request, res: express.Response) => {
