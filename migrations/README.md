@@ -53,3 +53,7 @@ Set or update passwords:
 ```bash
 psql -c "ALTER USER appusername WITH PASSWORD 'longsecurerandompassword';"
 ```
+
+Syntax for adding to existing migration:
+
+`0##.filename-extension-#.up.sql`
