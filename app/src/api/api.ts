@@ -7,10 +7,10 @@ import { ApiParamError, ApiUserError } from './errors/api';
 import { DatabaseError } from './errors/general';
 import buildingsRouter from './routes/buildingsRouter';
 import extractsRouter from './routes/extractsRouter';
+import leaderboardRouter from './routes/leaderboardRouter';
 import usersRouter from './routes/usersRouter';
 import { queryLocation } from './services/search';
 import { authUser, getNewUserAPIKey, logout } from './services/user';
-
 
 const server = express.Router();
 
@@ -20,6 +20,7 @@ server.use(bodyParser.json());
 server.use('/buildings', buildingsRouter);
 server.use('/users', usersRouter);
 server.use('/extracts', extractsRouter);
+server.use('/leaderboard', leaderboardRouter);
 
 server.get('/history', editHistoryController.getGlobalEditHistory);
 server.get('/autofill', autofillController.getAutofillOptions);

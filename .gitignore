@@ -18,6 +18,8 @@ etl/**/*.xls
 etl/**/*.xlsx
 etl/**/*.zip
 
+.DS_Store
+
 # Cache
 app/tilecache/**/*.png
 app/tilecache/**/*.mbtiles

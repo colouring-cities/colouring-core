@@ -75,7 +75,16 @@ const LEGEND_CONFIG = {
     },
     construction: {
         title: 'Construction',
-        elements: []
+        elements: [
+            { color: "#96613b", text: "Wood" },
+            { color: "#ffffe3", text: "Stone" },
+            { color: "#f5d96b", text: "Brick" },
+            { color: "#beffe8", text: "Steel" },
+            { color: "#fca89d", text: "Reinforced Concrete" },
+            { color: "#5c8970", text: "Other Metal" },
+            { color: "#b5a859", text: "Other Natural Material" },
+            { color: "#c48a85", text: "Other Man-Made Material" }
+        ]
     },
     team: {
         title: 'Team',

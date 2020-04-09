@@ -280,6 +280,24 @@ export const dataFields = {
         //tooltip: ,
     },
 
+    construction_core_material: {
+        category: Category.Construction,
+        title: "Core Material",
+        tooltip:"The main structural material",
+    },
+
+    construction_secondary_materials: {
+        category: Category.Construction,
+        title: "Secondary Construction Material/s",
+        tooltip:"Other construction materials",
+    },
+
+    construction_roof_covering: {
+        category: Category.Construction,
+        title: "Main Roof Covering",
+        tooltip:'Main roof covering material',
+    },
+
     sust_breeam_rating: {
         category: Category.Sustainability,
         title: "BREEAM Rating",

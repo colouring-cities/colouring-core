@@ -123,6 +123,40 @@
             <PolygonSymbolizer fill="#980043" />
         </Rule>
     </Style>
+    <Style name="construction_core_material">
+        <Rule>
+            <Filter>[construction_core_material] = "Wood"</Filter>
+            <PolygonSymbolizer fill="#96613b" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_core_material] = "Stone"</Filter>
+            <PolygonSymbolizer fill="#ffffe3" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_core_material] = "Brick"</Filter>
+            <PolygonSymbolizer fill="#f5d96b" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_core_material] = "Steel"</Filter>
+            <PolygonSymbolizer fill="#beffe8" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_core_material] = "Reinforced Concrete"</Filter>
+            <PolygonSymbolizer fill="#fca89d" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_core_material] = "Other Metal"</Filter>
+            <PolygonSymbolizer fill="#5c8970" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_core_material] = "Other Natural Material"</Filter>
+            <PolygonSymbolizer fill="#b5a859" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_core_material] = "Other Man-Made Material"</Filter>
+            <PolygonSymbolizer fill="#c48a85" />
+        </Rule>
+    </Style>
     <Style name="date_year">
         <Rule>
             <Filter>[date_year] &gt;= 2020</Filter>
@@ -317,7 +351,7 @@
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Transport"</Filter>
-            <PolygonSymbolizer fill="#b3de69" />
+            <PolygonSymbolizer fill="#bee8ff" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Utilities And Infrastructure"</Filter>
