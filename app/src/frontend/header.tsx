@@ -71,14 +71,16 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                 Downloads
                             </NavLink>
                         </li>
+                        {/*
                         <li className="nav-item">
                             <NavLink to="/showcase.html" className="nav-link" onClick={this.handleNavigate}>
                                 Showcase
                             </NavLink>
                         </li>
+                        */}
                         <li className="nav-item">
-                            <NavLink to="/leaderboards.html" className="nav-link" onClick={this.handleNavigate}>
-                                Leaderboards
+                            <NavLink to="/leaderboard.html" className="nav-link" onClick={this.handleNavigate}>
+                                Leaderboard
                             </NavLink>
                         </li>
                         <li className="nav-item">
