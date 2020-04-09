@@ -30,6 +30,8 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
     // TODO handle changes internally, reporting out date_year, date_upper, date_lower
     render() {
         const props = this.props;
+
+        const currentYear = new Date().getFullYear();
         return (
             <Fragment>
                 <NumericDataEntry
@@ -39,6 +41,8 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                    min={1}
+                    max={currentYear}
                     // "type": "year_estimator"
                     />
                 <NumericDataEntry
@@ -49,6 +53,8 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     copy={props.copy}
                     onChange={props.onChange}
                     step={1}
+                    min={1}
+                    max={currentYear}
                     tooltip={dataFields.date_upper.tooltip}
                     />
                 <NumericDataEntry
@@ -59,6 +65,8 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     copy={props.copy}
                     onChange={props.onChange}
                     step={1}
+                    min={1}
+                    max={currentYear}
                     tooltip={dataFields.date_lower.tooltip}
                     />
             </Fragment>

@@ -2,11 +2,14 @@
  * Building data access
  *
  */
+import * as _ from 'lodash';
 import { ITask } from 'pg-promise';
 
 import db from '../../db';
 import { tileCache } from '../../tiles/rendererDefinition';
 import { BoundingBox } from '../../tiles/types';
+
+import { processBuildingUpdate } from './domainLogic/processBuildingUpdate';
 
 // data type note: PostgreSQL bigint (64-bit) is handled as string in JavaScript, because of
 // JavaScript numerics are 64-bit double, giving only partial coverage.
@@ -92,12 +95,16 @@ async function queryBuildingsByReference(key: string, ref: string) {
     }
 }
 
+async function getCurrentBuildingDataById(id: number) {
+    return db.one(
+        'SELECT * FROM buildings WHERE building_id = $1',
+        [id]
+    );
+}
+
 async function getBuildingById(id: number) {
     try {
-        const building = await db.one(
-            'SELECT * FROM buildings WHERE building_id = $1',
-            [id]
-        );
+        const building = await getCurrentBuildingDataById(id);
 
         building.edit_history = await getBuildingEditHistory(id);
 
@@ -111,7 +118,7 @@ async function getBuildingById(id: number) {
 async function getBuildingEditHistory(id: number) {
     try {
         return await db.manyOrNone(
-            `SELECT log_id as revision_id, forward_patch, reverse_patch, date_trunc('minute', log_timestamp), username
+            `SELECT log_id as revision_id, forward_patch, reverse_patch, date_trunc('minute', log_timestamp) as revision_timestamp, username
             FROM logs, users
             WHERE building_id = $1 AND logs.user_id = users.user_id
             ORDER BY log_timestamp DESC`,
@@ -151,13 +158,15 @@ async function getBuildingUPRNsById(id: number) {
 async function saveBuilding(buildingId: number, building: any, userId: string) { // TODO add proper building type
     try {
         return await updateBuildingData(buildingId, userId, async () => {
+            const processedBuilding = await processBuildingUpdate(buildingId, building);
+            
             // remove read-only fields from consideration
-            delete building.building_id;
-            delete building.revision_id;
-            delete building.geometry_id;
+            delete processedBuilding.building_id;
+            delete processedBuilding.revision_id;
+            delete processedBuilding.geometry_id;
 
             // return whitelisted fields to update
-            return pickAttributesToUpdate(building, BUILDING_FIELD_WHITELIST);
+            return pickAttributesToUpdate(processedBuilding, BUILDING_FIELD_WHITELIST);
         });
     } catch(error) {
         console.error(error);
@@ -395,6 +404,10 @@ const BUILDING_FIELD_WHITELIST = new Set([
     // 'sust_life_expectancy',
     'building_attachment_form',
     'date_change_building_use',
+
+    'current_landuse_class',
+    'current_landuse_group',
+    'current_landuse_order'
 ]);
 
 /**
@@ -411,7 +424,7 @@ function compare(oldObj: object, newObj: object): [object, object] {
     const reverse = {};
     const forward = {};
     for (const [key, value] of Object.entries(newObj)) {
-        if (oldObj[key] != value) {
+        if (!_.isEqual(oldObj[key], value)) {
             reverse[key] = oldObj[key];
             forward[key] = value;
         }
@@ -422,6 +435,7 @@ function compare(oldObj: object, newObj: object): [object, object] {
 export {
     queryBuildingsAtPoint,
     queryBuildingsByReference,
+    getCurrentBuildingDataById,
     getBuildingById,
     getBuildingLikeById,
     getBuildingEditHistory,

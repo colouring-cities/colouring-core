@@ -18,8 +18,20 @@ const LEGEND_CONFIG = {
         ]
     },
     use: {
-        title: 'Use',
-        elements: []
+        title: 'Land Use',
+        elements: [
+            { color: '#4a54a6', text: 'Residential' },
+            { color: '#e5050d', text: 'Mixed Use' },
+            { color: '#ff8c00', text: 'Retail' },
+            { color: '#f5f58f', text: 'Industry And Business' },
+            { color: '#73ccd1', text: 'Community Services' },
+            { color: '#ffbfbf', text: 'Recreation And Leisure' },
+            { color: '#bee8ff', text: 'Transport' },
+            { color: '#cccccc', text: 'Utilities And Infrastructure' },
+            { color: '#52403C', text: 'Agriculture And Fisheries' },
+            { color: '#898944', text: 'Defence' },
+            { color: '#ffffff', text: 'Vacant And Derelict' },
+        ]
     },
     type: {
         title: 'Type',
@@ -55,13 +67,16 @@ const LEGEND_CONFIG = {
         ]
     },
     size: {
-        title: 'Number of storeys',
+        title: 'Height to apex',
         elements: [
-            { color: '#ffffcc', text: '≥40' },
-            { color: '#fed976', text: '20–39' },
-            { color: '#fd8d3c', text: '10–19' },
-            { color: '#e31a1c', text: '6–9' },
-            { color: '#800026', text: '1–5' },
+            { color: '#f7f4f9', text: '0-5.55'},
+            { color: '#e7e1ef', text: '5.55-7.73'},
+            { color: '#d4b9da', text: '7.73-11.38'},
+            { color: '#c994c7', text: '11.38-18.45'},
+            { color: '#df65b0', text: '18.45-35.05'},
+            { color: '#e7298a', text: '35.05-89.30'},
+            { color: '#ce1256', text: '89.30-152'},
+            { color: '#980043', text: '≥152'}
         ]
     },
     construction: {

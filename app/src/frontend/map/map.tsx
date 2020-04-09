@@ -5,6 +5,7 @@ import { AttributionControl, GeoJSON, Map, TileLayer, ZoomControl } from 'react-
 import 'leaflet/dist/leaflet.css';
 import './map.css';
 
+import { apiGet } from '../apiHelpers';
 import { HelpIcon } from '../components/icons';
 import { Building } from '../models/building';
 
@@ -58,13 +59,9 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
 
     handleClick(e) {
         const mode = this.props.mode;
-        const lat = e.latlng.lat;
-        const lng = e.latlng.lng;
-        fetch(
-            '/api/buildings/locate?lat='+lat+'&lng='+lng
-        ).then(
-            (res) => res.json()
-        ).then(function(data){
+        const { lat, lng } = e.latlng;
+        apiGet(`/api/buildings/locate?lat=${lat}&lng=${lng}`)
+        .then(data => {
             if (data && data.length){
                 const building = data[0];
                 if (mode === 'multi-edit') {
@@ -82,7 +79,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     this.props.selectBuilding(undefined);
                 }
             }
-        }.bind(this)).catch(
+        }).catch(
             (err) => console.error(err)
         );
     }
@@ -94,8 +91,8 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
     }
 
     async getBoundary() {
-        const res = await fetch('/geometries/boundary-detailed.geojson');
-        const data = await res.json() as GeoJsonObject;
+        const data = await apiGet('/geometries/boundary-detailed.geojson') as GeoJsonObject;
+
         this.setState({
             boundary: data
         });
@@ -133,12 +130,13 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         const cat = this.props.category;
         const tilesetByCat = {
             age: 'date_year',
-            size: 'size_storeys',
+            size: 'size_height',
             location: 'location',
             like: 'likes',
             planning: 'conservation_area',
             sustainability: 'sust_dec',
             type: 'building_attachment_form',
+            use: 'landuse'
         };
         const tileset = tilesetByCat[cat];
         // pick revision id to bust browser cache

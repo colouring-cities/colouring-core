@@ -46,6 +46,15 @@ const BUILDING_LAYER_DEFINITIONS = {
         WHERE
             g.geometry_id = b.geometry_id
     ) as size_stories`,
+    size_height: `(
+        SELECT
+            b.size_height_apex as size_height,
+            g.geometry_geom
+        FROM
+            geometries as g,
+            buildings as b
+        WHERE g.geometry_id = b.geometry_id
+    ) as size_height`,
     location: `(
         SELECT
             (
@@ -108,6 +117,14 @@ const BUILDING_LAYER_DEFINITIONS = {
         WHERE
             g.geometry_id = b.geometry_id
     ) as building_attachment_form`,
+    landuse: `(
+        SELECT
+            b.current_landuse_order,
+            g.geometry_geom
+        FROM geometries as g
+        JOIN buildings as b
+        ON g.geometry_id = b.geometry_id
+    ) as current_landuse_order`,
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';

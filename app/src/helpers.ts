@@ -13,3 +13,48 @@ export function dateReviver(name, value) {
     }
     return value;
 }
+
+
+export function parseJsonOrDefault(jsonString: string) {
+    try {
+        return JSON.parse(jsonString);
+    } catch(error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export function hasAnyOwnProperty(obj: {}, keys: string[]) {
+    return keys.some(k => obj.hasOwnProperty(k));
+}
+
+export function isNullishOrEmpty(obj: any) {
+    return obj == undefined || isEmptyArray(obj);
+}
+export function isEmptyArray(obj: any) {
+    return Array.isArray(obj) && obj.length === 0;
+}
+
+type AccessorFunction<T, V> = (obj: T) => V;
+
+type CompareFunction<T> = (a: T, b: T) => number;
+
+export function numAsc<T, V extends number | bigint>(accessor: AccessorFunction<T, V>): CompareFunction<T>{
+    return (a: T, b: T) => Number(accessor(a) - accessor(b));
+}
+
+export function numDesc<T, V extends number | bigint>(accessor: AccessorFunction<T, V>): CompareFunction<T> {
+    return (a: T, b: T) => Number(accessor(b) - accessor(a));
+}
+
+/** 
+ * As of Jan 2020, bigint literals e.g. 1n can only be used with TS target esnext
+ * which then doesn't transpile the null conditional/coalescing operators and breaks on Node 12
+ * So BigInt(1) needs to be used here
+ * */ 
+export function incBigInt(bigStr: string): string {
+    return bigStr == undefined ? bigStr : String(BigInt(bigStr) + BigInt(1));
+}
+export function decBigInt(bigStr: string): string {
+    return bigStr == undefined ? bigStr : String(BigInt(bigStr) - BigInt(1));
+}

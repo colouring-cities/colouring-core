@@ -1,6 +1,7 @@
 import React, { Component, FormEvent } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
+import { apiDelete, apiPost } from '../apiHelpers';
 import ConfirmationModal from '../components/confirmation-modal';
 import ErrorBox from '../components/error-box';
 import { User } from '../models/user';
@@ -32,12 +33,8 @@ class MyAccountPage extends Component<MyAccountPageProps, MyAccountPageState> {
         event.preventDefault();
         this.setState({error: undefined});
 
-        fetch('/api/logout', {
-            method: 'POST',
-            credentials: 'same-origin'
-        }).then(
-            res => res.json()
-        ).then(function(res){
+        apiPost('/api/logout')
+        .then(function(res){
             if (res.error) {
                 this.setState({error: res.error});
             } else {
@@ -52,18 +49,14 @@ class MyAccountPage extends Component<MyAccountPageProps, MyAccountPageState> {
         event.preventDefault();
         this.setState({error: undefined});
 
-        fetch('/api/api/key', {
-            method: 'POST',
-            credentials: 'same-origin'
-        }).then(
-            res => res.json()
-        ).then(function(res){
+        apiPost('/api/api/key')
+        .then(res => {
             if (res.error) {
                 this.setState({error: res.error});
             } else {
                 this.props.updateUser(res);
             }
-        }.bind(this)).catch(
+        }).catch(
             (err) => this.setState({error: err})
         );
     }
@@ -81,11 +74,7 @@ class MyAccountPage extends Component<MyAccountPageProps, MyAccountPageState> {
         this.setState({ error: undefined });
 
         try {
-            const res = await fetch('/api/users/me', {
-                method: 'DELETE',
-                credentials: 'same-origin'
-            });
-            const data = await res.json();
+            const data = await apiDelete('/api/users/me');
 
             if(data.error) {
                 this.setState({ error: data.error });

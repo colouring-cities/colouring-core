@@ -57,7 +57,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps> {
                 slug={props.slug}
                 title={props.title}
                 tooltip={props.tooltip}
-                disabled={props.disabled}
+                disabled={props.disabled || props.value == undefined || props.value.length === 0}
             />
             {
                 (props.mode === 'view')?
