@@ -2,12 +2,14 @@ import bodyParser from 'body-parser';
 import express from 'express';
 
 import * as editHistoryController from './controllers/editHistoryController';
+import { ApiParamError, ApiUserError } from './errors/api'; 
+import { DatabaseError } from './errors/general';
 import buildingsRouter from './routes/buildingsRouter';
 import extractsRouter from './routes/extractsRouter';
+import leaderboardRouter from './routes/leaderboardRouter';
 import usersRouter from './routes/usersRouter';
 import { queryLocation } from './services/search';
 import { authUser, getNewUserAPIKey, logout } from './services/user';
-
 
 const server = express.Router();
 
@@ -17,6 +19,7 @@ server.use(bodyParser.json());
 server.use('/buildings', buildingsRouter);
 server.use('/users', usersRouter);
 server.use('/extracts', extractsRouter);
+server.use('/leaderboard', leaderboardRouter);
 
 server.get('/history', editHistoryController.getGlobalEditHistory);
 
@@ -93,14 +96,30 @@ server.get('/search', function (req, res) {
     });
 });
 
-server.use((err, req, res, next) => {
+server.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
     if (res.headersSent) {
         return next(err);
     }
 
     if (err != undefined) {
         console.log('Global error handler: ', err);
-        res.status(500).send({ error: 'Server error' });
+        
+        if (err instanceof ApiUserError) {
+            let errorMessage: string;
+
+            if(err instanceof ApiParamError) {
+                errorMessage = `Problem with parameter ${err.paramName}: ${err.message}`;
+            } else {
+                errorMessage = err.message;
+            }
+
+            res.status(400).send({ error: errorMessage });
+        } else if(err instanceof DatabaseError){
+            res.status(500).send({ error: 'Database error' });
+        } else {
+            res.status(500).send({ error: 'Server error' });
+        }
+        
     }
 });
 

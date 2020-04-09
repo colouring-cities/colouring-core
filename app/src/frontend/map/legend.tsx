@@ -26,7 +26,7 @@ const LEGEND_CONFIG = {
             { color: '#f5f58f', text: 'Industry And Business' },
             { color: '#73ccd1', text: 'Community Services' },
             { color: '#ffbfbf', text: 'Recreation And Leisure' },
-            { color: '#b3de69', text: 'Transport' },
+            { color: '#bee8ff', text: 'Transport' },
             { color: '#cccccc', text: 'Utilities And Infrastructure' },
             { color: '#52403C', text: 'Agriculture And Fisheries' },
             { color: '#898944', text: 'Defence' },
@@ -71,13 +71,12 @@ const LEGEND_CONFIG = {
         elements: [
             { color: '#f7f4f9', text: '0-5.55'},
             { color: '#e7e1ef', text: '5.55-7.73'},
-            { color: '#d4b9da', text: '7.73-1.138'},
-            { color: '#c994c7', text: '1.138-1.845'},
-            { color: '#df65b0', text: '1.845-3.505'},
-            { color: '#e7298a', text: '3.505-8.930'},
-            { color: '#ce1256', text: '8.930-15.179'},
-            { color: '#980043', text: '15.179-99.999'},
-            { color: '#67001f', text: '≥99.999'}
+            { color: '#d4b9da', text: '7.73-11.38'},
+            { color: '#c994c7', text: '11.38-18.45'},
+            { color: '#df65b0', text: '18.45-35.05'},
+            { color: '#e7298a', text: '35.05-89.30'},
+            { color: '#ce1256', text: '89.30-152'},
+            { color: '#980043', text: '≥152'}
         ]
     },
     construction: {
