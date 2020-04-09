@@ -41,7 +41,6 @@ This is the main table, containing almost all data collected by Colouring London
 - `location_postcode`: postcode
 - `location_latitude`: latitude
 - `location_longitude`: longitude
-- `current_landuse_class`: current land use class
 - `current_landuse_group`: current land use group
 - `current_landuse_order`: current land use order
 - `building_attachment_form`: building attachment form
@@ -64,6 +63,9 @@ This is the main table, containing almost all data collected by Colouring London
 - `size_floor_area_ground`: ground floor floor area in square metres
 - `size_floor_area_total`: total floor area in square metres
 - `size_width_frontage`: width of frontage in metres
+- `construction_core_material`: main structural material
+- `construction_secondary_materials`: other structural materials
+- `construction_roof_covering`: main roof covering
 - `sust_breeam_rating`: BREEAM rating
 - `sust_dec`: DEC rating
 - `sust_retrofit_date`: year of last significant retrofit

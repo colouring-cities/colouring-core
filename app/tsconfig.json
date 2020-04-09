@@ -10,7 +10,12 @@
         "esModuleInterop": true,
         "noImplicitAny": false
     },
+    "files": [
+        "./src/index.ts",
+        "./src/client.tsx"
+    ],
     "include": [
-        "./src/**/*"
+        "./src/**/*.test.*",
+        "./src/**/*.spec.*"
     ]
 }

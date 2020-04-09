@@ -1,0 +1,155 @@
+openapi: 3.0.0
+info:
+  title: Colouring London API
+  version: 1.0.0
+
+servers:
+  - url: https://colouring.london/api
+    description: Production server (uses live data)
+
+paths:
+
+  /extracts:
+    get:
+      summary: Returns a list of bulk data extracts
+      responses:
+        '200':
+          description: A list of bulk extracts, from newest to oldest
+          content:
+            application/json:
+              schema:
+                properties:
+                  extracts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BulkExtract'
+              example:
+                extracts:
+                  - extract_id: 1
+                    extracted_on: 2019-10-03T05:33:00.000Z
+                    download_path: /downloads/data-extract-2019-10-03-06_33_00.zip
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /history:
+    get:
+      summary: Returns a paginated list of edits (latest edits if no relevant parameters specified)
+      parameters:
+        - name: before_id
+          description: Returned edits will be ones made directly before the specified revision ID
+          in: query
+          schema:
+            $ref: '#/components/schemas/RevisionId'
+          required: false
+        - name: after_id
+          description: Returned edits will be ones made directly after the specified revision ID
+          in: query
+          schema:
+            $ref: '#/components/schemas/RevisionId'
+          required: false
+        - name: count
+          description: The desired number of records to return
+          in: query
+          schema:
+            type: number
+            minimum: 1
+            maximum: 100
+            default: 100
+          required: false
+      responses:
+        '200':
+          description: A list of edit history records
+          content:
+            application/json:
+              schema:
+                properties:
+                  history:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BuildingEditHistoryEntry'
+                  paging:
+                    type: object
+                    properties:
+                      id_for_older_query:
+                        allOf:
+                          - $ref: '#/components/schemas/RevisionId'
+                          - description: If older records exist - ID to use for querying them (use as before_id param), otherwise null
+                            nullable: true
+                      id_for_newer_query:
+                        allOf:
+                          - $ref: '#/components/schemas/RevisionId'
+                          - description: If newer records exist - ID to use for querying them (use as after_id param), otherwise null
+                            nullable: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+components:
+  responses:
+    BadRequest:
+      description: Invalid request submitted by user
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    ServerError:
+      description: Unexpected server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: Database error
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+
+    BulkExtract:
+      type: object
+      properties:
+        extract_id:
+          type: integer
+          description: Unique sequential ID for the extract
+        extracted_on:
+          type: string
+          format: date-time
+          description: UTC timestamp at which the extract was generated
+        download_path:
+          type: string
+          description: Download path for the extract. Contains only URL path (should be used with the same hostname as the API).
+
+    RevisionId:
+      description: Unique sequential ID for an edit history entry (positive big integer)
+      type: string
+      pattern: ^[1-9]\d*&
+
+    BuildingEditHistoryEntry:
+      type: object
+      properties:
+        revision_id:
+          $ref: '#/components/schemas/RevisionId'
+        forward_patch:
+          type: object
+          description: Forward diff of the building attribute data
+        reverse_patch:
+          type: object
+          description: Reverse diff of the building attribute data
+        revision_timestamp:
+          type: string
+          format: date-time
+          description: UTC timestamp at which the building data was edited
+        username:
+          type: string
+          description: Username of the editor
+        building_id:
+          type: number
+          description: Unique ID of the edited building

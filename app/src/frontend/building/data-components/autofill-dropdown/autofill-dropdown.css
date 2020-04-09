@@ -1,0 +1,26 @@
+.autofill-dropdown {
+    position: absolute;
+    top: 100%;
+    z-index: 1000;
+
+    max-height: 6em;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    
+    box-sizing: content-box;
+    padding: 0.2em;
+    border: 1px solid #ddd;
+    
+    background-color: white;
+    box-shadow: 2px 2px 2px gray;
+}
+
+.autofill-dropdown div {
+    padding-left: 0.3em;
+}
+
+.autofill-dropdown div:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+}

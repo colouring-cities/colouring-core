@@ -54,7 +54,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             title="Construction"
             slug="construction"
             help="https://pages.colouring.london/construction"
-            inactive={true}
+            inactive={false}
             mode={props.mode}
             building_id={props.building_id}
         />

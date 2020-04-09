@@ -153,17 +153,15 @@ export const dataFields = {
         title: "Longitude",
     },
 
-    current_landuse_class: {
-        category: Category.LandUse,
-        title: "Current Land Use Class"
-    },
     current_landuse_group: {
         category: Category.LandUse,
-        title: "Current Land Use Group"
+        title: "Current Land Use (Group)",
+        tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)"
     },
     current_landuse_order: {
         category: Category.LandUse,
-        title: "Current Land Use Order"
+        title: "Current Land Use (Order)",
+        tooltip: "Land use Order as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)"
     },
 
     building_attachment_form: {
@@ -280,6 +278,24 @@ export const dataFields = {
         category: Category.SizeShape,
         title: "Roof shape",
         //tooltip: ,
+    },
+
+    construction_core_material: {
+        category: Category.Construction,
+        title: "Core Material",
+        tooltip:"The main structural material",
+    },
+
+    construction_secondary_materials: {
+        category: Category.Construction,
+        title: "Secondary Construction Material/s",
+        tooltip:"Other construction materials",
+    },
+
+    construction_roof_covering: {
+        category: Category.Construction,
+        title: "Main Roof Covering",
+        tooltip:'Main roof covering material',
     },
 
     sust_breeam_rating: {

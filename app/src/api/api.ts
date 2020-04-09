@@ -1,13 +1,16 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 
+import autofillController from './controllers/autofillController';
 import * as editHistoryController from './controllers/editHistoryController';
+import { ApiParamError, ApiUserError } from './errors/api'; 
+import { DatabaseError } from './errors/general';
 import buildingsRouter from './routes/buildingsRouter';
 import extractsRouter from './routes/extractsRouter';
+import leaderboardRouter from './routes/leaderboardRouter';
 import usersRouter from './routes/usersRouter';
 import { queryLocation } from './services/search';
 import { authUser, getNewUserAPIKey, logout } from './services/user';
-
 
 const server = express.Router();
 
@@ -17,8 +20,10 @@ server.use(bodyParser.json());
 server.use('/buildings', buildingsRouter);
 server.use('/users', usersRouter);
 server.use('/extracts', extractsRouter);
+server.use('/leaderboard', leaderboardRouter);
 
 server.get('/history', editHistoryController.getGlobalEditHistory);
+server.get('/autofill', autofillController.getAutofillOptions);
 
 // POST user auth
 server.post('/login', function (req, res) {
@@ -93,14 +98,33 @@ server.get('/search', function (req, res) {
     });
 });
 
-server.use((err, req, res, next) => {
+server.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
     if (res.headersSent) {
         return next(err);
     }
 
     if (err != undefined) {
+        if (err instanceof ApiUserError) {
+            let errorMessage: string;
+            
+            if(err instanceof ApiParamError) {
+                errorMessage = `Problem with parameter ${err.paramName}: ${err.message}`;
+            } else {
+                errorMessage = err.message;
+            }
+            
+            return res.status(400).send({ error: errorMessage });
+        }
+        
+        // we need to log the error only if it's not an api user error
         console.log('Global error handler: ', err);
-        res.status(500).send({ error: 'Server error' });
+        
+        if(err instanceof DatabaseError){
+            res.status(500).send({ error: 'Database error' });
+        } else {
+            res.status(500).send({ error: 'Server error' });
+        }
+        
     }
 });
 

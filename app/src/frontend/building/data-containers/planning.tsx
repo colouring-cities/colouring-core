@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 
+import InfoBox from '../../components/info-box';
 import { dataFields } from '../../data_fields';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
 import DataEntry from '../data-components/data-entry';
@@ -22,7 +23,59 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
             copy={props.copy}
             onChange={props.onChange}
             />
-        <DataEntryGroup name="Listing and protections" >
+        <DataEntryGroup name="Planning Status">
+            <CheckboxDataEntry
+                title="Is a planning application live for this site?"
+                slug="planning_live_application"
+                value={null}
+                disabled={true}
+                />
+            <CheckboxDataEntry
+                title={dataFields.planning_demolition_proposed.title}
+                slug="planning_demolition_proposed"
+                value={props.building.planning_demolition_proposed}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                disabled={true}
+                />
+            <CheckboxDataEntry
+                title="Has this application recently been been approved/refused?"
+                slug="planning_recent_outcome"
+                value={null}
+                disabled={true}
+                />
+            <CheckboxDataEntry
+                title="Has the work been carried out?"
+                slug="planning_carried_out"
+                value={null}
+                disabled={true}
+                />
+            <InfoBox msg="For historical planning applications see Planning Portal link" />
+            {/* 
+                Move to Demolition:
+
+                <CheckboxDataEntry
+                title={dataFields.planning_demolition_complete.title}
+                slug="planning_demolition_complete"
+                value={props.building.planning_demolition_complete}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                disabled={true}
+                />
+            <DataEntry
+                title={dataFields.planning_demolition_history.title}
+                slug="planning_demolition_history"
+                value={props.building.planning_demolition_history}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                disabled={true}
+                />
+            */}
+        </DataEntryGroup>
+        <DataEntryGroup name="Designation and Protection" collapsed={false} >
             <CheckboxDataEntry
                 title={dataFields.planning_in_conservation_area.title}
                 slug="planning_in_conservation_area"
@@ -44,6 +97,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 slug="planning_in_list"
                 value={props.building.planning_in_list}
                 mode={props.mode}
+                disabled={true}
                 copy={props.copy}
                 onChange={props.onChange}
                 />
@@ -52,6 +106,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 slug="planning_list_id"
                 value={props.building.planning_list_id}
                 mode={props.mode}
+                disabled={true}
                 copy={props.copy}
                 onChange={props.onChange}
                 />
@@ -60,6 +115,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 slug="planning_list_cat"
                 value={props.building.planning_list_cat}
                 mode={props.mode}
+                disabled={true}
                 copy={props.copy}
                 onChange={props.onChange}
                 options={[
@@ -75,6 +131,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 slug="planning_list_grade"
                 value={props.building.planning_list_grade}
                 mode={props.mode}
+                disabled={true}
                 copy={props.copy}
                 onChange={props.onChange}
                 options={[
@@ -171,35 +228,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
-                />
-        </DataEntryGroup>
-        <DataEntryGroup name="Demolition and demolition history">
-            <CheckboxDataEntry
-                title={dataFields.planning_demolition_proposed.title}
-                slug="planning_demolition_proposed"
-                value={props.building.planning_demolition_proposed}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                disabled={true}
-                />
-            <CheckboxDataEntry
-                title={dataFields.planning_demolition_complete.title}
-                slug="planning_demolition_complete"
-                value={props.building.planning_demolition_complete}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                disabled={true}
-                />
-            <DataEntry
-                title={dataFields.planning_demolition_history.title}
-                slug="planning_demolition_history"
-                value={props.building.planning_demolition_history}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                disabled={true}
                 />
         </DataEntryGroup>
     </Fragment>

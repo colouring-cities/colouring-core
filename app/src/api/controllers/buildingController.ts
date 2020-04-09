@@ -1,6 +1,8 @@
 import express from 'express';
 
-import { parseIntParam } from '../helpers';
+import { ApiUserError } from '../errors/api';
+import { UserError } from '../errors/general';
+import { parsePositiveIntParam, processParam } from '../parameters';
 import asyncController from '../routes/asyncController';
 import * as buildingService from '../services/building';
 import * as userService from '../services/user';
@@ -35,7 +37,7 @@ const getBuildingsByReference = asyncController(async (req: express.Request, res
 
 // GET individual building, POST building updates
 const getBuildingById = asyncController(async (req: express.Request, res: express.Response) => {
-    const buildingId = parseIntParam(req.params.building_id);
+    const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
 
     try {
         const result = await buildingService.getBuildingById(buildingId);
@@ -63,28 +65,26 @@ const updateBuildingById = asyncController(async (req: express.Request, res: exp
 });
 
 async function updateBuilding(req: express.Request, res: express.Response, userId: string) {
-    const buildingId = parseIntParam(req.params.building_id);
+    const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
 
     const buildingUpdate = req.body;
 
+    let updatedBuilding: object;
     try {
-        const building = await buildingService.saveBuilding(buildingId, buildingUpdate, userId);
-
-        if (typeof (building) === 'undefined') {
-            return res.send({ error: 'Database error' });
+        updatedBuilding = await buildingService.saveBuilding(buildingId, buildingUpdate, userId);
+    } catch(error) {
+        if(error instanceof UserError) {
+            throw new ApiUserError(error.message, error);
         }
-        if (building.error) {
-            return res.send(building);
-        }
-        res.send(building);
-    } catch(err) {
-        res.send({ error: 'Database error' });
+        throw error;
     }
+
+    res.send(updatedBuilding);
 }
 
 // GET building UPRNs
 const getBuildingUPRNsById = asyncController(async (req: express.Request, res: express.Response) => {
-    const buildingId = parseIntParam(req.params.building_id);
+    const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
 
     try {
         const result = await buildingService.getBuildingUPRNsById(buildingId);
@@ -105,7 +105,7 @@ const getBuildingLikeById = asyncController(async (req: express.Request, res: ex
         return res.send({ like: false });  // not logged in, so cannot have liked
     }
 
-    const buildingId = parseIntParam(req.params.building_id);
+    const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
     
     try {
         const like = await buildingService.getBuildingLikeById(buildingId, req.session.user_id);
@@ -118,7 +118,7 @@ const getBuildingLikeById = asyncController(async (req: express.Request, res: ex
 });
 
 const getBuildingEditHistoryById = asyncController(async (req: express.Request, res: express.Response) => {
-    const buildingId = parseIntParam(req.params.building_id);
+    const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
 
     try {
         const editHistory = await buildingService.getBuildingEditHistory(buildingId);
@@ -134,24 +134,23 @@ const updateBuildingLikeById = asyncController(async (req: express.Request, res:
         return res.send({ error: 'Must be logged in' });
     }
 
-    const buildingId = parseIntParam(req.params.building_id);
+    const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
     const { like } = req.body;
 
+    let updatedBuilding: object;
     try {
-        const building = like ?
+        updatedBuilding = like ?
             await buildingService.likeBuilding(buildingId, req.session.user_id) :
             await buildingService.unlikeBuilding(buildingId, req.session.user_id);
-        
-        if (building.error) {
-            return res.send(building);
-        }
-        if (typeof (building) === 'undefined') {
-            return res.send({ error: 'Database error' });
-        }
-        res.send(building);
     } catch(error) {
-        res.send({ error: 'Database error' });
+        if(error instanceof UserError) {
+            throw new ApiUserError(error.message, error);
+        }
+        
+        throw error;
     }
+
+    res.send(updatedBuilding);
 });
 
 const getLatestRevisionId = asyncController(async (req: express.Request, res: express.Response) => {

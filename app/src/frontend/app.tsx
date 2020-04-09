@@ -15,6 +15,7 @@ import ContactPage from './pages/contact';
 import ContributorAgreementPage from './pages/contributor-agreement';
 import DataAccuracyPage from './pages/data-accuracy';
 import DataExtracts from './pages/data-extracts';
+import LeaderboardPage from './pages/leaderboard';
 import OrdnanceSurveyLicencePage from './pages/ordnance-survey-licence';
 import OrdnanceSurveyUprnPage from './pages/ordnance-survey-uprn';
 import PrivacyPolicyPage from './pages/privacy-policy';
@@ -114,6 +115,7 @@ class App extends React.Component<AppProps, AppState> {
                 <Route exact path="/data-extracts.html" component={DataExtracts} />
                 <Route exact path="/contact.html" component={ContactPage} />
                 <Route exact path="/code-of-conduct.html" component={CodeOfConductPage} />
+                <Route exact path="/leaderboard.html" component={LeaderboardPage} />
                 <Route exact path="/history.html" component={ChangesPage} />
                 <Route exact path={App.mapAppPaths} render={(props) => (
                     <MapApp
