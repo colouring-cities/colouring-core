@@ -6,3 +6,12 @@ ALTER TABLE buildings
 --To validate this input, the following confirms it's an valid object but not that the items in the object are validated agains those we will acccept
 ALTER TABLE buildings
     ADD CONSTRAINT data_is_valid CHECK (is_jsonb_valid ('{"type": "object"}', team_awards));
+
+
+-- This contains the developer of the buildings
+ALTER TABLE buildings
+    ADD COLUMN IF NOT EXISTS team_developer jsonb;
+
+--To validate this input, the following confirms it's an valid object but not that the items in the object are validated agains those we will acccept
+ALTER TABLE buildings
+    ADD CONSTRAINT data_is_valid CHECK (is_jsonb_valid ('{"type": "object"}', team_developer));
