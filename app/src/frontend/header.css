@@ -2,27 +2,68 @@
  * Main header
  */
 .main-header {
+    z-index: 3000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 76px;
+    width: 100%;
     text-decoration: none;
-    border-bottom: 2px solid #222;
 }
-.main-header .navbar {
-    padding: 0.5em 0.5em 0.5em;
-}
-.main-header .navbar-brand {
-    margin: 0 1em 0 0;
-}
-
-.main-header .shorten-username {
-    text-overflow: '…)';
-    white-space: nowrap;
-    overflow: hidden;
-    display: inline-block;
-    vertical-align: bottom;
-    max-width: 70vw;
-}
-
-@media (min-width: 768px) {
-    .main-header .shorten-username {
-        max-width: 5vw;
+@media (min-width: 990px){
+    .main-header {
+        width: 480px; /* to match .info-container menu width */
     }
+}
+.main-header.navbar {
+    padding: 0;
+}
+.nav-header {
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    border-right: 1px solid #000;
+}
+.nav-header a {
+    padding: 0;
+    margin: 0;
+}
+.navbar .navbar-toggler {
+    padding: .5rem .75rem .5rem .75rem;
+}
+.navbar .navbar-toggler-icon {
+    width: 1em;
+    height: 1em;
+}
+.navbar .close {
+    display: inline-block;
+    vertical-align: middle;
+    height: 1em;
+    padding: 0 3px;
+}
+.main-header .navbar-collapse {
+    height: calc(100vh - 76px);
+    display: block;
+    overflow-y: auto;
+    transition: transform 0.3s;
+    transform: translateY(0);
+    background: #fff;
+    border-right: 1px solid #000;
+}
+.main-header .navbar-collapse > ul:last-child {
+    padding-bottom: 5rem;
+}
+.navbar-collapse.collapse {
+    transform: translateY(-100vh);
+}
+.navbar .nav-link {
+    padding: .5rem 1rem;
+}
+.navbar hr {
+    height: 2px;
+    width: auto;
+    margin: 1em;
 }

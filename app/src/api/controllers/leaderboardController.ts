@@ -5,8 +5,8 @@ import * as leadersService from '../services/leaderboard';
 
 const getLeaders = asyncController(async (req: express.Request, res: express.Response) => {
     try {
-        const number_limit = req.query.number_limit;
-        const time_limit = req.query.time_limit;
+        const number_limit = Number(req.query.number_limit);
+        const time_limit = Number(req.query.time_limit);
         const result = await leadersService.getLeaders(number_limit, time_limit);
         res.send({
             leaders: result

@@ -66,7 +66,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
     async fetchLatestRevision() {
         try {
             const {latestRevisionId} = await apiGet(`/api/buildings/revision`);
-            
+
             this.increaseRevision(latestRevisionId);
         } catch(error) {
             console.error(error);
@@ -74,7 +74,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
     }
 
     /**
-     * Fetches building data if a building is selected but no data provided through 
+     * Fetches building data if a building is selected but no data provided through
      * props (from server-side rendering)
      */
     async fetchBuildingData() {
@@ -173,13 +173,13 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
      */
     colourBuilding(building: Building) {
         const cat = this.props.match.params.category;
-        
+
         if (cat === 'like') {
             this.likeBuilding(building.building_id);
         } else {
             const data = parseJsonOrDefault(this.getMultiEditDataString());
 
-            
+
             if (data != undefined && !Object.values(data).some(x => x == undefined)) {
                 this.updateBuilding(building.building_id, data);
             }
@@ -224,7 +224,9 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
             <Fragment>
                 <Switch>
                     <Route exact path="/">
-                        <Welcome />
+                        <Sidebar>
+                            <Welcome />
+                        </Sidebar>
                     </Route>
                     <Route exact path="/:mode/categories/:building?">
                         <Sidebar>
@@ -240,6 +242,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                     )} />
                     <Route exact path="/:mode/:cat/:building?">
                         <Sidebar>
+                            <Categories mode={mode || 'view'} building_id={building_id} />
                             <BuildingView
                                 mode={viewEditMode}
                                 cat={category}
@@ -252,11 +255,12 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                     </Route>
                     <Route exact path="/:mode/:cat/:building/history">
                         <Sidebar>
+                            <Categories mode={mode || 'view'} building_id={building_id} />
                             <EditHistory building={this.state.building} />
                         </Sidebar>
                     </Route>
                     <Route exact path="/:mode(view|edit|multi-edit)"
-                        render={props => (<Redirect to={`/${props.match.params.mode}/categories`} />)} 
+                        render={props => (<Redirect to={`/${props.match.params.mode}/categories`} />)}
                     />
                 </Switch>
                 <ColouringMap

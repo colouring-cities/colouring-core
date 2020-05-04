@@ -33,7 +33,7 @@ const ChangesPage = (props: RouteComponentProps) => {
             if(after_id) {
                 url = `${url}&after_id=${after_id}`;
             }
-            
+
             if (before_id) {
                 url = `${url}&before_id=${before_id}`;
             }
@@ -47,14 +47,15 @@ const ChangesPage = (props: RouteComponentProps) => {
                     setPaging(paging);
                 }
             } catch (err) {
-                setError('Connection problem. Please try again later...');
+                console.error('Connection problem. Please try again later...');
+                setError(err);
             }
 
         };
 
         fetchData();
     }, [props.location.search]);
-    
+
     return (
         <article>
             <section className="main-col">
@@ -81,7 +82,7 @@ const ChangesPage = (props: RouteComponentProps) => {
                         (history?.length === 0) &&
                             <InfoBox msg="No changes so far"></InfoBox>
                     }
-                    {   
+                    {
                         (history != undefined && history.length > 0) &&
                         history.map(entry => (
                             <li key={`${entry.revision_id}`} className="edit-history-list-element">

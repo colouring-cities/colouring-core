@@ -57,13 +57,13 @@ const BUILDING_LAYER_DEFINITIONS = {
     ) as size_height`,
     construction_core_material: `(
         SELECT
-            b.core_materials,
+            b.construction_core_material::text as construction_core_material,
             g.geometry_geom
         FROM
             geometries as g,
             buildings as b
         WHERE g.geometry_id = b.geometry_id
-    ) as core_materials`,
+    ) as construction_core_material`,
     location: `(
         SELECT
             (
@@ -116,7 +116,7 @@ const BUILDING_LAYER_DEFINITIONS = {
             b.planning_in_conservation_area
             OR b.planning_in_local_list
             OR b.planning_list_cat is not null
-    ) as planning_combined`, 
+    ) as planning_combined`,
     conservation_area: `(
         SELECT
             g.geometry_geom

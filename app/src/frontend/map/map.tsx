@@ -123,7 +123,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
 
 
         const boundaryStyleFn = () => ({color: '#bbb', fill: false});
-        const boundaryLayer = this.state.boundary && 
+        const boundaryLayer = this.state.boundary &&
                 <GeoJSON data={this.state.boundary} style={boundaryStyleFn}/>;
 
         // colour-data tiles
@@ -133,7 +133,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             size: 'size_height',
             construction: 'construction_core_material',
             location: 'location',
-            like: 'likes',
+            community: 'likes',
             planning: 'planning_combined',
             sustainability: 'sust_dec',
             type: 'building_attachment_form',

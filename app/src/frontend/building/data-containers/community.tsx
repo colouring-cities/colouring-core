@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import withCopyEdit from '../data-container';
+import LikeDataEntry from '../data-components/like-data-entry';
 
 import { CategoryViewProps } from './category-view-props';
 
@@ -9,6 +10,12 @@ import { CategoryViewProps } from './category-view-props';
 */
 const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
+        <LikeDataEntry
+            userLike={props.building_like}
+            totalLikes={props.building.likes_total}
+            mode={props.mode}
+            onLike={props.onLike}
+            />
         <p className="data-intro">{props.intro}</p>
         <ul className="data-list">
             <li>Is this a publicly owned building?</li>

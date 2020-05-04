@@ -15,7 +15,7 @@ import * as userService from '../services/user';
 const getBuildingsByLocation = asyncController(async (req: express.Request, res: express.Response) => {
     const { lng, lat } = req.query;
     try {
-        const result = await buildingService.queryBuildingsAtPoint(lng, lat);
+        const result = await buildingService.queryBuildingsAtPoint(Number(lng), Number(lat));
         res.send(result);
     } catch (error) {
         console.error(error);
@@ -27,7 +27,7 @@ const getBuildingsByLocation = asyncController(async (req: express.Request, res:
 const getBuildingsByReference = asyncController(async (req: express.Request, res: express.Response) => {
     const { key, id } = req.query;
     try {
-        const result = await buildingService.queryBuildingsByReference(key, id);
+        const result = await buildingService.queryBuildingsByReference(String(key), String(id));
         res.send(result);
     } catch (error) {
         console.error(error);
@@ -53,7 +53,7 @@ const updateBuildingById = asyncController(async (req: express.Request, res: exp
         await updateBuilding(req, res, req.session.user_id);
     } else if (req.query.api_key) {
         try {
-            const user = await userService.authAPIUser(req.query.api_key);
+            const user = await userService.authAPIUser(String(req.query.api_key));
             await updateBuilding(req, res, user.user_id);
         } catch(err) {
             console.error(err);
@@ -106,7 +106,7 @@ const getBuildingLikeById = asyncController(async (req: express.Request, res: ex
     }
 
     const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
-    
+
     try {
         const like = await buildingService.getBuildingLikeById(buildingId, req.session.user_id);
 
@@ -146,7 +146,7 @@ const updateBuildingLikeById = asyncController(async (req: express.Request, res:
         if(error instanceof UserError) {
             throw new ApiUserError(error.message, error);
         }
-        
+
         throw error;
     }
 

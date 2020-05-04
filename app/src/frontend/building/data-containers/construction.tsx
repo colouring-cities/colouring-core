@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 
 import { dataFields } from '../../data_fields';
-import DataEntry from '../data-components/data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import withCopyEdit from '../data-container';
 
@@ -38,7 +37,7 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
              <SelectDataEntry
                 title={dataFields.construction_core_material.title}
                 slug="construction_core_material"
-                value={props.building.construction_core_material} // check
+                value={props.building.construction_core_material}
                 tooltip={dataFields.construction_core_material.tooltip}
                 options={ConstructionMaterialsOptions}
                 mode={props.mode}
@@ -47,8 +46,9 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
             />
             <SelectDataEntry
                 title={dataFields.construction_secondary_materials.title}
+                disabled={true}
                 slug="construction_secondary_materials"
-                value={props.building.construction_secondary_materials} // check
+                value={props.building.construction_secondary_materials}
                 tooltip={dataFields.construction_secondary_materials.tooltip}
                 options={ConstructionMaterialsOptions}
                 mode={props.mode}
@@ -58,7 +58,7 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
             <SelectDataEntry
                 title={dataFields.construction_roof_covering.title}
                 slug="construction_roof_covering"
-                value={props.building.construction_roof_covering} // check
+                value={props.building.construction_roof_covering}
                 tooltip={dataFields.construction_roof_covering.tooltip}
                 options={RoofCoveringOptions}
                 mode={props.mode}
@@ -67,7 +67,7 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
             />
         </Fragment>
     );
-    };
+};
 
 const ConstructionContainer = withCopyEdit(ConstructionView);
 

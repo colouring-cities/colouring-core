@@ -55,11 +55,11 @@ p a.btn:active {
 h1, h2, h3, h4 {
     font-weight: normal;
 }
-main .h1 {
+article .h1 {
     font-size: 2em;
     margin: 0.5em 0;
 }
-main .h2 {
+article .h2 {
     font-size: 1.5em;
     margin: 0.25em 0 0.5em;
 }

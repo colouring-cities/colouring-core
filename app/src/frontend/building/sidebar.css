@@ -2,19 +2,43 @@
  * Sidebar layout
  */
 .info-container {
-    order: 1;
+    position: absolute;
+    top: 75px;
+    left: 0;
+    bottom: 0;
+    width: 95%;
+    width: calc(100% - 40px);
+    border-right: 1px solid #000;
+    z-index: 1001;
+    transition: transform 0.3s;
+    transform: translateX(0);
+}
+.info-container.offscreen {
+    transform: translateX(-100%);
+}
+.info-container-collapse {
+    position: absolute;
+    right: -32px;
+    top: 2rem;
+    padding: 2.5rem 0rem;
+    border-radius: 0 .25rem .25rem 0;
+}
+@media (min-width: 990px){
+    .info-container {
+        width: 480px; /* to match .main-header menu width */
+    }
+    .info-container.offscreen {
+        transform: translateX(0);
+    }
+    .info-container-collapse {
+        display: none;
+    }
+}
+.info-container-inner {
+    overflow-y: auto;
+    height: 100%;
     padding: 0 0 2em;
     background: #fff;
-    overflow-y: auto;
-    height: 40%;
-}
-
-@media (min-width: 768px){
-    .info-container {
-        order: 0;
-        height: unset;
-        width: 23rem;
-    }
 }
 
 /**
@@ -26,19 +50,18 @@
     clear: both;
     text-decoration: none;
     color: #222;
-    padding: 0.75rem 0.25rem 0.5rem 0;
+    padding: 0.75rem 0.25rem 0.5rem 0.75rem;
     z-index: 1000;
-}
-
-@media (min-width: 768px) {
-    .section-header {
-        position: sticky;
-        top: 0;
-    }
+    position: sticky;
+    top: 0;
 }
 .section-header h2,
 .section-header .icon-buttons {
     display: inline-block;
+}
+.section-header .h2 {
+    font-size: 1.5rem;
+    margin: 0.25rem 0;
 }
 .section-header .icon-buttons {
     position: absolute;
@@ -141,16 +164,16 @@
 /**
  * Data list sections
  */
-
- .section-body {
-     margin-top: 0.75em;
-     padding: 0 0.75em;
- }
+.section-body {
+    margin-top: 0.75em;
+    padding: 0 0.75em 5em 0.75em;
+    min-height: 80vh;
+}
 .data-section .h3 {
     margin: 0;
 }
 .data-intro {
-    padding: 0 0.5rem 0 2.25rem;
+    padding: 0 0.5rem 0 0;
     margin-top: 0.5rem;
 }
 .data-section p {
@@ -158,7 +181,7 @@
     margin: 0.5rem 0;
 }
 .data-section ul {
-    padding-left: 3.333rem;
+    padding-left: 1.333rem;
     font-size: 1rem;
 }
 .data-section li {
@@ -190,6 +213,10 @@
 .data-section textarea,
 .data-section select {
     margin: 0 0 0.5em 0;
+}
+.data-section input[type="checkbox"] {
+    position: static;
+    margin-right: 0.5em;
 }
 .data-list dd {
     margin: 0 0 0.5rem;
