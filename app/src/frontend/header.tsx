@@ -135,6 +135,11 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                                 Data Ethics
                             </a>
                         </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="https://pages.colouring.london/colouring-cities">
+                                Colouring Cities Research Programme
+                            </a>
+                        </li>
                     </ul>
                     <hr />
                     <ul className="navbar-nav flex-column">
