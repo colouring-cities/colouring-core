@@ -46,6 +46,7 @@ import os
 import sys
 
 import requests
+from retrying import retry
 
 
 def main(base_url, api_key, source_file, json_columns):
@@ -70,6 +71,7 @@ def main(base_url, api_key, source_file, json_columns):
                 print('DEBUG', building_id, response_code, response_data)
 
 
+@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000)
 def update_building(building_id, data, api_key, base_url):
     """Save data to a building
     """
@@ -104,6 +106,7 @@ def find_building(data, base_url):
     return None
 
 
+@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000)
 def find_by_reference(base_url, ref_key, ref_id):
     """Find building_id by TOID or UPRN
     """
