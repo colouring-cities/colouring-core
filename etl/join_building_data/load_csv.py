@@ -1,5 +1,7 @@
 """Join csv data to buildings
 
+Run `python load_csv.py -h` for full usage instructions and a list of all options.
+
 Example usage (replace URL with test/staging/localhost as necessary, API key with real key for
 the appropriate site):
 
@@ -44,6 +46,7 @@ import csv
 import json
 import os
 import sys
+import argparse
 
 import requests
 from retrying import retry
@@ -129,16 +132,22 @@ def parse_json_columns(row, json_columns):
 
     return row
 
+
+def list_str(values):
+    return values.split(',')
+
 if __name__ == '__main__':
-    try:
-        url, api_key, filename = sys.argv[1], sys.argv[2], sys.argv[3]
-    except IndexError:
-        print(
-            "Usage: {} <URL> <api_key> ./path/to/data.csv [<json_columns>]".format(
-            os.path.basename(__file__)
-        ))
-        exit()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('url', help='URL for the app')
+    parser.add_argument('api_key', help='API key for the user')
+    parser.add_argument('path', help='Path to data CSV file')
+    parser.add_argument('json_columns',
+        nargs='?',
+        type=list_str,
+        default=[],
+        help='A comma-separated list of columns which should be parsed as JSON')
 
-    json_columns = sys.argv[4].split(',') if len(sys.argv) > 4 else []
 
-    main(url, api_key, filename, json_columns)
+    args = parser.parse_args()
+
+    main(args.url, args.api_key, args.path, args.json_columns)
