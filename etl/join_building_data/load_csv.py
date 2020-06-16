@@ -52,7 +52,7 @@ import requests
 from retrying import retry
 
 
-def main(base_url, api_key, source_file, json_columns):
+def main(base_url, api_key, source_file, json_columns, no_overwrite=False, debug=False):
     """Read from file, update buildings
     """
     with open(source_file, 'r') as source:
@@ -67,11 +67,44 @@ def main(base_url, api_key, source_file, json_columns):
             if 'sust_dec' in line and line['sust_dec'] == '':
                 del line['sust_dec']
 
+            if no_overwrite:
+                try:
+                    if check_data_present(building_id, line.keys(), base_url):
+                        print(f'Building {building_id}: Not updating to avoid overwriting existing data')
+                        continue
+                except ApiRequestError as e:
+                    print(f'Error checking existing data for building {building_id}: status {e.code}, data: {e.data}')
+                    raise
+
             response_code, response_data = update_building(building_id, line, api_key, base_url)
             if response_code != 200:
                 print('ERROR', building_id, response_code, response_data)
-            else:
+            elif debug:
                 print('DEBUG', building_id, response_code, response_data)
+
+class ApiRequestError(Exception):
+    def __init__(self, code, data, message=''):
+        self.code = code
+        self.data = data
+        super().__init__(message)
+
+def check_data_present(building_id, fields, base_url):
+    response_code, current_state = get_building(building_id, base_url)
+    if response_code != 200:
+        raise ApiRequestError(response_code, current_state)
+    else:
+        id_fields = set(['building_id', 'toid', 'uprn'])
+        field_names_without_ids = [k for k in fields if k not in id_fields]
+
+        return any([current_state.get(k, None) != None for k in field_names_without_ids])
+
+
+@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000)
+def get_building(building_id, base_url):
+    """Get data for a building
+    """
+    r = requests.get(f"{base_url}/api/buildings/{building_id}.json")
+    return r.status_code, r.json()
 
 
 @retry(wait_exponential_multiplier=1000, wait_exponential_max=10000)
@@ -147,7 +180,15 @@ if __name__ == '__main__':
         default=[],
         help='A comma-separated list of columns which should be parsed as JSON')
 
+    parser.add_argument('--no-overwrite', '-n',
+        action='store_true',
+        dest='no_overwrite',
+        help='Don\'t overwrite building data if any of the fields supplied is already set')
+
+    parser.add_argument('--debug', '-d',
+        action='store_true',
+        help='Print debug messages')
 
     args = parser.parse_args()
 
-    main(args.url, args.api_key, args.path, args.json_columns)
+    main(args.url, args.api_key, args.path, args.json_columns, args.no_overwrite, args.debug)
