@@ -17,6 +17,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@mapbox/sphericalmercator": "^1.1.0",
+    "babel-runtime": "^6.26.0",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
     "connect-pg-simple": "^6.1.0",
