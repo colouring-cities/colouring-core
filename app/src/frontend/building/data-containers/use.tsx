@@ -29,7 +29,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
         />
         {
             props.mode != 'view' &&
-            <InfoBox msg="Land use order is automatically derived from the land use groups"></InfoBox>
+            <InfoBox msg="Land use order, shown below, is automatically derived from the land use groups"></InfoBox>
         }
         <DataEntry
             title={dataFields.current_landuse_order.title}

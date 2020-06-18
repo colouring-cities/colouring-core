@@ -8,6 +8,7 @@ $ psql "host={hostname} user={username} port={port} sslmode=require dbname=postg
 > \c colouringlondon
 > create extension postgis;
 > create extension pgcrypto;
+> create extension pg_trgm;
 > \q
 ```
 

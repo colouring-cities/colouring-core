@@ -22,13 +22,15 @@ const LEGEND_CONFIG = {
         elements: [
             { color: '#4a54a6', text: 'Residential' },
             { color: '#e5050d', text: 'Mixed Use' },
-            { color: '#ff8c00', text: 'Retail' },
+            { color: '#ff8c00', text: 'Retail (pure)' },
             { color: '#f5f58f', text: 'Industry & Business' },
             { color: '#73ccd1', text: 'Community Services' },
             { color: '#ffbfbf', text: 'Recreation & Leisure' },
             { color: '#b3de69', text: 'Transport' },
             { color: '#cccccc', text: 'Utilities & Infrastructure' },
             { color: '#898944', text: 'Defence' },
+            { color: '#52403c', text: 'Agriculture & Fisheries'},
+            { color: '#ffffff', text: 'Vacant & Derelict' }
         ]
     },
     type: {
