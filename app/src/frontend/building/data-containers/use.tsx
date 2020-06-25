@@ -24,6 +24,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             confirmOnEnter={true}
             tooltip={dataFields.current_landuse_group.tooltip}
             placeholder="Type new land use group here"
+            copyable={true}
             autofill={true}
             showAllOptionsOnEmpty={true}
             addOnAutofillSelect={true}

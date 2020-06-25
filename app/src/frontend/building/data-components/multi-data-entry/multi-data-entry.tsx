@@ -9,6 +9,7 @@ import { DataTitleCopyable } from '../data-title';
 
 interface MultiDataEntryProps extends BaseDataEntryProps, TextDataEntryInputProps {
     value: string[];
+    copyable: boolean;
     editableEntries: boolean;
     confirmOnEnter: boolean;
 
@@ -24,6 +25,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
 
     static defaultProps = {
         editableEntries: false,
+        copyable: false,
         confirmOnEnter: true,
         addOnAutofillSelect: false,
         acceptAutofillValuesOnly: false
@@ -85,6 +87,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                 title={props.title}
                 tooltip={props.tooltip}
                 disabled={props.disabled || props.value == undefined || props.value.length === 0}
+                copy={props.copyable ? props.copy : undefined}
             />
             <div id={`${props.slug}-wrapper`}>
                 <ul className="data-link-list">
