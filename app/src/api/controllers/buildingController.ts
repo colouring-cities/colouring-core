@@ -49,18 +49,24 @@ const getBuildingById = asyncController(async (req: express.Request, res: expres
 });
 
 const updateBuildingById = asyncController(async (req: express.Request, res: express.Response) => {
+    let user_id;
+
     if (req.session.user_id) {
-        await updateBuilding(req, res, req.session.user_id);
+        user_id = req.session.user_id;
     } else if (req.query.api_key) {
         try {
             const user = await userService.authAPIUser(String(req.query.api_key));
-            await updateBuilding(req, res, user.user_id);
+            user_id = user.user_id;
         } catch(err) {
             console.error(err);
             res.send({ error: 'Must be logged in' });
         }
     } else {
         res.send({ error: 'Must be logged in' });
+    }
+
+    if (user_id) {
+        await updateBuilding(req, res, user_id);
     }
 });
 
