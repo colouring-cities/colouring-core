@@ -42,23 +42,36 @@ The process:
 TODO extend to allow latitude,longitude or easting,northing columns and lookup by location.
 
 """
+import argparse
 import csv
 import json
 import os
 import sys
-import argparse
 
 import requests
+
+from requests_threads import AsyncSession
 from retrying import retry
+from tqdm import tqdm
 
 
-def main(base_url, api_key, source_file, json_columns, no_overwrite=False, debug=False):
+async def main():
     """Read from file, update buildings
     """
+    # HACK to pull values from argparse global - running async using the session
+    # doesn't allow arguments to the main func, as far as I can see
+    base_url = args.url
+    api_key = args.api_key
+    source_file = args.path
+    json_columns = args.json_columns
+    no_overwrite = args.no_overwrite
+    debug = args.debug
+
     with open(source_file, 'r') as source:
         reader = csv.DictReader(source)
-        for line in reader:
-            building_id = find_building(line, base_url)
+        lines = [line for line in reader]
+        for line in tqdm(lines):
+            building_id = find_building(line, base_url, debug)
             line = parse_json_columns(line, json_columns)
 
             if building_id is None:
@@ -69,18 +82,20 @@ def main(base_url, api_key, source_file, json_columns, no_overwrite=False, debug
 
             if no_overwrite:
                 try:
-                    if check_data_present(building_id, line.keys(), base_url):
+                    check = await check_data_present(building_id, line.keys(), base_url)
+                    if check:
                         print(f'Building {building_id}: Not updating to avoid overwriting existing data')
                         continue
                 except ApiRequestError as e:
                     print(f'Error checking existing data for building {building_id}: status {e.code}, data: {e.data}')
                     raise
 
-            response_code, response_data = update_building(building_id, line, api_key, base_url)
+            response_code, response_data = await update_building(building_id, line, api_key, base_url)
             if response_code != 200:
-                print('ERROR', building_id, response_code, response_data)
+                print('ERROR', building_id, response_code, response_data, file=sys.stderr)
             elif debug:
-                print('DEBUG', building_id, response_code, response_data)
+                print('DEBUG', building_id, response_code, response_data, file=sys.stderr)
+
 
 class ApiRequestError(Exception):
     def __init__(self, code, data, message=''):
@@ -88,8 +103,9 @@ class ApiRequestError(Exception):
         self.data = data
         super().__init__(message)
 
-def check_data_present(building_id, fields, base_url):
-    response_code, current_state = get_building(building_id, base_url)
+
+async def check_data_present(building_id, fields, base_url):
+    response_code, current_state = await get_building(building_id, base_url)
     if response_code != 200:
         raise ApiRequestError(response_code, current_state)
     else:
@@ -100,18 +116,18 @@ def check_data_present(building_id, fields, base_url):
 
 
 @retry(wait_exponential_multiplier=1000, wait_exponential_max=10000)
-def get_building(building_id, base_url):
+async def get_building(building_id, base_url):
     """Get data for a building
     """
-    r = requests.get(f"{base_url}/api/buildings/{building_id}.json")
+    r = await session.get(f"{base_url}/api/buildings/{building_id}.json")
     return r.status_code, r.json()
 
 
 @retry(wait_exponential_multiplier=1000, wait_exponential_max=10000)
-def update_building(building_id, data, api_key, base_url):
+async def update_building(building_id, data, api_key, base_url):
     """Save data to a building
     """
-    r = requests.post(
+    r = await session.post(
         "{}/api/buildings/{}.json".format(base_url, building_id),
         params={'api_key': api_key},
         json=data
@@ -119,34 +135,37 @@ def update_building(building_id, data, api_key, base_url):
     return r.status_code, r.json()
 
 
-def find_building(data, base_url):
+def find_building(data, base_url, debug=False):
     if 'building_id' in data:
         building_id = data['building_id']
         if building_id is not None:
-            print("match_by_building_id", building_id)
+            if debug:
+                print("match_by_building_id", building_id)
             return building_id
 
     if 'toid' in data:
         building_id = find_by_reference(base_url, 'toid', data['toid'])
         if building_id is not None:
-            print("match_by_toid", data['toid'], building_id)
+            if debug:
+                print("match_by_toid", data['toid'], building_id)
             return building_id
 
     if 'uprn' in data:
-        building_id =  find_by_reference(base_url, 'uprn', data['uprn'])
+        building_id = find_by_reference(base_url, 'uprn', data['uprn'])
         if building_id is not None:
-            print("match_by_uprn", data['uprn'], building_id)
+            if debug:
+                print("match_by_uprn", data['uprn'], building_id)
             return building_id
-
-    print("no_match", data)
+    if debug:
+         print("no_match", data)
     return None
 
 
 @retry(wait_exponential_multiplier=1000, wait_exponential_max=10000)
-def find_by_reference(base_url, ref_key, ref_id):
+async def find_by_reference(base_url, ref_key, ref_id):
     """Find building_id by TOID or UPRN
     """
-    r = requests.get("{}/api/buildings/reference".format(base_url), params={
+    r = await session.get("{}/api/buildings/reference".format(base_url), params={
         'key': ref_key,
         'id': ref_id
     })
@@ -159,15 +178,20 @@ def find_by_reference(base_url, ref_key, ref_id):
 
     return building_id
 
-def parse_json_columns(row, json_columns):
-    for col in json_columns:
-        row[col] = json.loads(row[col])
 
+def parse_json_columns(row, json_columns):
+    try:
+        for col in json_columns:
+            row[col] = json.loads(row[col])
+    except Exception as e:
+        print(row)
+        raise e
     return row
 
 
 def list_str(values):
     return values.split(',')
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -191,4 +215,6 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    main(args.url, args.api_key, args.path, args.json_columns, args.no_overwrite, args.debug)
+    # performance - running async gives ~5-10x speedup over serial requests
+    session = AsyncSession(n=1)
+    session.run(main)
