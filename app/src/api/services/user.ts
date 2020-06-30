@@ -54,40 +54,34 @@ async function createUser(user) {
 }
 
 async function authUser(username: string, password: string) {
-    try {
-        const user = await db.one(
-            `SELECT
-                user_id,
-                (
-                    pass = crypt($2, pass)
-                ) AS auth_ok,
-                is_blocked,
-                blocked_on,
-                blocked_reason
-            FROM users
-            WHERE
-            username = $1
-            `, [
-                username,
-                password
-            ]
-        );
+    const user = await db.oneOrNone(
+        `SELECT
+            user_id,
+            (
+                pass = crypt($2, pass)
+            ) AS auth_ok,
+            is_blocked,
+            blocked_on,
+            blocked_reason
+        FROM users
+        WHERE
+        username = $1
+        `, [
+            username,
+            password
+        ]
+    );
 
-        if (user && user.auth_ok) {
-            if (user.is_blocked) {
-                return { error: `Account temporarily blocked.${user.blocked_reason == undefined ? '' : ' Reason: '+user.blocked_reason}` };
-            }
-            return { user_id: user.user_id };
-        } else {
-            return { error: 'Username or password not recognised' };
+    if (user == undefined) {
+        return { error: 'The username does not exist in the system' };
+    } else if (user.auth_ok) {
+        if (user.is_blocked) {
+            return { error: `Account temporarily blocked.${user.blocked_reason == undefined ? '' : ' Reason: '+user.blocked_reason}` };
         }
-    } catch(err) {
-        if (err instanceof errors.QueryResultError) {
-            console.error(`Authentication failed for user ${username}`);
-            return { error: 'Username or password not recognised' };
-        }
-        console.error('Error:', err);
-        return { error: 'Database error' }; 
+        return { user_id: user.user_id };
+    } else {
+        console.error(`Authentication failed for user ${username}`);
+        return { error: 'Username / password pair not recognised' };
     }
 }
 
