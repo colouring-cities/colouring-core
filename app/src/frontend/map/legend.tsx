@@ -20,16 +20,18 @@ const LEGEND_CONFIG = {
     use: {
         title: 'Land Use',
         elements: [
-            { color: '#4a54a6', text: 'Residential' },
             { color: '#e5050d', text: 'Mixed Use' },
-            { color: '#ff8c00', text: 'Retail (pure)' },
+            { subtitle: 'Single use:'},
+            { color: '#4a54a6', text: 'Residential' },
+            { color: '#ff8c00', text: 'Retail' },
             { color: '#f5f58f', text: 'Industry & Business' },
             { color: '#73ccd1', text: 'Community Services' },
             { color: '#ffbfbf', text: 'Recreation & Leisure' },
             { color: '#b3de69', text: 'Transport' },
             { color: '#cccccc', text: 'Utilities & Infrastructure' },
             { color: '#898944', text: 'Defence' },
-            { color: '#52403c', text: 'Agriculture'},
+            { color: '#fa667d', text: 'Agriculture' },
+            { color: '#53f5dd', text: 'Minerals' },
             { color: '#ffffff', text: 'Vacant & Derelict' }
         ]
     },
@@ -231,7 +233,7 @@ class Legend extends React.Component<LegendProps, LegendState> {
                                                 <div className="key" style={ { background: item.color, border: item.border } }></div>
                                             </td>
                                             <td>
-                                            { item.text }
+                                                { item.text }
                                             </td>
                                            </tr>
                                        </li>
