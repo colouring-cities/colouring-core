@@ -16,7 +16,7 @@ const Welcome = () => (
             Colouring London is a knowledge exchange platform set up by University College
             London. It provides open statistical data about the city's buildings and the
             dynamic behaviour of the stock. We're working to collate, collect, generate,
-            verify over fifty types of data and to visualise many of these datasets.
+            and verify over fifty types of data and to visualise many of these datasets.
 
         </p>
         <p>
