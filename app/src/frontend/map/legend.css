@@ -80,10 +80,14 @@
     display: inline-block;
     width: 1.3rem;
     height: 1.3rem;
-    text-indent: -30px;
-    margin: 0.125rem 0.5rem 0.125rem 0;
+    margin-right: 0.3rem;
     vertical-align: middle;
     overflow: hidden;
+    border: solid 1px #ddd;
+}
+
+.data-legend h6 {
+    margin-top: 5px;
 }
 .map-legend .data-intro {
     padding: 0 0.5rem;

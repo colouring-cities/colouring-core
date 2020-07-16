@@ -347,7 +347,11 @@
     <Style name="landuse">
         <Rule>
             <Filter>[current_landuse_order] = "Agriculture And Fisheries"</Filter>
-            <PolygonSymbolizer fill="#52403c" />
+            <PolygonSymbolizer fill="#fa667d" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Minerals"</Filter>
+            <PolygonSymbolizer fill="#53f5dd" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Recreation And Leisure"</Filter>
