@@ -216,14 +216,28 @@ class Legend extends React.Component<LegendProps, LegendState> {
                                     <p className='legend-disclaimer'>{details.disclaimer}</p>
                             }
                             {
-                                elements.map((item) => (
+                                elements.map((item) => {
+                                    if(item.subtitle != undefined) {
+                                        return (<li key={item.subtitle}>
+                                            <h6>{item.subtitle}</h6>
+                                        </li>);
+                                    }
+
+                                    return (
 
                                        <li key={item.color} >
-                                            <span className="key" style={ { background: item.color, border: item.border } }>-</span>
+                                           <tr>
+                                            <td>
+                                                <div className="key" style={ { background: item.color, border: item.border } }></div>
+                                            </td>
+                                            <td>
                                             { item.text }
+                                            </td>
+                                           </tr>
                                        </li>
 
-                                ))
+                                    );
+                                })
                             }
                         </ul>
                         : <p className="data-intro">Coming soon…</p>
