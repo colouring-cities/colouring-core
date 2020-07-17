@@ -18,7 +18,7 @@ mockEditHistory.__setHistory = function(mockHistoryData: EditHistoryEntry[]) {
 };
 
 function hasDeletions(json) {
-    return Object.values(json).some(x => x === null || (Array.isArray(x) && x.length === 0))
+    return Object.values(json).some(x => x === null);
 }
 
 mockEditHistory.getHistoryAfterId = function(id: string, count: number, filterDeletions: boolean): Promise<EditHistoryEntry[]> {

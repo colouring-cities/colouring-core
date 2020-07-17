@@ -14,7 +14,7 @@ const baseQuery = `
         JOIN users ON logs.user_id = users.user_id`;
 
 const deletionCondition = `
-    EXISTS (SELECT * from jsonb_each(forward_patch) WHERE value IN ('null', '[]'))
+    EXISTS (SELECT * from jsonb_each(forward_patch) WHERE value = 'null' )
 `;
 
 export function getHistoryAfterId(id: string, count: number, filterDeletions: boolean = false): Promise<EditHistoryEntry[]> {
