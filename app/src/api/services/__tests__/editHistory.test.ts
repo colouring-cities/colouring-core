@@ -173,4 +173,24 @@ describe('getGlobalEditHistory()', () => {
         });
 
     });
+
+    describe('Filtering deletions', () => {
+
+        it('Should return only records with deletions when requested', async () => {
+            const mockData = generateHistory(10);
+            mockData[0].forward_patch = { 'test_field': null};
+            mockData[0].reverse_patch = { 'test_field': 'test'};
+
+            mockData[3].forward_patch = { 'test_field': null};
+            mockData[3].reverse_patch = { 'test_field': 'test'};
+
+            mockData[4].forward_patch = { 'test_field': 'test2'};
+            mockData[4].reverse_patch = { 'test_field': 'test1'};
+            mockedEditHistoryData.__setHistory(mockData);
+
+            const result = await getGlobalEditHistory(null, null, 10, true);
+
+            expect(result.history.map(x => x.revision_id)).toEqual(['103', '100']);
+        });
+    });
 });

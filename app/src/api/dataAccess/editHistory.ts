@@ -13,7 +13,11 @@ const baseQuery = `
         FROM logs
         JOIN users ON logs.user_id = users.user_id`;
 
-export function getHistoryAfterId(id: string, count: number): Promise<EditHistoryEntry[]> {
+const deletionCondition = `
+    EXISTS (SELECT * from jsonb_each(forward_patch) WHERE value IN ('null', '[]'))
+`;
+
+export function getHistoryAfterId(id: string, count: number, filterDeletions: boolean = false): Promise<EditHistoryEntry[]> {
     /** 
      * SQL with lower time bound specified (records after ID).
      * The outer SELECT is so that final results are sorted by descending ID
@@ -25,6 +29,7 @@ export function getHistoryAfterId(id: string, count: number): Promise<EditHistor
             SELECT * FROM (
                 ${baseQuery}
                 WHERE log_id > $1
+                ${filterDeletions ? 'AND ' + deletionCondition : ''}
                 ORDER BY revision_id ASC
                 LIMIT $2
             ) AS result_asc ORDER BY revision_id DESC`,
@@ -35,12 +40,13 @@ export function getHistoryAfterId(id: string, count: number): Promise<EditHistor
     }
 }
 
-export function getHistoryBeforeId(id: string, count: number): Promise<EditHistoryEntry[]> {
+export function getHistoryBeforeId(id: string, count: number, filterDeletions: boolean = false): Promise<EditHistoryEntry[]> {
     try {
         if(id == undefined) {
             
             return db.any(`
                 ${baseQuery}
+                ${filterDeletions ? 'WHERE' + deletionCondition : ''}
                 ORDER BY revision_id DESC
                 LIMIT $1
             `, [count]);
@@ -50,6 +56,7 @@ export function getHistoryBeforeId(id: string, count: number): Promise<EditHisto
             return db.any(`
                 ${baseQuery}
                 WHERE log_id < $1
+                ${filterDeletions ? 'AND ' + deletionCondition : ''}
                 ORDER BY revision_id DESC
                 LIMIT $2
             `, [id, count]);

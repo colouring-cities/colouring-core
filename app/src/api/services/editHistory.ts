@@ -3,7 +3,12 @@ import { decBigInt, incBigInt } from '../../helpers';
 import { getHistoryAfterId, getHistoryBeforeId, getIdNewerThan, getIdOlderThan } from '../dataAccess/editHistory';
 import { ArgumentError } from '../errors/general';
 
-async function getGlobalEditHistory(beforeId?: string, afterId?: string, count: number = 100) {
+async function getGlobalEditHistory(
+    beforeId?: string,
+    afterId?: string,
+    count: number = 100,
+    filterDeletions: boolean = false
+) {
     if(count <= 0) throw new ArgumentError('cannot request less than 1 history record', 'count');
     if(count > 100) count = 100;
 
@@ -11,9 +16,9 @@ async function getGlobalEditHistory(beforeId?: string, afterId?: string, count: 
     let editHistoryRecords: EditHistoryEntry[];
 
     if(afterId != undefined) {
-        editHistoryRecords = await getHistoryAfterId(afterId, count);
+        editHistoryRecords = await getHistoryAfterId(afterId, count, filterDeletions);
     } else {
-        editHistoryRecords = await getHistoryBeforeId(beforeId, count);
+        editHistoryRecords = await getHistoryBeforeId(beforeId, count, filterDeletions);
     }
 
     const currentBatchMaxId = editHistoryRecords[0]?.revision_id ?? decBigInt(beforeId);
