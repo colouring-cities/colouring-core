@@ -17,8 +17,26 @@ interface PagingInfo {
 
 const recordsPerPage = 20;
 
+function getNavigationUrl(options: {
+    afterId?: string,
+    beforeId?: string,
+    deletions?: string
+}) {
+    let query = '?';
+    let params = [];
+    if(options == undefined) return query;
+
+    if(options.afterId != undefined) params.push(`after_id=${options.afterId}`);
+    if(options.beforeId != undefined) params.push(`before_id=${options.beforeId}`);
+    if(options.deletions != undefined) params.push(`deletions=${options.deletions}`);
+
+    return query + params.join('&');
+}
+
 const ChangesPage = (props: RouteComponentProps) => {
-    const { after_id, before_id } = parse(props.location.search);
+    let { after_id, before_id, deletions } = parse(props.location.search);
+
+    if(deletions instanceof Array) deletions = deletions[0];
 
     const [history, setHistory] = useState<EditHistoryEntry[]>();
     const [paging, setPaging] = useState<PagingInfo>();
@@ -37,6 +55,11 @@ const ChangesPage = (props: RouteComponentProps) => {
             if (before_id) {
                 url = `${url}&before_id=${before_id}`;
             }
+
+            if(deletions) {
+                url = `${url}&deletions=${deletions}`;
+            }
+
             try {
                 const {history, paging, error} = await apiGet(url);
 
@@ -60,16 +83,30 @@ const ChangesPage = (props: RouteComponentProps) => {
         <article>
             <section className="main-col">
                 <h1>Global edit history</h1>
-
                 {
                     paging?.id_for_newer_query &&
-                        <Link className='edit-history-link' to={`?after_id=${paging.id_for_newer_query}`}>Show more recent changes</Link>
+                        <Link
+                            className='edit-history-link'
+                            to={getNavigationUrl({
+                                afterId: paging.id_for_newer_query,
+                                deletions: deletions
+                            })}
+                        >Show more recent changes</Link>
                 }
                 {
                     (after_id || before_id) &&
-                        <Link className='edit-history-latest-link' to='?'>Show latest changes</Link>
+                        <Link
+                            className='edit-history-latest-link'
+                            to={getNavigationUrl({
+                                deletions: deletions
+                            })}
+                        >Show latest changes</Link>
                 }
                 <ul className="edit-history-list">
+                    {
+                        deletions === 'true' &&
+                            <InfoBox msg="Showing only changes with at least one deletion" /> 
+                    }
                     {
                         error &&
                             <ErrorBox msg={error}></ErrorBox>
@@ -97,7 +134,10 @@ const ChangesPage = (props: RouteComponentProps) => {
                 </ul>
                 {
                     paging?.id_for_older_query &&
-                        <Link to={`?before_id=${paging.id_for_older_query}`}>Show older changes</Link>
+                        <Link to={getNavigationUrl({
+                            beforeId: paging.id_for_older_query,
+                            deletions: deletions
+                        })}>Show older changes</Link>
                 }
             </section>
         </article>

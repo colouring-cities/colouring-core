@@ -17,18 +17,27 @@ mockEditHistory.__setHistory = function(mockHistoryData: EditHistoryEntry[]) {
     mockData = mockHistoryData.sort(numDesc(x => BigInt(x.revision_id)));
 };
 
-mockEditHistory.getHistoryAfterId = function(id: string, count: number): Promise<EditHistoryEntry[]> {
+function hasDeletions(json) {
+    return Object.values(json).some(x => x === null);
+}
+
+mockEditHistory.getHistoryAfterId = function(id: string, count: number, filterDeletions: boolean): Promise<EditHistoryEntry[]> {
     return Promise.resolve(
         mockData
-            .filter(x => BigInt(x.revision_id) > BigInt(id))
+            .filter(x => BigInt(x.revision_id) > BigInt(id) && (!filterDeletions || hasDeletions(x.forward_patch)))
             .sort(numAsc(x => BigInt(x.revision_id)))
             .slice(0, count)
             .sort(numDesc(x => BigInt(x.revision_id)))
     );
 };
 
-mockEditHistory.getHistoryBeforeId = function(id: string, count: number): Promise<EditHistoryEntry[]> {
+mockEditHistory.getHistoryBeforeId = function(id: string, count: number, filterDeletions: boolean): Promise<EditHistoryEntry[]> {
     let filteredData = id == undefined ? mockData : mockData.filter(x => BigInt(x.revision_id) < BigInt(id));
+    
+    if(filterDeletions) {
+        filteredData = filteredData.filter(x => hasDeletions(x.forward_patch));
+    }
+    
     return Promise.resolve(
         filteredData
             .slice(0, count)
