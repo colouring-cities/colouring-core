@@ -91,8 +91,10 @@ async def main():
                     raise
 
             response_code, response_data = await update_building(building_id, line, api_key, base_url)
-            if response_code != 200:
+            if response_code >= 500:
                 print('ERROR', building_id, response_code, response_data, file=sys.stderr)
+            elif debug and response_code >= 400:
+                print('WARNING', building_id, response_code, response_data, file=sys.stderr)
             elif debug:
                 print('DEBUG', building_id, response_code, response_data, file=sys.stderr)
 
