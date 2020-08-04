@@ -18,17 +18,22 @@ const CheckboxDataEntry: React.FunctionComponent<CheckboxDataEntryProps> = (prop
                 copy={props.copy}
             />
             <div className="form-check">
-                <input className="form-check-input" type="checkbox"
-                    id={props.slug}
-                    name={props.slug}
-                    checked={!!props.value}
-                    disabled={props.mode === 'view' || props.disabled}
-                    onChange={e => props.onChange(props.slug, e.target.checked)}
-                    />
                 <label
                     htmlFor={props.slug}
                     className="form-check-label">
-                    {props.title}
+                    <input className="form-check-input" type="checkbox"
+                        id={props.slug}
+                        name={props.slug}
+                        checked={!!props.value}
+                        disabled={props.mode === 'view' || props.disabled}
+                        onChange={e => props.onChange(props.slug, e.target.checked)}
+                        />
+                    {
+                        props.value?
+                            <span><strong>Yes</strong>/No</span>
+                        :
+                            <span>Yes/<strong>No</strong></span>
+                    }
                 </label>
             </div>
         </Fragment>
