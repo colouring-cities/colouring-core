@@ -26,6 +26,12 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
+
+                allow_verify={props.user !== undefined && props.building.date_year !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("date_year")}
+                user_verified_as={props.user_verified.date_year}
+                verified_count={props.building.verified.date_year}
                 />
             <NumericDataEntry
                 title={dataFields.facade_year.title}
@@ -40,8 +46,8 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 tooltip={dataFields.facade_year.tooltip}
                 />
             <Verification
-                allow_verify={props.user !== undefined}
                 slug="facade_year"
+                allow_verify={props.user !== undefined && props.building.facade_year !== null}
                 onVerify={props.onVerify}
                 user_verified={props.user_verified.hasOwnProperty("facade_year")}
                 user_verified_as={props.user_verified.facade_year}
