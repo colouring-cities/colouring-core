@@ -32,7 +32,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
         />
         <Verification
             slug="current_landuse_group"
-            allow_verify={props.user !== undefined && props.building.current_landuse_group !== null}
+            allow_verify={props.user !== undefined && props.building.current_landuse_group !== null && !props.edited}
             onVerify={props.onVerify}
             user_verified={props.user_verified.hasOwnProperty("current_landuse_group")}
             user_verified_as={props.user_verified.current_landuse_group && props.user_verified.current_landuse_group.join(", ")}

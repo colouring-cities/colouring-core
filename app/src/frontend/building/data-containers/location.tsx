@@ -25,7 +25,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             />
         <Verification
             slug="location_name"
-            allow_verify={props.user !== undefined && props.building.location_name !== null}
+            allow_verify={props.user !== undefined && props.building.location_name !== null && !props.edited}
             onVerify={props.onVerify}
             user_verified={props.user_verified.hasOwnProperty("location_name")}
             user_verified_as={props.user_verified.location_name}
@@ -44,7 +44,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             />
         <Verification
             slug="location_number"
-            allow_verify={props.user !== undefined && props.building.location_number !== null}
+            allow_verify={props.user !== undefined && props.building.location_number !== null && !props.edited}
             onVerify={props.onVerify}
             user_verified={props.user_verified.hasOwnProperty("location_number")}
             user_verified_as={props.user_verified.location_number}
@@ -61,7 +61,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             />
         <Verification
             slug="location_street"
-            allow_verify={props.user !== undefined && props.building.location_street !== null}
+            allow_verify={props.user !== undefined && props.building.location_street !== null && !props.edited}
             onVerify={props.onVerify}
             user_verified={props.user_verified.hasOwnProperty("location_street")}
             user_verified_as={props.user_verified.location_street}

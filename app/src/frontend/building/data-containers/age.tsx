@@ -27,7 +27,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 copy={props.copy}
                 onChange={props.onChange}
 
-                allow_verify={props.user !== undefined && props.building.date_year !== null}
+                allow_verify={props.user !== undefined && props.building.date_year !== null && !props.edited}
                 onVerify={props.onVerify}
                 user_verified={props.user_verified.hasOwnProperty("date_year")}
                 user_verified_as={props.user_verified.date_year}
@@ -47,7 +47,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             <Verification
                 slug="facade_year"
-                allow_verify={props.user !== undefined && props.building.facade_year !== null}
+                allow_verify={props.user !== undefined && props.building.facade_year !== null && !props.edited}
                 onVerify={props.onVerify}
                 user_verified={props.user_verified.hasOwnProperty("facade_year")}
                 user_verified_as={props.user_verified.facade_year}
