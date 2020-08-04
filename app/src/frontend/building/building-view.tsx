@@ -24,6 +24,7 @@ interface BuildingViewProps {
     building_like?: boolean;
     user?: any;
     selectBuilding: (building: Building) => void;
+    user_verified?: any;
 }
 
 /**

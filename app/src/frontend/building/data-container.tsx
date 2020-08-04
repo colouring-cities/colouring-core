@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
+import Confetti from 'canvas-confetti';
 
 import { apiPost } from '../apiHelpers';
 import ErrorBox from '../components/error-box';
@@ -24,6 +25,7 @@ interface DataContainerProps {
     mode: 'view' | 'edit';
     building?: Building;
     building_like?: boolean;
+    user_verified?: any;
     selectBuilding: (building: Building) => void;
 }
 
@@ -62,6 +64,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
             this.handleReset = this.handleReset.bind(this);
             this.handleLike = this.handleLike.bind(this);
             this.handleSubmit = this.handleSubmit.bind(this);
+            this.handleVerify = this.handleVerify.bind(this);
 
             this.toggleCopying = this.toggleCopying.bind(this);
             this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
@@ -167,7 +170,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                     `/api/buildings/${this.props.building.building_id}/like.json`,
                     {like: like}
                 );
-                
+
                 if (data.error) {
                     this.setState({error: data.error});
                 } else {
@@ -188,11 +191,38 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                     `/api/buildings/${this.props.building.building_id}.json`,
                     this.state.buildingEdits
                 );
-                
+
                 if (data.error) {
                     this.setState({error: data.error});
                 } else {
                     this.props.selectBuilding(data);
+                }
+            } catch(err) {
+                this.setState({error: err});
+            }
+        }
+
+        async handleVerify(slug: string, verify: boolean) {
+            const verifyPatch = {};
+            if (verify) {
+                verifyPatch[slug] = this.props.building[slug];
+            } else {
+                verifyPatch[slug] = null;
+            }
+
+            try {
+                const data = await apiPost(
+                    `/api/buildings/${this.props.building.building_id}/verify.json`,
+                    verifyPatch
+                );
+
+                if (data.error) {
+                    this.setState({error: data.error});
+                } else {
+                    if (verify) {
+                        Confetti({zIndex: 2000});
+                    }
+                    this.props.selectBuilding(this.props.building);
                 }
             } catch(err) {
                 this.setState({error: err});
@@ -284,6 +314,8 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                                 copy={copy}
                                 onChange={this.handleChange}
                                 onLike={this.handleLike}
+                                onVerify={this.handleVerify}
+                                user_verified={[]}
                             />
                         </Fragment> :
                         this.props.building != undefined ?
@@ -330,6 +362,9 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                                     copy={copy}
                                     onChange={this.handleChange}
                                     onLike={this.handleLike}
+                                    onVerify={this.handleVerify}
+                                    user_verified={this.props.user_verified}
+                                    user={this.props.user}
                                 />
                             </form> :
                             <InfoBox msg="Select a building to view data"></InfoBox>

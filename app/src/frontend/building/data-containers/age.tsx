@@ -5,6 +5,7 @@ import MultiDataEntry from '../data-components/multi-data-entry/multi-data-entry
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import TextboxDataEntry from '../data-components/textbox-data-entry';
+import Verification from '../data-components/verification';
 import YearDataEntry from '../data-components/year-data-entry';
 import withCopyEdit from '../data-container';
 
@@ -15,7 +16,7 @@ import { CategoryViewProps } from './category-view-props';
 */
 const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const currentYear = new Date().getFullYear();
-    
+
     return (
         <Fragment>
             <YearDataEntry
@@ -38,6 +39,15 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 max={currentYear}
                 tooltip={dataFields.facade_year.tooltip}
                 />
+            <Verification
+                allow_verify={props.user !== undefined}
+                slug="facade_year"
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("facade_year")}
+                user_verified_as={props.user_verified.facade_year}
+                verified_count={props.building.verified.facade_year}
+                />
+
             <SelectDataEntry
                 title={dataFields.date_source.title}
                 slug="date_source"

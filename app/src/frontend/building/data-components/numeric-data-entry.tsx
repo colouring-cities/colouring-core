@@ -33,7 +33,7 @@ const NumericDataEntry: React.FunctionComponent<NumericDataEntryProps> = (props)
                 min={props.min}
                 disabled={props.mode === 'view' || props.disabled}
                 placeholder={props.placeholder}
-                onChange={e => 
+                onChange={e =>
                     props.onChange(
                         props.slug,
                         e.target.value === '' ? null : parseFloat(e.target.value)

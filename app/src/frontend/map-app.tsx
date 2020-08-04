@@ -26,6 +26,7 @@ interface MapAppProps extends RouteComponentProps<MapAppRouteParams> {
     building_like?: boolean;
     user?: any;
     revisionId?: number;
+    user_verified?: object;
 }
 
 interface MapAppState {
@@ -33,6 +34,7 @@ interface MapAppState {
     revision_id: number;
     building: Building;
     building_like: boolean;
+    user_verified: object;
 }
 
 class MapApp extends React.Component<MapAppProps, MapAppState> {
@@ -43,7 +45,8 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
             category: this.getCategory(props.match.params.category),
             revision_id: props.revisionId || 0,
             building: props.building,
-            building_like: props.building_like
+            building_like: props.building_like,
+            user_verified: props.user_verified || {}
         };
 
         this.selectBuilding = this.selectBuilding.bind(this);
@@ -60,7 +63,10 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
 
     componentDidMount() {
         this.fetchLatestRevision();
-        this.fetchBuildingData();
+
+        if(this.props.match.params.building != undefined && this.props.building == undefined) {
+            this.fetchBuildingData(strictParseInt(this.props.match.params.building));
+        }
     }
 
     async fetchLatestRevision() {
@@ -77,27 +83,29 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
      * Fetches building data if a building is selected but no data provided through
      * props (from server-side rendering)
      */
-    async fetchBuildingData() {
-        if(this.props.match.params.building != undefined && this.props.building == undefined) {
-            try {
-                // TODO: simplify API calls, create helpers for fetching data
-                const buildingId = strictParseInt(this.props.match.params.building);
-                let [building, building_uprns, building_like] = await Promise.all([
-                    apiGet(`/api/buildings/${buildingId}.json`),
-                    apiGet(`/api/buildings/${buildingId}/uprns.json`),
-                    apiGet(`/api/buildings/${buildingId}/like.json`)
-                ]);
+    async fetchBuildingData(buildingId: number) {
+        try {
+            // TODO: simplify API calls, create helpers for fetching data
+            let [building, building_uprns, building_like, user_verified] = await Promise.all([
+                apiGet(`/api/buildings/${buildingId}.json`),
+                apiGet(`/api/buildings/${buildingId}/uprns.json`),
+                apiGet(`/api/buildings/${buildingId}/like.json`),
+                apiGet(`/api/buildings/${buildingId}/verify.json`)
+            ]);
 
-                building.uprns = building_uprns.uprns;
+            building.uprns = building_uprns.uprns;
 
-                this.setState({
-                    building: building,
-                    building_like: building_like.like
-                });
-            } catch(error) {
-                console.error(error);
-                // TODO: add UI for API errors
-            }
+            this.setState({
+                building: building,
+                building_like: building_like.like,
+                user_verified: user_verified
+            });
+
+            this.increaseRevision(building.revision_id);
+
+        } catch(error) {
+            console.error(error);
+            // TODO: add UI for API errors
         }
     }
 
@@ -132,34 +140,9 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
             return;
         }
 
-        this.increaseRevision(building.revision_id);
-        // get UPRNs and update
-        apiGet(`/api/buildings/${building.building_id}/uprns.json`)
-        .then((res) => {
-            if (res.error) {
-                console.error(res);
-            } else {
-                building.uprns = res.uprns;
-                this.setState({ building: building });
-            }
-        }).catch((err) => {
-            console.error(err);
-            this.setState({ building: building });
-        });
+        this.fetchBuildingData(building.building_id);
 
-        // get if liked and update
-        apiGet(`/api/buildings/${building.building_id}/like.json`)
-        .then((res) => {
-            if (res.error) {
-                console.error(res);
-            } else {
-                this.setState({ building_like: res.like });
-                this.props.history.push(`/${mode}/${category}/${building.building_id}`);
-            }
-        }).catch((err) => {
-            console.error(err);
-            this.setState({ building_like: false });
-        });
+        this.props.history.push(`/${mode}/${category}/${building.building_id}`);
     }
 
     /**
@@ -248,6 +231,7 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
                                 cat={category}
                                 building={this.state.building}
                                 building_like={this.state.building_like}
+                                user_verified={this.state.user_verified}
                                 selectBuilding={this.selectBuilding}
                                 user={this.props.user}
                             />

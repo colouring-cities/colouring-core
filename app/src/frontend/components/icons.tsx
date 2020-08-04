@@ -2,8 +2,22 @@
  * Mini-library of icons
  */
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faAngleLeft, faAngleRight, faCaretDown, faCaretRight, faCaretUp, faCheck, faCheckDouble,
-    faEye, faInfoCircle, faPaintBrush, faQuestionCircle, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import {
+    faAngleLeft,
+    faAngleRight,
+    faCaretDown,
+    faCaretRight,
+    faCaretUp,
+    faCheck,
+    faCheckCircle,
+    faCheckDouble,
+    faEye,
+    faInfoCircle,
+    faPaintBrush,
+    faQuestionCircle,
+    faSearch,
+    faTimes
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
@@ -13,6 +27,7 @@ library.add(
     faPaintBrush,
     faTimes,
     faCheck,
+    faCheckCircle,
     faCheckDouble,
     faAngleLeft,
     faAngleRight,
@@ -51,6 +66,10 @@ const SaveDoneIcon = () => (
     <FontAwesomeIcon icon="check-double" />
 );
 
+const VerifyIcon = () => (
+    <FontAwesomeIcon icon="check-circle" />
+)
+
 const BackIcon = () => (
     <FontAwesomeIcon icon="angle-left" />
 );
@@ -88,5 +107,6 @@ export {
     DownIcon,
     UpIcon,
     RightIcon,
-    SearchIcon
+    SearchIcon,
+    VerifyIcon
 };

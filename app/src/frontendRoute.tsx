@@ -8,18 +8,20 @@ import {
     getBuildingById,
     getBuildingLikeById,
     getBuildingUPRNsById,
-    getLatestRevisionId
+    getLatestRevisionId,
+    getUserVerifiedAttributes
 } from './api/services/building';
 import { getUserById } from './api/services/user';
 import App from './frontend/app';
 import { parseBuildingURL } from './parse';
+import asyncController from './api/routes/asyncController';
 
 
 // reference packed assets
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 
-function frontendRoute(req: express.Request, res: express.Response) {
+const frontendRoute = asyncController(async (req: express.Request, res: express.Response) => {
     const context: any = {}; // TODO: remove any
     const data: any = {}; // TODO: remove any
     context.status = 200;
@@ -31,34 +33,39 @@ function frontendRoute(req: express.Request, res: express.Response) {
         context.status = 404;
     }
 
-    Promise.all([
-        userId ? getUserById(userId) : undefined,
-        isBuilding ? getBuildingById(buildingId) : undefined,
-        isBuilding ? getBuildingUPRNsById(buildingId) : undefined,
-        (isBuilding && userId) ? getBuildingLikeById(buildingId, userId) : false,
-        getLatestRevisionId()
-    ]).then(function ([user, building, uprns, buildingLike, latestRevisionId]) {
+    try {
+        let [user, building, uprns, buildingLike, userVerified, latestRevisionId] = await Promise.all([
+            userId ? getUserById(userId) : undefined,
+            isBuilding ? getBuildingById(buildingId) : undefined,
+            isBuilding ? getBuildingUPRNsById(buildingId) : undefined,
+            (isBuilding && userId) ? getBuildingLikeById(buildingId, userId) : false,
+            (isBuilding && userId) ? getUserVerifiedAttributes(buildingId, userId) : {},
+            getLatestRevisionId()
+        ]);
+
         if (isBuilding && typeof (building) === 'undefined') {
             context.status = 404;
         }
         data.user = user;
         data.building = building;
         data.building_like = buildingLike;
+        data.user_verified = userVerified;
         if (data.building != null) {
             data.building.uprns = uprns;
         }
         data.latestRevisionId = latestRevisionId;
         renderHTML(context, data, req, res);
-    }).catch(error => {
+    } catch(error) {
         console.error(error);
         data.user = undefined;
         data.building = undefined;
         data.building_like = undefined;
+        data.user_verified = {}
         data.latestRevisionId = 0;
         context.status = 500;
         renderHTML(context, data, req, res);
-    });
-}
+    }
+});
 
 function renderHTML(context, data, req, res) {
     const markup = renderToString(
@@ -93,7 +100,7 @@ function renderHTML(context, data, req, res) {
         <meta property="og:image"              content="https://colouring.london/images/logo-cl-square.png" />
 
         <link rel="manifest" href="site.webmanifest">
-        
+
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="apple-mobile-web-app-title" content="Colouring London">

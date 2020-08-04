@@ -13,6 +13,9 @@ interface CategoryViewProps {
     copy: CopyProps;
     onChange: (key: string, value: any) => void;
     onLike: (like: boolean) => void;
+    onVerify: (slug: string, verify: boolean) => void;
+    user_verified: any;
+    user?: any;
 }
 
 export {
