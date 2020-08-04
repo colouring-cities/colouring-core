@@ -231,9 +231,7 @@ async function verifyBuildingAttributes(buildingId: number, userId: string, patc
                 }
             } else {
                 if (value === null) {
-                    try {
-                        await verifyDataAccess.removeBuildingUserVerifiedAttribute(buildingId, userId, key);
-                    }
+                    await verifyDataAccess.removeBuildingUserVerifiedAttribute(buildingId, userId, key);
                 } else {
                     // not verifying current value
                     const msg = `Attribute "${key}" with value "${value}" did not match latest saved value "${building[key]}"`;
