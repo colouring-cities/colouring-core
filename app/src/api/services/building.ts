@@ -161,7 +161,6 @@ async function getBuildingUPRNsById(id: number) {
 }
 
 async function saveBuilding(buildingId: number, building: any, userId: string): Promise<object> { // TODO add proper building type
-    console.log("SAVE")
     return await updateBuildingData(buildingId, userId, async () => {
         const processedBuilding = await processBuildingUpdate(buildingId, building);
 

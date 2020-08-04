@@ -50,17 +50,32 @@ function asVerified(verifications){
 }
 
 export async function updateBuildingUserVerifiedAttribute(buildingId: number, userId: string, attribute: string, value: any): Promise<void> {
+    console.log(typeof value, value)
     try {
-        await (db).none(
-            `INSERT INTO
-                building_verification
-                ( building_id, user_id, attribute, verified_value )
-            VALUES
-                ($1, $2, $3, to_jsonb($4));
-            `,
-            [buildingId, userId, attribute, value]
-        );
+        if (typeof value === 'string'){
+            // cast strings to text explicitly - otherwise Postgres fails to cast to jsonb directly
+            await (db).none(
+                `INSERT INTO
+                    building_verification
+                    ( building_id, user_id, attribute, verified_value )
+                VALUES
+                    ($1, $2, $3, to_jsonb($4::text));
+                `,
+                [buildingId, userId, attribute, value]
+            );
+        } else {
+            await (db).none(
+                `INSERT INTO
+                    building_verification
+                    ( building_id, user_id, attribute, verified_value )
+                VALUES
+                    ($1, $2, $3, to_jsonb($4));
+                `,
+                [buildingId, userId, attribute, value]
+            );
+        }
     } catch(error) {
+        console.error(error)
         if(error.detail?.includes('already exists')) {
             const msg = 'User already verified that attribute for this building'
             throw new InvalidOperationError(msg);

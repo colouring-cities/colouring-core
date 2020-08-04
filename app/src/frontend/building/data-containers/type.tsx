@@ -4,6 +4,7 @@ import { dataFields } from '../../data_fields';
 import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
+import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
@@ -31,6 +32,15 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 copy={props.copy}
                 onChange={props.onChange}
             />
+            <Verification
+                slug="building_attachment_form"
+                allow_verify={props.user !== undefined && props.building.building_attachment_form !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("building_attachment_form")}
+                user_verified_as={props.user_verified.building_attachment_form}
+                verified_count={props.building.verified.building_attachment_form}
+                />
+
             <NumericDataEntry
                 title={dataFields.date_change_building_use.title}
                 slug="date_change_building_use"
