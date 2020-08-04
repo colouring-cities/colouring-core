@@ -23,7 +23,6 @@ interface DataContainerProps {
 
     user?: User;
     mode: 'view' | 'edit';
-    edited: boolean;
     building?: Building;
     building_like?: boolean;
     user_verified?: any;
@@ -312,6 +311,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                                 building={undefined}
                                 building_like={undefined}
                                 mode={this.props.mode}
+                                edited={false}
                                 copy={copy}
                                 onChange={this.handleChange}
                                 onLike={this.handleLike}
