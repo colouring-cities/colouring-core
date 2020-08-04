@@ -217,8 +217,8 @@ async function verifyBuildingAttributes(buildingId: number, userId: string, patc
     for (let [key, value] of Object.entries(patch)) {
         // check key in whitelist
         if(BUILDING_FIELD_WHITELIST.has(key)) {
-            // check value against current from database
-            if (value == building[key]) {
+            // check value against current from database - JSON.stringify as hack for "any" data type
+            if (JSON.stringify(value) == JSON.stringify(building[key])) {
                 try {
                     await verifyDataAccess.updateBuildingUserVerifiedAttribute(buildingId, userId, key, building[key]);
                     verified[key] = building[key];
@@ -260,7 +260,7 @@ async function getBuildingVerifications(building) {
     }
 
     for (const item of verifications) {
-        if (building[item.attribute] == item.verified_value) {
+        if (JSON.stringify(building[item.attribute]) == JSON.stringify(item.verified_value)) {
             verified[item.attribute] += 1
         }
     }

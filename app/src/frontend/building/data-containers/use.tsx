@@ -7,6 +7,7 @@ import MultiDataEntry from '../data-components/multi-data-entry/multi-data-entry
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
+import Verification from '../data-components/verification';
 
 /**
  * Use view/edit section
@@ -29,6 +30,14 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             showAllOptionsOnEmpty={true}
             addOnAutofillSelect={true}
         />
+        <Verification
+            slug="current_landuse_group"
+            allow_verify={props.user !== undefined && props.building.current_landuse_group !== null}
+            onVerify={props.onVerify}
+            user_verified={props.user_verified.hasOwnProperty("current_landuse_group")}
+            user_verified_as={props.user_verified.current_landuse_group && props.user_verified.current_landuse_group.join(", ")}
+            verified_count={props.building.verified.current_landuse_group}
+            />
         {
             props.mode != 'view' &&
             <InfoBox msg="Land use order, shown below, is automatically derived from the land use groups"></InfoBox>
