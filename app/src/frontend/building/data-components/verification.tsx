@@ -12,7 +12,12 @@ interface VerificationProps {
     allow_verify: boolean;
 }
 
-const Verification: React.FunctionComponent<VerificationProps> = (props) => (
+const Verification: React.FunctionComponent<VerificationProps> = (props) => {
+    let user_verified_as = props.user_verified_as;
+    if (typeof user_verified_as === 'boolean') {
+        user_verified_as = user_verified_as? 'Yes': 'No';
+    }
+    return (
     <div className="verification-container">
         <span
             className="verification-status"
@@ -22,36 +27,37 @@ const Verification: React.FunctionComponent<VerificationProps> = (props) => (
             {props.verified_count || 0}
         </span>
         {
-            props.allow_verify?
-                props.user_verified?
-                    <Fragment>
-                        Verified as
-                        "<span>{props.user_verified_as}</span>"
-                        <button
-                            className="btn btn-danger"
-                            title="Remove my verification"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                props.onVerify(props.slug, false)
-                            }}>
-                            Remove
-                        </button>
-                    </Fragment>
-                :
-                    <Fragment>
-                        <button
-                            className="btn btn-success"
-                            title="Confirm that the current value is correct"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                props.onVerify(props.slug, true)
-                            }}>
-                            Verify
-                        </button>
-                    </Fragment>
-            : null
+            props.user_verified?
+                <Fragment>
+                    Verified as
+                    "<span>{user_verified_as}</span>"
+                    <button
+                        className="btn btn-danger"
+                        title="Remove my verification"
+                        disabled={!props.allow_verify}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            props.onVerify(props.slug, false)
+                        }}>
+                        Remove
+                    </button>
+                </Fragment>
+            :
+                <Fragment>
+                    <button
+                        className="btn btn-success"
+                        title="Confirm that the current value is correct"
+                        disabled={!props.allow_verify}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            props.onVerify(props.slug, true)
+                        }}>
+                        Verify
+                    </button>
+                </Fragment>
         }
     </div>
-);
+    );
+}
 
 export default Verification;
