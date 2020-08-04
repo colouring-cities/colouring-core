@@ -5,6 +5,7 @@ import { dataFields } from '../../data_fields';
 import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import UPRNsDataEntry from '../data-components/uprns-data-entry';
+import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
@@ -21,8 +22,16 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             onChange={props.onChange}
             tooltip={dataFields.location_name.tooltip}
             placeholder="Building name (if any)"
-            disabled={true}
             />
+        <Verification
+            slug="location_name"
+            allow_verify={props.user !== undefined && props.building.location_name !== null}
+            onVerify={props.onVerify}
+            user_verified={props.user_verified.hasOwnProperty("location_name")}
+            user_verified_as={props.user_verified.location_name}
+            verified_count={props.building.verified.location_name}
+            />
+
         <NumericDataEntry
             title={dataFields.location_number.title}
             slug="location_number"
@@ -33,6 +42,15 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             step={1}
             min={1}
             />
+        <Verification
+            slug="location_number"
+            allow_verify={props.user !== undefined && props.building.location_number !== null}
+            onVerify={props.onVerify}
+            user_verified={props.user_verified.hasOwnProperty("location_number")}
+            user_verified_as={props.user_verified.location_number}
+            verified_count={props.building.verified.location_number}
+            />
+
         <DataEntry
             title={dataFields.location_street.title}
             slug="location_street"
@@ -40,8 +58,16 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
-            disabled={true}
             />
+        <Verification
+            slug="location_street"
+            allow_verify={props.user !== undefined && props.building.location_street !== null}
+            onVerify={props.onVerify}
+            user_verified={props.user_verified.hasOwnProperty("location_street")}
+            user_verified_as={props.user_verified.location_street}
+            verified_count={props.building.verified.location_street}
+            />
+
         <DataEntry
             title={dataFields.location_line_two.title}
             slug="location_line_two"

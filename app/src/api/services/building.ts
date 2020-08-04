@@ -347,10 +347,10 @@ async function expireBuildingTileCache(buildingId: number) {
 
 const BUILDING_FIELD_WHITELIST = new Set([
     'ref_osm_id',
-    // 'location_name',
+    'location_name',
     'location_number',
-    // 'location_street',
-    // 'location_line_two',
+    'location_street',
+    'location_line_two',
     'location_town',
     'location_postcode',
     'location_latitude',
