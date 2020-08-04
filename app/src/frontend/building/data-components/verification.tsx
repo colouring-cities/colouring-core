@@ -19,7 +19,7 @@ const Verification: React.FunctionComponent<VerificationProps> = (props) => (
             title={`Verified by ${props.verified_count} ${(props.verified_count == 1)? "person": "people"}`}
             >
             <VerifyIcon />
-            {props.verified_count}
+            {props.verified_count || 0}
         </span>
         {
             props.allow_verify?
