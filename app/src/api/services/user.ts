@@ -18,7 +18,7 @@ async function createUser(user) {
             throw { error: err.message };
         } else throw err;
     }
-    
+
     try {
         return await db.one(
             `INSERT
@@ -89,7 +89,7 @@ async function getUserById(id: string) {
     try {
         return await db.one(
             `SELECT
-                username, email, registered, api_key
+                username, email, date_trunc('minute', registered) as registered, api_key
             FROM
                 users
             WHERE

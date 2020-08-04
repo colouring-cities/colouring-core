@@ -10,7 +10,8 @@ import { tileCache } from '../../tiles/rendererDefinition';
 import { BoundingBox } from '../../tiles/types';
 import * as buildingDataAccess from '../dataAccess/building';
 import * as likeDataAccess from '../dataAccess/like';
-import { UserError } from '../errors/general';
+import * as verifyDataAccess from '../dataAccess/verify';
+import { UserError, DatabaseError } from '../errors/general';
 
 import { processBuildingUpdate } from './domainLogic/processBuildingUpdate';
 
@@ -110,6 +111,7 @@ async function getBuildingById(id: number) {
         const building = await getCurrentBuildingDataById(id);
 
         building.edit_history = await getBuildingEditHistory(id);
+        building.verified = await getBuildingVerifications(building);
 
         return building;
     } catch(error) {
@@ -159,9 +161,10 @@ async function getBuildingUPRNsById(id: number) {
 }
 
 async function saveBuilding(buildingId: number, building: any, userId: string): Promise<object> { // TODO add proper building type
+    console.log("SAVE")
     return await updateBuildingData(buildingId, userId, async () => {
         const processedBuilding = await processBuildingUpdate(buildingId, building);
-        
+
         // remove read-only fields from consideration
         delete processedBuilding.building_id;
         delete processedBuilding.revision_id;
@@ -202,6 +205,68 @@ async function unlikeBuilding(buildingId: number, userId: string) {
             return likeDataAccess.removeBuildingUserLike(buildingId, userId, t);
         },
     );
+}
+
+async function verifyBuildingAttributes(buildingId: number, userId: string, patch: object) {
+    // get current building attribute values for comparison
+    const building = await getCurrentBuildingDataById(buildingId);
+    // keep track of attributes and values verified
+    const verified = {}
+
+    // loop through attribute => value pairs to mark as verified
+    for (let [key, value] of Object.entries(patch)) {
+        // check key in whitelist
+        if(BUILDING_FIELD_WHITELIST.has(key)) {
+            // check value against current from database
+            if (value == building[key]) {
+                try {
+                    await verifyDataAccess.updateBuildingUserVerifiedAttribute(buildingId, userId, key, building[key]);
+                    verified[key] = building[key];
+                } catch (error) {
+                    // possible reasons:
+                    // - not a building
+                    // - not a user
+                    // - user already verified this attribute for this building
+                    throw new DatabaseError(error);
+                }
+            } else {
+                if (value === null) {
+                    try {
+                        await verifyDataAccess.removeBuildingUserVerifiedAttribute(buildingId, userId, key);
+                    }
+                } else {
+                    // not verifying current value
+                    const msg = `Attribute "${key}" with value "${value}" did not match latest saved value "${building[key]}"`;
+                    throw new DatabaseError(msg);
+                }
+            }
+        } else {
+            // not a valid attribute
+            const msg = `Attribute ${key} not recognised.`;
+            throw new DatabaseError(msg);
+        }
+    }
+    return verified;
+}
+
+async function getUserVerifiedAttributes(buildingId: number, userId: string) {
+    return await verifyDataAccess.getBuildingUserVerifiedAttributes(buildingId, userId);
+}
+
+async function getBuildingVerifications(building) {
+    const verifications = await verifyDataAccess.getBuildingVerifiedAttributes(building.building_id);
+
+    const verified = {};
+    for (const element of BUILDING_FIELD_WHITELIST) {
+        verified[element] = 0;
+    }
+
+    for (const item of verifications) {
+        if (building[item.attribute] == item.verified_value) {
+            verified[item.attribute] += 1
+        }
+    }
+    return verified;
 }
 
 // === Utility functions ===
@@ -378,5 +443,7 @@ export {
     saveBuilding,
     likeBuilding,
     unlikeBuilding,
-    getLatestRevisionId
+    getLatestRevisionId,
+    verifyBuildingAttributes,
+    getUserVerifiedAttributes
 };
