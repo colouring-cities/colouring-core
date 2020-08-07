@@ -202,7 +202,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
             }
         }
 
-        async handleVerify(slug: string, verify: boolean) {
+        async handleVerify(slug: string, verify: boolean, x: number, y: number) {
             const verifyPatch = {};
             if (verify) {
                 verifyPatch[slug] = this.props.building[slug];
@@ -220,7 +220,12 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                     this.setState({error: data.error});
                 } else {
                     if (verify) {
-                        Confetti({zIndex: 2000});
+                        Confetti({
+                            angle: 60,
+                            disableForReducedMotion: true,
+                            origin: {x, y},
+                            zIndex: 2000
+                        });
                     }
                     this.props.selectBuilding(this.props.building);
                 }

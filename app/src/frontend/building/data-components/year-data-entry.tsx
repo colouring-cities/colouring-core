@@ -14,7 +14,7 @@ interface YearDataEntryProps {
     mode?: 'view' | 'edit' | 'multi-edit';
     onChange?: (key: string, value: any) => void;
 
-    onVerify: (slug: string, verify: boolean) => void;
+    onVerify: (slug: string, verify: boolean, x: number, y: number) => void;
     user_verified: boolean;
     user_verified_as: string;
     verified_count: number;
