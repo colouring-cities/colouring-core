@@ -30,6 +30,7 @@ interface AppProps {
     user?: User;
     building?: Building;
     building_like?: boolean;
+    user_verified?: object;
     revisionId: number;
 }
 
@@ -122,6 +123,7 @@ class App extends React.Component<AppProps, AppState> {
                         {...props}
                         building={this.props.building}
                         building_like={this.props.building_like}
+                        user_verified={this.props.user_verified}
                         user={this.state.user}
                         revisionId={this.props.revisionId}
                     />

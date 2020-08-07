@@ -16,6 +16,7 @@ hydrate(
             user={data.user}
             building={data.building}
             building_like={data.building_like}
+            user_verified={data.user_verified}
             revisionId={data.latestRevisionId}
         />
     </BrowserRouter>,

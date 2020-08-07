@@ -116,10 +116,10 @@ const LEGEND_CONFIG = {
         disclaimer: 'All data relating to designated buildings should be checked on the National Heritage List for England or local authority websites where used for planning or development purposes',
         elements: [
             { color: '#95beba', text: 'In conservation area'},
-            { color: '#c72e08', text: 'Grade I listed'}, 
-            { color: '#e75b42', text: 'Grade II* listed'}, 
+            { color: '#c72e08', text: 'Grade I listed'},
+            { color: '#e75b42', text: 'Grade II* listed'},
             { color: '#ffbea1', text: 'Grade II listed'},
-            { color: '#858ed4', text: 'Locally listed'}, 
+            { color: '#858ed4', text: 'Locally listed'},
         ]
     },
     dynamics: {
@@ -228,14 +228,8 @@ class Legend extends React.Component<LegendProps, LegendState> {
                                     return (
 
                                        <li key={item.color} >
-                                           <tr>
-                                            <td>
-                                                <div className="key" style={ { background: item.color, border: item.border } }></div>
-                                            </td>
-                                            <td>
-                                                { item.text }
-                                            </td>
-                                           </tr>
+                                            <div className="key" style={ { background: item.color, border: item.border } }></div>
+                                            { item.text }
                                        </li>
 
                                     );

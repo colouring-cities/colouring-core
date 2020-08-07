@@ -4,6 +4,7 @@ import { dataFields } from '../../data_fields';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
+import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
@@ -14,7 +15,6 @@ import { CategoryViewProps } from './category-view-props';
 const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <DataEntryGroup name="Storeys">
-
             <NumericDataEntry
                 title={dataFields.size_storeys_core.title}
                 slug="size_storeys_core"
@@ -26,6 +26,15 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 step={1}
                 min={0}
                 />
+            <Verification
+                slug="size_storeys_core"
+                allow_verify={props.user !== undefined && props.building.size_storeys_core !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("size_storeys_core")}
+                user_verified_as={props.user_verified.size_storeys_core}
+                verified_count={props.building.verified.size_storeys_core}
+                />
+
             <NumericDataEntry
                 title={dataFields.size_storeys_attic.title}
                 slug="size_storeys_attic"
@@ -37,6 +46,15 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 step={1}
                 min={0}
                 />
+            <Verification
+                slug="size_storeys_attic"
+                allow_verify={props.user !== undefined && props.building.size_storeys_attic !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("size_storeys_attic")}
+                user_verified_as={props.user_verified.size_storeys_attic}
+                verified_count={props.building.verified.size_storeys_attic}
+                />
+
             <NumericDataEntry
                 title={dataFields.size_storeys_basement.title}
                 slug="size_storeys_basement"
@@ -48,6 +66,15 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 step={1}
                 min={0}
                 />
+            <Verification
+                slug="size_storeys_basement"
+                allow_verify={props.user !== undefined && props.building.size_storeys_basement !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("size_storeys_basement")}
+                user_verified_as={props.user_verified.size_storeys_basement}
+                verified_count={props.building.verified.size_storeys_basement}
+                />
+
         </DataEntryGroup>
         <DataEntryGroup name="Height" collapsed={false}>
             <NumericDataEntry
@@ -60,6 +87,15 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 step={0.1}
                 min={0}
                 />
+            <Verification
+                slug="size_height_apex"
+                allow_verify={props.user !== undefined && props.building.size_height_apex !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("size_height_apex")}
+                user_verified_as={props.user_verified.size_height_apex}
+                verified_count={props.building.verified.size_height_apex}
+                />
+
             <NumericDataEntry
                 title={dataFields.size_height_eaves.title}
                 slug="size_height_eaves"
@@ -83,6 +119,15 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 step={0.1}
                 min={0}
                 />
+            <Verification
+                slug="size_floor_area_ground"
+                allow_verify={props.user !== undefined && props.building.size_floor_area_ground !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("size_floor_area_ground")}
+                user_verified_as={props.user_verified.size_floor_area_ground}
+                verified_count={props.building.verified.size_floor_area_ground}
+                />
+
             <NumericDataEntry
                 title={dataFields.size_floor_area_total.title}
                 slug="size_floor_area_total"
@@ -93,6 +138,15 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 step={0.1}
                 min={0}
                 />
+            <Verification
+                slug="size_floor_area_total"
+                allow_verify={props.user !== undefined && props.building.size_floor_area_total !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("size_floor_area_total")}
+                user_verified_as={props.user_verified.size_floor_area_total}
+                verified_count={props.building.verified.size_floor_area_total}
+                />
+
         </DataEntryGroup>
         <NumericDataEntry
             title={dataFields.size_width_frontage.title}
@@ -104,6 +158,15 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             step={0.1}
             min={0}
             />
+        <Verification
+            slug="size_width_frontage"
+            allow_verify={props.user !== undefined && props.building.size_width_frontage !== null}
+            onVerify={props.onVerify}
+            user_verified={props.user_verified.hasOwnProperty("size_width_frontage")}
+            user_verified_as={props.user_verified.size_width_frontage}
+            verified_count={props.building.verified.size_width_frontage}
+            />
+
         <NumericDataEntry
             title={dataFields.size_plot_area_total.title}
             slug="size_plot_area_total"

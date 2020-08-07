@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import { dataFields } from '../../data_fields';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
+import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
@@ -32,6 +33,15 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 copy={props.copy}
                 onChange={props.onChange}
             />
+            <Verification
+                slug="sust_breeam_rating"
+                allow_verify={props.user !== undefined && props.building.sust_breeam_rating !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("sust_breeam_rating")}
+                user_verified_as={props.user_verified.sust_breeam_rating}
+                verified_count={props.building.verified.sust_breeam_rating}
+                />
+
             <SelectDataEntry
                 title={dataFields.sust_dec.title}
                 slug="sust_dec"
@@ -42,6 +52,15 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 copy={props.copy}
                 onChange={props.onChange}
             />
+            <Verification
+                slug="sust_dec"
+                allow_verify={props.user !== undefined && props.building.sust_dec !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("sust_dec")}
+                user_verified_as={props.user_verified.sust_dec}
+                verified_count={props.building.verified.sust_dec}
+                />
+
             <SelectDataEntry
                 title={dataFields.sust_aggregate_estimate_epc.title}
                 slug="sust_aggregate_estimate_epc"
@@ -53,6 +72,7 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 copy={props.copy}
                 onChange={props.onChange}
             />
+
             <NumericDataEntry
                 title={dataFields.sust_retrofit_date.title}
                 slug="sust_retrofit_date"
@@ -65,6 +85,15 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 copy={props.copy}
                 onChange={props.onChange}
             />
+            <Verification
+                slug="sust_retrofit_date"
+                allow_verify={props.user !== undefined && props.building.sust_retrofit_date !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("sust_retrofit_date")}
+                user_verified_as={props.user_verified.sust_retrofit_date}
+                verified_count={props.building.verified.sust_retrofit_date}
+                />
+
             <NumericDataEntry
                 title={dataFields.sust_life_expectancy.title}
                 slug="sust_life_expectancy"

@@ -47,6 +47,8 @@ GRANT USAGE ON ALL SEQUENCES IN SCHEMA public to appusername;
 GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO appusername;
 -- read map search locations
 GRANT SELECT ON TABLE search_locations to appusername;
+-- add/save user building attribute verification
+GRANT SELECT, INSERT, DELETE ON TABLE building_verification TO appusername;
 ```
 
 Set or update passwords:
@@ -57,8 +59,8 @@ psql -c "ALTER USER appusername WITH PASSWORD 'longsecurerandompassword';"
 
 ## File naming syntax
 
-Initial up and down migrations as `###.name.up.sql` file number should be sequential 
-and incremental to last migrations file number is same for up/down. 
+Initial up and down migrations as `###.name.up.sql` file number should be sequential
+and incremental to last migrations file number is same for up/down.
 
 If adjusting a prior migration syntax is:
 

@@ -31,6 +31,11 @@ router.route('/:building_id/like.json')
     .get(buildingController.getBuildingLikeById)
     .post(buildingController.updateBuildingLikeById);
 
+// POST verify building attribute
+router.route('/:building_id/verify.json')
+    .get(buildingController.getUserVerifiedAttributes)
+    .post(buildingController.verifyBuildingAttributes);
+
 router.route('/:building_id/history.json')
     .get(buildingController.getBuildingEditHistoryById);
 

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
+import Verification from './verification';
 import { dataFields } from '../../data_fields';
 import { CopyProps } from '../data-containers/category-view-props';
 
@@ -12,6 +13,12 @@ interface YearDataEntryProps {
     copy?: CopyProps;
     mode?: 'view' | 'edit' | 'multi-edit';
     onChange?: (key: string, value: any) => void;
+
+    onVerify: (slug: string, verify: boolean, x: number, y: number) => void;
+    user_verified: boolean;
+    user_verified_as: string;
+    verified_count: number;
+    allow_verify: boolean;
 }
 
 class YearDataEntry extends Component<YearDataEntryProps, any> {
@@ -45,6 +52,15 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     max={currentYear}
                     // "type": "year_estimator"
                     />
+                <Verification
+                    allow_verify={props.allow_verify}
+                    slug="date_year"
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified}
+                    user_verified_as={props.user_verified_as}
+                    verified_count={props.verified_count}
+                    />
+
                 <NumericDataEntry
                     title={dataFields.date_upper.title}
                     slug="date_upper"

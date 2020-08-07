@@ -35,7 +35,7 @@ const getBuildingsByReference = asyncController(async (req: express.Request, res
     }
 });
 
-// GET individual building, POST building updates
+// GET individual building
 const getBuildingById = asyncController(async (req: express.Request, res: express.Response) => {
     const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
 
@@ -48,6 +48,7 @@ const getBuildingById = asyncController(async (req: express.Request, res: expres
     }
 });
 
+// POST building attribute updates
 const updateBuildingById = asyncController(async (req: express.Request, res: express.Response) => {
     let user_id;
 
@@ -105,7 +106,7 @@ const getBuildingUPRNsById = asyncController(async (req: express.Request, res: e
     }
 });
 
-// GET/POST like building
+// GET whether the user likes a building
 const getBuildingLikeById = asyncController(async (req: express.Request, res: express.Response) => {
     if (!req.session.user_id) {
         return res.send({ like: false });  // not logged in, so cannot have liked
@@ -123,6 +124,7 @@ const getBuildingLikeById = asyncController(async (req: express.Request, res: ex
     }
 });
 
+// GET building edit history
 const getBuildingEditHistoryById = asyncController(async (req: express.Request, res: express.Response) => {
     const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
 
@@ -135,6 +137,7 @@ const getBuildingEditHistoryById = asyncController(async (req: express.Request, 
     }
 });
 
+// POST update to like/unlike building
 const updateBuildingLikeById = asyncController(async (req: express.Request, res: express.Response) => {
     if (!req.session.user_id) {
         return res.send({ error: 'Must be logged in' });
@@ -159,6 +162,48 @@ const updateBuildingLikeById = asyncController(async (req: express.Request, res:
     res.send(updatedBuilding);
 });
 
+// GET building attributes (and values) as verified by user
+const getUserVerifiedAttributes = asyncController(async (req: express.Request, res: express.Response) => {
+    if (!req.session.user_id) {
+        return res.send({error: "Not logged in"}); // not logged in, so send empty object as no attributes verified
+    }
+
+    const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
+
+    try {
+        const verifiedAttributes = await buildingService.getUserVerifiedAttributes(buildingId, req.session.user_id);
+        res.send(verifiedAttributes);
+    } catch (error) {
+        if(error instanceof UserError) {
+            throw new ApiUserError(error.message, error);
+        }
+
+        throw error;
+    }
+});
+
+// POST update to verify building attribute
+const verifyBuildingAttributes = asyncController(async (req: express.Request, res: express.Response) => {
+    if (!req.session.user_id) {
+        return res.send({ error: 'Must be logged in' });
+    }
+
+    const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
+    const verifiedAttributes = req.body;
+
+    try {
+        const success = await buildingService.verifyBuildingAttributes(buildingId, req.session.user_id, verifiedAttributes);
+        res.send(success);
+    } catch (error) {
+        if(error instanceof UserError) {
+            throw new ApiUserError(error.message, error);
+        }
+
+        throw error;
+    }    
+});
+
+// GET latest revision id of any building
 const getLatestRevisionId = asyncController(async (req: express.Request, res: express.Response) => {
     try {
         const revisionId = await buildingService.getLatestRevisionId();
@@ -176,6 +221,8 @@ export default {
     getBuildingUPRNsById,
     getBuildingLikeById,
     updateBuildingLikeById,
+    getUserVerifiedAttributes,
+    verifyBuildingAttributes,
     getBuildingEditHistoryById,
     getLatestRevisionId
 };

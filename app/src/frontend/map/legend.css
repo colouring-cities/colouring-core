@@ -76,6 +76,10 @@
     flex: 1;
 }
 
+.data-legend li {
+    white-space: nowrap;
+}
+
 .data-legend .key {
     display: inline-block;
     width: 1.3rem;

@@ -34,7 +34,7 @@ const DataEntry: React.FC<DataEntryProps> = (props) => {
                 value={props.value}
                 onChange={props.onChange}
                 disabled={props.mode === 'view' || props.disabled}
-                
+
                 maxLength={props.maxLength}
                 placeholder={props.placeholder}
                 valueTransform={props.valueTransform}
