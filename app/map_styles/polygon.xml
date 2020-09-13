@@ -218,6 +218,19 @@
             <Filter>[date_year] &lt; 1700</Filter>
             <PolygonSymbolizer fill="#d0c291" />
         </Rule>
+
+        <Rule>
+            <Filter>[date_year] != null</Filter>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#aaa" stroke-width="0.8"/>
+        </Rule>
+        <Rule>
+            <Filter>[date_year] != null</Filter>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#aaa" stroke-width="2.0"/>
+        </Rule>
     </Style>
     <Style name="conservation_area">
         <Rule>
