@@ -220,13 +220,11 @@
         </Rule>
 
         <Rule>
-            <Filter>[date_year] != null</Filter>
             <MaxScaleDenominator>17061</MaxScaleDenominator>
             <MinScaleDenominator>4264</MinScaleDenominator>
             <LineSymbolizer stroke="#aaa" stroke-width="0.8"/>
         </Rule>
         <Rule>
-            <Filter>[date_year] != null</Filter>
             <MaxScaleDenominator>4264</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
             <LineSymbolizer stroke="#aaa" stroke-width="2.0"/>
