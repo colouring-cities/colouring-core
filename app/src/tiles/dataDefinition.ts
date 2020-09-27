@@ -48,7 +48,7 @@ const BUILDING_LAYER_DEFINITIONS = {
         FROM
             buildings
         WHERE
-            contruction_core_material IS NOT NULL`,
+            construction_core_material IS NOT NULL`,
     location: `
         SELECT
             geometry_id,
