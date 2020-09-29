@@ -25,15 +25,22 @@ const STITCH_THRESHOLD = 12;
  */
 const EXTENT_BBOX: BoundingBox = [-61149.622628, 6667754.851372, 28128.826409, 6744803.375884];
 
+const allLayersCacheSwitch = parseBooleanExact(process.env.CACHE_TILES) ?? true;
 const dataLayersCacheSwitch = parseBooleanExact(process.env.CACHE_DATA_TILES) ?? true;
-// cache age data and base building outlines for more zoom levels than other layers
-const cacheFnWithDataLayers = ({ tileset, z }: TileParams) =>
-    (tileset === 'date_year' && z <= 16) ||
-    (['base_light', 'base_night'].includes(tileset) && z <= 17) ||
-    z <= 13;
-const cacheFnWithoutDataLayers = ({ tileset, z }: TileParams) =>
-    ['base_light', 'base_night'].includes(tileset) && z <= 17;
-const shouldCacheFn = dataLayersCacheSwitch ? cacheFnWithDataLayers : cacheFnWithoutDataLayers;
+let shouldCacheFn: (t: TileParams) => boolean;
+
+if(!allLayersCacheSwitch) {
+    shouldCacheFn = t => false;
+} else if(!dataLayersCacheSwitch) {
+    // cache age data and base building outlines for more zoom levels than other layers
+    shouldCacheFn = ({ tileset, z }: TileParams) =>
+        (tileset === 'date_year' && z <= 16) ||
+        (['base_light', 'base_night'].includes(tileset) && z <= 17) ||
+        z <= 13;
+} else {
+    shouldCacheFn = ({ tileset, z }: TileParams) =>
+        ['base_light', 'base_night'].includes(tileset) && z <= 17;
+}
 
 const tileCache = new TileCache(
     process.env.TILECACHE_PATH,
