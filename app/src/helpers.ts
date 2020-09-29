@@ -58,3 +58,10 @@ export function incBigInt(bigStr: string): string {
 export function decBigInt(bigStr: string): string {
     return bigStr == undefined ? bigStr : String(BigInt(bigStr) - BigInt(1));
 }
+
+
+export function parseBooleanExact(val: string) {
+    if(val === 'true') return true;
+    if(val === 'false') return false;
+    return null;
+}

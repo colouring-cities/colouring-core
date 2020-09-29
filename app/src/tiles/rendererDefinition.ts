@@ -1,3 +1,4 @@
+import { parseBooleanExact } from '../helpers';
 import { getAllLayerNames, getBuildingLayerNames, getBuildingsDataConfig, getHighlightDataConfig } from "./dataDefinition";
 import { createBlankTile } from "./renderers/createBlankTile";
 import { getTileWithCaching } from "./renderers/getTileWithCaching";
@@ -24,6 +25,16 @@ const STITCH_THRESHOLD = 12;
  */
 const EXTENT_BBOX: BoundingBox = [-61149.622628, 6667754.851372, 28128.826409, 6744803.375884];
 
+const dataLayersCacheSwitch = parseBooleanExact(process.env.CACHE_DATA_TILES) ?? true;
+// cache age data and base building outlines for more zoom levels than other layers
+const cacheFnWithDataLayers = ({ tileset, z }: TileParams) =>
+    (tileset === 'date_year' && z <= 16) ||
+    (['base_light', 'base_night'].includes(tileset) && z <= 17) ||
+    z <= 13;
+const cacheFnWithoutDataLayers = ({ tileset, z }: TileParams) =>
+    ['base_light', 'base_night'].includes(tileset) && z <= 17;
+const shouldCacheFn = dataLayersCacheSwitch ? cacheFnWithDataLayers : cacheFnWithoutDataLayers;
+
 const tileCache = new TileCache(
     process.env.TILECACHE_PATH,
     {
@@ -32,11 +43,7 @@ const tileCache = new TileCache(
         maxZoom: 19,
         scales: [1, 2]
     },
-
-    // cache age data and base building outlines for more zoom levels than other layers
-    ({ tileset, z }: TileParams) => (tileset === 'date_year' && z <= 16) ||
-        ((tileset === 'base_light' || tileset === 'base_night') && z <= 17) ||
-        z <= 13,
+    shouldCacheFn,
     
     // don't clear base_light and base_night on bounding box cache clear
     (tileset: string) => tileset !== 'base_light' && tileset !== 'base_night'
