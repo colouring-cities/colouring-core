@@ -5,63 +5,63 @@ import { DataConfig } from "./types";
 const LAYER_QUERIES = {
     base_light: `
         SELECT
-            geometry_id
+            geometry
         FROM
-            buildings`,
+            map_data`,
     base_night: `
         SELECT
-            geometry_id
+            geometry
         FROM
-            buildings`,
+            map_data`,
     number_labels:`
         SELECT
-            geometry_id,
+            geometry,
             location_number
         FROM
-            buildings`,
+            map_data`,
     highlight: `
         SELECT
-            geometry_id
+            geometry
         FROM
-            buildings
+            map_data
         WHERE building_id = !@highlight!`,
     date_year: `
         SELECT
-            geometry_id,
+            geometry,
             date_year
         FROM
-            buildings
+            map_data
         WHERE date_year IS NOT NULL`,
     size_storeys: `
         SELECT
-            geometry_id,
+            geometry,
             (
                 coalesce(size_storeys_attic, 0) +
                 coalesce(size_storeys_core, 0)
             ) AS size_storeys
         FROM
-            buildings
+            map_data
         WHERE
             size_storeys_attic IS NOT NULL OR size_storeys_core IS NOT NULL`,
     size_height: `
         SELECT
-            geometry_id,
+            geometry,
             size_height_apex AS size_height
         FROM
-            buildings
+            map_data
         WHERE
             size_height_apex IS NOT NULL`,
     construction_core_material: `
         SELECT
-            geometry_id,
+            geometry,
             construction_core_material::text AS construction_core_material
         FROM
-            buildings
+            map_data
         WHERE
             construction_core_material IS NOT NULL`,
     location: `
         SELECT
-            geometry_id,
+            geometry,
             (
                 case when location_name IS NULL then 0 else 1 end +
                 case when location_number IS NULL then 0 else 1 end +
@@ -75,18 +75,18 @@ const LAYER_QUERIES = {
                 case when ref_osm_id IS NULL then 0 else 1 end
             ) AS location_info_count
         FROM
-            buildings`,
+            map_data`,
     likes: `
         SELECT
-            geometry_id,
+            geometry,
             likes_total AS likes
         FROM
-            buildings
+            map_data
         WHERE
             likes_total > 0`,
     planning_combined: `
         SELECT
-            geometry_id,
+            geometry,
             (
                 CASE
                     WHEN planning_list_cat = 'Listed Building' and planning_list_grade = 'I' THEN 'Grade I Listed'
@@ -97,45 +97,43 @@ const LAYER_QUERIES = {
                 END
             ) AS listing_type,
             planning_in_conservation_area
-        FROM buildings
+        FROM map_data
         WHERE
             planning_in_conservation_area
             OR planning_in_local_list
             OR planning_list_cat IS NOT NULL`,
     conservation_area: `
         SELECT
-            geometry_id
+            geometry
         FROM
-            buildings
+            map_data
         WHERE
             planning_in_conservation_area = true`,
     sust_dec: `
         SELECT
-            geometry_id,
+            geometry,
             sust_dec::text AS sust_dec
         FROM
-            buildings
+            map_data
         WHERE
             sust_dec IS NOT NULL`,
     building_attachment_form: `
         SELECT
-            geometry_id,
+            geometry,
             building_attachment_form::text AS building_attachment_form
         FROM
-            buildings
+            map_data
         WHERE
             building_attachment_form IS NOT NULL`,
     landuse: `
         SELECT
-            geometry_id,
+            geometry,
             current_landuse_order
         FROM
-            buildings
+            map_data
         WHERE
             current_landuse_order IS NOT NULL`,
 };
-
-const GEOMETRY_FIELD = 'geometry_geom';
 
 function getBuildingLayerNames() {
     return Object.keys(LAYER_QUERIES);
@@ -152,22 +150,9 @@ function getDataConfig(tileset: string): DataConfig {
         throw new Error('Invalid tileset requested');
     }
 
-    const query = `(
-        SELECT
-            d.*,
-            g.geometry_geom
-        FROM (
-            ${table}
-        ) AS d
-        JOIN
-            geometries AS g
-        ON d.geometry_id = g.geometry_id
-    ) AS data
-    `;
-
     return {
-        geometry_field: GEOMETRY_FIELD,
-        table: query
+        geometry_field: 'geometry',
+        table: `(${table}) AS data`
     };
 }
 
