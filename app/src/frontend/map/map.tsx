@@ -162,6 +162,14 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             />
             : null;
 
+        const numbersLayer = <TileLayer
+            key={this.state.theme}
+            url={`/tiles/number_labels/{z}/{x}/{y}{r}.png?rev=${rev}`}
+            zIndex={200}
+            minZoom={17}
+            maxZoom={19}
+        />
+
         const isEdit = ['edit', 'multi-edit'].includes(this.props.mode);
 
         return (
@@ -182,6 +190,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     { boundaryLayer }
                     { dataLayer }
                     { highlightLayer }
+                    { numbersLayer }
                     <ZoomControl position="topright" />
                     <AttributionControl prefix=""/>
                 </Map>

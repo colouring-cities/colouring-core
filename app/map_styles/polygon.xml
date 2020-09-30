@@ -8,13 +8,6 @@
             <MaxScaleDenominator>17000</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
-        <Rule>
-            <TextSymbolizer face-name="DejaVu Sans Condensed Bold"  fill="#000000">
-                [location_number]
-            </TextSymbolizer>
-            <MaxScaleDenominator>5000</MaxScaleDenominator>
-            <MinScaleDenominator>0</MinScaleDenominator>
-        </Rule>
     </Style>
     <Style name="base_night">
         <Rule>
@@ -25,11 +18,19 @@
             <MaxScaleDenominator>17000</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
+    </Style>
+    <Style name="number_labels">
         <Rule>
-            <TextSymbolizer face-name="DejaVu Sans Condensed Bold" fill="#ffffff">
+            <TextSymbolizer
+                face-name="DejaVu Sans Condensed Bold"
+                fill="#eee"
+                size="25"
+                halo-radius="2"
+                halo-fill="#555"
+            >
                 [location_number]
             </TextSymbolizer>
-            <MaxScaleDenominator>5000</MaxScaleDenominator>
+            <MaxScaleDenominator>12500</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
     </Style>

@@ -5,11 +5,15 @@ import { DataConfig } from "./types";
 const LAYER_QUERIES = {
     base_light: `
         SELECT
-            geometry_id,
-            location_number
+            geometry_id
         FROM
             buildings`,
     base_night: `
+        SELECT
+            geometry_id
+        FROM
+            buildings`,
+    number_labels:`
         SELECT
             geometry_id,
             location_number
