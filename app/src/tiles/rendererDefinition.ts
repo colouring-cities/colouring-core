@@ -1,5 +1,5 @@
 import { parseBooleanExact } from '../helpers';
-import { getAllLayerNames, getBuildingLayerNames, getBuildingsDataConfig, getHighlightDataConfig } from "./dataDefinition";
+import { getAllLayerNames, getBuildingLayerNames, getDataConfig, getLayerVariables } from "./dataDefinition";
 import { createBlankTile } from "./renderers/createBlankTile";
 import { getTileWithCaching } from "./renderers/getTileWithCaching";
 import { renderDataSourceTile } from "./renderers/renderDataSourceTile";
@@ -56,8 +56,7 @@ const tileCache = new TileCache(
     (tileset: string) => tileset !== 'base_light' && tileset !== 'base_night'
 );
 
-const renderBuildingTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getBuildingsDataConfig);
-const renderHighlightTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getHighlightDataConfig);
+const renderBuildingTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getDataConfig, getLayerVariables);
 
 function cacheOrCreateBuildingTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
     return getTileWithCaching(tileParams, dataParams, tileCache, stitchOrRenderBuildingTile);
@@ -78,7 +77,7 @@ function renderTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
     }
 
     if (tileParams.tileset === 'highlight') {
-        return renderHighlightTile(tileParams, dataParams);
+        return renderBuildingTile(tileParams, dataParams);
     }
 
     return cacheOrCreateBuildingTile(tileParams, dataParams);

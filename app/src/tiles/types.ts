@@ -38,7 +38,8 @@ interface DataConfig {
     geometry_field: string;
 }
 
-type TableDefinitionFunction = (tileset: string, dataParams: any) => DataConfig;
+type TableDefinitionFunction = (tileset: string) => DataConfig;
+type VariablesFunction = (tileset: string, dataParams: any) => object;
 
 type Tile = Image | Sharp;
 type RendererFunction = (tileParams: TileParams, dataParams: any) => Promise<Tile>;
@@ -54,5 +55,6 @@ export {
     Tile,
     RendererFunction,
     DataConfig, 
-    TableDefinitionFunction
+    TableDefinitionFunction,
+    VariablesFunction
 };

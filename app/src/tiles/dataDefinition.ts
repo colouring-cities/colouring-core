@@ -2,7 +2,7 @@ import { strictParseInt } from "../parse";
 
 import { DataConfig } from "./types";
 
-const BUILDING_LAYER_DEFINITIONS = {
+const LAYER_QUERIES = {
     base_light: `
         SELECT
             geometry_id,
@@ -15,6 +15,12 @@ const BUILDING_LAYER_DEFINITIONS = {
             location_number
         FROM
             buildings`,
+    highlight: `
+        SELECT
+            geometry_id
+        FROM
+            buildings
+        WHERE building_id = !@highlight!`,
     date_year: `
         SELECT
             geometry_id,
@@ -128,15 +134,15 @@ const BUILDING_LAYER_DEFINITIONS = {
 const GEOMETRY_FIELD = 'geometry_geom';
 
 function getBuildingLayerNames() {
-    return Object.keys(BUILDING_LAYER_DEFINITIONS);
+    return Object.keys(LAYER_QUERIES);
 }
 
 function getAllLayerNames() {
     return ['highlight', ...getBuildingLayerNames()];
 }
 
-function getBuildingsDataConfig(tileset: string, dataParams: any): DataConfig {
-    const table = BUILDING_LAYER_DEFINITIONS[tileset];
+function getDataConfig(tileset: string): DataConfig {
+    const table = LAYER_QUERIES[tileset];
 
     if(table == undefined) {
         throw new Error('Invalid tileset requested');
@@ -161,33 +167,29 @@ function getBuildingsDataConfig(tileset: string, dataParams: any): DataConfig {
     };
 }
 
-function getHighlightDataConfig(tileset: string, dataParams: any): DataConfig {
-    let { highlight, base } = dataParams;
+function getLayerVariables(tileset: string, dataParams: any): object {
+    if(tileset == 'highlight') {
+        let { highlight, base } = dataParams;
 
-    highlight = strictParseInt(highlight);
-    base = base || 'default';
+        highlight = strictParseInt(highlight);
+        base = base || 'default';
 
-    if(isNaN(highlight) || base.match(/^\w+$/) == undefined) {
-        throw new Error('Bad parameters for highlight layer');
+        if(isNaN(highlight) || base.match(/^\w+$/) == undefined) {
+            throw new Error('Bad parameters for highlight layer');
+        }
+
+        return {
+            highlight,
+            base_data_layer: base
+        };
     }
 
-    return {
-        geometry_field: GEOMETRY_FIELD,
-        table: `(
-            SELECT
-                g.geometry_geom,
-                '${base}' AS base_layer
-            FROM
-                geometries AS g
-            WHERE
-                g.geometry_id = ${highlight}
-        ) AS highlight`
-    };
+    return {};
 }
 
 export {
     getBuildingLayerNames,
     getAllLayerNames,
-    getBuildingsDataConfig,
-    getHighlightDataConfig
+    getDataConfig,
+    getLayerVariables
 };
