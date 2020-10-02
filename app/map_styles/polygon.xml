@@ -30,7 +30,7 @@
             >
                 [location_number]
             </TextSymbolizer>
-            <MaxScaleDenominator>12500</MaxScaleDenominator>
+            <MaxScaleDenominator>5000</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
     </Style>
