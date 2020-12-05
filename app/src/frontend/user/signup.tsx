@@ -147,6 +147,9 @@ class SignUp extends Component<SignUpProps, SignUpState> {
                         <div className="buttons-container with-space">
                             <input type="submit" value="Sign Up" className="btn btn-primary" />
                         </div>
+                        <InfoBox msg="">
+                            Please also read our <a href="https://www.pages.colouring.london/data-ethics">data ethics policy</a> before using or sharing our data
+                        </InfoBox>
 
                         Do you already have an account?
 

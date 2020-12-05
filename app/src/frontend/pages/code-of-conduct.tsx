@@ -21,7 +21,7 @@ const CodeOfConductPage = () => (
         </p>
         <h2 className="h3">Our Standards</h2>
         <p>
-        Examples of behavior that contributes to creating a positive environment
+        Examples of behaviour that contributes to creating a positive environment
         include:
         </p>
         <ul>
@@ -33,7 +33,7 @@ const CodeOfConductPage = () => (
         </ul>
 
         <p>
-        Examples of unacceptable behavior by participants include:
+        Examples of unacceptable behaviour by participants include:
         </p>
 
         <ul>
@@ -49,15 +49,15 @@ const CodeOfConductPage = () => (
         <h2 className="h3">Our Responsibilities</h2>
         <p>
         Project maintainers are responsible for clarifying the standards of acceptable
-        behavior and are expected to take appropriate and fair corrective action in
-        response to any instances of unacceptable behavior.
+        behaviour and are expected to take appropriate and fair corrective action in
+        response to any instances of unacceptable behaviour.
         </p>
 
         <p>
         Project maintainers have the right and responsibility to remove, edit, or
         reject comments, commits, code, wiki edits, issues, and other contributions
         that are not aligned to this Code of Conduct, or to ban temporarily or
-        permanently any contributor for other behaviors that they deem inappropriate,
+        permanently any contributor for other behaviours that they deem inappropriate,
         threatening, offensive, or harmful.
         </p>
 
@@ -73,7 +73,7 @@ const CodeOfConductPage = () => (
 
         <h2 className="h3">Enforcement</h2>
         <p>
-        Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by
+        Instances of abusive, harassing, or otherwise unacceptable behaviour may be reported by
         contacting the project team at <a
         href="mailto:team@colouring.london">team@colouring.london</a>. All complaints will
         be reviewed and investigated and will result in a response that is deemed necessary and

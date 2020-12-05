@@ -4,3 +4,19 @@
 .welcome.section-body {
     padding-bottom: 0;
 }
+
+.image-row {
+    margin: 1em 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-grow: 1;
+    height: 4em;
+}
+
+.image-row img {
+    margin: 0 1em;
+    max-height: 100%;
+    max-width: 100%;
+    align-self: flex-start;
+}
