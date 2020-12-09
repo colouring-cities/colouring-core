@@ -27,7 +27,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             building_id={props.building_id}
         />
         <Category
-            title="Original Use"
+            title="Type"
             slug="type"
             help="https://pages.colouring.london/buildingtypology"
             inactive={false}
