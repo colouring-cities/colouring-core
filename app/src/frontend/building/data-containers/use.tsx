@@ -14,7 +14,7 @@ import Verification from '../data-components/verification';
  */
 const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        <InfoBox msg="93% of properties in UK are dwellings so we have set this as the default colour. Can you help us fix this by colouring in all non-residential and mixed use buildings?"></InfoBox>
+        <InfoBox msg="93% of properties in UK are dwellings so we have set this as the default colour. Can you help us colour-in all non-residential and mixed use buildings, and verify residential buildings too?"></InfoBox>
         <MultiDataEntry
             title={dataFields.current_landuse_group.title}
             slug="current_landuse_group"
