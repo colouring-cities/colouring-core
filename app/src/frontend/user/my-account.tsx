@@ -98,7 +98,7 @@ class MyAccountPage extends Component<MyAccountPageProps, MyAccountPageState> {
 
                         Colouring London is under active development. Please <a href="https://discuss.colouring.london/">discuss
                         suggestions for improvements</a> and <a
-                                href="https://github.com/tomalrussell/colouring-london/issues">
+                                href="https://github.com/colouring-london/colouring-london/issues">
                         report issues or problems</a>.
 
                         </p>
@@ -137,7 +137,7 @@ class MyAccountPage extends Component<MyAccountPageProps, MyAccountPageState> {
                         </form>
 
                         <h3 className="h3">Open Source Code</h3>
-                        Colouring London site code is developed at <a href="http://github.com/tomalrussell/colouring-london/">colouring-london</a> on Github
+                        Colouring London site code is developed at <a href="http://github.com/colouring-london/colouring-london/">colouring-london</a> on Github
 
                         <hr />
 

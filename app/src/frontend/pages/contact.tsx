@@ -13,7 +13,7 @@ const ContactPage = () => (
 
             <p> You can send us comments or ask questions on our discussion threads at <a href="https://discuss.colouring.london/">https://discuss.colouring.london/</a>.</p>
 
-            <p> To view our technical site and platform code please visit Github at: <a href="https://github.com/tomalrussell/colouring-london">https://github.com/tomalrussell/colouring-london</a>.</p>
+            <p> To view our technical site and platform code please visit Github at: <a href="https://github.com/colouring-london/colouring-london">https://github.com/colouring-london/colouring-london</a>.</p>
 
             <p>For press enquiries please contact the Bartlett Press and Communications team at <a href="mailto:architecture@ucl.ac.uk">architecture@ucl.ac.uk</a></p>
 
