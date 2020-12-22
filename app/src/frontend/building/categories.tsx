@@ -1,5 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+
+import { CategoryLink } from './category-link';
+import { ListWrapper } from '../components/list-wrapper';
 
 import './categories.css';
 
@@ -9,8 +11,8 @@ interface CategoriesProps {
 }
 
 const Categories: React.FC<CategoriesProps> = (props) => (
-    <ol className="data-category-list">
-        <Category
+    <ListWrapper className='data-category-list'>
+        <CategoryLink
             title="Location"
             slug="location"
             help="https://pages.colouring.london/location"
@@ -18,7 +20,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             mode={props.mode}
             building_id={props.building_id}
         />
-        <Category
+        <CategoryLink
             title="Current Use"
             slug="use"
             help="https://pages.colouring.london/use"
@@ -26,7 +28,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             mode={props.mode}
             building_id={props.building_id}
         />
-        <Category
+        <CategoryLink
             title="Type"
             slug="type"
             help="https://pages.colouring.london/buildingtypology"
@@ -34,7 +36,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             mode={props.mode}
             building_id={props.building_id}
         />
-        <Category
+        <CategoryLink
             title="Age"
             slug="age"
             help="https://pages.colouring.london/age"
@@ -42,7 +44,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             mode={props.mode}
             building_id={props.building_id}
         />
-        <Category
+        <CategoryLink
             title="Size &amp; Shape"
             slug="size"
             help="https://pages.colouring.london/shapeandsize"
@@ -50,7 +52,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             mode={props.mode}
             building_id={props.building_id}
         />
-        <Category
+        <CategoryLink
             title="Construction"
             slug="construction"
             help="https://pages.colouring.london/construction"
@@ -58,7 +60,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             mode={props.mode}
             building_id={props.building_id}
         />
-        <Category
+        <CategoryLink
             title="Streetscape"
             slug="streetscape"
             help="https://pages.colouring.london/greenery"
@@ -66,7 +68,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             mode={props.mode}
             building_id={props.building_id}
         />
-        <Category
+        <CategoryLink
             title="Team"
             slug="team"
             help="https://pages.colouring.london/team"
@@ -74,7 +76,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             mode={props.mode}
             building_id={props.building_id}
         />
-        <Category
+        <CategoryLink
             title="Planning"
             slug="planning"
             help="https://pages.colouring.london/planning"
@@ -82,7 +84,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             mode={props.mode}
             building_id={props.building_id}
         />
-        <Category
+        <CategoryLink
             title="Sustainability"
             slug="sustainability"
             help="https://pages.colouring.london/sustainability"
@@ -90,7 +92,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             mode={props.mode}
             building_id={props.building_id}
         />
-        <Category
+        <CategoryLink
             title="Dynamics"
             slug="dynamics"
             help="https://pages.colouring.london/dynamics"
@@ -98,7 +100,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             mode={props.mode}
             building_id={props.building_id}
         />
-        <Category
+        <CategoryLink
             title="Community"
             slug="community"
             help="https://pages.colouring.london/community"
@@ -106,38 +108,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             mode={props.mode}
             building_id={props.building_id}
         />
-    </ol>
+    </ListWrapper>
 );
-
-interface CategoryProps {
-    mode: 'view' | 'edit' | 'multi-edit';
-    building_id?: number;
-    slug: string;
-    title: string;
-    help: string;
-    inactive: boolean;
-}
-
-const Category: React.FC<CategoryProps> = (props) => {
-    let categoryLink = `/${props.mode}/${props.slug}`;
-    if (props.building_id != undefined) categoryLink += `/${props.building_id}`;
-
-    return (
-    <li className={`category-block ${props.slug} background-${props.slug}`}>
-        <NavLink
-            className="category-link"
-            to={categoryLink}
-            title={
-                (props.inactive)?
-                    'Coming soon… Click more info for details.'
-                    : 'View/Edit Map'
-            }>
-                <div className="category-title-container">
-                    <h3 className="category">{props.title}</h3>
-                </div>
-        </NavLink>
-    </li>
-    );
-};
 
 export default Categories;

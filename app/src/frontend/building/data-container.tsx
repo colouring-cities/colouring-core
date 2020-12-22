@@ -262,7 +262,6 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                     className="data-section">
                 <ContainerHeader
                     cat={this.props.cat}
-                    backLink={headerBackLink}
                     title={this.props.title}
                 >
                 {

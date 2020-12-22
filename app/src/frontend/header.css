@@ -8,11 +8,16 @@
     left: 0;
     height: 76px;
     width: 100%;
+    min-width: 330px; /* to avoid logo line wrap*/
     text-decoration: none;
 }
 @media (min-width: 990px){
     .main-header {
-        width: 480px; /* to match .info-container menu width */
+        width: 470px;
+    }
+
+    .nav-header {
+        border-right: 1px solid #000;
     }
 }
 .main-header.navbar {
@@ -25,7 +30,6 @@
     width: 100%;
     padding: 12px;
     background: #fff;
-    border-right: 1px solid #000;
 }
 .nav-header a {
     padding: 0;
@@ -51,7 +55,11 @@
     transition: transform 0.3s;
     transform: translateY(0);
     background: #fff;
-    border-right: 1px solid #000;
+}
+@media (min-width: 990px){
+    .navbar-collapse {
+        border-right: 1px solid #000;
+    }
 }
 .main-header .navbar-collapse > ul:last-child {
     padding-bottom: 5rem;

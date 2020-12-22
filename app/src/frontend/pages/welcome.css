@@ -9,9 +9,9 @@
     margin: 1em 1em;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     flex-grow: 1;
-    height: 4em;
 }
 
 .image-row img {
@@ -19,4 +19,12 @@
     max-height: 100%;
     max-width: 100%;
     align-self: flex-start;
+}
+
+.cl-logo {
+    height: 4em;
+}
+
+.turing-logo {
+    height: 4em;
 }

@@ -6,160 +6,94 @@
     top: 75px;
     left: 0;
     bottom: 0;
-    width: 95%;
-    width: calc(100% - 40px);
-    border-right: 1px solid #000;
     z-index: 1001;
     transition: transform 0.3s;
     transform: translateX(0);
+    
+    width: 65%;
+    min-width: 280px;
+    max-width: 95%;
+    max-width: calc(100vw - 40px);
+
+    border-right: 1px solid #000;
 }
+
 .info-container.offscreen {
     transform: translateX(-100%);
 }
+
 .info-container-collapse {
     position: absolute;
-    right: -32px;
+    left: 100%;
     top: 2rem;
+
+    width: 2rem;
     padding: 2.5rem 0rem;
+    
     border-radius: 0 .25rem .25rem 0;
 }
-@media (min-width: 990px){
+
+@media (min-width: 510px) {
     .info-container {
-        width: 480px; /* to match .main-header menu width */
+        max-width: 470px;
     }
+}
+@media (min-width: 734px){
+    .info-container {
+        width: 470px;
+    }
+}
+
+@media (min-width: 990px){
     .info-container.offscreen {
         transform: translateX(0);
     }
+
     .info-container-collapse {
         display: none;
     }
 }
+
 .info-container-inner {
-    overflow-y: auto;
+    width: 100%;
     height: 100%;
-    padding: 0 0 2em;
+    overflow-y: scroll;
+
     background: #fff;
 }
 
-/**
- * Data section headers
- */
-.section-header {
-    display: block;
-    position: relative;
-    clear: both;
-    text-decoration: none;
-    color: #222;
-    padding: 0.75rem 0.25rem 0.5rem 0.75rem;
-    z-index: 1000;
-    position: sticky;
-    top: 0;
-}
-.section-header h2,
-.section-header .icon-buttons {
-    display: inline-block;
-}
-.section-header .h2 {
-    font-size: 1.5rem;
-    margin: 0.25rem 0;
-}
-.section-header .icon-buttons {
-    position: absolute;
-    right: 0;
-    top: 7px;
-    padding: 0.7rem 0.5rem 0.5rem 0;
-}
-.icon-buttons .icon-button {
-    margin-left: 7px;
-}
 
 /**
  * Icon buttons
  */
-.icon-button {
+.icon-button {    
+    padding: 0;
+
     display: inline-block;
     background-color: transparent;
-    font-size: 0.8333rem;
 
     outline: none;
     border: none;
 
     color: #222;
-    vertical-align: top;
 }
 .icon-button:hover {
     color: #222;
     text-decoration: none;
     cursor: pointer;
 }
-.icon-button.tooltip-hint {
-    padding: 0;
-}
+
 .icon-button svg {
+    margin-left: 0.3em;
     background-color: transparent;
     transition: background-color color 0.2s;
-    display: inline-block;
+    font-size: 1.2em;
 
     color: #222;
-    margin-top: 2px;
-    width: 30px;
-    height: 30px;
-    padding: 6px;
-    border-radius: 15px;
-    margin: 0 0.05rem;
     display: inline-block;
     vertical-align: middle;
 }
-.svg-inline--fa.fa-w-11,
-.svg-inline--fa.fa-w-16,
-.svg-inline--fa.fa-w-18,
-.svg-inline--fa.fa-w-8 {
-    width: 30px;
-}
-.icon-button.edit:active svg,
-.icon-button.edit:hover svg,
-.icon-button.view:active svg,
-.icon-button.view:hover svg {
-    color: rgb(11, 225, 225);
-}
-.icon-button.help,
-.icon-button.copy,
-.icon-button.history {
-    margin-top: 4px;
-}
-.data-section label .icon-buttons .icon-button.copy {
-    margin-top: 0px;
-}
-.icon-button.copy:hover,
-.icon-button.help:hover {
-    color: rgb(0, 81, 255)
-}
-.icon-button.tooltip-hint.active svg,
-.icon-button.tooltip-hint:hover svg {
-    color: rgb(255, 11, 245);
-}
-.icon-button.close-edit svg {
-    margin-top: -1px;
-}
-.icon-button.close-edit:hover svg {
-    color: rgb(255, 72, 11)
-}
-.icon-button.save:hover svg {
-    color: rgb(11, 225, 72);
-}
-.data-title .icon-buttons {
-    float: right;
-}
 
-/* Back button */
-.icon-button.back,
-.icon-button.back:hover {
-    padding: 5px 1px;
-    background-color: transparent;
-}
-.icon-button.back:hover svg {
-    background-color: transparent;
-}
 
 /**
  * Data list sections
@@ -203,8 +137,6 @@
 }
 .data-list dt,
 .data-section label {
-    display: block;
-    margin: 0.5em 0 0;
     font-size: 0.8333rem;
     font-weight: normal;
     color: #555;

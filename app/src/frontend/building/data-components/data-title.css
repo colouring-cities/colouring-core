@@ -1,0 +1,43 @@
+.data-title {
+    margin-top: 1em;
+    margin-bottom: 0.2em;
+}
+
+.data-title * {
+    font-size: 0.8333rem;
+}
+
+.data-title-text {
+    float: left;
+}
+
+.data-title-actions {
+    float: right;
+}
+
+.data-title:after {
+    content:"";
+    display: table;
+    clear: both;
+}
+
+
+.data-title label {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.data-title-actions .icon-button {
+    font-size: 0.8333rem;
+    margin-left: 0.7em;
+    vertical-align: baseline;
+}
+
+.data-title-actions .icon-button input[type=checkbox] {
+    margin: 0;
+    margin-left: 0.3em;
+    padding: 0;
+    vertical-align: middle;
+}
