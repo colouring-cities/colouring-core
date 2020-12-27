@@ -6,9 +6,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 76px;
+    height: 76px; /* sync with map-container positioning */
     width: 100%;
-    min-width: 330px; /* to avoid logo line wrap*/
+    min-width: 320px; /* to avoid logo line wrap*/
     text-decoration: none;
 }
 @media (min-width: 990px){

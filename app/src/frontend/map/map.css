@@ -1,12 +1,14 @@
 .map-container {
     position: absolute;
-    top: 0;
+    top: 76px; /* sync with header positioning */
     bottom: 0;
     left: 0;
     right: 0;
+    min-width: 320px;
 }
 @media (min-width: 990px) {
     .map-container {
+        top: 0;
         left: 470px;
     }
 }
@@ -32,6 +34,7 @@
     left: 0.5rem;
     z-index: 1000;
     padding: 0.5rem 0.75rem;
+    width: 250px;
     background: #fff;
     border: 1px solid #fff;
     border-radius: 4px;

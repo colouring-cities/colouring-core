@@ -54,11 +54,14 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
 
     // Update search term
     handleChange(e) {
+        const targetValue = e.target.value;
+
         this.setState({
-            q: e.target.value
+            q: targetValue
         });
-        // If the ‘clear’ icon has been clicked, clear results list as well
-        if(e.target.value === '') {
+
+        // Clear results if the query is changed sufficiently or deleted
+        if(targetValue === '' || !this.state.q.startsWith(targetValue) ) {
             this.clearResults();
         }
     }
@@ -137,16 +140,20 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
     // On a real mobile device onResize() gets called when the virtual keyboard pops up (e.g. when entering search text)
     // so be careful what states are changed in this method (i.e. don't collapse the search box here)
     onResize(e) {
-        this.setState({smallScreen: (e.target.innerWidth < 768)});
+        this.setState({smallScreen: (e.target.innerWidth < 990)});
     }
 
     render() {
         // if the current state is collapsed (and a mobile device) just render the icon
         if(this.state.collapsedSearch && this.state.smallScreen){
             return(
-               <div className="collapse-btn" onClick={this.expandSearch}>
-		    <SearchIcon />
-		</div>
+                <div className="search-box">
+                    <div className="search-box-pane">
+                        <div className="collapse-btn active" onClick={this.expandSearch}>
+                            <SearchIcon />
+                        </div>
+                    </div>
+                </div>
             );
         }
 
@@ -177,22 +184,25 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
             : null;
         return (
             <div className="search-box" onKeyDown={this.handleKeyPress}>
-                <form onSubmit={this.search} className="form-inline">
-                    <div onClick={this.state.smallScreen ? this.expandSearch : null}>
+                <div className="search-box-pane">
+                    <div className={`collapse-btn ${this.state.smallScreen ? 'active' : ''}`} onClick={this.state.smallScreen ? this.expandSearch : null}>
                         <SearchIcon/>
                     </div>
-                    <input
-                        className="form-control"
-                        type="search"
-                        id="search-box-q"
-                        name="q"
-                        value={this.state.q}
-                        placeholder="Search for a postcode"
-                        aria-label="Search for a postcode"
-                        onChange={this.handleChange}
-                    />
-		    <button className="btn btn-outline-dark" type="submit">Search</button>
-                </form>
+                    <form onSubmit={this.search} className="form-inline d-flex flex-nowrap">
+                        <input
+                            className="form-control"
+                            type="search"
+                            id="search-box-q"
+                            name="q"
+                            value={this.state.q}
+                            placeholder="Type a postcode..."
+                            aria-label="Type a postcode..."
+                            onChange={this.handleChange}
+                            maxLength={8}
+                        />
+                        <button className="search-btn btn btn-outline-dark" type="submit">Search</button>
+                    </form>
+                </div>
                 { resultsList }
             </div>
         );
