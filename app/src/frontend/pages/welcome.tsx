@@ -32,8 +32,8 @@ const Welcome = () => (
             Start Colouring Here!
         </Link>
         <div className="image-row">
-            <img src="images/logo-cc.jpg" alt="Colouring Cities Research Programme"></img>
-            <img src="images/logo-turing.jpg" alt="Alan Turing Institute"></img>
+            <img className="cl-logo" src="images/logo-cc.jpg" alt="Colouring Cities Research Programme"></img>
+            <img className="turing-logo" src="images/logo-turing.jpg" alt="Alan Turing Institute"></img>
         </div>
         <div className="image-row">
             <img src="images/supporter-logos.png" alt="Colouring London collaborating organisations: The Bartlett UCL, Ordnance Survey, Historic England, Greater London Authority" />

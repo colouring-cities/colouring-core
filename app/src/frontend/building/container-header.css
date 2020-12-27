@@ -1,0 +1,53 @@
+/**
+ * Data section headers
+ */
+ .section-header {
+    padding: 0 0.5em;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    text-decoration: none;
+    color: #222;
+    z-index: 1000;
+    position: sticky;
+    top: 0;
+}
+
+.section-header .h2 {
+    display: inline-block;
+    flex-basis: 150px;
+    flex-shrink: 0;
+    flex-grow: 1;
+    margin: 0.75rem 0 0.5em 0.1em;
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+.section-header .h2 a.icon-button.back {
+    line-height: 1em;
+    vertical-align: top;
+    margin-right: 0.3em;
+}
+
+.section-header .section-header-actions {
+    display: inline-block;
+    flex-basis: 200px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    justify-content: flex-end;
+    margin-left: -5px;
+}
+.section-header-actions .icon-button {
+    display: inline-block;
+    font-size: 0.8333rem;
+    margin-left: 10px;
+}
+
+.section-header-actions .icon-button:hover svg,
+.section-header-actions .icon-button:active svg {
+    color: rgb(11, 225, 225);
+}
