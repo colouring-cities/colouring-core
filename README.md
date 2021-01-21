@@ -46,8 +46,8 @@ TILECACHE_PATH=/path/to/tilecache/directory \
 
 ## Acknowledgements
 
-Colouring London is being designed and built by the Centre for Advanced Spatial
-Analysis (CASA), University College London and funded by Historic England.
+Colouring London was set up at the Centre for Advanced Spatial
+Analysis (CASA), University College London and is now based at The Alan Turing Institute.
 Ordnance Survey is providing building footprints required to collect the data,
 facilitated by the Greater London Authority (GLA), and giving access to its API
 and technical support.
