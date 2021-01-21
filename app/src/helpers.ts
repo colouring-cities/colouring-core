@@ -58,3 +58,14 @@ export function incBigInt(bigStr: string): string {
 export function decBigInt(bigStr: string): string {
     return bigStr == undefined ? bigStr : String(BigInt(bigStr) - BigInt(1));
 }
+
+
+export function pickFields(obj: any, fieldWhitelist: Set<string>) {
+    const subObject = {};
+    for (let [key, value] of Object.entries(obj)) {
+        if(fieldWhitelist.has(key)) {
+            subObject[key] = value;
+        }
+    }
+    return subObject;
+}
