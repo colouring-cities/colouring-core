@@ -1,11 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import './header.css';
 
 import { Logo } from './components/logo';
 import { User } from './models/user';
-import Categories from './building/categories';
 
 
 interface HeaderProps {
@@ -13,171 +12,151 @@ interface HeaderProps {
     animateLogo: boolean;
 }
 
-interface HeaderState {
-    collapseMenu: boolean;
-}
-
 /**
  * Render the main header using a responsive design
  */
-class Header extends React.Component<HeaderProps, HeaderState> {
-    constructor(props) {
-        super(props);
-        this.state = {collapseMenu: true};
-        this.handleClick = this.handleClick.bind(this);
-        this.handleNavigate = this.handleNavigate.bind(this);
-    }
 
-    handleClick() {
-        this.setState(state => ({
-            collapseMenu: !state.collapseMenu
-        }));
-    }
+ const Header : React.FC<HeaderProps> = (props) => {
+    const [collapseMenu, setCollapseMenu] = useState(true);
 
-    handleNavigate() {
-        this.setState({
-            collapseMenu: true
-        });
-    }
+    const handleClick = () => setCollapseMenu(!collapseMenu);
+    const handleNavigate = () => setCollapseMenu(true);
 
-    render() {
-        return (
-            <header className="main-header navbar navbar-light">
-                <div className="nav-header">
-                    <NavLink to="/">
-                        <Logo variant={this.props.animateLogo ? 'animated' : 'default'}/>
+
+    return (
+    <header className="main-header navbar navbar-light">
+        <div className="nav-header">
+            <NavLink to="/">
+                <Logo variant={props.animateLogo ? 'animated' : 'default'}/>
+            </NavLink>
+            <button className="navbar-toggler" type="button"
+                onClick={handleClick} aria-expanded={!collapseMenu} aria-label="Toggle navigation">
+                Menu&nbsp;
+                {
+                    collapseMenu ?
+                        <span className="navbar-toggler-icon"></span>
+                        : <span className="close">&times;</span>
+                }
+            </button>
+        </div>
+        <nav className={collapseMenu ? 'collapse navbar-collapse' : 'navbar-collapse'}>
+            <ul className="navbar-nav flex-column">
+                <li className="nav-item">
+                    <NavLink to="/view/categories" className="nav-link" onClick={handleNavigate}>
+                        View/Edit Maps
                     </NavLink>
-                    <button className="navbar-toggler" type="button"
-                        onClick={this.handleClick} aria-expanded={!this.state.collapseMenu} aria-label="Toggle navigation">
-                        Menu&nbsp;
-                        {
-                            this.state.collapseMenu ?
-                                <span className="navbar-toggler-icon"></span>
-                                : <span className="close">&times;</span>
-                        }
-                    </button>
-                </div>
-                <nav className={this.state.collapseMenu ? 'collapse navbar-collapse' : 'navbar-collapse'}>
-                    <Categories mode='view' />
-                    <hr />
-                    <ul className="navbar-nav flex-column">
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/data-extracts.html" className="nav-link" onClick={handleNavigate}>
+                        Downloads
+                    </NavLink>
+                </li>
+                {/*
+                <li className="nav-item">
+                    <NavLink to="/showcase.html" className="nav-link" onClick={this.handleNavigate}>
+                        Showcase
+                    </NavLink>
+                </li>
+                */}
+                <li className="nav-item">
+                    <NavLink to="/leaderboard.html" className="nav-link" onClick={handleNavigate}>
+                        Leaderboard
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="https://discuss.colouring.london" target="_blank">
+                        Discuss
+                    </a>
+                </li>
+                {
+                    props.user?
+                    (
                         <li className="nav-item">
-                            <NavLink to="/view/categories" className="nav-link" onClick={this.handleNavigate}>
-                                View/Edit Maps
+                            <NavLink to="/my-account.html" className="nav-link" onClick={handleNavigate}>
+                                Account <span className="shorten-username">({props.user.username})</span>
                             </NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink to="/data-extracts.html" className="nav-link" onClick={this.handleNavigate}>
-                                Downloads
-                            </NavLink>
-                        </li>
-                        {/*
-                        <li className="nav-item">
-                            <NavLink to="/showcase.html" className="nav-link" onClick={this.handleNavigate}>
-                                Showcase
-                            </NavLink>
-                        </li>
-                        */}
-                        <li className="nav-item">
-                            <NavLink to="/leaderboard.html" className="nav-link" onClick={this.handleNavigate}>
-                                Leaderboard
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="https://discuss.colouring.london">
-                                Discuss
-                            </a>
-                        </li>
-                        {
-                            this.props.user?
-                            (
-                                <li className="nav-item">
-                                    <NavLink to="/my-account.html" className="nav-link" onClick={this.handleNavigate}>
-                                        Account <span className="shorten-username">({this.props.user.username})</span>
-                                    </NavLink>
-                                </li>
-                            ):
-                            (
-                                <Fragment>
-                                    <li className="nav-item">
-                                        <NavLink to="/login.html" className="nav-link" onClick={this.handleNavigate}>
-                                            Log in
-                                        </NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink to="/sign-up.html" className="nav-link" onClick={this.handleNavigate}>
-                                            Sign up
-                                        </NavLink>
-                                    </li>
-                                </Fragment>
-                            )
-                        }
-                    </ul>
-                    <hr />
-                    <ul className="navbar-nav flex-column">
-                        <li className="nav-item">
-                            <a className="nav-link" href="https://pages.colouring.london">
-                                About
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="https://pages.colouring.london/buildingcategories">
-                                Data Categories
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="https://pages.colouring.london/whoisinvolved">
-                                Who&rsquo;s Involved?
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="https://pages.colouring.london/data-ethics">
-                                Data Ethics
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="https://pages.colouring.london/colouring-cities">
-                                Colouring Cities Research Programme
-                            </a>
-                        </li>
-                    </ul>
-                    <hr />
-                    <ul className="navbar-nav flex-column">
-                        <li className="nav-item">
-                            <NavLink to="/contact.html" className="nav-link" onClick={this.handleNavigate}>
-                                Contact
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/privacy-policy.html" className="nav-link" onClick={this.handleNavigate}>
-                                Privacy Policy
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/contributor-agreement.html" className="nav-link" onClick={this.handleNavigate}>
-                                Contributor Agreement
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/code-of-conduct.html" className="nav-link" onClick={this.handleNavigate}>
-                                Code of Conduct
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/data-accuracy.html" className="nav-link" onClick={this.handleNavigate}>
-                                Data Accuracy Agreement
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/ordnance-survey-uprn.html" className="nav-link" onClick={this.handleNavigate}>
-                                Ordnance Survey terms of UPRN usage
-                            </NavLink>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
-        );
-    }
+                    ):
+                    (
+                        <Fragment>
+                            <li className="nav-item">
+                                <NavLink to="/login.html" className="nav-link" onClick={handleNavigate}>
+                                    Log in
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink to="/sign-up.html" className="nav-link" onClick={handleNavigate}>
+                                    Sign up
+                                </NavLink>
+                            </li>
+                        </Fragment>
+                    )
+                }
+            </ul>
+            <hr />
+            <ul className="navbar-nav flex-column">
+                <li className="nav-item">
+                    <a className="nav-link" href="https://pages.colouring.london" target="_blank">
+                        About
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="https://pages.colouring.london/buildingcategories" target="_blank">
+                        Data Categories
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="https://pages.colouring.london/whoisinvolved" target="_blank">
+                        Who&rsquo;s Involved?
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="https://pages.colouring.london/data-ethics" target="_blank">
+                        Data Ethics
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="https://pages.colouring.london/colouring-cities" target="_blank">
+                        Colouring Cities Research Programme
+                    </a>
+                </li>
+            </ul>
+            <hr />
+            <ul className="navbar-nav flex-column">
+                <li className="nav-item">
+                    <NavLink to="/contact.html" className="nav-link" onClick={handleNavigate}>
+                        Contact
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/privacy-policy.html" className="nav-link" onClick={handleNavigate}>
+                        Privacy Policy
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/contributor-agreement.html" className="nav-link" onClick={handleNavigate}>
+                        Contributor Agreement
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/code-of-conduct.html" className="nav-link" onClick={handleNavigate}>
+                        Code of Conduct
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/data-accuracy.html" className="nav-link" onClick={handleNavigate}>
+                        Data Accuracy Agreement
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/ordnance-survey-uprn.html" className="nav-link" onClick={handleNavigate}>
+                        Ordnance Survey terms of UPRN usage
+                    </NavLink>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    );
 }
 
 export default Header;
