@@ -4,7 +4,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import Header from './header';
+import { Header } from './header';
 import MapApp from './map-app';
 import { Building } from './models/building';
 import { User } from './models/user';
