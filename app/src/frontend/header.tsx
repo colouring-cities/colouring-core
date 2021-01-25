@@ -1,36 +1,139 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import './header.css';
 
 import { Logo } from './components/logo';
+import { WithSeparator } from './components/with-separator';
 import { User } from './models/user';
 
 
-interface HeaderProps {
-    user: User;
-    animateLogo: boolean;
+interface MenuLink {
+    to: string;
+    text: string;
+    external?: boolean;
 }
 
-/**
- * Render the main header using a responsive design
- */
 
- const Header : React.FC<HeaderProps> = (props) => {
+function getCurrentMenuLinks(username: string): MenuLink[][] {
+    return [
+        [
+            {
+                to: "/view/categories",
+                text: "View/Edit Maps"
+            },
+            {
+                to: "/data-extracts.html",
+                text: "Downloads"
+            },
+            // {
+            //     to: "/showcase.html",
+            //     text: "Showcase"
+            // },
+            {
+                to: "/leaderboard.html",
+                text: "Leaderboard"
+            },
+            {
+                to: "https://discuss.colouring.london",
+                text: "Discuss",
+                external: true
+            },
+            ...(
+                username != undefined ?
+                    [
+                        {
+                            to: "/my-account.html",
+                            text: `Account (${username})`
+                        }
+                    ] :
+                    [
+                        {
+                            to: "/login.html",
+                            text: "Log in"
+                        },
+                        {
+                            to: "/sign-up.html",
+                            text: "Sign up"
+                        }
+                    ]
+            )
+        ],
+        [
+            {
+                to: "https://pages.colouring.london",
+                text: "About",
+                external: true
+            },
+            {
+                to: "https://pages.colouring.london/buildingcategories",
+                text: "Data Categories",
+                external: true
+            },
+            {
+                to: "https://pages.colouring.london/whoisinvolved",
+                text: "Who's Involved?",
+                external: true
+            },
+            {
+                to: "https://pages.colouring.london/data-ethics",
+                text: "Data Ethics",
+                external: true
+            },
+            {
+                to: "https://pages.colouring.london/colouring-cities",
+                text: "Colouring Cities Research Programme",
+                external: true
+            },
+        ],
+        [
+            {
+                to: "/contact.html",
+                text: "Contact"
+            },
+            {
+                to: "/privacy-policy.html",
+                text: "Privacy Policy"
+            },
+            {
+                to: "/contributor-agreement.html",
+                text: "Contributor Agreement"
+            },
+            {
+                to: "/code-of-conduct.html",
+                text: "Code of Conduct"
+            },
+            {
+                to: "/data-accuracy.html",
+                text: "Data Accuracy Agreement"
+            },
+            {
+                to: "/ordnance-survey-uprn.html",
+                text: "Ordnance Survey terms of UPRN usage"
+            },
+        ],
+    ];
+}
+
+export const Header : React.FC<{
+    user: User;
+    animateLogo: boolean;
+}> = ({ user, animateLogo }) => {
     const [collapseMenu, setCollapseMenu] = useState(true);
 
-    const handleClick = () => setCollapseMenu(!collapseMenu);
+    const toggleCollapse = () => setCollapseMenu(!collapseMenu);
     const handleNavigate = () => setCollapseMenu(true);
 
+    const currentMenuLinks = getCurrentMenuLinks(user?.username);
 
     return (
     <header className="main-header navbar navbar-light">
         <div className="nav-header">
             <NavLink to="/">
-                <Logo variant={props.animateLogo ? 'animated' : 'default'}/>
+                <Logo variant={animateLogo ? 'animated' : 'default'}/>
             </NavLink>
             <button className="navbar-toggler" type="button"
-                onClick={handleClick} aria-expanded={!collapseMenu} aria-label="Toggle navigation">
+                onClick={toggleCollapse} aria-expanded={!collapseMenu} aria-label="Toggle navigation">
                 Menu&nbsp;
                 {
                     collapseMenu ?
@@ -40,123 +143,43 @@ interface HeaderProps {
             </button>
         </div>
         <nav className={collapseMenu ? 'collapse navbar-collapse' : 'navbar-collapse'}>
-            <ul className="navbar-nav flex-column">
-                <li className="nav-item">
-                    <NavLink to="/view/categories" className="nav-link" onClick={handleNavigate}>
-                        View/Edit Maps
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/data-extracts.html" className="nav-link" onClick={handleNavigate}>
-                        Downloads
-                    </NavLink>
-                </li>
-                {/*
-                <li className="nav-item">
-                    <NavLink to="/showcase.html" className="nav-link" onClick={this.handleNavigate}>
-                        Showcase
-                    </NavLink>
-                </li>
-                */}
-                <li className="nav-item">
-                    <NavLink to="/leaderboard.html" className="nav-link" onClick={handleNavigate}>
-                        Leaderboard
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="https://discuss.colouring.london" target="_blank">
-                        Discuss
-                    </a>
-                </li>
-                {
-                    props.user?
-                    (
-                        <li className="nav-item">
-                            <NavLink to="/my-account.html" className="nav-link" onClick={handleNavigate}>
-                                Account <span className="shorten-username">({props.user.username})</span>
-                            </NavLink>
-                        </li>
-                    ):
-                    (
-                        <Fragment>
-                            <li className="nav-item">
-                                <NavLink to="/login.html" className="nav-link" onClick={handleNavigate}>
-                                    Log in
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink to="/sign-up.html" className="nav-link" onClick={handleNavigate}>
-                                    Sign up
-                                </NavLink>
-                            </li>
-                        </Fragment>
-                    )
-                }
-            </ul>
-            <hr />
-            <ul className="navbar-nav flex-column">
-                <li className="nav-item">
-                    <a className="nav-link" href="https://pages.colouring.london" target="_blank">
-                        About
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="https://pages.colouring.london/buildingcategories" target="_blank">
-                        Data Categories
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="https://pages.colouring.london/whoisinvolved" target="_blank">
-                        Who&rsquo;s Involved?
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="https://pages.colouring.london/data-ethics" target="_blank">
-                        Data Ethics
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="https://pages.colouring.london/colouring-cities" target="_blank">
-                        Colouring Cities Research Programme
-                    </a>
-                </li>
-            </ul>
-            <hr />
-            <ul className="navbar-nav flex-column">
-                <li className="nav-item">
-                    <NavLink to="/contact.html" className="nav-link" onClick={handleNavigate}>
-                        Contact
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/privacy-policy.html" className="nav-link" onClick={handleNavigate}>
-                        Privacy Policy
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/contributor-agreement.html" className="nav-link" onClick={handleNavigate}>
-                        Contributor Agreement
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/code-of-conduct.html" className="nav-link" onClick={handleNavigate}>
-                        Code of Conduct
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/data-accuracy.html" className="nav-link" onClick={handleNavigate}>
-                        Data Accuracy Agreement
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/ordnance-survey-uprn.html" className="nav-link" onClick={handleNavigate}>
-                        Ordnance Survey terms of UPRN usage
-                    </NavLink>
-                </li>
-            </ul>
+            <Menu menuLinkSections={currentMenuLinks} onNavigate={handleNavigate}></Menu>
         </nav>
     </header>
     );
 }
 
-export default Header;
+
+
+const Menu : React.FC<{
+    menuLinkSections: MenuLink[][],
+    onNavigate: () => void
+}> = ({ menuLinkSections, onNavigate }) => (
+    <WithSeparator separator={<hr />}>
+        {menuLinkSections.map(section =>
+            <ul className="navbar-nav flex-container">
+                {section.map(item => (
+                    <li className="nav-item">
+                        {
+                            item.external ?
+                                <ExternalNavLink to={item.to}>{item.text}</ExternalNavLink> :
+                                <InternalNavLink to={item.to} onClick={onNavigate}>{item.text}</InternalNavLink>
+                        }
+                    </li>
+                ))}
+            </ul>
+        )}
+    </WithSeparator>
+);
+
+const InternalNavLink: React.FC<{to: string, onClick: () => void}> = ({ to, onClick, children}) => (
+    <NavLink className="nav-link" to={to} onClick={onClick}>
+        {children}
+    </NavLink>
+);
+
+const ExternalNavLink: React.FC<{to:string}> = ({ to, children }) => (
+    <a className="nav-link" target="_blank" href={to}>
+        {children}
+    </a>
+);
