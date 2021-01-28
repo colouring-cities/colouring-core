@@ -4,7 +4,7 @@ import { ApiUserError } from '../errors/api';
 import { UserError } from '../errors/general';
 import { parsePositiveIntParam, processParam } from '../parameters';
 import asyncController from '../routes/asyncController';
-import * as buildingService from '../services/building';
+import * as buildingService from '../services/building/base';
 import * as userService from '../services/user';
 
 
@@ -78,7 +78,7 @@ async function updateBuilding(req: express.Request, res: express.Response, userI
 
     let updatedBuilding: object;
     try {
-        updatedBuilding = await buildingService.saveBuilding(buildingId, buildingUpdate, userId);
+        updatedBuilding = await buildingService.editBuilding(buildingId, buildingUpdate, userId);
     } catch(error) {
         if(error instanceof UserError) {
             throw new ApiUserError(error.message, error);

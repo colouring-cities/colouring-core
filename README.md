@@ -1,6 +1,6 @@
 # Colouring London
 [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors)
-[![Build Status](https://travis-ci.com/tomalrussell/colouring-london.svg?branch=master)](https://travis-ci.com/tomalrussell/colouring-london)
+![Build status](https://github.com/colouring-london/colouring-london/workflows/Node.js%20CI/badge.svg)
 
 How many buildings are there in London? What are their characteristics? Where
 are they located and how do they contribute to the city? How adaptable are
@@ -46,8 +46,8 @@ TILECACHE_PATH=/path/to/tilecache/directory \
 
 ## Acknowledgements
 
-Colouring London is being designed and built by the Centre for Advanced Spatial
-Analysis (CASA), University College London and funded by Historic England.
+Colouring London was set up at the Centre for Advanced Spatial
+Analysis (CASA), University College London and is now based at The Alan Turing Institute.
 Ordnance Survey is providing building footprints required to collect the data,
 facilitated by the Greater London Authority (GLA), and giving access to its API
 and technical support.

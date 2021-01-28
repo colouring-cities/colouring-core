@@ -77,7 +77,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
                     <InfoBox msg="Welcome to Colouring London. You're one of the first people to sign up!  ">
                         <br/>Please <a href="https://discuss.colouring.london/">discuss
                         suggestions for improvements</a> and <a
-                            href="https://github.com/tomalrussell/colouring-london/issues">
+                            href="https://github.com/colouring-london/colouring-london/issues">
                         report issues or problems</a>.
                     </InfoBox>
                     <p>
@@ -147,6 +147,9 @@ class SignUp extends Component<SignUpProps, SignUpState> {
                         <div className="buttons-container with-space">
                             <input type="submit" value="Sign Up" className="btn btn-primary" />
                         </div>
+                        <InfoBox msg="">
+                            Please also read our <a href="https://www.pages.colouring.london/data-ethics">data ethics policy</a> before using or sharing our data
+                        </InfoBox>
 
                         Do you already have an account?
 

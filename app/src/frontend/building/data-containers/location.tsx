@@ -22,6 +22,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             onChange={props.onChange}
             tooltip={dataFields.location_name.tooltip}
             placeholder="Building name (if any)"
+            disabled={true}
             />
         <Verification
             slug="location_name"
@@ -58,6 +59,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
+            disabled={true}
             />
         <Verification
             slug="location_street"
@@ -84,6 +86,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
+            disabled={true}
             />
         <DataEntry
             title={dataFields.location_postcode.title}
@@ -94,6 +97,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             onChange={props.onChange}
             maxLength={8}
             valueTransform={x=>x.toUpperCase()}
+            disabled={true}
             />
         <DataEntry
             title={dataFields.ref_toid.title}

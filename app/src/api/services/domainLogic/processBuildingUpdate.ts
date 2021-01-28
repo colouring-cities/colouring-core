@@ -1,21 +1,13 @@
 import * as _ from 'lodash';
 
 import { hasAnyOwnProperty } from '../../../helpers';
+import { getBuildingData } from '../../dataAccess/building';
 import { ArgumentError } from '../../errors/general';
-import { getCurrentBuildingDataById } from '../building';
 
 import { updateLandUse } from './landUse';
 
-export async function processBuildingUpdate(buildingId: number, buildingUpdate: any): Promise<any> {
-    if(hasAnyOwnProperty(buildingUpdate, ['current_landuse_group'])) {
-        buildingUpdate = await processCurrentLandUseClassifications(buildingId, buildingUpdate);
-    }
-
-    return buildingUpdate;
-}
-
 async function processCurrentLandUseClassifications(buildingId: number, buildingUpdate: any): Promise<any> {
-    const currentBuildingData = await getCurrentBuildingDataById(buildingId);
+    const currentBuildingData = await getBuildingData(buildingId);
 
     try {
         const currentLandUseUpdate = await updateLandUse(
@@ -37,4 +29,12 @@ async function processCurrentLandUseClassifications(buildingId: number, building
         }
         throw error;
     }
+}
+
+export async function processBuildingUpdate(buildingId: number, buildingUpdate: any): Promise<any> {
+    if(hasAnyOwnProperty(buildingUpdate, ['current_landuse_group'])) {
+        buildingUpdate = await processCurrentLandUseClassifications(buildingId, buildingUpdate);
+    }
+
+    return buildingUpdate;
 }

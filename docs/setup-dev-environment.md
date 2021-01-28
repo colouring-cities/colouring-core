@@ -32,7 +32,7 @@ and additional geo-spatial tools
 
 Now clone the colouring london codebase.
 
-`git clone https://github.com/tomalrussell/colouring-london.git`
+`git clone https://github.com/colouring-london/colouring-london.git`
 
 Now install Node. It is helpful to define some local variables.
 

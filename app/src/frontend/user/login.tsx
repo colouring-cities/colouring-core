@@ -72,7 +72,7 @@ class Login extends Component<LoginProps, any> {
                     <InfoBox msg="Welcome to Colouring London. You're one of the first people to use the site!  ">
                         <br/>Please <a href="https://discuss.colouring.london/">discuss
                         suggestions for improvements</a> and <a
-                            href="https://github.com/tomalrussell/colouring-london/issues">
+                            href="https://github.com/colouring-london/colouring-london/issues">
                         report issues or problems</a>.
                     </InfoBox>
                     <ErrorBox msg={this.state.error} />

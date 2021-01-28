@@ -4,3 +4,27 @@
 .welcome.section-body {
     padding-bottom: 0;
 }
+
+.image-row {
+    margin: 1em 1em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.image-row img {
+    margin: 0 1em;
+    max-height: 100%;
+    max-width: 100%;
+    align-self: flex-start;
+}
+
+.cl-logo {
+    height: 4em;
+}
+
+.turing-logo {
+    height: 4em;
+}

@@ -53,7 +53,7 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
             return <TypeContainer
                 {...props}
                 inactive={false}
-                title="Original Use"
+                title="Type"
                 intro="How were buildings previously used?"
                 help="https://www.pages.colouring.london/buildingtypology"
             />;
