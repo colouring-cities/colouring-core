@@ -12,6 +12,8 @@ interface MenuLink {
     to: string;
     text: string;
     external?: boolean;
+    disabled?: boolean;
+    note?: string;
 }
 
 
@@ -20,44 +22,27 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
         [
             {
                 to: "/view/categories",
-                text: "View/Edit Maps"
+                text: "View Maps"
+            },
+            {
+                to: "/edit/categories",
+                text: "Edit Maps"
             },
             {
                 to: "/data-extracts.html",
-                text: "Downloads"
-            },
-            // {
-            //     to: "/showcase.html",
-            //     text: "Showcase"
-            // },
-            {
-                to: "/leaderboard.html",
-                text: "Leaderboard"
+                text: "Download data"
             },
             {
-                to: "https://discuss.colouring.london",
-                text: "Discuss",
+                to: "https://github.com/colouring-london/colouring-london",
+                text: "Access open code",
                 external: true
             },
-            ...(
-                username != undefined ?
-                    [
-                        {
-                            to: "/my-account.html",
-                            text: `Account (${username})`
-                        }
-                    ] :
-                    [
-                        {
-                            to: "/login.html",
-                            text: "Log in"
-                        },
-                        {
-                            to: "/sign-up.html",
-                            text: "Sign up"
-                        }
-                    ]
-            )
+            {
+                to: "/showcase.html",
+                text: "View Data Showcase",
+                disabled: true,
+                note: "Coming soon"
+            },
         ],
         [
             {
@@ -88,9 +73,16 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
         ],
         [
             {
-                to: "/contact.html",
-                text: "Contact"
+                to: "/leaderboard.html",
+                text: "Top Contributors"
             },
+            {
+                to: "https://discuss.colouring.london",
+                text: "Discussion Forum",
+                external: true
+            },
+        ],
+        [
             {
                 to: "/privacy-policy.html",
                 text: "Privacy Policy"
@@ -112,8 +104,76 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 text: "Ordnance Survey terms of UPRN usage"
             },
         ],
+        [
+            {
+                to: "/contact.html",
+                text: "Contact"
+            },
+            ...(
+                username != undefined ?
+                    [
+                        {
+                            to: "/my-account.html",
+                            text: `Account (${username})`
+                        }
+                    ] :
+                    [
+                        {
+                            to: "/login.html",
+                            text: "Log in"
+                        },
+                        {
+                            to: "/sign-up.html",
+                            text: "Sign up"
+                        }
+                    ]
+            )
+        ],
     ];
 }
+
+
+const Menu : React.FC<{
+    menuLinkSections: MenuLink[][],
+    onNavigate: () => void
+}> = ({ menuLinkSections, onNavigate }) => (
+    <WithSeparator separator={<hr />}>
+        {menuLinkSections.map((section, idx) =>
+            <ul key={`menu-section-${idx}`} className="navbar-nav flex-container">
+                {section.map(item => (
+                    <li className={`nav-item`}>
+                        {
+                            item.disabled ?
+                                <LinkStub note={item.note}>{item.text}</LinkStub> :
+                                item.external ?
+                                    <ExternalNavLink to={item.to}>{item.text}</ExternalNavLink> :
+                                    <InternalNavLink to={item.to} onClick={onNavigate}>{item.text}</InternalNavLink>
+                        }
+                    </li>
+                ))}
+            </ul>
+        )}
+    </WithSeparator>
+);
+
+const InternalNavLink: React.FC<{to: string, onClick: () => void}> = ({ to, onClick, children}) => (
+    <NavLink className="nav-link" to={to} onClick={onClick}>
+        {children}
+    </NavLink>
+);
+
+const ExternalNavLink: React.FC<{to:string}> = ({ to, children }) => (
+    <a className="nav-link" href={to}>
+        {children}
+    </a>
+);
+
+const LinkStub: React.FC<{note: string}> = ({note, children}) => (
+    <a className="nav-link disabled">
+        {children}
+        <span className="link-note">{note}</span>
+    </a>
+);
 
 export const Header : React.FC<{
     user: User;
@@ -148,38 +208,3 @@ export const Header : React.FC<{
     </header>
     );
 }
-
-
-
-const Menu : React.FC<{
-    menuLinkSections: MenuLink[][],
-    onNavigate: () => void
-}> = ({ menuLinkSections, onNavigate }) => (
-    <WithSeparator separator={<hr />}>
-        {menuLinkSections.map(section =>
-            <ul className="navbar-nav flex-container">
-                {section.map(item => (
-                    <li className="nav-item">
-                        {
-                            item.external ?
-                                <ExternalNavLink to={item.to}>{item.text}</ExternalNavLink> :
-                                <InternalNavLink to={item.to} onClick={onNavigate}>{item.text}</InternalNavLink>
-                        }
-                    </li>
-                ))}
-            </ul>
-        )}
-    </WithSeparator>
-);
-
-const InternalNavLink: React.FC<{to: string, onClick: () => void}> = ({ to, onClick, children}) => (
-    <NavLink className="nav-link" to={to} onClick={onClick}>
-        {children}
-    </NavLink>
-);
-
-const ExternalNavLink: React.FC<{to:string}> = ({ to, children }) => (
-    <a className="nav-link" target="_blank" href={to}>
-        {children}
-    </a>
-);
