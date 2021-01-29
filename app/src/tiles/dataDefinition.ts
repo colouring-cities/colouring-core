@@ -2,211 +2,198 @@ import { strictParseInt } from "../parse";
 
 import { DataConfig } from "./types";
 
-const BUILDING_LAYER_DEFINITIONS = {
-    base_light: `(
+const LAYER_QUERIES = {
+    base_light: `
         SELECT
-            b.location_number as location_number,
-            g.geometry_geom
+            geometry_id
         FROM
-            geometries as g,
-            buildings as b
-        WHERE
-            g.geometry_id = b.geometry_id
-    ) as outline`,
-    base_night: `(
+            buildings`,
+    base_night: `
         SELECT
-            b.location_number as location_number,
-            g.geometry_geom
+            geometry_id
         FROM
-            geometries as g,
-            buildings as b
-        WHERE
-            g.geometry_id = b.geometry_id
-    ) as outline`,
-    date_year: `(
+            buildings`,
+    number_labels:`
         SELECT
-            b.date_year as date_year,
-            g.geometry_geom
+            geometry_id,
+            location_number
         FROM
-            geometries as g,
-            buildings as b
-        WHERE
-            g.geometry_id = b.geometry_id
-    ) as date_year`,
-    size_storeys: `(
+            buildings`,
+    highlight: `
         SELECT
+            geometry_id
+        FROM
+            buildings
+        WHERE building_id = !@highlight!`,
+    date_year: `
+        SELECT
+            geometry_id,
+            date_year
+        FROM
+            buildings
+        WHERE date_year IS NOT NULL`,
+    size_storeys: `
+        SELECT
+            geometry_id,
             (
-                coalesce(b.size_storeys_attic, 0) +
-                coalesce(b.size_storeys_core, 0)
-            ) as size_storeys,
-            g.geometry_geom
+                coalesce(size_storeys_attic, 0) +
+                coalesce(size_storeys_core, 0)
+            ) AS size_storeys
         FROM
-            geometries as g,
-            buildings as b
+            buildings
         WHERE
-            g.geometry_id = b.geometry_id
-    ) as size_stories`,
-    size_height: `(
+            size_storeys_attic IS NOT NULL OR size_storeys_core IS NOT NULL`,
+    size_height: `
         SELECT
-            b.size_height_apex as size_height,
-            g.geometry_geom
+            geometry_id,
+            size_height_apex AS size_height
         FROM
-            geometries as g,
-            buildings as b
-        WHERE g.geometry_id = b.geometry_id
-    ) as size_height`,
-    construction_core_material: `(
+            buildings
+        WHERE
+            size_height_apex IS NOT NULL`,
+    construction_core_material: `
         SELECT
-            b.construction_core_material::text as construction_core_material,
-            g.geometry_geom
+            geometry_id,
+            construction_core_material::text AS construction_core_material
         FROM
-            geometries as g,
-            buildings as b
-        WHERE g.geometry_id = b.geometry_id
-    ) as construction_core_material`,
-    location: `(
+            buildings
+        WHERE
+            construction_core_material IS NOT NULL`,
+    location: `
         SELECT
+            geometry_id,
             (
-                case when b.location_name is null then 0 else 1 end +
-                case when b.location_number is null then 0 else 1 end +
-                case when b.location_street is null then 0 else 1 end +
-                case when b.location_line_two is null then 0 else 1 end +
-                case when b.location_town is null then 0 else 1 end +
-                case when b.location_postcode is null then 0 else 1 end +
-                case when b.location_latitude is null then 0 else 1 end +
-                case when b.location_longitude is null then 0 else 1 end +
-                case when b.ref_toid is null then 0 else 1 end +
-                case when b.ref_osm_id is null then 0 else 1 end
-            ) as location_info_count,
-            g.geometry_geom
+                case when location_name IS NULL then 0 else 1 end +
+                case when location_number IS NULL then 0 else 1 end +
+                case when location_street IS NULL then 0 else 1 end +
+                case when location_line_two IS NULL then 0 else 1 end +
+                case when location_town IS NULL then 0 else 1 end +
+                case when location_postcode IS NULL then 0 else 1 end +
+                case when location_latitude IS NULL then 0 else 1 end +
+                case when location_longitude IS NULL then 0 else 1 end +
+                case when ref_toid IS NULL then 0 else 1 end +
+                case when ref_osm_id IS NULL then 0 else 1 end
+            ) AS location_info_count
         FROM
-            geometries as g,
-            buildings as b
-        WHERE
-            g.geometry_id = b.geometry_id
-    ) as location`,
-    likes: `(
+            buildings`,
+    likes: `
         SELECT
-            g.geometry_geom,
-            b.likes_total as likes
+            geometry_id,
+            likes_total AS likes
         FROM
-            geometries as g,
-            buildings as b
+            buildings
         WHERE
-            g.geometry_id = b.geometry_id
-            AND b.likes_total > 0
-    ) as likes`,
-    planning_combined: `(
+            likes_total > 0`,
+    planning_combined: `
         SELECT
-            g.geometry_geom,
+            geometry_id,
             (
                 CASE
-                    WHEN b.planning_list_cat = 'Listed Building' and b.planning_list_grade = 'I' THEN 'Grade I Listed'
-                    WHEN b.planning_list_cat = 'Listed Building' and b.planning_list_grade = 'II*' THEN 'Grade II* Listed'
-                    WHEN b.planning_list_cat = 'Listed Building' and b.planning_list_grade = 'II' THEN 'Grade II Listed'
-                    WHEN b.planning_in_local_list THEN 'Locally Listed'
+                    WHEN planning_list_cat = 'Listed Building' and planning_list_grade = 'I' THEN 'Grade I Listed'
+                    WHEN planning_list_cat = 'Listed Building' and planning_list_grade = 'II*' THEN 'Grade II* Listed'
+                    WHEN planning_list_cat = 'Listed Building' and planning_list_grade = 'II' THEN 'Grade II Listed'
+                    WHEN planning_in_local_list THEN 'Locally Listed'
                     ELSE 'None'
                 END
-            ) as listing_type,
-            b.planning_in_conservation_area
-        FROM geometries as g
-        JOIN buildings as b
-        ON g.geometry_id = b.geometry_id
+            ) AS listing_type,
+            planning_in_conservation_area
+        FROM buildings
         WHERE
-            b.planning_in_conservation_area
-            OR b.planning_in_local_list
-            OR b.planning_list_cat is not null
-    ) as planning_combined`,
-    conservation_area: `(
+            planning_in_conservation_area
+            OR planning_in_local_list
+            OR planning_list_cat IS NOT NULL`,
+    conservation_area: `
         SELECT
-            g.geometry_geom
+            geometry_id
         FROM
-            geometries as g,
-            buildings as b
+            buildings
         WHERE
-            g.geometry_id = b.geometry_id
-            AND b.planning_in_conservation_area = true
-    ) as conservation_area`,
-    sust_dec: `(
+            planning_in_conservation_area = true`,
+    sust_dec: `
         SELECT
-            b.sust_dec::text as sust_dec,
-            g.geometry_geom
+            geometry_id,
+            sust_dec::text AS sust_dec
         FROM
-            geometries as g,
-            buildings as b
+            buildings
         WHERE
-            g.geometry_id = b.geometry_id
-    ) as sust_dec`,
-    building_attachment_form: `(
+            sust_dec IS NOT NULL`,
+    building_attachment_form: `
         SELECT
-            b.building_attachment_form::text as building_attachment_form,
-            g.geometry_geom
+            geometry_id,
+            building_attachment_form::text AS building_attachment_form
         FROM
-            geometries as g,
-            buildings as b
+            buildings
         WHERE
-            g.geometry_id = b.geometry_id
-    ) as building_attachment_form`,
-    landuse: `(
+            building_attachment_form IS NOT NULL`,
+    landuse: `
         SELECT
-            b.current_landuse_order,
-            g.geometry_geom
-        FROM geometries as g
-        JOIN buildings as b
-        ON g.geometry_id = b.geometry_id
-    ) as current_landuse_order`,
+            geometry_id,
+            current_landuse_order
+        FROM
+            buildings
+        WHERE
+            current_landuse_order IS NOT NULL`,
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';
 
 function getBuildingLayerNames() {
-    return Object.keys(BUILDING_LAYER_DEFINITIONS);
+    return Object.keys(LAYER_QUERIES);
 }
 
 function getAllLayerNames() {
     return ['highlight', ...getBuildingLayerNames()];
 }
 
-function getBuildingsDataConfig(tileset: string, dataParams: any): DataConfig {
-    const table = BUILDING_LAYER_DEFINITIONS[tileset];
+function getDataConfig(tileset: string): DataConfig {
+    const table = LAYER_QUERIES[tileset];
 
     if(table == undefined) {
         throw new Error('Invalid tileset requested');
     }
 
+    const query = `(
+        SELECT
+            d.*,
+            g.geometry_geom
+        FROM (
+            ${table}
+        ) AS d
+        JOIN
+            geometries AS g
+        ON d.geometry_id = g.geometry_id
+    ) AS data
+    `;
+
     return {
         geometry_field: GEOMETRY_FIELD,
-        table: table
+        table: query
     };
 }
 
-function getHighlightDataConfig(tileset: string, dataParams: any): DataConfig {
-    let { highlight, base } = dataParams;
+function getLayerVariables(tileset: string, dataParams: any): object {
+    if(tileset == 'highlight') {
+        let { highlight, base } = dataParams;
 
-    highlight = strictParseInt(highlight);
-    base = base || 'default';
+        highlight = strictParseInt(highlight);
+        base = base || 'default';
 
-    if(isNaN(highlight) || base.match(/^\w+$/) == undefined) {
-        throw new Error('Bad parameters for highlight layer');
+        if(isNaN(highlight) || base.match(/^\w+$/) == undefined) {
+            throw new Error('Bad parameters for highlight layer');
+        }
+
+        return {
+            highlight,
+            base_data_layer: base
+        };
     }
 
-    return {
-        geometry_field: GEOMETRY_FIELD,
-        table: `(
-            SELECT
-                g.geometry_geom,
-                '${base}' as base_layer
-            FROM
-                geometries as g
-            WHERE
-                g.geometry_id = ${highlight}
-        ) as highlight`
-    };
+    return {};
 }
 
 export {
     getBuildingLayerNames,
     getAllLayerNames,
-    getBuildingsDataConfig,
-    getHighlightDataConfig
+    getDataConfig,
+    getLayerVariables
 };

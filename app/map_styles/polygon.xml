@@ -8,13 +8,6 @@
             <MaxScaleDenominator>17000</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
-        <Rule>
-            <TextSymbolizer face-name="DejaVu Sans Condensed Bold"  fill="#000000">
-                [location_number]
-            </TextSymbolizer>
-            <MaxScaleDenominator>5000</MaxScaleDenominator>
-            <MinScaleDenominator>0</MinScaleDenominator>
-        </Rule>
     </Style>
     <Style name="base_night">
         <Rule>
@@ -25,17 +18,25 @@
             <MaxScaleDenominator>17000</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
+    </Style>
+    <Style name="number_labels">
         <Rule>
-            <TextSymbolizer face-name="DejaVu Sans Condensed Bold" fill="#ffffff">
+            <TextSymbolizer
+                face-name="DejaVu Sans Condensed Bold"
+                fill="#eee"
+                size="21"
+                halo-radius="1"
+                halo-fill="#333"
+            >
                 [location_number]
             </TextSymbolizer>
-            <MaxScaleDenominator>5000</MaxScaleDenominator>
+            <MaxScaleDenominator>2132</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
     </Style>
     <Style name="highlight">
         <Rule>
-            <Filter>[base_layer] = 'location' or [base_layer] = 'conservation_area'</Filter>
+            <Filter>@base_data_layer = 'location' or @base_data_layer = 'conservation_area'</Filter>
             <LineSymbolizer stroke="#ff0000aa" stroke-width="4.5" />
             <LineSymbolizer stroke="#ff0000ff" stroke-width="2.5" />
         </Rule>
@@ -66,6 +67,17 @@
             <Filter>[location_info_count] &gt; 0 and [location_info_count] &lt; 2</Filter>
             <PolygonSymbolizer fill="#bae4bc" />
         </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
     </Style>
     <Style name="size_storeys">
         <Rule>
@@ -87,6 +99,17 @@
         <Rule>
             <Filter>[size_storeys] &gt;= 1 and [size_storeys] &lt; 6</Filter>
             <PolygonSymbolizer fill="#800026" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#ccc" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#ccc" stroke-width="3.0"/>
         </Rule>
     </Style>
     <Style name="size_height">
@@ -122,6 +145,17 @@
             <Filter>[size_height] &gt;= 152</Filter>
             <PolygonSymbolizer fill="#980043" />
         </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#ccc" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#ccc" stroke-width="3.0"/>
+        </Rule>
     </Style>
     <Style name="construction_core_material">
         <Rule>
@@ -155,6 +189,17 @@
         <Rule>
             <Filter>[construction_core_material] = "Other Man-Made Material"</Filter>
             <PolygonSymbolizer fill="#c48a85" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
     <Style name="date_year">
@@ -218,6 +263,17 @@
             <Filter>[date_year] &lt; 1700</Filter>
             <PolygonSymbolizer fill="#d0c291" />
         </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>8530</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
     </Style>
     <Style name="conservation_area">
         <Rule>
@@ -244,6 +300,19 @@
         <Rule>
             <Filter>[listing_type] = "Locally Listed"</Filter>
             <PolygonSymbolizer fill="#858ed4"/>
+        </Rule>
+
+        <Rule>
+            <Filter>[listing_type] != "None" or [planning_in_conservation_area] = true</Filter>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[listing_type] != "None" or [planning_in_conservation_area] = true</Filter>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
 
         <!-- Conservation area outline -->
@@ -295,6 +364,17 @@
             <Filter>[sust_dec] = G</Filter>
             <PolygonSymbolizer fill="#e31d23" />
         </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
     </Style>
     <Style name="building_attachment_form">
         <Rule>
@@ -312,6 +392,17 @@
         <Rule>
             <Filter>[building_attachment_form] = "Mid-Terrace"</Filter>
             <PolygonSymbolizer fill="#226291" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="0.8"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="2.0"/>
         </Rule>
     </Style>
     <Style name="likes">
@@ -342,6 +433,17 @@
         <Rule>
             <Filter>[likes] = 1</Filter>
             <PolygonSymbolizer fill="#ffe8a9" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
     <Style name="landuse">
@@ -392,6 +494,17 @@
         <Rule>
             <Filter>[current_landuse_order] = "Mixed Use"</Filter>
             <PolygonSymbolizer fill="#e5050d" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>8530</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="0.8"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
 </Map>

@@ -1,4 +1,5 @@
-import { getAllLayerNames, getBuildingLayerNames, getBuildingsDataConfig, getHighlightDataConfig } from "./dataDefinition";
+import { parseBooleanExact } from '../helpers';
+import { getAllLayerNames, getBuildingLayerNames, getDataConfig, getLayerVariables } from "./dataDefinition";
 import { createBlankTile } from "./renderers/createBlankTile";
 import { getTileWithCaching } from "./renderers/getTileWithCaching";
 import { renderDataSourceTile } from "./renderers/renderDataSourceTile";
@@ -24,6 +25,23 @@ const STITCH_THRESHOLD = 12;
  */
 const EXTENT_BBOX: BoundingBox = [-61149.622628, 6667754.851372, 28128.826409, 6744803.375884];
 
+const allLayersCacheSwitch = parseBooleanExact(process.env.CACHE_TILES) ?? true;
+const dataLayersCacheSwitch = parseBooleanExact(process.env.CACHE_DATA_TILES) ?? true;
+let shouldCacheFn: (t: TileParams) => boolean;
+
+if(!allLayersCacheSwitch) {
+    shouldCacheFn = t => false;
+} else if(!dataLayersCacheSwitch) {
+    // cache age data and base building outlines for more zoom levels than other layers
+    shouldCacheFn = ({ tileset, z }: TileParams) =>
+        (tileset === 'date_year' && z <= 16) ||
+        (['base_light', 'base_night'].includes(tileset) && z <= 17) ||
+        z <= 13;
+} else {
+    shouldCacheFn = ({ tileset, z }: TileParams) =>
+        ['base_light', 'base_night'].includes(tileset) && z <= 17;
+}
+
 const tileCache = new TileCache(
     process.env.TILECACHE_PATH,
     {
@@ -32,18 +50,13 @@ const tileCache = new TileCache(
         maxZoom: 19,
         scales: [1, 2]
     },
-
-    // cache age data and base building outlines for more zoom levels than other layers
-    ({ tileset, z }: TileParams) => (tileset === 'date_year' && z <= 16) ||
-        ((tileset === 'base_light' || tileset === 'base_night') && z <= 17) ||
-        z <= 13,
+    shouldCacheFn,
     
     // don't clear base_light and base_night on bounding box cache clear
     (tileset: string) => tileset !== 'base_light' && tileset !== 'base_night'
 );
 
-const renderBuildingTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getBuildingsDataConfig);
-const renderHighlightTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getHighlightDataConfig);
+const renderBuildingTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getDataConfig, getLayerVariables);
 
 function cacheOrCreateBuildingTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
     return getTileWithCaching(tileParams, dataParams, tileCache, stitchOrRenderBuildingTile);
@@ -64,7 +77,7 @@ function renderTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
     }
 
     if (tileParams.tileset === 'highlight') {
-        return renderHighlightTile(tileParams, dataParams);
+        return renderBuildingTile(tileParams, dataParams);
     }
 
     return cacheOrCreateBuildingTile(tileParams, dataParams);

@@ -2,7 +2,7 @@ import mapnik from "mapnik";
 import path from 'path';
 import { promisify } from "util";
 
-import { TableDefinitionFunction, Tile, TileParams } from "../types";
+import { TableDefinitionFunction, VariablesFunction, Tile, TileParams } from "../types";
 import { getBbox, TILE_SIZE } from "../util";
 
 
@@ -29,7 +29,12 @@ if (mapnik.register_default_input_plugins) {
 mapnik.register_default_fonts();
 
 
-async function renderDataSourceTile({ tileset, z, x, y, scale }: TileParams, dataParams: any, getTableDefinitionFn: TableDefinitionFunction): Promise<Tile> {
+async function renderDataSourceTile(
+    { tileset, z, x, y, scale }: TileParams, 
+    dataParams: any, 
+    getTableDefinitionFn: TableDefinitionFunction,
+    getVariablesFn: VariablesFunction
+): Promise<Tile> {
     const bbox = getBbox(z, x, y);
 
     const tileSize = TILE_SIZE * scale;
@@ -37,9 +42,11 @@ async function renderDataSourceTile({ tileset, z, x, y, scale }: TileParams, dat
     map.bufferSize = TILE_BUFFER_SIZE;
     const layer = new mapnik.Layer('tile', PROJ4_STRING);
 
-    const dataSourceConfig = getTableDefinitionFn(tileset, dataParams);
+    const dataSourceConfig = getTableDefinitionFn(tileset);
+    const dataSourceVariables = getVariablesFn(tileset, dataParams);
 
     const conf = Object.assign(dataSourceConfig, DATASOURCE_CONFIG);
+    const vars = Object.assign(dataSourceVariables, { zoom: z});
 
     const postgis = new mapnik.Datasource(conf);
     layer.datasource = postgis;
@@ -52,7 +59,7 @@ async function renderDataSourceTile({ tileset, z, x, y, scale }: TileParams, dat
     map.add_layer(layer);
     const im = new mapnik.Image(map.width, map.height);
     map.extent = bbox;
-    const rendered = await promisify(map.render.bind(map))(im, {});
+    const rendered = await promisify(map.render.bind(map))(im, { variables: vars});
 
     return await promisify(rendered.encode.bind(rendered))('png');
 }

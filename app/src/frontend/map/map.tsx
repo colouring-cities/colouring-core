@@ -155,12 +155,20 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         const highlightLayer = this.props.building != undefined ?
             <TileLayer
                 key={this.props.building.building_id}
-                url={`/tiles/highlight/{z}/{x}/{y}{r}.png?highlight=${this.props.building.geometry_id}&base=${tileset}`}
+                url={`/tiles/highlight/{z}/{x}/{y}{r}.png?highlight=${this.props.building.building_id}&base=${tileset}`}
                 minZoom={13}
                 maxZoom={19}
                 zIndex={100}
             />
             : null;
+
+        const numbersLayer = <TileLayer
+            key={this.state.theme}
+            url={`/tiles/number_labels/{z}/{x}/{y}{r}.png?rev=${rev}`}
+            zIndex={200}
+            minZoom={17}
+            maxZoom={19}
+        />
 
         const isEdit = ['edit', 'multi-edit'].includes(this.props.mode);
 
@@ -182,6 +190,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     { boundaryLayer }
                     { dataLayer }
                     { highlightLayer }
+                    { numbersLayer }
                     <ZoomControl position="topright" />
                     <AttributionControl prefix=""/>
                 </Map>
