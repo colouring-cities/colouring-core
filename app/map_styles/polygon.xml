@@ -24,13 +24,13 @@
             <TextSymbolizer
                 face-name="DejaVu Sans Condensed Bold"
                 fill="#eee"
-                size="25"
-                halo-radius="2"
-                halo-fill="#555"
+                size="21"
+                halo-radius="1"
+                halo-fill="#333"
             >
                 [location_number]
             </TextSymbolizer>
-            <MaxScaleDenominator>5000</MaxScaleDenominator>
+            <MaxScaleDenominator>2132</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
     </Style>
