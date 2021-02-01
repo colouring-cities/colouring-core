@@ -75,9 +75,20 @@ function compareObjects(objA: object, objB: object): [object, object] {
     return [forward, reverse];
 }
 
+function toggleValue<T>(val: T, bothValues: readonly [T, T]): T {
+    if (val === bothValues[0]) {
+        return bothValues[1];
+    } else if (val === bothValues[1]) {
+        return bothValues[0];
+    } else {
+        throw new Error(`toggleValue: Supplied value (${val}) is not one of the values to toggle between (${bothValues})`);
+    }
+}
+
 export {
   sanitiseURL,
   arrayToDictionary,
   parseDate,
-  compareObjects
+  compareObjects,
+  toggleValue
 };
