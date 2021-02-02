@@ -1,6 +1,6 @@
 import { GeoJsonObject } from 'geojson';
 import React, { Component, Fragment } from 'react';
-import { AttributionControl, GeoJSON, Map, TileLayer, ZoomControl } from 'react-leaflet-universal';
+import { AttributionControl, GeoJSON, Map, TileLayer, ZoomControl, Pane } from 'react-leaflet-universal';
 
 import 'leaflet/dist/leaflet.css';
 import './map.css';
@@ -32,6 +32,7 @@ interface ColouringMapState {
     lng: number;
     zoom: number;
     boundary: GeoJsonObject;
+    basemapMinZoom: number;
 }
 /**
  * Map area
@@ -45,6 +46,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             lng: -0.1338422,
             zoom: 16,
             boundary: undefined,
+            basemapMinZoom: 15
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleLocate = this.handleLocate.bind(this);
@@ -116,7 +118,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
 
         const isEdit = EDIT_MAP_MODES.includes(this.props.mode);
         const currentTheme = this.getCurrentTheme(this.props.mode, this.state.manualTheme);
-        const baseColor = currentTheme == 'light' ? '#fff' : '#000';
+        const baseColor = currentTheme == 'light' ? '#F0EEEB' : '#162639';
 
         // baselayer
         const key = OS_API_KEY;
@@ -126,14 +128,17 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>';
         
         const baseLayer = <TileLayer
+            key={`base-${this.state.basemapMinZoom}`}
+            style={{ zIndex: -1000}}
             url={baseUrl}
             attribution={attribution}
             maxNativeZoom={18}
             maxZoom={19}
+            minZoom={this.state.basemapMinZoom}
         />;
 
         const buildingsBaseUrl = `/tiles/base_${currentTheme}/{z}/{x}/{y}{r}.png`;
-        const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={14} maxZoom={19}/>;
+        const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={13} maxZoom={19}/>;
 
 
         const boundaryStyleFn = () => ({color: '#bbb', fill: false});
@@ -200,12 +205,20 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                         backgroundColor: baseColor
                     }}
                 >
-                    { baseLayer }
-                    { buildingBaseLayer }
-                    { boundaryLayer }
-                    { dataLayer }
-                    { highlightLayer }
-                    { numbersLayer }
+                    <Pane className="basePane">
+                        { baseLayer }
+                    </Pane>
+                    <Pane>
+                        { buildingBaseLayer }
+                        { boundaryLayer }
+                    </Pane>
+                    <Pane>
+                        { dataLayer }
+                    </Pane>
+                    <Pane>
+                        { highlightLayer }
+                        { numbersLayer }
+                    </Pane>
                     <ZoomControl position="topright" />
                     <AttributionControl prefix=""/>
                 </Map>
@@ -221,6 +234,23 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                             }
                             <Legend slug={cat} />
                             <ThemeSwitcher onSubmit={this.handleSwitchTheme} currentTheme={currentTheme} />
+                            <div style={{
+                                zIndex: 1000,
+                                position: 'absolute',
+                                top: '150px',
+                                right: '15px',
+                                backgroundColor: 'white',
+                                padding: '5px'
+                            }}>
+                                <label htmlFor="basemap-zoom">Background hide zoom threshold: {this.state.basemapMinZoom}</label> <br/>
+                                <input id="basemap-zoom" type="range" min={10} max={17} step={1} 
+                                    value={this.state.basemapMinZoom}
+                                    onChange={(e) => {
+                                        e.preventDefault();
+                                        this.setState({basemapMinZoom: parseInt(e.target.value)});
+                                    }} 
+                                ></input>
+                            </div>
                             <SearchBox onLocate={this.handleLocate} />
                         </Fragment>
                     ) : null
