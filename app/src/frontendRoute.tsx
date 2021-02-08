@@ -12,7 +12,7 @@ import {
     getUserVerifiedAttributes
 } from './api/services/building/base';
 import { getUserById } from './api/services/user';
-import App from './frontend/app';
+import { App } from './frontend/app';
 import { parseBuildingURL } from './parse';
 import asyncController from './api/routes/asyncController';
 

@@ -1,173 +1,115 @@
-import React, { Component, FormEvent } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import { apiDelete, apiPost } from '../apiHelpers';
+import { useAuth } from '../auth-context';
 import ConfirmationModal from '../components/confirmation-modal';
 import ErrorBox from '../components/error-box';
-import { User } from '../models/user';
+import { SpinnerIcon } from '../components/icons';
 
-interface MyAccountPageProps {
-    user: User;
-    updateUser: (user: User) => void;
-    logout: () => void;
-}
+export const MyAccountPage: React.FC = () => {
+    const { isLoading, user, userError, logout, generateApiKey, deleteAccount } = useAuth();
 
-interface MyAccountPageState {
-    showDeleteConfirm: boolean;
-    error: string;
-}
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+    const [error, setError] = useState(undefined);
 
+    const handleLogout = useCallback((e) => {
+        e.preventDefault();
+        logout(setError);
+    }, [logout]);
 
-class MyAccountPage extends Component<MyAccountPageProps, MyAccountPageState> {
-    constructor(props) {
-        super(props);
-        this.state = {
-            error: undefined,
-            showDeleteConfirm: false
-        };
-        this.handleLogout = this.handleLogout.bind(this);
-        this.handleGenerateKey = this.handleGenerateKey.bind(this);
-    }
+    const handleGenerateKey = useCallback(async (e) => {
+        e.preventDefault();
+        
+        setError(undefined);
+        generateApiKey(setError);
+    }, [generateApiKey]);
 
-    handleLogout(event) {
-        event.preventDefault();
-        this.setState({error: undefined});
+    const handleDeleteAccount = useCallback(() => {
+        setError(undefined);
+        deleteAccount(setError);
+    }, [deleteAccount])
 
-        apiPost('/api/logout')
-        .then(function(res){
-            if (res.error) {
-                this.setState({error: res.error});
-            } else {
-                this.props.logout();
-            }
-        }.bind(this)).catch(
-            (err) => this.setState({error: err})
+    if(!user && isLoading) {
+        return (
+            <article>
+                <section className="main-col">
+                    <SpinnerIcon spin={true} /> Loading user info... 
+                </section>
+            </article>
         );
     }
 
-    handleGenerateKey(event) {
-        event.preventDefault();
-        this.setState({error: undefined});
+    return (
+        <article>
+            <section className="main-col">
+                { !isLoading && <ErrorBox msg={userError} /> }
+                {!userError && (<>
+                    <h1 className="h1">Welcome, {user.username}!</h1>
+                    <p>
+                        Colouring London is under active development. Please
+                        <a href="https://discuss.colouring.london/">discuss suggestions for improvements</a> and
+                        <a href="https://github.com/colouring-london/colouring-london/issues"> report issues or problems</a>.
+                    </p>
+                    <p>
+                        For reference, here are the 
+                        <Link to="/privacy-policy.html">privacy policy</Link>,
+                        <Link to="/contributor-agreement.html">contributor agreement</Link> and 
+                        <Link to="/data-accuracy.html">data accuracy agreement</Link>.
+                    </p>
+                    <ErrorBox msg={error} />
+                    <form onSubmit={handleLogout}>
+                        <div className="buttons-container">
+                            <Link to="/edit/age" className="btn btn-warning">Start colouring</Link>
+                            <input className="btn btn-secondary" type="submit" value="Log out"/>
+                        </div>
+                    </form>
 
-        apiPost('/api/api/key')
-        .then(res => {
-            if (res.error) {
-                this.setState({error: res.error});
-            } else {
-                this.props.updateUser(res);
-            }
-        }).catch(
-            (err) => this.setState({error: err})
-        );
-    }
+                    <hr/>
+                    <h2 className="h2">My Details</h2>
+                    <h3 className="h3">Username</h3>
+                    <p>{user.username}</p>
+                    <h3 className="h3">Email Address</h3>
+                    <p>{user.email || '-'}</p>
+                    <h3 className="h3">Registered</h3>
+                    <p>{user.registered.toString()}</p>
 
-    confirmDelete(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        this.setState({ showDeleteConfirm: true });
-    }
+                    <hr/>
 
-    hideConfirmDelete() {
-        this.setState({ showDeleteConfirm: false });
-    }
+                    <h2 className="h2">Technical details</h2>
+                    <p>Are you a software developer? If so, you might be interested in these.</p>
+                    <h3 className="h3">API key</h3>
+                    <p>{user.api_key || '-'}</p>
+                    <form onSubmit={handleGenerateKey} className="form-group mb-3">
+                        <input className="btn btn-warning" type="submit" value="Generate API key"/>
+                    </form>
 
-    async handleDelete() {
-        this.setState({ error: undefined });
+                    <h3 className="h3">Open Source Code</h3>
+                    Colouring London site code is developed at <a href="http://github.com/colouring-london/colouring-london/">colouring-london</a> on Github
 
-        try {
-            const data = await apiDelete('/api/users/me');
+                    <hr />
 
-            if(data.error) {
-                this.setState({ error: data.error });
-            } else {
-                this.props.logout();
-            }
-        } catch (err) {
-            this.setState({ error: err });
-        } finally {
-            this.hideConfirmDelete();
-        }
-    }
+                    <h2 className="h2">Account actions</h2>
+                    <form
+                        onSubmit={e => {
+                            e.preventDefault();
+                            setShowDeleteConfirm(true);
+                        }}
+                        className="form-group mb-3"
+                    >
+                        <input className="btn btn-danger" type="submit" value="Delete account" />
+                    </form>
 
-    render() {
-        if (this.props.user && !this.props.user.error) {
-            return (
-                <article>
-                    <section className="main-col">
-                        <h1 className="h1">Welcome, {this.props.user.username}!</h1>
-                        <p>
-
-                        Colouring London is under active development. Please <a href="https://discuss.colouring.london/">discuss
-                        suggestions for improvements</a> and <a
-                                href="https://github.com/colouring-london/colouring-london/issues">
-                        report issues or problems</a>.
-
-                        </p>
-                        <p>
-                        For reference, here are the <Link
-                        to="/privacy-policy.html">privacy policy</Link>, <Link
-                        to="/contributor-agreement.html">contributor agreement</Link> and <Link
-                        to="/data-accuracy.html">data accuracy agreement</Link>.
-                        </p>
-                        <ErrorBox msg={this.state.error} />
-                        <form onSubmit={this.handleLogout}>
-                            <div className="buttons-container">
-                                <Link to="/edit/age" className="btn btn-warning">Start colouring</Link>
-                                <input className="btn btn-secondary" type="submit" value="Log out"/>
-                            </div>
-                        </form>
-
-                        <hr/>
-
-                        <h2 className="h2">My Details</h2>
-                        <h3 className="h3">Username</h3>
-                        <p>{this.props.user.username}</p>
-                        <h3 className="h3">Email Address</h3>
-                        <p>{this.props.user.email? this.props.user.email : '-'}</p>
-                        <h3 className="h3">Registered</h3>
-                        <p>{this.props.user.registered.toString()}</p>
-
-                        <hr/>
-
-                        <h2 className="h2">Technical details</h2>
-                        <p>Are you a software developer? If so, you might be interested in these.</p>
-                        <h3 className="h3">API key</h3>
-                        <p>{this.props.user.api_key? this.props.user.api_key : '-'}</p>
-                        <form onSubmit={this.handleGenerateKey} className="form-group mb-3">
-                            <input className="btn btn-warning" type="submit" value="Generate API key"/>
-                        </form>
-
-                        <h3 className="h3">Open Source Code</h3>
-                        Colouring London site code is developed at <a href="http://github.com/colouring-london/colouring-london/">colouring-london</a> on Github
-
-                        <hr />
-
-                        <h2 className="h2">Account actions</h2>
-                        <form
-                            onSubmit={e => this.confirmDelete(e)}
-                            className="form-group mb-3"
-                        >
-                            <input className="btn btn-danger" type="submit" value="Delete account" />
-                        </form>
-
-                        <ConfirmationModal
-                            show={this.state.showDeleteConfirm}
-                            title="Confirm account deletion"
-                            description="Are you sure you want to delete your account? This cannot be undone."
-                            confirmButtonText="Delete account"
-                            confirmButtonClass="btn-danger"
-                            onConfirm={() => this.handleDelete()}
-                            onCancel={() => this.hideConfirmDelete()}
-                        />
-
-                    </section>
-                </article>
-            );
-        } else {
-            return (
-                <Redirect to="/login.html" />
-            );
-        }
-    }
-}
-
-export default MyAccountPage;
+                    <ConfirmationModal
+                        show={showDeleteConfirm}
+                        title="Confirm account deletion"
+                        description="Are you sure you want to delete your account? This cannot be undone."
+                        confirmButtonText="Delete account"
+                        confirmButtonClass="btn-danger"
+                        onConfirm={() => handleDeleteAccount()}
+                        onCancel={() => setShowDeleteConfirm(false)}
+                    />
+                </>)}
+            </section>
+        </article>
+    );
+};

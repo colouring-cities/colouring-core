@@ -14,6 +14,7 @@ import Sidebar from './building/sidebar';
 import ColouringMap from './map/map';
 import { Building } from './models/building';
 import Welcome from './pages/welcome';
+import { PrivateRoute } from './route';
 
 interface MapAppRouteParams {
     mode: 'view' | 'edit' | 'multi-edit';
@@ -205,6 +206,9 @@ class MapApp extends React.Component<MapAppProps, MapAppState> {
 
         return (
             <Fragment>
+                <Switch>
+                    <PrivateRoute path="/:mode(edit|multi-edit)" /> {/* empty private route to ensure auth for editing */}
+                </Switch>
                 <Switch>
                     <Route exact path="/">
                         <Sidebar>

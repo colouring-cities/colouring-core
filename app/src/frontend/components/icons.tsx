@@ -16,6 +16,7 @@ import {
     faPaintBrush,
     faQuestionCircle,
     faSearch,
+    faSpinner,
     faTimes
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -35,7 +36,8 @@ library.add(
     faCaretUp,
     faCaretRight,
     faSearch,
-    faEye
+    faEye,
+    faSpinner
 );
 
 const HelpIcon = () => (
@@ -94,6 +96,10 @@ const SearchIcon = () => (
     <FontAwesomeIcon icon="search" />
 );
 
+const SpinnerIcon: React.FC<{spin?: boolean}> = ({spin=true}) => (
+    <FontAwesomeIcon icon="spinner" spin={spin} />
+);
+
 export {
     HelpIcon,
     InfoIcon,
@@ -108,5 +114,6 @@ export {
     UpIcon,
     RightIcon,
     SearchIcon,
-    VerifyIcon
+    VerifyIcon,
+    SpinnerIcon
 };
