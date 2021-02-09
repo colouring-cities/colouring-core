@@ -5,7 +5,7 @@ import './header.css';
 
 import { Logo } from './components/logo';
 import { WithSeparator } from './components/with-separator';
-import { User } from './models/user';
+import { useAuth } from './auth-context';
 
 
 interface MenuLink {
@@ -132,37 +132,38 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
     ];
 }
 
+const Menu: React.FC<{ onNavigate: () => void }> = ({ onNavigate }) => {
+    const { user } = useAuth();
 
-const Menu : React.FC<{
-    menuLinkSections: MenuLink[][],
-    onNavigate: () => void
-}> = ({ menuLinkSections, onNavigate }) => (
-    <WithSeparator separator={<hr />}>
-        {menuLinkSections.map((section, idx) =>
-            <ul key={`menu-section-${idx}`} className="navbar-nav flex-container">
-                {section.map(item => (
-                    <li className={`nav-item`}>
-                        {
-                            item.disabled ?
-                                <LinkStub note={item.note}>{item.text}</LinkStub> :
-                                item.external ?
-                                    <ExternalNavLink to={item.to}>{item.text}</ExternalNavLink> :
-                                    <InternalNavLink to={item.to} onClick={onNavigate}>{item.text}</InternalNavLink>
-                        }
-                    </li>
-                ))}
-            </ul>
-        )}
-    </WithSeparator>
-);
+    const menuLinkSections = getCurrentMenuLinks(user?.username);
+    return (
+        <WithSeparator separator={<hr />}>
+            {menuLinkSections.map((section, idx) =>
+                <ul key={`menu-section-${idx}`} className="navbar-nav flex-container">
+                    {section.map(item => (
+                        <li className='nav-item' key={`${item.to}-${item.text}`}>
+                            {
+                                item.disabled ?
+                                    <LinkStub note={item.note}>{item.text}</LinkStub> :
+                                    item.external ?
+                                        <ExternalNavLink to={item.to}>{item.text}</ExternalNavLink> :
+                                        <InternalNavLink to={item.to} onClick={onNavigate}>{item.text}</InternalNavLink>
+                            }
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </WithSeparator>
+    );
+};
 
-const InternalNavLink: React.FC<{to: string, onClick: () => void}> = ({ to, onClick, children}) => (
+const InternalNavLink: React.FC<{to: string; onClick: () => void}> = ({ to, onClick, children}) => (
     <NavLink className="nav-link" to={to} onClick={onClick}>
         {children}
     </NavLink>
 );
 
-const ExternalNavLink: React.FC<{to:string}> = ({ to, children }) => (
+const ExternalNavLink: React.FC<{to: string}> = ({ to, children }) => (
     <a className="nav-link" href={to}>
         {children}
     </a>
@@ -175,16 +176,13 @@ const LinkStub: React.FC<{note: string}> = ({note, children}) => (
     </a>
 );
 
-export const Header : React.FC<{
-    user: User;
+export const Header: React.FC<{
     animateLogo: boolean;
-}> = ({ user, animateLogo }) => {
+}> = ({ animateLogo }) => {
     const [collapseMenu, setCollapseMenu] = useState(true);
 
     const toggleCollapse = () => setCollapseMenu(!collapseMenu);
     const handleNavigate = () => setCollapseMenu(true);
-
-    const currentMenuLinks = getCurrentMenuLinks(user?.username);
 
     return (
     <header className="main-header navbar navbar-light">
@@ -203,7 +201,7 @@ export const Header : React.FC<{
             </button>
         </div>
         <nav className={collapseMenu ? 'collapse navbar-collapse' : 'navbar-collapse'}>
-            <Menu menuLinkSections={currentMenuLinks} onNavigate={handleNavigate}></Menu>
+            <Menu onNavigate={handleNavigate}></Menu>
         </nav>
     </header>
     );

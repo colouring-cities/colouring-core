@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
+import { AuthRoute, PrivateRoute } from './route';
+import { AuthContext, AuthProvider } from './auth-context';
 import { Header } from './header';
 import MapApp from './map-app';
 import { Building } from './models/building';
@@ -20,10 +22,11 @@ import OrdnanceSurveyLicencePage from './pages/ordnance-survey-licence';
 import OrdnanceSurveyUprnPage from './pages/ordnance-survey-uprn';
 import PrivacyPolicyPage from './pages/privacy-policy';
 import ForgottenPassword from './user/forgotten-password';
-import Login from './user/login';
-import MyAccountPage from './user/my-account';
+import { Login } from './user/login';
+import { MyAccountPage } from './user/my-account';
 import PasswordReset from './user/password-reset';
-import SignUp from './user/signup';
+import { SignUp } from './user/signup';
+import { NotFound } from './pages/not-found';
 
 
 interface AppProps {
@@ -32,10 +35,6 @@ interface AppProps {
     building_like?: boolean;
     user_verified?: object;
     revisionId: number;
-}
-
-interface AppState {
-    user?: User;
 }
 
 /**
@@ -50,64 +49,27 @@ interface AppState {
  *   map or other pages are rendered, based on the URL. Use a react-router-dom <Link /> in
  *   child components to navigate without a full page reload.
  */
-class App extends React.Component<AppProps, AppState> {
-    static mapAppPaths = ['/', '/:mode(view|edit|multi-edit)/:category/:building(\\d+)?/(history)?'];
 
-    constructor(props: Readonly<AppProps>) {
-        super(props);
+export const App: React.FC<AppProps> = props => {
+    const mapAppPaths = ['/', '/:mode(view|edit|multi-edit)/:category/:building(\\d+)?/(history)?'];
 
-        this.state = {
-            user: props.user
-        };
-        this.login = this.login.bind(this);
-        this.updateUser = this.updateUser.bind(this);
-        this.logout = this.logout.bind(this);
-    }
-
-    login(user) {
-        if (user.error) {
-            this.logout();
-            return;
-        }
-        this.setState({user: user});
-    }
-
-    updateUser(user){
-        this.setState({user: { ...this.state.user, ...user }});
-    }
-
-    logout() {
-        this.setState({user: undefined});
-    }
-
-    render() {
-        return (
-            <Fragment>
+    return (
+        <AuthProvider>
             <Switch>
-                <Route exact path={App.mapAppPaths}>
-                    <Header user={this.state.user} animateLogo={false} />
+                <Route exact path={mapAppPaths}>
+                    <Header animateLogo={false} />
                 </Route>
                 <Route>
-                    <Header user={this.state.user} animateLogo={true} />
+                    <Header animateLogo={true} />
                 </Route>
             </Switch>
             <Switch>
                 <Route exact path="/about.html" component={AboutPage} />
-                <Route exact path="/login.html">
-                    <Login user={this.state.user} login={this.login} />
-                </Route>
-                <Route exact path="/forgotten-password.html" component={ForgottenPassword} />
-                <Route exact path="/password-reset.html" component={PasswordReset} />
-                <Route exact path="/sign-up.html">
-                    <SignUp user={this.state.user} login={this.login} />
-                </Route>
-                <Route exact path="/my-account.html">
-                    <MyAccountPage
-                        user={this.state.user}
-                        updateUser={this.updateUser}
-                        logout={this.logout}
-                    />
-                </Route>
+                <AuthRoute exact path="/login.html" component={Login} />
+                <AuthRoute exact path="/forgotten-password.html" component={ForgottenPassword} />
+                <AuthRoute exact path="/password-reset.html" component={PasswordReset} />
+                <AuthRoute exact path="/sign-up.html" component={SignUp} />
+                <PrivateRoute exact path="/my-account.html" component={MyAccountPage} />
                 <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
                 <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
                 <Route exact path="/ordnance-survey-licence.html" component={OrdnanceSurveyLicencePage} />
@@ -118,38 +80,22 @@ class App extends React.Component<AppProps, AppState> {
                 <Route exact path="/code-of-conduct.html" component={CodeOfConductPage} />
                 <Route exact path="/leaderboard.html" component={LeaderboardPage} />
                 <Route exact path="/history.html" component={ChangesPage} />
-                <Route exact path={App.mapAppPaths} render={(props) => (
-                    <MapApp
-                        {...props}
-                        building={this.props.building}
-                        building_like={this.props.building_like}
-                        user_verified={this.props.user_verified}
-                        user={this.state.user}
-                        revisionId={this.props.revisionId}
-                    />
+                <Route exact path={mapAppPaths} render={(routeProps) => (
+                    <AuthContext.Consumer>
+                        {({user}) => 
+                            <MapApp
+                                {...routeProps}
+                                building={props.building}
+                                building_like={props.building_like}
+                                user_verified={props.user_verified}
+                                user={user}
+                                revisionId={props.revisionId}
+                            />
+                        }
+                    </AuthContext.Consumer>
                 )} />
                 <Route component={NotFound} />
             </Switch>
-            </Fragment>
-        );
-    }
-}
-
-/**
- * Component to fall back on in case of 404 or no other match
- */
-const NotFound = () => (
-    <article>
-        <section className="main-col">
-            <h1 className="h1">Page not found</h1>
-            <p className="lead">
-
-            We can&rsquo;t find that one anywhere.
-
-            </p>
-            <Link className="btn btn-outline-dark" to="/">Back home</Link>
-        </section>
-    </article>
-);
-
-export default App;
+        </AuthProvider>
+    );
+};

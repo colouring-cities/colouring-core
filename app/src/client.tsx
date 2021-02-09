@@ -6,7 +6,7 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import App from './frontend/app';
+import { App } from './frontend/app';
 
 const data = (window as any).__PRELOADED_STATE__; // TODO: remove any
 

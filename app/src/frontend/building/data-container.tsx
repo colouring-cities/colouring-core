@@ -235,10 +235,6 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
         }
 
         render() {
-            if (this.props.mode === 'edit' && !this.props.user){
-                return <Redirect to="/sign-up.html" />;
-            }
-
             const currentBuilding = this.getEditedBuilding();
 
             const values_to_copy = {};

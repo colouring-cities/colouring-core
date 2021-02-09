@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { parseJsonOrDefault } from '../../helpers';
 import ErrorBox from '../components/error-box';
@@ -18,9 +18,6 @@ interface MultiEditProps {
 }
 
 const MultiEdit: React.FC<MultiEditProps> = (props) => {
-    if (!props.user){
-        return <Redirect to="/sign-up.html" />;
-    }
     if (props.category === 'like') {
         // special case for likes
         return (
