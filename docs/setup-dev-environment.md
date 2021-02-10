@@ -1,4 +1,4 @@
-## Setting up a local development environment
+# Setting up a local development environment
 
 This document is intended to guide you through setting up a local development environment for
 Colouring London. This guide assumes you already have Ubuntu 18.04 server installed, typically
@@ -12,7 +12,7 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 
-#### Installing the tools and components
+## Installing the tools and components
 
 Now we install some essential tools.
 
@@ -37,8 +37,8 @@ Now clone the colouring london codebase.
 Now install Node. It is helpful to define some local variables.
 
 ```
-NODE_VERSION=v12.14.1
-DISTRO=linux-x64
+export NODE_VERSION=v12.14.1
+export DISTRO=linux-x64
 wget -nc https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-$DISTRO.tar.xz
 sudo mkdir /usr/local/lib/node
 sudo tar xf node-$NODE_VERSION-$DISTRO.tar.xz -C /usr/local/lib/node
@@ -55,6 +55,12 @@ export PATH=\$NODEJS_HOME:\$PATH
 EOF
 ```
 
+Then run source to make sure node and npm are on your path:
+
+```
+source ~/.profile
+```
+
 You can check the updated variables as follows
 
 ```
@@ -62,7 +68,7 @@ echo $PATH
 echo $NODEJS_HOME
 ```
 
-#### Configuring Postgres
+## Configuring Postgres
 
 Now we configure postgres. First ensure postgres is running.
 
@@ -91,22 +97,30 @@ password `<pgpassword>` is arbitrary and probably should not be your Ubuntu logi
 
 Create a colouring london database if none exists. The name (`<colouringlondondb>`) is arbitrary.
 
-`sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>`
+```
+sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>
+```
+
+To test the app user's connection to the database, you could run `psql` interactively:
+
+```
+psql -d <colouringlondondb> -U <username> -h localhost
+```
 
 Create the necessary postgres extensions.
 
-`psql -d <colouringlondondb> -c "create extension postgis;"`
-
-`psql -d <colouringlondondb> -c "create extension pgcrypto;"`
-
-`psql -d <colouringlondondb> -c "create extension pg_trgm;"`
+```
+psql -d <colouringlondondb> -c "create extension postgis;"
+psql -d <colouringlondondb> -c "create extension pgcrypto;"
+psql -d <colouringlondondb> -c "create extension pg_trgm;"
+```
 
 Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
 do this are located in the `migrations` folder of your local repository.
 
-`ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb>  < $migration; done;`
+`ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;`
 
-#### Setting up Python
+## Setting up Python
 
 Now set up a virtual environment for python. In the following example we have named the
 virtual environment *colouringlondon* but it can have any name.
@@ -129,7 +143,7 @@ in the `etl` folder of your local repository.
 
 `pip install -r ./colouring-london/etl/requirements.txt`
 
-#### Setting up Node
+## Setting up Node
 
 Now upgrade the npm package manager to the most recent release with global privileges. This
 needs to be performed as root user, so it is necessary to export the node variables to the
@@ -137,7 +151,7 @@ root user profile. Don't forget to exit from root at the end.
 
 ```
 sudo su root
-export NODEJS_HOME=/usr/local/lib/node/node-v12.14.1/bin/`
+export NODEJS_HOME=/usr/local/lib/node/node-v12.14.1/bin/
 export PATH=$NODEJS_HOME:$PATH`
 npm install -g npm@next`
 exit
@@ -149,7 +163,7 @@ local repository, so that it can read from the `package.json` file.
 `cd ./colouring-london/app && npm install`
 
 
-#### Running the application
+## Running the application
 
 Now we are ready to run the application. The `APP_COOKIE_SECRET` is arbitrary.
 
