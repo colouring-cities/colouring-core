@@ -52,7 +52,7 @@ async function renderDataSourceTile(
     layer.datasource = postgis;
     layer.styles = [tileset];
 
-    const stylePath = path.join(__dirname, '..', 'map_styles', 'polygon.xml');
+    const stylePath = path.join(__dirname, 'map_styles', 'polygon.xml');
 
     map = await promisify(map.load.bind(map))(stylePath, { strict: true });
 
