@@ -46,14 +46,14 @@ export const MyAccountPage: React.FC = () => {
                 {!userError && (<>
                     <h1 className="h1">Welcome, {user.username}!</h1>
                     <p>
-                        Colouring London is under active development. Please
-                        <a href="https://discuss.colouring.london/">discuss suggestions for improvements</a> and
+                        Colouring London is under active development. Please{' '}
+                        <a href="https://discuss.colouring.london/">discuss suggestions for improvements</a> and{' '}
                         <a href="https://github.com/colouring-london/colouring-london/issues"> report issues or problems</a>.
                     </p>
                     <p>
-                        For reference, here are the 
-                        <Link to="/privacy-policy.html">privacy policy</Link>,
-                        <Link to="/contributor-agreement.html">contributor agreement</Link> and 
+                        For reference, here are the{' '}
+                        <Link to="/privacy-policy.html">privacy policy</Link>,{' '}
+                        <Link to="/contributor-agreement.html">contributor agreement</Link> and{' '}
                         <Link to="/data-accuracy.html">data accuracy agreement</Link>.
                     </p>
                     <ErrorBox msg={error} />
