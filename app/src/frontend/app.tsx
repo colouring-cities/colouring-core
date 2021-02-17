@@ -54,7 +54,7 @@ export const App: React.FC<AppProps> = props => {
     const mapAppPaths = ['/', '/:mode(view|edit|multi-edit)/:category/:building(\\d+)?/(history)?'];
 
     return (
-        <AuthProvider>
+        <AuthProvider preloadedUser={props.user}>
             <Switch>
                 <Route exact path={mapAppPaths}>
                     <Header animateLogo={false} />

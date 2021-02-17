@@ -45,11 +45,16 @@ export const AuthContext = createContext<AuthContextState>({
 
 const noop = () => {};
 
-export const AuthProvider: React.FC = ({
-    children
+interface AuthProviderProps {
+    preloadedUser?: User;
+}
+
+export const AuthProvider: React.FC<AuthProviderProps> = ({
+    children,
+    preloadedUser
 }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [user, setUser] = useState<User>(undefined);
+    const [isAuthenticated, setIsAuthenticated] = useState(preloadedUser != undefined);
+    const [user, setUser] = useState<User>(preloadedUser);
     const [userError, setUserError] = useState<string>(undefined);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -178,7 +183,10 @@ export const AuthProvider: React.FC = ({
 
     // update user data initially to check if already logged in
     useEffect(() => {
-        updateUserData();
+        // if user state not preloaded
+        if(user == undefined) {
+            updateUserData();
+        }
     }, []);
 
     return (
