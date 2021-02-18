@@ -1,13 +1,15 @@
 import { GeoJsonObject } from 'geojson';
 import React, { Component, Fragment } from 'react';
-import { AttributionControl, GeoJSON, Map, TileLayer, ZoomControl } from 'react-leaflet-universal';
+import { AttributionControl, GeoJSON, Map, TileLayer, ZoomControl, Pane } from 'react-leaflet-universal';
 
 import 'leaflet/dist/leaflet.css';
 import './map.css';
 
 import { apiGet } from '../apiHelpers';
 import { HelpIcon } from '../components/icons';
+import { toggleValue } from '../helpers';
 import { Building } from '../models/building';
+import { MapMode, EDIT_MAP_MODES, MapTheme, ALL_MAP_THEMES } from '../types';
 
 import Legend from './legend';
 import SearchBox from './search-box';
@@ -17,7 +19,7 @@ const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
 interface ColouringMapProps {
     building?: Building;
-    mode: 'basic' | 'view' | 'edit' | 'multi-edit';
+    mode: MapMode;
     category: string;
     revision_id: number;
     selectBuilding: (building: Building) => void;
@@ -25,11 +27,12 @@ interface ColouringMapProps {
 }
 
 interface ColouringMapState {
-    theme: 'light' | 'night';
+    manualTheme: MapTheme;
     lat: number;
     lng: number;
     zoom: number;
     boundary: GeoJsonObject;
+    basemapMinZoom: number;
 }
 /**
  * Map area
@@ -38,15 +41,16 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
     constructor(props) {
         super(props);
         this.state = {
-            theme: 'night',
+            manualTheme: undefined,
             lat: 51.5245255,
             lng: -0.1338422,
             zoom: 16,
             boundary: undefined,
+            basemapMinZoom: 15
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleLocate = this.handleLocate.bind(this);
-        this.themeSwitch = this.themeSwitch.bind(this);
+        this.handleSwitchTheme = this.handleSwitchTheme.bind(this);
     }
 
     handleLocate(lat, lng, zoom){
@@ -84,10 +88,17 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         );
     }
 
-    themeSwitch(e) {
+    getCurrentTheme(mode: MapMode, manualTheme: MapTheme): MapTheme {
+        const isEdit = EDIT_MAP_MODES.includes(mode);
+        return manualTheme ?? (isEdit ? 'light' : 'night');
+    }
+
+    handleSwitchTheme(e): void {
         e.preventDefault();
-        const newTheme = (this.state.theme === 'light')? 'night' : 'light';
-        this.setState({theme: newTheme});
+
+        this.setState((state, props) => ({
+            manualTheme: toggleValue(this.getCurrentTheme(props.mode, state.manualTheme), ALL_MAP_THEMES)
+        }));
     }
 
     async getBoundary() {
@@ -105,21 +116,29 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
     render() {
         const position: [number, number] = [this.state.lat, this.state.lng];
 
+        const isEdit = EDIT_MAP_MODES.includes(this.props.mode);
+        const currentTheme = this.getCurrentTheme(this.props.mode, this.state.manualTheme);
+        const baseColor = currentTheme == 'light' ? '#F0EEEB' : '#162639';
+
         // baselayer
         const key = OS_API_KEY;
         const tilematrixSet = 'EPSG:3857';
-        const layer = (this.state.theme === 'light')? 'Light 3857' : 'Night 3857';
+        const layer = currentTheme === 'light' ? 'Light 3857' : 'Night 3857';
         const baseUrl = `https://api2.ordnancesurvey.co.uk/mapping_api/v1/service/zxy/${tilematrixSet}/${layer}/{z}/{x}/{y}.png?key=${key}`;
         const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>';
+        
         const baseLayer = <TileLayer
+            key={`base-${this.state.basemapMinZoom}`}
+            style={{ zIndex: -1000}}
             url={baseUrl}
             attribution={attribution}
             maxNativeZoom={18}
             maxZoom={19}
+            minZoom={this.state.basemapMinZoom}
         />;
 
-        const buildingsBaseUrl = `/tiles/base_${this.state.theme}/{z}/{x}/{y}{r}.png`;
-        const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={14} maxZoom={19}/>;
+        const buildingsBaseUrl = `/tiles/base_${currentTheme}/{z}/{x}/{y}{r}.png`;
+        const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={13} maxZoom={19}/>;
 
 
         const boundaryStyleFn = () => ({color: '#bbb', fill: false});
@@ -163,14 +182,12 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             : null;
 
         const numbersLayer = <TileLayer
-            key={this.state.theme}
+            key={currentTheme}
             url={`/tiles/number_labels/{z}/{x}/{y}{r}.png?rev=${rev}`}
             zIndex={200}
             minZoom={17}
             maxZoom={19}
         />
-
-        const isEdit = ['edit', 'multi-edit'].includes(this.props.mode);
 
         return (
             <div className="map-container">
@@ -184,13 +201,24 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     attributionControl={false}
                     onClick={this.handleClick}
                     detectRetina={true}
+                    style={{
+                        backgroundColor: baseColor
+                    }}
                 >
-                    { baseLayer }
-                    { buildingBaseLayer }
-                    { boundaryLayer }
-                    { dataLayer }
-                    { highlightLayer }
-                    { numbersLayer }
+                    <Pane className="basePane">
+                        { baseLayer }
+                    </Pane>
+                    <Pane>
+                        { buildingBaseLayer }
+                        { boundaryLayer }
+                    </Pane>
+                    <Pane>
+                        { dataLayer }
+                    </Pane>
+                    <Pane>
+                        { highlightLayer }
+                        { numbersLayer }
+                    </Pane>
                     <ZoomControl position="topright" />
                     <AttributionControl prefix=""/>
                 </Map>
@@ -205,7 +233,24 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                                     : null
                             }
                             <Legend slug={cat} />
-                            <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
+                            <ThemeSwitcher onSubmit={this.handleSwitchTheme} currentTheme={currentTheme} />
+                            <div style={{
+                                zIndex: 1000,
+                                position: 'absolute',
+                                top: '150px',
+                                right: '15px',
+                                backgroundColor: 'white',
+                                padding: '5px'
+                            }}>
+                                <label htmlFor="basemap-zoom">Background hide zoom threshold: {this.state.basemapMinZoom}</label> <br/>
+                                <input id="basemap-zoom" type="range" min={10} max={17} step={1} 
+                                    value={this.state.basemapMinZoom}
+                                    onChange={(e) => {
+                                        e.preventDefault();
+                                        this.setState({basemapMinZoom: parseInt(e.target.value)});
+                                    }} 
+                                ></input>
+                            </div>
                             <SearchBox onLocate={this.handleLocate} />
                         </Fragment>
                     ) : null
