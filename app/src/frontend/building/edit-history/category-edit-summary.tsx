@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './category-edit-summary.css';
 
-import { categories, Category } from '../../data_fields';
+import { categoriesConfig, Category } from '../../config/categories-config';
 
 import { FieldEditSummary } from './field-edit-summary';
 
@@ -18,11 +18,11 @@ interface CategoryEditSummaryProps {
     hyperlinkTemplate?: string;
 }
 
-const CategoryEditSummary : React.FunctionComponent<CategoryEditSummaryProps> = props => {
-    const category = Category[props.category];
-    const categoryInfo = categories[category] || {name: undefined, slug: undefined};
-    const categoryName = categoryInfo.name || 'Unknown category';
-    const categorySlug = categoryInfo.slug || 'categories';
+const CategoryEditSummary: React.FunctionComponent<CategoryEditSummaryProps> = props => {
+    const { 
+        name: categoryName = 'Unknown category',
+        slug: categorySlug = 'categories'
+    } = categoriesConfig[props.category] ?? {};
 
     return (
         <div className='edit-history-category-summary'>

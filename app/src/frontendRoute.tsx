@@ -75,6 +75,7 @@ function renderHTML(context, data, req, res) {
                 building={data.building}
                 building_like={data.building_like}
                 revisionId={data.latestRevisionId}
+                user_verified={data.userVerified}
             />
         </StaticRouter>
     );

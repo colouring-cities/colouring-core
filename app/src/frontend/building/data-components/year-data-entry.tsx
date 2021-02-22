@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 import Verification from './verification';
-import { dataFields } from '../../data_fields';
+import { dataFields } from '../../config/data-fields-config';
 import { CopyProps } from '../data-containers/category-view-props';
 
 import NumericDataEntry from './numeric-data-entry';

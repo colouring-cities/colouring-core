@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import { dataFields } from '../../data_fields';
+import { dataFields } from '../../config/data-fields-config';
 import SelectDataEntry from '../data-components/select-data-entry';
 import withCopyEdit from '../data-container';
 

@@ -7,21 +7,22 @@ import './map.css';
 
 import { apiGet } from '../apiHelpers';
 import { HelpIcon } from '../components/icons';
-import { Building } from '../models/building';
 
 import Legend from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
+import { categoryMapsConfig } from '../config/category-maps-config';
+import { Category } from '../config/categories-config';
+import { Building } from '../models/building';
 
 const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
 interface ColouringMapProps {
-    building?: Building;
+    selectedBuildingId: number;
     mode: 'basic' | 'view' | 'edit' | 'multi-edit';
-    category: string;
-    revision_id: number;
-    selectBuilding: (building: Building) => void;
-    colourBuilding: (building: Building) => void;
+    category: Category;
+    revisionId: string;
+    onBuildingAction: (building: Building) => void;
 }
 
 interface ColouringMapState {
@@ -58,30 +59,12 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
     }
 
     handleClick(e) {
-        const mode = this.props.mode;
         const { lat, lng } = e.latlng;
         apiGet(`/api/buildings/locate?lat=${lat}&lng=${lng}`)
-        .then(data => {
-            if (data && data.length){
-                const building = data[0];
-                if (mode === 'multi-edit') {
-                    // colour building directly
-                    this.props.colourBuilding(building);
-                } else if (this.props.building == undefined || building.building_id !== this.props.building.building_id){
-                    this.props.selectBuilding(building);
-                } else {
-                    this.props.selectBuilding(undefined);
-                }
-            } else {
-                if (mode !== 'multi-edit') {
-                    // deselect but keep/return to expected colour theme
-                    // except if in multi-edit (never select building, only colour on click)
-                    this.props.selectBuilding(undefined);
-                }
-            }
-        }).catch(
-            (err) => console.error(err)
-        );
+            .then(data => {
+                const building = data?.[0];
+                this.props.onBuildingAction(building);
+            }).catch(err => console.error(err));
     }
 
     themeSwitch(e) {
@@ -103,6 +86,8 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
     }
 
     render() {
+        const categoryMapDefinition = categoryMapsConfig[this.props.category];
+
         const position: [number, number] = [this.state.lat, this.state.lng];
 
         // baselayer
@@ -121,55 +106,37 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         const buildingsBaseUrl = `/tiles/base_${this.state.theme}/{z}/{x}/{y}{r}.png`;
         const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={14} maxZoom={19}/>;
 
-
-        const boundaryStyleFn = () => ({color: '#bbb', fill: false});
         const boundaryLayer = this.state.boundary &&
-                <GeoJSON data={this.state.boundary} style={boundaryStyleFn}/>;
+                <GeoJSON data={this.state.boundary} style={{color: '#bbb', fill: false}}/>;
 
-        // colour-data tiles
-        const cat = this.props.category;
-        const tilesetByCat = {
-            age: 'date_year',
-            size: 'size_height',
-            construction: 'construction_core_material',
-            location: 'location',
-            community: 'likes',
-            planning: 'planning_combined',
-            sustainability: 'sust_dec',
-            type: 'building_attachment_form',
-            use: 'landuse'
-        };
-        const tileset = tilesetByCat[cat];
-        // pick revision id to bust browser cache
-        const rev = this.props.revision_id;
-        const dataLayer = tileset != undefined ?
+        const tileset = categoryMapDefinition.mapStyle;
+        const dataLayer = tileset != undefined &&
             <TileLayer
                 key={tileset}
-                url={`/tiles/${tileset}/{z}/{x}/{y}{r}.png?rev=${rev}`}
+                url={`/tiles/${tileset}/{z}/{x}/{y}{r}.png?rev=${this.props.revisionId}`}
                 minZoom={9}
                 maxZoom={19}
-            />
-            : null;
+            />;
 
         // highlight
-        const highlightLayer = this.props.building != undefined ?
+        const highlightLayer = this.props.selectedBuildingId != undefined &&
             <TileLayer
-                key={this.props.building.building_id}
-                url={`/tiles/highlight/{z}/{x}/{y}{r}.png?highlight=${this.props.building.building_id}&base=${tileset}`}
+                key={this.props.selectedBuildingId}
+                url={`/tiles/highlight/{z}/{x}/{y}{r}.png?highlight=${this.props.selectedBuildingId}&base=${tileset}`}
                 minZoom={13}
                 maxZoom={19}
                 zIndex={100}
-            />
-            : null;
+            />;
 
         const numbersLayer = <TileLayer
             key={this.state.theme}
-            url={`/tiles/number_labels/{z}/{x}/{y}{r}.png?rev=${rev}`}
+            url={`/tiles/number_labels/{z}/{x}/{y}{r}.png?rev=${this.props.revisionId}`}
             zIndex={200}
             minZoom={17}
             maxZoom={19}
         />
 
+        const hasSelection = this.props.selectedBuildingId != undefined;
         const isEdit = ['edit', 'multi-edit'].includes(this.props.mode);
 
         return (
@@ -195,20 +162,18 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     <AttributionControl prefix=""/>
                 </Map>
                 {
-                    this.props.mode !== 'basic'? (
-                        <Fragment>
-                            {
-                                this.props.building == undefined ?
-                                    <div className="map-notice">
-                                        <HelpIcon /> {isEdit ? 'Click a building to edit' : 'Click a building for details'}
-                                    </div>
-                                    : null
-                            }
-                            <Legend slug={cat} />
-                            <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
-                            <SearchBox onLocate={this.handleLocate} />
-                        </Fragment>
-                    ) : null
+                    this.props.mode !== 'basic' &&
+                    <Fragment>
+                        {
+                            !hasSelection &&
+                            <div className="map-notice">
+                                <HelpIcon /> {isEdit ? 'Click a building to edit' : 'Click a building for details'}
+                            </div>
+                        }
+                        <Legend legendConfig={categoryMapDefinition?.legend} />
+                        <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
+                        <SearchBox onLocate={this.handleLocate} />
+                    </Fragment>
                 }
             </div>
         );
