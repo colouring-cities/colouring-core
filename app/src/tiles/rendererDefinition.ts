@@ -31,7 +31,7 @@ let shouldCacheFn: (t: TileParams) => boolean;
 
 if(!allLayersCacheSwitch) {
     shouldCacheFn = t => false;
-} else if(!dataLayersCacheSwitch) {
+} else if(dataLayersCacheSwitch) {
     // cache age data and base building outlines for more zoom levels than other layers
     shouldCacheFn = ({ tileset, z }: TileParams) =>
         (tileset === 'date_year' && z <= 16) ||
