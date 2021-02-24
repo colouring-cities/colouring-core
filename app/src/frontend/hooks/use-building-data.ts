@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { Building } from '../models/building';
+import { Building, BuildingAttributeVerificationCounts } from '../models/building';
 import { apiGet } from '../apiHelpers';
 
 export function useBuildingData(buildingId: number, preloadedData: Building): [Building, (updatedBuilding: Building) => void, () => void] {
@@ -29,6 +29,13 @@ export function useBuildingData(buildingId: number, preloadedData: Building): [B
         setIsOld(false);
     }, [buildingId]);
 
+    const updateData = useCallback((building: Building) => {
+        if(building.verified == undefined) {
+            building.verified = {} as BuildingAttributeVerificationCounts;
+        }
+        setBuildingData(building);
+    }, []);
+
     useEffect(() => {
         return () => {
             setIsOld(true);
@@ -43,5 +50,5 @@ export function useBuildingData(buildingId: number, preloadedData: Building): [B
 
     const reloadData = useCallback(() => setIsOld(true), []);
 
-    return [buildingData, setBuildingData, reloadData];
+    return [buildingData, updateData, reloadData];
 }

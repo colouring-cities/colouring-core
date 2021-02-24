@@ -129,7 +129,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
         },
     },
     [Category.Sustainability]: {
-        mapStyle: 'sust_Dec',
+        mapStyle: 'sust_dec',
         legend: {
             title: 'Sustainability',
             description: 'DEC Rating',

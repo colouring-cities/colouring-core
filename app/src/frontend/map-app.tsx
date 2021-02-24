@@ -46,30 +46,32 @@ function setOrToggle<T>(currentValue: T, newValue: T): T {
 
 export const MapApp: React.FC<MapAppProps> = props => {
     const [categoryUrlParam] = useUrlCategoryParam();
-    const [selectedBuildingId, setSelectedBuildingId] = useUrlBuildingParam();
-    const [mode] = useUrlModeParam();
 
     const [currentCategory, setCategory] = useState<Category>();
     useEffect(() => setCategory(unless(categoryUrlParam, 'categories')), [categoryUrlParam]);
-
+    
     const displayCategory = useLastNotEmpty(currentCategory) ?? defaultMapCategory;
-
+    
+    const [selectedBuildingId, setSelectedBuildingId] = useUrlBuildingParam('view', displayCategory);
+    
     const [building, updateBuilding, reloadBuilding] = useBuildingData(selectedBuildingId, props.building);
     const [buildingLike, updateBuildingLike] = useBuildingLikeData(selectedBuildingId, props.building_like);
     const [userVerified, updateUserVerified, reloadUserVerified] = useUserVerifiedData(selectedBuildingId, props.user_verified);
-
+    
     const [revisionId, updateRevisionId] = useRevisionId(props.revisionId);
     useEffect(() => {
         updateRevisionId(building?.revision_id)
     }, [building]);
-
+    
+    const [mode] = useUrlModeParam();
     const viewEditMode = unless(mode, 'multi-edit');
     
     const [multiEditData, multiEditError] = useMultiEditData();
 
     const selectBuilding = useCallback((selectedBuilding: Building) => {
-        updateBuilding(Object.assign({}, building, selectedBuilding));
-        setSelectedBuildingId(setOrToggle(selectedBuildingId, selectedBuilding?.building_id));
+        const currentId = selectedBuildingId;
+        updateBuilding(selectedBuilding);
+        setSelectedBuildingId(setOrToggle(currentId, selectedBuilding?.building_id));
     }, [selectedBuildingId, setSelectedBuildingId, updateBuilding, building]);
 
     const colourBuilding = useCallback(async (building: Building) => {

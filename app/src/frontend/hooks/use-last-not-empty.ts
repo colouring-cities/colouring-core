@@ -1,7 +1,11 @@
-import { usePrevious } from './use-previous';
-
+import { useEffect, useState } from 'react';
 export function useLastNotEmpty<T>(value: T): T {
-    const previousValue = usePrevious(value);
+    const [notEmpty, setNotEmpty] = useState(value);
+    useEffect(() => {
+        if(value != undefined) {
+            setNotEmpty(value);
+        }
+    }, [value]);
 
-    return value ?? previousValue;
+    return notEmpty;
 }
