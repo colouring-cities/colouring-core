@@ -30,10 +30,14 @@ export function useBuildingData(buildingId: number, preloadedData: Building): [B
     }, [buildingId]);
 
     const updateData = useCallback((building: Building) => {
-        if(building.verified == undefined) {
-            building.verified = {} as BuildingAttributeVerificationCounts;
+        if(building == undefined) {
+            setBuildingData(building);
+        } else {
+            if(building.verified == undefined) {
+                building.verified = {} as BuildingAttributeVerificationCounts;
+            }
+            setBuildingData(building);
         }
-        setBuildingData(building);
     }, []);
 
     useEffect(() => {
