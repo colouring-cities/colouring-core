@@ -21,7 +21,7 @@ interface DataEntryProps extends BaseDataEntryProps, TextDataEntryInputProps {
 
 const DataEntry: React.FC<DataEntryProps> = (props) => {
     return (
-        <Fragment>
+        <div>
             <DataTitleCopyable
                 slug={props.slug}
                 title={props.title}
@@ -39,7 +39,7 @@ const DataEntry: React.FC<DataEntryProps> = (props) => {
                 placeholder={props.placeholder}
                 valueTransform={props.valueTransform}
             />
-        </Fragment>
+        </div>
     );
 };
 

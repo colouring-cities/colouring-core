@@ -11,7 +11,7 @@ interface TextboxDataEntryProps extends BaseDataEntryProps {
 
 const TextboxDataEntry: React.FunctionComponent<TextboxDataEntryProps> = (props) => {
     return (
-        <Fragment>
+        <div>
             <DataTitleCopyable
                 slug={props.slug}
                 title={props.title}
@@ -37,7 +37,7 @@ const TextboxDataEntry: React.FunctionComponent<TextboxDataEntryProps> = (props)
                     )
                 }
                 ></textarea>
-        </Fragment>
+        </div>
     );
 };
 

@@ -133,6 +133,13 @@ const LAYER_QUERIES = {
             buildings
         WHERE
             current_landuse_order IS NOT NULL`,
+    dynamics_past_count: `
+        SELECT
+            geometry_id,
+            jsonb_array_length(past_buildings) as past_buildings_count
+        FROM
+            buildings
+        WHERE jsonb_array_length(past_buildings) > 0`,
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';

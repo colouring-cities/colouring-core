@@ -408,4 +408,32 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Total number of likes",
         example: 100,
     },
+
+    past_buildings: {
+        category: Category.Dynamics,
+        title: 'Past buildings on this site',
+        items: {
+            year_constructed: {
+                title: 'Construction year',
+                example: 1991,
+            },
+            year_demolished: {
+                title: 'Demolition year',
+                example: 1994,
+            },
+            lifespan: {
+                title: 'Lifespan',
+                example: 4,
+            },
+            overlap_present: {
+                title: 'How much of this building was inside the current site boundary?',
+                example: "20%"
+            },
+            links: {
+                title: 'Links',
+                example: ["", ""]
+            }
+        },
+        example: [{year_constructed: 1991, year_demolished: 1994, lifespan: 4, overlap_present: "40%", links: ["", ""]}]
+    }
 };

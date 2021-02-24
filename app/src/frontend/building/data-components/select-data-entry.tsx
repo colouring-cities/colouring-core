@@ -12,7 +12,7 @@ interface SelectDataEntryProps extends BaseDataEntryProps {
 
 const SelectDataEntry: React.FunctionComponent<SelectDataEntryProps> = (props) => {
     return (
-        <Fragment>
+        <div>
             <DataTitleCopyable
                 slug={props.slug}
                 title={props.title}
@@ -39,7 +39,7 @@ const SelectDataEntry: React.FunctionComponent<SelectDataEntryProps> = (props) =
                     ))
                 }
             </select>
-        </Fragment>
+        </div>
     );
 };
 

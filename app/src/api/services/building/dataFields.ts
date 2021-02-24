@@ -57,5 +57,6 @@ export const BUILDING_FIELD_WHITELIST = new Set([
 
     // 'current_landuse_class',
     'current_landuse_group',
-    'current_landuse_order'
+    'current_landuse_order',
+    'past_buildings'
 ]);

@@ -14,7 +14,7 @@ interface NumericDataEntryProps extends BaseDataEntryProps {
 
 const NumericDataEntry: React.FunctionComponent<NumericDataEntryProps> = (props) => {
     return (
-        <Fragment>
+        <div>
             <DataTitleCopyable
                 slug={props.slug}
                 title={props.title}
@@ -40,7 +40,7 @@ const NumericDataEntry: React.FunctionComponent<NumericDataEntryProps> = (props)
                     )
                 }
             />
-        </Fragment>
+        </div>
     );
 };
 

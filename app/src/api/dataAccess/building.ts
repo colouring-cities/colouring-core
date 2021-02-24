@@ -58,7 +58,17 @@ export async function updateBuildingData(
     revisionId: string,
     t?: ITask<any>
 ): Promise<object> {
-    const sets = db.$config.pgp.helpers.sets(forwardPatch);
+    const columns = Object.keys(forwardPatch);
+    const mappedColumns = columns.map(c => {
+        if (c === 'past_buildings') {
+            return {
+                name: c,
+                mod: ':json',
+                cast: 'jsonb'
+            };
+        } else return c;
+    });
+    const sets = db.$config.pgp.helpers.sets(forwardPatch, mappedColumns);
 
     console.log('Setting', buildingId, sets);
 
