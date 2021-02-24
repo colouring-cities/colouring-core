@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 import InfoBox from '../../components/info-box';
-import { dataFields } from '../../data_fields';
+import { dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import UPRNsDataEntry from '../data-components/uprns-data-entry';

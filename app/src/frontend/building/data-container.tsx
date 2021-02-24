@@ -6,7 +6,7 @@ import { apiPost } from '../apiHelpers';
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
 import { compareObjects } from '../helpers';
-import { Building } from '../models/building';
+import { Building, UserVerified } from '../models/building';
 import { User } from '../models/user';
 
 import ContainerHeader from './container-header';
@@ -26,7 +26,9 @@ interface DataContainerProps {
     building?: Building;
     building_like?: boolean;
     user_verified?: any;
-    selectBuilding: (building: Building) => void;
+    onBuildingUpdate: (buildingId: number, updatedData: Building) => void;
+    onBuildingLikeUpdate: (buildingId: number, updatedData: boolean) => void;
+    onUserVerifiedUpdate: (buildingId: number, updatedData: UserVerified) => void;
 }
 
 interface DataContainerState {
@@ -38,6 +40,8 @@ interface DataContainerState {
     buildingEdits: Partial<Building>;
 }
 
+export type DataContainerType = React.ComponentType<DataContainerProps>;
+
 /**
  * Shared functionality for view/edit forms
  *
@@ -46,7 +50,7 @@ interface DataContainerState {
  *
  * @param WrappedComponent
  */
-const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) => {
+const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContainerType = (WrappedComponent: React.ComponentType<CategoryViewProps>) => {
     return class DataContainer extends React.Component<DataContainerProps, DataContainerState> {
         constructor(props) {
             super(props);
@@ -174,8 +178,9 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                 if (data.error) {
                     this.setState({error: data.error});
                 } else {
-                    this.props.selectBuilding(data);
-                    this.updateBuildingState('likes_total', data.likes_total);
+                    // like endpoint returns whole building data so we can update both
+                    this.props.onBuildingUpdate(this.props.building.building_id, data);
+                    this.props.onBuildingLikeUpdate(this.props.building.building_id, like);
                 }
             } catch(err) {
                 this.setState({error: err});
@@ -195,7 +200,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                 if (data.error) {
                     this.setState({error: data.error});
                 } else {
-                    this.props.selectBuilding(data);
+                    this.props.onBuildingUpdate(this.props.building.building_id, data);
                 }
             } catch(err) {
                 this.setState({error: err});
@@ -227,7 +232,7 @@ const withCopyEdit = (WrappedComponent: React.ComponentType<CategoryViewProps>) 
                             zIndex: 2000
                         });
                     }
-                    this.props.selectBuilding(this.props.building);
+                    this.props.onUserVerifiedUpdate(this.props.building.building_id, data);
                 }
             } catch(err) {
                 this.setState({error: err});

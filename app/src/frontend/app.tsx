@@ -5,10 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 import { AuthRoute, PrivateRoute } from './route';
-import { AuthContext, AuthProvider } from './auth-context';
+import { AuthProvider } from './auth-context';
 import { Header } from './header';
-import MapApp from './map-app';
-import { Building } from './models/building';
+import { MapApp } from './map-app';
+import { Building, UserVerified } from './models/building';
 import { User } from './models/user';
 import AboutPage from './pages/about';
 import ChangesPage from './pages/changes';
@@ -33,8 +33,8 @@ interface AppProps {
     user?: User;
     building?: Building;
     building_like?: boolean;
-    user_verified?: object;
-    revisionId: number;
+    user_verified?: UserVerified;
+    revisionId: string;
 }
 
 /**
@@ -80,20 +80,14 @@ export const App: React.FC<AppProps> = props => {
                 <Route exact path="/code-of-conduct.html" component={CodeOfConductPage} />
                 <Route exact path="/leaderboard.html" component={LeaderboardPage} />
                 <Route exact path="/history.html" component={ChangesPage} />
-                <Route exact path={mapAppPaths} render={(routeProps) => (
-                    <AuthContext.Consumer>
-                        {({user}) => 
-                            <MapApp
-                                {...routeProps}
-                                building={props.building}
-                                building_like={props.building_like}
-                                user_verified={props.user_verified}
-                                user={user}
-                                revisionId={props.revisionId}
-                            />
-                        }
-                    </AuthContext.Consumer>
-                )} />
+                <Route exact path={mapAppPaths} >
+                    <MapApp
+                        building={props.building}
+                        building_like={props.building_like}
+                        user_verified={props.user_verified}
+                        revisionId={props.revisionId}
+                    />
+                </Route>
                 <Route component={NotFound} />
             </Switch>
         </AuthProvider>

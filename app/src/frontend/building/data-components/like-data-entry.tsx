@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Tooltip from '../../components/tooltip';
+import { Category } from '../../config/categories-config';
 
 
 interface LikeDataEntryProps {
@@ -19,7 +20,7 @@ const LikeDataEntry: React.FunctionComponent<LikeDataEntryProps> = (props) => {
                 <Tooltip text="People who like the building and think it contributes to the city." />
                 <div className="icon-buttons">
                     <NavLink
-                        to={`/multi-edit/like?data=${data_string}`}
+                        to={`/multi-edit/${Category.Community}?data=${data_string}`}
                         className="icon-button like">
                         Like more
                     </NavLink>

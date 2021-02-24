@@ -1,3 +1,5 @@
+import { Building } from '../../models/building';
+
 interface CopyProps {
     copying: boolean;
     toggleCopying: () => void;
@@ -7,7 +9,7 @@ interface CopyProps {
 
 interface CategoryViewProps {
     intro: string;
-    building: any; // TODO: add Building type with all fields
+    building: Building;
     building_like: boolean;
     mode: 'view' | 'edit' | 'multi-edit';
     edited: boolean;

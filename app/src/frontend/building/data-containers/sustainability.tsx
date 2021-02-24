@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import { dataFields } from '../../data_fields';
+import { dataFields } from '../../config/data-fields-config';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';

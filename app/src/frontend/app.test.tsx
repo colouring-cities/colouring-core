@@ -9,7 +9,7 @@ describe('<App />', () => {
         const div = document.createElement('div');
         ReactDOM.render(
             <MemoryRouter>
-                <App revisionId={0} />
+                <App revisionId="0" />
             </MemoryRouter>,
             div
         );

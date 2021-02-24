@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 import './building-edit-summary.css';
 
-import { Category, DataFieldDefinition, dataFields } from '../../data_fields';
+import { Category } from '../../config/categories-config';
+import { DataFieldDefinition, dataFields } from '../../config/data-fields-config';
 import { arrayToDictionary, parseDate } from '../../helpers';
 import { EditHistoryEntry } from '../../models/edit-history-entry';
 
@@ -30,11 +31,15 @@ function enrichHistoryEntries(forwardPatch: object, reversePatch: object) {
     return Object
         .entries(forwardPatch)
         .map(([key, value]) => {
-            const info = dataFields[key] || {} as DataFieldDefinition;
+            const {
+                title = `Unknown field (${key})`,
+                category = undefined
+            } = dataFields[key] as DataFieldDefinition ?? {};
+            
             return {
-                title: info.title || `Unknown field (${key})`,
-                category: info.category || Category.Unknown,
-                value: value,
+                title,
+                category,
+                value,
                 oldValue: reversePatch && reversePatch[key]
             };
         });
@@ -65,6 +70,7 @@ const BuildingEditSummary: React.FunctionComponent<BuildingEditSummaryProps> = (
             {
                 Object.entries(entriesByCategory).map(([category, fields]) => 
                     <CategoryEditSummary
+                        key={category}
                         category={category as keyof typeof Category} // https://github.com/microsoft/TypeScript/issues/14106
                         fields={fields}
                         hyperlinkCategory={hyperlinkCategories}

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 interface ErrorBoxProps {
     msg: string;
@@ -8,22 +8,16 @@ const ErrorBox: React.FC<ErrorBoxProps> = (props) => {
     if (props.msg) {
         console.error(props.msg);
     }
-    return (
-        <Fragment>
+
+    return props.msg ?
+        <div className="alert alert-danger" role="alert">
             {
-                (props.msg)?
-                    (
-                        <div className="alert alert-danger" role="alert">
-                            {
-                                typeof props.msg === 'string' ?
-                                    props.msg
-                                    : 'Unexpected error'
-                            }
-                        </div>
-                    ) : null
+                typeof props.msg === 'string' ?
+                    props.msg
+                    : 'Unexpected error'
             }
-        </Fragment>
-    );
+        </div> :
+        null;
 };
 
 export default ErrorBox;
