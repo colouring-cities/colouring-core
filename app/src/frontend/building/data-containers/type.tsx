@@ -95,7 +95,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 value=""
                 mode='view'
             />
-            <NumericDataEntry
+            {/* <NumericDataEntry
                 title={dataFields.date_change_building_use.title}
                 slug="date_change_building_use"
                 value={props.building.date_change_building_use}
@@ -106,7 +106,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
-            />
+            /> */}
         </Fragment>
     );
     };
