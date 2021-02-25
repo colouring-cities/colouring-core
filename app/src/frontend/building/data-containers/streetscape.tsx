@@ -25,25 +25,17 @@ const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
         <NumericDataEntry
             title={dataFields.size_plot_area_total.title}
             slug="size_plot_area_total"
-            value={props.building.size_plot_area_total}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
+            mode='view'
             step={0.1}
             min={0}
-            disabled={true}
-            />
+        />
         <NumericDataEntry
             title={dataFields.size_far_ratio.title}
             slug="size_far_ratio"
-            value={props.building.size_far_ratio}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
+            mode='view'
             step={0.1}
             min={0}
-            disabled={true}
-            />
+        />
         <DataEntry
             title="Plot dimensions"
             slug=""
