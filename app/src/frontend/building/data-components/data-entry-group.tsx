@@ -9,10 +9,14 @@ interface DataEntryGroupProps {
     name: string;
     /** Whether the group should be collapsed initially */
     collapsed?: boolean;
+    showCount?: boolean;
 }
 
 const DataEntryGroup: React.FunctionComponent<DataEntryGroupProps> = (props) => {
-    const {collapsed: initialCollapsed = true} = props;
+    const {
+        collapsed: initialCollapsed = true,
+        showCount = true
+    } = props;
 
     const [collapsed, setCollapsed] = useState(initialCollapsed);
 
@@ -22,7 +26,7 @@ const DataEntryGroup: React.FunctionComponent<DataEntryGroupProps> = (props) => 
                 <CollapseIcon collapsed={collapsed} />
                 <span className='data-entry-group-title'>
                     {props.name}
-                    <span className='data-entry-group-count'>{` (${React.Children.count(props.children)} attributes)`}</span>
+                    <span className='data-entry-group-count'>{showCount && ` (${React.Children.count(props.children)} attributes)`}</span>
                 </span>
             </div>
             <div className={`data-entry-group-body ${collapsed ? 'collapse' : ''}`}>

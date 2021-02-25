@@ -46,7 +46,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
             ]
         },
     },
-    [Category.SizeShape]: {
+    [Category.Size]: {
         mapStyle: 'size_height',
         legend: {
             title: 'Height to apex',

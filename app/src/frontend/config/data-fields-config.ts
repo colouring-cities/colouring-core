@@ -100,7 +100,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     building_attachment_form: {
         category: Category.Type,
-        title: "Building configuration (attachment)?",
+        title: "Adjacency/configuration",
         tooltip: "We have prepopulated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
         example: "",
     },
@@ -119,6 +119,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Original building use",
         tooltip: "What was the building originally used for when it was built? I.e. If it was Victorian warehouse which is now an office this would be warehouse",
         example: "",
+    },
+
+    size_roof_shape: {
+        category: Category.Type,
+        title: "Roof type",
+        example: "",
+        //tooltip: ,
     },
 
     date_year: {
@@ -164,75 +171,71 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
 
     size_storeys_core: {
-        category: Category.SizeShape,
+        category: Category.Size,
         title: "Core storeys",
         tooltip: "How many storeys between the pavement and start of roof?",
         example: 10,
     },
     size_storeys_attic: {
-        category: Category.SizeShape,
+        category: Category.Size,
         title: "Attic storeys",
         tooltip: "How many storeys above start of roof?",
         example: 1,
     },
     size_storeys_basement: {
-        category: Category.SizeShape,
+        category: Category.Size,
         title: "Basement storeys",
         tooltip: "How many storeys below pavement level?",
         example: 1,
     },
     size_height_apex: {
-        category: Category.SizeShape,
+        category: Category.Size,
         title: "Height to apex (m)",
         example: 100.5,
         //tooltip: ,
     },
     size_height_eaves: {
-        category: Category.SizeShape,
+        category: Category.Size,
         title: "Height to eaves (m)",
         example: 20.33,
         //tooltip: ,
     },
     size_floor_area_ground: {
-        category: Category.SizeShape,
+        category: Category.Size,
         title: "Ground floor area (m²)",
         example: 1245.6,
         //tooltip: ,
     },
     size_floor_area_total: {
-        category: Category.SizeShape,
+        category: Category.Size,
         title: "Total floor area (m²)",
         example: 2001.7,
         //tooltip: ,
     },
     size_width_frontage: {
-        category: Category.SizeShape,
+        category: Category.Size,
         title: "Frontage Width (m)",
         example: 12.2,
         //tooltip: ,
     },
+
+    size_configuration: {
+        category: Category.Size,
+        title: "Configuration (semi/detached, end/terrace)",
+        example: "",
+        //tooltip: ,
+    },
+
     size_plot_area_total: {
-        category: Category.SizeShape,
+        category: Category.Streetscape,
         title: "Total area of plot (m²)",
         example: 123.02,
         //tooltip: ,
     },
     size_far_ratio: {
-        category: Category.SizeShape,
+        category: Category.Streetscape,
         title: "FAR ratio (percentage of plot covered by building)",
         example: 0.1,
-        //tooltip: ,
-    },
-    size_configuration: {
-        category: Category.SizeShape,
-        title: "Configuration (semi/detached, end/terrace)",
-        example: "",
-        //tooltip: ,
-    },
-    size_roof_shape: {
-        category: Category.SizeShape,
-        title: "Roof shape",
-        example: "",
         //tooltip: ,
     },
 

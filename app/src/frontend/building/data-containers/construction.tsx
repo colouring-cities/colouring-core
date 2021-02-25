@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { dataFields } from '../../config/data-fields-config';
+import DataEntry from '../data-components/data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import withCopyEdit from '../data-container';
 
@@ -64,6 +65,12 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
+            />
+            <DataEntry
+                title="Construction system"
+                slug=""
+                value=""
+                mode='view'
             />
         </Fragment>
     );

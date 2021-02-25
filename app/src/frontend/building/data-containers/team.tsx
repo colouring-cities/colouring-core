@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import InfoBox from '../../components/info-box';
 
 import withCopyEdit from '../data-container';
 
@@ -9,7 +10,7 @@ import { CategoryViewProps } from './category-view-props';
 */
 const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        <p className="data-intro">{props.intro}</p>
+        <InfoBox msg="This is what we're planning to collect in this section" />
         <ul>
             <li>Construction and design team (original building)</li>
             {
@@ -23,6 +24,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 // "slug": "team_after_original",
                 // "type": "text_multi"
             }
+            <li>Awards</li>
         </ul>
     </Fragment>
 );
