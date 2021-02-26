@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { dataFields } from '../../config/data-fields-config';
+import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
@@ -104,6 +105,18 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
+            />
+            <DataEntry
+                title="Repairability rating for type"
+                slug=""
+                value=""
+                mode='view'
+            />
+            <DataEntry
+                title="Adaptability within plot rating"
+                slug=""
+                value=""
+                mode='view'
             />
         </Fragment>
     );

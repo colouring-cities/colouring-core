@@ -22,6 +22,42 @@ const AttachmentFormOptions = [
 const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
+            <DataEntry
+                title="Base type classification"
+                slug=""
+                value=""
+                mode='view'
+            />
+            <DataEntry
+                title="Local typology/architectural style"
+                slug=""
+                value=""
+                mode='view'
+            />
+            <DataEntry
+                title={dataFields.original_building_use.title}
+                slug="original_building_use" // doesn't exist in database yet
+                tooltip={dataFields.original_building_use.tooltip}
+                value={undefined}
+                copy={props.copy}
+                mode={props.mode}
+                onChange={props.onChange}
+                disabled={true}
+            />
+            <SelectDataEntry
+                title={dataFields.size_roof_shape.title}
+                slug="size_roof_shape"
+                value={props.building.size_roof_shape}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                disabled={true}
+                options={[
+                    "Flat",
+                    "Pitched",
+                    "Other"
+                ]}
+            />
             <SelectDataEntry
                 title={dataFields.building_attachment_form.title}
                 slug="building_attachment_form"
@@ -41,7 +77,25 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.building_attachment_form}
                 />
 
-            <NumericDataEntry
+            <DataEntry
+                title="Local typology mutations"
+                slug=""
+                value=""
+                mode='view'
+            />
+            <DataEntry
+                title="3D procedural model classifications"
+                slug=""
+                value=""
+                mode='view'
+            />
+            <DataEntry
+                title="Dynamic tissue type classificaiton"
+                slug=""
+                value=""
+                mode='view'
+            />
+            {/* <NumericDataEntry
                 title={dataFields.date_change_building_use.title}
                 slug="date_change_building_use"
                 value={props.building.date_change_building_use}
@@ -52,17 +106,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
-            />
-            <DataEntry
-                title={dataFields.original_building_use.title}
-                slug="original_building_use" // doesn't exist in database yet
-                tooltip={dataFields.original_building_use.tooltip}
-                value={undefined}
-                copy={props.copy}
-                mode={props.mode}
-                onChange={props.onChange}
-                disabled={true}
-            />
+            /> */}
         </Fragment>
     );
     };

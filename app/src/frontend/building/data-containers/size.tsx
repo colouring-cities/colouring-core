@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { dataFields } from '../../config/data-fields-config';
+import DataEntry from '../data-components/data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
@@ -167,58 +168,12 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             verified_count={props.building.verified.size_width_frontage}
             />
 
-        <NumericDataEntry
-            title={dataFields.size_plot_area_total.title}
-            slug="size_plot_area_total"
-            value={props.building.size_plot_area_total}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
-            step={0.1}
-            min={0}
-            disabled={true}
-            />
-        <NumericDataEntry
-            title={dataFields.size_far_ratio.title}
-            slug="size_far_ratio"
-            value={props.building.size_far_ratio}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
-            step={0.1}
-            min={0}
-            disabled={true}
-            />
-        <SelectDataEntry
-            title={dataFields.size_configuration.title}
-            slug="size_configuration"
-            value={props.building.size_configuration}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
-            disabled={true}
-            options={[
-                "Detached",
-                "Semi-detached",
-                "Terrace",
-                "End terrace",
-                "Block"
-            ]}
-            />
-        <SelectDataEntry
-            title={dataFields.size_roof_shape.title}
-            slug="size_roof_shape"
-            value={props.building.size_roof_shape}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
-            disabled={true}
-            options={[
-                "Flat",
-                "Pitched",
-                "Other"
-            ]}
-            />
+        <DataEntry
+            title="Total opening area"
+            slug=""
+            value=""
+            mode='view'
+        />
     </Fragment>
 );
 const SizeContainer = withCopyEdit(SizeView);

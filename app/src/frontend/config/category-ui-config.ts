@@ -20,7 +20,7 @@ export const categoryUiConfig: {[key in Category]: DataContainerType} = {
     [Category.LandUse]: UseContainer,
     [Category.Type]: TypeContainer,
     [Category.Age]: AgeContainer,
-    [Category.SizeShape]: SizeContainer,
+    [Category.Size]: SizeContainer,
     [Category.Construction]: ConstructionContainer,
     [Category.Streetscape]: StreetscapeContainer,
     [Category.Team]: TeamContainer,

@@ -308,19 +308,16 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                 {
                     this.props.inactive ?
                         <Fragment>
-                            <InfoBox
-                                msg={`We're not collecting data on ${this.props.title.toLowerCase()} yet - check back soon.`}
-                            />
                             <WrappedComponent
                                 intro={this.props.intro}
-                                building={undefined}
-                                building_like={undefined}
+                                building={this.props.building}
+                                building_like={this.props.building_like}
                                 mode={this.props.mode}
                                 edited={false}
                                 copy={copy}
-                                onChange={this.handleChange}
-                                onLike={this.handleLike}
-                                onVerify={this.handleVerify}
+                                onChange={undefined}
+                                onLike={undefined}
+                                onVerify={undefined}
                                 user_verified={[]}
                             />
                         </Fragment> :
