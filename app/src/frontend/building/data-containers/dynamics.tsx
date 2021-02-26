@@ -54,7 +54,7 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 value={building.past_buildings}
                 editableEntries={true}
                 slug='past_buildings'
-                title={dataFields.past_buildings.title}
+                title={undefined}
                 mode={props.mode}
                 onChange={props.onChange}
                 maxYear={currentBuildingConstructionYear}

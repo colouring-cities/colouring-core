@@ -109,6 +109,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                                 onChange={(key, val) => this.edit(i, val)}
 
                                 maxLength={props.maxLength}
+                                isUrl={props.isUrl}
                                 valueTransform={props.valueTransform}
 
                                 autofill={props.autofill}
@@ -140,6 +141,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
 
                             maxLength={props.maxLength}
                             placeholder={props.placeholder}
+                            isUrl={props.isUrl}
                             valueTransform={props.valueTransform}
                             confirmOnEnter={props.confirmOnEnter}
 

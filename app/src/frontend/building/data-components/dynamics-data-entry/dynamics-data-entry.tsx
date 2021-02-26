@@ -18,7 +18,9 @@ export const DynamicsBuildingPane: React.FC<{}> = ({children}) => (
         backgroundColor: '#f1f1f1',
         border: '1px solid #cccccc',
         padding: '10px',
-        borderRadius: '5px'
+        borderRadius: '5px',
+        marginTop: '10px',
+        marginBottom: '20px'
     }}>
         {children}
     </div>
@@ -31,6 +33,7 @@ interface DynamicsDataRowProps {
     maxYear?: number;
     minYear?: number;
     mode?: 'view' | 'edit' | 'multi-edit';
+    validateForm?: boolean;
 }
 const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
     value = {} as WithId<PastBuilding>,
@@ -39,6 +42,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
     maxYear,
     minYear,
     mode,
+    validateForm = false,
     children
 }) => {
 
@@ -93,6 +97,8 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                 disabled={disabled}
                 editableEntries={true}
                 mode={mode}
+                isUrl={true}
+
             />
             {children}
         </DynamicsBuildingPane>
@@ -117,6 +123,12 @@ function dropId<T>(valueWithId: WithId<T>): T {
     delete valueWithoutId._id;
     return valueWithoutId;
 }
+
+// function isValid(val: PastBuilding) {
+//     if(val == undefined) return false;
+//     if(typeof val.year_constructed !== 'number') return false;
+//     if(typeof val.year_demolished !== '')
+// }
 
 export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
     const [newValue, setNewValue] = useState<WithId<PastBuilding>>();
@@ -157,13 +169,13 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
 
     return (
         <>
-            <DataTitleCopyable
+            {/* <DataTitleCopyable
                 slug={props.slug}
                 title={props.title}
                 tooltip={props.tooltip}
                 disabled={props.disabled || values == undefined || values.length === 0}
                 copy={props.copy}
-            />
+            /> */}
             <div>
                 <ul className="data-link-list">
                     {
@@ -190,23 +202,6 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                                             data-index={pastBuilding._id} className="btn btn-outline-danger btn-block">Delete Record</button>
                                     }
                                 </DynamicsDataRow>
-                                {/* <DataEntryInput
-                                    slug={props.slug}
-                                    name={`${props.slug}-${i}`}
-                                    id={`${props.slug}-${i}`}
-                                    value={JSON.stringify(val)}
-                                    disabled={!props.editableEntries || isDisabled}
-                                    // onChange={(key, val) => this.edit(i, val)}
-
-                                /> */}
-                                {/* {
-                                    !isDisabled &&
-                                    <div className="input-group-append">
-                                        <button type="button" onClick={e => this.remove(i)}
-                                            title="Remove"
-                                            data-index={i} className="btn btn-outline-dark">✕</button>
-                                    </div>
-                                } */}
                             </li>
                         ))
                     }
@@ -214,7 +209,7 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                 {
                     !isDisabled &&
                     <div>
-                        <label>Add a new historical record</label>
+                        <h6 className="h6">Add a new historical record</h6>
                         <DynamicsDataRow
                             value={newValue}
                             onChange={setNewValue}

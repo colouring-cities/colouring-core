@@ -12,6 +12,7 @@ export interface TextDataEntryInputProps {
     maxLength?: number;
     disabled?: boolean;
     placeholder?: string;
+    isUrl?: boolean;
     valueTransform?: (val: string) => string;
     confirmOnEnter?: boolean;
 
@@ -52,13 +53,14 @@ export const DataEntryInput: React.FC<TextDataEntryInputProps & {value?: string}
 
     return (
         <>
-            <input className="form-control" type="text"
+            <input className="form-control" type={props.isUrl? "url" : "text"}
                 id={idAttr}
                 name={nameAttr}
                 value={props.value || ''}
                 maxLength={props.maxLength}
                 disabled={props.disabled}
                 placeholder={props.placeholder}
+                
                 onKeyDown={e => {
                     if(e.keyCode === 13) {
                         // prevent form submit on enter
