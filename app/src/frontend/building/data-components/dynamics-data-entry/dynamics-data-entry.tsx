@@ -33,6 +33,7 @@ interface DynamicsDataRowProps {
     maxYear?: number;
     minYear?: number;
     mode?: 'view' | 'edit' | 'multi-edit';
+    required?: boolean;
     validateForm?: boolean;
 }
 const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
@@ -42,6 +43,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
     maxYear,
     minYear,
     mode,
+    required = false,
     validateForm = false,
     children
 }) => {
@@ -63,6 +65,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                     disabled={disabled}
                     max={value.year_demolished ?? maxYear}
                     min={minYear}
+                    required={required}
                 /> 
                 <NumericDataEntry
                     slug='year_demolished'
@@ -72,7 +75,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                     disabled={disabled}
                     max={maxYear}
                     min={value.year_constructed ?? minYear}
-
+                    required={required}
                 />
                 <NumericDataEntry
                     slug=''
@@ -88,6 +91,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                 value={value.overlap_present}
                 options={percentOverlapOption}
                 disabled={disabled}
+                required={required}
             />
             <MultiDataEntry
                 slug='links'
@@ -194,6 +198,7 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                                     minYear={props.minYear}
                                     maxYear={props.maxYear}
                                     mode={props.mode}
+                                    required={true}
                                 >
                                     {
                                         !isDisabled &&

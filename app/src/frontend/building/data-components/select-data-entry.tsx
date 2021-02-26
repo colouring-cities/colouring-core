@@ -22,8 +22,9 @@ const SelectDataEntry: React.FunctionComponent<SelectDataEntryProps> = (props) =
             />
             <select className="form-control"
                 id={props.slug} name={props.slug}
-                value={props.value || ''}
+                value={props.value || props.required ? undefined : ''}
                 disabled={props.mode === 'view' || props.disabled}
+                required={props.required}
                 onChange={e => 
                     props.onChange(
                         props.slug,
@@ -32,7 +33,7 @@ const SelectDataEntry: React.FunctionComponent<SelectDataEntryProps> = (props) =
                             e.target.value
                     )}
             >
-                <option value="">{props.placeholder}</option>
+                <option disabled={true} selected={true} value={null}>{props.placeholder}</option>
                 {
                     props.options.map(option => (
                         <option key={option} value={option}>{option}</option>

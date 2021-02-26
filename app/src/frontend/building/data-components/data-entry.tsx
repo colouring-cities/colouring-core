@@ -13,6 +13,7 @@ interface BaseDataEntryProps {
     copy?: CopyProps; // CopyProps clashes with propTypes
     mode?: 'view' | 'edit' | 'multi-edit';
     isUrl?: boolean;
+    required?: boolean;
     onChange?: (key: string, value: any) => void;
 }
 
@@ -39,6 +40,7 @@ const DataEntry: React.FC<DataEntryProps> = (props) => {
                 maxLength={props.maxLength}
                 placeholder={props.placeholder}
                 isUrl={props.isUrl}
+                required={props.required}
                 valueTransform={props.valueTransform}
             />
         </div>
