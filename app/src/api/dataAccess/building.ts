@@ -1,7 +1,8 @@
 
-import { errors, ITask } from 'pg-promise';
+import { errors, ITask, TColumnConfig } from 'pg-promise';
 
 import db from '../../db';
+import { dataFieldsConfig } from '../config/dataFields';
 import { ArgumentError, DatabaseError } from '../errors/general';
 
 export async function getBuildingData(
@@ -52,23 +53,25 @@ export async function insertEditHistoryRevision(
     }
 }
 
+const columnSetForUpdate = new db.$config.pgp.helpers.ColumnSet(
+    Object.entries(dataFieldsConfig).filter(([key, config]) => config.edit).map<TColumnConfig>(([key, {
+        asJson = false,
+        sqlCast
+    }]) => ({
+        name: key,
+        mod: asJson ? ':json' : undefined,
+        cast: sqlCast
+    })),
+    { table: { table: 'buildings', schema: 'public'}}
+);
+
 export async function updateBuildingData(
     buildingId: number,
     forwardPatch: object,
     revisionId: string,
     t?: ITask<any>
 ): Promise<object> {
-    const columns = Object.keys(forwardPatch);
-    const mappedColumns = columns.map(c => {
-        if (c === 'past_buildings') {
-            return {
-                name: c,
-                mod: ':json',
-                cast: 'jsonb'
-            };
-        } else return c;
-    });
-    const sets = db.$config.pgp.helpers.sets(forwardPatch, mappedColumns);
+    const sets = db.$config.pgp.helpers.sets(forwardPatch, columnSetForUpdate);
 
     console.log('Setting', buildingId, sets);
 
