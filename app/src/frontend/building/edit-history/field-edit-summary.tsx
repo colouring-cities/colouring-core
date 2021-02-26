@@ -1,4 +1,5 @@
 import React from 'react';
+import { diffString } from 'json-diff';
 
 interface FieldEditSummaryProps {
     title: string;
@@ -16,12 +17,33 @@ function formatValue(value: any) {
     return value;
 }
 
+function isComplex(x: any): boolean {
+    return x != undefined && (Array.isArray(x) || typeof x === 'object');
+}
+
+const ObjectDiffSummary: React.FC<{ oldValue: any; newValue: any}> = ({oldValue, newValue}) => (
+    <>
+        <pre title="Value before edit" className='edit-history-diff old'>{JSON.stringify(oldValue, null, 4)}</pre>
+        <pre title="Value after edit" className='edit-history-diff new'>{JSON.stringify(newValue, null, 4)}</pre>
+    </>
+);
+
+const SimpleSummary: React.FC<{ oldValue: any; newValue: any}> = (props) => (
+    <>
+        <code title="Value before edit" className='edit-history-diff old'>{formatValue(props.oldValue)}</code>
+        &nbsp;
+        <code title="Value after edit" className='edit-history-diff new'>{formatValue(props.newValue)}</code>
+    </>
+);
+
 const FieldEditSummary: React.FunctionComponent<FieldEditSummaryProps> = props => (
     <>
         {props.title}:&nbsp;
-        <code title="Value before edit" className='edit-history-diff old'>{formatValue(props.oldValue)}</code>
-        &nbsp;
-        <code title="Value after edit" className='edit-history-diff new'>{formatValue(props.value)}</code>
+        {
+            (isComplex(props.oldValue) || isComplex(props.value)) ?
+                <ObjectDiffSummary oldValue={props.oldValue} newValue={props.value} /> :
+                <SimpleSummary oldValue={props.oldValue} newValue={props.value} />
+        }
     </>
 );
 
