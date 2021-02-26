@@ -91,3 +91,9 @@ export function valueType<C>(): ValueTypeCheck<C>{
     return x => x;
 }
 
+/**
+ * Map all properties of object through a function
+ */
+export function mapObject<T, R>(x: T, fn: ([key, value]: [keyof T, T[keyof T]]) => R): Record<keyof T, R> {
+    return Object.assign({}, ...Object.entries(x).map(([key, value]) => ({ [key]: fn([key as keyof T, value]) })) );
+}

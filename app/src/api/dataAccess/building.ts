@@ -53,16 +53,16 @@ export async function insertEditHistoryRevision(
     }
 }
 
-const columnSetForUpdate = new db.$config.pgp.helpers.ColumnSet(
-    Object.entries(dataFieldsConfig).filter(([key, config]) => config.edit).map<TColumnConfig>(([key, {
+const columnConfigLookup = Object.assign(
+    {}, 
+    ...Object.entries(dataFieldsConfig).filter(([, config]) => config.edit).map(([key, {
         asJson = false,
         sqlCast
-    }]) => ({
+    }]) => ({ [key]: {
         name: key,
         mod: asJson ? ':json' : undefined,
         cast: sqlCast
-    })),
-    { table: { table: 'buildings', schema: 'public'}}
+    } }))
 );
 
 export async function updateBuildingData(
@@ -71,7 +71,8 @@ export async function updateBuildingData(
     revisionId: string,
     t?: ITask<any>
 ): Promise<object> {
-    const sets = db.$config.pgp.helpers.sets(forwardPatch, columnSetForUpdate);
+    const columnConfig = Object.entries(forwardPatch).map(([key]) => columnConfigLookup[key]);
+    const sets = db.$config.pgp.helpers.sets(forwardPatch, columnConfig);
 
     console.log('Setting', buildingId, sets);
 
