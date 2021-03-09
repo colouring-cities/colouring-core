@@ -1,8 +1,10 @@
 import React from 'react'
 
+import './field-row.css';
+
 export function FieldRow({children}) {
     return (
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', justifyItems: 'left'}}>
+        <div className="field-row">
             {children}
         </div>
     )

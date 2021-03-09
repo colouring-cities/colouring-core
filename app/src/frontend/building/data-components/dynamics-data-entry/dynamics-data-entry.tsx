@@ -9,26 +9,21 @@ import { dataFields } from '../../../config/data-fields-config';
 import SelectDataEntry from '../select-data-entry';
 import MultiDataEntry from '../multi-data-entry/multi-data-entry';
 
+import './dynamics-data-entry.css';
+
 const percentOverlapOption = ['10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%'];
 
 type PastBuilding = (BuildingAttributes['past_buildings'][number]);
 
-export const DynamicsBuildingPane: React.FC<{}> = ({children}) => (
-    <div style={{
-        backgroundColor: '#f1f1f1',
-        border: '1px solid #cccccc',
-        padding: '10px',
-        borderRadius: '5px',
-        marginTop: '10px',
-        marginBottom: '20px'
-    }}>
+export const DynamicsBuildingPane: React.FC<{className?: string}> = ({children, className}) => (
+    <div className={`dynamics-building-pane ${className ?? ''}`} >
         {children}
     </div>
 );
 
 interface DynamicsDataRowProps {
-    value: WithId<PastBuilding>;
-    onChange?: (value: WithId<PastBuilding>) => void;
+    value: PastBuilding;
+    onChange?: (value: PastBuilding) => void;
     disabled?: boolean;
     maxYear?: number;
     minYear?: number;
@@ -37,7 +32,7 @@ interface DynamicsDataRowProps {
     validateForm?: boolean;
 }
 const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
-    value = {} as WithId<PastBuilding>,
+    value = {} as PastBuilding,
     onChange,
     disabled = false,
     maxYear,
@@ -45,7 +40,6 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
     mode,
     required = false,
     validateForm = false,
-    children
 }) => {
 
     const onFieldChange = useCallback((key: string, val: any) => {
@@ -55,7 +49,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
     }, [value, onChange]);
 
     return (
-        <DynamicsBuildingPane>
+        <>
             <FieldRow>
                 <NumericDataEntry
                     slug='year_constructed'
@@ -66,7 +60,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                     max={value.year_demolished ?? maxYear}
                     min={minYear}
                     required={required}
-                /> 
+                />
                 <NumericDataEntry
                     slug='year_demolished'
                     title={dataFields.past_buildings.items.year_demolished.title}
@@ -102,10 +96,8 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                 editableEntries={true}
                 mode={mode}
                 isUrl={true}
-
             />
-            {children}
-        </DynamicsBuildingPane>
+        </>
     )
 };
 
@@ -128,48 +120,49 @@ function dropId<T>(valueWithId: WithId<T>): T {
     return valueWithoutId;
 }
 
-// function isValid(val: PastBuilding) {
-//     if(val == undefined) return false;
-//     if(typeof val.year_constructed !== 'number') return false;
-//     if(typeof val.year_demolished !== '')
-// }
+function isValid(val: PastBuilding) {
+    if(val == undefined) return false;
+
+    if(typeof val.year_constructed !== 'number') return false;
+    if(typeof val.year_demolished !== 'number') return false;
+
+    if(val.overlap_present == undefined) return false;
+
+    return true;
+}
 
 export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
-    const [newValue, setNewValue] = useState<WithId<PastBuilding>>();
+    const [newValue, setNewValue] = useState<PastBuilding>();
 
     const values: PastBuilding[] = props.value ?? [];
     const isEditing = props.mode === 'edit';
     const isDisabled = !isEditing || props.disabled;
 
-    const valuesWithIds = useMemo(() => withIds(values), [values]);
-
-    const valuesSorted = useMemo(
-        () => valuesWithIds.sort((a, b) => b.year_constructed - a.year_constructed),
-        [valuesWithIds]
-    );
-
     const addNew = useCallback(() => {
-        const newValues = [...values.map(x => x), newValue];
+        const val = {...newValue};
+        
+        // fill in required array field if not present
+        val.links = val.links ?? [];
+
+        const newValues = [...values, val];
 
         setNewValue(undefined);
         props.onChange(props.slug, newValues);
     }, [values, newValue]);
     
-    const edit = useCallback((id: number, val: WithId<PastBuilding>) => {
+    const edit = useCallback((id: number, val: PastBuilding) => {
         const editedValues = [...values];
-        const buildingIndexForId = valuesWithIds.findIndex(x => x._id === id);
-        editedValues.splice(buildingIndexForId, 1, dropId(val));
+        editedValues.splice(id, 1, val);
 
         props.onChange(props.slug, editedValues);
-    }, [values, valuesWithIds, valuesSorted]);
+    }, [values]);
 
     const remove = useCallback((id: number) => {
         const editedValues = [...values];
-        const buildingIndexForId = valuesWithIds.findIndex(x => x._id === id);
-        editedValues.splice(buildingIndexForId, 1);
+        editedValues.splice(id, 1);
 
         props.onChange(props.slug, editedValues);
-    }, [values, valuesWithIds]);
+    }, [values]);
 
     return (
         <>
@@ -189,47 +182,52 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                         </div>
                     }
                     {
-                        valuesSorted.map(pastBuilding => (
-                            <li key={pastBuilding._id }>
-                                <DynamicsDataRow
-                                    value={pastBuilding}
-                                    disabled={!props.editableEntries || isDisabled}
-                                    onChange={(value) => edit(pastBuilding._id, value)}
-                                    minYear={props.minYear}
-                                    maxYear={props.maxYear}
-                                    mode={props.mode}
-                                    required={true}
-                                >
+                        values.map((pastBuilding, id) => (
+                            <li key={id}>
+                                <DynamicsBuildingPane>
+                                    <label>Past building</label>
                                     {
                                         !isDisabled &&
-                                        <button type="button" onClick={() => remove(pastBuilding._id)}
-                                            title="Remove"
-                                            data-index={pastBuilding._id} className="btn btn-outline-danger btn-block">Delete Record</button>
+                                            <button type="button" className="btn btn-outline-dark delete-record-button"
+                                                title="Delete Record"
+                                                onClick={() => remove(id)}
+                                                data-index={id}
+                                            >x</button>
                                     }
-                                </DynamicsDataRow>
+                                    <DynamicsDataRow
+                                        value={pastBuilding}
+                                        disabled={!props.editableEntries || isDisabled}
+                                        onChange={(value) => edit(id, value)}
+                                        minYear={props.minYear}
+                                        maxYear={props.maxYear}
+                                        mode={props.mode}
+                                        required={true}
+                                    />
+                                </DynamicsBuildingPane>
                             </li>
                         ))
                     }
                 </ul>
                 {
                     !isDisabled &&
-                    <div>
+                    <div className='new-record-section'>
                         <h6 className="h6">Add a new historical record</h6>
-                        <DynamicsDataRow
-                            value={newValue}
-                            onChange={setNewValue}
-                            disabled={isDisabled}
-                            minYear={props.minYear}
-                            maxYear={props.maxYear}
-                            mode={props.mode}
-                        >
+                        <DynamicsBuildingPane className='new-record'>
+                            <DynamicsDataRow
+                                value={newValue}
+                                onChange={setNewValue}
+                                disabled={isDisabled}
+                                minYear={props.minYear}
+                                maxYear={props.maxYear}
+                                mode={props.mode}
+                            />
                             <button type="button"
-                                className="btn btn-outline-dark btn-block"
+                                className="btn btn-outline-dark btn-block add-record-button"
                                 title="Add to list"
-                                onClick={() => addNew()}
-                                disabled={newValue == undefined}
+                                onClick={addNew}
+                                disabled={!isValid(newValue)}
                             >Add record</button>
-                        </DynamicsDataRow>
+                        </DynamicsBuildingPane>
                     </div>
                 }
             </div>

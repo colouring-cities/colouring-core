@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import InfoBox from '../../components/info-box';
 
 import { Category } from '../../config/categories-config';
 import { dataFields } from '../../config/data-fields-config';
@@ -21,10 +22,12 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const thisYear = (new Date()).getFullYear();
     const currentBuildingConstructionYear = building.date_year || undefined;
 
+    const ageLinkUrl = `/${props.mode}/${Category.Age}/${props.building.building_id}`;
+
     return (<>
         <DataEntryGroup collapsed={false} name="Historical constructions and demolitions" showCount={false}>
             <DynamicsBuildingPane>
-                <label><Link to={`/${props.mode}/${Category.Age}/${props.building.building_id}`}>Current building</Link></label>
+                <label>Current building (see <Link to={ageLinkUrl}>Age</Link>)</label>
                 <FieldRow>
                     <NumericDataEntry
                         slug=''
@@ -44,42 +47,59 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <NumericDataEntry
                         slug=''
                         title='Lifespan (to date)'
-                        value={thisYear - currentBuildingConstructionYear}
+                        value={ thisYear - currentBuildingConstructionYear}
                         disabled={true}
                         mode='view'
                     />
                 </FieldRow>
             </DynamicsBuildingPane>
-            <DynamicsDataEntry
-                value={building.past_buildings}
-                editableEntries={true}
-                slug='past_buildings'
-                title={undefined}
-                mode={props.mode}
-                onChange={props.onChange}
-                maxYear={currentBuildingConstructionYear}
-                minYear={1066}
+            {
+                currentBuildingConstructionYear != undefined ?
+                    <>
+                        <DynamicsDataEntry
+                            value={building.past_buildings}
+                            editableEntries={true}
+                            slug='past_buildings'
+                            title={undefined}
+                            mode={props.mode}
+                            onChange={props.onChange}
+                            maxYear={currentBuildingConstructionYear}
+                            minYear={50}
+                        />
+                        {
+                            props.mode === 'view' &&
+                                <InfoBox>Switch to edit mode to add historical records</InfoBox>
+                        }
+                    </> :
+                    <InfoBox>To add historical records, fill in the <Link to={ageLinkUrl}>Age</Link> data first.</InfoBox>
+            }
+            
+        </DataEntryGroup>
+
+        <DataEntryGroup name="Future planned data collection" collapsed={false}>
+            <DataEntry
+                title="Historical land use change"
+                slug=""
+                value=""
+                mode='view'
+            />
+            <DataEntry
+                title="Longitudinal historical footprints (raster) link"
+                slug=""
+                value=""
+                mode='view'
+            />
+            <DataEntry
+                title="Longitudinal historical footprints (vector) link"
+                slug=""
+                value=""
+                mode='view'
             />
         </DataEntryGroup>
-            
-        <DataEntry
-            title="Historical land use change"
-            slug=""
-            value=""
-            mode='view'
-        />
-        <DataEntry
-            title="Longitudinal historical footprints (raster) link"
-            slug=""
-            value=""
-            mode='view'
-        />
-        <DataEntry
-            title="Longitudinal historical footprints (vector) link"
-            slug=""
-            value=""
-            mode='view'
-        />
+        <InfoBox>
+            This section is under development in collaboration with the historic environment sector.
+            Please let us know your thoughts on the <a href="https://discuss.colouring.london" target="_blank">discussion forum</a>!
+        </InfoBox>
     </>)
 };
 
