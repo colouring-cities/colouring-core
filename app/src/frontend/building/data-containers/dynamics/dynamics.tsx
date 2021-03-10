@@ -44,7 +44,7 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         disabled={true}
                         mode='view'
                     />
-                    <div style={{flex: '0 1 25%'}}>
+                    <div style={{flex: '0 1 27%'}}>
                         <NumericDataEntry
                             slug=''
                             title='Lifespan to date'
