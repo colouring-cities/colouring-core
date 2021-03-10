@@ -12,7 +12,7 @@ import MultiDataEntry from '../../data-components/multi-data-entry/multi-data-en
 import './dynamics-data-entry.css';
 import { NumberRangeDataEntry } from './number-range-data-entry';
 
-const percentOverlapOption = ['10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%'];
+const percentOverlapOption = ['25%', '50%', '75%', '100%'];
 
 type PastBuilding = (BuildingAttributes['past_buildings'][number]);
 
@@ -82,10 +82,10 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                     disabled={disabled}
                     max={value.year_demolished?.min ?? maxYear}
                     min={minYear}
-                    placeholderMin='min.'
-                    placeholderMax='max.'
-                    titleMin={`Earliest estimate for: ${dataFields.past_buildings.items.year_constructed.title}`}
-                    titleMax={`Latest estimate for: ${dataFields.past_buildings.items.year_constructed.title}`}
+                    placeholderMin='Earliest'
+                    placeholderMax='Latest'
+                    titleMin={`${dataFields.past_buildings.items.year_constructed.title}: earliest estimate`}
+                    titleMax={`${dataFields.past_buildings.items.year_constructed.title}: latest estimate`}
                     required={required}
                 />
                 <NumberRangeDataEntry
@@ -97,14 +97,15 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                     disabled={disabled}
                     max={maxYear}
                     min={value.year_constructed?.max ?? minYear}
-                    placeholderMin='min.'
-                    placeholderMax='max.'
-                    titleMin={`Earliest estimate for: ${dataFields.past_buildings.items.year_demolished.title}`}
-                    titleMax={`Latest estimate for: ${dataFields.past_buildings.items.year_demolished.title}`}
+                    placeholderMin='Earliest'
+                    placeholderMax='Latest'
+                    titleMin={`${dataFields.past_buildings.items.year_demolished.title}: earliest estimate`}
+                    titleMax={`${dataFields.past_buildings.items.year_demolished.title}: latest estimate`}
                     required={required}
                 />
                 <DataEntry
-                    slug=''
+                    className='lifespan-entry'
+                    slug='lifespan'
                     slugModifier={index}
                     title={dataFields.past_buildings.items.lifespan.title}
                     value={formatRange(minLifespan, maxLifespan)}
@@ -130,7 +131,6 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                 disabled={disabled}
                 editableEntries={true}
                 mode={mode}
-                isUrl={true}
             />
         </>
     )
@@ -141,6 +141,8 @@ interface DynamicsDataEntryProps extends BaseDataEntryProps {
     editableEntries: boolean;
     maxYear: number;
     minYear: number;
+    onSaveAdd: (slug: string, newItem: any) => void;
+    hasEdits: boolean;
 }
 
 type WithId<T> = T & { _id: number };
@@ -183,10 +185,8 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
         // fill in required array field if not present
         val.links = val.links ?? [];
 
-        const newValues = [...values, val];
-
         setNewValue(undefined);
-        props.onChange(props.slug, newValues);
+        props.onSaveAdd(props.slug, val);
     }, [values, newValue]);
     
     const edit = useCallback((id: number, val: PastBuilding) => {
@@ -262,11 +262,13 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                                 mode={props.mode}
                             />
                             <button type="button"
-                                className="btn btn-outline-dark btn-block add-record-button"
+                                className="btn btn-primary btn-block add-record-button"
                                 title="Add to list"
                                 onClick={addNew}
-                                disabled={!isValid(newValue)}
-                            >Add record</button>
+                                disabled={!isValid(newValue) || props.hasEdits}
+                            >
+                                {props.hasEdits ? 'Save or discard edits first to add a new record' : 'Save new record'}
+                            </button>
                         </DynamicsBuildingPane>
                     </div>
                 }

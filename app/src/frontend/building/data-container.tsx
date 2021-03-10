@@ -69,6 +69,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             this.handleLike = this.handleLike.bind(this);
             this.handleSubmit = this.handleSubmit.bind(this);
             this.handleVerify = this.handleVerify.bind(this);
+            this.handleSaveAdd = this.handleSaveAdd.bind(this);
 
             this.toggleCopying = this.toggleCopying.bind(this);
             this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
@@ -239,6 +240,40 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             }
         }
 
+        async handleSaveAdd(slug: string, newItem: any) {
+            if(this.props.building[slug] != undefined && !Array.isArray(this.props.building[slug])) {
+                this.setState({error: 'Unexpected error'});
+                console.error(`Trying to add a new item to a field (${slug}) which is not an array`);
+                return;
+            }
+            
+            if(this.isEdited()) {
+                this.setState({error: 'Cannot save a new record when there are unsaved edits to existing records'});
+                return;
+            }
+            
+            const edits = {
+                [slug]: [...(this.props.building[slug] ?? []), newItem]
+            };
+            
+            this.setState({error: undefined});
+
+            try {
+                const data = await apiPost(
+                    `/api/buildings/${this.props.building.building_id}.json`,
+                    edits
+                );
+
+                if (data.error) {
+                    this.setState({error: data.error});
+                } else {
+                    this.props.onBuildingUpdate(this.props.building.building_id, data);
+                }
+            } catch(err) {
+                this.setState({error: err});
+            }
+        }
+
         render() {
             const currentBuilding = this.getEditedBuilding();
 
@@ -318,6 +353,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                 onChange={undefined}
                                 onLike={undefined}
                                 onVerify={undefined}
+                                onSaveAdd={undefined}
                                 user_verified={[]}
                             />
                         </Fragment> :
@@ -367,6 +403,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                     onChange={this.handleChange}
                                     onLike={this.handleLike}
                                     onVerify={this.handleVerify}
+                                    onSaveAdd={this.handleSaveAdd}
                                     user_verified={this.props.user_verified}
                                     user={this.props.user}
                                 />

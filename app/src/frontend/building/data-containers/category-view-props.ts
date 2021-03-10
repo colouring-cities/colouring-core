@@ -17,6 +17,10 @@ interface CategoryViewProps {
     onChange: (key: string, value: any) => void;
     onLike: (like: boolean) => void;
     onVerify: (slug: string, verify: boolean, x: number, y: number) => void;
+
+    /* Special handler for adding and immediately saving a new item of an array-like attribute */
+    onSaveAdd: (slug: string, newItem: any) => void;
+
     user_verified: any;
     user?: any;
 }

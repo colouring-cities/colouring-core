@@ -6,6 +6,7 @@ import { DataEntryInput, TextDataEntryInputProps } from './data-entry-input';
 import { DataTitleCopyable } from './data-title';
 
 interface BaseDataEntryProps {
+    className?: string;
     slug: string;
     slugModifier?: string | number; // string used with slug with array items (ensures the form labels link to the input for the correct item)
     title: string;
@@ -24,7 +25,7 @@ interface DataEntryProps extends BaseDataEntryProps, TextDataEntryInputProps {
 
 const DataEntry: React.FC<DataEntryProps> = (props) => {
     return (
-        <div>
+        <div className={props.className}>
             <DataTitleCopyable
                 slug={props.slug}
                 slugModifier={props.slugModifier}

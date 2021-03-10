@@ -38,7 +38,7 @@ export const fieldSchemaConfig: { [key in keyof typeof dataFieldsConfig]?: SomeJ
                 },
                 overlap_present: {
                     type: 'string',
-                    enum: ['10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%']
+                    enum: ['25%', '50%', '75%', '100%']
                 },
                 links: {
                     type: 'array',

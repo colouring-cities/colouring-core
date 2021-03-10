@@ -12,6 +12,15 @@ input[type="email"] {
 input[type="number"] {
     padding-right: 0.25rem;
 }
+
+/* Only show number input controls on hover in Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input[type="number"]:hover:not(:disabled) {
+    -moz-appearance: unset;
+}
+
 form .alert {
     margin: 0.5rem 0;
 }

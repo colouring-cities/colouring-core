@@ -25,7 +25,7 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const ageLinkUrl = `/${props.mode}/${Category.Age}/${props.building.building_id}`;
 
     return (<>
-        <DataEntryGroup collapsed={false} name="Historical constructions and demolitions" showCount={false}>
+        <DataEntryGroup collapsed={false} name="Historical constructions and demolitions on this site" showCount={false}>
             <DynamicsBuildingPane>
                 <label>Current building (see <Link to={ageLinkUrl}>Age</Link>)</label>
                 <FieldRow>
@@ -63,6 +63,8 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             title={undefined}
                             mode={props.mode}
                             onChange={props.onChange}
+                            onSaveAdd={props.onSaveAdd}
+                            hasEdits={props.edited}
                             maxYear={currentBuildingConstructionYear}
                             minYear={50}
                         />
@@ -76,7 +78,7 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
             
         </DataEntryGroup>
 
-        <DataEntryGroup name="Future planned data collection" collapsed={false}>
+        <DataEntryGroup name="Future planned data collection" collapsed={false} showCount={false}>
             <DataEntry
                 title="Historical land use change"
                 slug=""
@@ -98,7 +100,7 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </DataEntryGroup>
         <InfoBox>
             This section is under development in collaboration with the historic environment sector.
-            Please let us know your thoughts on the <a href="https://discuss.colouring.london" target="_blank">discussion forum</a>!
+            Please let us know your suggestions on the <a href="https://discuss.colouring.london">discussion forum</a>! (external link - save your edits first)
         </InfoBox>
     </>)
 };

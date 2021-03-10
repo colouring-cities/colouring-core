@@ -425,15 +425,15 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
                 example: { min: 1993, max: 1994 },
             },
             lifespan: {
-                title: 'Lifespan (years)',
+                title: 'Lifespan',
                 example: 4,
             },
             overlap_present: {
-                title: 'How much of this building was inside the current site boundary?',
-                example: "20%"
+                title: 'How much (approx.) of this building was inside the current site boundary?',
+                example: "0-25%"
             },
             links: {
-                title: 'Links',
+                title: 'Links / sources',
                 example: ["", ""]
             }
         },
@@ -441,7 +441,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             {
                 year_constructed: { min: 1989, max: 1991 },
                 year_demolished: { min: 1993, max: 1994 },
-                lifespan: 4, overlap_present: "40%", links: ["", ""]}
+                lifespan: 4, overlap_present: "25-50%", links: ["", ""]}
         ]
     }
 };

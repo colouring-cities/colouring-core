@@ -30,3 +30,7 @@
 .field-row * {
     margin-right: 1px;
 }
+
+.lifespan-entry {
+    flex: 0 1 25%;
+}
