@@ -22,10 +22,12 @@ export const DynamicsBuildingPane: React.FC<{className?: string}> = ({children, 
     </div>
 );
 
-function difference(a: number, b: number): number {
+function lifespan(a: number, b: number): number {
     if(a == undefined || b == undefined) return undefined;
 
-    return a - b;
+    const diff = a - b;
+
+    return Math.max(diff, 0);
 }
 
 function formatRange(minSpan: number, maxSpan: number): string {
@@ -65,10 +67,8 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
         onChange(changedValue);
     }, [value, onChange]);
 
-
-    console.log(value);
-    const maxLifespan = difference(value.year_demolished?.max, value.year_constructed?.min);
-    const minLifespan = difference(value.year_demolished?.min, value.year_constructed?.max);
+    const maxLifespan = lifespan(value.year_demolished?.max, value.year_constructed?.min);
+    const minLifespan = lifespan(value.year_demolished?.min, value.year_constructed?.max);
 
     return (
         <>
