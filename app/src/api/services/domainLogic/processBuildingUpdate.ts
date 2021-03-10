@@ -39,7 +39,7 @@ async function processCurrentLandUseClassifications(buildingId: number, building
  * Process Dynamics data - sort past buildings by construction date
  */
 async function processDynamicsPastBuildings(buildingId: number, buildingUpdate: any): Promise<any> {
-    buildingUpdate.past_buildings = buildingUpdate.past_buildings.sort((a, b) => b.year_constructed - a.year_constructed);
+    buildingUpdate.past_buildings = buildingUpdate.past_buildings.sort((a, b) => b.year_constructed.min - a.year_constructed.min);
     return buildingUpdate;
 }
 

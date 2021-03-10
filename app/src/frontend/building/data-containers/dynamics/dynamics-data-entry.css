@@ -26,3 +26,7 @@
 .add-record-button {
     margin-top: 20px;
 }
+
+.field-row * {
+    margin-right: 1px;
+}

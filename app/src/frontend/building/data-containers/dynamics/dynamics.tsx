@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import InfoBox from '../../components/info-box';
+import InfoBox from '../../../components/info-box';
 
-import { Category } from '../../config/categories-config';
-import { dataFields } from '../../config/data-fields-config';
+import { Category } from '../../../config/categories-config';
+import { dataFields } from '../../../config/data-fields-config';
 
-import DataEntry from '../data-components/data-entry';
-import { DataEntryGroup } from '../data-components/data-entry-group';
-import { DynamicsBuildingPane, DynamicsDataEntry } from '../data-components/dynamics-data-entry/dynamics-data-entry';
-import { FieldRow } from '../data-components/field-row';
-import NumericDataEntry from '../data-components/numeric-data-entry';
-import withCopyEdit from '../data-container';
+import DataEntry from '../../data-components/data-entry';
+import { DataEntryGroup } from '../../data-components/data-entry-group';
+import { DynamicsBuildingPane, DynamicsDataEntry } from './dynamics-data-entry';
+import { FieldRow } from '../../data-components/field-row';
+import NumericDataEntry from '../../data-components/numeric-data-entry';
+import withCopyEdit from '../../data-container';
 
-import { CategoryViewProps } from './category-view-props';
+import { CategoryViewProps } from '../category-view-props';
 
 /**
 * Dynamics view/edit section

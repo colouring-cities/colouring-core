@@ -1,15 +1,16 @@
 import React, { useCallback, useMemo, useState } from 'react'
 
 import { BuildingAttributes } from '../../../models/building';
-import { FieldRow } from '../field-row';
-import { BaseDataEntryProps } from '../data-entry';
-import NumericDataEntry from '../numeric-data-entry';
-import { DataTitleCopyable } from '../data-title';
+import { FieldRow } from '../../data-components/field-row';
+import DataEntry, { BaseDataEntryProps } from '../../data-components/data-entry';
+import NumericDataEntry from '../../data-components/numeric-data-entry';
+import { DataTitleCopyable } from '../../data-components/data-title';
 import { dataFields } from '../../../config/data-fields-config';
-import SelectDataEntry from '../select-data-entry';
-import MultiDataEntry from '../multi-data-entry/multi-data-entry';
+import SelectDataEntry from '../../data-components/select-data-entry';
+import MultiDataEntry from '../../data-components/multi-data-entry/multi-data-entry';
 
 import './dynamics-data-entry.css';
+import { NumberRangeDataEntry } from './number-range-data-entry';
 
 const percentOverlapOption = ['10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%'];
 
@@ -21,6 +22,20 @@ export const DynamicsBuildingPane: React.FC<{className?: string}> = ({children, 
     </div>
 );
 
+function difference(a: number, b: number): number {
+    if(a == undefined || b == undefined) return undefined;
+
+    return a - b;
+}
+
+function formatRange(minSpan: number, maxSpan: number): string {
+    if(minSpan == undefined || maxSpan == undefined) return '';
+
+    if(minSpan === maxSpan) return minSpan + '';
+
+    return `${minSpan}-${maxSpan}`;
+}
+
 interface DynamicsDataRowProps {
     value: PastBuilding;
     onChange?: (value: PastBuilding) => void;
@@ -30,6 +45,7 @@ interface DynamicsDataRowProps {
     mode?: 'view' | 'edit' | 'multi-edit';
     required?: boolean;
     validateForm?: boolean;
+    index?: number;
 }
 const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
     value = {} as PastBuilding,
@@ -40,6 +56,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
     mode,
     required = false,
     validateForm = false,
+    index
 }) => {
 
     const onFieldChange = useCallback((key: string, val: any) => {
@@ -48,38 +65,55 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
         onChange(changedValue);
     }, [value, onChange]);
 
+
+    console.log(value);
+    const maxLifespan = difference(value.year_demolished?.max, value.year_constructed?.min);
+    const minLifespan = difference(value.year_demolished?.min, value.year_constructed?.max);
+
     return (
         <>
             <FieldRow>
-                <NumericDataEntry
+                <NumberRangeDataEntry
                     slug='year_constructed'
+                    slugModifier={index}
                     title={dataFields.past_buildings.items.year_constructed.title}
                     onChange={onFieldChange}
                     value={value.year_constructed}
                     disabled={disabled}
-                    max={value.year_demolished ?? maxYear}
+                    max={value.year_demolished?.min ?? maxYear}
                     min={minYear}
+                    placeholderMin='min.'
+                    placeholderMax='max.'
+                    titleMin={`Earliest estimate for: ${dataFields.past_buildings.items.year_constructed.title}`}
+                    titleMax={`Latest estimate for: ${dataFields.past_buildings.items.year_constructed.title}`}
                     required={required}
                 />
-                <NumericDataEntry
+                <NumberRangeDataEntry
                     slug='year_demolished'
+                    slugModifier={index}
                     title={dataFields.past_buildings.items.year_demolished.title}
                     onChange={onFieldChange}
                     value={value.year_demolished}
                     disabled={disabled}
                     max={maxYear}
-                    min={value.year_constructed ?? minYear}
+                    min={value.year_constructed?.max ?? minYear}
+                    placeholderMin='min.'
+                    placeholderMax='max.'
+                    titleMin={`Earliest estimate for: ${dataFields.past_buildings.items.year_demolished.title}`}
+                    titleMax={`Latest estimate for: ${dataFields.past_buildings.items.year_demolished.title}`}
                     required={required}
                 />
-                <NumericDataEntry
+                <DataEntry
                     slug=''
+                    slugModifier={index}
                     title={dataFields.past_buildings.items.lifespan.title}
-                    value={(value.year_demolished - value.year_constructed) || undefined}
+                    value={formatRange(minLifespan, maxLifespan)}
                     disabled={true}
                 />
             </FieldRow>
             <SelectDataEntry
                 slug='overlap_present'
+                slugModifier={index}
                 title={dataFields.past_buildings.items.overlap_present.title}
                 onChange={onFieldChange}
                 value={value.overlap_present}
@@ -89,6 +123,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
             />
             <MultiDataEntry
                 slug='links'
+                slugModifier={index}
                 title={dataFields.past_buildings.items.links.title}
                 onChange={onFieldChange}
                 value={value.links}
@@ -123,8 +158,12 @@ function dropId<T>(valueWithId: WithId<T>): T {
 function isValid(val: PastBuilding) {
     if(val == undefined) return false;
 
-    if(typeof val.year_constructed !== 'number') return false;
-    if(typeof val.year_demolished !== 'number') return false;
+
+    if(typeof val.year_constructed?.min !== 'number') return false;
+    if(typeof val.year_constructed?.max !== 'number') return false;
+
+    if(typeof val.year_demolished?.min !== 'number') return false;
+    if(typeof val.year_demolished?.max !== 'number') return false;
 
     if(val.overlap_present == undefined) return false;
 
@@ -202,6 +241,7 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                                         maxYear={props.maxYear}
                                         mode={props.mode}
                                         required={true}
+                                        index={id}
                                     />
                                 </DynamicsBuildingPane>
                             </li>

@@ -7,6 +7,5 @@
 
 /* make all row elements the same width */
 .field-row * {
-    flex-basis: 0;
     flex: 1 1 0px;
 }

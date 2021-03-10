@@ -11,13 +11,34 @@ export const fieldSchemaConfig: { [key in keyof typeof dataFieldsConfig]?: SomeJ
             required: ['year_constructed', 'year_demolished', 'overlap_present', 'links'],
             properties: {
                 year_constructed: {
-                    type: 'integer'
+                    type: 'object',
+                    required: ['min', 'max'],
+                    additionalProperties: false,
+                    properties: {
+                        min: {
+                            type: 'integer'
+                        },
+                        max: {
+                            type: 'integer'
+                        }
+                    }
                 },
                 year_demolished: {
-                    type: 'integer'
+                    type: 'object',
+                    required: ['min', 'max'],
+                    additionalProperties: false,
+                    properties: {
+                        min: {
+                            type: 'integer'
+                        },
+                        max: {
+                            type: 'integer'
+                        }
+                    }
                 },
                 overlap_present: {
-                    type: 'string'
+                    type: 'string',
+                    enum: ['10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%']
                 },
                 links: {
                     type: 'array',
@@ -31,8 +52,14 @@ export const fieldSchemaConfig: { [key in keyof typeof dataFieldsConfig]?: SomeJ
             additionalProperties: false,
         }
     } as JSONSchemaType<{
-        year_constructed: number;
-        year_demolished: number;
+        year_constructed: {
+            min: number;
+            max: number;
+        };
+        year_demolished: {
+            min: number;
+            max: number;
+        }
         overlap_present: string;
         links: string[];
     }[]>,
