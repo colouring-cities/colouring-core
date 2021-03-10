@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
+import * as _ from 'lodash';
 
 import { BuildingAttributes } from '../../../models/building';
 import { FieldRow } from '../../data-components/field-row';
@@ -11,8 +12,6 @@ import MultiDataEntry from '../../data-components/multi-data-entry/multi-data-en
 
 import './dynamics-data-entry.css';
 import { NumberRangeDataEntry } from './number-range-data-entry';
-
-const percentOverlapOption = ['25%', '50%', '75%', '100%'];
 
 type PastBuilding = (BuildingAttributes['past_buildings'][number]);
 
@@ -118,7 +117,13 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                 title={dataFields.past_buildings.items.overlap_present.title}
                 onChange={onFieldChange}
                 value={value.overlap_present}
-                options={percentOverlapOption}
+                options={[
+                    {value: '0%', label: '0% - almost no overlap with current site'},
+                    '25%',
+                    '50%',
+                    '75%',
+                    {value: '100%', label: '100% - almost fully contained in current site'}
+                ]}
                 disabled={disabled}
                 required={required}
             />
@@ -131,6 +136,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                 disabled={disabled}
                 editableEntries={true}
                 mode={mode}
+                required={required}
             />
         </>
     )
@@ -145,18 +151,6 @@ interface DynamicsDataEntryProps extends BaseDataEntryProps {
     hasEdits: boolean;
 }
 
-type WithId<T> = T & { _id: number };
-
-function withIds<T>(values: T[]) : WithId<T>[] {
-    return values.map((x, i) => ({...x, ...{_id: i * 3}}));
-}
-
-function dropId<T>(valueWithId: WithId<T>): T {
-    const valueWithoutId = {...valueWithId};
-    delete valueWithoutId._id;
-    return valueWithoutId;
-}
-
 function isValid(val: PastBuilding) {
     if(val == undefined) return false;
 
@@ -169,6 +163,8 @@ function isValid(val: PastBuilding) {
 
     if(val.overlap_present == undefined) return false;
 
+    if(val.links == undefined || val.links.length < 1) return false;
+
     return true;
 }
 
@@ -178,12 +174,12 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
     const values: PastBuilding[] = props.value ?? [];
     const isEditing = props.mode === 'edit';
     const isDisabled = !isEditing || props.disabled;
+    
+    const isEdited = !_.isEmpty(newValue);
+    const valid = isValid(newValue);
 
     const addNew = useCallback(() => {
         const val = {...newValue};
-        
-        // fill in required array field if not present
-        val.links = val.links ?? [];
 
         setNewValue(undefined);
         props.onSaveAdd(props.slug, val);
@@ -205,26 +201,26 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
 
     return (
         <>
-            {/* <DataTitleCopyable
-                slug={props.slug}
-                title={props.title}
-                tooltip={props.tooltip}
-                disabled={props.disabled || values == undefined || values.length === 0}
-                copy={props.copy}
-            /> */}
             <div>
+                {
+                    isEditing &&
+                        <>
+                            <h6 className="h6">Existing records for past buildings</h6>
+                            <label>Please supply sources for any edits of existing records</label>
+                        </>
+                }
                 <ul className="data-link-list">
                     {
-                        values.length === 0 && !isEditing &&
+                        values.length === 0 &&
                         <div className="input-group">
-                            <input className="form-control no-entries" type="text" value="No past buildings" disabled={true} />
+                            <input className="form-control no-entries" type="text" value="No past building records" disabled={true} />
                         </div>
                     }
                     {
                         values.map((pastBuilding, id) => (
                             <li key={id}>
                                 <DynamicsBuildingPane>
-                                    <label>Past building</label>
+                                    <label>Past (demolished) building</label>
                                     {
                                         !isDisabled &&
                                             <button type="button" className="btn btn-outline-dark delete-record-button"
@@ -251,7 +247,7 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                 {
                     !isDisabled &&
                     <div className='new-record-section'>
-                        <h6 className="h6">Add a new historical record</h6>
+                        <h6 className="h6">Add another past building record</h6>
                         <DynamicsBuildingPane className='new-record'>
                             <DynamicsDataRow
                                 value={newValue}
@@ -265,9 +261,15 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                                 className="btn btn-primary btn-block add-record-button"
                                 title="Add to list"
                                 onClick={addNew}
-                                disabled={!isValid(newValue) || props.hasEdits}
+                                disabled={!valid || props.hasEdits}
                             >
-                                {props.hasEdits ? 'Save or discard edits first to add a new record' : 'Save new record'}
+                                {
+                                    props.hasEdits ?
+                                        'Save or discard edits first to add a new record' :
+                                        (isEdited && !valid) ?
+                                            'Fill in all fields to save record' :
+                                            'Save new record'
+                                }
                             </button>
                         </DynamicsBuildingPane>
                     </div>

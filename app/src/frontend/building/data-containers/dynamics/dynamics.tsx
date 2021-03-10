@@ -25,9 +25,9 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const ageLinkUrl = `/${props.mode}/${Category.Age}/${props.building.building_id}`;
 
     return (<>
-        <DataEntryGroup collapsed={false} name="Historical constructions and demolitions on this site" showCount={false}>
+        <DataEntryGroup collapsed={false} name="Constructions and demolitions on this site" showCount={false}>
             <DynamicsBuildingPane>
-                <label>Current building (see <Link to={ageLinkUrl}>Age</Link>)</label>
+                <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
                 <FieldRow>
                     <NumericDataEntry
                         slug=''
@@ -44,13 +44,15 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         disabled={true}
                         mode='view'
                     />
-                    <NumericDataEntry
-                        slug=''
-                        title='Lifespan (to date)'
-                        value={ thisYear - currentBuildingConstructionYear}
-                        disabled={true}
-                        mode='view'
-                    />
+                    <div style={{flex: '0 1 25%'}}>
+                        <NumericDataEntry
+                            slug=''
+                            title='Lifespan to date'
+                            value={ thisYear - currentBuildingConstructionYear}
+                            disabled={true}
+                            mode='view'
+                        />
+                    </div>
                 </FieldRow>
             </DynamicsBuildingPane>
             {
@@ -70,7 +72,7 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                         {
                             props.mode === 'view' &&
-                                <InfoBox>Switch to edit mode to add historical records</InfoBox>
+                                <InfoBox>Switch to edit mode to add/edit past building records</InfoBox>
                         }
                     </> :
                     <InfoBox>To add historical records, fill in the <Link to={ageLinkUrl}>Age</Link> data first.</InfoBox>

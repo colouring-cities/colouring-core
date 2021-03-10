@@ -44,7 +44,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
     }
 
     getValues() {
-        return this.props.value == undefined ? [] : this.props.value;
+        return this.props.value ?? [];
     }
 
     cloneValues() {
@@ -140,6 +140,7 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                             id={slugWithModifier}
                             value={this.state.newValue}
                             disabled={props.disabled}
+                            required={props.required && values.length < 1}
                             onChange={(key, val) => this.setNewValue(val)}
                             onConfirm={(key, val) => this.addNew(val)}
 

@@ -429,8 +429,9 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
                 example: 4,
             },
             overlap_present: {
-                title: 'How much (approx.) of this building was inside the current site boundary?',
-                example: "0-25%"
+                title: 'Roughly what percentage of this building was inside the current site boundary?',
+                tooltip: '',
+                example: "25%"
             },
             links: {
                 title: 'Links / sources',
@@ -441,7 +442,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             {
                 year_constructed: { min: 1989, max: 1991 },
                 year_demolished: { min: 1993, max: 1994 },
-                lifespan: 4, overlap_present: "25-50%", links: ["", ""]}
+                lifespan: 4, overlap_present: "50%", links: ["", ""]}
         ]
     }
 };
