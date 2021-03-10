@@ -7,6 +7,7 @@ import { DataTitleCopyable } from './data-title';
 
 interface BaseDataEntryProps {
     slug: string;
+    slugModifier?: string | number; // string used with slug with array items (ensures the form labels link to the input for the correct item)
     title: string;
     tooltip?: string;
     disabled?: boolean;
@@ -26,6 +27,7 @@ const DataEntry: React.FC<DataEntryProps> = (props) => {
         <div>
             <DataTitleCopyable
                 slug={props.slug}
+                slugModifier={props.slugModifier}
                 title={props.title}
                 tooltip={props.tooltip}
                 disabled={props.disabled || props.value == undefined || props.value == ''}
@@ -33,6 +35,7 @@ const DataEntry: React.FC<DataEntryProps> = (props) => {
             />
             <DataEntryInput
                 slug={props.slug}
+                name={props.slug + props.slugModifier ?? ''}
                 value={props.value}
                 onChange={props.onChange}
                 disabled={props.mode === 'view' || props.disabled}

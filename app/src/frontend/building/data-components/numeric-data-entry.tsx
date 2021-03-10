@@ -13,10 +13,13 @@ interface NumericDataEntryProps extends BaseDataEntryProps {
 }
 
 const NumericDataEntry: React.FunctionComponent<NumericDataEntryProps> = (props) => {
+    const slugWithModifier = props.slug + (props.slugModifier ?? '');
+
     return (
         <div>
             <DataTitleCopyable
                 slug={props.slug}
+                slugModifier={props.slugModifier}
                 title={props.title}
                 tooltip={props.tooltip}
                 disabled={props.disabled || props.value == undefined}
@@ -25,8 +28,8 @@ const NumericDataEntry: React.FunctionComponent<NumericDataEntryProps> = (props)
             <input
                 className="form-control"
                 type="number"
-                id={props.slug}
-                name={props.slug}
+                id={slugWithModifier}
+                name={slugWithModifier}
                 value={props.value == undefined ? '' : props.value}
                 step={props.step == undefined ? 1 : props.step}
                 max={props.max}
