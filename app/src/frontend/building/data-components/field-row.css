@@ -1,0 +1,11 @@
+.field-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    justify-items: left;
+}
+
+/* make all row elements the same width */
+.field-row * {
+    flex: 1 1 0px;
+}
