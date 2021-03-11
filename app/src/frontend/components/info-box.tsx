@@ -1,27 +1,19 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 interface InfoBoxProps {
-    msg: string;
+    msg?: string;
 }
 
 const InfoBox: React.FC<InfoBoxProps> = (props) => (
-    <Fragment>
+    <>
         {
-            (props.msg || props.children)?
-                (
-                    <div className="alert alert-info" role="alert">
-                        {
-                            typeof props.msg === 'string' ?
-                                props.msg
-                                : 'Enjoy the colouring! Usual service should resume shortly.'
-                        }
-                        {
-                            props.children
-                        }
-                    </div>
-                ) : null
+            (props.msg || props.children) &&
+                <div className="alert alert-info" role="alert">
+                    { props.msg ?? '' }
+                    { props.children }
+                </div>
         }
-    </Fragment>
+    </>
 );
 
 export default InfoBox;
