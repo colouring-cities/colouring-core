@@ -59,6 +59,13 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 currentBuildingConstructionYear != undefined ?
                     <>
                         <DynamicsDataEntry
+                            
+                            /* 
+                                Will clear the edits and new record data upon navigating to another building.
+                                Should get a better way to do this, plus a way to actually keep unsaved edits.
+                            */
+                            key={building.building_id} 
+                            
                             value={building.past_buildings}
                             editableEntries={true}
                             slug='past_buildings'
