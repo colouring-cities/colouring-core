@@ -11,17 +11,20 @@ interface SelectDataEntryProps extends BaseDataEntryProps {
 
 
 const SelectDataEntry: React.FunctionComponent<SelectDataEntryProps> = (props) => {
+    const slugWithModifier = props.slug + (props.slugModifier ?? '');
+
     return (
         <Fragment>
             <DataTitleCopyable
                 slug={props.slug}
+                slugModifier={props.slugModifier}
                 title={props.title}
                 tooltip={props.tooltip}
                 disabled={props.disabled || props.value == undefined}
                 copy={props.copy}
             />
             <select className="form-control"
-                id={props.slug} name={props.slug}
+                id={slugWithModifier} name={slugWithModifier}
                 value={props.value || ''}
                 disabled={props.mode === 'view' || props.disabled}
                 required={props.required}

@@ -24,6 +24,7 @@ interface DataTitleCopyableProps {
     title: string;
     tooltip?: string;
     slug: string;
+    slugModifier?: string | number;
     disabled?: boolean;
     copy?: CopyProps;
 }
@@ -32,7 +33,7 @@ const DataTitleCopyable: React.FunctionComponent<DataTitleCopyableProps> = (prop
     return (
         <div className="data-title">
             <div className="data-title-text">
-                <label htmlFor={props.slug}>
+                <label htmlFor={`${props.slug}${props.slugModifier ?? ''}`}>
                     { props.title }
                 </label>
             </div>

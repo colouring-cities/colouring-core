@@ -81,9 +81,12 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
         const props = this.props;
         const isEditing = props.mode === 'edit';
         const isDisabled = !isEditing || props.disabled;
+        const slugWithModifier = props.slug + (props.slugModifier ?? '');
+
         return <Fragment>
             <DataTitleCopyable
                 slug={props.slug}
+                slugModifier={props.slugModifier}
                 title={props.title}
                 tooltip={props.tooltip}
                 disabled={props.disabled || props.value == undefined || props.value.length === 0}
@@ -102,8 +105,8 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                         <li className="input-group" key={i /* i as key prevents input component recreation on edit */}>
                             <DataEntryInput
                                 slug={props.slug}
-                                name={`${props.slug}-${i}`}
-                                id={`${props.slug}-${i}`}
+                                name={`${slugWithModifier}-${i}`}
+                                id={`${slugWithModifier}-${i}`}
                                 value={val}
                                 disabled={!props.editableEntries || isDisabled}
                                 onChange={(key, val) => this.edit(i, val)}
@@ -132,8 +135,8 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                     <div className="input-group">
                         <DataEntryInput
                             slug={props.slug}
-                            name={`${props.slug}`}
-                            id={`${props.slug}`}
+                            name={slugWithModifier}
+                            id={slugWithModifier}
                             value={this.state.newValue}
                             disabled={props.disabled}
                             required={props.required && values.length < 1}
