@@ -247,7 +247,7 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                 {
                     !isDisabled &&
                     <div className='new-record-section'>
-                        <h6 className="h6">Add another demolished building record</h6>
+                        <h6 className="h6">Add a new demolished building record</h6>
                         <DynamicsBuildingPane className='new-record'>
                             <DynamicsDataRow
                                 value={newValue}
