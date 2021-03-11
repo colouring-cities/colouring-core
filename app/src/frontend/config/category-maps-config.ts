@@ -185,10 +185,10 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
         },
     },
     [Category.Dynamics]: {
-        mapStyle: 'dynamics_past_count',
+        mapStyle: 'dynamics_demolished_count',
         legend: {
             title: 'Dynamics',
-            description: 'Past developments on site',
+            description: 'Past (demolished) buildings on site',
             elements: [
                 {
                     text: '7+',

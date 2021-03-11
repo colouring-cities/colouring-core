@@ -31,14 +31,14 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <FieldRow>
                     <NumericDataEntry
                         slug=''
-                        title={dataFields.past_buildings.items.year_constructed.title}
+                        title={dataFields.demolished_buildings.items.year_constructed.title}
                         value={currentBuildingConstructionYear}
                         disabled={true}
                         mode='view'
                     />
                     <NumericDataEntry
                         slug=''
-                        title={dataFields.past_buildings.items.year_demolished.title}
+                        title={dataFields.demolished_buildings.items.year_demolished.title}
                         value={undefined}
                         placeholder='---'
                         disabled={true}
@@ -66,9 +66,9 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             */
                             key={building.building_id} 
                             
-                            value={building.past_buildings}
+                            value={building.demolished_buildings}
                             editableEntries={true}
-                            slug='past_buildings'
+                            slug='demolished_buildings'
                             title={undefined}
                             mode={props.mode}
                             onChange={props.onChange}

@@ -13,7 +13,7 @@ import MultiDataEntry from '../../data-components/multi-data-entry/multi-data-en
 import './dynamics-data-entry.css';
 import { NumberRangeDataEntry } from './number-range-data-entry';
 
-type PastBuilding = (BuildingAttributes['past_buildings'][number]);
+type DemolishedBuilding = (BuildingAttributes['demolished_buildings'][number]);
 
 export const DynamicsBuildingPane: React.FC<{className?: string}> = ({children, className}) => (
     <div className={`dynamics-building-pane ${className ?? ''}`} >
@@ -38,8 +38,8 @@ function formatRange(minSpan: number, maxSpan: number): string {
 }
 
 interface DynamicsDataRowProps {
-    value: PastBuilding;
-    onChange?: (value: PastBuilding) => void;
+    value: DemolishedBuilding;
+    onChange?: (value: DemolishedBuilding) => void;
     disabled?: boolean;
     maxYear?: number;
     minYear?: number;
@@ -49,7 +49,7 @@ interface DynamicsDataRowProps {
     index?: number;
 }
 const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
-    value = {} as PastBuilding,
+    value = {} as DemolishedBuilding,
     onChange,
     disabled = false,
     maxYear,
@@ -75,7 +75,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                 <NumberRangeDataEntry
                     slug='year_constructed'
                     slugModifier={index}
-                    title={dataFields.past_buildings.items.year_constructed.title}
+                    title={dataFields.demolished_buildings.items.year_constructed.title}
                     onChange={onFieldChange}
                     value={value.year_constructed}
                     disabled={disabled}
@@ -83,14 +83,14 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                     min={minYear}
                     placeholderMin='Earliest'
                     placeholderMax='Latest'
-                    titleMin={`${dataFields.past_buildings.items.year_constructed.title}: earliest estimate`}
-                    titleMax={`${dataFields.past_buildings.items.year_constructed.title}: latest estimate`}
+                    titleMin={`${dataFields.demolished_buildings.items.year_constructed.title}: earliest estimate`}
+                    titleMax={`${dataFields.demolished_buildings.items.year_constructed.title}: latest estimate`}
                     required={required}
                 />
                 <NumberRangeDataEntry
                     slug='year_demolished'
                     slugModifier={index}
-                    title={dataFields.past_buildings.items.year_demolished.title}
+                    title={dataFields.demolished_buildings.items.year_demolished.title}
                     onChange={onFieldChange}
                     value={value.year_demolished}
                     disabled={disabled}
@@ -98,15 +98,15 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                     min={value.year_constructed?.max ?? minYear}
                     placeholderMin='Earliest'
                     placeholderMax='Latest'
-                    titleMin={`${dataFields.past_buildings.items.year_demolished.title}: earliest estimate`}
-                    titleMax={`${dataFields.past_buildings.items.year_demolished.title}: latest estimate`}
+                    titleMin={`${dataFields.demolished_buildings.items.year_demolished.title}: earliest estimate`}
+                    titleMax={`${dataFields.demolished_buildings.items.year_demolished.title}: latest estimate`}
                     required={required}
                 />
                 <DataEntry
                     className='lifespan-entry'
                     slug='lifespan'
                     slugModifier={index}
-                    title={dataFields.past_buildings.items.lifespan.title}
+                    title={dataFields.demolished_buildings.items.lifespan.title}
                     value={formatRange(minLifespan, maxLifespan)}
                     disabled={true}
                 />
@@ -114,7 +114,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
             <SelectDataEntry
                 slug='overlap_present'
                 slugModifier={index}
-                title={dataFields.past_buildings.items.overlap_present.title}
+                title={dataFields.demolished_buildings.items.overlap_present.title}
                 onChange={onFieldChange}
                 value={value.overlap_present}
                 options={[
@@ -130,7 +130,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
             <MultiDataEntry
                 slug='links'
                 slugModifier={index}
-                title={dataFields.past_buildings.items.links.title}
+                title={dataFields.demolished_buildings.items.links.title}
                 onChange={onFieldChange}
                 value={value.links}
                 disabled={disabled}
@@ -143,7 +143,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
 };
 
 interface DynamicsDataEntryProps extends BaseDataEntryProps {
-    value: PastBuilding[];
+    value: DemolishedBuilding[];
     editableEntries: boolean;
     maxYear: number;
     minYear: number;
@@ -151,7 +151,7 @@ interface DynamicsDataEntryProps extends BaseDataEntryProps {
     hasEdits: boolean;
 }
 
-function isValid(val: PastBuilding) {
+function isValid(val: DemolishedBuilding) {
     if(val == undefined) return false;
 
 
@@ -169,9 +169,9 @@ function isValid(val: PastBuilding) {
 }
 
 export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
-    const [newValue, setNewValue] = useState<PastBuilding>();
+    const [newValue, setNewValue] = useState<DemolishedBuilding>();
 
-    const values: PastBuilding[] = props.value ?? [];
+    const values: DemolishedBuilding[] = props.value ?? [];
     const isEditing = props.mode === 'edit';
     const isDisabled = !isEditing || props.disabled;
     
@@ -185,7 +185,7 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
         props.onSaveAdd(props.slug, val);
     }, [values, newValue]);
     
-    const edit = useCallback((id: number, val: PastBuilding) => {
+    const edit = useCallback((id: number, val: DemolishedBuilding) => {
         const editedValues = [...values];
         editedValues.splice(id, 1, val);
 

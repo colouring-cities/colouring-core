@@ -239,7 +239,7 @@ export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable
         verify: false,
     },
 
-    past_buildings: {
+    demolished_buildings: {
         edit: true,
         verify: false,
         asJson: true,

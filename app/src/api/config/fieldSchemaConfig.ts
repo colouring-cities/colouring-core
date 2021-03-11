@@ -4,7 +4,7 @@ import { dataFieldsConfig } from './dataFields';
 
 export const fieldSchemaConfig: { [key in keyof typeof dataFieldsConfig]?: SomeJSONSchema} = { /*eslint-disable @typescript-eslint/camelcase */
     
-    past_buildings:  {
+    demolished_buildings:  {
         type: 'array',
         items: {
             type: 'object',
