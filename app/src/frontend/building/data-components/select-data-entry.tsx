@@ -24,6 +24,7 @@ const SelectDataEntry: React.FunctionComponent<SelectDataEntryProps> = (props) =
                 id={props.slug} name={props.slug}
                 value={props.value || ''}
                 disabled={props.mode === 'view' || props.disabled}
+                required={props.required}
                 onChange={e => 
                     props.onChange(
                         props.slug,

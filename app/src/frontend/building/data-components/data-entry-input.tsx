@@ -12,6 +12,8 @@ export interface TextDataEntryInputProps {
     maxLength?: number;
     disabled?: boolean;
     placeholder?: string;
+    isUrl?: boolean;
+    required?: boolean;
     valueTransform?: (val: string) => string;
     confirmOnEnter?: boolean;
 
@@ -52,11 +54,12 @@ export const DataEntryInput: React.FC<TextDataEntryInputProps & {value?: string}
 
     return (
         <>
-            <input className="form-control" type="text"
+            <input className="form-control" type={props.isUrl? "url" : "text"}
                 id={idAttr}
                 name={nameAttr}
                 value={props.value || ''}
                 maxLength={props.maxLength}
+                required={props.required}
                 disabled={props.disabled}
                 placeholder={props.placeholder}
                 onKeyDown={e => {

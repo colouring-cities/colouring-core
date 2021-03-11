@@ -33,6 +33,7 @@ const NumericDataEntry: React.FunctionComponent<NumericDataEntryProps> = (props)
                 min={props.min}
                 disabled={props.mode === 'view' || props.disabled}
                 placeholder={props.placeholder}
+                required={props.required}
                 onChange={e =>
                     props.onChange(
                         props.slug,
