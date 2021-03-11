@@ -239,4 +239,10 @@ export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable
         verify: false,
     },
 
+    demolished_buildings: {
+        edit: true,
+        verify: false,
+        asJson: true,
+        sqlCast: 'jsonb',
+    },
 });
