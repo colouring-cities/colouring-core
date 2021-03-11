@@ -507,4 +507,34 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="dynamics_demolished_count">
+        <Rule>
+            <Filter>[demolished_buildings_count] &gt;= 7</Filter>
+            <PolygonSymbolizer fill="#bd0026" />
+        </Rule>
+        <Rule>
+            <Filter>[demolished_buildings_count] = 6</Filter>
+            <PolygonSymbolizer fill="#e31a1c" />
+        </Rule>
+        <Rule>
+            <Filter>[demolished_buildings_count] = 5</Filter>
+            <PolygonSymbolizer fill="#fc4e2a" />
+        </Rule>
+        <Rule>
+            <Filter>[demolished_buildings_count] = 4</Filter>
+            <PolygonSymbolizer fill="#fd8d3c" />
+        </Rule>
+        <Rule>
+            <Filter>[demolished_buildings_count] = 3</Filter>
+            <PolygonSymbolizer fill="#feb24c" />
+        </Rule>
+        <Rule>
+            <Filter>[demolished_buildings_count] = 2</Filter>
+            <PolygonSymbolizer fill="#fed976" />
+        </Rule>
+        <Rule>
+            <Filter>[demolished_buildings_count] = 1</Filter>
+            <PolygonSymbolizer fill="#ffe8a9" />
+        </Rule>
+    </Style>
 </Map>

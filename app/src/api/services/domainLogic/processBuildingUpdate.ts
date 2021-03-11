@@ -6,6 +6,9 @@ import { ArgumentError } from '../../errors/general';
 
 import { updateLandUse } from './landUse';
 
+/**
+ * Process land use classifications - derive land use order from land use groups
+ */
 async function processCurrentLandUseClassifications(buildingId: number, buildingUpdate: any): Promise<any> {
     const currentBuildingData = await getBuildingData(buildingId);
 
@@ -31,9 +34,25 @@ async function processCurrentLandUseClassifications(buildingId: number, building
     }
 }
 
+
+/**
+ * Process Dynamics data - sort past buildings by construction date
+ */
+async function processDynamicsPastBuildings(buildingId: number, buildingUpdate: any): Promise<any> {
+    buildingUpdate.demolished_buildings = buildingUpdate.demolished_buildings.sort((a, b) => b.year_constructed.min - a.year_constructed.min);
+    return buildingUpdate;
+}
+
+
+/**
+ * Define any custom processing logic for specific building attributes
+ */
 export async function processBuildingUpdate(buildingId: number, buildingUpdate: any): Promise<any> {
     if(hasAnyOwnProperty(buildingUpdate, ['current_landuse_group'])) {
         buildingUpdate = await processCurrentLandUseClassifications(buildingId, buildingUpdate);
+    }
+    if('demolished_buildings' in buildingUpdate) {
+        buildingUpdate = await processDynamicsPastBuildings(buildingId, buildingUpdate);
     }
 
     return buildingUpdate;

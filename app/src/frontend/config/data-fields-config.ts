@@ -411,4 +411,38 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Total number of likes",
         example: 100,
     },
+
+    demolished_buildings: {
+        category: Category.Dynamics,
+        title: 'Past (demolished) buildings on this site',
+        items: {
+            year_constructed: {
+                title: 'Construction year',
+                example: { min: 1989, max: 1991 },
+            },
+            year_demolished: {
+                title: 'Demolition year',
+                example: { min: 1993, max: 1994 },
+            },
+            lifespan: {
+                title: 'Lifespan',
+                example: "2-5",
+            },
+            overlap_present: {
+                title: 'Roughly what percentage of this building was inside the current site boundary?',
+                tooltip: '',
+                example: "25%"
+            },
+            links: {
+                title: 'Links / sources',
+                example: ["", ""]
+            }
+        },
+        example: [
+            {
+                year_constructed: { min: 1989, max: 1991 },
+                year_demolished: { min: 1993, max: 1994 },
+                lifespan: "2-5", overlap_present: "50%", links: ["", ""]}
+        ]
+    }
 };
