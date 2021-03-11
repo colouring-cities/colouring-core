@@ -414,7 +414,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     past_buildings: {
         category: Category.Dynamics,
-        title: 'Past buildings on this site',
+        title: 'Past (demolished) buildings on this site',
         items: {
             year_constructed: {
                 title: 'Construction year',

@@ -118,11 +118,11 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                 onChange={onFieldChange}
                 value={value.overlap_present}
                 options={[
-                    {value: '0%', label: '0% - almost no overlap with current site'},
+                    {value: '1%', label: '1% - almost no overlap with current site'},
                     '25%',
                     '50%',
                     '75%',
-                    {value: '100%', label: '100% - almost fully contained in current site'}
+                    {value: '100%', label: '100% - fully contained in current site'}
                 ]}
                 disabled={disabled}
                 required={required}
@@ -205,7 +205,7 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                 {
                     isEditing &&
                         <>
-                            <h6 className="h6">Existing records for past buildings</h6>
+                            <h6 className="h6">Existing records for demolished buildings</h6>
                             <label>Please supply sources for any edits of existing records</label>
                         </>
                 }
@@ -213,14 +213,14 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                     {
                         values.length === 0 &&
                         <div className="input-group">
-                            <input className="form-control no-entries" type="text" value="No past building records" disabled={true} />
+                            <input className="form-control no-entries" type="text" value="No records so far" disabled={true} />
                         </div>
                     }
                     {
                         values.map((pastBuilding, id) => (
                             <li key={id}>
                                 <DynamicsBuildingPane>
-                                    <label>Past (demolished) building</label>
+                                    <label>Demolished building</label>
                                     {
                                         !isDisabled &&
                                             <button type="button" className="btn btn-outline-dark delete-record-button"
@@ -247,7 +247,7 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                 {
                     !isDisabled &&
                     <div className='new-record-section'>
-                        <h6 className="h6">Add another past building record</h6>
+                        <h6 className="h6">Add another demolished building record</h6>
                         <DynamicsBuildingPane className='new-record'>
                             <DynamicsDataRow
                                 value={newValue}
@@ -257,6 +257,7 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                                 maxYear={props.maxYear}
                                 mode={props.mode}
                             />
+                            <label>Please save all your edits before navigating away from the currently selected building - these will be erased otherwise.</label>
                             <button type="button"
                                 className="btn btn-primary btn-block add-record-button"
                                 title="Add to list"

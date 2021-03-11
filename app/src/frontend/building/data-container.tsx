@@ -375,8 +375,9 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                                             type="submit"
                                                             className="btn btn-primary"
                                                             disabled={!edited}
-                                                            aria-disabled={!edited}>
-                                                            {edited ? 'Save edits' : 'No edits'}
+                                                            aria-disabled={!edited}
+                                                        >
+                                                            Save edits
                                                         </button>
                                                         {
                                                             edited ?
