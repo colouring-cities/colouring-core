@@ -5,10 +5,10 @@
 import * as _ from 'lodash';
 
 import { pickFields } from '../../../helpers';
+import { dataFieldsConfig } from '../../config/dataFields';
 import * as buildingDataAccess from '../../dataAccess/building';
 import { processBuildingUpdate } from '../domainLogic/processBuildingUpdate';
 
-import { BUILDING_FIELD_WHITELIST } from './dataFields';
 import { getBuildingEditHistory } from './history';
 import { updateBuildingData } from './save';
 import { getBuildingVerifications } from './verify';
@@ -30,6 +30,8 @@ export async function getBuildingById(id: number) {
     }
 }
 
+const FIELD_EDIT_WHITELIST = new Set(Object.entries(dataFieldsConfig).filter(([, value]) => value.edit).map(([key]) => key));
+
 export async function editBuilding(buildingId: number, building: any, userId: string): Promise<object> { // TODO add proper building type
     return await updateBuildingData(buildingId, userId, async () => {
         const processedBuilding = await processBuildingUpdate(buildingId, building);
@@ -40,7 +42,7 @@ export async function editBuilding(buildingId: number, building: any, userId: st
         delete processedBuilding.geometry_id;
 
         // return whitelisted fields to update
-        return pickFields(processedBuilding, BUILDING_FIELD_WHITELIST);
+        return pickFields(processedBuilding, FIELD_EDIT_WHITELIST);
     });
 }
 

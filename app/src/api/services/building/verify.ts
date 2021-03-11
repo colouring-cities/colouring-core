@@ -1,8 +1,9 @@
+import { dataFieldsConfig } from '../../config/dataFields';
 import * as buildingDataAccess from '../../dataAccess/building';
 import * as verifyDataAccess from '../../dataAccess/verify';
 import { DatabaseError } from '../../errors/general';
 
-import { BUILDING_FIELD_WHITELIST } from './dataFields'; 
+const FIELD_VERIFICATION_WHITELIST = new Set(Object.entries(dataFieldsConfig).filter(([, value]) => value.verify === true).map(([key]) => key));
 
 export async function verifyBuildingAttributes(buildingId: number, userId: string, patch: object) {
     // get current building attribute values for comparison
@@ -13,7 +14,7 @@ export async function verifyBuildingAttributes(buildingId: number, userId: strin
     // loop through attribute => value pairs to mark as verified
     for (let [key, value] of Object.entries(patch)) {
         // check key in whitelist
-        if(BUILDING_FIELD_WHITELIST.has(key)) {
+        if(FIELD_VERIFICATION_WHITELIST.has(key)) {
             // check value against current from database - JSON.stringify as hack for "any" data type
             if (JSON.stringify(value) == JSON.stringify(building[key])) {
                 try {
@@ -52,7 +53,7 @@ export async function getBuildingVerifications(building) {
     const verifications = await verifyDataAccess.getBuildingVerifiedAttributes(building.building_id);
 
     const verified = {};
-    for (const element of BUILDING_FIELD_WHITELIST) {
+    for (const element of FIELD_VERIFICATION_WHITELIST) {
         verified[element] = 0;
     }
 

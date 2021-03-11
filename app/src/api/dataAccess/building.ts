@@ -2,6 +2,7 @@
 import { errors, ITask } from 'pg-promise';
 
 import db from '../../db';
+import { dataFieldsConfig } from '../config/dataFields';
 import { ArgumentError, DatabaseError } from '../errors/general';
 
 export async function getBuildingData(
@@ -52,13 +53,26 @@ export async function insertEditHistoryRevision(
     }
 }
 
+const columnConfigLookup = Object.assign(
+    {}, 
+    ...Object.entries(dataFieldsConfig).filter(([, config]) => config.edit).map(([key, {
+        asJson = false,
+        sqlCast
+    }]) => ({ [key]: {
+        name: key,
+        mod: asJson ? ':json' : undefined,
+        cast: sqlCast
+    } }))
+);
+
 export async function updateBuildingData(
     buildingId: number,
     forwardPatch: object,
     revisionId: string,
     t?: ITask<any>
 ): Promise<object> {
-    const sets = db.$config.pgp.helpers.sets(forwardPatch);
+    const columnConfig = Object.entries(forwardPatch).map(([key]) => columnConfigLookup[key]);
+    const sets = db.$config.pgp.helpers.sets(forwardPatch, columnConfig);
 
     console.log('Setting', buildingId, sets);
 
