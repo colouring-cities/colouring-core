@@ -3,15 +3,30 @@ import React, { Fragment } from 'react';
 import { BaseDataEntryProps } from './data-entry';
 import { DataTitleCopyable } from './data-title';
 
+interface SelectOption {
+    value: string;
+    label: string;
+}
+
 interface SelectDataEntryProps extends BaseDataEntryProps {
     value: string;
     placeholder?: string;
-    options: string[];
+    options: (string | SelectOption)[];
 }
 
+function makeOption(option: string | SelectOption): SelectOption {
+    if(typeof option !== 'string' && 'value' in option && 'label' in option) {
+        return option;
+    } else return {
+        value: option,
+        label: option
+    }
+}
 
 const SelectDataEntry: React.FunctionComponent<SelectDataEntryProps> = (props) => {
     const slugWithModifier = props.slug + (props.slugModifier ?? '');
+
+    const options = props.options.map(makeOption);
 
     return (
         <Fragment>
@@ -38,8 +53,8 @@ const SelectDataEntry: React.FunctionComponent<SelectDataEntryProps> = (props) =
             >
                 <option value="">{props.placeholder}</option>
                 {
-                    props.options.map(option => (
-                        <option key={option} value={option}>{option}</option>
+                    options.map(option => (
+                        <option key={option.value} value={option.value}>{option.label}</option>
                     ))
                 }
             </select>
