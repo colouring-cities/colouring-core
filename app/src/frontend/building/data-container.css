@@ -1,0 +1,13 @@
+.edit-bar {
+    position: sticky;
+    top: 53px; /* match section-header height */
+    padding: 12px 0; /* match info-container-inner margin-top*/
+    width: 100%;
+    background-color: white;
+    z-index: 1000;
+}
+
+.edit-bar .buttons-container {
+    margin: 0;
+    padding: 0;
+}

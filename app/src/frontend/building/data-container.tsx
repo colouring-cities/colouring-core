@@ -14,6 +14,8 @@ import { CategoryViewProps, CopyProps } from './data-containers/category-view-pr
 import { CopyControl } from './header-buttons/copy-control';
 import { ViewEditControl } from './header-buttons/view-edit-control';
 
+import './data-container.css';
+
 interface DataContainerProps {
     title: string;
     cat: string;
@@ -69,6 +71,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             this.handleLike = this.handleLike.bind(this);
             this.handleSubmit = this.handleSubmit.bind(this);
             this.handleVerify = this.handleVerify.bind(this);
+            this.handleSaveAdd = this.handleSaveAdd.bind(this);
 
             this.toggleCopying = this.toggleCopying.bind(this);
             this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
@@ -363,17 +366,18 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                 onSubmit={this.handleSubmit}>
                                 {
                                     (this.props.mode === 'edit' && !this.props.inactive) ?
-                                        <Fragment>
+                                        <div className='edit-bar'>
                                             <ErrorBox msg={this.state.error} />
                                             {
-                                                this.props.cat !== 'like' ? // special-case for likes
+                                                this.props.cat !== 'like' && // special-case for likes
                                                     <div className="buttons-container with-space">
                                                         <button
                                                             type="submit"
                                                             className="btn btn-primary"
                                                             disabled={!edited}
-                                                            aria-disabled={!edited}>
-                                                            Save
+                                                            aria-disabled={!edited}
+                                                        >
+                                                            Save edits
                                                         </button>
                                                         {
                                                             edited ?
@@ -382,14 +386,13 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                                                     className="btn btn-warning"
                                                                     onClick={this.handleReset}
                                                                     >
-                                                                    Discard changes
+                                                                    Discard edits
                                                                 </button> :
                                                                 null
                                                         }
-                                                    </div> :
-                                                    null
+                                                    </div>
                                             }
-                                        </Fragment>
+                                        </div>
                                         : null
                                 }
                                 <WrappedComponent
