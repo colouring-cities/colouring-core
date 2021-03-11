@@ -8,6 +8,7 @@ import { pickFields } from '../../../helpers';
 import { dataFieldsConfig } from '../../config/dataFields';
 import * as buildingDataAccess from '../../dataAccess/building';
 import { processBuildingUpdate } from '../domainLogic/processBuildingUpdate';
+import { validateBuildingUpdate } from '../domainLogic/validateBuildingUpdate';
 
 import { getBuildingEditHistory } from './history';
 import { updateBuildingData } from './save';
@@ -34,6 +35,7 @@ const FIELD_EDIT_WHITELIST = new Set(Object.entries(dataFieldsConfig).filter(([,
 
 export async function editBuilding(buildingId: number, building: any, userId: string): Promise<object> { // TODO add proper building type
     return await updateBuildingData(buildingId, userId, async () => {
+        validateBuildingUpdate(buildingId, building);
         const processedBuilding = await processBuildingUpdate(buildingId, building);
 
         // remove read-only fields from consideration
