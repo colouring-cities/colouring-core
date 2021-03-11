@@ -3,7 +3,7 @@ import { Category } from './categories-config';
 import AgeContainer from '../building/data-containers/age';
 import CommunityContainer from '../building/data-containers/community';
 import ConstructionContainer from '../building/data-containers/construction';
-import DynamicsContainer from '../building/data-containers/dynamics';
+import DynamicsContainer from '../building/data-containers/dynamics/dynamics';
 import LocationContainer from '../building/data-containers/location';
 import PlanningContainer from '../building/data-containers/planning';
 import SizeContainer from '../building/data-containers/size';

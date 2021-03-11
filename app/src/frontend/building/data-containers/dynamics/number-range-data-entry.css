@@ -1,0 +1,7 @@
+.min-number-input {
+    border-right: none;
+}
+
+.max-number-input {
+    border-left: 1px dashed #ccc;
+}

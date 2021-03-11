@@ -185,10 +185,34 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
         },
     },
     [Category.Dynamics]: {
-        mapStyle: undefined,
+        mapStyle: 'dynamics_demolished_count',
         legend: {
             title: 'Dynamics',
-            elements: []
+            description: 'Past (demolished) buildings on site',
+            elements: [
+                {
+                    text: '7+',
+                    color: '#bd0026',
+                }, {
+                    text: '6',
+                    color: '#e31a1c',
+                }, {
+                    text: '5',
+                    color: '#fc4e2a',
+                }, {
+                    text: '4',
+                    color: '#fd8d3c',
+                }, {
+                    text: '3',
+                    color: '#feb24c',
+                }, {
+                    text: '2',
+                    color: '#fed976',
+                }, {
+                    text: '1',
+                    color: '#ffe8a9',
+                }
+            ],
         },
     }
     

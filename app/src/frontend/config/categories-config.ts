@@ -115,7 +115,6 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         intro: "What's the building's context? Coming soon…",
     },
     [Category.Dynamics]: {
-        inactive: true,
         slug: 'dynamics',
         name: 'Dynamics',
         aboutUrl: 'https://pages.colouring.london/dynamics',

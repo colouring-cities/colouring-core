@@ -1,0 +1,36 @@
+.dynamics-building-pane {
+    position: relative;
+    background-color: #f1f1f1;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.dynamics-building-pane.new-record {
+    background-color: #f6f6f6;
+    border: 1px dashed #cccccc;
+}
+
+.h6 {
+    margin-top: 40px;
+}
+
+.delete-record-button {
+    position: absolute;
+    top:10px;
+    right: 10px;
+}
+
+.add-record-button {
+    margin-top: 20px;
+}
+
+.field-row * {
+    margin-right: 1px;
+}
+
+.lifespan-entry {
+    flex: 0 1 27%;
+}
