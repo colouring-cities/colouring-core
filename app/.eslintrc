@@ -39,7 +39,8 @@
     "camelcase": ["warn", {"ignoreDestructuring": true ,"properties": "never"}],
     "eol-last": ["warn", "always"],
     "no-multiple-empty-lines": ["warn", {"max": 1}],
-    "prefer-const": "warn"
+    "prefer-const": "warn",
+    "react/prop-types": "off"
   },
   "settings": {
     "react": {
