@@ -113,7 +113,7 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </DataEntryGroup>
         <InfoBox>
             This section is under development in collaboration with the historic environment sector.
-            Please let us know your suggestions on the <a href="https://discuss.colouring.london">discussion forum</a>! (external link - save your edits first)
+            Please let us know your suggestions on the <a href="https://discuss.colouring.london/t/dynamics-category-discussion/107">discussion forum</a>! (external link - save your edits first)
         </InfoBox>
     </>)
 };
