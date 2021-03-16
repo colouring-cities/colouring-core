@@ -10,6 +10,7 @@ import { MultiDataEntry } from '../../data-components/multi-data-entry/multi-dat
 import { NumberRangeDataEntry } from './number-range-data-entry';
 
 import './dynamics-data-entry.css';
+import { CloseIcon } from '../../../components/icons';
 
 type DemolishedBuilding = (BuildingAttributes['demolished_buildings'][number]);
 
@@ -211,7 +212,7 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                             <label>Please supply sources for any edits of existing records</label>
                         </>
                 }
-                <ul className="data-link-list">
+                <ul className="data-entry-list">
                     {
                         values.length === 0 &&
                         <div className="input-group">
@@ -229,7 +230,7 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                                                 title="Delete Record"
                                                 onClick={() => remove(id)}
                                                 data-index={id}
-                                            >x</button>
+                                            ><CloseIcon /></button>
                                     }
                                     <DynamicsDataRow
                                         value={pastBuilding}

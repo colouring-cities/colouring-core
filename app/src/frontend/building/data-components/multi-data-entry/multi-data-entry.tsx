@@ -5,6 +5,7 @@ import './multi-data-entry.css';
 import { BaseDataEntryProps } from '../data-entry';
 import { DataEntryInput, TextDataEntryInputProps } from '../data-entry-input';
 import { DataTitleCopyable } from '../data-title';
+import { CloseIcon, SaveIcon } from '../../../components/icons';
 
 interface MultiDataEntryProps extends BaseDataEntryProps, TextDataEntryInputProps {
     value: string[];
@@ -42,6 +43,9 @@ export const MultiDataEntry: React.FC<MultiDataEntryProps> = ({
         props.onChange(props.slug, editedValues);
     }, [newValue, values, props.onChange, props.slug]);
 
+    const clearNew = useCallback(() => {
+        setNewValue(null);
+    }, []);
 
     const remove = useCallback((index: number) => {
         const editedValues = values.slice();
@@ -65,13 +69,13 @@ export const MultiDataEntry: React.FC<MultiDataEntryProps> = ({
             copy={copyable ? props.copy : undefined}
         />
         <div id={`${props.slug}-wrapper`}>
-            <ul className="data-link-list">
-                {
-                    values.length === 0 && !isEditing &&
-                    <div className="input-group">
-                        <input className="form-control no-entries" type="text" value="No entries" disabled={true} />
-                    </div>
-                }
+            {
+                values.length === 0 && !isEditing &&
+                <div className="input-group">
+                    <input className="form-control no-entries" type="text" value="No entries" disabled={true} />
+                </div>
+            }
+            <ul className="data-entry-list">
                 {
                     values.map((val, i) => (
                         <li className="input-group" key={i /* i as key prevents input component recreation on edit */}>
@@ -95,46 +99,55 @@ export const MultiDataEntry: React.FC<MultiDataEntryProps> = ({
                                 <div className="input-group-append">
                                     <button type="button" onClick={() => remove(i)}
                                         title="Remove"
-                                        data-index={i} className="btn btn-outline-dark">✕</button>
+                                        data-index={i} className="btn btn-outline-dark data-entry-list-button"><CloseIcon /></button>
                                 </div>
                             }
                         </li>
                     ))
                 }
+                {
+                    !isDisabled &&
+                        <li className="input-group">
+                            <DataEntryInput
+                                slug={props.slug}
+                                name={slugWithModifier}
+                                id={slugWithModifier}
+                                value={newValue}
+                                disabled={props.disabled}
+                                required={props.required && values.length < 1}
+                                onChange={(_key, val) => setNewValue(val)}
+                                onConfirm={(_key, val) => addNew(val)}
+
+                                maxLength={props.maxLength}
+                                placeholder={props.placeholder}
+                                isUrl={props.isUrl}
+                                valueTransform={props.valueTransform}
+                                confirmOnEnter={confirmOnEnter}
+
+                                autofill={props.autofill}
+                                showAllOptionsOnEmpty={props.showAllOptionsOnEmpty}
+                                confirmOnAutofillSelect={true}
+                            />
+                            {
+                                newValue != undefined &&
+                                    <>
+                                        <div className="input-group-append">
+                                            <button type="button"
+                                                className="btn btn-primary data-entry-list-button"
+                                                title="Confirm new value"
+                                                onClick={() => addNew()}
+                                            ><SaveIcon /></button>
+                                        </div>
+                                        <div className="input-group-append">
+                                            <button type="button" onClick={() => clearNew()}
+                                                title="Clear new value"
+                                                className="btn btn-warning data-entry-list-button"><CloseIcon /></button>
+                                        </div>
+                                    </>
+                            }
+                        </li>
+                }
             </ul>
-            {
-                !isDisabled &&
-                    <div className="input-group">
-                        <DataEntryInput
-                            slug={props.slug}
-                            name={slugWithModifier}
-                            id={slugWithModifier}
-                            value={newValue}
-                            disabled={props.disabled}
-                            required={props.required && values.length < 1}
-                            onChange={(_key, val) => setNewValue(val)}
-                            onConfirm={(_key, val) => addNew(val)}
-
-                            maxLength={props.maxLength}
-                            placeholder={props.placeholder}
-                            isUrl={props.isUrl}
-                            valueTransform={props.valueTransform}
-                            confirmOnEnter={confirmOnEnter}
-
-                            autofill={props.autofill}
-                            showAllOptionsOnEmpty={props.showAllOptionsOnEmpty}
-                            confirmOnAutofillSelect={true}
-                        />
-                        <div className="input-group-append">
-                            <button type="button"
-                                className="btn btn-outline-dark"
-                                title="Add to list"
-                                onClick={() => addNew()}
-                                disabled={newValue == undefined}
-                            >+</button>
-                        </div>
-                    </div>
-            }
         </div>
     </>)
 };

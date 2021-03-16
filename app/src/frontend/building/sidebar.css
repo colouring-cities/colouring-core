@@ -162,13 +162,17 @@
     list-style: none;
     padding-left: 0;
 }
-.data-section .data-link-list {
+.data-section .data-entry-list {
     padding: 0;
     list-style: none;
     margin-bottom: 0;
     margin-top: 0.5rem;
 }
-.data-link-list li {
+.data-entry-list li {
     border-color: #6c757d;
     border-radius: 0;
+}
+
+.data-entry-list-button {
+    width: 2.5em;
 }
