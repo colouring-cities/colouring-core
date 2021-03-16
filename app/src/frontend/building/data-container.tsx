@@ -364,6 +364,8 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                 action={`/edit/${this.props.cat}/${this.props.building.building_id}`}
                                 method="POST"
                                 onSubmit={this.handleSubmit}>
+                                    {/* this disabled button prevents form submission on enter - see https://stackoverflow.com/a/51507806/1478817 */}
+                                    <button type="submit" disabled style={{display: 'none'}}></button>
                                 {
                                     (this.props.mode === 'edit' && !this.props.inactive) ?
                                         <div className='edit-bar'>
