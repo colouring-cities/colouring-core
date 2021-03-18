@@ -72,7 +72,7 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             disallowFalse={(building.demolished_buildings?.length ?? 0) > 0}
                             disallowNull={(building.demolished_buildings?.length ?? 0) > 0}
 
-                            onChange={props.onChange}
+                            onChange={props.onSaveChange}
                             mode={props.mode}
                             copy={props.copy}
                         />
