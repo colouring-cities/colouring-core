@@ -6,7 +6,7 @@ import { apiPost } from '../apiHelpers';
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
 import { compareObjects } from '../helpers';
-import { Building, UserVerified } from '../models/building';
+import { Building, BuildingAttributes, UserVerified } from '../models/building';
 import { User } from '../models/user';
 
 import ContainerHeader from './container-header';
@@ -72,6 +72,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             this.handleSubmit = this.handleSubmit.bind(this);
             this.handleVerify = this.handleVerify.bind(this);
             this.handleSaveAdd = this.handleSaveAdd.bind(this);
+            this.handleSaveChange = this.handleSaveChange.bind(this);
 
             this.toggleCopying = this.toggleCopying.bind(this);
             this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
@@ -190,14 +191,12 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             }
         }
 
-        async handleSubmit(event) {
-            event.preventDefault();
+        async doSubmit(edits: Partial<BuildingAttributes>) {
             this.setState({error: undefined});
-
             try {
                 const data = await apiPost(
                     `/api/buildings/${this.props.building.building_id}.json`,
-                    this.state.buildingEdits
+                    edits
                 );
 
                 if (data.error) {
@@ -208,6 +207,44 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             } catch(err) {
                 this.setState({error: err});
             }
+        }
+
+        async handleSubmit(event) {
+            event.preventDefault();
+            
+            this.doSubmit(this.state.buildingEdits);
+        }
+
+        async handleSaveAdd(slug: string, newItem: any) {
+            if(this.props.building[slug] != undefined && !Array.isArray(this.props.building[slug])) {
+                this.setState({error: 'Unexpected error'});
+                console.error(`Trying to add a new item to a field (${slug}) which is not an array`);
+                return;
+            }
+            
+            if(this.isEdited()) {
+                this.setState({error: 'Cannot save a new record when there are unsaved edits to existing records'});
+                return;
+            }
+            
+            const edits = {
+                [slug]: [...(this.props.building[slug] ?? []), newItem]
+            };
+            
+            this.doSubmit(edits);
+        }
+
+        async handleSaveChange(slug: string, value: any) {
+            if(this.isEdited()) {
+                this.setState({ error: 'Cannot change this value when there are other unsaved edits. Save or discard the other edits first.'});
+                return;
+            }
+
+            const edits = {
+                [slug]: value
+            };
+
+            this.doSubmit(edits);
         }
 
         async handleVerify(slug: string, verify: boolean, x: number, y: number) {
@@ -236,40 +273,6 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                         });
                     }
                     this.props.onUserVerifiedUpdate(this.props.building.building_id, data);
-                }
-            } catch(err) {
-                this.setState({error: err});
-            }
-        }
-
-        async handleSaveAdd(slug: string, newItem: any) {
-            if(this.props.building[slug] != undefined && !Array.isArray(this.props.building[slug])) {
-                this.setState({error: 'Unexpected error'});
-                console.error(`Trying to add a new item to a field (${slug}) which is not an array`);
-                return;
-            }
-            
-            if(this.isEdited()) {
-                this.setState({error: 'Cannot save a new record when there are unsaved edits to existing records'});
-                return;
-            }
-            
-            const edits = {
-                [slug]: [...(this.props.building[slug] ?? []), newItem]
-            };
-            
-            this.setState({error: undefined});
-
-            try {
-                const data = await apiPost(
-                    `/api/buildings/${this.props.building.building_id}.json`,
-                    edits
-                );
-
-                if (data.error) {
-                    this.setState({error: data.error});
-                } else {
-                    this.props.onBuildingUpdate(this.props.building.building_id, data);
                 }
             } catch(err) {
                 this.setState({error: err});
@@ -356,6 +359,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                 onLike={undefined}
                                 onVerify={undefined}
                                 onSaveAdd={undefined}
+                                onSaveChange={undefined}
                                 user_verified={[]}
                             />
                         </Fragment> :
@@ -408,6 +412,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                     onLike={this.handleLike}
                                     onVerify={this.handleVerify}
                                     onSaveAdd={this.handleSaveAdd}
+                                    onSaveChange={this.handleSaveChange}
                                     user_verified={this.props.user_verified}
                                     user={this.props.user}
                                 />
