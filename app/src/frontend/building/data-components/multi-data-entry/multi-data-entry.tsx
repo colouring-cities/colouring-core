@@ -1,105 +1,81 @@
-import React, { Component, Fragment } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import './multi-data-entry.css';
 
 import { BaseDataEntryProps } from '../data-entry';
 import { DataEntryInput, TextDataEntryInputProps } from '../data-entry-input';
 import { DataTitleCopyable } from '../data-title';
-
+import { CloseIcon, SaveIcon } from '../../../components/icons';
 
 interface MultiDataEntryProps extends BaseDataEntryProps, TextDataEntryInputProps {
     value: string[];
-    copyable: boolean;
-    editableEntries: boolean;
-    confirmOnEnter: boolean;
-
-    addOnAutofillSelect: boolean;
-    acceptAutofillValuesOnly: boolean;
+    copyable?: boolean;
+    editableEntries?: boolean;
+    confirmOnEnter?: boolean;
 }
 
-interface MultiDataEntryState {
-    newValue: string;
-}
+export const MultiDataEntry: React.FC<MultiDataEntryProps> = ({
+    editableEntries = false,
+    copyable = false,
+    confirmOnEnter = true,
+    ...props
+}) => {
+    const [newValue, setNewValue] = useState<string>();
 
-class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState> {
+    const values = useMemo(() => props.value ?? [], [props.value]);
 
-    static defaultProps = {
-        editableEntries: false,
-        copyable: false,
-        confirmOnEnter: true,
-        addOnAutofillSelect: false,
-        acceptAutofillValuesOnly: false
-    };
+    const edit = useCallback((index: number, value: string) => {
+        const editedValues = values.slice();
+        editedValues.splice(index, 1, value);
+        props.onChange(props.slug, editedValues);
+    }, [values, props.onChange, props.slug]);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            newValue: null
-        };
-        
-        this.setNewValue = this.setNewValue.bind(this);
-        this.edit = this.edit.bind(this);
-        this.addNew = this.addNew.bind(this);
-        this.remove = this.remove.bind(this);
-    }
+    /* accept a newValue parameter to handle cases where the value is set and submitted at the same time
+     * (like with autofill select enabled) - but otherwise use the current newValue saved in state
+     */
+    const addNew = useCallback((newValueArg?: string) => {
+        const val = newValueArg ?? newValue;
+        if(val == undefined) return;
 
-    getValues() {
-        return this.props.value == undefined ? [] : this.props.value;
-    }
+        const editedValues = values.slice().concat(val);
 
-    cloneValues() {
-        return this.getValues().slice();
-    }
+        setNewValue(null);
+        props.onChange(props.slug, editedValues);
+    }, [newValue, values, props.onChange, props.slug]);
 
-    setNewValue(value: string) {
-        this.setState({newValue: value});
-    }
+    const clearNew = useCallback(() => {
+        setNewValue(null);
+    }, []);
 
-    edit(index: number, value: string) {
-        let values = this.cloneValues();
-        values.splice(index, 1, value);
-        this.props.onChange(this.props.slug, values);
-    }
-    addNew(newValue?: string) {
-        // accept a newValue parameter to handle cases where the value is set and submitted at the same time
-        // (like with autofill select enabled) - but otherwise use the current newValue saved in state
-        const val = newValue ?? this.state.newValue;
-        if (val == undefined) return;
-        const values = this.cloneValues().concat(val);
-        this.setState({newValue: null});
-        this.props.onChange(this.props.slug, values);
-    }
+    const remove = useCallback((index: number) => {
+        const editedValues = values.slice();
+        editedValues.splice(index, 1);
 
-    remove(index: number){
-        const values = this.cloneValues();
-        values.splice(index, 1);
-        this.props.onChange(this.props.slug, values);
-    }
+        props.onChange(props.slug, editedValues);
+    }, [values, props.onChange, props.slug]);
 
-    render() {
-        const values = this.getValues();
-        const props = this.props;
-        const isEditing = props.mode === 'edit';
-        const isDisabled = !isEditing || props.disabled;
-        const slugWithModifier = props.slug + (props.slugModifier ?? '');
 
-        return <Fragment>
-            <DataTitleCopyable
-                slug={props.slug}
-                slugModifier={props.slugModifier}
-                title={props.title}
-                tooltip={props.tooltip}
-                disabled={props.disabled || props.value == undefined || props.value.length === 0}
-                copy={props.copyable ? props.copy : undefined}
-            />
-            <div id={`${props.slug}-wrapper`}>
-                <ul className="data-link-list">
-                {
-                    values.length === 0 && !isEditing &&
-                    <div className="input-group">
-                        <input className="form-control no-entries" type="text" value="No entries" disabled={true} />
-                    </div>
-                }
+    const isEditing = props.mode === 'edit';
+    const isDisabled = !isEditing || props.disabled;
+    const slugWithModifier = props.slug + (props.slugModifier ?? '');
+
+    return (<>
+        <DataTitleCopyable
+            slug={props.slug}
+            slugModifier={props.slugModifier}
+            title={props.title}
+            tooltip={props.tooltip}
+            disabled={props.disabled || props.value == undefined || props.value.length === 0}
+            copy={copyable ? props.copy : undefined}
+        />
+        <div id={`${props.slug}-wrapper`}>
+            {
+                values.length === 0 && !isEditing &&
+                <div className="input-group">
+                    <input className="form-control no-entries" type="text" value="No entries" disabled={true} />
+                </div>
+            }
+            <ul className="data-entry-list">
                 {
                     values.map((val, i) => (
                         <li className="input-group" key={i /* i as key prevents input component recreation on edit */}>
@@ -108,8 +84,8 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                                 name={`${slugWithModifier}-${i}`}
                                 id={`${slugWithModifier}-${i}`}
                                 value={val}
-                                disabled={!props.editableEntries || isDisabled}
-                                onChange={(key, val) => this.edit(i, val)}
+                                disabled={!editableEntries || isDisabled}
+                                onChange={(_key, val) => edit(i, val)}
 
                                 maxLength={props.maxLength}
                                 isUrl={props.isUrl}
@@ -121,51 +97,57 @@ class MultiDataEntry extends Component<MultiDataEntryProps, MultiDataEntryState>
                             {
                                 !isDisabled &&
                                 <div className="input-group-append">
-                                    <button type="button" onClick={e => this.remove(i)}
+                                    <button type="button" onClick={() => remove(i)}
                                         title="Remove"
-                                        data-index={i} className="btn btn-outline-dark">✕</button>
+                                        data-index={i} className="btn btn-outline-dark data-entry-list-button"><CloseIcon /></button>
                                 </div>
                             }
                         </li>
                     ))
                 }
-                </ul>
                 {
                     !isDisabled &&
-                    <div className="input-group">
-                        <DataEntryInput
-                            slug={props.slug}
-                            name={slugWithModifier}
-                            id={slugWithModifier}
-                            value={this.state.newValue}
-                            disabled={props.disabled}
-                            required={props.required && values.length < 1}
-                            onChange={(key, val) => this.setNewValue(val)}
-                            onConfirm={(key, val) => this.addNew(val)}
+                        <li className="input-group">
+                            <DataEntryInput
+                                slug={props.slug}
+                                name={slugWithModifier}
+                                id={slugWithModifier}
+                                value={newValue}
+                                disabled={props.disabled}
+                                required={props.required && values.length < 1}
+                                onChange={(_key, val) => setNewValue(val)}
+                                onConfirm={(_key, val) => addNew(val)}
 
-                            maxLength={props.maxLength}
-                            placeholder={props.placeholder}
-                            isUrl={props.isUrl}
-                            valueTransform={props.valueTransform}
-                            confirmOnEnter={props.confirmOnEnter}
+                                maxLength={props.maxLength}
+                                placeholder={props.placeholder}
+                                isUrl={props.isUrl}
+                                valueTransform={props.valueTransform}
+                                confirmOnEnter={confirmOnEnter}
 
-                            autofill={props.autofill}
-                            showAllOptionsOnEmpty={props.showAllOptionsOnEmpty}
-                            confirmOnAutofillSelect={true}
-                        />
-                        <div className="input-group-append">
-                            <button type="button"
-                                className="btn btn-outline-dark"
-                                title="Add to list"
-                                onClick={() => this.addNew()}
-                                disabled={this.state.newValue == undefined}
-                            >+</button>
-                        </div>
-                    </div>
+                                autofill={props.autofill}
+                                showAllOptionsOnEmpty={props.showAllOptionsOnEmpty}
+                                confirmOnAutofillSelect={true}
+                            />
+                            {
+                                newValue != undefined &&
+                                    <>
+                                        <div className="input-group-append">
+                                            <button type="button"
+                                                className="btn btn-primary data-entry-list-button"
+                                                title="Confirm new value"
+                                                onClick={() => addNew()}
+                                            ><SaveIcon /></button>
+                                        </div>
+                                        <div className="input-group-append">
+                                            <button type="button" onClick={() => clearNew()}
+                                                title="Clear new value"
+                                                className="btn btn-warning data-entry-list-button"><CloseIcon /></button>
+                                        </div>
+                                    </>
+                            }
+                        </li>
                 }
-            </div>
-        </Fragment>;
-    }
-}
-
-export default MultiDataEntry;
+            </ul>
+        </div>
+    </>)
+};

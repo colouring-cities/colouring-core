@@ -64,8 +64,6 @@ export const DataEntryInput: React.FC<TextDataEntryInputProps & {value?: string}
                 placeholder={props.placeholder}
                 onKeyDown={e => {
                     if(e.keyCode === 13) {
-                        // prevent form submit on enter
-                        e.preventDefault();
                         if(props.confirmOnEnter) {
                             handleConfirm();
                         }

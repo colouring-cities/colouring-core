@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import InfoBox from '../../components/info-box';
 import { dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
-import MultiDataEntry from '../data-components/multi-data-entry/multi-data-entry';
+import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
@@ -28,7 +28,6 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             copyable={true}
             autofill={true}
             showAllOptionsOnEmpty={true}
-            addOnAutofillSelect={true}
         />
         <Verification
             slug="current_landuse_group"
