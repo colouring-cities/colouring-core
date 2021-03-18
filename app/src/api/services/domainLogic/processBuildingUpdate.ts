@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 
 import { hasAnyOwnProperty } from '../../../helpers';
+import { Building, BuildingUpdate } from '../../config/dataFields';
 import { getBuildingData } from '../../dataAccess/building';
 import { ArgumentError } from '../../errors/general';
 
@@ -36,10 +37,30 @@ async function processCurrentLandUseClassifications(buildingId: number, building
 
 
 /**
- * Process Dynamics data - sort past buildings by construction date
+ * Process Dynamics data - check field relationships and sort demolished buildings by construction date
  */
-async function processDynamicsPastBuildings(buildingId: number, buildingUpdate: any): Promise<any> {
-    buildingUpdate.demolished_buildings = buildingUpdate.demolished_buildings.sort((a, b) => b.year_constructed.min - a.year_constructed.min);
+async function processDynamicsDemolishedBuildings(buildingId: number, buildingUpdate: BuildingUpdate): Promise<BuildingUpdate> {
+    const currentBuildingData = await getBuildingData(buildingId);
+
+    const afterUpdate: Building = Object.assign({}, currentBuildingData, buildingUpdate);
+    
+    const hasDemolished: boolean = afterUpdate.dynamics_has_demolished_buildings;
+    const demolishedList: any[] = afterUpdate.demolished_buildings;
+
+    if(currentBuildingData.date_year == undefined) {
+        throw new ArgumentError('Cannot edit demolished buildings data if data on current building age is missing', 'buildingUpdate');
+    }
+
+    if(hasDemolished === false || hasDemolished == undefined) {
+        if(demolishedList.length > 0) {
+            throw new ArgumentError('Inconsistent data on whether there were any other buildings on this site', 'buildingUpdate');
+        }
+    }
+
+    if(buildingUpdate.demolished_buildings != undefined) {
+        buildingUpdate.demolished_buildings = buildingUpdate.demolished_buildings.sort((a, b) => b.year_constructed.min - a.year_constructed.min);
+    }
+
     return buildingUpdate;
 }
 
@@ -47,12 +68,12 @@ async function processDynamicsPastBuildings(buildingId: number, buildingUpdate: 
 /**
  * Define any custom processing logic for specific building attributes
  */
-export async function processBuildingUpdate(buildingId: number, buildingUpdate: any): Promise<any> {
+export async function processBuildingUpdate(buildingId: number, buildingUpdate: BuildingUpdate): Promise<any> {
     if(hasAnyOwnProperty(buildingUpdate, ['current_landuse_group'])) {
         buildingUpdate = await processCurrentLandUseClassifications(buildingId, buildingUpdate);
     }
-    if('demolished_buildings' in buildingUpdate) {
-        buildingUpdate = await processDynamicsPastBuildings(buildingId, buildingUpdate);
+    if(hasAnyOwnProperty(buildingUpdate, ['demolished_buildings', 'dynamics_has_demolished_buildings'])) {
+        buildingUpdate = await processDynamicsDemolishedBuildings(buildingId, buildingUpdate);
     }
 
     return buildingUpdate;

@@ -239,6 +239,11 @@ export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable
         verify: false,
     },
 
+    dynamics_has_demolished_buildings: {
+        edit: true,
+        verify: true
+    },
+
     demolished_buildings: {
         edit: true,
         verify: false,
@@ -246,3 +251,6 @@ export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable
         sqlCast: 'jsonb',
     },
 });
+
+export type Building = { [k in keyof typeof dataFieldsConfig]: any };
+export type BuildingUpdate = Partial<Building>;

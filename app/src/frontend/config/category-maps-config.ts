@@ -188,7 +188,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
         mapStyle: 'dynamics_demolished_count',
         legend: {
             title: 'Dynamics',
-            description: 'Past (demolished) buildings on site',
+            description: 'Demolished buildings on the same site',
             elements: [
                 {
                     text: '7+',
@@ -211,6 +211,9 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
                 }, {
                     text: '1',
                     color: '#ffe8a9',
+                }, {
+                    text: 'None',
+                    color: '#0C7BDC'
                 }
             ],
         },
