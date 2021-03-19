@@ -509,6 +509,10 @@
     </Style>
     <Style name="dynamics_demolished_count">
         <Rule>
+            <Filter>[dynamics_has_demolished_buildings] = false</Filter>
+            <PolygonSymbolizer fill="#0C7BDC" />
+        </Rule>
+        <Rule>
             <Filter>[demolished_buildings_count] &gt;= 7</Filter>
             <PolygonSymbolizer fill="#bd0026" />
         </Rule>

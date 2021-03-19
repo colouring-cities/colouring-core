@@ -24,7 +24,7 @@ export function parseJsonOrDefault(jsonString: string) {
     }
 }
 
-export function hasAnyOwnProperty(obj: {}, keys: string[]) {
+export function hasAnyOwnProperty<T>(obj: T, keys: (keyof T)[]) {
     return keys.some(k => obj.hasOwnProperty(k));
 }
 

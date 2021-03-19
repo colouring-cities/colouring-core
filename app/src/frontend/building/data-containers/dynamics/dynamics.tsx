@@ -13,6 +13,7 @@ import NumericDataEntry from '../../data-components/numeric-data-entry';
 import withCopyEdit from '../../data-container';
 
 import { CategoryViewProps } from '../category-view-props';
+import { LogicalDataEntry } from '../../data-components/logical-data-entry/logical-data-entry';
 
 /**
 * Dynamics view/edit section
@@ -60,35 +61,51 @@ const DynamicsView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 </FieldRow>
             </DynamicsBuildingPane>
             {
-                currentBuildingConstructionYear != undefined ?
+                currentBuildingConstructionYear == undefined ?
+                    <InfoBox>To add historical records, fill in the <Link to={ageLinkUrl}>Age</Link> data first.</InfoBox> :
+                    
                     <>
-                        <DynamicsDataEntry
-                            
-                            /* 
-                                Will clear the edits and new record data upon navigating to another building.
-                                Should get a better way to do this, plus a way to actually keep unsaved edits.
-                            */
-                            key={building.building_id} 
-                            
-                            value={building.demolished_buildings}
-                            editableEntries={true}
-                            slug='demolished_buildings'
-                            title={undefined}
+                        <LogicalDataEntry
+                            slug='dynamics_has_demolished_buildings'
+                            title={dataFields.dynamics_has_demolished_buildings.title}
+                            value={building.dynamics_has_demolished_buildings}
+                            disallowFalse={(building.demolished_buildings?.length ?? 0) > 0}
+                            disallowNull={(building.demolished_buildings?.length ?? 0) > 0}
+
+                            onChange={props.onSaveChange}
                             mode={props.mode}
-                            onChange={props.onChange}
-                            onSaveAdd={props.onSaveAdd}
-                            hasEdits={props.edited}
-                            maxYear={currentBuildingConstructionYear}
-                            minYear={50}
+                            copy={props.copy}
                         />
                         {
-                            props.mode === 'view' &&
-                                <InfoBox>Switch to edit mode to add/edit past building records</InfoBox>
+                            building.dynamics_has_demolished_buildings &&
+                            <>
+                                <DynamicsDataEntry
+                                    
+                                    /* 
+                                        Will clear the edits and new record data upon navigating to another building.
+                                        Should get a better way to do this, plus a way to actually keep unsaved edits.
+                                    */
+                                    key={building.building_id} 
+                                    
+                                    value={building.demolished_buildings}
+                                    editableEntries={true}
+                                    slug='demolished_buildings'
+                                    title={dataFields.demolished_buildings.title}
+                                    mode={props.mode}
+                                    onChange={props.onChange}
+                                    onSaveAdd={props.onSaveAdd}
+                                    hasEdits={props.edited}
+                                    maxYear={currentBuildingConstructionYear}
+                                    minYear={50}
+                                />
+                                {
+                                    props.mode === 'view' &&
+                                        <InfoBox>Switch to edit mode to add/edit past building records</InfoBox>
+                                }
+                            </>
                         }
-                    </> :
-                    <InfoBox>To add historical records, fill in the <Link to={ageLinkUrl}>Age</Link> data first.</InfoBox>
+                    </>
             }
-            
         </DataEntryGroup>
 
         <DataEntryGroup name="Future planned data collection" collapsed={false} showCount={false}>

@@ -11,6 +11,7 @@ import { NumberRangeDataEntry } from './number-range-data-entry';
 
 import './dynamics-data-entry.css';
 import { CloseIcon } from '../../../components/icons';
+import DataTitle, { DataTitleCopyable } from '../../data-components/data-title';
 
 type DemolishedBuilding = (BuildingAttributes['demolished_buildings'][number]);
 
@@ -147,6 +148,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
 };
 
 interface DynamicsDataEntryProps extends BaseDataEntryProps {
+    title: string;
     value: DemolishedBuilding[];
     editableEntries: boolean;
     maxYear: number;
@@ -206,11 +208,13 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
         <>
             <div>
                 {
-                    isEditing &&
+                    isEditing ?
                         <>
                             <h6 className="h6">Existing records for demolished buildings</h6>
                             <label>Please supply sources for any edits of existing records</label>
-                        </>
+                        </> :
+
+                        <DataTitleCopyable slug={props.slug} title={props.title} tooltip={null}/>
                 }
                 <ul className="data-entry-list">
                     {

@@ -21,6 +21,9 @@ interface CategoryViewProps {
     /* Special handler for adding and immediately saving a new item of an array-like attribute */
     onSaveAdd: (slug: string, newItem: any) => void;
 
+    /* Special handler for setting a value and immediately saving */
+    onSaveChange: (slug: string, value: any) => void;
+
     user_verified: any;
     user?: any;
 }

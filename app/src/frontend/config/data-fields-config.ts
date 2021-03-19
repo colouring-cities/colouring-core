@@ -7,11 +7,44 @@ import { Category } from './categories-config';
  * e.g. dataFields.foo_bar would not be highlighted as an error.
  */
 export interface DataFieldDefinition {
+    /**
+     * The primary category to which the field belongs.
+     * 
+     * A field could be displayed in several categories, but this value will be used
+     * when a single category needs to be shown in the context of a field, e.g.
+     * in the case of edit history or the copy-paste tool (multi-edit)
+     *  */ 
     category: Category;
+
+    /**
+     * The human-readable title of the field to be displayed as label.
+     */
     title: string;
+
+    /**
+     * Text to be displayed in the hint tooltip next to the input field.
+     * 
+     * This supports a simple Markdown-like syntax for embedding clickable URLs in the hint
+     * for example "see [here](http://example.com/info.html) for more information"
+     */
     tooltip?: string;
-    properties?: { [key: string]: DataFieldDefinition};
-    example: any; // the example field is used to automatically determine the type of the properties in the Building interface
+
+    /**
+     * If the defined type is an array, this describes the fields of each array item.
+     * The nested fields don't currently need a category field to be defined.
+     */
+    items?: { [key: string]: Omit<DataFieldDefinition, 'category'> };
+
+    /**
+     * The example is used to determine the runtime type in which the attribute data is stored (e.g. number, string, object)
+     * This gives the programmer auto-complete of all available building attributes when implementing a category view.
+     * 
+     * E.g. if the field is a text value, an empty string ("") is the simplest example.
+     * 
+     * Making it semantically correct is useful but not necessary.
+     * E.g. for building attachment form, you could use "Detached" as example
+     */
+    example: any;
 }
 
 export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
@@ -410,6 +443,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Community,
         title: "Total number of likes",
         example: 100,
+    },
+
+    dynamics_has_demolished_buildings: {
+        category: Category.Dynamics,
+        title: 'Where any other buildings ever built on this site?',
+        example: true,
     },
 
     demolished_buildings: {

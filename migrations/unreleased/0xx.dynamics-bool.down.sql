@@ -1,0 +1,1 @@
+ALTER TABLE buildings DROP COLUMN IF EXISTS dynamics_has_demolished_buildings;

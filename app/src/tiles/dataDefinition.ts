@@ -136,10 +136,11 @@ const LAYER_QUERIES = {
     dynamics_demolished_count: `
         SELECT
             geometry_id,
-            jsonb_array_length(demolished_buildings) as demolished_buildings_count
+            jsonb_array_length(demolished_buildings) as demolished_buildings_count,
+            dynamics_has_demolished_buildings
         FROM
             buildings
-        WHERE jsonb_array_length(demolished_buildings) > 0`,
+        WHERE jsonb_array_length(demolished_buildings) > 0 OR dynamics_has_demolished_buildings = FALSE`,
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';
