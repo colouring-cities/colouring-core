@@ -37,7 +37,7 @@
     "react-leaflet": "^1.0.1",
     "react-leaflet-universal": "^2.2.1",
     "react-router-dom": "^5.2.0",
-    "serialize-javascript": "^2.1.1",
+    "serialize-javascript": "^5.0.1",
     "sharp": "^0.22.1",
     "use-throttle": "0.0.3"
   },
