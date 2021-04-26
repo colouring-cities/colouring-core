@@ -123,7 +123,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         // highlight
         const highlightLayer = this.props.selectedBuildingId != undefined &&
             <TileLayer
-                key={this.props.selectedBuildingId}
+                key={this.props.selectedBuildingId + tileset}
                 url={`/tiles/highlight/{z}/{x}/{y}{r}.png?highlight=${this.props.selectedBuildingId}&base=${tileset}`}
                 minZoom={13}
                 maxZoom={19}
