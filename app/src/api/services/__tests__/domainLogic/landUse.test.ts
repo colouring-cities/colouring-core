@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 import { ArgumentError } from '../../../errors/general';
 import { LandUseState, updateLandUse } from '../../domainLogic/landUse';
