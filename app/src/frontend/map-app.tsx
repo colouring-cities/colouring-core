@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import loadable from '@loadable/component';
 
 import { useRevisionId } from './hooks/use-revision';
 import { useBuildingData } from './hooks/use-building-data';
@@ -14,7 +15,6 @@ import Categories from './building/categories';
 import { EditHistory } from './building/edit-history/edit-history';
 import MultiEdit from './building/multi-edit';
 import Sidebar from './building/sidebar';
-import ColouringMap from './map/map';
 import { Building, UserVerified } from './models/building';
 import Welcome from './pages/welcome';
 import { PrivateRoute } from './route';
@@ -22,6 +22,22 @@ import { useLastNotEmpty } from './hooks/use-last-not-empty';
 import { Category } from './config/categories-config';
 import { defaultMapCategory } from './config/category-maps-config';
 import { useMultiEditData } from './hooks/use-multi-edit-data';
+
+/**
+ * Load and render ColouringMap component on client-side only.
+ * This is because leaflet and react-leaflet currently don't work on the server
+ * (leaflet assumes the presence of browser-specific global `window` variable).
+ * 
+ * The previous solution involved installing react-leaflet-universal,
+ * but that doesn't work with latest react-leaflet.
+ * 
+ * The limitation is that ColouringMap needs to be the single entry point in the whole app
+ * to all modules that import leaflet or react-leaflet.
+ */
+const ColouringMap = loadable(
+    () => import('./map/map'),
+    { ssr: false }
+);
 
 interface MapAppProps {
     building?: Building;

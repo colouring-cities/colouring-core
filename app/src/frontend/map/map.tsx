@@ -1,6 +1,6 @@
 import { GeoJsonObject } from 'geojson';
 import React, { Component, Fragment } from 'react';
-import { AttributionControl, GeoJSON, Map, TileLayer, ZoomControl } from 'react-leaflet-universal';
+import { AttributionControl, GeoJSON, MapContainer, TileLayer, ZoomControl, useMapEvent } from 'react-leaflet';
 
 import 'leaflet/dist/leaflet.css';
 import './map.css';
@@ -101,6 +101,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             attribution={attribution}
             maxNativeZoom={18}
             maxZoom={19}
+            detectRetina={true}
         />;
 
         const buildingsBaseUrl = `/tiles/base_${this.state.theme}/{z}/{x}/{y}{r}.png`;
@@ -116,6 +117,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                 url={`/tiles/${tileset}/{z}/{x}/{y}{r}.png?rev=${this.props.revisionId}`}
                 minZoom={9}
                 maxZoom={19}
+                detectRetina={true}
             />;
 
         // highlight
@@ -126,6 +128,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                 minZoom={13}
                 maxZoom={19}
                 zIndex={100}
+                detectRetina={true}
             />;
 
         const numbersLayer = <TileLayer
@@ -134,6 +137,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             zIndex={200}
             minZoom={17}
             maxZoom={19}
+            detectRetina={true}
         />
 
         const hasSelection = this.props.selectedBuildingId != undefined;
@@ -141,7 +145,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
 
         return (
             <div className="map-container">
-                <Map
+                <MapContainer
                     center={position}
                     zoom={this.state.zoom}
                     minZoom={9}
@@ -149,9 +153,8 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     doubleClickZoom={false}
                     zoomControl={false}
                     attributionControl={false}
-                    onClick={this.handleClick}
-                    detectRetina={true}
                 >
+                    <ClickHandler onClick={this.handleClick} />
                     { baseLayer }
                     { buildingBaseLayer }
                     { boundaryLayer }
@@ -160,7 +163,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     { numbersLayer }
                     <ZoomControl position="topright" />
                     <AttributionControl prefix=""/>
-                </Map>
+                </MapContainer>
                 {
                     this.props.mode !== 'basic' &&
                     <Fragment>
@@ -178,6 +181,12 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
             </div>
         );
     }
+}
+
+function ClickHandler({ onClick }: {onClick: (e) => void}) {
+    useMapEvent('click', (e) => onClick(e));
+    
+    return null;
 }
 
 export default ColouringMap;
