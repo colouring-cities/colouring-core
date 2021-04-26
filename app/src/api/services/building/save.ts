@@ -1,5 +1,5 @@
 import { ITask } from 'pg-promise';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 import db from '../../../db';
 import * as buildingDataAccess from '../../dataAccess/building';

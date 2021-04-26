@@ -2,6 +2,7 @@
     "compilerOptions": {
         "outDir": "./build",
         "allowJs": true,
+        "module": "es2020",
         "target": "es2017",
         "jsx": "react",
         "lib": ["es6", "es2015", "es2017", "dom"],

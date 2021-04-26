@@ -2,7 +2,7 @@
  * Building data access
  *
  */
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 import { pickFields } from '../../../helpers';
 import { dataFieldsConfig } from '../../config/dataFields';

@@ -1,4 +1,4 @@
-import isEqual from 'lodash.isequal';
+import _ from 'lodash';
 import urlapi from 'url';
 
 function sanitiseURL(string){
@@ -67,7 +67,7 @@ function compareObjects(objA: object, objB: object): [object, object] {
     const reverse = {};
     const forward = {};
     for (const [key, value] of Object.entries(objB)) {
-        if (!isEqual(objA[key], value)) {
+        if (!_.isEqual(objA[key], value)) {
             reverse[key] = objA[key];
             forward[key] = value;
         }

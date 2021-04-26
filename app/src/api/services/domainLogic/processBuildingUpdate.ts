@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 import { hasAnyOwnProperty } from '../../../helpers';
 import { Building, BuildingUpdate } from '../../config/dataFields';

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 import { BuildingAttributes } from '../../../models/building';
 import { FieldRow } from '../../data-components/field-row';
