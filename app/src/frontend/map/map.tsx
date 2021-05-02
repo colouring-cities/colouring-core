@@ -1,21 +1,26 @@
-import { GeoJsonObject } from 'geojson';
 import React, { Component, Fragment } from 'react';
-import { AttributionControl, GeoJSON, MapContainer, TileLayer, ZoomControl, useMapEvent } from 'react-leaflet';
+import { AttributionControl, MapContainer, ZoomControl, useMapEvent, Pane } from 'react-leaflet';
 
 import 'leaflet/dist/leaflet.css';
 import './map.css';
 
 import { apiGet } from '../apiHelpers';
 import { HelpIcon } from '../components/icons';
+import { categoryMapsConfig } from '../config/category-maps-config';
+import { Category } from '../config/categories-config';
+import { defaultMapPosition, MapTheme } from '../config/map-config';
+import { Building } from '../models/building';
+
+import { CityBaseMapLayer } from './layers/city-base-map-layer';
+import { CityBoundaryLayer } from './layers/city-boundary-layer';
+import { BuildingBaseLayer } from './layers/building-base-layer';
+import { BuildingDataLayer } from './layers/building-data-layer';
+import { BuildingNumbersLayer } from './layers/building-numbers-layer';
+import { BuildingHighlightLayer } from './layers/building-highlight-layer';
 
 import Legend from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
-import { categoryMapsConfig } from '../config/category-maps-config';
-import { Category } from '../config/categories-config';
-import { Building } from '../models/building';
-
-const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
 
 interface ColouringMapProps {
     selectedBuildingId: number;
@@ -26,12 +31,12 @@ interface ColouringMapProps {
 }
 
 interface ColouringMapState {
-    theme: 'light' | 'night';
+    theme: MapTheme;
     lat: number;
     lng: number;
     zoom: number;
-    boundary: GeoJsonObject;
 }
+
 /**
  * Map area
  */
@@ -40,10 +45,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         super(props);
         this.state = {
             theme: 'night',
-            lat: 51.5245255,
-            lng: -0.1338422,
-            zoom: 16,
-            boundary: undefined,
+            ...defaultMapPosition
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleLocate = this.handleLocate.bind(this);
@@ -73,72 +75,12 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         this.setState({theme: newTheme});
     }
 
-    async getBoundary() {
-        const data = await apiGet('/geometries/boundary-detailed.geojson') as GeoJsonObject;
-
-        this.setState({
-            boundary: data
-        });
-    }
-
-    componentDidMount() {
-        this.getBoundary();
-    }
-
     render() {
         const categoryMapDefinition = categoryMapsConfig[this.props.category];
 
         const position: [number, number] = [this.state.lat, this.state.lng];
 
-        // baselayer
-        const key = OS_API_KEY;
-        const tilematrixSet = 'EPSG:3857';
-        const layer = (this.state.theme === 'light')? 'Light 3857' : 'Night 3857';
-        const baseUrl = `https://api2.ordnancesurvey.co.uk/mapping_api/v1/service/zxy/${tilematrixSet}/${layer}/{z}/{x}/{y}.png?key=${key}`;
-        const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>';
-        const baseLayer = <TileLayer
-            url={baseUrl}
-            attribution={attribution}
-            maxNativeZoom={18}
-            maxZoom={19}
-            detectRetina={true}
-        />;
-
-        const buildingsBaseUrl = `/tiles/base_${this.state.theme}/{z}/{x}/{y}{r}.png`;
-        const buildingBaseLayer = <TileLayer url={buildingsBaseUrl} minZoom={14} maxZoom={19}/>;
-
-        const boundaryLayer = this.state.boundary &&
-                <GeoJSON data={this.state.boundary} style={{color: '#bbb', fill: false}}/>;
-
         const tileset = categoryMapDefinition.mapStyle;
-        const dataLayer = tileset != undefined &&
-            <TileLayer
-                key={tileset}
-                url={`/tiles/${tileset}/{z}/{x}/{y}{r}.png?rev=${this.props.revisionId}`}
-                minZoom={9}
-                maxZoom={19}
-                detectRetina={true}
-            />;
-
-        // highlight
-        const highlightLayer = this.props.selectedBuildingId != undefined &&
-            <TileLayer
-                key={this.props.selectedBuildingId + tileset}
-                url={`/tiles/highlight/{z}/{x}/{y}{r}.png?highlight=${this.props.selectedBuildingId}&base=${tileset}`}
-                minZoom={13}
-                maxZoom={19}
-                zIndex={100}
-                detectRetina={true}
-            />;
-
-        const numbersLayer = <TileLayer
-            key={this.state.theme}
-            url={`/tiles/number_labels/{z}/{x}/{y}{r}.png?rev=${this.props.revisionId}`}
-            zIndex={200}
-            minZoom={17}
-            maxZoom={19}
-            detectRetina={true}
-        />
 
         const hasSelection = this.props.selectedBuildingId != undefined;
         const isEdit = ['edit', 'multi-edit'].includes(this.props.mode);
@@ -155,12 +97,39 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     attributionControl={false}
                 >
                     <ClickHandler onClick={this.handleClick} />
-                    { baseLayer }
-                    { buildingBaseLayer }
-                    { boundaryLayer }
-                    { dataLayer }
-                    { highlightLayer }
-                    { numbersLayer }
+
+                    <Pane
+                        key={this.state.theme}
+                        name={'cc-base-pane'}
+                        style={{zIndex: 50}}
+                    >
+                        <CityBaseMapLayer theme={this.state.theme} />
+                        <BuildingBaseLayer theme={this.state.theme} />
+                    </Pane>
+
+                    {
+                        tileset &&
+                            <BuildingDataLayer
+                                tileset={tileset}
+                                revisionId={this.props.revisionId}
+                            />
+                    }
+
+                    <Pane
+                        name='cc-overlay-pane'
+                        style={{zIndex: 300}}
+                    >
+                        <CityBoundaryLayer />
+                        <BuildingNumbersLayer revisionId={this.props.revisionId} />
+                        {
+                            this.props.selectedBuildingId &&
+                                <BuildingHighlightLayer
+                                    selectedBuildingId={this.props.selectedBuildingId}
+                                    baseTileset={tileset} 
+                                />
+                        }
+                    </Pane>
+
                     <ZoomControl position="topright" />
                     <AttributionControl prefix=""/>
                 </MapContainer>

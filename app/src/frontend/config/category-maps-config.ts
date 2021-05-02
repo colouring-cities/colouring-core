@@ -1,4 +1,5 @@
 import { Category } from './categories-config';
+import { BuildingMapTileset } from './tileserver-config';
 
 export type LegendElement = {
     color: string;
@@ -16,7 +17,7 @@ export interface LegendConfig {
 }
 
 export interface CategoryMapDefinition {
-    mapStyle: string;
+    mapStyle: BuildingMapTileset;
     legend: LegendConfig;
 }
 
