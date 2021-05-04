@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import { AttributionControl, MapContainer, ZoomControl, useMapEvent, Pane } from 'react-leaflet';
+import React, { Component, Fragment, useEffect } from 'react';
+import { AttributionControl, MapContainer, ZoomControl, useMapEvent, Pane, useMap } from 'react-leaflet';
 
 import 'leaflet/dist/leaflet.css';
 import './map.css';
@@ -8,7 +8,7 @@ import { apiGet } from '../apiHelpers';
 import { HelpIcon } from '../components/icons';
 import { categoryMapsConfig } from '../config/category-maps-config';
 import { Category } from '../config/categories-config';
-import { defaultMapPosition, MapTheme } from '../config/map-config';
+import { defaultMapPosition, mapBackgroundColor, MapTheme } from '../config/map-config';
 import { Building } from '../models/building';
 
 import { CityBaseMapLayer } from './layers/city-base-map-layer';
@@ -97,13 +97,14 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     attributionControl={false}
                 >
                     <ClickHandler onClick={this.handleClick} />
+                    <MapBackgroundColor theme={this.state.theme} />
 
                     <Pane
                         key={this.state.theme}
                         name={'cc-base-pane'}
                         style={{zIndex: 50}}
                     >
-                        <CityBaseMapLayer theme={this.state.theme} />
+                        {/* <CityBaseMapLayer theme={this.state.theme} /> */} {/* temporarily disable the base map due to OS account issues */}
                         <BuildingBaseLayer theme={this.state.theme} />
                     </Pane>
 
@@ -155,6 +156,15 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
 function ClickHandler({ onClick }: {onClick: (e) => void}) {
     useMapEvent('click', (e) => onClick(e));
     
+    return null;
+}
+
+function MapBackgroundColor({ theme}: {theme: MapTheme}) {
+    const map = useMap();
+    useEffect(() => {
+        map.getContainer().style.backgroundColor = mapBackgroundColor[theme];
+    });
+
     return null;
 }
 

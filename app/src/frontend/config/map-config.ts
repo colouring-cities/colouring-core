@@ -5,3 +5,8 @@ export const defaultMapPosition = {
 };
 
 export type MapTheme = 'light' | 'night';
+
+export const mapBackgroundColor: Record<MapTheme, string> = {
+    light: '#F0EEEB',
+    night: '#162639'
+};
