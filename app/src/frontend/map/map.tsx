@@ -44,7 +44,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
     constructor(props) {
         super(props);
         this.state = {
-            theme: 'night',
+            theme: 'light',
             ...defaultMapPosition
         };
         this.handleClick = this.handleClick.bind(this);
@@ -104,7 +104,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                         name={'cc-base-pane'}
                         style={{zIndex: 50}}
                     >
-                        {/* <CityBaseMapLayer theme={this.state.theme} /> */} {/* temporarily disable the base map due to OS account issues */}
+                        <CityBaseMapLayer theme={this.state.theme} />
                         <BuildingBaseLayer theme={this.state.theme} />
                     </Pane>
 
@@ -144,7 +144,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                             </div>
                         }
                         <Legend legendConfig={categoryMapDefinition?.legend} />
-                        <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
+                        {/* <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} /> */}
                         <SearchBox onLocate={this.handleLocate} />
                     </Fragment>
                 }

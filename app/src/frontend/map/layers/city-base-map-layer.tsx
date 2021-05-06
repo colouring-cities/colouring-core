@@ -3,7 +3,7 @@ import { TileLayer } from 'react-leaflet';
 
 import { MapTheme } from '../../config/map-config';
 
-const OS_API_KEY = 'NVUxtY5r8eA6eIfwrPTAGKrAAsoeI9E9';
+const OS_API_KEY = 'UVWEspgInusDKKYANE5bmyddoEmCSD4r';
 
 /**
  * Base raster layer for the map.
@@ -15,10 +15,10 @@ export function CityBaseMapLayer({theme}: {theme: MapTheme}) {
      * Ordnance Survey maps - UK / London specific
      * (replace with appropriate base map for other cities/countries)
      */
-    const key = OS_API_KEY;
-    const tilematrixSet = 'EPSG:3857';
-    const layer = theme === 'light' ? 'Light 3857' : 'Night 3857';
-    const baseUrl = `https://api2.ordnancesurvey.co.uk/mapping_api/v1/service/zxy/${tilematrixSet}/${layer}/{z}/{x}/{y}.png?key=${key}`;
+    const apiKey = OS_API_KEY;
+    const layer = theme === 'light' ? 'Light_3857' : 'Night 3857';
+    
+    const baseUrl = `https://api.os.uk/maps/raster/v1/zxy/${layer}/{z}/{x}/{y}.png?key=${apiKey}`;
     const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>';
     
     return <TileLayer
