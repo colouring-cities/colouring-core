@@ -1,7 +1,11 @@
-export const defaultMapPosition = {
-    lat: 51.5245255,
-    lng: -0.1338422,
-    zoom: 16
+interface MapViewport {
+    position: [number, number];
+    zoom: number;
+}
+
+export const initialMapViewport: MapViewport = {
+  position: [51.5245255, -0.1338422], // lat,lng
+  zoom: 16,
 };
 
 export type MapTheme = 'light' | 'night';

@@ -8,7 +8,7 @@ import { apiGet } from '../apiHelpers';
 import { HelpIcon } from '../components/icons';
 import { categoryMapsConfig } from '../config/category-maps-config';
 import { Category } from '../config/categories-config';
-import { defaultMapPosition, mapBackgroundColor, MapTheme } from '../config/map-config';
+import { initialMapViewport, mapBackgroundColor, MapTheme } from '../config/map-config';
 import { Building } from '../models/building';
 
 import { CityBaseMapLayer } from './layers/city-base-map-layer';
@@ -32,8 +32,7 @@ interface ColouringMapProps {
 
 interface ColouringMapState {
     theme: MapTheme;
-    lat: number;
-    lng: number;
+    position: [number, number];
     zoom: number;
 }
 
@@ -45,17 +44,16 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         super(props);
         this.state = {
             theme: 'light',
-            ...defaultMapPosition
+            ...initialMapViewport
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleLocate = this.handleLocate.bind(this);
         this.themeSwitch = this.themeSwitch.bind(this);
     }
 
-    handleLocate(lat, lng, zoom){
+    handleLocate(lat: number, lng: number, zoom: number){
         this.setState({
-            lat: lat,
-            lng: lng,
+            position: [lat, lng],
             zoom: zoom
         });
     }
@@ -78,8 +76,6 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
     render() {
         const categoryMapDefinition = categoryMapsConfig[this.props.category];
 
-        const position: [number, number] = [this.state.lat, this.state.lng];
-
         const tileset = categoryMapDefinition.mapStyle;
 
         const hasSelection = this.props.selectedBuildingId != undefined;
@@ -88,8 +84,8 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         return (
             <div className="map-container">
                 <MapContainer
-                    center={position}
-                    zoom={this.state.zoom}
+                    center={initialMapViewport.position}
+                    zoom={initialMapViewport.zoom}
                     minZoom={9}
                     maxZoom={19}
                     doubleClickZoom={false}
@@ -98,6 +94,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                 >
                     <ClickHandler onClick={this.handleClick} />
                     <MapBackgroundColor theme={this.state.theme} />
+                    <MapViewport position={this.state.position} zoom={this.state.zoom} />
 
                     <Pane
                         key={this.state.theme}
@@ -164,6 +161,22 @@ function MapBackgroundColor({ theme}: {theme: MapTheme}) {
     useEffect(() => {
         map.getContainer().style.backgroundColor = mapBackgroundColor[theme];
     });
+
+    return null;
+}
+
+function MapViewport({
+    position,
+    zoom
+}: {
+    position: [number, number];
+    zoom: number;
+}) {
+    const map = useMap();
+
+    useEffect(() => {
+        map.setView(position, zoom)
+    }, [position, zoom]);
 
     return null;
 }
