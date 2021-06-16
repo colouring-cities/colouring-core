@@ -57,7 +57,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_number: {
         category: Category.Location,
         title: "Building number",
-        example: 12,
+        example: '12b',
+        tooltip: 'Numbers with an optional lowercase letter are accepted, e.g. 141 or 12b'
     },
     location_street: {
         category: Category.Location,
