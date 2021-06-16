@@ -7,8 +7,11 @@ import NumericDataEntry from '../data-components/numeric-data-entry';
 import UPRNsDataEntry from '../data-components/uprns-data-entry';
 import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
+import { PatternDataEntry } from '../data-components/pattern-data-entry';
 
 import { CategoryViewProps } from './category-view-props';
+
+const locationNumberPattern = "[1-9]\\d*[a-z]?(-([1-9]\\d*))?"; ///[1-9]\d*[a-z]?(-([1-9]\d*))?/;
 
 const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
@@ -33,15 +36,15 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             verified_count={props.building.verified.location_name}
             />
 
-        <NumericDataEntry
+        <PatternDataEntry
             title={dataFields.location_number.title}
             slug="location_number"
             value={props.building.location_number}
+            pattern={locationNumberPattern}
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
-            step={1}
-            min={1}
+            tooltip={dataFields.location_number.tooltip}
             />
         <Verification
             slug="location_number"
