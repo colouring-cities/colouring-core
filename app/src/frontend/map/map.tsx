@@ -87,7 +87,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     center={initialMapViewport.position}
                     zoom={initialMapViewport.zoom}
                     minZoom={9}
-                    maxZoom={19}
+                    maxZoom={18}
                     doubleClickZoom={false}
                     zoomControl={false}
                     attributionControl={false}
