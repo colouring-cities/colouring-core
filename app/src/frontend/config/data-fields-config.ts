@@ -448,7 +448,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     dynamics_has_demolished_buildings: {
         category: Category.Dynamics,
-        title: 'Where any other buildings ever built on this site?',
+        title: 'Were any other buildings ever built on this site?',
         example: true,
     },
 
