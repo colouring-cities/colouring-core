@@ -51,7 +51,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
         this.themeSwitch = this.themeSwitch.bind(this);
     }
 
-    handleLocate(lat: number, lng: number, zoom: number){
+    handleLocate(lat: number, lng: number, zoom: number) {
         this.setState({
             position: [lat, lng],
             zoom: zoom
@@ -69,8 +69,8 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
 
     themeSwitch(e) {
         e.preventDefault();
-        const newTheme = (this.state.theme === 'light')? 'night' : 'light';
-        this.setState({theme: newTheme});
+        const newTheme = (this.state.theme === 'light') ? 'night' : 'light';
+        this.setState({ theme: newTheme });
     }
 
     render() {
@@ -99,7 +99,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                     <Pane
                         key={this.state.theme}
                         name={'cc-base-pane'}
-                        style={{zIndex: 50}}
+                        style={{ zIndex: 50 }}
                     >
                         <CityBaseMapLayer theme={this.state.theme} />
                         <BuildingBaseLayer theme={this.state.theme} />
@@ -107,29 +107,29 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
 
                     {
                         tileset &&
-                            <BuildingDataLayer
-                                tileset={tileset}
-                                revisionId={this.props.revisionId}
-                            />
+                        <BuildingDataLayer
+                            tileset={tileset}
+                            revisionId={this.props.revisionId}
+                        />
                     }
 
                     <Pane
                         name='cc-overlay-pane'
-                        style={{zIndex: 300}}
+                        style={{ zIndex: 300 }}
                     >
                         <CityBoundaryLayer />
                         <BuildingNumbersLayer revisionId={this.props.revisionId} />
                         {
                             this.props.selectedBuildingId &&
-                                <BuildingHighlightLayer
-                                    selectedBuildingId={this.props.selectedBuildingId}
-                                    baseTileset={tileset} 
-                                />
+                            <BuildingHighlightLayer
+                                selectedBuildingId={this.props.selectedBuildingId}
+                                baseTileset={tileset}
+                            />
                         }
                     </Pane>
 
                     <ZoomControl position="topright" />
-                    <AttributionControl prefix=""/>
+                    <AttributionControl prefix="" />
                 </MapContainer>
                 {
                     this.props.mode !== 'basic' &&
@@ -141,7 +141,7 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
                             </div>
                         }
                         <Legend legendConfig={categoryMapDefinition?.legend} />
-                        {/* <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} /> */}
+                        <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
                         <SearchBox onLocate={this.handleLocate} />
                     </Fragment>
                 }
@@ -150,13 +150,13 @@ class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
     }
 }
 
-function ClickHandler({ onClick }: {onClick: (e) => void}) {
+function ClickHandler({ onClick }: { onClick: (e) => void }) {
     useMapEvent('click', (e) => onClick(e));
-    
+
     return null;
 }
 
-function MapBackgroundColor({ theme}: {theme: MapTheme}) {
+function MapBackgroundColor({ theme }: { theme: MapTheme }) {
     const map = useMap();
     useEffect(() => {
         map.getContainer().style.backgroundColor = mapBackgroundColor[theme];
