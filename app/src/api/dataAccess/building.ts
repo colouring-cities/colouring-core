@@ -55,7 +55,7 @@ export async function insertEditHistoryRevision(
 
 const columnConfigLookup = Object.assign(
     {}, 
-    ...Object.entries(dataFieldsConfig).filter(([, config]) => config.edit).map(([key, {
+    ...Object.entries(dataFieldsConfig).filter(([, config]) => config.edit || config.derivedEdit).map(([key, {
         asJson = false,
         sqlCast
     }]) => ({ [key]: {

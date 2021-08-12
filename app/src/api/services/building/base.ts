@@ -31,7 +31,11 @@ export async function getBuildingById(id: number) {
     }
 }
 
-const FIELD_EDIT_WHITELIST = new Set(Object.entries(dataFieldsConfig).filter(([, value]) => value.edit).map(([key]) => key));
+/**
+ * List of fields for which modification is allowed
+ * (directly by the user, or for fields that are derived from others)
+ */
+const FINAL_FIELD_EDIT_ALLOWLIST = new Set(Object.entries(dataFieldsConfig).filter(([, value]) => value.edit || value.derivedEdit).map(([key]) => key));
 
 export async function editBuilding(buildingId: number, building: any, userId: string): Promise<object> { // TODO add proper building type
     return await updateBuildingData(buildingId, userId, async () => {
@@ -44,7 +48,7 @@ export async function editBuilding(buildingId: number, building: any, userId: st
         delete processedBuilding.geometry_id;
 
         // return whitelisted fields to update
-        return pickFields(processedBuilding, FIELD_EDIT_WHITELIST);
+        return pickFields(processedBuilding, FINAL_FIELD_EDIT_ALLOWLIST);
     });
 }
 

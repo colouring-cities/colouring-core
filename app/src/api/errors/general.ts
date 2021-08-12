@@ -21,6 +21,15 @@ export class InvalidOperationError extends UserError {
     }
 }
 
+export class InvalidFieldError extends UserError {
+    public fieldName: string;
+    constructor(message?: string, fieldName?: string) {
+        super(message);
+        this.name = 'InvalidFieldError';
+        this.fieldName = fieldName;
+    }
+}
+
 export class FieldTypeError extends UserError {
     public fieldName: string;
     constructor(message?: string, fieldName?: string) {
