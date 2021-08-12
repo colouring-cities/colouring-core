@@ -15,18 +15,27 @@ interface LikeDataEntryProps {
 const LikeDataEntry: React.FunctionComponent<LikeDataEntryProps> = (props) => {
     const data_string = JSON.stringify({like: true});
     return (
-        <Fragment>
+        <>
             <div className="data-title">
-                <Tooltip text="People who like the building and think it contributes to the city." />
-                <div className="icon-buttons">
+                <div className="data-title-actions icon-buttons">
                     <NavLink
                         to={`/multi-edit/${Category.Community}?data=${data_string}`}
                         className="icon-button like">
                         Like more
                     </NavLink>
+                    <Tooltip text="People who like the building and think it contributes to the city." />
                 </div>
-                <label>Number of likes</label>
+                <label>Like</label>
             </div>
+            <label className="form-check-label">
+                <input className="form-check-input" type="checkbox"
+                    name="like"
+                    checked={!!props.userLike}
+                    disabled={props.mode === 'view'}
+                    onChange={e => props.onLike(e.target.checked)}
+                />
+                 I like this building and think it contributes to the city
+            </label>
             <p>
                 {
                     (props.totalLikes != null)?
@@ -36,16 +45,7 @@ const LikeDataEntry: React.FunctionComponent<LikeDataEntryProps> = (props) => {
                         : "0 people like this building so far - you could be the first!"
                 }
             </p>
-            <label className="form-check-label">
-                <input className="form-check-input" type="checkbox"
-                    name="like"
-                    checked={!!props.userLike}
-                    disabled={props.mode === 'view'}
-                    onChange={e => props.onLike(e.target.checked)}
-                />
-                I like this building and think it contributes to the city!
-            </label>
-        </Fragment>
+        </>
     );
 };
 
