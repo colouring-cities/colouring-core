@@ -5,8 +5,10 @@ import { DatabaseError, InvalidOperationError } from '../errors/general';
 
 export async function getBuildingLikeCount(buildingId: number, t?: ITask<any>): Promise<number> {
     try {
+        // assume that there won't be more likes than Postgres int range and cast to int
+        // otherwise the count is return as a bigint which has less support in noode-postgres
         const result  = await (t || db).one(
-            'SELECT count(*) as likes FROM building_user_likes WHERE building_id = $1;',
+            'SELECT count(*)::int as likes FROM building_user_likes WHERE building_id = $1;',
             [buildingId]
         );
         
