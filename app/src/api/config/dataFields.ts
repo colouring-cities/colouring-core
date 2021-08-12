@@ -260,6 +260,12 @@ export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable
         asJson: true,
         sqlCast: 'jsonb',
     },
+
+    likes_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    }
 });
 
 export type Building = { [k in keyof typeof dataFieldsConfig]: any };
