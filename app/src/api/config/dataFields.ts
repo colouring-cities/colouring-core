@@ -3,9 +3,18 @@ import { valueType } from '../../helpers';
 /** Configuration for a single data field */
 export interface DataFieldConfig {
     /**
-     * Allow editing the field?
+     * Allow editing the field through the API?
      */
     edit: boolean;
+
+    /**
+     * Should the editing of the field be allowed - but only when
+     * the change is a result of an edit of another field, from which this field is derived.
+     * Example: editing Land Use Group modifies Land Use Order, too, because LU Order is automatically derived from LU Group.
+     * But Land Use Order itself cannot be modified directly by users.
+     * Default: false
+     */
+    derivedEdit?: boolean;
 
     /**
      * Allow verifying the field value?
@@ -236,6 +245,7 @@ export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable
     },
     current_landuse_order: {
         edit: false,
+        derivedEdit: true,
         verify: false,
     },
 
