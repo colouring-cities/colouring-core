@@ -45,7 +45,24 @@ export interface DataFieldDefinition {
      * E.g. for building attachment form, you could use "Detached" as example
      */
     example: any;
+
+    /**
+     * Whether the field is a field that has an independent value for each user.
+     * For example, user building likes are one of such fields.
+     * By default this is false - fields are treated as not user-specific.
+     */
+    perUser?: boolean;
 }
+
+export const buildingUserFields = {
+    community_like: {
+        perUser: true,
+        category: Category.Community,
+        title: "Do you like this building and think it contributes to the city?",
+        example: true,
+    },
+};
+
 
 export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name: {
@@ -444,6 +461,9 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Community,
         title: "Total number of likes",
         example: 100,
+        tooltip: "People who like the building and think it contributes to the city."
+    },
+
     },
 
     dynamics_has_demolished_buildings: {
@@ -486,3 +506,5 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         ]
     }
 };
+
+export const allFieldsConfig = {...dataFields, ...buildingUserFields};

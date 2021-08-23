@@ -1,8 +1,8 @@
 import { JSONSchemaType } from 'ajv';
 import { SomeJSONSchema } from 'ajv/dist/types/json-schema';
-import { dataFieldsConfig } from './dataFields';
+import { allAttributesConfig } from './dataFields';
 
-export const fieldSchemaConfig: { [key in keyof typeof dataFieldsConfig]?: SomeJSONSchema} = { /*eslint-disable @typescript-eslint/camelcase */
+export const fieldSchemaConfig: { [key in keyof typeof allAttributesConfig]?: SomeJSONSchema} = { /*eslint-disable @typescript-eslint/camelcase */
     
     demolished_buildings:  {
         type: 'array',

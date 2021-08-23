@@ -2,6 +2,12 @@ import { valueType } from '../../helpers';
 
 /** Configuration for a single data field */
 export interface DataFieldConfig {
+
+    /**
+     * Default: false
+     */
+    perUser?: boolean;
+
     /**
      * Allow editing the field through the API?
      */
@@ -41,7 +47,10 @@ export interface DataFieldConfig {
     sqlCast?: 'json' | 'jsonb';
 }
 
-export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable @typescript-eslint/camelcase */
+export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint-disable @typescript-eslint/camelcase */
+    ref_toid: {
+        edit: false
+    },
     ref_osm_id: {
         edit: true,
     },
@@ -268,5 +277,13 @@ export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable
     }
 });
 
-export type Building = { [k in keyof typeof dataFieldsConfig]: any };
-export type BuildingUpdate = Partial<Building>;
+
+export const buildingUserAttributesConfig = valueType<DataFieldConfig>()({
+    community_like: {
+        perUser: true,
+        edit: true,
+        verify: false,
+    },
+});
+
+export const allAttributesConfig = Object.assign({}, buildingAttributesConfig, buildingUserAttributesConfig);

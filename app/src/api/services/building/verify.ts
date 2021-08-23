@@ -1,9 +1,12 @@
-import { dataFieldsConfig } from '../../config/dataFields';
+import { buildingAttributesConfig } from '../../config/dataFields';
+import { BaseBuilding } from '../../models/building';
 import * as buildingDataAccess from '../../dataAccess/building';
 import * as verifyDataAccess from '../../dataAccess/verify';
 import { DatabaseError } from '../../errors/general';
 
-const FIELD_VERIFICATION_WHITELIST = new Set(Object.entries(dataFieldsConfig).filter(([, value]) => value.verify === true).map(([key]) => key));
+function canVerify(key: string) {
+    return buildingAttributesConfig[key].verify === true;
+}
 
 export async function verifyBuildingAttributes(buildingId: number, userId: string, patch: object) {
     // get current building attribute values for comparison
@@ -14,7 +17,7 @@ export async function verifyBuildingAttributes(buildingId: number, userId: strin
     // loop through attribute => value pairs to mark as verified
     for (let [key, value] of Object.entries(patch)) {
         // check key in whitelist
-        if(FIELD_VERIFICATION_WHITELIST.has(key)) {
+        if(canVerify(key)) {
             // check value against current from database - JSON.stringify as hack for "any" data type
             if (JSON.stringify(value) == JSON.stringify(building[key])) {
                 try {
@@ -49,17 +52,14 @@ export async function getUserVerifiedAttributes(buildingId: number, userId: stri
     return await verifyDataAccess.getBuildingUserVerifiedAttributes(buildingId, userId);
 }
 
-export async function getBuildingVerifications(building) {
+export async function getBuildingVerifications(building: BaseBuilding) {
     const verifications = await verifyDataAccess.getBuildingVerifiedAttributes(building.building_id);
 
-    const verified = {};
-    for (const element of FIELD_VERIFICATION_WHITELIST) {
-        verified[element] = 0;
-    }
+    const verified: Record<string, number> = {};
 
     for (const item of verifications) {
         if (JSON.stringify(building[item.attribute]) == JSON.stringify(item.verified_value)) {
-            verified[item.attribute] += 1
+            verified[item.attribute] = verified[item.attribute] ?? 0 + 1;
         }
     }
     return verified;

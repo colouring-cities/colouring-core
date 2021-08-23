@@ -11,10 +11,8 @@ interface BuildingViewProps {
     cat: Category;
     mode: 'view' | 'edit';
     building?: Building;
-    building_like?: boolean;
     user_verified?: any;
     onBuildingUpdate: (buildingId: number, updatedData: Building) => void;
-    onBuildingLikeUpdate: (buildingId: number, updatedData: boolean) => void;
     onUserVerifiedUpdate: (buildingId: number, updatedData: UserVerified) => void;
 }
 

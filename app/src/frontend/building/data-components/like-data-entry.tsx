@@ -1,47 +1,43 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import Tooltip from '../../components/tooltip';
-import { Category } from '../../config/categories-config';
+import { buildingUserFields, dataFields } from '../../config/data-fields-config';
+import { CopyProps } from '../data-containers/category-view-props';
+import { DataTitleCopyable } from './data-title';
 
 
 interface LikeDataEntryProps {
     mode: 'view' | 'edit' | 'multi-edit';
-    userLike: boolean;
-    totalLikes: number;
-    onLike: (userLike: boolean) => void;
+    userValue: boolean;
+    aggregateValue: number;
+    copy: CopyProps;
+    onChange: (key: string, value: boolean) => void;
 }
 
 const LikeDataEntry: React.FunctionComponent<LikeDataEntryProps> = (props) => {
-    const data_string = JSON.stringify({like: true});
+    const fieldName = 'community_like';
+
     return (
         <>
-            <div className="data-title">
-                <div className="data-title-actions icon-buttons">
-                    <NavLink
-                        to={`/multi-edit/${Category.Community}?data=${data_string}`}
-                        className="icon-button like">
-                        Like more
-                    </NavLink>
-                    <Tooltip text="People who like the building and think it contributes to the city." />
-                </div>
-                <label>Like</label>
-            </div>
+        <DataTitleCopyable
+            slug={fieldName}
+            title={buildingUserFields.community_like.title}
+            copy={props.copy}
+        />
             <label className="form-check-label">
                 <input className="form-check-input" type="checkbox"
                     name="like"
-                    checked={!!props.userLike}
+                    checked={!!props.userValue}
                     disabled={props.mode === 'view'}
-                    onChange={e => props.onLike(e.target.checked)}
-                />
-                 I like this building and think it contributes to the city
+                    onChange={e => props.onChange(fieldName, e.target.checked)}
+                /> Yes
             </label>
             <p>
                 {
-                    (props.totalLikes != null)?
-                        (props.totalLikes === 1)?
-                            `${props.totalLikes} person likes this building`
-                            : `${props.totalLikes} people like this building`
+                    (props.aggregateValue != null)?
+                        (props.aggregateValue === 1)?
+                            `${props.aggregateValue} person likes this building`
+                            : `${props.aggregateValue} people like this building`
                         : "0 people like this building so far - you could be the first!"
                 }
             </p>

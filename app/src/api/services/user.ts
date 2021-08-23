@@ -142,9 +142,9 @@ async function getNewUserAPIKey(id: string) {
     }
 }
 
-async function authAPIUser(key: string) {
+async function authAPIUser(key: string): Promise<string> {
     try {
-        return await db.one(
+        const { user_id } = await db.one(
             `SELECT
                 user_id
             FROM
@@ -155,6 +155,8 @@ async function authAPIUser(key: string) {
                 key
             ]
         );
+
+        return user_id;
     } catch(error) {
         console.error('Error:', error);
         return undefined;
