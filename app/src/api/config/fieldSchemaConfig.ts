@@ -63,4 +63,32 @@ export const fieldSchemaConfig: { [key in keyof typeof allAttributesConfig]?: So
         links: string[];
     }[]>,
 
+    community_type_worth_keeping_reasons: {
+        type: 'object',
+        properties: {
+            external_design: {
+                type: 'boolean',
+                nullable: true
+            },
+            internal_design: {
+                type: 'boolean',
+                nullable: true
+            },
+            adaptable: {
+                type: 'boolean',
+                nullable: true
+            },
+            other: {
+                type: 'boolean',
+                nullable: true
+            }
+        },
+        additionalProperties: false
+    } as JSONSchemaType<{
+        external_design: boolean,
+        internal_design: boolean,
+        adaptable: boolean,
+        other: boolean
+    }>
+
 } as const;

@@ -1,48 +1,50 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { buildingUserFields, dataFields } from '../../config/data-fields-config';
+import { AggregationDescriptionConfig, buildingUserFields, dataFields } from '../../config/data-fields-config';
 import { CopyProps } from '../data-containers/category-view-props';
 import { DataTitleCopyable } from './data-title';
 
 
-interface LikeDataEntryProps {
+interface UserOpinionEntryProps {
+    slug: string;
+    title: string;
     mode: 'view' | 'edit' | 'multi-edit';
     userValue: boolean;
     aggregateValue: number;
+    aggregationDescriptions: AggregationDescriptionConfig;
     copy: CopyProps;
     onChange: (key: string, value: boolean) => void;
 }
 
-const LikeDataEntry: React.FunctionComponent<LikeDataEntryProps> = (props) => {
-    const fieldName = 'community_like';
+const UserOpinionEntry: React.FunctionComponent<UserOpinionEntryProps> = (props) => {
 
     return (
         <>
         <DataTitleCopyable
-            slug={fieldName}
-            title={buildingUserFields.community_like.title}
+            slug={props.slug}
+            title={props.title}
             copy={props.copy}
         />
             <label className="form-check-label">
                 <input className="form-check-input" type="checkbox"
-                    name="like"
+                    name={props.slug}
                     checked={!!props.userValue}
                     disabled={props.mode === 'view'}
-                    onChange={e => props.onChange(fieldName, e.target.checked)}
+                    onChange={e => props.onChange(props.slug, e.target.checked)}
                 /> Yes
             </label>
             <p>
                 {
-                    (props.aggregateValue != null)?
+                    (props.aggregateValue)?
                         (props.aggregateValue === 1)?
-                            `${props.aggregateValue} person likes this building`
-                            : `${props.aggregateValue} people like this building`
-                        : "0 people like this building so far - you could be the first!"
+                            `1 person ${props.aggregationDescriptions.one}`
+                            : `${props.aggregateValue} people ${props.aggregationDescriptions.many}`
+                        : `0 people ${props.aggregationDescriptions.zero}`
                 }
             </p>
         </>
     );
 };
 
-export default LikeDataEntry;
+export default UserOpinionEntry;

@@ -274,6 +274,11 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: false,
         derivedEdit: true,
         verify: false
+    },
+    community_local_significance_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
     }
 });
 
@@ -284,6 +289,21 @@ export const buildingUserAttributesConfig = valueType<DataFieldConfig>()({
         edit: true,
         verify: false,
     },
+    community_type_worth_keeping: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_type_worth_keeping_reasons: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_local_significance: {
+        perUser: true,
+        edit: true,
+        verify: false
+    }
 });
 
 export const allAttributesConfig = Object.assign({}, buildingAttributesConfig, buildingUserAttributesConfig);

@@ -18,5 +18,11 @@ export const aggregationsConfig: { [key in keyof typeof buildingUserAttributesCo
             aggregateFieldName: 'likes_total',
             aggregationMethod: 'countTrue'
         }
+    ],
+    community_local_significance: [
+        {
+            aggregateFieldName: 'community_local_significance_total',
+            aggregationMethod: 'countTrue'
+        }
     ]
 };

@@ -1,31 +1,86 @@
 import React from 'react';
 
 import withCopyEdit from '../data-container';
-import LikeDataEntry from '../data-components/like-data-entry';
+import UserOpinionEntry from '../data-components/user-opinion-data-entry';
+import { MultiSelectDataEntry } from '../data-components/multi-select-data-entry';
 
 import { CategoryViewProps } from './category-view-props';
 import InfoBox from '../../components/info-box';
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
-import { dataFields } from '../../config/data-fields-config';
+import { buildingUserFields, dataFields } from '../../config/data-fields-config';
+
+import './community.css';
 
 /**
 * Community view/edit section
 */
-const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => (
-    <>
-        <InfoBox>
-        Can you help add information on how well you think the building works, and on if it is in public ownership?
-        </InfoBox>
-        <LikeDataEntry
-            userValue={props.building.community_like}
-            aggregateValue={props.building.likes_total}
+const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
+    const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
+    return <>
+        <div className='community-opinion-pane'>
+            <InfoBox>
+                Can you share your opinion on how well the building works?
+            </InfoBox>
+            <UserOpinionEntry
+                slug='community_like'
+                title={buildingUserFields.community_like.title}
 
-            onChange={props.onSaveChange}
-            mode={props.mode}
-            copy={props.copy}
-        />
-{/*         
-        <LogicalDataEntry
+                userValue={props.building.community_like}
+                aggregateValue={props.building.likes_total}
+                aggregationDescriptions={dataFields.likes_total.aggregationDescriptions}
+
+                onChange={props.onSaveChange}
+                mode={props.mode}
+                copy={props.copy}
+            />
+            <LogicalDataEntry
+                slug='community_type_worth_keeping'
+                title={buildingUserFields.community_type_worth_keeping.title}
+
+                value={props.building.community_type_worth_keeping}
+                disallowFalse={worthKeepingReasonsNonEmpty}
+                disallowNull={worthKeepingReasonsNonEmpty}
+
+                onChange={props.onSaveChange}
+                mode={props.mode}
+                copy={props.copy}
+            />
+            {
+                props.building.community_type_worth_keeping !== false &&
+                <MultiSelectDataEntry
+                    slug='community_type_worth_keeping_reasons'
+                    title={buildingUserFields.community_type_worth_keeping_reasons.title}
+                    value={props.building.community_type_worth_keeping_reasons}
+                    disabled={!props.building.community_type_worth_keeping}
+                    onChange={props.onSaveChange}
+                    options={
+                        Object.entries(buildingUserFields.community_type_worth_keeping_reasons.fields)
+                        .map(([key, definition]) => ({
+                            key,
+                            label: definition.title
+                        }))
+                    }
+                    mode={props.mode}
+                />
+            }
+            
+
+            <UserOpinionEntry
+                slug='community_local_significance'
+                title={buildingUserFields.community_local_significance.title}
+                
+                userValue={props.building.community_local_significance}
+                aggregateValue={props.building.community_local_significance_total}
+                aggregationDescriptions={dataFields.community_local_significance_total.aggregationDescriptions}
+
+                onChange={props.onSaveChange}
+                mode={props.mode}
+                copy={props.copy}
+            />
+        </div>
+
+        <InfoBox>Can you help add information about public ownership of the building?</InfoBox>
+        {/* <LogicalDataEntry
             slug='community_publicly_owned'
             title={dataFields.community_publicly_owned.title}
             value={props.building.community_publicly_owned}
@@ -55,7 +110,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => (
             }
         </ul> */}
     </>
-);
+};
 const CommunityContainer = withCopyEdit(CommunityView);
 
 export default CommunityContainer;
