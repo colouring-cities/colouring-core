@@ -12,6 +12,10 @@ addFormats(ajv);
 
 const compiledSchemas = _.mapValues(fieldSchemaConfig, (val) => ajv.compile(val));
 
+function isDefined(key: string) {
+    return allAttributesConfig[key] !== undefined;
+}
+
 function canEdit(key: string, allowDerived: boolean = false) {
     const config = allAttributesConfig[key];
     
@@ -19,6 +23,10 @@ function canEdit(key: string, allowDerived: boolean = false) {
 }
 
 export function validateFieldChange(field: string, value: any, isExternal: boolean = true) {
+    if(!isDefined(field)) {
+        throw new InvalidFieldError('Field does not exist', field);
+    }
+    
     const allowDerived = !isExternal;
     if(!canEdit(field, allowDerived)) {
         throw new InvalidFieldError('Field is not editable', field);
