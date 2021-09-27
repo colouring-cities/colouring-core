@@ -10,6 +10,9 @@ import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-
 import { buildingUserFields, dataFields } from '../../config/data-fields-config';
 
 import './community.css';
+import SelectDataEntry from '../data-components/select-data-entry';
+import Verification from '../data-components/verification';
+import DataEntry from '../data-components/data-entry';
 
 /**
 * Community view/edit section
@@ -80,35 +83,61 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </div>
 
         <InfoBox>Can you help add information about public ownership of the building?</InfoBox>
-        {/* <LogicalDataEntry
-            slug='community_publicly_owned'
-            title={dataFields.community_publicly_owned.title}
-            value={props.building.community_publicly_owned}
-            disallowFalse={props.building.community_public_ownership_form != null}
-            disallowNull={props.building.community_public_ownership_form != null}
+        <LogicalDataEntry
+            slug='community_activities'
+            title={dataFields.community_activities.title}
+            tooltip={dataFields.community_activities.tooltip}
+            value={props.building.community_activities}
 
-            onChange={props.onSaveChange}
+            onChange={props.onChange}
+            mode={props.mode}
+        />
+        {/* TODO: dates */}
+        {
+            // props.building.community_activities === true &&
+            // <FieldRow>
+            //     <div>
+            //     </div>
+            //     <div>
+            //     </div>
+            // </FieldRow>
+        }
+        
+        <SelectDataEntry
+            slug='community_public_ownership'
+            title={dataFields.community_public_ownership.title}
+            value={props.building.community_public_ownership}
+            options={[
+                'State-owned',
+                'Charity-owned',
+                'Community-owned/cooperative',
+                'Owned by other non-profit body',
+                'Not in public/community ownership',
+            ]}
+
+            onChange={props.onChange}
             mode={props.mode}
             copy={props.copy}
-        /> */}
-        {/* <p className="data-intro">{props.intro}</p> */}
-        {/* <ul className="data-list">
-            <li>Is this a publicly owned building?</li>
-            {
-            // "slug": "community_publicly_owned",
-            // "type": "checkbox"
-            }
-            <li>Has this building ever been used for community or public services activities?</li>
-            {
-            // "slug": "community_past_public",
-            // "type": "checkbox"
-            }
-            <li>Would you describe this building as a community asset?</li>
-            {
-            // "slug": "community_asset",
-            // "type": "checkbox"
-            }
-        </ul> */}
+        />
+        <Verification
+                slug="community_public_ownership"
+                allow_verify={props.user !== undefined && props.building.community_public_ownership !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("community_public_ownership")}
+                user_verified_as={props.user_verified.community_public_ownership}
+                verified_count={props.building.verified.community_public_ownership}
+                />
+        <DataEntry
+            slug='community_public_ownership_source'
+            title={dataFields.community_public_ownership_source.title}
+            isUrl={true}
+            placeholder={'https://...'}
+            
+            value={props.building.community_public_ownership_source}
+            onChange={props.onChange}
+
+            mode={props.mode}
+        />
     </>
 };
 const CommunityContainer = withCopyEdit(CommunityView);

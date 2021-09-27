@@ -539,19 +539,27 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         }
     },
 
-    community_publicly_owned: {
+    community_activities: {
         category: Category.Community,
-        title: "Is the building in some form of community ownership?",
-        example: false
+        title: "Has the building ever been used for community activities?",
+        tooltip: "E.g. youth club, place of worship, GP surgery, pub",
+        example: true
     },
-    community_public_ownership_form: {
+    // community_activities_dates: {
+    //     category: Category.Community,
+    //     title: "When was this building used for community activities?"
+    // },
+
+
+    community_public_ownership: {
         category: Category.Community,
-        title: "What is the form of community ownership of this building?",
-        example: "State-owned"
+        title: "Is the building in public/community ownership?",
+        example: "Not in public/community ownership"
     },
+
     community_public_ownership_source: {
         category: Category.Community,
-        title: "Community ownership source links",
+        title: "Community ownership source link",
         example: "https://example.com"
     },
 

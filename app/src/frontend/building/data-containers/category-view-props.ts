@@ -1,4 +1,4 @@
-import { Building } from '../../models/building';
+import { Building, BuildingAttributes } from '../../models/building';
 
 interface CopyProps {
     copying: boolean;
@@ -22,7 +22,7 @@ interface CategoryViewProps {
     /* Special handler for setting a value and immediately saving */
     onSaveChange: (slug: string, value: any) => void;
 
-    user_verified: any;
+    user_verified: Partial<BuildingAttributes>;
     user?: any;
 }
 

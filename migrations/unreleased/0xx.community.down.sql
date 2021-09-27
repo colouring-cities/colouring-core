@@ -23,3 +23,15 @@ DROP COLUMN IF EXISTS community_local_significance;
 
 ALTER TABLE buildings
 DROP COLUMN IF EXISTS community_local_significance_total;
+
+ALTER TABLE buildings
+DROP COLUMN IF EXISTS community_activities;
+
+ALTER TABLE buildings
+DROP COLUMN IF EXISTS community_public_ownership;
+
+DROP TYPE IF EXISTS public_ownership_type;
+
+ALTER TABLE buildings
+DROP COLUMN IF EXISTS community_public_ownership_source;
+

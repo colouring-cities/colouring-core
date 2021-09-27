@@ -38,3 +38,21 @@ ADD COLUMN community_local_significance BOOLEAN DEFAULT false;
 
 ALTER TABLE buildings
 ADD COLUMN community_local_significance_total INT DEFAULT 0;
+
+ALTER TABLE buildings
+ADD COLUMN community_activities BOOLEAN NULL;
+
+CREATE TYPE public_ownership_type
+    AS ENUM (
+        'State-owned',
+        'Charity-owned',
+        'Community-owned/cooperative',
+        'Owned by other non-profit body',
+        'Not in public/community ownership'
+    );
+
+ALTER TABLE buildings
+ADD COLUMN community_public_ownership public_ownership_type;
+
+ALTER TABLE buildings
+ADD COLUMN community_public_ownership_source VARCHAR;
