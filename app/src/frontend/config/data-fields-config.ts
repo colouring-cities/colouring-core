@@ -522,7 +522,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: 100,
         tooltip: "People who like the building and think it contributes to the city.",
         aggregationDescriptions: {
-            zero: "like this building so far",
+            zero: "like this building",
             one: "likes this building",
             many: "like this building"
         }

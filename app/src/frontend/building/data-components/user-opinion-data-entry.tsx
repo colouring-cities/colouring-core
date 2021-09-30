@@ -34,15 +34,28 @@ const UserOpinionEntry: React.FunctionComponent<UserOpinionEntryProps> = (props)
                     onChange={e => props.onChange(props.slug, e.target.checked)}
                 /> Yes
             </label>
-            <p>
-                {
-                    (props.aggregateValue)?
-                        (props.aggregateValue === 1)?
-                            `1 person ${props.aggregationDescriptions.one}`
-                            : `${props.aggregateValue} people ${props.aggregationDescriptions.many}`
-                        : `0 people ${props.aggregationDescriptions.zero}`
-                }
-            </p>
+            <div>
+                <label>
+                    <span style={{fontStyle: 'italic'}}>
+                        {
+                            (props.aggregateValue)?
+                            (props.aggregateValue === 1)?
+                                `1 person `
+                                : `${props.aggregateValue} people `
+                            : `0 people so far `
+                        }
+                    </span>
+                    <span>
+                        {
+                            (props.aggregateValue)?
+                                (props.aggregateValue === 1)?
+                                    props.aggregationDescriptions.one
+                                    : props.aggregationDescriptions.many
+                                : props.aggregationDescriptions.zero
+                        }
+                    </span>
+                </label>
+            </div>
         </>
     );
 };
