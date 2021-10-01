@@ -8,6 +8,8 @@ export type BuildingMapTileset = 'date_year' |
     'construction_core_material' |
     'location' |
     'likes' |
+    'community_local_significance_total' |
+    'community_in_public_ownership' |
     'planning_combined' |
     'sust_dec' |
     'building_attachment_form' |

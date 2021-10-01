@@ -35,8 +35,8 @@ import { sendBuildingUpdate } from './api-data/building-update';
  * to all modules that import leaflet or react-leaflet.
  */
 const ColouringMap = loadable(
-    () => import('./map/map'),
-    { ssr: false }
+    async () => (await import('./map/map')).ColouringMap,
+    { ssr: false }  
 );
 
 interface MapAppProps {
