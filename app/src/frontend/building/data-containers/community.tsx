@@ -12,7 +12,7 @@ import { buildingUserFields, dataFields } from '../../config/data-fields-config'
 import './community.css';
 import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
-import DataEntry from '../data-components/data-entry';
+import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 
 /**
 * Community view/edit section
@@ -127,15 +127,15 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 user_verified_as={props.user_verified.community_public_ownership}
                 verified_count={props.building.verified.community_public_ownership}
                 />
-        <DataEntry
-            slug='community_public_ownership_source'
-            title={dataFields.community_public_ownership_source.title}
+        <MultiDataEntry
+            slug='community_public_ownership_sources'
+            title={dataFields.community_public_ownership_sources.title}
             isUrl={true}
             placeholder={'https://...'}
+            editableEntries={true}
             
-            value={props.building.community_public_ownership_source}
+            value={props.building.community_public_ownership_sources}
             onChange={props.onChange}
-
             mode={props.mode}
         />
     </>

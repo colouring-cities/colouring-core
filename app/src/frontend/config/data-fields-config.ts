@@ -533,9 +533,9 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "People who think the building should be recorded as one of local significance",
         example: 100,
         aggregationDescriptions: {
-            zero: "think this building is of local significance",
-            one: "thinks this building is of local significance",
-            many: "think this building is of local significance"
+            zero: "think this building should be classified as a locally listed heritage asset",
+            one: "thinks this building should be classified as a locally listed heritage asset",
+            many: "think this building should be classified as a locally listed heritage asset"
         }
     },
 
@@ -557,10 +557,10 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "Not in public/community ownership"
     },
 
-    community_public_ownership_source: {
+    community_public_ownership_sources: {
         category: Category.Community,
         title: "Community ownership source link",
-        example: "https://example.com"
+        example: ["https://example.com"]
     },
 
     dynamics_has_demolished_buildings: {

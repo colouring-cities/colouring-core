@@ -55,4 +55,4 @@ ALTER TABLE buildings
 ADD COLUMN community_public_ownership public_ownership_type;
 
 ALTER TABLE buildings
-ADD COLUMN community_public_ownership_source VARCHAR;
+ADD COLUMN community_public_ownership_sources VARCHAR[];

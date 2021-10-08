@@ -33,5 +33,5 @@ DROP COLUMN IF EXISTS community_public_ownership;
 DROP TYPE IF EXISTS public_ownership_type;
 
 ALTER TABLE buildings
-DROP COLUMN IF EXISTS community_public_ownership_source;
+DROP COLUMN IF EXISTS community_public_ownership_sources;
 
