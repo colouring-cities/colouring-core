@@ -1,3 +1,4 @@
+import Markdown from 'markdown-to-jsx';
 import React from 'react';
 
 import Tooltip from '../../components/tooltip';
@@ -34,7 +35,9 @@ const DataTitleCopyable: React.FunctionComponent<DataTitleCopyableProps> = (prop
         <div className="data-title">
             <div className="data-title-text">
                 <label htmlFor={`${props.slug}${props.slugModifier ?? ''}`}>
-                    { props.title }
+                    <Markdown>
+                        { props.title }
+                    </Markdown>
                 </label>
             </div>
             <div className="data-title-actions icon-buttons">

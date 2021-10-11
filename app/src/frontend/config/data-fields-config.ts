@@ -85,7 +85,7 @@ export const buildingUserFields = {
     community_type_worth_keeping: {
         perUser: true,
         category: Category.Community,
-        title: "Do you think this type of building is generally worth keeping?",
+        title: "Do you think this **type** of building is generally worth keeping?",
         example: true,
     },
     community_type_worth_keeping_reasons: {
