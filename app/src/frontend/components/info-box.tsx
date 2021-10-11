@@ -2,15 +2,16 @@ import React from 'react';
 
 interface InfoBoxProps {
     msg?: string;
+    type?: 'info' | 'warning'
 }
 
-const InfoBox: React.FC<InfoBoxProps> = (props) => (
+const InfoBox: React.FC<InfoBoxProps> = ({msg, children, type = 'info'}) => (
     <>
         {
-            (props.msg || props.children) &&
-                <div className="alert alert-info" role="alert">
-                    { props.msg ?? '' }
-                    { props.children }
+            (msg || children) &&
+                <div className={`alert alert-${type}`} role="alert">
+                    { msg ?? '' }
+                    { children }
                 </div>
         }
     </>
