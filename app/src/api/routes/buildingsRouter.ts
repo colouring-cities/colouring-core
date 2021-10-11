@@ -26,10 +26,6 @@ router.route('/:building_id.json')
 // GET building UPRNs
 router.get('/:building_id/uprns.json', buildingController.getBuildingUPRNsById);
 
-// GET/POST like building
-router.route('/:building_id/like.json')
-    .get(buildingController.getBuildingLikeById)
-    .post(buildingController.updateBuildingLikeById);
 
 // POST verify building attribute
 router.route('/:building_id/verify.json')

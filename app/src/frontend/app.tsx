@@ -32,7 +32,6 @@ import { NotFound } from './pages/not-found';
 interface AppProps {
     user?: User;
     building?: Building;
-    building_like?: boolean;
     user_verified?: UserVerified;
     revisionId: string;
 }
@@ -83,7 +82,6 @@ export const App: React.FC<AppProps> = props => {
                 <Route exact path={mapAppPaths} >
                     <MapApp
                         building={props.building}
-                        building_like={props.building_like}
                         user_verified={props.user_verified}
                         revisionId={props.revisionId}
                     />

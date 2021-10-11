@@ -1,8 +1,8 @@
 import { JSONSchemaType } from 'ajv';
 import { SomeJSONSchema } from 'ajv/dist/types/json-schema';
-import { dataFieldsConfig } from './dataFields';
+import { allAttributesConfig } from './dataFields';
 
-export const fieldSchemaConfig: { [key in keyof typeof dataFieldsConfig]?: SomeJSONSchema} = { /*eslint-disable @typescript-eslint/camelcase */
+export const fieldSchemaConfig: { [key in keyof typeof allAttributesConfig]?: SomeJSONSchema} = { /*eslint-disable @typescript-eslint/camelcase */
     
     demolished_buildings:  {
         type: 'array',
@@ -62,5 +62,33 @@ export const fieldSchemaConfig: { [key in keyof typeof dataFieldsConfig]?: SomeJ
         overlap_present: string;
         links: string[];
     }[]>,
+
+    community_type_worth_keeping_reasons: {
+        type: 'object',
+        properties: {
+            external_design: {
+                type: 'boolean',
+                nullable: true
+            },
+            internal_design: {
+                type: 'boolean',
+                nullable: true
+            },
+            adaptable: {
+                type: 'boolean',
+                nullable: true
+            },
+            other: {
+                type: 'boolean',
+                nullable: true
+            }
+        },
+        additionalProperties: false
+    } as JSONSchemaType<{
+        external_design: boolean,
+        internal_design: boolean,
+        adaptable: boolean,
+        other: boolean
+    }>
 
 } as const;

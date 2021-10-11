@@ -1,12 +1,14 @@
 import React, { Fragment } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import Confetti from 'canvas-confetti';
+import _ from 'lodash';
 
 import { apiPost } from '../apiHelpers';
+import { sendBuildingUpdate } from '../api-data/building-update';
 import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
 import { compareObjects } from '../helpers';
-import { Building, BuildingAttributes, UserVerified } from '../models/building';
+import { Building, BuildingEdits, BuildingUserAttributes, UserVerified } from '../models/building';
 import { User } from '../models/user';
 
 import ContainerHeader from './container-header';
@@ -26,10 +28,8 @@ interface DataContainerProps {
     user?: User;
     mode: 'view' | 'edit';
     building?: Building;
-    building_like?: boolean;
     user_verified?: any;
     onBuildingUpdate: (buildingId: number, updatedData: Building) => void;
-    onBuildingLikeUpdate: (buildingId: number, updatedData: boolean) => void;
     onUserVerifiedUpdate: (buildingId: number, updatedData: UserVerified) => void;
 }
 
@@ -39,7 +39,7 @@ interface DataContainerState {
     keys_to_copy: {[key: string]: boolean};
     currentBuildingId: number;
     currentBuildingRevisionId: number;
-    buildingEdits: Partial<Building>;
+    buildingEdits: BuildingEdits;
 }
 
 export type DataContainerType = React.ComponentType<DataContainerProps>;
@@ -68,7 +68,6 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
 
             this.handleChange = this.handleChange.bind(this);
             this.handleReset = this.handleReset.bind(this);
-            this.handleLike = this.handleLike.bind(this);
             this.handleSubmit = this.handleSubmit.bind(this);
             this.handleVerify = this.handleVerify.bind(this);
             this.handleSaveAdd = this.handleSaveAdd.bind(this);
@@ -78,7 +77,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
         }
 
-        static getDerivedStateFromProps(props, state) {
+        static getDerivedStateFromProps(props, state): DataContainerState {
             const newBuildingId = props.building == undefined ? undefined : props.building.building_id;
             const newBuildingRevisionId = props.building == undefined ? undefined : props.building.revision_id;
             if(newBuildingId !== state.currentBuildingId || newBuildingRevisionId > state.currentBuildingRevisionId) {
@@ -122,9 +121,8 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
         }
 
         isEdited() {
-            const edits = this.state.buildingEdits;
             // check if the edits object has any fields
-            return Object.entries(edits).length !== 0;
+            return !_.isEmpty(this.state.buildingEdits);
         }
 
         clearEdits() {
@@ -166,46 +164,15 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             this.clearEdits();
         }
 
-        /**
-         * Handle likes separately
-         * - like/love reaction is limited to set/unset per user
-         *
-         * @param {*} event
-         */
-        async handleLike(like: boolean) {
-            try {
-                const data = await apiPost(
-                    `/api/buildings/${this.props.building.building_id}/like.json`,
-                    {like: like}
-                );
-
-                if (data.error) {
-                    this.setState({error: data.error});
-                } else {
-                    // like endpoint returns whole building data so we can update both
-                    this.props.onBuildingUpdate(this.props.building.building_id, data);
-                    this.props.onBuildingLikeUpdate(this.props.building.building_id, like);
-                }
-            } catch(err) {
-                this.setState({error: err});
-            }
-        }
-
-        async doSubmit(edits: Partial<BuildingAttributes>) {
+        async doSubmit(edits: Partial<Building & BuildingUserAttributes>) {
             this.setState({error: undefined});
+            
             try {
-                const data = await apiPost(
-                    `/api/buildings/${this.props.building.building_id}.json`,
-                    edits
-                );
-
-                if (data.error) {
-                    this.setState({error: data.error});
-                } else {
-                    this.props.onBuildingUpdate(this.props.building.building_id, data);
-                }
-            } catch(err) {
-                this.setState({error: err});
+                const buildingUpdate = await sendBuildingUpdate(this.props.building.building_id, edits);
+                const updatedBuilding = Object.assign({}, this.props.building, buildingUpdate);
+                this.props.onBuildingUpdate(this.props.building.building_id, updatedBuilding);
+            } catch(error) {
+                this.setState({ error });
             }
         }
 
@@ -351,12 +318,10 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                             <WrappedComponent
                                 intro={this.props.intro}
                                 building={this.props.building}
-                                building_like={this.props.building_like}
                                 mode={this.props.mode}
                                 edited={false}
                                 copy={copy}
                                 onChange={undefined}
-                                onLike={undefined}
                                 onVerify={undefined}
                                 onSaveAdd={undefined}
                                 onSaveChange={undefined}
@@ -404,12 +369,10 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                 <WrappedComponent
                                     intro={this.props.intro}
                                     building={currentBuilding}
-                                    building_like={this.props.building_like}
                                     mode={this.props.mode}
                                     edited={edited}
                                     copy={copy}
                                     onChange={this.handleChange}
-                                    onLike={this.handleLike}
                                     onVerify={this.handleVerify}
                                     onSaveAdd={this.handleSaveAdd}
                                     onSaveChange={this.handleSaveChange}

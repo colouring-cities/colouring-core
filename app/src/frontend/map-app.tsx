@@ -2,14 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import loadable from '@loadable/component';
 
-import { useRevisionId } from './hooks/use-revision';
-import { useBuildingData } from './hooks/use-building-data';
-import { useBuildingLikeData } from './hooks/use-building-like-data';
-import { useUserVerifiedData } from './hooks/use-user-verified-data';
+import { useRevisionId } from './api-data/use-revision';
+import { useBuildingData } from './api-data/use-building-data';
+import { useUserVerifiedData } from './api-data/use-user-verified-data';
 import { useUrlBuildingParam } from './nav/use-url-building-param';
 import { useUrlCategoryParam } from './nav/use-url-category-param';
 import { useUrlModeParam } from './nav/use-url-mode-param';
-import { apiPost } from './apiHelpers';
 import BuildingView from './building/building-view';
 import Categories from './building/categories';
 import { EditHistory } from './building/edit-history/edit-history';
@@ -22,6 +20,8 @@ import { useLastNotEmpty } from './hooks/use-last-not-empty';
 import { Category } from './config/categories-config';
 import { defaultMapCategory } from './config/category-maps-config';
 import { useMultiEditData } from './hooks/use-multi-edit-data';
+import { useAuth } from './auth-context';
+import { sendBuildingUpdate } from './api-data/building-update';
 
 /**
  * Load and render ColouringMap component on client-side only.
@@ -35,13 +35,12 @@ import { useMultiEditData } from './hooks/use-multi-edit-data';
  * to all modules that import leaflet or react-leaflet.
  */
 const ColouringMap = loadable(
-    () => import('./map/map'),
-    { ssr: false }
+    async () => (await import('./map/map')).ColouringMap,
+    { ssr: false }  
 );
 
 interface MapAppProps {
     building?: Building;
-    building_like?: boolean;
     revisionId?: string;
     user_verified?: object;
 }
@@ -61,6 +60,7 @@ function setOrToggle<T>(currentValue: T, newValue: T): T {
 }
 
 export const MapApp: React.FC<MapAppProps> = props => {
+    const { user } = useAuth();
     const [categoryUrlParam] = useUrlCategoryParam();
 
     const [currentCategory, setCategory] = useState<Category>();
@@ -70,8 +70,7 @@ export const MapApp: React.FC<MapAppProps> = props => {
     
     const [selectedBuildingId, setSelectedBuildingId] = useUrlBuildingParam('view', displayCategory);
     
-    const [building, updateBuilding, reloadBuilding] = useBuildingData(selectedBuildingId, props.building);
-    const [buildingLike, updateBuildingLike] = useBuildingLikeData(selectedBuildingId, props.building_like);
+    const [building, updateBuilding, reloadBuilding] = useBuildingData(selectedBuildingId, props.building, user != undefined);
     const [userVerified, updateUserVerified, reloadUserVerified] = useUserVerifiedData(selectedBuildingId, props.user_verified);
     
     const [revisionId, updateRevisionId] = useRevisionId(props.revisionId);
@@ -94,20 +93,9 @@ export const MapApp: React.FC<MapAppProps> = props => {
         const buildingId = building?.building_id;
 
         if(buildingId != undefined && multiEditError == undefined) {
-            const isLike = currentCategory === Category.Community;
-            const endpoint = isLike ?
-                `/api/buildings/${buildingId}/like.json`:
-                `/api/buildings/${buildingId}.json`;
-
-            const payload = isLike ? {like: true} : multiEditData;
-
             try {
-                const res = await apiPost(endpoint, payload);
-                if(res.error) {
-                    console.error({ error: res.error });
-                } else {
-                    updateRevisionId(res.revision_id);
-                }
+                const updatedBuilding = await sendBuildingUpdate(buildingId, multiEditData);
+                updateRevisionId(updatedBuilding.revision_id);
             } catch(error) {
                 console.error({ error });
             }
@@ -123,13 +111,6 @@ export const MapApp: React.FC<MapAppProps> = props => {
             updateRevisionId(updatedData.revision_id);
         }
     }, [selectedBuildingId, building, updateBuilding, updateRevisionId]);
-
-    const handleBuildingLikeUpdate = useCallback((buildingId: number, updatedData: boolean) => {
-        // only update current building data if the IDs match
-        if(buildingId === selectedBuildingId) {
-            updateBuildingLike(updatedData);
-        }
-    }, [selectedBuildingId, updateBuildingLike]);
 
     const handleUserVerifiedUpdate = useCallback((buildingId: number, updatedData: UserVerified) => {
         // only update current building data if the IDs match
@@ -162,10 +143,8 @@ export const MapApp: React.FC<MapAppProps> = props => {
                                     mode={viewEditMode}
                                     cat={displayCategory}
                                     building={building}
-                                    building_like={buildingLike}
                                     user_verified={userVerified ?? {}}
                                     onBuildingUpdate={handleBuildingUpdate}
-                                    onBuildingLikeUpdate={handleBuildingLikeUpdate}
                                     onUserVerifiedUpdate={handleUserVerifiedUpdate}
                                 />
                             </Route>

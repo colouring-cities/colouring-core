@@ -1,5 +1,12 @@
 import { Category } from './categories-config';
 
+
+export interface AggregationDescriptionConfig {
+    zero: string;
+    one: string;
+    many: string;
+}
+
 /**
  * This interface is used only in code which uses dataFields, not in the dataFields definition itself
  * Cannot make dataFields an indexed type ({[key: string]: DataFieldDefinition}),
@@ -35,6 +42,12 @@ export interface DataFieldDefinition {
      */
     items?: { [key: string]: Omit<DataFieldDefinition, 'category'> };
 
+
+    /**
+     * If the defined type is a dictionary, this describes the types of the dictionary's fields
+     */
+    fields?: { [key: string]: Omit<DataFieldDefinition, 'category'>}
+
     /**
      * The example is used to determine the runtime type in which the attribute data is stored (e.g. number, string, object)
      * This gives the programmer auto-complete of all available building attributes when implementing a category view.
@@ -45,7 +58,70 @@ export interface DataFieldDefinition {
      * E.g. for building attachment form, you could use "Detached" as example
      */
     example: any;
+
+    /**
+     * Whether the field is a field that has an independent value for each user.
+     * For example, user building likes are one of such fields.
+     * By default this is false - fields are treated as not user-specific.
+     */
+    perUser?: boolean;
+
+    /**
+     * Only for fields that are aggregations of a building-user field.
+     * specify what text should be added to the number of users calculated by the aggregation.
+     * E.g. for user likes, if zero="like this building" then for a building with 0 likes,
+     * the result will be "0 people like this building"
+     */
+    aggregationDescriptions?: AggregationDescriptionConfig;
 }
+
+export const buildingUserFields = {
+    community_like: {
+        perUser: true,
+        category: Category.Community,
+        title: "Do you like this building and think it contributes to the city?",
+        example: true,
+    },
+    community_type_worth_keeping: {
+        perUser: true,
+        category: Category.Community,
+        title: "Do you think this **type** of building is generally worth keeping?",
+        example: true,
+    },
+    community_type_worth_keeping_reasons: {
+        perUser: true,
+        category: Category.Community,
+        title: 'Why is this type of building worth keeping?',
+        fields: {
+            external_design: {
+                title: "because the external design contributes to the streetscape"
+            },
+            internal_design: {
+                title: 'because the internal design works well'
+            },
+            adaptable: {
+                title: 'because the building is adaptable / can be reused to make the city more sustainable'
+            },
+            other: {
+                title: 'other'
+            }
+        },
+        example: {
+            external_design: true,
+            internal_design: true,
+            adaptable: false,
+            other: false
+        }
+    },
+    
+    community_local_significance: {
+        perUser: true,
+        category: Category.Community,
+        title: "Do you think this building should be recorded as one of special local significance?",
+        example: true
+    }
+};
+
 
 export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name: {
@@ -444,6 +520,47 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Community,
         title: "Total number of likes",
         example: 100,
+        tooltip: "People who like the building and think it contributes to the city.",
+        aggregationDescriptions: {
+            zero: "like this building",
+            one: "likes this building",
+            many: "like this building"
+        }
+    },
+
+    community_local_significance_total: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local significance",
+        example: 100,
+        aggregationDescriptions: {
+            zero: "think this building should be classified as a locally listed heritage asset",
+            one: "thinks this building should be classified as a locally listed heritage asset",
+            many: "think this building should be classified as a locally listed heritage asset"
+        }
+    },
+
+    community_activities: {
+        category: Category.Community,
+        title: "Has the building ever been used for community activities?",
+        tooltip: "E.g. youth club, place of worship, GP surgery, pub",
+        example: true
+    },
+    // community_activities_dates: {
+    //     category: Category.Community,
+    //     title: "When was this building used for community activities?"
+    // },
+
+
+    community_public_ownership: {
+        category: Category.Community,
+        title: "Is the building in public/community ownership?",
+        example: "Not in public/community ownership"
+    },
+
+    community_public_ownership_sources: {
+        category: Category.Community,
+        title: "Community ownership source link",
+        example: ["https://example.com"]
     },
 
     dynamics_has_demolished_buildings: {
@@ -486,3 +603,5 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         ]
     }
 };
+
+export const allFieldsConfig = {...dataFields, ...buildingUserFields};

@@ -84,6 +84,27 @@ const LAYER_QUERIES = {
             buildings
         WHERE
             likes_total > 0`,
+    community_local_significance_total: `
+        SELECT
+            geometry_id,
+            community_local_significance_total
+        FROM
+            buildings
+        WHERE
+            community_local_significance_total > 0
+    `,
+    community_in_public_ownership: `
+        SELECT
+            geometry_id,
+            CASE
+                WHEN community_public_ownership = 'Not in public/community ownership' THEN false
+                ELSE true
+            END AS in_public_ownership
+        FROM
+            buildings
+        WHERE
+            community_public_ownership IS NOT NULL
+    `,
     planning_combined: `
         SELECT
             geometry_id,

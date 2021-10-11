@@ -2,6 +2,12 @@ import { valueType } from '../../helpers';
 
 /** Configuration for a single data field */
 export interface DataFieldConfig {
+
+    /**
+     * Default: false
+     */
+    perUser?: boolean;
+
     /**
      * Allow editing the field through the API?
      */
@@ -41,7 +47,10 @@ export interface DataFieldConfig {
     sqlCast?: 'json' | 'jsonb';
 }
 
-export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable @typescript-eslint/camelcase */
+export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint-disable @typescript-eslint/camelcase */
+    ref_toid: {
+        edit: false
+    },
     ref_osm_id: {
         edit: true,
     },
@@ -260,7 +269,54 @@ export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable
         asJson: true,
         sqlCast: 'jsonb',
     },
+
+    likes_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_local_significance_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_activities: {
+        edit: true,
+        verify: false
+    },
+    community_public_ownership: {
+        edit: true,
+        verify: true
+    },
+    community_public_ownership_sources: {
+        edit: true,
+        verify: false
+    }
+
 });
 
-export type Building = { [k in keyof typeof dataFieldsConfig]: any };
-export type BuildingUpdate = Partial<Building>;
+
+export const buildingUserAttributesConfig = valueType<DataFieldConfig>()({
+    community_like: {
+        perUser: true,
+        edit: true,
+        verify: false,
+    },
+    community_type_worth_keeping: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_type_worth_keeping_reasons: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_local_significance: {
+        perUser: true,
+        edit: true,
+        verify: false
+    }
+});
+
+export const allAttributesConfig = Object.assign({}, buildingAttributesConfig, buildingUserAttributesConfig);

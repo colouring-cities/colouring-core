@@ -4,56 +4,56 @@
  */
 import _ from 'lodash';
 
-import { pickFields } from '../../../helpers';
-import { dataFieldsConfig } from '../../config/dataFields';
 import * as buildingDataAccess from '../../dataAccess/building';
-import { processBuildingUpdate } from '../domainLogic/processBuildingUpdate';
-import { validateBuildingUpdate } from '../domainLogic/validateBuildingUpdate';
-
+import { Building, BuildingUserAttributes } from '../../models/building';
 import { getBuildingEditHistory } from './history';
-import { updateBuildingData } from './save';
 import { getBuildingVerifications } from './verify';
 
 // data type note: PostgreSQL bigint (64-bit) is handled as string in JavaScript, because of
 // JavaScript numerics are 64-bit double, giving only partial coverage.
 
-export async function getBuildingById(id: number) {
-    try {
-        const building = await buildingDataAccess.getBuildingData(id);
+export interface BuildingMetadataOptions {
+    editHistory?: boolean;
+    verified?: boolean;
 
-        building.edit_history = await getBuildingEditHistory(id);
-        building.verified = await getBuildingVerifications(building);
-
-        return building;
-    } catch(error) {
-        console.error(error);
-        return undefined;
+    userDataOptions?: {
+        userId: string;
+        userAttributes?: boolean;
     }
 }
 
-/**
- * List of fields for which modification is allowed
- * (directly by the user, or for fields that are derived from others)
- */
-const FINAL_FIELD_EDIT_ALLOWLIST = new Set(Object.entries(dataFieldsConfig).filter(([, value]) => value.edit || value.derivedEdit).map(([key]) => key));
+export async function getBuildingById(
+    buildingId: number,
+    {
+        editHistory = true,
+        verified = true,
+        userDataOptions
+    }: BuildingMetadataOptions = {}
+) {
+    const baseBuilding = await buildingDataAccess.getBuildingData(buildingId);
+    const building: Partial<Building> = {...baseBuilding};
 
-export async function editBuilding(buildingId: number, building: any, userId: string): Promise<object> { // TODO add proper building type
-    return await updateBuildingData(buildingId, userId, async () => {
-        validateBuildingUpdate(buildingId, building);
-        const processedBuilding = await processBuildingUpdate(buildingId, building);
+    if(editHistory) {
+        building.edit_history = await getBuildingEditHistory(buildingId);
+    }
 
-        // remove read-only fields from consideration
-        delete processedBuilding.building_id;
-        delete processedBuilding.revision_id;
-        delete processedBuilding.geometry_id;
+    if(verified) {
+        building.verified = await getBuildingVerifications(baseBuilding);
+    }
 
-        // return whitelisted fields to update
-        return pickFields(processedBuilding, FINAL_FIELD_EDIT_ALLOWLIST);
-    });
+    if(userDataOptions && userDataOptions.userAttributes) {
+        building.user_attributes = await getBuildingUserAttributesById(buildingId, userDataOptions.userId);
+    }
+
+    return building;
 }
 
+export async function getBuildingUserAttributesById(buildingId: number, userId: string): Promise<BuildingUserAttributes> {
+    return buildingDataAccess.getBuildingUserData(buildingId, userId);
+}
+
+export * from './edit';
 export * from './history';
-export * from './like';
 export * from './query';
 export * from './uprn';
 export * from './verify';
