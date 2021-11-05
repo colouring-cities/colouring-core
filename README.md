@@ -14,6 +14,7 @@ visualising twelve categories of information on London’s buildings.
 ## Structure
 
 This repository will contain open-source code for the project which:
+
 - stores building footprint polygons and source metadata
 - allows site users to record building attribute data
 - serves map tiles rendered from collected data
