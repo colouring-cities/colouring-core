@@ -5,9 +5,13 @@ import InfoBox from '../components/info-box';
 const CodeOfConductPage = () => (
     <article>
     <section className="main-col">
-        <h1 className="h2">Code of Conduct</h1>
+        <h1 className="h2">Contributor Code of Conduct</h1>
 
-        <InfoBox msg="Draft code of conduct for discussion" />
+        <p>
+        This Code of Conduct is adapted from the Contributor Covenant, version 1.4,
+        available at <a href="https://www.contributor-covenant.org/version/1/4/code-of-conduct.html">
+        https://www.contributor-covenant.org/version/1/4/code-of-conduct.html</a>
+        </p>
 
         <h2 className="h3">Our Pledge</h2>
 
@@ -42,7 +46,6 @@ const CodeOfConductPage = () => (
             <li>Trolling, insulting/derogatory comments, and personal or political attacks</li>
             <li>Public or private harassment</li>
             <li>Publishing others' private information, such as a physical or electronic address, without explicit permission</li>
-
             <li>Other conduct which could reasonably be considered inappropriate in a professional setting</li>
         </ul>
 
@@ -75,7 +78,8 @@ const CodeOfConductPage = () => (
         <p>
         Instances of abusive, harassing, or otherwise unacceptable behaviour may be reported by
         contacting the project team at <a
-        href="mailto:team@colouring.london">team@colouring.london</a>. All complaints will
+        href="mailto:team@colouring.london">team@colouring.london</a> or <a
+        href="dataprotection@turing.ac.uk">dataprotection@turing.ac.uk</a>. All complaints will
         be reviewed and investigated and will result in a response that is deemed necessary and
         appropriate to the circumstances. The project team is obligated to maintain
         confidentiality with regard to the reporter of an incident. Further details of
@@ -86,13 +90,6 @@ const CodeOfConductPage = () => (
         Project maintainers who do not follow or enforce the Code of Conduct in good
         faith may face temporary or permanent repercussions as determined by other
         members of the project's leadership.
-        </p>
-
-        <h2 className="h3">Attribution</h2>
-        <p>
-        This Code of Conduct is adapted from the Contributor Covenant, version 1.4,
-        available at <a href="https://www.contributor-covenant.org/version/1/4/code-of-conduct.html">
-        https://www.contributor-covenant.org/version/1/4/code-of-conduct.html</a>
         </p>
 
         <p>
