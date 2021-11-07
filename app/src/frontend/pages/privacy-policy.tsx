@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 const PrivacyPolicyPage: React.SFC<any> = () => (
     <article>
         <section className='main-col'>
-            <h1 className='h1'>Colouring London Privacy Policy </ h1>
+            <h1 className='h1'>Privacy Policy & Platform Security</ h1>
+            <h2 className='h2'>Colouring London Privacy Policy with respect to personal data</h2>
             <p>
-                This privacy policy explains how Colouring London uses the personal data we collect from you when you use our website. Colouring London is a research project developed by the Bartlett Centre for Advanced Spatial Analysis (CASA) at UCL. Colouring London is registered for data protection purposes with the UCL data protection office.
+                This privacy policy explains how Colouring London uses the personal data we collect from you when you use our website. Colouring London is a research project initially developed by the Bartlett Centre for Advanced Spatial Analysis (CASA) at UCL, and now run at The Alan Turing Institute. Colouring London is registered for data protection purposes with The Alan Turing Institute data protection office.
             </p>
 
             <h2 className='h2'>What data do we collect?</h2>
@@ -32,12 +33,12 @@ const PrivacyPolicyPage: React.SFC<any> = () => (
 
             <h2 className='h2'>What is the legal basis for processing your data?</h2>
             <p>
-                Data protection laws require us to meet certain conditions before we are allowed to use your data in the manner described in this notice, including having a ‘legal basis’ for the processing. Colouring London, as a research project, is processing your personal data in pursuance of performing a task in the public interest. For further details on the ‘public task’ legal basis for processing, please see UCL’s Statement of Tasks in the Public Interest, available <a href='https://www.ucl.ac.uk/legal-services/sites/legal-services/files/ucl_statement_of_tasks_in_the_public_interest_-_august_2018.pdf'>here</a>
+                Data protection laws require us to meet certain conditions before we are allowed to use your data in the manner described in this notice, including having a ‘legal basis’ for the processing. Colouring London, as a research project, is processing your personal data in pursuance of its legitimate interests.
             </p>
 
             <h2 className='h2'>How do we store your data?</h2>
             <p>
-                Colouring London stores your data at UCL in London behind the organisation’s firewall in a secure database using industry standard practices.
+                Colouring London stores your data at The Alan Turing Institute in London behind the organisation’s firewall in a secure database using industry standard practices.
             </p>
 
             <h2 className='h2'>How do we use cookies?</h2>
@@ -95,20 +96,29 @@ const PrivacyPolicyPage: React.SFC<any> = () => (
 
             <h2 className='h2'>Changes to this privacy policy</h2>
             <p>
-                Changes to this privacy policy will be notified via the Colouring London website. This privacy policy was last updated on 2 October 2019 to add a paragraph on password reset emails. The previous update was on 13 August 2019.
+                Changes to this privacy policy will be notified via the Colouring London website. This privacy policy was last updated on 4th November 2021. Previous update 2nd October 2019 following change ownership from UCL to The Alan Turing Institute.
             </p>
 
             <h2 className='h2'>Who do I contact with questions?</h2>
             <p>
-                If you have any questions about your personal data and Colouring London that are not answered by this privacy notice then please consult UCL's data protection web pages here, where further guidance and relevant UCL policy documentation can be found.
+                If you wish to complain about our use of your personal data or exercise any of your rights, please contact the Turing's Data Protection Officer: <a href="dataprotection@turing.ac.uk">dataprotection@turing.ac.uk</a> or Data Protection Officer, The Alan Turing Institute, 96 Euston Road, London NW1 2DB.
             </p>
 
             <p>
-                If you need further assistance in the first instance, please email <a href='mailto:casa@ucl.ac.uk'>casa@ucl.ac.uk</a>. If you wish to complain about our use of your personal data or exercise any of your rights, please contact UCL's Data Protection Officer: <a href='mailto:data-protection@ucl.ac.uk'>data-protection@ucl.ac.uk</a> or Data Protection Officer, UCL Gower Street, London WC1E 6BT.
+                If we are unable to adequately address any concerns you may have about the way in which we use your data, you have the right to lodge a formal complaint with the UK Information Commissioner's Office. Full details may be accessed on the complaints section of the Information Commissioner's Office website.
+            </p>
+
+            <h2 className='h2'>Further information on privacy and security</h2>
+            <p>
+                Please note when you make a contribution to Colouring London, you are creating a permanent, public record of all data added, removed, or changed by you. The database records the username and ID of the user making the edit, along with the time and date of the change. All of this information is also made publicly available through the website and through bulk downloads of the edit history. User names of contributors providing the highest number of edits are also included in our Leaderboards.
             </p>
 
             <p>
-                If we are unable to adequately address any concerns you may have about the way in which we use your data, you have the right to lodge a formal complaint with the UK Information Commissioner's Office. Full details may be accessed on the complaints section of the Information Commissioner's Office <a href='https://ico.org.uk'>website</a>.
+                Please also note that when you contribute to Colouring London, you make your contributions available as open data for anyone to copy, distribute, transmit and adapt in line with the licence, and to use as they see fit. Though we rigorously assess each data type, to help protect building occupiers' privacy and security we welcome any ideas for improvements.
+            </p>
+
+            <p>
+                Progress on Colouring London features specifically designed to address ethical issues, including these relating to security and privacy, can be tracked and commented on using our GitHub site, at <a href="https://github.com/colouring-london/colouring-london/issues/687">#687</a>. If you have any immediate concerns regarding security or privacy please contact Turing's data protection team at <a href="dataprotection@turing.ac.uk">dataprotection@turing.ac.uk</a>.
             </p>
 
             <div className="buttons-container">
