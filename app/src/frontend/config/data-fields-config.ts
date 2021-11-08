@@ -385,7 +385,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     sust_aggregate_estimate_epc: {
         category: Category.Sustainability,
         title: "EPC Rating",
-        tooltip: "(Energy Performance Certifcate) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher maybe rented",
+        tooltip: "(Energy Performance Certificate) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher maybe rented",
         example: "",
     },
     sust_retrofit_date: {
