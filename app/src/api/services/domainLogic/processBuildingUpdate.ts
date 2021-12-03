@@ -1,7 +1,8 @@
 import _ from 'lodash';
+import { ITask } from 'pg-promise';
 
 import { hasAnyOwnProperty } from '../../../helpers';
-import { Building, BuildingUpdate } from '../../config/dataFields';
+import { BaseBuilding, BuildingAttributes, BuildingUpdate } from '../../models/building';
 import { getBuildingData } from '../../dataAccess/building';
 import { ArgumentError } from '../../errors/general';
 
@@ -10,7 +11,11 @@ import { updateLandUse } from './landUse';
 /**
  * Process land use classifications - derive land use order from land use groups
  */
-async function processCurrentLandUseClassifications(buildingId: number, buildingUpdate: any): Promise<any> {
+async function processCurrentLandUseClassifications(
+    buildingId: number,
+    buildingUpdate: Partial<BuildingAttributes>,
+    t?: ITask<any>
+): Promise<any> {
     const currentBuildingData = await getBuildingData(buildingId);
 
     try {
@@ -39,10 +44,14 @@ async function processCurrentLandUseClassifications(buildingId: number, building
 /**
  * Process Dynamics data - check field relationships and sort demolished buildings by construction date
  */
-async function processDynamicsDemolishedBuildings(buildingId: number, buildingUpdate: BuildingUpdate): Promise<BuildingUpdate> {
+async function processDynamicsDemolishedBuildings(
+    buildingId: number,
+    attributesUpdate: Partial<BuildingAttributes>,
+    t?: ITask<any>
+): Promise<Partial<BuildingAttributes>> {
     const currentBuildingData = await getBuildingData(buildingId);
 
-    const afterUpdate: Building = Object.assign({}, currentBuildingData, buildingUpdate);
+    const afterUpdate: BaseBuilding = Object.assign({}, currentBuildingData, attributesUpdate);
     
     const hasDemolished: boolean = afterUpdate.dynamics_has_demolished_buildings;
     const demolishedList: any[] = afterUpdate.demolished_buildings;
@@ -57,24 +66,27 @@ async function processDynamicsDemolishedBuildings(buildingId: number, buildingUp
         }
     }
 
-    if(buildingUpdate.demolished_buildings != undefined) {
-        buildingUpdate.demolished_buildings = buildingUpdate.demolished_buildings.sort((a, b) => b.year_constructed.min - a.year_constructed.min);
+    if(attributesUpdate.demolished_buildings != undefined) {
+        attributesUpdate.demolished_buildings = attributesUpdate.demolished_buildings.sort((a, b) => b.year_constructed.min - a.year_constructed.min);
     }
 
-    return buildingUpdate;
+    return attributesUpdate;
 }
 
 
 /**
  * Define any custom processing logic for specific building attributes
  */
-export async function processBuildingUpdate(buildingId: number, buildingUpdate: BuildingUpdate): Promise<any> {
-    if(hasAnyOwnProperty(buildingUpdate, ['current_landuse_group'])) {
-        buildingUpdate = await processCurrentLandUseClassifications(buildingId, buildingUpdate);
+export async function processBuildingUpdate(buildingId: number, {attributes, userAttributes}: BuildingUpdate, t?: ITask<any>): Promise<BuildingUpdate> {
+    if(hasAnyOwnProperty(attributes, ['current_landuse_group'])) {
+        attributes = await processCurrentLandUseClassifications(buildingId, attributes, t);
     }
-    if(hasAnyOwnProperty(buildingUpdate, ['demolished_buildings', 'dynamics_has_demolished_buildings'])) {
-        buildingUpdate = await processDynamicsDemolishedBuildings(buildingId, buildingUpdate);
+    if(hasAnyOwnProperty(attributes, ['demolished_buildings', 'dynamics_has_demolished_buildings'])) {
+        attributes = await processDynamicsDemolishedBuildings(buildingId, attributes, t);
     }
 
-    return buildingUpdate;
+    return {
+        attributes,
+        userAttributes
+    };
 }

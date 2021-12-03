@@ -3,7 +3,14 @@ import { useCallback, useEffect, useState } from 'react';
 import { Building, BuildingAttributeVerificationCounts } from '../models/building';
 import { apiGet } from '../apiHelpers';
 
-export function useBuildingData(buildingId: number, preloadedData: Building): [Building, (updatedBuilding: Building) => void, () => void] {
+/**
+ * 
+ * @param buildingId Requested building ID
+ * @param preloadedData Data preloaded through SSR, to return before the request is first sent
+ * @param includeUserAttributes Should the building-user attributes be included in the result? This requires login session cookies to be present
+ * @returns 
+ */
+export function useBuildingData(buildingId: number, preloadedData: Building, includeUserAttributes: boolean = false): [Building, (updatedBuilding: Building) => void, () => void] {
     const [buildingData, setBuildingData] = useState<Building>(preloadedData);
     const [isOld, setIsOld] = useState<boolean>(preloadedData == undefined);
 
@@ -14,12 +21,14 @@ export function useBuildingData(buildingId: number, preloadedData: Building): [B
             return;
         }
         try {
-            const [building, buildingUprns] = await Promise.all([
-                apiGet(`/api/buildings/${buildingId}.json`),
+            let [building, buildingUprns] = await Promise.all([
+                apiGet(`/api/buildings/${buildingId}.json${includeUserAttributes ? '?user_attributes=true' : ''}`),
                 apiGet(`/api/buildings/${buildingId}/uprns.json`)
             ]);
 
             building.uprns = buildingUprns.uprns;
+            building = Object.assign(building, {...building.user_attributes});
+            delete building.user_attributes;
 
             setBuildingData(building);
         } catch(error) {

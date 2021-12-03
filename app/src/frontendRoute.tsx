@@ -6,7 +6,6 @@ import serialize from 'serialize-javascript';
 
 import {
     getBuildingById,
-    getBuildingLikeById,
     getBuildingUPRNsById,
     getLatestRevisionId,
     getUserVerifiedAttributes
@@ -34,11 +33,13 @@ const frontendRoute = asyncController(async (req: express.Request, res: express.
     }
 
     try {
-        let [user, building, uprns, buildingLike, userVerified, latestRevisionId] = await Promise.all([
+        let [user, building, uprns, userVerified, latestRevisionId] = await Promise.all([
             userId ? getUserById(userId) : undefined,
-            isBuilding ? getBuildingById(buildingId) : undefined,
+            isBuilding ? getBuildingById(
+                buildingId,
+                { userDataOptions: userId ? { userId, userAttributes: true } : null }
+            ) : undefined,
             isBuilding ? getBuildingUPRNsById(buildingId) : undefined,
-            (isBuilding && userId) ? getBuildingLikeById(buildingId, userId) : false,
             (isBuilding && userId) ? getUserVerifiedAttributes(buildingId, userId) : {},
             getLatestRevisionId()
         ]);
@@ -48,7 +49,6 @@ const frontendRoute = asyncController(async (req: express.Request, res: express.
         }
         data.user = user;
         data.building = building;
-        data.building_like = buildingLike;
         data.user_verified = userVerified;
         if (data.building != null) {
             data.building.uprns = uprns;
@@ -59,7 +59,6 @@ const frontendRoute = asyncController(async (req: express.Request, res: express.
         console.error(error);
         data.user = undefined;
         data.building = undefined;
-        data.building_like = undefined;
         data.user_verified = {}
         data.latestRevisionId = 0;
         context.status = 500;
@@ -73,7 +72,6 @@ function renderHTML(context, data, req, res) {
             <App
                 user={data.user}
                 building={data.building}
-                building_like={data.building_like}
                 revisionId={data.latestRevisionId}
                 user_verified={data.userVerified}
             />

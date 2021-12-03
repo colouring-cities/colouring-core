@@ -2,10 +2,25 @@ import { valueType } from '../../helpers';
 
 /** Configuration for a single data field */
 export interface DataFieldConfig {
+
     /**
-     * Allow editing the field?
+     * Default: false
+     */
+    perUser?: boolean;
+
+    /**
+     * Allow editing the field through the API?
      */
     edit: boolean;
+
+    /**
+     * Should the editing of the field be allowed - but only when
+     * the change is a result of an edit of another field, from which this field is derived.
+     * Example: editing Land Use Group modifies Land Use Order, too, because LU Order is automatically derived from LU Group.
+     * But Land Use Order itself cannot be modified directly by users.
+     * Default: false
+     */
+    derivedEdit?: boolean;
 
     /**
      * Allow verifying the field value?
@@ -32,7 +47,10 @@ export interface DataFieldConfig {
     sqlCast?: 'json' | 'jsonb';
 }
 
-export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable @typescript-eslint/camelcase */
+export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint-disable @typescript-eslint/camelcase */
+    ref_toid: {
+        edit: false
+    },
     ref_osm_id: {
         edit: true,
     },
@@ -236,6 +254,7 @@ export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable
     },
     current_landuse_order: {
         edit: false,
+        derivedEdit: true,
         verify: false,
     },
 
@@ -250,7 +269,54 @@ export const dataFieldsConfig = valueType<DataFieldConfig>()({ /* eslint-disable
         asJson: true,
         sqlCast: 'jsonb',
     },
+
+    likes_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_local_significance_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_activities: {
+        edit: true,
+        verify: false
+    },
+    community_public_ownership: {
+        edit: true,
+        verify: true
+    },
+    community_public_ownership_sources: {
+        edit: true,
+        verify: false
+    }
+
 });
 
-export type Building = { [k in keyof typeof dataFieldsConfig]: any };
-export type BuildingUpdate = Partial<Building>;
+
+export const buildingUserAttributesConfig = valueType<DataFieldConfig>()({
+    community_like: {
+        perUser: true,
+        edit: true,
+        verify: false,
+    },
+    community_type_worth_keeping: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_type_worth_keeping_reasons: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_local_significance: {
+        perUser: true,
+        edit: true,
+        verify: false
+    }
+});
+
+export const allAttributesConfig = Object.assign({}, buildingAttributesConfig, buildingUserAttributesConfig);

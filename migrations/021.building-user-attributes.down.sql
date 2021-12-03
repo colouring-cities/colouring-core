@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS building_user_attributes;

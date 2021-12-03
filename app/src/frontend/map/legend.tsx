@@ -1,116 +1,115 @@
-import React from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import './legend.css';
 
 import { DownIcon, UpIcon } from '../components/icons';
 import { Logo } from '../components/logo';
-import { LegendConfig } from '../config/category-maps-config';
+import { CategoryMapDefinition, LegendConfig } from '../config/category-maps-config';
+import { BuildingMapTileset } from '../config/tileserver-config';
 
 interface LegendProps {
-    legendConfig: LegendConfig;
+    mapColourScaleDefinitions: CategoryMapDefinition[];
+    mapColourScale: BuildingMapTileset;
+    onMapColourScale: (x: BuildingMapTileset) => void;
 }
 
-interface LegendState {
-    collapseList: boolean;
-}
+export const Legend : FC<LegendProps> = ({
+    mapColourScaleDefinitions,
+    mapColourScale,
+    onMapColourScale
+}) => {
+    const [collapseList, setCollapseList] = useState(false);
 
-class Legend extends React.Component<LegendProps, LegendState> {
-    constructor(props) {
-        super(props);
-        this.state = {collapseList: false};
-        this.handleClick = this.handleClick.bind(this);
-        this.onResize= this.onResize.bind(this);
-    }
+    const handleToggle = useCallback(() => {
+        setCollapseList(!collapseList);
+    }, [collapseList]);
 
+    const onResize = useCallback(({target}) => {
+        setCollapseList((target.outerHeight < 670 || target.outerWidth < 768))
+    }, []);
 
-    handleClick() {
-        this.setState(state => ({
-            collapseList: !state.collapseList
-        }));
-    }
+    useEffect(() => {
+        window.addEventListener('resize', onResize);
 
+        if(window?.outerHeight) {
 
-    componentDidMount() {
-        window.addEventListener('resize', this.onResize);
-        if (window && window.outerHeight) {
             // if we're in the browser, pass in as though from event to initialise
-            this.onResize({target: window});
+            onResize({target: window});
         }
-    }
+
+        return () => {
+            window.removeEventListener('resize', onResize);
+        }
+    }, [onResize]);
+
+    const legendConfig = mapColourScaleDefinitions.find(def => def.mapStyle === mapColourScale)?.legend;
 
 
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.onResize);
-    }
+    const {
+        title = undefined,
+        elements = [],
+        description = undefined,
+        disclaimer = undefined
+    } = legendConfig ?? {};
 
-
-    onResize(e) {
-        this.setState({collapseList: (e.target.outerHeight < 670 || e.target.outerWidth < 768)});  // magic number needs to be consistent with CSS expander-button media query
-    }
-
-    render() {
-        const {
-            title = undefined,
-            elements = [],
-            description = undefined,
-            disclaimer = undefined
-        } = this.props.legendConfig ?? {};
-
-        return (
-            <div className="map-legend">
-                <Logo variant="default" />
-                {
+    return (
+        <div className="map-legend">
+            <Logo variant="default" />
+            {
+                mapColourScaleDefinitions.length > 1 ?
+                    <select className='style-select' onChange={e => onMapColourScale(e.target.value as BuildingMapTileset)}>
+                        {
+                            mapColourScaleDefinitions.map(def => 
+                                <option key={def.mapStyle} value={def.mapStyle}>{def.legend.title}</option>    
+                            )
+                        }
+                    </select> :
                     title && <h4 className="h4">{title}</h4>
-                }
-                {
-                    elements.length > 0 &&
-                        <button className="expander-button btn btn-outline-secondary btn-sm" type="button" onClick={this.handleClick} >
-                            {
-                                this.state.collapseList ?
-                                    <UpIcon /> :
-                                    <DownIcon />
-                            }
-                        </button>
-                }
-                {
-                    description && <p>{description}</p>
-                }
-                {
-                    elements.length === 0 ?
-                        <p className="data-intro">Coming soon…</p> :
-                        <ul className={this.state.collapseList ? 'collapse data-legend' : 'data-legend'} >
-                            {
-                                disclaimer && <p className='legend-disclaimer'>{disclaimer}</p>
-                            }
-                            {
-                                elements.map((item) => {
-                                    let key: string, 
-                                        content: React.ReactElement;
-                                        
-                                    if('subtitle' in item) {
-                                        key = item.subtitle;
-                                        content = <h6>{item.subtitle}</h6>;
-                                    } else {
-                                        key = `${item.text}-${item.color}`;
-                                        content = <>
-                                            <div className="key" style={ { background: item.color, border: item.border } } />
-                                            { item.text }
-                                        </>;
-                                    }
-                                    return (
-                                        <li key={key}>
-                                            {content}
-                                        </li>
-                                    );
-                                })
-                            }
-                        </ul>
-                }
-            </div>
-        );
-
-    }
-
+            }
+            {
+                elements.length > 0 &&
+                    <button className="expander-button btn btn-outline-secondary btn-sm" type="button" onClick={handleToggle} >
+                        {
+                            collapseList ?
+                                <UpIcon /> :
+                                <DownIcon />
+                        }
+                    </button>
+            }
+            {
+                description && <p>{description}</p>
+            }
+            {
+                elements.length === 0 ?
+                    <p className="data-intro">Coming soon…</p> :
+                    <ul className={collapseList ? 'collapse data-legend' : 'data-legend'} >
+                        {
+                            disclaimer && <p className='legend-disclaimer'>{disclaimer}</p>
+                        }
+                        {
+                            elements.map((item) => {
+                                let key: string, 
+                                    content: React.ReactElement;
+                                    
+                                if('subtitle' in item) {
+                                    key = item.subtitle;
+                                    content = <h6>{item.subtitle}</h6>;
+                                } else {
+                                    key = `${item.text}-${item.color}`;
+                                    content = <>
+                                        <div className="key" style={ { background: item.color, border: item.border } } />
+                                        { item.text }
+                                    </>;
+                                }
+                                return (
+                                    <li key={key}>
+                                        {content}
+                                    </li>
+                                );
+                            })
+                        }
+                    </ul>
+            }
+        </div>
+    );
 }
-
-export default Legend;

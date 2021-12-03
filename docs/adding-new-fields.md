@@ -2,8 +2,8 @@
 
 This document is a checklist for adding a new building attribute to the system. It's split into three sections - actions that apply when adding any field, and additional steps to add a field that will be visualised on the map.
 The second section would be required when adding a new category or when changing which field should be visualised for a category.
-The third section would appply to any data which can be ammended via the API. 
-When adding a new attribute a set of seed data should be identified, the base data set formany fields is Polly Hudsons PhD data set. This data set is required to;
+The third section would apply to any data which can be amended via the API.
+When adding a new attribute a set of seed data should be identified, the base data set for many fields is Polly Hudsons PhD data set. This data set is required to;
 - Test visualisation elements (map styling)
 - Provide some data for users to relate to and encourage them to fill in the field
 - Test the API and database elements.

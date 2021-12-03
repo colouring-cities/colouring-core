@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useEffect } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { AttributionControl, MapContainer, ZoomControl, useMapEvent, Pane, useMap } from 'react-leaflet';
 
 import 'leaflet/dist/leaflet.css';
@@ -18,9 +18,10 @@ import { BuildingDataLayer } from './layers/building-data-layer';
 import { BuildingNumbersLayer } from './layers/building-numbers-layer';
 import { BuildingHighlightLayer } from './layers/building-highlight-layer';
 
-import Legend from './legend';
+import { Legend } from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
+import { BuildingMapTileset } from '../config/tileserver-config';
 
 interface ColouringMapProps {
     selectedBuildingId: number;
@@ -30,124 +31,125 @@ interface ColouringMapProps {
     onBuildingAction: (building: Building) => void;
 }
 
-interface ColouringMapState {
-    theme: MapTheme;
-    position: [number, number];
-    zoom: number;
-}
+export const ColouringMap : FC<ColouringMapProps> = ({
+    category,
+    mode,
+    revisionId,
+    onBuildingAction,
+    selectedBuildingId,
+    children
+}) => {
 
-/**
- * Map area
- */
-class ColouringMap extends Component<ColouringMapProps, ColouringMapState> {
-    constructor(props) {
-        super(props);
-        this.state = {
-            theme: 'light',
-            ...initialMapViewport
-        };
-        this.handleClick = this.handleClick.bind(this);
-        this.handleLocate = this.handleLocate.bind(this);
-        this.themeSwitch = this.themeSwitch.bind(this);
-    }
+    const [theme, setTheme] = useState<MapTheme>('light');
+    const [position, setPosition] = useState(initialMapViewport.position);
+    const [zoom, setZoom] = useState(initialMapViewport.zoom);
 
-    handleLocate(lat: number, lng: number, zoom: number){
-        this.setState({
-            position: [lat, lng],
-            zoom: zoom
-        });
-    }
+    const [mapColourScale, setMapColourScale] = useState<BuildingMapTileset>();
 
-    handleClick(e) {
-        const { lat, lng } = e.latlng;
-        apiGet(`/api/buildings/locate?lat=${lat}&lng=${lng}`)
-            .then(data => {
-                const building = data?.[0];
-                this.props.onBuildingAction(building);
-            }).catch(err => console.error(err));
-    }
+    const handleLocate = useCallback(
+        (lat: number, lng: number, zoom: number) => {
+            setPosition([lat, lng]);
+            setZoom(zoom);
+        },
+        []
+    );
 
-    themeSwitch(e) {
-        e.preventDefault();
-        const newTheme = (this.state.theme === 'light')? 'night' : 'light';
-        this.setState({theme: newTheme});
-    }
+    const handleClick = useCallback(
+        async (e) => {
+            const {lat, lng} = e.latlng;
+            const data = await apiGet(`/api/buildings/locate?lat=${lat}&lng=${lng}`);
+            const building = data?.[0];
+            onBuildingAction(building);
+        },
+        [onBuildingAction],
+    )
 
-    render() {
-        const categoryMapDefinition = categoryMapsConfig[this.props.category];
+    const themeSwitch = useCallback(
+        (e) => {
+            e.preventDefault();
+            const newTheme = (theme === 'light')? 'night' : 'light';
+            setTheme(newTheme);
+        },
+        [theme],
+    )
 
-        const tileset = categoryMapDefinition.mapStyle;
+    const categoryMapDefinitions = useMemo(() => categoryMapsConfig[category], [category]);
 
-        const hasSelection = this.props.selectedBuildingId != undefined;
-        const isEdit = ['edit', 'multi-edit'].includes(this.props.mode);
+    useEffect(() => {
+        if(!categoryMapDefinitions.some(def => def.mapStyle === mapColourScale)) {
+            setMapColourScale(categoryMapDefinitions[0].mapStyle);
+        }
+    }, [categoryMapDefinitions, mapColourScale]);
 
-        return (
-            <div className="map-container">
-                <MapContainer
-                    center={initialMapViewport.position}
-                    zoom={initialMapViewport.zoom}
-                    minZoom={9}
-                    maxZoom={18}
-                    doubleClickZoom={false}
-                    zoomControl={false}
-                    attributionControl={false}
+    const hasSelection = selectedBuildingId != undefined;
+    const isEdit = ['edit', 'multi-edit'].includes(mode);
+
+    return (
+        <div className="map-container">
+            <MapContainer
+                center={initialMapViewport.position}
+                zoom={initialMapViewport.zoom}
+                minZoom={9}
+                maxZoom={18}
+                doubleClickZoom={false}
+                zoomControl={false}
+                attributionControl={false}
+            >
+                <ClickHandler onClick={handleClick} />
+                <MapBackgroundColor theme={theme} />
+                <MapViewport position={position} zoom={zoom} />
+
+                <Pane
+                    key={theme}
+                    name={'cc-base-pane'}
+                    style={{zIndex: 50}}
                 >
-                    <ClickHandler onClick={this.handleClick} />
-                    <MapBackgroundColor theme={this.state.theme} />
-                    <MapViewport position={this.state.position} zoom={this.state.zoom} />
+                    <CityBaseMapLayer theme={theme} />
+                    <BuildingBaseLayer theme={theme} />
+                </Pane>
 
-                    <Pane
-                        key={this.state.theme}
-                        name={'cc-base-pane'}
-                        style={{zIndex: 50}}
-                    >
-                        <CityBaseMapLayer theme={this.state.theme} />
-                        <BuildingBaseLayer theme={this.state.theme} />
-                    </Pane>
+                {
+                    mapColourScale &&
+                        <BuildingDataLayer
+                            tileset={mapColourScale}
+                            revisionId={revisionId}
+                        />
+                }
 
+                <Pane
+                    name='cc-overlay-pane'
+                    style={{zIndex: 300}}
+                >
+                    <CityBoundaryLayer />
+                    <BuildingNumbersLayer revisionId={revisionId} />
                     {
-                        tileset &&
-                            <BuildingDataLayer
-                                tileset={tileset}
-                                revisionId={this.props.revisionId}
+                        selectedBuildingId &&
+                            <BuildingHighlightLayer
+                                selectedBuildingId={selectedBuildingId}
+                                baseTileset={mapColourScale} 
                             />
                     }
+                </Pane>
 
-                    <Pane
-                        name='cc-overlay-pane'
-                        style={{zIndex: 300}}
-                    >
-                        <CityBoundaryLayer />
-                        <BuildingNumbersLayer revisionId={this.props.revisionId} />
-                        {
-                            this.props.selectedBuildingId &&
-                                <BuildingHighlightLayer
-                                    selectedBuildingId={this.props.selectedBuildingId}
-                                    baseTileset={tileset} 
-                                />
-                        }
-                    </Pane>
-
-                    <ZoomControl position="topright" />
-                    <AttributionControl prefix=""/>
-                </MapContainer>
-                {
-                    this.props.mode !== 'basic' &&
-                    <Fragment>
-                        {
-                            !hasSelection &&
-                            <div className="map-notice">
-                                <HelpIcon /> {isEdit ? 'Click a building to edit' : 'Click a building for details'}
-                            </div>
-                        }
-                        <Legend legendConfig={categoryMapDefinition?.legend} />
-                        <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={this.state.theme} />
-                        <SearchBox onLocate={this.handleLocate} />
-                    </Fragment>
-                }
-            </div>
-        );
-    }
+                <ZoomControl position="topright" />
+                <AttributionControl prefix=""/>
+            </MapContainer>
+            {
+                mode !== 'basic' &&
+                <>
+                    {
+                        !hasSelection &&
+                        <div className="map-notice">
+                            <HelpIcon /> {isEdit ? 'Click a building to edit' : 'Click a building for details'}
+                        </div>
+                    }
+                    <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={setMapColourScale}/>
+                    <ThemeSwitcher onSubmit={themeSwitch} currentTheme={theme} />
+                    <SearchBox onLocate={handleLocate} />
+                </>
+            }
+        </div>
+    );
 }
 
 function ClickHandler({ onClick }: {onClick: (e) => void}) {
@@ -180,5 +182,3 @@ function MapViewport({
 
     return null;
 }
-
-export default ColouringMap;

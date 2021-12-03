@@ -14,6 +14,7 @@ visualising twelve categories of information on London’s buildings.
 ## Structure
 
 This repository will contain open-source code for the project which:
+
 - stores building footprint polygons and source metadata
 - allows site users to record building attribute data
 - serves map tiles rendered from collected data
@@ -25,8 +26,8 @@ for download under a liberal open data license
 
 ## Setup and run
 
-1. Provision database (see `migrations`)
-1. Load buildings and geometries to database (see `etl`)
+1. Provision database (see [migrations](migrations/README.md))
+1. Load buildings and geometries to database (see [etl](etl/README.md))
 1. Install app dependencies: `cd app && npm i`
 1. Run tests: `npm test`
 1. Run app: `npm start`

@@ -23,8 +23,8 @@ export interface CategoryMapDefinition {
 
 export const defaultMapCategory = Category.Age;
 
-export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
-    [Category.Age]: {
+export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = {
+    [Category.Age]: [{
         mapStyle: 'date_year',
         legend: {
             title: 'Age',
@@ -46,8 +46,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
                 { color: '#d0c291', text: '<1700' },
             ]
         },
-    },
-    [Category.Size]: {
+    }],
+    [Category.Size]: [{
         mapStyle: 'size_height',
         legend: {
             title: 'Height to apex',
@@ -62,15 +62,15 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
                 { color: '#980043', text: '≥152'}
             ]
         },
-    },
-    [Category.Team]: {
+    }],
+    [Category.Team]: [{
         mapStyle: undefined,
         legend: {
             title: 'Team',
             elements: []
         },
-    },
-    [Category.Construction]: {
+    }],
+    [Category.Construction]: [{
         mapStyle: 'construction_core_material',
         legend: {
             title: 'Construction',
@@ -85,8 +85,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
                 { color: "#c48a85", text: "Other Man-Made Material" }
             ]
         },
-    },
-    [Category.Location]: {
+    }],
+    [Category.Location]: [{
         mapStyle: 'location',
         legend: {
             title: 'Location',
@@ -99,23 +99,52 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
                 { color: '#bae4bc', text: '<20%' }
             ]
         },
-    },
-    [Category.Community]: {
-        mapStyle: 'likes',
-        legend: {
-            title: 'Like Me',
-            elements: [
-                { color: '#bd0026', text: '👍👍👍👍 100+' },
-                { color: '#e31a1c', text: '👍👍👍 50–99' },
-                { color: '#fc4e2a', text: '👍👍 20–49' },
-                { color: '#fd8d3c', text: '👍👍 10–19' },
-                { color: '#feb24c', text: '👍 3–9' },
-                { color: '#fed976', text: '👍 2' },
-                { color: '#ffe8a9', text: '👍 1'}
-            ]
+    }],
+    [Category.Community]: [
+        {
+            mapStyle: 'likes',
+            legend: {
+                title: 'Like Me',
+                elements: [
+                    { color: '#bd0026', text: '👍👍👍👍 100+' },
+                    { color: '#e31a1c', text: '👍👍👍 50–99' },
+                    { color: '#fc4e2a', text: '👍👍 20–49' },
+                    { color: '#fd8d3c', text: '👍👍 10–19' },
+                    { color: '#feb24c', text: '👍 3–9' },
+                    { color: '#fed976', text: '👍 2' },
+                    { color: '#ffe8a9', text: '👍 1'}
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_local_significance_total',
+            legend: {
+                title: 'Local Significance',
+                description: 'People who think the building should be locally listed',
+                elements: [
+                    { color: '#bd0026', text: '100+' },
+                    { color: '#e31a1c', text: '50–99' },
+                    { color: '#fc4e2a', text: '20–49' },
+                    { color: '#fd8d3c', text: '10–19' },
+                    { color: '#feb24c', text: '3–9' },
+                    { color: '#fed976', text: '2' },
+                    { color: '#ffe8a9', text: '1'}
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_in_public_ownership',
+            legend: {
+                title: 'Public Ownership',
+                description: 'Is the building in some form of public/community ownership',
+                elements: [
+                    {color: '#1166ff', text: 'Yes'},
+                    {color: '#ffaaa0', text: 'No'}
+                ]
+            }
         }
-    },
-    [Category.Planning]: {
+    ],
+    [Category.Planning]: [{
         mapStyle: 'planning_combined',
         legend: {
             title: 'Statutory protections',
@@ -128,8 +157,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
                 { color: '#858ed4', text: 'Locally listed'},
             ]
         },
-    },
-    [Category.Sustainability]: {
+    }],
+    [Category.Sustainability]: [{
         mapStyle: 'sust_dec',
         legend: {
             title: 'Sustainability',
@@ -144,8 +173,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
                 { color: "#e31d23", text: 'G' },
             ]
         },
-    },
-    [Category.Type]: {
+    }],
+    [Category.Type]: [{
         mapStyle: 'building_attachment_form',
         legend: {
             title: 'Type',
@@ -156,8 +185,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
                 { color: "#226291", text: "Mid-Terrace" }
             ]
         },
-    },
-    [Category.LandUse]: {
+    }],
+    [Category.LandUse]: [{
         mapStyle: 'landuse',
         legend: {
             title: 'Land Use',
@@ -177,15 +206,15 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
                 { color: '#ffffff', text: 'Vacant & Derelict' }
             ]
         },
-    },
-    [Category.Streetscape]: {
+    }],
+    [Category.Streetscape]: [{
         mapStyle: undefined,
         legend: {
             title: 'Streetscape',
             elements: []
         },
-    },
-    [Category.Dynamics]: {
+    }],
+    [Category.Dynamics]: [{
         mapStyle: 'dynamics_demolished_count',
         legend: {
             title: 'Dynamics',
@@ -218,6 +247,6 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition} = {
                 }
             ],
         },
-    }
+    }]
     
 };

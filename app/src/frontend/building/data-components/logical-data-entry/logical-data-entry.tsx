@@ -44,6 +44,17 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
     );
 }
 
+const ClearButton = ({
+    onClick,
+    disabled
+}) => {
+    return <div className="btn-group btn-group-toggle">
+        <label>
+        <button type="button" className="btn btn-outline-warning" onClick={onClick} disabled={disabled}>Clear</button>
+        </label>
+        </div>
+}
+
 interface LogicalDataEntryProps extends BaseDataEntryProps {
     value: boolean;
     disallowTrue?: boolean;
@@ -53,7 +64,11 @@ interface LogicalDataEntryProps extends BaseDataEntryProps {
 
 export const LogicalDataEntry: React.FC<LogicalDataEntryProps> = (props) => {
     function handleValueChange(e: React.ChangeEvent<HTMLInputElement>) {
-        props.onChange?.(props.slug, e.target.value === 'null' ? null : e.target.value === 'true');
+        props.onChange?.(props.slug, e.target.value === 'true');
+    }
+
+    function handleClear(e: React.MouseEvent<HTMLButtonElement>) {
+        props.onChange?.(props.slug, null);
     }
 
     const isDisabled = props.mode === 'view' || props.disabled;
@@ -76,16 +91,6 @@ export const LogicalDataEntry: React.FC<LogicalDataEntryProps> = (props) => {
                     uncheckedClassName='btn-outline-dark'
                     onChange={handleValueChange}
                 >Yes</ToggleButton>
-
-                <ToggleButton
-                    value="null"
-                    checked={props.value == null}
-                    disabled={isDisabled || props.disallowNull}
-                    checkedClassName='btn-secondary active'
-                    uncheckedClassName='btn-outline-dark'
-                    onChange={handleValueChange}
-                >?</ToggleButton>
-
                 <ToggleButton
                     value="false"
                     checked={props.value === false}
@@ -95,6 +100,10 @@ export const LogicalDataEntry: React.FC<LogicalDataEntryProps> = (props) => {
                     onChange={handleValueChange}
                 >No</ToggleButton>
             </div>
+                {
+                    !isDisabled && props.value != null &&
+                    <ClearButton onClick={handleClear} disabled={props.disallowNull}/>
+                }
         </>
     );
 };

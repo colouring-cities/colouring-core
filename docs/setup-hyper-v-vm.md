@@ -1,6 +1,6 @@
 # Setting up a Hyper-V Virtual Machine
 
-#### Prequisites
+#### Prerequisites
 
 This guide is written for Hyper-V running on MS Windows Server, in this case Windows Server Datacenter 2019.
 
@@ -46,7 +46,7 @@ At the next screen configure the network adapter. This will typically be a Ether
 
 ---
 
-At the next screen configure the virtual hard disk. It makes sense to create a dedicated virtual hard disk and to store it in a sensible location. The size choosen *is important* as (unlike the RAM value) it is not trivial to change this later (see diagram below).
+At the next screen configure the virtual hard disk. It makes sense to create a dedicated virtual hard disk and to store it in a sensible location. The size chosen *is important* as (unlike the RAM value) it is not trivial to change this later (see diagram below).
 
 ![](./images/hyper-v/hyper_v_6.png)
 
