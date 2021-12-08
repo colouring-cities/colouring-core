@@ -18,7 +18,7 @@ export function CityBaseMapLayer({ theme }: { theme: MapTheme }) {
     const apiKey = OS_API_KEY;
 
     // Note that OS APIs does not provide dark theme
-    const layer = theme === 'light' ? 'Light_3857' : 'Light_3857';
+    const layer = 'Light_3857';
 
     // In either theme case, we will use OS's light theme, but add our own filter
     const theme_class = theme === 'light' ? "light-theme" : "night-theme";
