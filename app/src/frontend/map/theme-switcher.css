@@ -1,3 +1,11 @@
+.night-theme {
+    filter: grayscale(100%) invert(1);
+}
+
+.light-theme {
+    filter: none;
+}
+
 .theme-switcher {
     z-index: 1000;
     position: absolute;

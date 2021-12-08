@@ -144,7 +144,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                         </div>
                     }
                     <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={setMapColourScale}/>
-                    {/* <ThemeSwitcher onSubmit={this.themeSwitch} currentTheme={theme} /> */}
+                    <ThemeSwitcher onSubmit={themeSwitch} currentTheme={theme} />
                     <SearchBox onLocate={handleLocate} />
                 </>
             }
