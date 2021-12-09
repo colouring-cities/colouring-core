@@ -40,7 +40,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
     children
 }) => {
 
-    const [theme, setTheme] = useState<MapTheme>('light');
+    const [theme, setTheme] = useState<MapTheme>('night');
     const [position, setPosition] = useState(initialMapViewport.position);
     const [zoom, setZoom] = useState(initialMapViewport.zoom);
 
