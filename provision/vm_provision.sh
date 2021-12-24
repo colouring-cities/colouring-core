@@ -26,12 +26,12 @@ apt-get update
 # Install:
 # - basics:  build-essential git vim-nox
 # - python with pip and venv:  python3 python3-pip python3-dev
-# - postgres and postgis: postgresql postgresql-contrib libpq-dev postgis postgresql-10-postgis-2.4
+# - postgres and postgis: postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3
 # - spatial shared libs:  gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 apt-get install -y \
     build-essential git vim-nox wget curl \
     python3 python3-pip python3-dev python3-venv \
-    postgresql postgresql-contrib libpq-dev postgis postgresql-10-postgis-2.4 \
+    postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3 \
     gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 
 

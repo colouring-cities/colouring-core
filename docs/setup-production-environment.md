@@ -3,7 +3,7 @@
 
 #### Preliminaries
 
-This guide assumes a virtual environment (VM) running Ubuntu 18_04.
+This guide assumes a virtual environment (VM) running Ubuntu 20_04.
 
 Install updates to packages:
 
@@ -28,7 +28,7 @@ Install some useful development tools
 
 Install Postgres and associated tools
 
-`sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-10-postgis-2.4`
+`sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3`
 
 `sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev`
 
