@@ -152,8 +152,8 @@ root user profile. Don't forget to exit from root at the end.
 ```
 sudo su root
 export NODEJS_HOME=/usr/local/lib/node/node-v12.14.1/bin/
-export PATH=$NODEJS_HOME:$PATH`
-npm install -g npm@next`
+export PATH=$NODEJS_HOME:$PATH
+npm install -g npm@next
 exit
 ```
 
