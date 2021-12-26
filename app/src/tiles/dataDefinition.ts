@@ -149,11 +149,20 @@ const LAYER_QUERIES = {
     landuse: `
         SELECT
             geometry_id,
-            current_landuse_order
+            current_landuse_order,
+            CASE WHEN (
+                    (verified_value = '["Dwellings"]' AND current_landuse_group::text = '{Dwellings}' AND attribute = 'current_landuse_group')
+                    OR
+                    (current_landuse_group::text != '{Dwellings}' AND current_landuse_order = 'Residential')
+                )
+                THEN 1 ELSE 0
+            END AS verified_residential
         FROM
             buildings
-        WHERE
-            current_landuse_order IS NOT NULL`,
+        LEFT OUTER JOIN
+            building_verification
+        ON
+            buildings.building_id = building_verification.building_id`,
     dynamics_demolished_count: `
         SELECT
             geometry_id,

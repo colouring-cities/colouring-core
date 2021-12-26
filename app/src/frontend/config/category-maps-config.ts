@@ -194,6 +194,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 { color: '#e5050d', text: 'Mixed Use' },
                 { subtitle: 'Single use:'},
                 { color: '#4a54a6', text: 'Residential' },
+                { color: '#6c6f8e', text: 'Residential (unverified)' },
                 { color: '#ff8c00', text: 'Retail' },
                 { color: '#f5f58f', text: 'Industry & Business' },
                 { color: '#73ccd1', text: 'Community Services' },

@@ -530,7 +530,11 @@
             <PolygonSymbolizer fill="#cccccc" />
         </Rule>
         <Rule>
-            <Filter>[current_landuse_order] = "Residential"</Filter>
+            <Filter>[current_landuse_order] = "Residential" and [verified_residential] = 0</Filter>
+            <PolygonSymbolizer fill="#6c6f8e" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Residential" and [verified_residential] = 1</Filter>
             <PolygonSymbolizer fill="#4a54a6" />
         </Rule>
         <Rule>

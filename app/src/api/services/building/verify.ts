@@ -3,6 +3,7 @@ import { BaseBuilding } from '../../models/building';
 import * as buildingDataAccess from '../../dataAccess/building';
 import * as verifyDataAccess from '../../dataAccess/verify';
 import { DatabaseError } from '../../errors/general';
+import { expireBuildingTileCache } from './tileCache';
 
 function canVerify(key: string) {
     return buildingAttributesConfig[key].verify === true;
@@ -45,6 +46,7 @@ export async function verifyBuildingAttributes(buildingId: number, userId: strin
             throw new DatabaseError(msg);
         }
     }
+    expireBuildingTileCache(buildingId);
     return verified;
 }
 
