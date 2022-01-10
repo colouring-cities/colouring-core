@@ -235,6 +235,8 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                         Confetti({
                             angle: 60,
                             disableForReducedMotion: true,
+                            particleCount: 200,
+                            ticks: 300,
                             origin: {x, y},
                             zIndex: 2000
                         });
