@@ -518,6 +518,10 @@
             <PolygonSymbolizer fill="#53f5dd" />
         </Rule>
         <Rule>
+            <Filter>[current_landuse_order] = "Unknown buildings"</Filter>
+            <PolygonSymbolizer fill="#6c6f8e" />
+        </Rule>
+        <Rule>
             <Filter>[current_landuse_order] = "Recreation And Leisure"</Filter>
             <PolygonSymbolizer fill="#ffbfbf" />
         </Rule>
@@ -531,7 +535,7 @@
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Residential"</Filter>
-            <PolygonSymbolizer fill="#4a54a6" />
+            <PolygonSymbolizer fill="#252aa6" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Community Services"</Filter>
