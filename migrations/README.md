@@ -14,8 +14,9 @@ $ psql "host={hostname} user={username} port={port} sslmode=require dbname=postg
 
 To run all up migrations:
 
+OSX:
 ```bash
-$ ls ./*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
+$ bash up_migrate.sh
 ```
 
 Or all down migrations in reverse order:
@@ -26,29 +27,8 @@ $ ls -r ./*.down.sql 2>/dev/null | while read -r migration; do psql < $migration
 
 Create an app user:
 
-```sql
--- role for server-side of front end (HTTP POST)
-CREATE ROLE appusername WITH LOGIN;
--- create/update, authenticate and authorise users
-GRANT SELECT, UPDATE, INSERT, DELETE ON TABLE users, user_sessions TO appusername;
--- join users against categories and access levels
-GRANT SELECT ON TABLE user_access_levels, user_categories TO appusername;
--- read/write building data
-GRANT SELECT, UPDATE ON TABLE buildings TO appusername;
-GRANT SELECT, INSERT, DELETE ON TABLE building_user_likes TO appusername;
-GRANT SELECT ON TABLE building_properties TO appusername;
--- read geometry data
-GRANT SELECT ON TABLE geometries TO appusername;
--- read/append to logs
-GRANT SELECT, INSERT ON TABLE logs to appusername;
--- use id sequences
-GRANT USAGE ON ALL SEQUENCES IN SCHEMA public to appusername;
--- use postgis/pgcrypto functions
-GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO appusername;
--- read map search locations
-GRANT SELECT ON TABLE search_locations to appusername;
--- add/save user building attribute verification
-GRANT SELECT, INSERT, DELETE ON TABLE building_verification TO appusername;
+```bash
+$ psql -d colouringlondon -f setup.sql
 ```
 
 Set or update passwords:
