@@ -11,4 +11,4 @@ For example
 
 ## Commits
 
-Commit messages should start from an upper case. So `Change public ownership sources field to array` is preferred oved `change public ownership sources field to array`.
+Commit messages should start from an upper case. So `Change public ownership sources field to array` is preferred over `change public ownership sources field to array`.
