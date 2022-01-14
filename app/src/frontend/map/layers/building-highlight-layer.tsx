@@ -10,7 +10,7 @@ export function BuildingHighlightLayer({selectedBuildingId, baseTileset}: {selec
                 key={`${selectedBuildingId}-${baseTileset}`} /* needed because TileLayer url is not mutable in react-leaflet v3 */
                 url={getTileLayerUrl('highlight', {highlight: `${selectedBuildingId}`, base: baseTileset})}
                 minZoom={13}
-                maxZoom={19}
+                maxZoom={21}
                 detectRetina={true}
             />;
 }
