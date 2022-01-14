@@ -45,6 +45,8 @@ TILECACHE_PATH=/path/to/tilecache/directory \
     npm start
 ```
 
+[Provision script](provision/vm_provision.sh) can be also of interest.
+
 ## Acknowledgements
 
 Colouring London was set up at the Centre for Advanced Spatial
