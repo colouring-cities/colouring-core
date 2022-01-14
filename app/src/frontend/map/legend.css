@@ -123,11 +123,14 @@
 .expander-button:hover {
     box-shadow: none;
 }
+/* hides expander/hider button of legend on a small screens */
+/*
 @media (min-height: 670px) and (min-width: 880px) {
     .expander-button {
         visibility: hidden;
     }
 }
+*/
 
 .map-legend .logo {
     padding: 0 0.5rem 0.5rem;
