@@ -1,6 +1,6 @@
 {
   "projectName": "colouring-london",
-  "projectOwner": "tomalrussell",
+  "projectOwner": "colouring-cities",
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [
@@ -31,6 +31,16 @@
         "ideas",
         "code",
         "doc"
+      ]
+    },    
+    {
+      "login": "mz8i",
+      "name": "mz8i",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/36160844?v=4",
+      "profile": "https://github.com/mz8i",
+      "contributions": [
+        "code",
+        "ideas"
       ]
     },
     {
@@ -71,15 +81,53 @@
       ]
     },
     {
-      "login": "mz8i",
-      "name": "mz8i",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/36160844?v=4",
-      "profile": "https://github.com/mz8i",
+      "login": "MeldaS",
+      "name": "MeldaS",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/33935846?v=4",
+      "profile": "https://github.com/MeldaS",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "",
+      "name": "Tarn Hamilton",
+      "avatar_url": "docs/images/green.png",
+      "profile": "#",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "",
+      "name": "Louis Jobst",
+      "avatar_url": "docs/images/yellow.png",
+      "profile": "http://www.louisjobst.com/index.php/about/",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "edwardchalstrey1",
+      "name": "Ed Chalstrey",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5486164?v=4",
+      "profile": "http://edchalstrey.com/",
       "contributions": [
         "code",
-        "ideas"
+        "doc"
+      ]
+    },
+    {
+      "login": "matkoniecz",
+      "name": "Mateusz Konieczny",
+      "avatar_url": "https://avatars.githubusercontent.com/u/899988?v=4",
+      "profile": "https://mapsaregreat.com/",
+      "contributions": [
+        "code",
+        "doc"
       ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }

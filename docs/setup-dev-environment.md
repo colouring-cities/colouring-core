@@ -1,7 +1,7 @@
 # Setting up a local development environment
 
 This document is intended to guide you through setting up a local development environment for
-Colouring London. This guide assumes you already have Ubuntu 18.04 server installed, typically
+Colouring London. This guide assumes you already have Ubuntu 20.04 server installed, typically
 installed in a virtual environment such a Virtual Box and are able to SSH into your Ubuntu
 installation for convenience.
 
@@ -24,7 +24,7 @@ Now install python and related tools.
 
 Next install postgres and postgis to enable support for geographical objects.
 
-`sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-10-postgis-2.4`
+`sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3`
 
 and additional geo-spatial tools
 
