@@ -204,7 +204,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 { color: '#fa667d', text: 'Agriculture' },
                 { color: '#53f5dd', text: 'Minerals' },
                 { color: '#ffffff', text: 'Vacant & Derelict' },
-                { color: '#6c6f8e', text: 'Unknown buildings' }
+                { color: '#6c6f8e', text: 'Unclassified buildings' }
             ]
         },
     }],

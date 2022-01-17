@@ -518,7 +518,7 @@
             <PolygonSymbolizer fill="#53f5dd" />
         </Rule>
         <Rule>
-            <Filter>[current_landuse_order] = "Unknown buildings"</Filter>
+            <Filter>[current_landuse_order] = "Unclassified buildings"</Filter>
             <PolygonSymbolizer fill="#6c6f8e" />
         </Rule>
         <Rule>
