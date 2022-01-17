@@ -1,6 +1,6 @@
 {
   "projectName": "colouring-london",
-  "projectOwner": "tomalrussell",
+  "projectOwner": "colouring-cities",
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [
@@ -79,7 +79,18 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "edwardchalstrey1",
+      "name": "Ed Chalstrey",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5486164?v=4",
+      "profile": "http://edchalstrey.com/",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
