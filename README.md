@@ -58,7 +58,7 @@ and technical support.
 ## License
 
     Colouring London
-    Copyright (C) 2018 Tom Russell and Colouring London contributors
+    Copyright (C) 2018-2022 Tom Russell and Colouring London contributors
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
