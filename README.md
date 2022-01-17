@@ -91,8 +91,8 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/all-contri
     <td align="center"><a href="https://github.com/mz8i"><img src="https://avatars2.githubusercontent.com/u/36160844?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mz8i</b></sub></a><br /><a href="https://github.com/colouring-cities/colouring-london/commits?author=mz8i" title="Code">💻</a> <a href="#ideas-mz8i" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/edwardchalstrey1"><img src="https://www.gravatar.com/avatar/86760965588048d266a6bf9f50f18a16?s=100" width="100px;" alt=""/><br /><sub><b>edwardchalstrey1</b></sub></a><br /><a href="https://github.com/colouring-cities/colouring-london/commits?author=edwardchalstrey1" title="Code">💻</a> <a href="https://github.com/colouring-cities/colouring-london/commits?author=edwardchalstrey1" title="Documentation">📖</a></td>
     <td align="center"><a href="https://mapsaregreat.com/"><img src="https://avatars.githubusercontent.com/u/899988?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mateusz Konieczny</b></sub></a><br /><a href="https://github.com/colouring-cities/colouring-london/commits?author=matkoniecz" title="Code">💻</a> <a href="https://github.com/colouring-cities/colouring-london/commits?author=matkoniecz" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://edchalstrey.com/"><img src="https://avatars.githubusercontent.com/u/5486164?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ed Chalstrey</b></sub></a><br /><a href="https://github.com/colouring-cities/colouring-london/commits?author=edwardchalstrey1" title="Code">💻</a> <a href="https://github.com/colouring-cities/colouring-london/commits?author=edwardchalstrey1" title="Documentation">📖</a></td>
   </tr>
 </table>
 
