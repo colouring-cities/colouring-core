@@ -79,6 +79,16 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "edwardchalstrey1",
+      "name": "edwardchalstrey1",
+      "avatar_url": "https://www.gravatar.com/avatar/86760965588048d266a6bf9f50f18a16",
+      "profile": "https://github.com/edwardchalstrey1",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7
