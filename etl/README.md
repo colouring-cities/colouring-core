@@ -93,6 +93,10 @@ psql < ../migrations/002.index-geometries.up.sql
 psql < ../migrations/003.index-buildings.up.sql
 ```
 
+#### TODO:
+
+There is a script in this dir called `WIP_get_test_polygons_osmnx_112.py` which attempts to get the OSM test polygons with the latest version of the `osmnx` package  - functions changed in this [PR](https://github.com/gboeing/osmnx/pull/542).
+
 ## Finally
 
 Run the remaining migrations in `../migrations` to create the rest of the database structure.
