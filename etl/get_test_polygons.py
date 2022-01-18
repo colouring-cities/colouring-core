@@ -21,7 +21,8 @@ size = 256
 # load buildings from about 1.5km² around UCL
 point = (51.524498, -0.133874)
 dist = 612
-gdf = osmnx.footprints_from_point(point=point, dist=dist)
+tags = {'building': True}
+gdf = osmnx.geometries_from_point(center_point=point, dist=dist, tags=tags)
 
 # preview image
 gdf_proj = osmnx.projection.project_gdf(gdf, to_crs={'init': 'epsg:3857'})
