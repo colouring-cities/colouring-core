@@ -3,6 +3,7 @@
 Initial setup, on first connection (replacing hostname, username, port, dbname as required):
 
 ```bash
+$ sudo -i -u postgres
 $ psql "host={hostname} user={username} port={port} sslmode=require dbname=postgres"
 > create database colouringlondon;
 > \c colouringlondon
@@ -14,16 +15,18 @@ $ psql "host={hostname} user={username} port={port} sslmode=require dbname=postg
 
 To run all up migrations:
 
-OSX:
+in vagrant:
 ```bash
+$ sudo -i -u postgres
+$ cd ../../../vagrant/colouring-london/migrations
 $ bash up_migrate.sh
 ```
 
-Or all down migrations in reverse order:
+<!-- Or all down migrations in reverse order:
 
 ```bash
 $ ls -r ./*.down.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
-```
+``` -->
 
 Create an app user:
 
