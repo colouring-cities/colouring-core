@@ -107,11 +107,11 @@ $ sudo -i -u postgres
 $ cd ../../../vagrant/colouring-london/etl
 ./load_geometries.sh ./
 # index geometries (should be faster after loading)
-psql < ../migrations/002.index-geometries.up.sql
+psql -d colouringlondon < ../migrations/002.index-geometries.up.sql
 # create a building record per outline
 ./create_building_records.sh
 # index building records
-psql < ../migrations/003.index-buildings.up.sql
+psql -d colouringlondon < ../migrations/003.index-buildings.up.sql
 ```
 
 #### TODO:
