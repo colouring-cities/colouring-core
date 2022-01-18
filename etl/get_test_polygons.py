@@ -30,7 +30,7 @@ gdf_proj = gdf_proj[gdf_proj.geometry.apply(lambda g: g.geom_type != 'MultiPolyg
 
 fig, ax = osmnx.plot_footprints(gdf_proj, bgcolor='#333333', color='w', figsize=(4,4),
                                save=True, show=False, close=True,
-                               filename='test_buildings_preview', dpi=600)
+                               filepath='test_buildings_preview.png', dpi=600)
 
 # save
 test_dir = os.path.dirname(__file__)
