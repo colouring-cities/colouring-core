@@ -21,7 +21,8 @@ size = 256
 # load buildings from about 1.5km² around UCL
 point = (51.524498, -0.133874)
 dist = 612
-gdf = osmnx.footprints_from_point(point=point, dist=dist)
+tags = {'building': True}
+gdf = osmnx.geometries_from_point(center_point=point, dist=dist, tags=tags)
 
 # preview image
 gdf_proj = osmnx.projection.project_gdf(gdf, to_crs={'init': 'epsg:3857'})
@@ -29,17 +30,23 @@ gdf_proj = gdf_proj[gdf_proj.geometry.apply(lambda g: g.geom_type != 'MultiPolyg
 
 fig, ax = osmnx.plot_footprints(gdf_proj, bgcolor='#333333', color='w', figsize=(4,4),
                                save=True, show=False, close=True,
-                               filename='test_buildings_preview', dpi=600)
+                               filepath='test_buildings_preview.png', dpi=600)
 
 # save
 test_dir = os.path.dirname(__file__)
 test_data_geojson = str(os.path.join(test_dir, 'test_buildings.geojson'))
-subprocess.run(["rm", test_data_geojson])
+# subprocess.run(["rm", test_data_geojson])
 
+# gdf_to_save = gdf_proj.reset_index(
+# )[
+#     ['index', 'geometry']
+# ]
 gdf_to_save = gdf_proj.reset_index(
 )[
-    ['index', 'geometry']
+    ['geometry']
 ]
+# g
+# gdf_to_save = gdf_proj.set_index('geometry')
 
 gdf_to_save.rename(
     columns={'index': 'fid'}
@@ -49,7 +56,7 @@ gdf_to_save.rename(
 
 # convert to CSV
 test_data_csv = str(os.path.join(test_dir, 'test_buildings.3857.csv'))
-subprocess.run(["rm", test_data_csv])
+# subprocess.run(["rm", test_data_csv])
 subprocess.run(["ogr2ogr", "-f", "CSV", test_data_csv, test_data_geojson, "-lco", "GEOMETRY=AS_WKT"])
 
 # add SRID for ease of loading to PostgreSQL

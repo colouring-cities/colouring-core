@@ -66,7 +66,14 @@ psql < ../migrations/003.index-buildings.sql
 
 ## Alternative, using OpenStreetMap
 
-This uses the [osmnx](https://github.com/gboeing/osmnx) python package to get OpenStreetMap data. You will need python and to [install osmnx](https://osmnx.readthedocs.io/en/stable/index.html#installation) to run `get_test_polygons.py`.
+This uses the [osmnx](https://github.com/gboeing/osmnx) python package to get OpenStreetMap data. You will need python & pip and to install `osmnx` to run `get_test_polygons.py`.
+
+Install `osmnx`: 
+```bash
+pip install osmnx==0.13
+```
+
+(full [osmnx docs](https://osmnx.readthedocs.io))
 
 To help test the Colouring London application, `get_test_polygons.py` will attempt to save a
 small (1.5km²) extract from OpenStreetMap to a format suitable for loading to the database.
