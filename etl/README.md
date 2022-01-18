@@ -82,6 +82,7 @@ OR -->
 
 ```bash
 sudo apt-get install gdal-bin
+sudo apt install parallel
 conda env create -f environment.yml
 conda activate polygons
 ```
