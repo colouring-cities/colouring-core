@@ -30,6 +30,7 @@ for download under a liberal open data license
 2. `vagrant ssh`
 1. Provision database (see [migrations](migrations/README.md))
 1. Load buildings and geometries to database (see [etl](etl/README.md))
+1. `sudo apt install nodejs npm`
 1. Install app dependencies: `cd app && npm i`
 1. Run tests: `npm test`
 1. Run app: `npm start`
