@@ -74,7 +74,12 @@ and technical support.
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ## Contributors
-
+<!-- this section is updated using external bot, see https://allcontributors.org/docs/en/bot/usage - post comment like
+@all-contributors please add @<username> for <contributions>
+to trigger it, for example
+@all-contributors please add @<username> for code
+@all-contributors please add @<username> for code and docs
+-->
 Thanks goes to these wonderful people ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
