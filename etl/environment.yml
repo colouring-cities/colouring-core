@@ -1,0 +1,10 @@
+name: polygons
+channels:
+    - conda-forge
+dependencies:
+    - python=3.8
+    - cython
+    - proj
+    - pip
+    - pip:
+        - osmnx==0.13

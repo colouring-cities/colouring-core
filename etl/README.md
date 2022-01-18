@@ -68,10 +68,28 @@ psql < ../migrations/003.index-buildings.sql
 
 This uses the [osmnx](https://github.com/gboeing/osmnx) python package to get OpenStreetMap data. You will need python & pip and to install `osmnx` to run `get_test_polygons.py`.
 
-Install `osmnx`: 
+
+In vagrant:
+- Install anaconda: https://linuxize.com/post/how-to-install-anaconda-on-ubuntu-20-04/
+<!-- ```bash
+sudo apt install python3.8
+sudo apt install python3-pip
+pip3 install cython
+sudo apt-get install proj-bin <- gets an old version of proj
+```
+
+OR -->
+
+```bash
+sudo apt-get install gdal-bin
+conda env create -f environment.yml
+conda activate polygons
+```
+
+<!-- Install `osmnx`: 
 ```bash
 pip install osmnx==0.13
-```
+``` -->
 
 (full [osmnx docs](https://osmnx.readthedocs.io))
 
@@ -84,6 +102,8 @@ In this case, run:
 # download test data
 python get_test_polygons.py
 # load all building outlines
+$ sudo -i -u postgres
+$ cd ../../../vagrant/colouring-london/etl
 ./load_geometries.sh ./
 # index geometries (should be faster after loading)
 psql < ../migrations/002.index-geometries.up.sql
