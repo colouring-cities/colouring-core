@@ -34,6 +34,7 @@ apt-get install -y \
     postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3 \
     gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 
+apt-get install -y libgdal-dev # TODO: it is not mentioned elsewhere but without it fional fails to install. Investigate.
 
 #
 # Install node.js (node and npm)
