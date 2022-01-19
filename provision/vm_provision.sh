@@ -28,13 +28,13 @@ apt-get update
 # - python with pip and venv:  python3 python3-pip python3-dev
 # - postgres and postgis: postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3
 # - spatial shared libs:  gdal-bin libspatialindex-dev libgeos-dev libproj-dev
-apt-get install -y \
+apt-get install -y --quiet \
     build-essential git vim-nox wget curl \
     python3 python3-pip python3-dev python3-venv \
     postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3 \
     gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 
-apt-get install -y libgdal-dev # TODO: it is not mentioned elsewhere but without it fiona fails to install. Investigate.
+apt-get install -y --quiet libgdal-dev # TODO: it is not mentioned elsewhere but without it fiona fails to install. Investigate.
 
 
 #
