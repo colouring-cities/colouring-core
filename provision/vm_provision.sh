@@ -117,8 +117,8 @@ chown -R vagrant:vagrant /home/vagrant/colouringlondon
 # Install node modules
 #
 
-# Install latest release of npm
-npm install -g npm@next
+# Install release v6 of npm
+npm install -g npm@6 # TODO: upgrade to later npm to match intended "latest"
 
 # https://stackoverflow.com/questions/69094604/npm-fails-during-npm-install-with-npm-err-maximum-call-stack-size-exceeded
 # npm install on files from host at least sometimes goes down with
