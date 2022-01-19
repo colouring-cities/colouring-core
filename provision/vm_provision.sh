@@ -120,8 +120,20 @@ chown -R vagrant:vagrant /home/vagrant/colouringlondon
 # Install latest release of npm
 npm install -g npm@next
 
+# https://stackoverflow.com/questions/69094604/npm-fails-during-npm-install-with-npm-err-maximum-call-stack-size-exceeded
+# npm install on files from host at least sometimes goes down with
+#
+# 957 verbose stack RangeError: Maximum call stack size exceeded
+# 957 verbose stack     at RegExp.test (<anonymous>)
+# 957 verbose stack     at isDepOptional (/usr/local/lib/node/node-v12.18.1/lib/node_modules/npm/lib/install/deps.js:432:45)
+# 957 verbose stack     at failedDependency (/usr/local/lib/node/node-v12.18.1/lib/node_modules/npm/lib/install/deps.js:441:9)
+# (..)
+#
+# which is avoided when remote files are first copied within VM
+cp /vagrant/app /home/vagrant/ -r
+
 # Local fixed install of node modules
-cd /vagrant/app && npm install
+cd /home/vagrant/app && npm install
 
 
 #
