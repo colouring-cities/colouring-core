@@ -108,6 +108,7 @@ source colouringlondon/bin/activate
 
 # Install smif
 pip install --upgrade pip
+sudo apt install -y  --quiet python3-testresources # to silence an error on install below
 pip install --upgrade setuptools wheel
 pip install -r /vagrant/etl/requirements.txt
 
