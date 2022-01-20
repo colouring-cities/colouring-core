@@ -135,6 +135,9 @@ npm install -g npm@6 # TODO: upgrade to later npm to match intended "latest"
 # which is avoided when remote files are first copied within VM
 cp /vagrant/app /home/vagrant/ -r
 
+# TODO an ugly hack, would be nice to avoid it
+chown -R vagrant:vagrant /home/vagrant/app
+
 # Local fixed install of node modules
 cd /home/vagrant/app && npm install
 
