@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
     # vm.gui = true
 
     # # Customize the amount of memory on the VM:
-    # vm.memory = "1024"
+    vm.memory = "2048" # default, 1024 was not enough
 
     # Enable creating symlinks in shared folder
     # On a Windows host, vagrant will need to run with permissions to 'Create Symlinks', either
