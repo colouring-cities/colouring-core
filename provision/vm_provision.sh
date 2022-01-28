@@ -125,6 +125,35 @@ chown -R vagrant:vagrant /home/vagrant/colouringlondon
 # Install latest release of npm
 npm install -g npm@next
 
+# Things tried:
+# npm install -g npm
+# npm install --save-dev webpack@5 -g
+
+# npm install node-pre-gyp
+
+# node-pre-gyp rebuild
+
+
+
+# git clone https://github.com/mapnik/node-mapnik/
+# cd /node-mapnik
+# make release
+# cd ..
+
+# npm install sharp
+# npm install mapnik
+# npm install node-gyp
+# npm install npm
+
+# npm install gyp
+# sudo npm install -g gyp
+# npm audit fix
+# sudo apt-get install -y libmapnik-dev mapnik-utils python3-mapnik
+
+# sudo npm install --unsafe-perm -g
+
+# npm install razzle -g
+
 # Local fixed install of node modules
 cd /vagrant/app && npm install
 
