@@ -124,6 +124,7 @@ chown -R vagrant:vagrant /home/vagrant/colouringlondon
 
 # Install latest release of npm
 npm install -g npm
+npm install --save-dev webpack@5
 
 # Local fixed install of node modules
 cd /vagrant/app && npm install
