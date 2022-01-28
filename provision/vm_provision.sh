@@ -123,7 +123,7 @@ chown -R vagrant:vagrant /home/vagrant/colouringlondon
 #
 
 # Install latest release of npm
-npm install -g npm@next
+npm install -g npm
 
 # Local fixed install of node modules
 cd /vagrant/app && npm install
