@@ -32,8 +32,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 title={buildingUserFields.community_like.title}
 
                 userValue={props.building.community_like}
-                aggregateValue={props.building.likes_total}
-                aggregationDescriptions={dataFields.likes_total.aggregationDescriptions}
 
                 onChange={props.onSaveChange}
                 mode={props.mode}
@@ -76,8 +74,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 title={buildingUserFields.community_local_significance.title}
                 
                 userValue={props.building.community_local_significance}
-                aggregateValue={props.building.community_local_significance_total}
-                aggregationDescriptions={dataFields.community_local_significance_total.aggregationDescriptions}
 
                 onChange={props.onSaveChange}
                 mode={props.mode}
