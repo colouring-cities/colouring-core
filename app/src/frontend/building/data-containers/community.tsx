@@ -85,7 +85,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             />
         </div>
 
-        <InfoBox>Can you help add information about public ownership of the building?</InfoBox>
+        <InfoBox>Can you help add information on community use of buildings?</InfoBox>
         <LogicalDataEntry
             slug='community_activities'
             title={dataFields.community_activities.title}
