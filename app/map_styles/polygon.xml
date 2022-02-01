@@ -160,7 +160,7 @@
     <Style name="construction_core_material">
         <Rule>
             <Filter>[construction_core_material] = "Wood"</Filter>
-            <PolygonSymbolizer fill="#96613b" />
+            <PolygonSymbolizer fill="#b5a859" />
         </Rule>
         <Rule>
             <Filter>[construction_core_material] = "Stone"</Filter>
@@ -184,7 +184,7 @@
         </Rule>
         <Rule>
             <Filter>[construction_core_material] = "Other Natural Material"</Filter>
-            <PolygonSymbolizer fill="#b5a859" />
+            <PolygonSymbolizer fill="#96613b" />
         </Rule>
         <Rule>
             <Filter>[construction_core_material] = "Other Man-Made Material"</Filter>
