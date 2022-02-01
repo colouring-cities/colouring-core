@@ -507,22 +507,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Total number of likes",
         example: 100,
         tooltip: "People who like the building and think it contributes to the city.",
-        aggregationDescriptions: {
-            zero: "like this building",
-            one: "likes this building",
-            many: "like this building"
-        }
     },
 
     community_local_significance_total: {
         category: Category.Community,
         title: "People who think the building should be recorded as one of local significance",
         example: 100,
-        aggregationDescriptions: {
-            zero: "think this building should be classified as a locally listed heritage asset",
-            one: "thinks this building should be classified as a locally listed heritage asset",
-            many: "think this building should be classified as a locally listed heritage asset"
-        }
     },
 
     community_activities: {
