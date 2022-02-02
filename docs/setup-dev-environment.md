@@ -37,7 +37,7 @@ Now clone the colouring london codebase.
 Now install Node. It is helpful to define some local variables.
 
 ```
-export NODE_VERSION=v12.14.1
+export NODE_VERSION=v16.13.2
 export DISTRO=linux-x64
 wget -nc https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-$DISTRO.tar.xz
 sudo mkdir /usr/local/lib/node
@@ -151,9 +151,9 @@ root user profile. Don't forget to exit from root at the end.
 
 ```
 sudo su root
-export NODEJS_HOME=/usr/local/lib/node/node-v12.14.1/bin/
+export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin/
 export PATH=$NODEJS_HOME:$PATH
-npm install -g npm@next
+npm install -g npm@latest
 exit
 ```
 
