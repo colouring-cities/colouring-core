@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "bento/ubuntu-18.04"
+  config.vm.box = "ubuntu/focal64"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
@@ -30,10 +30,10 @@ Vagrant.configure("2") do |config|
   # Using VirtualBox:
   config.vm.provider :virtualbox do |vm|
     # # Display the VirtualBox GUI when booting the machine
-    # vb.gui = true
+    # vm.gui = true
 
     # # Customize the amount of memory on the VM:
-    # vb.memory = "1024"
+    vm.memory = "2048" # default, 1024 was not enough
 
     # Enable creating symlinks in shared folder
     # On a Windows host, vagrant will need to run with permissions to 'Create Symlinks', either
