@@ -67,7 +67,7 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                 onChange={props.onChange}
             />
             <DataEntry
-                title="Construction system"
+                title="Construction system type"
                 slug=""
                 value=""
                 mode='view'
