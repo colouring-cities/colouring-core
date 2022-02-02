@@ -344,7 +344,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     construction_secondary_materials: {
         category: Category.Construction,
-        title: "Secondary Construction Material/s",
+        title: "Main Secondary Construction Material/s",
         tooltip:"Other construction materials",
         example: "",
     },
