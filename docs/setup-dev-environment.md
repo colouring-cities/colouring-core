@@ -101,7 +101,9 @@ Restart postgres to pick up config changes.
 Create a superuser role for this user (`<username>`) if it does not already exist. The
 password `<pgpassword>` is arbitrary and probably should not be your Ubuntu login password.
 
-`sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<username>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <username> SUPERUSER LOGIN PASSWORD '<pgpassword>';"`
+```
+sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<username>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <username> SUPERUSER LOGIN PASSWORD '<pgpassword>';"
+```
 
 Create a colouring london database if none exists. The name (`<colouringlondondb>`) is arbitrary.
 
