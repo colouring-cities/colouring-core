@@ -172,10 +172,54 @@ local repository, so that it can read from the `package.json` file.
 
 `cd ./colouring-london/app && npm install`
 
+## Load OpenStreetMap test polygons
+
+First Install prerequisites.
+```bash
+sudo apt install parallel
+```
+
+Check you are in the virtual environment you setup earlier, otherwise run:
+```
+source colouringlondon/bin/activate
+```
+
+To help test the Colouring London application, `get_test_polygons.py` will attempt to save a small (1.5km²) extract from OpenStreetMap to a format suitable for loading to the database.
+
+First open `colouring-london/etl/load_geometries.sh` and `colouring-london/etl/create_building_records.sh` and add this `-d` flag to all the `psql` statements present:
+
+```
+-d <colouringlondondb>
+```
+
+Then run:
+
+```bash
+cd ./colouring-london/etl/
+# download test data
+python get_test_polygons.py
+# load all building outlines
+./load_geometries.sh ./
+# index geometries (should be faster after loading)
+psql -d <colouringlondondb> < ../migrations/002.index-geometries.up.sql
+# create a building record per outline
+./create_building_records.sh
+# index building records
+psql -d <colouringlondondb> < ../migrations/003.index-buildings.up.sql
+```
+
+## Finally
+
+Re-run the remaining migrations in `../migrations` to create the rest of the database structure.
+
+`ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;`
+
 
 ## Running the application
 
 Now we are ready to run the application. The `APP_COOKIE_SECRET` is arbitrary.
+
+First `cd ./colouring-london/app`, then:
 
 `PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 npm start`
 
