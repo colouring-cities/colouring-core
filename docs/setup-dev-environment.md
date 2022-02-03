@@ -22,6 +22,14 @@ Now install python and related tools.
 
 `sudo apt-get install -y python3 python3-pip python3-dev python3-venv`
 
+Set the postgres repo for apt.
+
+`sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'`
+
+`sudo wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -`
+
+`sudo apt-get update`
+
 Next install postgres and postgis to enable support for geographical objects.
 
 `sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3`
