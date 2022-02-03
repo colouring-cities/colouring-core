@@ -32,7 +32,7 @@ Set the postgres repo for apt.
 
 Next install postgres and postgis to enable support for geographical objects.
 
-`sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3`
+`sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-14-postgis-3`
 
 and additional geo-spatial tools
 
@@ -88,11 +88,11 @@ Ensure the `en_US` locale exists.
 
 Configure the database to listen on network connection.
 
-`sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/10/main/postgresql.conf`
+`sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/14/main/postgresql.conf`
 
 Allow authenticated connections from any IP (so includes the host).
 
-`echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/10/main/pg_hba.conf > /dev/null`
+`echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/14/main/pg_hba.conf > /dev/null`
 
 Restart postgres to pick up config changes.
 
