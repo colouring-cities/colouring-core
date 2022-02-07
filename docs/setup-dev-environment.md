@@ -221,7 +221,7 @@ Now we are ready to run the application. The `APP_COOKIE_SECRET` is arbitrary.
 
 First `cd ./colouring-london/app`, then:
 
-`PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 npm start`
+`PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=/path/to/tilecache/directory npm start`
 
 If you a running Ubuntu in a virtual environment you will need to configure networking to
 forward ports from the guest to the host. For Virtual Box the following was configured under
