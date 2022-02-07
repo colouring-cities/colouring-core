@@ -18,7 +18,10 @@ RUN apt-get update
 RUN apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-14-postgis-3
 RUN apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 
-RUN git clone https://github.com/colouring-london/colouring-london.git
+RUN mkdir /colouring-london
+COPY app /colouring-london/app
+COPY migrations /colouring-london/migrations
+COPY etl /colouring-london/etl
 
 RUN export NODE_VERSION=v16.13.2
 RUN export DISTRO=linux-x64
