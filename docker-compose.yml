@@ -1,0 +1,45 @@
+version: "3"
+services:
+  colouring-london:
+    container_name: colouring-london
+    build:
+      context: .
+      dockerfile: .Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:newPassword@postgres:8080/colouring-london-db
+      NODE_ENV: development
+      PORT: 8080
+    ports:
+      - "8080:8080"
+  postgres:
+    container_name: postgres
+    image: postgres:10.4
+    ports:
+      - "5432:5432"
+    # volumes: 
+      # - ./postgresdata:/var/lib/postgresql/data
+      # - ./src/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: newPassword
+      POSTGRES_DB: colouring-london-db
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:4.18
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@linuxhint.com
+      PGADMIN_DEFAULT_PASSWORD: secret
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+volumes:
+    db-data:
+    pgadmin-data:
