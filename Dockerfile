@@ -25,7 +25,6 @@ RUN tar xf node-$NODE_VERSION-$DISTRO.tar.xz -C /usr/local/lib/node
 RUN mv /usr/local/lib/node/node-$NODE_VERSION-$DISTRO /usr/local/lib/node/node-$NODE_VERSION
 RUN rm node-$NODE_VERSION-$DISTRO.tar.xz
 
-
 RUN cat >> ~/.profile <<EOF
 RUN export NODEJS_HOME=/usr/local/lib/node/node-$NODE_VERSION/bin
 RUN export PATH=\$NODEJS_HOME:\$PATH
@@ -41,16 +40,16 @@ RUN echo "host all all all md5" | tee --append /etc/postgresql/14/main/pg_hba.co
 
 RUN service postgresql restart
 
-RUN postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<username>';" | grep -q 1 ||  postgres psql -c "CREATE ROLE <username> SUPERUSER LOGIN PASSWORD '<pgpassword>';"
+RUN postgres psql -c "SELECT 1 FROM pg_user WHERE usename = 'dockeruser';" | grep -q 1 ||  postgres psql -c "CREATE ROLE dockeruser SUPERUSER LOGIN PASSWORD 'postgres';"
 
-RUN postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 ||  postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>
+RUN postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringlondon';" | grep -q 1 ||  postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O dockeruser colouringlondon
 
-RUN psql -d <colouringlondondb> -U <username> -h localhost
-RUN psql -d <colouringlondondb> -c "create extension postgis;"
-RUN psql -d <colouringlondondb> -c "create extension pgcrypto;"
-RUN psql -d <colouringlondondb> -c "create extension pg_trgm;"
+RUN psql -d colouringlondon -U dockeruser -h localhost
+RUN psql -d colouringlondon -c "create extension postgis;"
+RUN psql -d colouringlondon -c "create extension pgcrypto;"
+RUN psql -d colouringlondon -c "create extension pg_trgm;"
 
-RUN ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
+RUN ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d colouringlondon < $migration; done;
 
 RUN pyvenv colouringlondon
 RUN source colouringlondon/bin/activate
@@ -69,10 +68,10 @@ RUN source colouringlondon/bin/activate
 RUN cd ./colouring-london/etl/
 RUN python get_test_polygons.py
 RUN ./load_geometries_cl.sh ./
-RUN psql -d <colouringlondondb> < ../migrations/002.index-geometries.up.sql
+RUN psql -d colouringlondon < ../migrations/002.index-geometries.up.sql
 RUN ./create_building_records_cl.sh
-RUN psql -d <colouringlondondb> < ../migrations/003.index-buildings.up.sql
-RUN ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
+RUN psql -d colouringlondon < ../migrations/003.index-buildings.up.sql
+RUN ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d colouringlondon < $migration; done;
 
 EXPOSE 8080
-CMD /wait && npm start
+CMD /wait && PGPASSWORD=postgres PGDATABASE=colouringlondon PGUSER=dockeruser PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 npm start
