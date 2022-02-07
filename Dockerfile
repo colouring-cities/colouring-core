@@ -10,11 +10,12 @@ RUN apt install parallel -y
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
 RUN chmod +x /wait
 
-RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-RUN apt-get update
+# RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+# RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+# RUN apt-get update
 
-RUN apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-14-postgis-3
+RUN apt-get install -y postgresql postgresql-contrib libpq-dev postgis
+# RUN apt-get install -y postgresql-14-postgis-3
 RUN apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 
 RUN mkdir /colouring-london
