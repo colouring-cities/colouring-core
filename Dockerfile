@@ -5,7 +5,7 @@ RUN apt-get upgrade
 
 RUN apt-get install -y build-essential wget
 RUN apt-get install -y python3 python3-pip python3-dev python3-venv
-RUN apt install parallel
+RUN apt install parallel -y
 
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
 RUN chmod +x /wait
