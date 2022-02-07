@@ -3,8 +3,7 @@ FROM ubuntu:20.04
 RUN apt-get update
 RUN apt-get upgrade
 
-
-RUN apt-get install -y build-essential git vim-nox wget curl
+RUN apt-get install -y build-essential wget
 RUN apt-get install -y python3 python3-pip python3-dev python3-venv
 RUN apt install parallel
 
