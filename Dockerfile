@@ -6,7 +6,10 @@ RUN apt-get upgrade
 
 RUN apt-get install -y build-essential git vim-nox wget curl
 RUN apt-get install -y python3 python3-pip python3-dev python3-venv
+RUN apt install parallel
 
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+RUN chmod +x /wait
 
 RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
@@ -61,11 +64,10 @@ RUN export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin/
 RUN export PATH=$NODEJS_HOME:$PATH
 RUN npm install -g npm@latest
 
-RUN cd ./colouring-london/app && npm install
+WORKDIR ./colouring-london/app
+RUN npm install
 
-RUN apt install parallel
-RUN source colouringlondon/bin/activate
-RUN cd ./colouring-london/etl/
+WORKDIR ./colouring-london/app/etl
 RUN python get_test_polygons.py
 RUN ./load_geometries_cl.sh ./
 RUN psql -d colouringlondon < ../migrations/002.index-geometries.up.sql
@@ -73,8 +75,6 @@ RUN ./create_building_records_cl.sh
 RUN psql -d colouringlondon < ../migrations/003.index-buildings.up.sql
 RUN ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d colouringlondon < $migration; done;
 
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
-RUN chmod +x /wait
-
+WORKDIR ./colouring-london/app
 EXPOSE 8080
 CMD /wait && PGPASSWORD=postgres PGDATABASE=colouringlondon PGUSER=dockeruser PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 npm start
