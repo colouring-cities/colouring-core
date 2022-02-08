@@ -15,12 +15,12 @@ services:
       - "8080:8080"
   postgres:
     container_name: postgres
-    image: postgres:10.4
+    image: postgres:14
     ports:
       - "5432:5432"
-    # volumes: 
-      # - ./postgresdata:/var/lib/postgresql/data
-      # - ./src/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
+    volumes: 
+      - ./postgresdata:/var/lib/postgresql/data
+      - ./colouring-london/init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
     restart: always
     environment:
       POSTGRES_USER: dockeruser

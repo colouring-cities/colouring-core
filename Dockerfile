@@ -10,10 +10,6 @@ RUN apt install parallel -y
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
 RUN chmod +x /wait
 
-RUN apt-get install -y postgresql-contrib libpq-dev postgis
-RUN apt-get install -y postgresql-12-postgis-3
-RUN apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
-
 RUN mkdir /colouring-london
 COPY app /colouring-london/app
 COPY migrations /colouring-london/migrations
@@ -28,13 +24,10 @@ RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
 ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 
-RUN service postgresql start
-COPY ./init-user-db.sh /docker-entrypoint-initdb.d/init-user-db.sh
-
 RUN npm install -g npm@latest
 
 WORKDIR ./colouring-london/app
 RUN npm install
 
 EXPOSE 8080
-CMD /wait && PGPASSWORD=postgres PGDATABASE=colouringlondon PGUSER=dockeruser PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 npm start
+# CMD /wait && PGPASSWORD=postgres PGDATABASE=colouringlondon PGUSER=dockeruser PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 npm start

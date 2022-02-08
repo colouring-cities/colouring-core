@@ -1,6 +1,12 @@
 #!/bin/bash
-sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/12/main/postgresql.conf
-echo "host all all all md5" | tee --append /etc/postgresql/12/main/pg_hba.conf > /dev/null
+service postgresql start
+
+sudo apt-get install -y postgresql-contrib libpq-dev postgis
+sudo apt-get install -y postgresql-14-postgis-3
+sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
+
+sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/14/main/postgresql.conf
+echo "host all all all md5" | tee --append /etc/postgresql/14/main/pg_hba.conf > /dev/null
 service postgresql restart
 
 sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = 'dockeruser';" | grep -q 1 ||  sudo -u postgres psql -c "CREATE ROLE dockeruser SUPERUSER LOGIN PASSWORD 'postgres';"
