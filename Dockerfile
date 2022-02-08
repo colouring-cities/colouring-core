@@ -23,18 +23,27 @@ COPY app /colouring-london/app
 COPY migrations /colouring-london/migrations
 COPY etl /colouring-london/etl
 
-RUN wget -nc https://nodejs.org/dist/v16.13.2/node-v16.13.2-linux-x64.tar.xz
-RUN mkdir /usr/local/lib/node
-RUN tar xf node-v16.13.2-linux-x64.tar.xz -C /usr/local/lib/node
-RUN mv /usr/local/lib/node/node-v16.13.2-linux-x64 /usr/local/lib/node/node-v16.13.2
-RUN rm node-v16.13.2-linux-x64.tar.xz
+# RUN wget -nc https://nodejs.org/dist/v16.13.2/node-v16.13.2-linux-x64.tar.xz
+# RUN mkdir /usr/local/lib/node
+# RUN tar xf node-v16.13.2-linux-x64.tar.xz -C /usr/local/lib/node
+# RUN mv /usr/local/lib/node/node-v16.13.2-linux-x64 /usr/local/lib/node/node-v16.13.2
+# RUN rm node-v16.13.2-linux-x64.tar.xz
+# RUN cat >> ~/.profile <<EOF
+# RUN export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin
+# RUN export PATH=\$NODEJS_HOME:\$PATH
+# RUN EOF
+# RUN source ~/.profile
 
-RUN cat >> ~/.profile <<EOF
-RUN export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin
-RUN export PATH=\$NODEJS_HOME:\$PATH
-RUN EOF
-
-RUN source ~/.profile
+ENV NODE_VERSION=16.13.2
+RUN apt install -y curl
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+ENV NVM_DIR=/root/.nvm
+RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
+ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+RUN node --version
+RUN npm --version
 
 RUN service postgresql start
 
