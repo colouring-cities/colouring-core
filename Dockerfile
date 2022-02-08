@@ -46,6 +46,7 @@ RUN node --version
 RUN npm --version
 
 RUN service postgresql start
+COPY ./init-user-db.sh /docker-entrypoint-initdb.d/init-user-db.sh
 
 # RUN sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/12/main/postgresql.conf
 
@@ -53,16 +54,16 @@ RUN service postgresql start
 
 # RUN service postgresql restart
 
-RUN postgres psql -c "SELECT 1 FROM pg_user WHERE usename = 'dockeruser';" | grep -q 1 ||  postgres psql -c "CREATE ROLE dockeruser SUPERUSER LOGIN PASSWORD 'postgres';"
+# RUN psql -c "SELECT 1 FROM pg_user WHERE usename = 'dockeruser';" | grep -q 1 ||  psql -c "CREATE ROLE dockeruser SUPERUSER LOGIN PASSWORD 'postgres';"
 
-RUN postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringlondon';" | grep -q 1 ||  postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O dockeruser colouringlondon
+# RUN psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringlondon';" | grep -q 1 ||  createdb -E UTF8 -T template0 --locale=en_US.utf8 -O dockeruser colouringlondon
 
-RUN psql -d colouringlondon -U dockeruser -h localhost
-RUN psql -d colouringlondon -c "create extension postgis;"
-RUN psql -d colouringlondon -c "create extension pgcrypto;"
-RUN psql -d colouringlondon -c "create extension pg_trgm;"
+# RUN psql -d colouringlondon -U dockeruser -h localhost
+# RUN psql -d colouringlondon -c "create extension postgis;"
+# RUN psql -d colouringlondon -c "create extension pgcrypto;"
+# RUN psql -d colouringlondon -c "create extension pg_trgm;"
 
-RUN ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d colouringlondon < $migration; done;
+# RUN ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d colouringlondon < $migration; done;
 
 RUN pyvenv colouringlondon
 RUN source colouringlondon/bin/activate
