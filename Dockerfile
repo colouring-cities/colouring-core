@@ -47,11 +47,11 @@ RUN npm --version
 
 RUN service postgresql start
 
-RUN sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/14/main/postgresql.conf
+# RUN sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/12/main/postgresql.conf
 
-RUN echo "host all all all md5" | tee --append /etc/postgresql/14/main/pg_hba.conf > /dev/null
+# RUN echo "host all all all md5" | tee --append /etc/postgresql/12/main/pg_hba.conf > /dev/null
 
-RUN service postgresql restart
+# RUN service postgresql restart
 
 RUN postgres psql -c "SELECT 1 FROM pg_user WHERE usename = 'dockeruser';" | grep -q 1 ||  postgres psql -c "CREATE ROLE dockeruser SUPERUSER LOGIN PASSWORD 'postgres';"
 
@@ -70,8 +70,8 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools wheel
 RUN pip install -r ./colouring-london/etl/requirements.txt
 
-RUN export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin/
-RUN export PATH=$NODEJS_HOME:$PATH
+# RUN export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin/
+# RUN export PATH=$NODEJS_HOME:$PATH
 RUN npm install -g npm@latest
 
 WORKDIR ./colouring-london/app
