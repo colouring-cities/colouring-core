@@ -12,3 +12,16 @@ psql -d colouringlondon -c "create extension pgcrypto;"
 psql -d colouringlondon -c "create extension pg_trgm;"
 
 ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d colouringlondon < $migration; done;
+
+pyvenv colouringlondon
+source colouringlondon/bin/activate
+pip install --upgrade pip
+pip install --upgrade setuptools wheel
+pip install -r ./colouring-london/etl/requirements.txt
+
+python ./colouring-london/app/etl/get_test_polygons.py
+./colouring-london/app/etl/load_geometries_cl.sh ./
+psql -d colouringlondon < ./colouring-london/app/migrations/002.index-geometries.up.sql
+./create_building_records_cl.sh
+psql -d colouringlondon < ./colouring-london/app/migrations/003.index-buildings.up.sql
+ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d colouringlondon < $migration; done;

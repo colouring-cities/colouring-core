@@ -65,19 +65,19 @@ COPY ./init-user-db.sh /docker-entrypoint-initdb.d/init-user-db.sh
 
 # RUN ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d colouringlondon < $migration; done;
 
-RUN pyvenv colouringlondon
-RUN source colouringlondon/bin/activate
-RUN pip install --upgrade pip
-RUN pip install --upgrade setuptools wheel
-RUN pip install -r ./colouring-london/etl/requirements.txt
+# RUN pyvenv colouringlondon
+# RUN source colouringlondon/bin/activate
+# RUN pip install --upgrade pip
+# RUN pip install --upgrade setuptools wheel
+# RUN pip install -r ./colouring-london/etl/requirements.txt
 
-WORKDIR ./colouring-london/app/etl
-RUN python get_test_polygons.py
-RUN ./load_geometries_cl.sh ./
-RUN psql -d colouringlondon < ../migrations/002.index-geometries.up.sql
-RUN ./create_building_records_cl.sh
-RUN psql -d colouringlondon < ../migrations/003.index-buildings.up.sql
-RUN ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d colouringlondon < $migration; done;
+# WORKDIR ./colouring-london/app/etl
+# RUN python get_test_polygons.py
+# RUN ./load_geometries_cl.sh ./
+# RUN psql -d colouringlondon < ../migrations/002.index-geometries.up.sql
+# RUN ./create_building_records_cl.sh
+# UN psql -d colouringlondon < ../migrations/003.index-buildings.up.sql
+# RUN ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d colouringlondon < $migration; done;
 
 # RUN export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin/
 # RUN export PATH=$NODEJS_HOME:$PATH
