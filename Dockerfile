@@ -27,6 +27,7 @@ ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 RUN npm install -g npm@latest
 
 WORKDIR ./colouring-london/app
+RUN rm -rf node_modules
 RUN npm install
 
 EXPOSE 8080
