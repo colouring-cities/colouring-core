@@ -26,6 +26,7 @@ services:
       POSTGRES_USER: dockeruser
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: colouring-london-db
+      APP_COOKIE_SECRET: 123456
 #   pgadmin:
 #     container_name: pgadmin
 #     image: dpage/pgadmin4:4.18
