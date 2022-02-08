@@ -4,7 +4,7 @@ services:
     container_name: colouring-london
     build:
       context: .
-      dockerfile: .Dockerfile
+      dockerfile: Dockerfile
     depends_on:
       - postgres
     environment:
