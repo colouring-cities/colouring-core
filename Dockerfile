@@ -23,16 +23,14 @@ COPY app /colouring-london/app
 COPY migrations /colouring-london/migrations
 COPY etl /colouring-london/etl
 
-RUN export NODE_VERSION=v16.13.2
-RUN export DISTRO=linux-x64
-RUN wget -nc https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-$DISTRO.tar.xz
+RUN wget -nc https://nodejs.org/dist/v16.13.2/node-v16.13.2-linux-x64.tar.xz
 RUN mkdir /usr/local/lib/node
-RUN tar xf node-$NODE_VERSION-$DISTRO.tar.xz -C /usr/local/lib/node
-RUN mv /usr/local/lib/node/node-$NODE_VERSION-$DISTRO /usr/local/lib/node/node-$NODE_VERSION
-RUN rm node-$NODE_VERSION-$DISTRO.tar.xz
+RUN tar xf node-v16.13.2-linux-x64.tar.xz -C /usr/local/lib/node
+RUN mv /usr/local/lib/node/node-v16.13.2-linux-x64 /usr/local/lib/node/node-v16.13.2
+RUN rm node-v16.13.2-linux-x64.tar.xz
 
 RUN cat >> ~/.profile <<EOF
-RUN export NODEJS_HOME=/usr/local/lib/node/node-$NODE_VERSION/bin
+RUN export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin
 RUN export PATH=\$NODEJS_HOME:\$PATH
 RUN EOF
 
