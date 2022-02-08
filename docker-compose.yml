@@ -14,7 +14,7 @@ services:
     ports:
       - "8080:8080"
   postgres:
-    container_name: postgres
+    container_name: postgres-colouring-london
     image: postgres:14
     ports:
       - "5432:5432"
