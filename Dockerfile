@@ -84,6 +84,5 @@ RUN npm install -g npm@latest
 WORKDIR ./colouring-london/app
 RUN npm install
 
-WORKDIR ./colouring-london/app
 EXPOSE 8080
 CMD /wait && PGPASSWORD=postgres PGDATABASE=colouringlondon PGUSER=dockeruser PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 npm start
