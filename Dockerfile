@@ -1,4 +1,4 @@
-FROM ubuntu/postgres:12-20.04_beta
+FROM ubuntu:18.04
 
 RUN apt-get update
 RUN apt-get upgrade
