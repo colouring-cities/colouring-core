@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu/postgres:12-20.04_beta
 
 RUN apt-get update
 RUN apt-get upgrade
@@ -14,8 +14,8 @@ RUN chmod +x /wait
 # RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 # RUN apt-get update
 
-RUN apt-get install -y postgresql postgresql-contrib libpq-dev postgis
-# RUN apt-get install -y postgresql-14-postgis-3
+RUN apt-get install -y postgresql-contrib libpq-dev postgis
+RUN apt-get install -y postgresql-12-postgis-3
 RUN apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 
 RUN mkdir /colouring-london
