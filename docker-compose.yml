@@ -8,7 +8,7 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgres://postgres:postgres@postgres:8080/colouring-london-db
+      DATABASE_URL: postgres://dockeruser:postgres@postgres-colouring-london:5432/colouringlondon
       NODE_ENV: development
       PORT: 8080
       APP_COOKIE_SECRET: 123456
