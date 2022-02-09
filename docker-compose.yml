@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - postgres
+      - db
     environment:
       DATABASE_URL: postgres://dockeruser:postgres@postgres-colouring-london:5432/colouringlondon
       NODE_ENV: development
@@ -14,7 +14,7 @@ services:
       APP_COOKIE_SECRET: 123456
     ports:
       - "8080:8080"
-  postgres:
+  db:
     container_name: postgres-colouring-london
     image: postgres:14
     ports:
@@ -26,4 +26,4 @@ services:
     environment:
       POSTGRES_USER: dockeruser
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: colouring-london-db
+      POSTGRES_DB: colouringlondon
