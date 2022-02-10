@@ -1,3 +1,5 @@
+-- note that you need to somehow reclassify such buildings, if present - before downgrading
+
 -- equivalent to 015 migration
 INSERT INTO reference_tables.landuse_classifications
 (landuse_id, description, level, parent_id, is_used)
