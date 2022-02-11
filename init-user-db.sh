@@ -1,18 +1,21 @@
 #!/bin/bash
+apt-get update -y
+apt-get upgrade -y
+
 service postgresql start
 
-sudo apt-get install -y postgresql-contrib libpq-dev postgis
-sudo apt-get install -y postgresql-13-postgis-3
-sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
+apt-get install -y postgresql-contrib libpq-dev postgis
+apt-get install -y postgresql-13-postgis-3
+apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 
-sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/13/main/postgresql.conf
-echo "host all all all md5" | sudo tee --append /etc/postgresql/13/main/pg_hba.conf > /dev/null
+sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/13/main/postgresql.conf
+echo "host all all all md5" | tee --append /etc/postgresql/13/main/pg_hba.conf > /dev/null
 service postgresql restart
 
-sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = 'dockeruser';" | grep -q 1 ||  sudo -u postgres psql -c "CREATE ROLE dockeruser SUPERUSER LOGIN PASSWORD 'postgres';"
-sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringlondon';" | grep -q 1 ||  sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O dockeruser colouringlondon
+psql -d colouringlondon -U dockeruser -c "SELECT 1 FROM pg_user WHERE usename = 'dockeruser';" | grep -q 1 ||  psql -d colouringlondon -U dockeruser -c "CREATE ROLE dockeruser SUPERUSER LOGIN PASSWORD 'postgres';"
+psql -d colouringlondon -U dockeruser -c "SELECT 1 FROM pg_database WHERE datname = 'colouringlondon';" | grep -q 1 ||  -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O dockeruser colouringlondon
 
-psql -d colouringlondon -U dockeruser -h localhost
+# psql -d colouringlondon -U dockeruser -h localhost
 psql -d colouringlondon -c "create extension postgis;"
 psql -d colouringlondon -c "create extension pgcrypto;"
 psql -d colouringlondon -c "create extension pg_trgm;"
