@@ -21,6 +21,8 @@ services:
       - "5432:5432"
     volumes: 
       - ./postgresdata:/var/lib/postgresql/data
+      - ./colouring-london/etl:/colouring-london/migrations
+      - ./colouring-london/etl:/colouring-london/etl
       - ./colouring-london/init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
     restart: always
     environment:
