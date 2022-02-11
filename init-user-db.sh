@@ -28,8 +28,8 @@ pip install --upgrade pip
 pip install --upgrade setuptools wheel
 pip install -r ./colouring-london/etl/requirements.txt
 
-python ./colouring-london/app/etl/get_test_polygons.py
-./colouring-london/app/etl/load_geometries_cl.sh ./
+python ./colouring-london/etl/get_test_polygons.py
+./colouring-london/etl/load_geometries_cl.sh ./
 psql -d colouringlondon < ./colouring-london/app/migrations/002.index-geometries.up.sql
 ./create_building_records_cl.sh
 psql -d colouringlondon < ./colouring-london/app/migrations/003.index-buildings.up.sql
