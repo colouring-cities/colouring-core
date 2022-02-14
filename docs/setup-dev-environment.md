@@ -149,7 +149,11 @@ local repository, so that it can read from the `package.json` file.
 
 `cd ./colouring-london/app && npm install`
 
-## Setting up Python
+## Including test data
+
+Run the following two sections if you wish to load test buildings into the application from OpenStreetMaps (OSM).
+
+#### Set up Python:
 
 Now set up a virtual environment for python. In the following example we have named the
 virtual environment *colouringlondon* but it can have any name.
@@ -172,11 +176,11 @@ in the `etl` folder of your local repository.
 
 `pip install -r ./colouring-london/etl/requirements.txt`
 
-## Load OpenStreetMap test polygons
+#### Load OpenStreetMap test polygons:
 
 First Install prerequisites.
 ```bash
-sudo apt install parallel
+sudo apt-get install parallel
 ```
 
 Check you are in the virtual environment you setup earlier, otherwise run:
@@ -208,7 +212,7 @@ psql -d <colouringlondondb> < ../migrations/002.index-geometries.up.sql
 psql -d <colouringlondondb> < ../migrations/003.index-buildings.up.sql
 ```
 
-## Finally
+## Run database migrations
 
 Re-run the remaining migrations in `../migrations` to create the rest of the database structure.
 
