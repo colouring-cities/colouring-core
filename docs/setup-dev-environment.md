@@ -130,6 +130,25 @@ do this are located in the `migrations` folder of your local repository.
 
 `ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;`
 
+## Setting up Node
+
+Now upgrade the npm package manager to the most recent release with global privileges. This
+needs to be performed as root user, so it is necessary to export the node variables to the
+root user profile. Don't forget to exit from root at the end.
+
+```
+sudo su root
+export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin/
+export PATH=$NODEJS_HOME:$PATH
+npm install -g npm@latest
+exit
+```
+
+Now install the required Node packages. This needs to done from the `app` directory of your
+local repository, so that it can read from the `package.json` file.
+
+`cd ./colouring-london/app && npm install`
+
 ## Setting up Python
 
 Now set up a virtual environment for python. In the following example we have named the
@@ -152,25 +171,6 @@ Now install the required python packages. This relies on the `requirements.txt` 
 in the `etl` folder of your local repository.
 
 `pip install -r ./colouring-london/etl/requirements.txt`
-
-## Setting up Node
-
-Now upgrade the npm package manager to the most recent release with global privileges. This
-needs to be performed as root user, so it is necessary to export the node variables to the
-root user profile. Don't forget to exit from root at the end.
-
-```
-sudo su root
-export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin/
-export PATH=$NODEJS_HOME:$PATH
-npm install -g npm@latest
-exit
-```
-
-Now install the required Node packages. This needs to done from the `app` directory of your
-local repository, so that it can read from the `package.json` file.
-
-`cd ./colouring-london/app && npm install`
 
 ## Load OpenStreetMap test polygons
 
