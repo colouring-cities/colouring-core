@@ -20,6 +20,10 @@ UPDATE buildings
 SET current_landuse_order = 'Unclassified, presumed non-residential'
 WHERE current_landuse_order = 'Unclassified buildings';
 
+UPDATE buildings
+SET current_landuse_group = '{"Unclassified, presumed non-residential"}'
+WHERE current_landuse_group = '{"Unclassified, likely residential"}';
+
 DELETE FROM reference_tables.landuse_classifications
 WHERE landuse_id='U14X';
 
