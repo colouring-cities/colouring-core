@@ -107,7 +107,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             title={dataFields.community_public_ownership.title}
             value={props.building.community_public_ownership}
             options={[
-                'State-owned',
+                'Government-owned',
                 'Charity-owned',
                 'Community-owned/cooperative',
                 'Owned by other non-profit body',
