@@ -11,6 +11,7 @@ import { CategoryViewProps } from './category-view-props';
 const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <InfoBox msg="This is what we're planning to collect in this section" />
+        <InfoBox msg="Can you help us capture information on who built the current building?"></InfoBox>
         <ul>
             <li>Construction and design team (original building)</li>
             {
