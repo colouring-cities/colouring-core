@@ -62,18 +62,6 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     />
 
                 <NumericDataEntry
-                    title={dataFields.date_upper.title}
-                    slug="date_upper"
-                    value={props.upper}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    step={1}
-                    min={1}
-                    max={currentYear}
-                    tooltip={dataFields.date_upper.tooltip}
-                    />
-                <NumericDataEntry
                     title={dataFields.date_lower.title}
                     slug="date_lower"
                     value={props.lower}
@@ -84,6 +72,19 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     min={1}
                     max={currentYear}
                     tooltip={dataFields.date_lower.tooltip}
+                    />
+
+                <NumericDataEntry
+                    title={dataFields.date_upper.title}
+                    slug="date_upper"
+                    value={props.upper}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={1}
+                    max={currentYear}
+                    tooltip={dataFields.date_upper.tooltip}
                     />
             </Fragment>
         );
