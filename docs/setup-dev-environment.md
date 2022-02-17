@@ -111,20 +111,21 @@ Create a colouring london database if none exists. The name (`<colouringlondondb
 sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>
 ```
 
-To test the app user's connection to the database, you could run `psql` interactively:
+Run `psql` interactively (you will be prompted to enter the `<pgpassword>`).
 
 ```
 psql -d <colouringlondondb> -U <username> -h localhost
 ```
-<sub>Note: to quit `psql` type `\q` and hit return.</sub>
 
-Create the necessary postgres extensions.
+In `psql`, necessary postgres extensions.
 
 ```
-psql -d <colouringlondondb> -c "create extension postgis;"
-psql -d <colouringlondondb> -c "create extension pgcrypto;"
-psql -d <colouringlondondb> -c "create extension pg_trgm;"
+create extension postgis;
+create extension pgcrypto;
+create extension pg_trgm;
 ```
+
+Then quit `psql` by typing `\q` and hitting return.
 
 Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
 do this are located in the `migrations` folder of your local repository.
