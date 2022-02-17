@@ -157,7 +157,18 @@ local repository, so that it can read from the `package.json` file.
 
 `cd ./colouring-london/app && npm install`
 
-## Including test data
+## Loading the data
+
+<details>
+<summary>
+With a database dump
+</summary>
+</details>
+
+<details>
+<summary>
+With test data
+</summary>
 
 Run the following two sections if you wish to load test buildings into the application from OpenStreetMaps (OSM).
 
@@ -220,12 +231,12 @@ psql -d <colouringlondondb> < ../migrations/002.index-geometries.up.sql
 psql -d <colouringlondondb> < ../migrations/003.index-buildings.up.sql
 ```
 
-## Run database migrations
+#### Re-run database migrations
 
 Re-run the remaining migrations in `../migrations` to create the rest of the database structure.
 
 `ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;`
-
+</details>
 
 ## Running the application
 
