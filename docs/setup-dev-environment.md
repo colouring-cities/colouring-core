@@ -130,7 +130,9 @@ Then quit `psql` by typing `\q` and hitting return.
 Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
 do this are located in the `migrations` folder of your local repository.
 
-`ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;`
+`ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> -U <username> -h localhost < $migration; done;`
+
+(you will be prompted to enter the `<pgpassword>`)
 
 ## Setting up Node
 
