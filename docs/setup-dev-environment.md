@@ -116,6 +116,7 @@ To test the app user's connection to the database, you could run `psql` interact
 ```
 psql -d <colouringlondondb> -U <username> -h localhost
 ```
+<sub>Note: to quit `psql` type `\q` and hit return.</sub>
 
 Create the necessary postgres extensions.
 
