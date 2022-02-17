@@ -175,7 +175,7 @@ You should then download the file to the machine where you are setting up your d
 In your Ubuntu installation where you have been running these setup steps (e.g. Virtualbox VM), you can then recrate the db like so.
 
 ```
-psql <colouringlondondb> < <dumpfile>
+psql -d <colouringlondondb> -U <username> -h localhost < <dumpfile>
 ```
 
 </details>
