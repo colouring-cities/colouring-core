@@ -160,15 +160,28 @@ local repository, so that it can read from the `package.json` file.
 ## Loading the data
 
 <details>
-<summary>
-With a database dump
-</summary>
+<summary> With a database dump </summary>
+
+If you are a developer on the Colouring London project (or another Colouring Cities project), you may have a production database (or staging etc) that you wish to duplicate in your development environment.
+
+Log into the environment where your production database is kept and create a dump file from the db.
+
+```
+pg_dump <colouringlondondb> > <dumpfile>
+```
+
+You should then download the file to the machine where you are setting up your development environment. If you are using Virtualbox, you could host share the dump file with the VM via a shared folder (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
+
+In your Ubuntu installation where you have been running these setup steps (e.g. Virtualbox VM), you can then recrate the db like so.
+
+```
+psql <colouringlondondb> < <dumpfile>
+```
+
 </details>
 
 <details>
-<summary>
-With test data
-</summary>
+<summary> With test data </summary>
 
 Run the following two sections if you wish to load test buildings into the application from OpenStreetMaps (OSM).
 
