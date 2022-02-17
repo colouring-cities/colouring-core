@@ -105,13 +105,19 @@ password `<pgpassword>` is arbitrary and probably should not be your Ubuntu logi
 sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<username>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <username> SUPERUSER LOGIN PASSWORD '<pgpassword>';"
 ```
 
+Set the `<pgpassword>` as an environment variable.
+
+```
+export PGPASSWORD=<pgpassword>
+```
+
 Create a colouring london database if none exists. The name (`<colouringlondondb>`) is arbitrary.
 
 ```
 sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>
 ```
 
-Run `psql` interactively (you will be prompted to enter the `<pgpassword>`).
+Run `psql` interactively.
 
 ```
 psql -d <colouringlondondb> -U <username> -h localhost
@@ -131,8 +137,6 @@ Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql
 do this are located in the `migrations` folder of your local repository.
 
 `ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> -U <username> -h localhost < $migration; done;`
-
-(you will be prompted to enter the `<pgpassword>`)
 
 ## Setting up Node
 
