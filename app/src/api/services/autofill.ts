@@ -1,7 +1,6 @@
 import db from '../../db';
 
 interface AutofillOption {
-    id: string;
     value: string;
     similarity?: number;
 }
@@ -17,7 +16,6 @@ function getLanduseGroupOptions(value: string, all: boolean = false) {
     if(all) {
         return db.manyOrNone(`
             SELECT
-                landuse_id AS id,
                 description AS value
             FROM reference_tables.buildings_landuse_group
             `

@@ -60,7 +60,6 @@ export const AutofillDropdown: React.FC<AutofillDropdownProps> =  props => {
             {
                 options.map(option =>
                     <div
-                        key={option.id}
                         onMouseDown={e => /* prevent input blur */ e.preventDefault()}
                         onClick={e => {
                             props.onSelect(option.value);
@@ -68,7 +67,7 @@ export const AutofillDropdown: React.FC<AutofillDropdownProps> =  props => {
                             props.onClose();
                         }}
                     >
-                        {option.value} ({option.id})
+                        {option.value}
                     </div>)
             }
         </div>
