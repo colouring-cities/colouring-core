@@ -147,7 +147,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
     },
     construction_secondary_materials: {
-        edit: false,
+        edit: true,
     },
     construction_roof_covering: {
         edit: true,

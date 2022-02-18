@@ -346,7 +346,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Construction,
         title: "Main Secondary Construction Material/s",
         tooltip:"Other construction materials",
-        example: "",
+        example: ["", ""],
     },
 
     construction_roof_covering: {
@@ -359,7 +359,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     sust_breeam_rating: {
         category: Category.Sustainability,
         title: "BREEAM Rating",
-        tooltip: "(Building Research Establishment Environmental Assessment Method) May not be present for many buildings",
+        tooltip: "(Building Research Estacblishment Environmental Assessment Method) May not be present for many buildings",
         example: "",
     },
     sust_dec: {
