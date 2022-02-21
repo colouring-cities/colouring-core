@@ -47,27 +47,38 @@ sudo apt-get upgrade -y
 
 Now we install some essential tools.
 
-`sudo apt-get install -y build-essential git vim-nox wget curl`
+```
+sudo apt-get install -y build-essential git vim-nox wget curl
+```
 
 Set the postgres repo for apt.
 
-`sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'`
+```
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+```
 
-`sudo wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -`
-
-`sudo apt-get update`
+```
+sudo wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+```
 
 Next install postgres and postgis to enable support for geographical objects.
 
-`sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-14-postgis-3`
+```
+sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-14-postgis-3
+```
 
 and additional geo-spatial tools
 
-`sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev`
+```
+sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
+```
 
 Now clone the colouring london codebase.
 
-`git clone https://github.com/colouring-london/colouring-london.git`
+```
+git clone https://github.com/colouring-london/colouring-london.git
+```
 
 Now install Node. It is helpful to define some local variables.
 
@@ -107,23 +118,33 @@ echo $NODEJS_HOME
 
 Now we configure postgres. First ensure postgres is running.
 
-`service postgresql start`
+```
+service postgresql start
+```
 
 Ensure the `en_US` locale exists.
 
-`sudo locale-gen en_US.UTF-8`
+```
+sudo locale-gen en_US.UTF-8
+```
 
 Configure the database to listen on network connection.
 
-`sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/14/main/postgresql.conf`
+```
+sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/14/main/postgresql.conf
+```
 
 Allow authenticated connections from any IP (so includes the host).
 
-`echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/14/main/pg_hba.conf > /dev/null`
+```
+echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/14/main/pg_hba.conf > /dev/null
+```
 
 Restart postgres to pick up config changes.
 
-`service postgresql restart`
+```
+service postgresql restart
+```
 
 Create a superuser role for this user (`<username>`) if it does not already exist. The
 password `<pgpassword>` is arbitrary and probably should not be your Ubuntu login password.
@@ -163,7 +184,9 @@ Then quit `psql` by typing `\q` and hitting return.
 Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
 do this are located in the `migrations` folder of your local repository.
 
-`ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> -U <username> -h localhost < $migration; done;`
+```
+ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> -U <username> -h localhost < $migration; done;
+```
 
 ## Setting up Node
 
@@ -182,7 +205,9 @@ exit
 Now install the required Node packages. This needs to done from the `app` directory of your
 local repository, so that it can read from the `package.json` file.
 
-`cd ./colouring-london/app && npm install`
+```
+cd ./colouring-london/app && npm install
+```
 
 ## Loading the data
 
@@ -216,16 +241,22 @@ Run the following two sections if you wish to load test buildings into the appli
 
 Install python and related tools.
 
-`sudo apt-get install -y python3 python3-pip python3-dev python3-venv`
+```
+sudo apt-get install -y python3 python3-pip python3-dev python3-venv
+```
 
 Now set up a virtual environment for python. In the following example we have named the
 virtual environment *colouringlondon* but it can have any name.
 
-`pyvenv colouringlondon`
+```
+pyvenv colouringlondon
+```
 
 Activate the virtual environment so we can install python packages into it.
 
-`source colouringlondon/bin/activate`
+```
+source colouringlondon/bin/activate
+```
 
 Install python pip package manager and related tools.
 
@@ -237,12 +268,14 @@ pip install --upgrade setuptools wheel
 Now install the required python packages. This relies on the `requirements.txt` file located
 in the `etl` folder of your local repository.
 
-`pip install -r ./colouring-london/etl/requirements.txt`
+```
+pip install -r ./colouring-london/etl/requirements.txt
+```
 
 #### Load OpenStreetMap test polygons:
 
 First Install prerequisites.
-```bash
+```
 sudo apt-get install parallel
 ```
 
@@ -261,7 +294,7 @@ First open `colouring-london/etl/load_geometries.sh` and `colouring-london/etl/c
 
 Then run:
 
-```bash
+```
 cd ./colouring-london/etl/
 # download test data
 python get_test_polygons.py
@@ -279,7 +312,9 @@ psql -d <colouringlondondb> < ../migrations/003.index-buildings.up.sql
 
 Re-run the remaining migrations in `../migrations` to create the rest of the database structure.
 
-`ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;`
+```
+ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
+```
 </details>
 
 ## Running the application
@@ -288,15 +323,21 @@ Now we are ready to run the application. The `APP_COOKIE_SECRET` is arbitrary.
 
 First enter the app directory.
 
-`cd ./colouring-london/app`
+```
+cd ./colouring-london/app
+```
 
 Then create a folder for the tilecache.
 
-`mkdir tilecache`
+```
+mkdir tilecache
+```
 
 Finally, run the application.
 
-`PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=./colouring-london/app/tilecache npm start`
+```
+PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=./colouring-london/app/tilecache npm start
+```
 
 The site can then be viewed on http://localhost:8080. The `app_dev` mapping is used in
 development by Razzle which rebuilds and serves client side assets on the fly.
