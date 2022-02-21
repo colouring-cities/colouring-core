@@ -283,10 +283,10 @@ pip install -r requirements.txt
 
 To help test the Colouring London application, `get_test_polygons.py` will attempt to save a small (1.5km²) extract from OpenStreetMap to a format suitable for loading to the database.
 
-First open `colouring-london/etl/load_geometries.sh` and `colouring-london/etl/create_building_records.sh` and add this `-d` flag to all the `psql` statements present:
+First open `colouring-london/etl/load_geometries.sh` and `colouring-london/etl/create_building_records.sh` and add this `-d` flag to all the `psql` statements present (two in the former, one in the latter):
 
 ```bash
--d <colouringlondondb>
+-d <colouringlondondb> -U <username> -h localhost
 ```
 
 Then run:
@@ -306,11 +306,11 @@ rm: cannot remove 'test_buildings.3857.csv': No such file or directory
 # load all building outlines
 ./load_geometries.sh ./
 # index geometries (should be faster after loading)
-psql -d <colouringlondondb> < ../migrations/002.index-geometries.up.sql
+psql -U <username> -h localhost -d <colouringlondondb> < ../migrations/002.index-geometries.up.sql
 # create a building record per outline
 ./create_building_records.sh
 # index building records
-psql -d <colouringlondondb> < ../migrations/003.index-buildings.up.sql
+psql -U <username> -h localhost -d <colouringlondondb> < ../migrations/003.index-buildings.up.sql
 ```
 
 #### Re-run database migrations
