@@ -15,7 +15,7 @@ To run the commands in the rest of this setup guide, either `ssh` into the Virtu
 You can ssh into the VirtualBox VM set up with the port  forwarding described above like so, where `<linuxusername>` is the name you set up during the installation of Ubuntu (you can type `whoami` in the Ubuntu terminal to remind yourself of this).
 
 ```
-ssh <linuxusername>@127.0.0.1 -p 4022
+ssh <linuxusername>@localhost -p 4022
 ```
 
 First upgrade the installed packages to the latest versions, to remove any security warnings.
