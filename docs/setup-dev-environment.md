@@ -307,22 +307,10 @@ Load all building outlines.
 ./load_geometries.sh ./
 ```
 
-Index geometries (should be faster after loading).
-
-```bash
-psql -U <username> -h localhost -d <colouringlondondb> < ../migrations/002.index-geometries.up.sql
-```
-
 Create a building record per outline.
 
 ```bash
 ./create_building_records.sh
-```
-
-Index building records.
-
-```bash
-psql -U <username> -h localhost -d <colouringlondondb> < ../migrations/003.index-buildings.up.sql
 ```
 
 #### Re-run database migrations
