@@ -329,7 +329,7 @@ Now we are ready to run the application. The `APP_COOKIE_SECRET` is arbitrary.
 First enter the app directory.
 
 ```bash
-cd ./colouring-london/app
+cd ~/colouring-london/app
 ```
 
 Then create a folder for the tilecache.
@@ -341,7 +341,7 @@ mkdir tilecache
 Finally, run the application.
 
 ```bash
-PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=./colouring-london/app/tilecache npm start
+PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=~/colouring-london/app/tilecache npm start
 ```
 
 The site can then be viewed on http://localhost:8080. The `app_dev` mapping is used in
