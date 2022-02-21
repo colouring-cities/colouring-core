@@ -2,6 +2,11 @@
 
 This document is intended to guide you through setting up a local development environment for Colouring London. This guide assumes you already have Ubuntu 18.04 or 20.04 server installed, typically installed in a virtual environment such a VirtualBox and are able to SSH into your Ubuntu installation for convenience.
 
+<details>
+<summary>
+Configuring an Ubuntu VM in VirtualBox
+</summary>
+
 If you a running Ubuntu in a virtual environment you will need to configure networking to forward ports from the guest to the host. For Virtual Box the following was configured under NAT port forwarding (found under `Settings -> Network -> Advanced -> Port Forwarding`).
 
 Name     | Protocol  | Host Port  | Guest Port
@@ -12,11 +17,20 @@ ssh      | TCP       | 4022       | 22
 
 To run the commands in the rest of this setup guide, either `ssh` into the VirtualBox environment or open the terminal within the Ubuntu GUI.
 
-You can ssh into the VirtualBox VM set up with the port  forwarding described above like so, where `<linuxusername>` is the name you set up during the installation of Ubuntu (you can type `whoami` in the Ubuntu terminal to remind yourself of this).
+If you wish to `ssh`, you will first need to open the terminal in Ubuntu and run the following.
+
+```
+sudo apt-get install -y openssh-server
+```
+
+You can then `ssh` into the VirtualBox VM set up with the port  forwarding described above like so, where `<linuxusername>` is the name you set up during the installation of Ubuntu (you can type `whoami` in the Ubuntu terminal to remind yourself of this).
 
 ```
 ssh <linuxusername>@localhost -p 4022
 ```
+</details>
+
+## Installing the tools and components
 
 First upgrade the installed packages to the latest versions, to remove any security warnings.
 
@@ -24,8 +38,6 @@ First upgrade the installed packages to the latest versions, to remove any secur
 sudo apt-get update
 sudo apt-get upgrade
 ```
-
-## Installing the tools and components
 
 Now we install some essential tools.
 
