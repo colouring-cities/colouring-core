@@ -25,13 +25,13 @@ To run the commands in the rest of this setup guide, either `ssh` into the Virtu
 
 If you wish to `ssh`, you will first need to open the terminal in Ubuntu and run the following.
 
-```
+```bash
 sudo apt-get install -y openssh-server
 ```
 
 You can then `ssh` into the VirtualBox VM set up with the port  forwarding described above like so, where `<linuxusername>` is the name you set up during the installation of Ubuntu (you can type `whoami` in the Ubuntu terminal to remind yourself of this).
 
-```
+```bash
 ssh <linuxusername>@localhost -p 4022
 ```
 </details>
@@ -40,49 +40,49 @@ ssh <linuxusername>@localhost -p 4022
 
 First upgrade the installed packages to the latest versions, to remove any security warnings.
 
-```
+```bash
 sudo apt-get update -y
 sudo apt-get upgrade -y
 ```
 
 Now we install some essential tools.
 
-```
+```bash
 sudo apt-get install -y build-essential git vim-nox wget curl
 ```
 
 Set the postgres repo for apt.
 
-```
+```bash
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 ```
 
-```
+```bash
 sudo wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo apt-get update
 ```
 
 Next install postgres and postgis to enable support for geographical objects.
 
-```
+```bash
 sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-14-postgis-3
 ```
 
 and additional geo-spatial tools
 
-```
+```bash
 sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 ```
 
 Now clone the colouring london codebase.
 
-```
+```bash
 git clone https://github.com/colouring-london/colouring-london.git
 ```
 
 Now install Node. It is helpful to define some local variables.
 
-```
+```bash
 export NODE_VERSION=v16.13.2
 export DISTRO=linux-x64
 wget -nc https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-$DISTRO.tar.xz
@@ -94,7 +94,7 @@ rm node-$NODE_VERSION-$DISTRO.tar.xz
 
 Now add the Node installation to the path and export this to your bash profile.
 
-```
+```bash
 cat >> ~/.profile <<EOF
 export NODEJS_HOME=/usr/local/lib/node/node-$NODE_VERSION/bin
 export PATH=\$NODEJS_HOME:\$PATH
@@ -103,13 +103,13 @@ EOF
 
 Then run source to make sure node and npm are on your path:
 
-```
+```bash
 source ~/.profile
 ```
 
 You can check the updated variables as follows
 
-```
+```bash
 echo $PATH
 echo $NODEJS_HOME
 ```
@@ -118,62 +118,62 @@ echo $NODEJS_HOME
 
 Now we configure postgres. First ensure postgres is running.
 
-```
+```bash
 service postgresql start
 ```
 
 Ensure the `en_US` locale exists.
 
-```
+```bash
 sudo locale-gen en_US.UTF-8
 ```
 
 Configure the database to listen on network connection.
 
-```
+```bash
 sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/14/main/postgresql.conf
 ```
 
 Allow authenticated connections from any IP (so includes the host).
 
-```
+```bash
 echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/14/main/pg_hba.conf > /dev/null
 ```
 
 Restart postgres to pick up config changes.
 
-```
+```bash
 service postgresql restart
 ```
 
 Create a superuser role for this user (`<username>`) if it does not already exist. The
 password `<pgpassword>` is arbitrary and probably should not be your Ubuntu login password.
 
-```
+```bash
 sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<username>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <username> SUPERUSER LOGIN PASSWORD '<pgpassword>';"
 ```
 
 Set the `<pgpassword>` as an environment variable.
 
-```
+```bash
 export PGPASSWORD=<pgpassword>
 ```
 
 Create a colouring london database if none exists. The name (`<colouringlondondb>`) is arbitrary.
 
-```
+```bash
 sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>
 ```
 
 Run `psql` interactively.
 
-```
+```bash
 psql -d <colouringlondondb> -U <username> -h localhost
 ```
 
 In `psql`, necessary postgres extensions.
 
-```
+```bash
 create extension postgis;
 create extension pgcrypto;
 create extension pg_trgm;
@@ -184,7 +184,7 @@ Then quit `psql` by typing `\q` and hitting return.
 Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
 do this are located in the `migrations` folder of your local repository.
 
-```
+```bash
 ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> -U <username> -h localhost < $migration; done;
 ```
 
@@ -194,7 +194,7 @@ Now upgrade the npm package manager to the most recent release with global privi
 needs to be performed as root user, so it is necessary to export the node variables to the
 root user profile. Don't forget to exit from root at the end.
 
-```
+```bash
 sudo su root
 export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin/
 export PATH=$NODEJS_HOME:$PATH
@@ -205,7 +205,7 @@ exit
 Now install the required Node packages. This needs to done from the `app` directory of your
 local repository, so that it can read from the `package.json` file.
 
-```
+```bash
 cd ./colouring-london/app && npm install
 ```
 
@@ -218,7 +218,7 @@ If you are a developer on the Colouring London project (or another Colouring Cit
 
 Log into the environment where your production database is kept and create a dump file from the db.
 
-```
+```bash
 pg_dump <colouringlondondb> > <dumpfile>
 ```
 
@@ -226,7 +226,7 @@ You should then download the file to the machine where you are setting up your d
 
 In your Ubuntu installation where you have been running these setup steps (e.g. Virtualbox VM), you can then recrate the db like so.
 
-```
+```bash
 psql -d <colouringlondondb> -U <username> -h localhost < <dumpfile>
 ```
 
@@ -241,26 +241,26 @@ Run the following two sections if you wish to load test buildings into the appli
 
 Install python and related tools.
 
-```
+```bash
 sudo apt-get install -y python3 python3-pip python3-dev python3-venv
 ```
 
 Now set up a virtual environment for python. In the following example we have named the
 virtual environment *colouringlondon* but it can have any name.
 
-```
+```bash
 pyvenv colouringlondon
 ```
 
 Activate the virtual environment so we can install python packages into it.
 
-```
+```bash
 source colouringlondon/bin/activate
 ```
 
 Install python pip package manager and related tools.
 
-```
+```bash
 pip install --upgrade pip
 pip install --upgrade setuptools wheel
 ```
@@ -268,19 +268,19 @@ pip install --upgrade setuptools wheel
 Now install the required python packages. This relies on the `requirements.txt` file located
 in the `etl` folder of your local repository.
 
-```
+```bash
 pip install -r ./colouring-london/etl/requirements.txt
 ```
 
 #### Load OpenStreetMap test polygons:
 
 First Install prerequisites.
-```
+```bash
 sudo apt-get install parallel
 ```
 
 Check you are in the virtual environment you setup earlier, otherwise run:
-```
+```bash
 source colouringlondon/bin/activate
 ```
 
@@ -288,13 +288,13 @@ To help test the Colouring London application, `get_test_polygons.py` will attem
 
 First open `colouring-london/etl/load_geometries.sh` and `colouring-london/etl/create_building_records.sh` and add this `-d` flag to all the `psql` statements present:
 
-```
+```bash
 -d <colouringlondondb>
 ```
 
 Then run:
 
-```
+```bash
 cd ./colouring-london/etl/
 # download test data
 python get_test_polygons.py
@@ -312,7 +312,7 @@ psql -d <colouringlondondb> < ../migrations/003.index-buildings.up.sql
 
 Re-run the remaining migrations in `../migrations` to create the rest of the database structure.
 
-```
+```bash
 ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
 ```
 </details>
@@ -323,19 +323,19 @@ Now we are ready to run the application. The `APP_COOKIE_SECRET` is arbitrary.
 
 First enter the app directory.
 
-```
+```bash
 cd ./colouring-london/app
 ```
 
 Then create a folder for the tilecache.
 
-```
+```bash
 mkdir tilecache
 ```
 
 Finally, run the application.
 
-```
+```bash
 PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=./colouring-london/app/tilecache npm start
 ```
 
