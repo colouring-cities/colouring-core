@@ -49,10 +49,6 @@ Now we install some essential tools.
 
 `sudo apt-get install -y build-essential git vim-nox wget curl`
 
-Now install python and related tools.
-
-`sudo apt-get install -y python3 python3-pip python3-dev python3-venv`
-
 Set the postgres repo for apt.
 
 `sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'`
@@ -217,6 +213,10 @@ psql -d <colouringlondondb> -U <username> -h localhost < <dumpfile>
 Run the following two sections if you wish to load test buildings into the application from OpenStreetMaps (OSM).
 
 #### Set up Python:
+
+Install python and related tools.
+
+`sudo apt-get install -y python3 python3-pip python3-dev python3-venv`
 
 Now set up a virtual environment for python. In the following example we have named the
 virtual environment *colouringlondon* but it can have any name.
