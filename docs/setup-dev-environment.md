@@ -1,9 +1,16 @@
 # Setting up a local development environment
 
-This document is intended to guide you through setting up a local development environment for
-Colouring London. This guide assumes you already have Ubuntu 20.04 server installed, typically
-installed in a virtual environment such a Virtual Box and are able to SSH into your Ubuntu
-installation for convenience.
+This document is intended to guide you through setting up a local development environment for Colouring London. This guide assumes you already have Ubuntu 20.04 server installed, typically installed in a virtual environment such a Virtual Box and are able to SSH into your Ubuntu installation for convenience.
+
+If you a running Ubuntu in a virtual environment you will need to configure networking to
+forward ports from the guest to the host. For Virtual Box the following was configured under
+NAT port forwarding.
+
+Name     | Protocol  | Host Port  | Guest Port
+-------- | --------- | ---------- | -----------
+app      | TCP       | 8080       | 3000
+app_dev  | TCP       | 3001       | 3001
+ssh      | TCP       | 4022       | 22
 
 First upgrade the installed packages to the latest versions, to remove any security warnings.
 
@@ -266,16 +273,6 @@ Then create a folder for the tilecache.
 Finally, run the application.
 
 `PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=./colouring-london/app/tilecache npm start`
-
-If you a running Ubuntu in a virtual environment you will need to configure networking to
-forward ports from the guest to the host. For Virtual Box the following was configured under
-NAT port forwarding.
-
-Name     | Protocol  | Host Port  | Guest Port
--------- | --------- | ---------- | -----------
-app      | TCP       | 8080       | 3000
-app_dev  | TCP       | 3001       | 3001
-ssh      | TCP       | 4022       | 22
 
 The site can then be viewed on http://localhost:8080. The `app_dev` mapping is used in
 development by Razzle which rebuilds and serves client side assets on the fly.
