@@ -35,8 +35,8 @@ ssh <linuxusername>@localhost -p 4022
 First upgrade the installed packages to the latest versions, to remove any security warnings.
 
 ```
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get update -y
+sudo apt-get upgrade -y
 ```
 
 Now we install some essential tools.
