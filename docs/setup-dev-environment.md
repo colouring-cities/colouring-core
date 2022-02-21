@@ -289,10 +289,9 @@ First open `colouring-london/etl/load_geometries.sh` and `colouring-london/etl/c
 -d <colouringlondondb> -U <username> -h localhost
 ```
 
-Then run:
+Download the test data.
 
 ```bash
-# download test data
 python get_test_polygons.py
 ```
 
@@ -302,14 +301,27 @@ rm: cannot remove 'test_buildings.geojson': No such file or directory
 rm: cannot remove 'test_buildings.3857.csv': No such file or directory
 ```
 
+Load all building outlines.
+
 ```bash
-# load all building outlines
 ./load_geometries.sh ./
-# index geometries (should be faster after loading)
+```
+
+Index geometries (should be faster after loading).
+
+```bash
 psql -U <username> -h localhost -d <colouringlondondb> < ../migrations/002.index-geometries.up.sql
-# create a building record per outline
+```
+
+Create a building record per outline.
+
+```bash
 ./create_building_records.sh
-# index building records
+```
+
+Index building records.
+
+```bash
 psql -U <username> -h localhost -d <colouringlondondb> < ../migrations/003.index-buildings.up.sql
 ```
 
