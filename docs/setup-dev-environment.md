@@ -294,6 +294,15 @@ Then run:
 ```bash
 # download test data
 python get_test_polygons.py
+```
+
+Note: the first time you run it, you will get these warnings:
+```
+rm: cannot remove 'test_buildings.geojson': No such file or directory
+rm: cannot remove 'test_buildings.3857.csv': No such file or directory
+```
+
+```bash
 # load all building outlines
 ./load_geometries.sh ./
 # index geometries (should be faster after loading)
