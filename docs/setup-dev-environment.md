@@ -2,9 +2,7 @@
 
 This document is intended to guide you through setting up a local development environment for Colouring London. This guide assumes you already have Ubuntu 20.04 server installed, typically installed in a virtual environment such a Virtual Box and are able to SSH into your Ubuntu installation for convenience.
 
-If you a running Ubuntu in a virtual environment you will need to configure networking to
-forward ports from the guest to the host. For Virtual Box the following was configured under
-NAT port forwarding.
+If you a running Ubuntu in a virtual environment you will need to configure networking to forward ports from the guest to the host. For Virtual Box the following was configured under NAT port forwarding (found under `Settings -> Network -> Advanced -> Port Forwarding`).
 
 Name     | Protocol  | Host Port  | Guest Port
 -------- | --------- | ---------- | -----------
