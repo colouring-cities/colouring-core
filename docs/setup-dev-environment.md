@@ -292,7 +292,6 @@ First open `colouring-london/etl/load_geometries.sh` and `colouring-london/etl/c
 Then run:
 
 ```bash
-cd ./colouring-london/etl/
 # download test data
 python get_test_polygons.py
 # load all building outlines
