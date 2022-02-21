@@ -312,14 +312,6 @@ Create a building record per outline.
 ```bash
 ./create_building_records.sh
 ```
-
-#### Re-run database migrations
-
-Re-run the remaining migrations in `../migrations` to create the rest of the database structure.
-
-```bash
-ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
-```
 </details>
 
 ## Running the application
