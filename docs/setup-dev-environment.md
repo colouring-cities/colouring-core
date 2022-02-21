@@ -206,7 +206,8 @@ Now install the required Node packages. This needs to done from the `app` direct
 local repository, so that it can read from the `package.json` file.
 
 ```bash
-cd ./colouring-london/app && npm install
+cd ./colouring-london/app
+npm install
 ```
 
 ## Loading the data
@@ -265,23 +266,19 @@ pip install --upgrade pip
 pip install --upgrade setuptools wheel
 ```
 
-Now install the required python packages. This relies on the `requirements.txt` file located
-in the `etl` folder of your local repository.
-
-```bash
-pip install -r ./colouring-london/etl/requirements.txt
-```
-
 #### Load OpenStreetMap test polygons:
 
-First Install prerequisites.
+First install prerequisites.
 ```bash
 sudo apt-get install parallel
 ```
 
-Check you are in the virtual environment you setup earlier, otherwise run:
+Install the required python packages. This relies on the `requirements.txt` file located
+in the `etl` folder of your local repository.
+
 ```bash
-source colouringlondon/bin/activate
+cd ~/colouring-london/etl/
+pip install -r requirements.txt
 ```
 
 To help test the Colouring London application, `get_test_polygons.py` will attempt to save a small (1.5km²) extract from OpenStreetMap to a format suitable for loading to the database.
