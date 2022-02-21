@@ -7,6 +7,12 @@ This document is intended to guide you through setting up a local development en
 Configuring an Ubuntu VM in VirtualBox
 </summary>
 
+When setting up the VirtualBox VM, consider the size of the database you intend to load for use with the application. Consult the [loading the data](#loading-the-data) section of this guide and decide whether you will be using a full city database or will load test data from OSM.
+
+For "Colouring London", we have found that the size of the database means that a VM with access to 50GB of storage is appropriate. If you are using the OSM test data, the default storage settings in VirtualBox should suffice.
+
+##### In either case, you should set the memory to `2048` MB.
+
 If you a running Ubuntu in a virtual environment you will need to configure networking to forward ports from the guest to the host. For Virtual Box the following was configured under NAT port forwarding (found under `Settings -> Network -> Advanced -> Port Forwarding`).
 
 Name     | Protocol  | Host Port  | Guest Port
