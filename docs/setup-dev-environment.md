@@ -153,6 +153,9 @@ password `<pgpassword>` is arbitrary and probably should not be your Ubuntu logi
 sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<username>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <username> SUPERUSER LOGIN PASSWORD '<pgpassword>';"
 ```
 
+_TODO: temp instruction, find a better place to move this:_
+> If you are creating from a CL db, run the above with `<username>` as "cldbadmin" and use that from now on, but also run the above a second time with `<username>` as "clwebapp".
+
 Set the `<pgpassword>` as an environment variable.
 
 ```bash
@@ -180,13 +183,6 @@ create extension pg_trgm;
 ```
 
 Then quit `psql` by typing `\q` and hitting return.
-
-Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
-do this are located in the `migrations` folder of your local repository.
-
-```bash
-ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> -U <username> -h localhost < $migration; done;
-```
 
 ## Setting up Node
 
@@ -313,6 +309,15 @@ Create a building record per outline.
 ./create_building_records.sh
 ```
 </details>
+
+#### Run migrations
+
+Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
+do this are located in the `migrations` folder of your local repository.
+
+```bash
+ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> -U <username> -h localhost < $migration; done;
+```
 
 ## Running the application
 
