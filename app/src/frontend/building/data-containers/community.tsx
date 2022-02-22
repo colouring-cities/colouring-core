@@ -83,15 +83,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
         <InfoBox>Can you help add information on community use of buildings?</InfoBox>
         <LogicalDataEntry
-            slug='community_activities'
-            title={dataFields.community_activities.title}
-            tooltip={dataFields.community_activities.tooltip}
-            value={props.building.community_activities}
-
-            onChange={props.onChange}
-            mode={props.mode}
-        />
-        <LogicalDataEntry
             slug='community_activities_current'
             title={dataFields.community_activities_current.title}
             tooltip={dataFields.community_activities_current.tooltip}
