@@ -543,7 +543,7 @@
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Residential" and [current_landuse_group] = "Garden buildings" </Filter>
-            <PolygonSymbolizer fill="#5b5fbc" />
+            <PolygonSymbolizer fill="#1157fa" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Community Services"</Filter>
