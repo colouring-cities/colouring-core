@@ -101,19 +101,19 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             mode={props.mode}
         />
         <LogicalDataEntry
-            slug='community_activities_always'
-            title={dataFields.community_activities_always.title}
-            tooltip={dataFields.community_activities_always.tooltip}
-            value={props.building.community_activities_always}
+            slug='community_activities_past'
+            title={dataFields.community_activities_past.title}
+            tooltip={dataFields.community_activities_past.tooltip}
+            value={props.building.community_activities_past}
 
             onChange={props.onChange}
             mode={props.mode}
         />
         <LogicalDataEntry
-            slug='community_activities_not_anymore'
-            title={dataFields.community_activities_not_anymore.title}
-            tooltip={dataFields.community_activities_not_anymore.tooltip}
-            value={props.building.community_activities_not_anymore}
+            slug='community_activities_always'
+            title={dataFields.community_activities_always.title}
+            tooltip={dataFields.community_activities_always.tooltip}
+            value={props.building.community_activities_always}
 
             onChange={props.onChange}
             mode={props.mode}
