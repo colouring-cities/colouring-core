@@ -91,6 +91,15 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             onChange={props.onChange}
             mode={props.mode}
         />
+        <LogicalDataEntry
+            slug='community_activities_current'
+            title={dataFields.community_activities_current.title}
+            tooltip={dataFields.community_activities_current.tooltip}
+            value={props.building.community_activities_current}
+
+            onChange={props.onChange}
+            mode={props.mode}
+        />
         {/* TODO: dates */}
         {
             // props.building.community_activities === true &&

@@ -521,6 +521,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
+    community_activities_current: {
+        category: Category.Community,
+        title: "Are activities open to the community currently taking place in the building?",
+        tooltip: "E.g. youth club, place of worship, GP surgery, pub",
+        example: true
+    },
     // community_activities_dates: {
     //     category: Category.Community,
     //     title: "When was this building used for community activities?"
