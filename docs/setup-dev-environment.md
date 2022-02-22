@@ -65,7 +65,7 @@ sudo apt-get update
 Next install postgres and postgis to enable support for geographical objects.
 
 ```bash
-sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-14-postgis-3
+sudo apt-get install -y postgresql-12 postgresql-contrib-12 libpq-dev postgis postgresql-12-postgis-3
 ```
 
 and additional geo-spatial tools
@@ -131,13 +131,13 @@ sudo locale-gen en_US.UTF-8
 Configure the database to listen on network connection.
 
 ```bash
-sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/14/main/postgresql.conf
+sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/12/main/postgresql.conf
 ```
 
 Allow authenticated connections from any IP (so includes the host).
 
 ```bash
-echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/14/main/pg_hba.conf > /dev/null
+echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/12/main/pg_hba.conf > /dev/null
 ```
 
 Restart postgres to pick up config changes.
@@ -145,6 +145,12 @@ Restart postgres to pick up config changes.
 ```bash
 service postgresql restart
 ```
+
+<!-- Change the password encryption to md5. You will need to edit the postgres config file manually, for example you could use nano, then search for `password_encryption` and change it from `scram-sha-256` to `md5` (making sure you un-comment this line).
+
+```bash
+sudo nano /etc/postgresql/12/main/postgresql.conf
+``` -->
 
 Create a superuser role for this user (`<username>`) if it does not already exist. The
 password `<pgpassword>` is arbitrary and probably should not be your Ubuntu login password.
