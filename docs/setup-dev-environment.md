@@ -166,6 +166,8 @@ Set the `<pgpassword>` as an environment variable.
 
 ```bash
 export PGPASSWORD=<pgpassword>
+export PGUSER=<username>
+export PGHOST=localhost
 ```
 
 Create a colouring london database if none exists. The name (`<colouringlondondb>`) is arbitrary.
@@ -177,7 +179,7 @@ sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringl
 Run `psql` interactively.
 
 ```bash
-psql -d <colouringlondondb> -U <username> -h localhost
+psql -d <colouringlondondb>
 ```
 
 In `psql`, necessary postgres extensions.
@@ -230,7 +232,7 @@ You should then download the file to the machine where you are setting up your d
 In your Ubuntu installation where you have been running these setup steps (e.g. Virtualbox VM), you can then recrate the db like so.
 
 ```bash
-psql -d <colouringlondondb> -U <username> -h localhost < <dumpfile>
+psql -d <colouringlondondb> < <dumpfile>
 ```
 
 </details>
@@ -288,7 +290,7 @@ To help test the Colouring London application, `get_test_polygons.py` will attem
 First open `colouring-london/etl/load_geometries.sh` and `colouring-london/etl/create_building_records.sh` and add this `-d` flag to all the `psql` statements present (two in the former, one in the latter):
 
 ```bash
--d <colouringlondondb> -U <username> -h localhost
+-d <colouringlondondb>
 ```
 
 Download the test data.
@@ -322,7 +324,7 @@ Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql
 do this are located in the `migrations` folder of your local repository.
 
 ```bash
-ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> -U <username> -h localhost < $migration; done;
+ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
 ```
 
 ## Running the application
