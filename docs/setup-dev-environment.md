@@ -333,7 +333,7 @@ Create a building record per outline.
 
 ## Running the application
 
-Now we are ready to run the application. The `APP_COOKIE_SECRET` is arbitrary.
+Now we are ready to run the application.
 
 First enter the app directory.
 
@@ -347,11 +347,31 @@ Then create a folder for the tilecache.
 mkdir tilecache
 ```
 
-Finally, run the application.
+Create some additional variables for running the application (the `APP_COOKIE_SECRET` is arbitrary).
+
+```bash
+export PGHOST=localhost
+export PGPORT=5432
+export APP_COOKIE_SECRET=123456
+export TILECACHE_PATH=~/colouring-london/app/tilecache
+```
+
+Finally, simply run the application with npm.
+
+```bash
+npm start
+```
+
+<details>
+<summary>
+... or specify the variables for the application like so:
+</summary>
 
 ```bash
 PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=~/colouring-london/app/tilecache npm start
 ```
+
+</details><p></p>
 
 The site can then be viewed on http://localhost:8080. The `app_dev` mapping is used in
 development by Razzle which rebuilds and serves client side assets on the fly.
