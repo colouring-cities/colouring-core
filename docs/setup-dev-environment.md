@@ -1,11 +1,13 @@
 # Setting up a local development environment
 
-This document is intended to guide you through setting up a local development environment for Colouring London. This guide assumes you already have Ubuntu 18.04 or 20.04 server installed, typically installed in a virtual environment such a VirtualBox and are able to SSH into your Ubuntu installation for convenience.
+This document is intended to guide you through setting up a local development environment for the Colouring London application. This guide assumes you already have either already have access to an machine with Ubuntu 18.04 or 20.04 installed, or can use VirtualBox to set up an Ubuntu virtual machine as below:
 
 <details>
 <summary>
 Configuring an Ubuntu VM in VirtualBox
-</summary>
+</summary><p></p>
+
+Here we explain how to use VirtualBox and SSH into your Ubuntu installation for convenience.
 
 When setting up the VirtualBox VM, consider the size of the database you intend to load for use with the application. Consult the [loading the data](#loading-the-data) section of this guide and decide whether you will be using a full city database or will load test data from OSM.
 
@@ -37,6 +39,12 @@ You can then `ssh` into the VirtualBox VM set up with the port  forwarding descr
 ssh <linuxusername>@localhost -p 4022
 ```
 </details>
+
+## Contents
+
+- [Set up]()
+- [Loading data]()
+- [Running the application]()
 
 ## Installing the tools and components
 
