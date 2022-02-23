@@ -21,6 +21,8 @@ app      | TCP       | 8080       | 3000
 app_dev  | TCP       | 3001       | 3001
 ssh      | TCP       | 4022       | 22
 
+The `app_dev` mapping is used in development by Razzle which rebuilds and serves client side assets on the fly.
+
 To run the commands in the rest of this setup guide, either `ssh` into the VirtualBox environment or open the terminal within the Ubuntu GUI.
 
 If you wish to `ssh`, you will first need to open the terminal in Ubuntu and run the following.
@@ -373,7 +375,6 @@ PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=
 
 </details><p></p>
 
-The site can then be viewed on http://localhost:8080. The `app_dev` mapping is used in
-development by Razzle which rebuilds and serves client side assets on the fly.
+The site can then be viewed on http://localhost:8080.
 
 Finally to quit the application type `Ctrl-C`.
