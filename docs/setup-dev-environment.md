@@ -162,12 +162,13 @@ sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<username>';" |
 _TODO: temp instruction, find a better place to move this:_
 > If you are creating from a CL db, run the above with `<username>` as "cldbadmin" and use that from now on, but also run the above a second time with `<username>` as "clwebapp".
 
-Set the `<pgpassword>` as an environment variable.
+Set environment variables, which will simplify running subsequent `psql` commands.
 
 ```bash
 export PGPASSWORD=<pgpassword>
 export PGUSER=<username>
 export PGHOST=localhost
+export PGDATABASE=<colouringlondondb>
 ```
 
 Create a colouring london database if none exists. The name (`<colouringlondondb>`) is arbitrary.
@@ -179,7 +180,7 @@ sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringl
 Run `psql` interactively.
 
 ```bash
-psql -d <colouringlondondb>
+psql
 ```
 
 In `psql`, necessary postgres extensions.
@@ -235,6 +236,15 @@ In your Ubuntu installation where you have been running these setup steps (e.g. 
 psql -d <colouringlondondb> < <dumpfile>
 ```
 
+Run migrations.
+
+Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
+do this are located in the `migrations` folder of your local repository.
+
+```bash
+ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
+```
+
 </details>
 
 <details>
@@ -287,12 +297,6 @@ pip install -r requirements.txt
 
 To help test the Colouring London application, `get_test_polygons.py` will attempt to save a small (1.5km²) extract from OpenStreetMap to a format suitable for loading to the database.
 
-First open `colouring-london/etl/load_geometries.sh` and `colouring-london/etl/create_building_records.sh` and add this `-d` flag to all the `psql` statements present (two in the former, one in the latter):
-
-```bash
--d <colouringlondondb>
-```
-
 Download the test data.
 
 ```bash
@@ -303,6 +307,15 @@ Note: the first time you run it, you will get these warnings:
 ```
 rm: cannot remove 'test_buildings.geojson': No such file or directory
 rm: cannot remove 'test_buildings.3857.csv': No such file or directory
+```
+
+Run migrations.
+
+Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
+do this are located in the `migrations` folder of your local repository.
+
+```bash
+ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
 ```
 
 Load all building outlines.
@@ -317,15 +330,6 @@ Create a building record per outline.
 ./create_building_records.sh
 ```
 </details>
-
-#### Run migrations
-
-Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
-do this are located in the `migrations` folder of your local repository.
-
-```bash
-ls ./colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
-```
 
 ## Running the application
 
