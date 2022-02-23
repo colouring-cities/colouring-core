@@ -515,21 +515,15 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: 100,
     },
 
-    community_activities: {
-        category: Category.Community,
-        title: "Has this ever been used for community activities in the past?",
-        tooltip: "E.g. youth club, place of worship, GP surgery, pub",
-        example: true
-    },
     community_activities_current: {
         category: Category.Community,
         title: "Are activities open to the community currently taking place in the building?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
-    community_activities_past: {
+    community_activities: {
         category: Category.Community,
-        title: "Has the building been used in the past for community activities?",
+        title: "Has this ever been used for community activities in the past?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
