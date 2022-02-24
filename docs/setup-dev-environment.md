@@ -237,7 +237,7 @@ npm install
 ## :house: Loading the building data
 
 <details>
-<summary> With a database dump </summary>
+<summary> With a database dump </summary><p></p>
 
 If you are a developer on the Colouring London project (or another Colouring Cities project), you may have a production database (or staging etc) that you wish to duplicate in your development environment.
 
@@ -267,7 +267,7 @@ ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration;
 </details>
 
 <details>
-<summary> With test data </summary>
+<summary> With test data </summary><p></p>
 
 Run the following two sections if you wish to load test buildings into the application from OpenStreetMaps (OSM).
 
