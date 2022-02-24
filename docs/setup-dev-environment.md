@@ -69,7 +69,7 @@ sudo apt-get install -y build-essential git vim-nox wget curl
 
 ### :red_circle: Installing PostgreSQL
 
-Set the postgres repo for apt.
+Set the postgres repo for apt (these instructions were taken from [postgresql.org](https://www.postgresql.org/download/linux/ubuntu/)).
 
 ```bash
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
