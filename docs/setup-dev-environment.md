@@ -1,6 +1,6 @@
 # Setting up a local development environment
 
-This document is intended to guide you through setting up a local development environment for the Colouring London application. This guide assumes you already have either already have access to an machine with Ubuntu 18.04 or 20.04 installed, or can use VirtualBox to set up an Ubuntu virtual machine as below:
+This document is intended to guide you through setting up a local development environment for the Colouring London application. This guide assumes you already have either already have access to an machine with Ubuntu 18.04 or 20.04 installed, or can use VirtualBox to set up an Ubuntu virtual machine as below.
 
 <details>
 <summary>
@@ -128,7 +128,7 @@ export PATH=\$NODEJS_HOME:\$PATH
 EOF
 ```
 
-Then run source to make sure node and npm are on your path:
+Then run source to make sure node and npm are on your path.
 
 ```bash
 source ~/.profile
@@ -275,7 +275,7 @@ ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration;
 
 This section shows how to load test buildings into the application from OpenStreetMaps (OSM).
 
-#### Set up Python:
+#### Set up Python
 
 Install python and related tools.
 
@@ -303,7 +303,7 @@ pip install --upgrade pip
 pip install --upgrade setuptools wheel
 ```
 
-#### Load OpenStreetMap test polygons:
+#### Load OpenStreetMap test polygons
 
 First install prerequisites.
 ```bash
