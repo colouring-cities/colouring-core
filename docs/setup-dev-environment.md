@@ -42,11 +42,16 @@ ssh <linuxusername>@localhost -p 4022
 
 ## Contents
 
-- [Set up]()
-- [Loading data]()
-- [Running the application]()
+- [:tulip: Installing the tools and components]()
+  - :red_circle: Installing PostgreSQL
+  - :rainbow: Installing Colouring London
+  - :arrow_down: Installing Node.js
+  - :large_blue_circle: Configuring PostgreSQL
+  - :arrow_forward: Configuring Node.js
+- [:house: Loading the building data]()
+- [:computer: Running the application]()
 
-## Installing the tools and components
+## :tulip: Installing the tools and components
 
 First upgrade the installed packages to the latest versions, to remove any security warnings.
 
@@ -60,6 +65,8 @@ Now we install some essential tools.
 ```bash
 sudo apt-get install -y build-essential git vim-nox wget curl
 ```
+
+### :red_circle: Installing PostgreSQL
 
 Set the postgres repo for apt.
 
@@ -84,11 +91,15 @@ and additional geo-spatial tools
 sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 ```
 
-Now clone the colouring london codebase.
+### :rainbow: Installing Colouring London
+
+Now clone the `colouring-london` codebase.
 
 ```bash
 git clone https://github.com/colouring-london/colouring-london.git
 ```
+
+### :arrow_down: Installing Node.js
 
 Now install Node. It is helpful to define some local variables.
 
@@ -124,7 +135,7 @@ echo $PATH
 echo $NODEJS_HOME
 ```
 
-## Configuring Postgres
+### :large_blue_circle: Configuring PostgreSQL
 
 Now we configure postgres. First ensure postgres is running.
 
@@ -203,11 +214,9 @@ create extension pg_trgm;
 
 Then quit `psql` by typing `\q` and hitting return.
 
-## Setting up Node
+### :arrow_forward: Configuring Node.js
 
-Now upgrade the npm package manager to the most recent release with global privileges. This
-needs to be performed as root user, so it is necessary to export the node variables to the
-root user profile. Don't forget to exit from root at the end.
+Now upgrade the npm package manager to the most recent release with global privileges. This needs to be performed as root user, so it is necessary to export the node variables to the root user profile. Don't forget to exit from root at the end.
 
 ```bash
 sudo su root
@@ -225,7 +234,7 @@ cd ./colouring-london/app
 npm install
 ```
 
-## Loading the data
+## :house: Loading the building data
 
 <details>
 <summary> With a database dump </summary>
@@ -341,7 +350,7 @@ Create a building record per outline.
 ```
 </details>
 
-## Running the application
+## :computer: Running the application
 
 Now we are ready to run the application.
 
