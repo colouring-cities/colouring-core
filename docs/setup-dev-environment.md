@@ -173,12 +173,6 @@ Restart postgres to pick up config changes.
 service postgresql restart
 ```
 
-<!-- Change the password encryption to md5. You will need to edit the postgres config file manually, for example you could use nano, then search for `password_encryption` and change it from `scram-sha-256` to `md5` (making sure you un-comment this line).
-
-```bash
-sudo nano /etc/postgresql/12/main/postgresql.conf
-``` -->
-
 Create a superuser role for this user (`<username>`) if it does not already exist. The
 password `<pgpassword>` is arbitrary and probably should not be your Ubuntu login password.
 
