@@ -13,7 +13,7 @@ When setting up the VirtualBox VM, consider the size of the database you intend 
 
 For "Colouring London", we have found that the size of the database means that a VM with access to 50GB of storage is appropriate. If you are using the OSM test data, the default storage settings in VirtualBox should suffice.
 
-##### In either case, you should set the memory to `2048` MB.
+##### In either case, you should set the memory to at least `2048` MB.
 
 If you a running Ubuntu in a virtual environment you will need to configure networking to forward ports from the guest to the host. For Virtual Box the following was configured under NAT port forwarding (found under `Settings -> Network -> Advanced -> Port Forwarding`).
 
