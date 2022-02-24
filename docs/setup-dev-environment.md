@@ -307,7 +307,7 @@ pip install --upgrade setuptools wheel
 
 First install prerequisites.
 ```bash
-sudo apt-get install parallel
+sudo apt-get install -y parallel
 ```
 
 Install the required python packages. This relies on the `requirements.txt` file located
