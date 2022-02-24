@@ -9,7 +9,7 @@ Configuring an Ubuntu VM in VirtualBox
 
 Here we explain how to use VirtualBox and SSH into your Ubuntu installation for convenience.
 
-When setting up the VirtualBox VM, consider the size of the database you intend to load for use with the application. Consult the [loading the data](#loading-the-data) section of this guide and decide whether you will be using a full city database or will load test data from OSM.
+When setting up the VirtualBox VM, consider the size of the database you intend to load for use with the application. Consult the [:house: Loading the building data](#house-loading-the-building-data) section of this guide and decide whether you will be using a full city database or will load test data from OSM.
 
 For "Colouring London", we have found that the size of the database means that a VM with access to 50GB of storage is appropriate. If you are using the OSM test data, the default storage settings in VirtualBox should suffice.
 
