@@ -50,6 +50,7 @@ ssh <linuxusername>@localhost -p 4022
   - [:arrow_forward: Configuring Node.js](#arrow_forward-configuring-nodejs)
 - [:house: Loading the building data](#house-loading-the-building-data)
 - [:computer: Running the application](#computer-running-the-application)
+  - [:eyes: Viewing the application](#eyes-viewing-the-application)
 
 ## :tulip: Installing the tools and components
 
@@ -60,7 +61,7 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 ```
 
-Now we install some essential tools.
+Now install some essential tools.
 
 ```bash
 sudo apt-get install -y build-essential git vim-nox wget curl
@@ -76,6 +77,9 @@ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)
 
 ```bash
 sudo wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+```
+
+```bash
 sudo apt-get update
 ```
 
@@ -93,11 +97,13 @@ sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 
 ### :rainbow: Installing Colouring London
 
-Now clone the `colouring-london` codebase.
+Now clone the `colouring-london` codebase. 
 
 ```bash
 git clone https://github.com/colouring-london/colouring-london.git
 ```
+
+**Note:** We assume here that you will clone the repo into the home directory of your Ubuntu installation. Watch out for later commands in this guide that assume the repo is located at `~/colouring-london` and modify the path if appropriate.
 
 ### :arrow_down: Installing Node.js
 
@@ -234,7 +240,7 @@ Now install the required Node packages. This needs to done from the `app` direct
 local repository, so that it can read from the `package.json` file.
 
 ```bash
-cd ./colouring-london/app
+cd ~/colouring-london/app
 npm install
 ```
 
@@ -259,7 +265,7 @@ In your Ubuntu installation where you have been running these setup steps (e.g. 
 psql -d <colouringlondondb> < <dumpfile>
 ```
 
-Run migrations.
+#### Run migrations
 
 Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
 do this are located in the `migrations` folder of your local repository.
@@ -273,7 +279,7 @@ ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration;
 <details>
 <summary> With test data </summary><p></p>
 
-Run the following two sections if you wish to load test buildings into the application from OpenStreetMaps (OSM).
+This section shows how to load test buildings into the application from OpenStreetMaps (OSM).
 
 #### Set up Python:
 
@@ -332,7 +338,7 @@ rm: cannot remove 'test_buildings.geojson': No such file or directory
 rm: cannot remove 'test_buildings.3857.csv': No such file or directory
 ```
 
-Run migrations.
+#### Run migrations
 
 Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
 do this are located in the `migrations` folder of your local repository.
@@ -340,6 +346,8 @@ do this are located in the `migrations` folder of your local repository.
 ```bash
 ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
 ```
+
+#### Load buildings
 
 Load all building outlines.
 
@@ -373,7 +381,6 @@ mkdir tilecache
 Create some additional variables for running the application (the `APP_COOKIE_SECRET` is arbitrary).
 
 ```bash
-export PGHOST=localhost
 export PGPORT=5432
 export APP_COOKIE_SECRET=123456
 export TILECACHE_PATH=~/colouring-london/app/tilecache
@@ -385,9 +392,10 @@ Finally, simply run the application with npm.
 npm start
 ```
 
+**Note:** You can also specify the variables for `npm start` like so:
 <details>
 <summary>
-... or specify the variables for the application like so:
+Specify variables
 </summary>
 
 ```bash
@@ -395,6 +403,8 @@ PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=
 ```
 
 </details><p></p>
+
+### :eyes: Viewing the application
 
 The site can then be viewed on http://localhost:8080.
 
