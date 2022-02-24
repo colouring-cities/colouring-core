@@ -406,6 +406,6 @@ PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=
 
 ### :eyes: Viewing the application
 
-The site can then be viewed on http://localhost:8080.
+The site can then be viewed on http://localhost:8080 on the host computer.
 
 Finally to quit the application type `Ctrl-C`.
