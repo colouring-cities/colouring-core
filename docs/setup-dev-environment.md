@@ -42,14 +42,14 @@ ssh <linuxusername>@localhost -p 4022
 
 ## Contents
 
-- [:tulip: Installing the tools and components]()
-  - :red_circle: Installing PostgreSQL
-  - :rainbow: Installing Colouring London
-  - :arrow_down: Installing Node.js
-  - :large_blue_circle: Configuring PostgreSQL
-  - :arrow_forward: Configuring Node.js
-- [:house: Loading the building data]()
-- [:computer: Running the application]()
+- [:tulip: Installing the tools and components](#tulip-installing-the-tools-and-components)
+  - [:red_circle: Installing PostgreSQL](#red_circle-installing-postgresql)
+  - [:rainbow: Installing Colouring London](#rainbow-installing-colouring-london)
+  - [:arrow_down: Installing Node.js](#arrow_down-installing-nodejs)
+  - [:large_blue_circle: Configuring PostgreSQL](#large_blue_circle-configuring-postgresql)
+  - [:arrow_forward: Configuring Node.js](#arrow_forward-configuring-nodejs)
+- [:house: Loading the building data](#house-loading-the-building-data)
+- [:computer: Running the application](#computer-running-the-application)
 
 ## :tulip: Installing the tools and components
 
