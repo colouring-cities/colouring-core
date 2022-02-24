@@ -180,8 +180,12 @@ password `<pgpassword>` is arbitrary and probably should not be your Ubuntu logi
 sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<username>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <username> SUPERUSER LOGIN PASSWORD '<pgpassword>';"
 ```
 
-_TODO: temp instruction, find a better place to move this:_
-> If you are creating from a CL db, run the above with `<username>` as "cldbadmin" and use that from now on, but also run the above a second time with `<username>` as "clwebapp".
+<details>
+<summary>Note for "Colouring London" devs</summary><p></p>
+
+If you intend to load the full CL database from a dump file into your dev environment, run the above `psql` command with `<username>` as "cldbadmin" and use that username in subsequent steps, but also run the above a second time with `<username>` as "clwebapp" (see section [:house: Loading the building data](#house-loading-the-building-data) for more details).
+
+</details><p></p>
 
 Set environment variables, which will simplify running subsequent `psql` commands.
 
