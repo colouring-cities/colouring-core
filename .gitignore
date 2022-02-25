@@ -15,6 +15,7 @@ etl/images/*
 etl/*.geojson
 etl/**/*.csv
 etl/**/*.txt
+!etl/**/requirements.txt
 etl/**/*.xls
 etl/**/*.xlsx
 etl/**/*.zip

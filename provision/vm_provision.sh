@@ -28,11 +28,13 @@ apt-get update
 # - python with pip and venv:  python3 python3-pip python3-dev
 # - postgres and postgis: postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3
 # - spatial shared libs:  gdal-bin libspatialindex-dev libgeos-dev libproj-dev
-apt-get install -y \
+apt-get install -y --quiet \
     build-essential git vim-nox wget curl \
     python3 python3-pip python3-dev python3-venv \
     postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3 \
     gdal-bin libspatialindex-dev libgeos-dev libproj-dev
+
+apt-get install -y --quiet libgdal-dev # TODO: it is not mentioned elsewhere but without it fiona fails to install. Investigate.
 
 
 #
@@ -73,9 +75,9 @@ service postgresql start
 # Ensure en_US locale exists
 locale-gen en_US.UTF-8
 # Database config to listen on network connection
-sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/10/main/postgresql.conf
+sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/12/main/postgresql.conf
 # Allow password connections from any IP (so includes host)
-echo "host    all             all             all                     md5" >> /etc/postgresql/10/main/pg_hba.conf
+echo "host    all             all             all                     md5" >> /etc/postgresql/12/main/pg_hba.conf
 # Restart postgres to pick up config changes
 service postgresql restart
 
@@ -106,6 +108,7 @@ source colouringlondon/bin/activate
 
 # Install smif
 pip install --upgrade pip
+sudo apt install -y  --quiet python3-testresources # to silence an error on install below
 pip install --upgrade setuptools wheel
 pip install -r /vagrant/etl/requirements.txt
 
@@ -117,11 +120,26 @@ chown -R vagrant:vagrant /home/vagrant/colouringlondon
 # Install node modules
 #
 
-# Install latest release of npm
-npm install -g npm@next
+# Install release v6 of npm
+npm install -g npm@6 # TODO: upgrade to later npm to match intended "latest"
+
+# https://stackoverflow.com/questions/69094604/npm-fails-during-npm-install-with-npm-err-maximum-call-stack-size-exceeded
+# npm install on files from host at least sometimes goes down with
+#
+# 957 verbose stack RangeError: Maximum call stack size exceeded
+# 957 verbose stack     at RegExp.test (<anonymous>)
+# 957 verbose stack     at isDepOptional (/usr/local/lib/node/node-v12.18.1/lib/node_modules/npm/lib/install/deps.js:432:45)
+# 957 verbose stack     at failedDependency (/usr/local/lib/node/node-v12.18.1/lib/node_modules/npm/lib/install/deps.js:441:9)
+# (..)
+#
+# which is avoided when remote files are first copied within VM
+cp /vagrant/app /home/vagrant/ -r
+
+# TODO an ugly hack, would be nice to avoid it
+chown -R vagrant:vagrant /home/vagrant/app
 
 # Local fixed install of node modules
-cd /vagrant/app && npm install
+cd /home/vagrant/app && npm install
 
 
 #
