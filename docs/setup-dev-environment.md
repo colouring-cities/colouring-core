@@ -146,7 +146,7 @@ echo $NODEJS_HOME
 Now we configure postgres. First ensure postgres is running.
 
 ```bash
-service postgresql start
+sudo service postgresql start
 ```
 
 Ensure the `en_US` locale exists.
