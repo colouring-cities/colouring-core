@@ -170,7 +170,7 @@ echo "host    all             all             all                     md5" | sud
 Restart postgres to pick up config changes.
 
 ```bash
-service postgresql restart
+sudo service postgresql restart
 ```
 
 Create a superuser role for this user (`<username>`) if it does not already exist. The
