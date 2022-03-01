@@ -210,6 +210,7 @@ npm install --production
 rsync -r ~/predeploy/app/ /var/www/colouring-london/app
 ```
 
+^ seeing "skipping things" is normal...
 
 ## Start the colouring-london app
 
