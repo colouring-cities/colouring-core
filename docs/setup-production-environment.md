@@ -3,7 +3,7 @@
 
 #### Preliminaries
 
-This guide assumes a virtual environment (VM) running Ubuntu 18_04.
+This guide assumes a virtual environment (VM) running Ubuntu 18_04. Make sure the VM has at least 2GB memory and enough disk space for your database (for "Colouring London" we use a disk size of 50GB).
 
 Install updates to packages:
 
