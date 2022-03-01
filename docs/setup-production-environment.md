@@ -17,6 +17,32 @@ Once the Vm has been created, navigate to it in the Azure Portal and click the `
 
 </details><p></p>
 
+## Contents
+
+- [:tulip: Installing the tools and components](#tulip-installing-the-tools-and-components)
+  - [:red_circle: Installing PostgreSQL](#red_circle-installing-postgresql)
+  - [:rainbow: Installing Colouring London](#rainbow-installing-colouring-london)
+  - [:arrow_down: Installing Node.js](#arrow_down-installing-nodejs)
+  - [:large_blue_circle: Configuring PostgreSQL](#large_blue_circle-configuring-postgresql)
+  - [:arrow_forward: Configuring Node.js](#arrow_forward-configuring-nodejs)
+- [:house: Loading the building data](#house-loading-the-building-data)
+- [Installing the web components]()
+	- [Installing Nginx]()
+	- [Configuring Nginx]()
+	- [Creating a system user]()
+	- [Installing PM2]()
+	- [Configuring PM2]()
+- [Deploying the application]()
+- [:computer: Running the application](#computer-running-the-application)
+  - [:eyes: Viewing the application](#eyes-viewing-the-application)
+- [Automate database backups]()
+- [Automate maintenance]()
+- [Enable domain name access to site]()
+  - [Set up SSL]()
+	- [Set up DNS record]()
+	- [Open Ubuntu firewall]()
+	- [View site]()
+
 
 Install updates to packages:
 
