@@ -95,23 +95,23 @@ We can check the status of the firewall with
 
 Now edit `sites-available/default` to create a minimal Nginx configuration to test the installation
 
-`sudo nano /etc/nginx/sites-available/default`
+```bash
+cat <<EOF | sudo tee -a /etc/nginx/sites-available/colouring-london
 
+# Handle HTTP connections with redirect
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name colouring-london;
+    
+    location / {
+              proxy_pass http://localhost:3000/;
+              proxy_set_header X-Real-IP $remote_addr;
+     }
 
-
-	# Handle HTTP connections with redirect
-	server {
-	    listen 80 default_server;
-	    listen [::]:80 default_server;
-	    server_name colouring-london;
-	    
-	    location / {
-                proxy_pass http://localhost:3000/;
-                proxy_set_header X-Real-IP $remote_addr;
-       }
-
-	}
-	
+}
+EOF
+```
 
 
 Make sure you didn't introduce any syntax errors by typing:
