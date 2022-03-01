@@ -130,8 +130,8 @@ If all is well, restart Nginx
 `sudo systemctl restart nginx`
 
 
-
-Test out the configuration
+<!-- Manual debugging step, remove for now: -->
+<!-- Test out the configuration
 
 `cd /var/www/colouring-london/app`
 
@@ -145,7 +145,7 @@ Now open a browser window on a client machine and navigate to the IP Address of 
 
 `http://<ip_address_of_vm>`
 
-You should see the Colouring London homepage.
+You should see the Colouring London homepage. -->
 
 
 ***
