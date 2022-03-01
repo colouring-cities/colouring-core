@@ -54,7 +54,7 @@ sudo chown -R nodeapp:nodeapp /var/www/colouring-london
 sudo chmod -R 775 /var/www/colouring-london
 ```
 
-- Install and configure node as per the dev docs (TODO)
+- Install and configure node as per the dev docs (TODO) Note: don't need to run `npm install`
 - Configure Postgres as per dev doc (ignore the step: Allow authenticated connections from any IP (so includes the host). - replace it with:
 
 ```bash
