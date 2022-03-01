@@ -64,7 +64,7 @@ sudo apt-get upgrade -y
 Now install some essential tools.
 
 ```bash
-sudo apt-get install -y build-essential git vim-nox wget curl
+sudo apt-get install -y build-essential git wget curl
 ```
 
 ### :red_circle: Installing PostgreSQL
