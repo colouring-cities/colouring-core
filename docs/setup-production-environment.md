@@ -162,7 +162,10 @@ sudo env "PATH=$PATH" npm install -g pm2
 
 Create an `ecosystem.config.js` file from the template file
 
-`cd /var/www/colouring-london`
+```bash
+mkdir -p /var/www/colouring-london
+cd /var/www/colouring-london
+```
 
 `nano ecosystem.config.template.js`
 
