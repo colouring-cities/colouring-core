@@ -113,6 +113,12 @@ server {
 EOF
 ```
 
+Symbolic link the config.
+
+```bash
+sudo ln -s /etc/nginx/sites-available/colouring-london /etc/nginx/sites-enabled/colouring-london
+```
+
 
 Make sure you didn't introduce any syntax errors by typing:
 
