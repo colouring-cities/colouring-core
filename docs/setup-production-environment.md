@@ -26,21 +26,20 @@ Once the Vm has been created, navigate to it in the Azure Portal and click the `
   - [:large_blue_circle: Configuring PostgreSQL](#large_blue_circle-configuring-postgresql)
   - [:arrow_forward: Configuring Node.js](#arrow_forward-configuring-nodejs)
 - [:house: Loading the building data](#house-loading-the-building-data)
-- [:surfer: Installing the web components]()
-	- [:fire_engine: Installing & Configuring Nginx]()
-	- [:sunglasses: Creating a system user]()
-	- [:star: Installing & Configuring PM2]()
-- [:truck: Deploying the application]()
+- [:surfer: Installing the web components](#surfer-installing-the-web-components)
+	- [:fire_engine: Installing & Configuring Nginx](#fire_engine-installing--configuring-nginx)
+	- [:star: Installing & Configuring PM2](#star-installing--configuring-pm2)
+- [:truck: Deploying the application](#truck-deploying-the-application)
 - [:computer: Running the application](#computer-running-the-application)
 	- [:eyes: Viewing the application](#eyes-viewing-the-application)
-	- [:triangular_flag_on_post: Stopping the application]()
-- [:recycle: Automate database backups]()
-- [:nut_and_bolt: Automate maintenance]()
-- [:satellite: Enable domain name access to site]()
-	- [:lock: Set up SSL]()
-	- [:telephone_receiver: Set up DNS record]()
-	- [:fire: Open Ubuntu firewall]()
-	- [:heart_eyes_cat: View site]()
+	- [:triangular_flag_on_post: Stopping the application](#triangular_flag_on_post-stopping-the-application)
+- [:recycle: Automate database backups](#recycle-automate-database-backups)
+- [:nut_and_bolt: Automate maintenance](#nut_and_bolt-automate-maintenance)
+- [:satellite: Enable domain name access to site](#satellite-enable-domain-name-access-to-site)
+	- [:lock: Set up SSL](#lock-set-up-ssl)
+	- [:telephone_receiver: Set up DNS record](#telephone_receiver-set-up-dns-record)
+	- [:fire: Open Ubuntu firewall](#fire-open-ubuntu-firewall)
+	- [:heart_eyes_cat: View site](#heart_eyes_cat-view-site)
 
 
 ## :tulip: Installing the tools and components
@@ -455,7 +454,6 @@ Now open a browser window on a client machine and navigate to the IP Address of 
 You should see the Colouring London homepage. -->
 
 
-***
 
 ### :star: Installing & Configuring PM2
 
