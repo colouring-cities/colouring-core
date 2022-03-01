@@ -76,7 +76,7 @@ echo "host    all             all             all                     md5" | sud
 
 Configure Linux firewall.
 
-`sudo ufw allow 'Nginx HTTP'`
+`sudo ufw allow 'Nginx Full'`
 
 Allow ssh connection.
 
@@ -231,7 +231,16 @@ To stop the colouring-london app type:
 
 ***
 
+### DB Backups
+
+- Add backup.sh https://github.com/colouring-cities/colouring-london-config/blob/main/backup.sh
+- User to set $AZURE_CONNECTION_STRING
+-  install Azure CLI
+- Set up backup.sh to run with cron
+
 #### Set up data extracts
+
+<!-- TODO: Also run on a  cron (check PROD server): -->
 
 Install requirements for the maintenance Python scripts
 
