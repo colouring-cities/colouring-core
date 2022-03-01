@@ -66,7 +66,7 @@ sudo apt-get upgrade -y --quiet
 Now install some essential tools.
 
 ```bash
-sudo apt-get install -y build-essential git wget curl
+sudo apt-get install -y build-essential git wget curl --quiet
 ```
 
 ### :red_circle: Installing PostgreSQL

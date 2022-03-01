@@ -16,7 +16,9 @@ sudo apt-get upgrade -y --quiet
 
 Install some useful development tools
 
-`sudo apt-get install -y build-essential git vim-nox wget curl`
+```bash
+sudo apt-get install -y build-essential git wget curl --quiet
+```
 
 Install Postgres and associated tools
 
