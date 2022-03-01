@@ -32,7 +32,8 @@ Once the Vm has been created, navigate to it in the Azure Portal and click the `
 	- [:star: Installing & Configuring PM2]()
 - [:truck: Deploying the application]()
 - [:computer: Running the application](#computer-running-the-application)
-  - [:eyes: Viewing the application](#eyes-viewing-the-application)
+	- [:eyes: Viewing the application](#eyes-viewing-the-application)
+	- [:triangular_flag_on_post: Stopping the application]()
 - [:recycle: Automate database backups]()
 - [:nut_and_bolt: Automate maintenance]()
 - [:satellite: Enable domain name access to site]()
@@ -342,14 +343,14 @@ Create a building record per outline.
 ```
 </details>
 
-# Install Nginx
+## :surfer: Installing the web components
+
+In this section we'll install the components needed to set up your own "Colouring Cities" website from the application.
+
+### :fire_engine: Installing & Configuring Nginx
 
 ```bash
 sudo apt-get -yqq install nginx
-```
-
-```bash
-cd ~ && git clone https://github.com/colouring-london/colouring-london.git
 ```
 
 Create a system user (`nodeapp`) to `chown` the `colouring-london` directory
@@ -371,8 +372,6 @@ sudo mkdir /var/www/colouring-london
 sudo chown -R nodeapp:nodeapp /var/www/colouring-london
 sudo chmod -R 775 /var/www/colouring-london
 ```
-
-#### Configure Nginx
 
 Configure Linux firewall.
 
@@ -398,7 +397,6 @@ We can check the status of the firewall with
 ```bash
 sudo ufw status
 ```
-
 
 Now edit `sites-available/default` to create a minimal Nginx configuration to test the installation
 
@@ -426,15 +424,13 @@ Symbolic link the config.
 sudo ln -s /etc/nginx/sites-available/colouring-london /etc/nginx/sites-enabled/colouring-london
 ```
 
-
 Make sure you didn't introduce any syntax errors by typing:
 
 ```bash
 sudo nginx -t
 ```
 
-
-If all is well, restart Nginx
+If all is well, restart Nginx.
 
 ```bash
 sudo systemctl restart nginx
@@ -461,8 +457,7 @@ You should see the Colouring London homepage. -->
 
 ***
 
-
-#### Set up PM2
+### :star: Installing & Configuring PM2
 
 Perform a global install of PM2
 
@@ -506,7 +501,8 @@ module.exports = {
 }
 EOF
 ```
-## Deploy
+
+## :truck: Deploying the application
 
 ```bash
 cd ~/colouring-london/app
@@ -523,7 +519,7 @@ rsync -r ~/predeploy/app/ /var/www/colouring-london/app
 
 ^ seeing "skipping things" is normal...
 
-## Start the colouring-london app
+## :computer: Running the application
 
 ```bash
 cd /var/www/colouring-london
@@ -533,6 +529,8 @@ cd /var/www/colouring-london
 pm2 start ecosystem.config.js
 ```
 
+### :eyes: Viewing the application
+
 Open a browser window on a client machine and navigate to the IP Address of your VM
 
 ```bash
@@ -541,23 +539,22 @@ http://<ip_address_of_vm>
 
 You should see the Colouring London homepage.
 
+### :triangular_flag_on_post: Stopping the application
+
 To stop the colouring-london app type:
 
 ```bash
 pm2 stop ecosystem.config.js
 ```
 
-
-***
-
-### DB Backups
+## :recycle: Automate database backups
 
 - Add backup.sh https://github.com/colouring-cities/colouring-london-config/blob/main/backup.sh
 - User to set $AZURE_CONNECTION_STRING
 -  install Azure CLI
 - Set up backup.sh to run with cron
 
-#### Set up data extracts
+## :nut_and_bolt: Automate maintenance
 
 <!-- TODO: Also run on a  cron (check PROD server): -->
 
@@ -580,12 +577,20 @@ PGHOST=localhost PGPORT=5432 PGDATABASE=dbname PGUSER=username PGPASSWORD=secret
 
 If the maintenance script is to be run on a schedule, the variables should be loaded before running the script, for example from a `.env` file.
 
+## :satellite: Enable domain name access to site
 
-#### Set up SSL - TO DO
+### :lock: Set up SSL
 
 - Use cert bot to let you request and renew SSL  certificates automatically (letsencrypt)
+
+### :telephone_receiver: Set up DNS record
+
 - Setup DNS record for domain name access to site
 
+### :fire: Open Ubuntu firewall
+
 DON'T FORGET to open the Ubuntu firewall to HTTPS
+
+### :heart_eyes_cat: View site
 
 
