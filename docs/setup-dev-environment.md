@@ -87,6 +87,8 @@ sudo apt-get update
 
 Next install postgres and postgis to enable support for geographical objects.
 
+<!-- TODO: Add variable for quiet -->
+
 ```bash
 sudo apt-get install -y postgresql-12 postgresql-contrib-12 libpq-dev postgis postgresql-12-postgis-3
 ```
