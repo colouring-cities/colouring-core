@@ -24,7 +24,9 @@ sudo apt-get install -y build-essential git wget curl --quiet
 
 Install Nginx
 
-`sudo apt install nginx`
+```bash
+sudo apt-get -yqq install nginx
+```
 
 
 Clone the remote Colouring London GitHub repository into `/var/www`
