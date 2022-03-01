@@ -169,7 +169,7 @@ cd /var/www/colouring-london
 Create an `ecosystem.config.js` file from the template file.
 
 ```bash
-cat <<EOF | sudo tee -a ecosystem.config.template.js
+cat <<EOF | sudo tee ecosystem.config.template.js
 // Template for production ecosystem file
 
 // Copy this file and edit to set up pm2 config
