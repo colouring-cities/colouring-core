@@ -1,11 +1,22 @@
 # Setting Up A Production Environment
 
+This guide assumes a virtual environment (VM) running Ubuntu 18.04 (for example on a cloud computing service such as MS Azure). Make sure the VM has at least 2GB memory and enough disk space for your database (for "Colouring London" we use a disk size of 50GB). Otherwise you can keep the defaults in the VM setup.
 
-#### Preliminaries
+<details>
+<summary>
+Configuring a VM in MS Azure
+</summary><p></p>
 
-This guide assumes a virtual environment (VM) running Ubuntu 18_04 (for example on a cloud computing service such as MS Azure). Make sure the VM has at least 2GB memory and enough disk space for your database (for "Colouring London" we use a disk size of 50GB). Otherwise you can keep the defaults in the VM setup.
+From the Azure Portal Home, navigate to `Virtual machines -> + Create` and select the relevant subscription. Choose an Ubuntu 18.04 image, chose "SSH public key" as the Authentication type and select "SSH" as the inbound port. 
 
-<!-- - TODO: add private key download etc -->
+You should probably set the "SSH public key source" to "Generate a new key  pair", which will allow you to download a private key once the VM is created. Store it somewhere sensible like `~/.ssh/`.
+
+So long as the VM has enough memory and disk space (see above e.g. 2GB, 50GB), you can leave all other options as the default and click `Review + create`.
+
+Once the Vm has been created, navigate to it in the Azure Portal and click the `Connect` tab, which will show you how to connect via SSH.
+
+</details><p></p>
+
 
 Install updates to packages:
 
