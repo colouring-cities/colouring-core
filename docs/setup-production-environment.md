@@ -78,21 +78,28 @@ echo "host    all             all             all                     md5" | sud
 
 Configure Linux firewall.
 
-`sudo ufw allow 'Nginx Full'`
+```bash
+sudo ufw allow 'Nginx Full'
+```
 
 Allow ssh connection.
 
-`sudo ufw allow 22`
+```bash
+sudo ufw allow 22
+```
 
 Optional: For increased security, restrict the ip addresses that can be used to access.
 
-`sudo ufw allow from <your_static_ip_address> proto tcp to any port 22`
-
-`sudo ufw enable -y`
+```bash
+sudo ufw allow from <your_static_ip_address> proto tcp to any port 22
+sudo ufw enable -y
+```
 
 We can check the status of the firewall with
 
-`sudo ufw status`
+```bash
+sudo ufw status
+```
 
 
 Now edit `sites-available/default` to create a minimal Nginx configuration to test the installation
@@ -124,12 +131,16 @@ sudo ln -s /etc/nginx/sites-available/colouring-london /etc/nginx/sites-enabled/
 
 Make sure you didn't introduce any syntax errors by typing:
 
-`sudo nginx -t`
+```bash
+sudo nginx -t
+```
 
 
 If all is well, restart Nginx
 
-`sudo systemctl restart nginx`
+```bash
+sudo systemctl restart nginx
+```
 
 
 <!-- Manual debugging step, remove for now: -->
@@ -216,19 +227,27 @@ rsync -r ~/predeploy/app/ /var/www/colouring-london/app
 
 ## Start the colouring-london app
 
-`cd /var/www/colouring-london`
+```bash
+cd /var/www/colouring-london
+```
 
-`pm2 start ecosystem.config.js`
+```bash
+pm2 start ecosystem.config.js
+```
 
 Open a browser window on a client machine and navigate to the IP Address of your VM
 
-`http://<ip_address_of_vm>`
+```bash
+http://<ip_address_of_vm>
+```
 
 You should see the Colouring London homepage.
 
 To stop the colouring-london app type:
 
-`pm2 stop ecosystem.config.js`
+```bash
+pm2 stop ecosystem.config.js
+```
 
 
 ***
@@ -246,14 +265,20 @@ To stop the colouring-london app type:
 
 Install requirements for the maintenance Python scripts
 
-`cd /var/www/colouring-london/maintenance`
+```bash
+cd /var/www/colouring-london/maintenance
+```
 
-`sudo pip3 install -r requirements.txt`
+```bash
+sudo pip3 install -r requirements.txt
+```
 
 The maintenance scripts might need environment variables present at the time of execution, notably the database connection details.
 If running the scripts manually, the variables can be provided just before execution, for example
 
-`PGHOST=localhost PGPORT=5432 PGDATABASE=dbname PGUSER=username PGPASSWORD=secretpassword EXTRACTS_DIRECTORY=/var/www/colouring-london/downloads python3 maintenance/extract_data/extract_data.py`
+```bash
+PGHOST=localhost PGPORT=5432 PGDATABASE=dbname PGUSER=username PGPASSWORD=secretpassword EXTRACTS_DIRECTORY=/var/www/colouring-london/downloads python3 maintenance/extract_data/extract_data.py
+```
 
 If the maintenance script is to be run on a schedule, the variables should be loaded before running the script, for example from a `.env` file.
 
