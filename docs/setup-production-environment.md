@@ -155,15 +155,9 @@ You should see the Colouring London homepage. -->
 
 Perform a global install of PM2
 
-`sudo su root`
-
-`export NODEJS_HOME=/usr/local/lib/node/node-v12.14.1/bin/`
-
-`export PATH=$NODEJS_HOME:$PATH`
-
-`npm install -g pm2`
-
-`exit`
+```bash
+sudo env "PATH=$PATH" npm install -g pm2
+```
 
 
 Create an `ecosystem.config.js` file from the template file
