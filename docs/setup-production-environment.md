@@ -28,16 +28,15 @@ Install Nginx
 sudo apt-get -yqq install nginx
 ```
 
-
-Clone the remote Colouring London GitHub repository into `/var/www`
-
 ```bash
-cd /var/www && sudo git clone https://github.com/colouring-london/colouring-london.git
+cd ~ && git clone https://github.com/colouring-london/colouring-london.git
 ```
 
 Create a system user (`nodeapp`) to `chown` the `colouring-london` directory
 
-`useradd -r -s /bin/nologin nodeapp`
+```bash
+useradd -r -s /bin/nologin nodeapp
+```
 
 Add the current user to the `nodeapp` group
 
