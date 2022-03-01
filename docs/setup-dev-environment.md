@@ -202,21 +202,11 @@ Create a colouring london database if none exists. The name (`<colouringlondondb
 sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>
 ```
 
-Run `psql` interactively.
-
 ```bash
-psql
+psql -d <colouringlondondb> -c "create extension postgis;"
+psql -d <colouringlondondb> -c "create extension pgcrypto;"
+psql -d <colouringlondondb> -c "create extension pg_trgm;"
 ```
-
-In `psql`, necessary postgres extensions.
-
-```bash
-create extension postgis;
-create extension pgcrypto;
-create extension pg_trgm;
-```
-
-Then quit `psql` by typing `\q` and hitting return.
 
 ### :arrow_forward: Configuring Node.js
 
