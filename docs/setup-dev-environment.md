@@ -2,7 +2,7 @@
 
 ### WARNING: Setup document suitable for development environment, not production server
 
-This document is intended to guide you through setting up a local development environment for the Colouring London application. This guide assumes you already have either already have access to an machine with Ubuntu 18.04 or 20.04 installed, or can use VirtualBox to set up an Ubuntu virtual machine as below.
+This document is intended to guide you through setting up a local development environment for the Colouring London application. This guide assumes you already have either already have access to an machine with Ubuntu 18.04 installed, or can use VirtualBox to set up an Ubuntu virtual machine as below.
 
 <details>
 <summary>
