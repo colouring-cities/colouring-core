@@ -72,7 +72,7 @@ echo "host    all             all             all                     md5" | sud
 
 <!-- TODO: make the clwebapp user not a superuser for prod -->
 
-#### Configure NGINX
+#### Configure Nginx
 
 Configure Linux firewall.
 
