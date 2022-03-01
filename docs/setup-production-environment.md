@@ -258,6 +258,9 @@ If the maintenance script is to be run on a schedule, the variables should be lo
 
 #### Set up SSL - TO DO
 
+- Use cert bot to let you request and renew SSL  certificates automatically (letsencrypt)
+- Setup DNS record for domain name access to site
+
 DON'T FORGET to open the Ubuntu firewall to HTTPS
 
 
