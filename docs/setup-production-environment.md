@@ -74,13 +74,19 @@ echo "host    all             all             all                     md5" | sud
 
 #### Configure NGINX
 
-Configure linux firewall
+Configure Linux firewall.
 
 `sudo ufw allow 'Nginx HTTP'`
 
-`sudo ufw allow OpenSSH`
+Allow ssh connection.
 
-`sudo ufw enable`
+`sudo ufw allow 22`
+
+Optional: For increased security, restrict the ip addresses that can be used to access.
+
+`sudo ufw allow from <your_static_ip_address> proto tcp to any port 22`
+
+`sudo ufw enable -y`
 
 We can check the status of the firewall with
 
