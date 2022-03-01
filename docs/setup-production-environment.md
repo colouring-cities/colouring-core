@@ -9,17 +9,6 @@ Install updates to packages:
 
 `sudo apt-get update`
 
-`sudo apt-get dist-upgrade`
-
-
-Install openSSH (if necessary)
-
-`sudo apt install openssh-server`
-
-
-***
-
-
 #### Install Essential Components
 
 Install some useful development tools
