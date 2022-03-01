@@ -54,67 +54,21 @@ sudo chown -R nodeapp:nodeapp /var/www/colouring-london
 sudo chmod -R 775 /var/www/colouring-london
 ```
 
+- Install and configure node as per the dev docs
+- Configure Postgres as per dev doc (ignore the step: Allow authenticated connections from any IP (so includes the host). - replace it with:
 
-***
+```bash
+cat <<EOF | sudo tee -a /etc/postgresql/12/main/pg_hba.conf
+local all all    md5 
+host all all 127.0.0.1/32   md5 
+host all all ::1/128   md5
+EOF
+```
 
-
-#### Install Node. 
-
-First define a couple of convenience variables:
-
-`NODE_VERSION=v12.14.1`
-
-`DISTRO=linux-x64`
-
-Get the Node distribution and install it
-
-`wget -nc https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-$DISTRO.tar.xz`
-
-`sudo mkdir /usr/local/lib/node`
-
-`sudo tar xf node-$NODE_VERSION-$DISTRO.tar.xz -C /usr/local/lib/node`
-
-`sudo mv /usr/local/lib/node/node-$NODE_VERSION-$DISTRO /usr/local/lib/node/node-$NODE_VERSION`
-
-`rm node-$NODE_VERSION-$DISTRO.tar.xz`
-
-
-Export the `NODE_JS_HOME` variable to your bash profile
-
-	cat >> ~/.profile <<EOF
-	export NODEJS_HOME=/usr/local/lib/node/node-$NODE_VERSION/bin
-	export PATH=$NODEJS_HOME:$PATH
-	EOF
-
-
-Reload your profile to ensure changes take effect
-
-`source ~/.profile`
-
-
-***
-
-
-#### Configure Node
-
-Now upgrade the `npm` package manager to the most recent release with global privileges. This needs to be performed as root user, so it is necessary to export the node variables to the root user profile. 
-
-`sudo su root`
-
-`export NODEJS_HOME=/usr/local/lib/node/node-v12.14.1/bin/`
-
-`export PATH=$NODEJS_HOME:$PATH`
-
-`npm install -g npm@next`
-
-`exit`
-
-Now install the required Node packages as designated in `package.json`
-
-`cd /var/www/colouring-london/app && npm install`
-
-
-***
+<!-- Change the below to the above -->
+<!-- ```bash
+echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/12/main/pg_hba.conf > /dev/null
+``` -->
 
 
 #### Configure Postgres
