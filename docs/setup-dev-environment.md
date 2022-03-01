@@ -203,7 +203,7 @@ export PGDATABASE=<colouringlondondb>
 Create a colouring london database if none exists. The name (`<colouringlondondb>`) is arbitrary.
 
 ```bash
-sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>
+sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '$PGDATABASE';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O $PGUSER $PGDATABASE
 ```
 
 ```bash
