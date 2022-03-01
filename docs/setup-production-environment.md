@@ -168,6 +168,8 @@ cd /var/www/colouring-london
 
 Create an `ecosystem.config.js` file from the template file.
 
+Note: this file is generating an `APP_COOKIE_SECRET`.
+
 ```bash
 cat <<EOF | sudo tee ecosystem.config.js
 // DO NOT COMMIT details to this file (publicly visible)
