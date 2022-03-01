@@ -205,9 +205,9 @@ sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringl
 ```
 
 ```bash
-psql -d <colouringlondondb> -c "create extension postgis;"
-psql -d <colouringlondondb> -c "create extension pgcrypto;"
-psql -d <colouringlondondb> -c "create extension pg_trgm;"
+psql -c "create extension postgis;"
+psql -c "create extension pgcrypto;"
+psql -c "create extension pg_trgm;"
 ```
 
 ### :arrow_forward: Configuring Node.js
@@ -248,7 +248,7 @@ You should then download the file to the machine where you are setting up your d
 In your Ubuntu installation where you have been running these setup steps (e.g. Virtualbox VM), you can then recrate the db like so.
 
 ```bash
-psql -d <colouringlondondb> < <dumpfile>
+psql < <dumpfile>
 ```
 
 #### Run migrations
@@ -257,7 +257,7 @@ Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql
 do this are located in the `migrations` folder of your local repository.
 
 ```bash
-ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
+ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
 ```
 
 </details>
@@ -330,7 +330,7 @@ Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql
 do this are located in the `migrations` folder of your local repository.
 
 ```bash
-ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
+ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
 ```
 
 #### Load buildings
