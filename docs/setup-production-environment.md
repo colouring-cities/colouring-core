@@ -48,11 +48,11 @@ sudo usermod -a -G nodeapp $USER
 
 Make the `nodeapp` user/group `chown` the `colouring-london` directory and its subdirectories
 
-`sudo chown -R nodeapp:nodeapp /var/www/colouring-london`
-
-Now set appropriate permissions on the `colouring-london` directory
-
-`sudo chmod -R 775 /var/www/colouring-london`
+```bash
+sudo mkdir /var/www/colouring-london
+sudo chown -R nodeapp:nodeapp /var/www/colouring-london
+sudo chmod -R 775 /var/www/colouring-london
+```
 
 
 ***
