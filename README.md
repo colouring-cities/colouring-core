@@ -36,7 +36,7 @@ _Last updated March 2022_
 
 We also have documentation on setting up a production environment here: [docs/setup-production-environment](docs/setup-production-environment.md).
   
-_Last updated 24th December 2021_
+_Last updated December 2021_
 
 **Note:** There are additional useful documentation within the `/docs` folder.
 
