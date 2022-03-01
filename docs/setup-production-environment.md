@@ -42,24 +42,307 @@ Once the Vm has been created, navigate to it in the Azure Portal and click the `
 	- [:heart_eyes_cat: View site]()
 
 
-Install updates to packages:
+## :tulip: Installing the tools and components
+
+First upgrade the installed packages to the latest versions, to remove any security warnings.
 
 ```bash
 sudo apt-get update -y --quiet
 sudo apt-get upgrade -y --quiet
 ```
 
-#### Install Essential Components
-
-Install some useful development tools
+Now install some essential tools.
 
 ```bash
 sudo apt-get install -y build-essential git wget curl --quiet
 ```
 
-- Note: install postgres as per dev doc
+### :red_circle: Installing PostgreSQL
 
-Install Nginx
+Set the postgres repo for apt (these instructions were taken from [postgresql.org](https://www.postgresql.org/download/linux/ubuntu/)).
+
+```bash
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+```
+
+```bash
+sudo wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+```
+
+```bash
+sudo apt-get update
+```
+
+Next install postgres and postgis to enable support for geographical objects.
+
+<!-- TODO: Add variable for quiet -->
+
+```bash
+sudo apt-get install -y postgresql-12 postgresql-contrib-12 libpq-dev postgis postgresql-12-postgis-3
+```
+
+and additional geo-spatial tools
+
+```bash
+sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
+```
+
+### :rainbow: Installing Colouring London
+
+Now clone the `colouring-london` codebase. 
+
+```bash
+cd ~ && git clone https://github.com/colouring-london/colouring-london.git
+```
+
+**Note:** We assume here that you will clone the repo into the home directory of your Ubuntu installation. Watch out for later commands in this guide that assume the repo is located at `~/colouring-london` and modify the path if appropriate.
+
+### :arrow_down: Installing Node.js
+
+Now install Node. It is helpful to define some local variables.
+
+```bash
+export NODE_VERSION=v16.13.2
+export DISTRO=linux-x64
+wget -nc https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-$DISTRO.tar.xz
+sudo mkdir /usr/local/lib/node
+sudo tar xf node-$NODE_VERSION-$DISTRO.tar.xz -C /usr/local/lib/node
+sudo mv /usr/local/lib/node/node-$NODE_VERSION-$DISTRO /usr/local/lib/node/node-$NODE_VERSION
+rm node-$NODE_VERSION-$DISTRO.tar.xz
+```
+
+Now add the Node installation to the path and export this to your bash profile.
+
+```bash
+cat >> ~/.profile <<EOF
+export NODEJS_HOME=/usr/local/lib/node/node-$NODE_VERSION/bin
+export PATH=\$NODEJS_HOME:\$PATH
+EOF
+```
+
+Then run source to make sure node and npm are on your path.
+
+```bash
+source ~/.profile
+```
+
+You can check the updated variables as follows
+
+```bash
+echo $PATH
+echo $NODEJS_HOME
+```
+
+### :large_blue_circle: Configuring PostgreSQL
+
+Now we configure postgres. First ensure postgres is running.
+
+```bash
+sudo service postgresql start
+```
+
+Ensure the `en_US` locale exists.
+
+```bash
+sudo locale-gen en_US.UTF-8
+```
+
+Configure the database to listen on network connection.
+
+```bash
+sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/12/main/postgresql.conf
+```
+
+Allow authenticated connections.
+
+```bash
+cat <<EOF | sudo tee -a /etc/postgresql/12/main/pg_hba.conf
+local all all    md5 
+host all all 127.0.0.1/32   md5 
+host all all ::1/128   md5
+EOF
+```
+
+Restart postgres to pick up config changes.
+
+```bash
+sudo service postgresql restart
+```
+
+Create a superuser role for this user (`<username>`) if it does not already exist. The
+password `<pgpassword>` is arbitrary and probably should not be your Ubuntu login password.
+
+```bash
+sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<username>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <username> SUPERUSER LOGIN PASSWORD '<pgpassword>';"
+```
+
+<details>
+<summary>Note for "Colouring London" devs</summary><p></p>
+
+If you intend to load the full CL database from a dump file into your dev environment, run the above `psql` command with `<username>` as "cldbadmin" and use that username in subsequent steps, but also create a normal user called "clwebapp" (see section [:house: Loading the building data](#house-loading-the-building-data) for more details).
+
+<!-- TODO: add command for the above suggestion -->
+
+</details><p></p>
+
+Set environment variables, which will simplify running subsequent `psql` commands.
+
+```bash
+export PGPASSWORD=<pgpassword>
+export PGUSER=<username>
+export PGHOST=localhost
+export PGDATABASE=<colouringlondondb>
+```
+
+Create a colouring london database if none exists. The name (`<colouringlondondb>`) is arbitrary.
+
+```bash
+sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '$PGDATABASE';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O $PGUSER $PGDATABASE
+```
+
+```bash
+psql -c "create extension postgis;"
+psql -c "create extension pgcrypto;"
+psql -c "create extension pg_trgm;"
+```
+
+### :arrow_forward: Configuring Node.js
+
+Now upgrade the npm package manager to the most recent release with global privileges. This needs to be performed as root user, so it is necessary to export the node variables to the root user profile.
+
+```bash
+export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin/
+export PATH=$NODEJS_HOME:$PATH
+sudo env "PATH=$PATH" npm install -g npm@latest
+```
+
+<!-- Now install the required Node packages. This needs to done from the `app` directory of your
+local repository, so that it can read from the `package.json` file.
+
+```bash
+cd ~/colouring-london/app
+npm install
+``` -->
+
+## :house: Loading the building data
+
+<details>
+<summary> With a database dump </summary><p></p>
+
+If you are a developer on the Colouring London project (or another Colouring Cities project), you may have a production database (or staging etc) that you wish to duplicate in your development environment.
+
+Log into the environment where your production database is kept and create a dump file from the db.
+
+```bash
+pg_dump <colouringlondondb> > <dumpfile>
+```
+
+You should then download the file to the machine where you are setting up your development environment. If you are using Virtualbox, you could host share the dump file with the VM via a shared folder (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
+
+In your Ubuntu installation where you have been running these setup steps (e.g. Virtualbox VM), you can then recrate the db like so.
+
+```bash
+psql < <dumpfile>
+```
+
+#### Run migrations
+
+Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
+do this are located in the `migrations` folder of your local repository.
+
+```bash
+ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
+```
+
+</details>
+
+<details>
+<summary> With test data </summary><p></p>
+
+This section shows how to load test buildings into the application from OpenStreetMaps (OSM).
+
+#### Set up Python
+
+Install python and related tools.
+
+```bash
+sudo apt-get install -y python3 python3-pip python3-dev python3-venv
+```
+
+Now set up a virtual environment for python. In the following example we have named the
+virtual environment *colouringlondon* but it can have any name.
+
+```bash
+pyvenv colouringlondon
+```
+
+Activate the virtual environment so we can install python packages into it.
+
+```bash
+source colouringlondon/bin/activate
+```
+
+Install python pip package manager and related tools.
+
+```bash
+pip install --upgrade pip
+pip install --upgrade setuptools wheel
+```
+
+#### Load OpenStreetMap test polygons
+
+First install prerequisites.
+```bash
+sudo apt-get install -y parallel
+```
+
+Install the required python packages. This relies on the `requirements.txt` file located
+in the `etl` folder of your local repository.
+
+```bash
+cd ~/colouring-london/etl/
+pip install -r requirements.txt
+```
+
+To help test the Colouring London application, `get_test_polygons.py` will attempt to save a small (1.5km²) extract from OpenStreetMap to a format suitable for loading to the database.
+
+Download the test data.
+
+```bash
+python get_test_polygons.py
+```
+
+Note: the first time you run it, you will get these warnings:
+```
+rm: cannot remove 'test_buildings.geojson': No such file or directory
+rm: cannot remove 'test_buildings.3857.csv': No such file or directory
+```
+
+#### Run migrations
+
+Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql` scripts to
+do this are located in the `migrations` folder of your local repository.
+
+```bash
+ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
+```
+
+#### Load buildings
+
+Load all building outlines.
+
+```bash
+./load_geometries.sh ./
+```
+
+Create a building record per outline.
+
+```bash
+./create_building_records.sh
+```
+</details>
+
+# Install Nginx
 
 ```bash
 sudo apt-get -yqq install nginx
@@ -88,26 +371,6 @@ sudo mkdir /var/www/colouring-london
 sudo chown -R nodeapp:nodeapp /var/www/colouring-london
 sudo chmod -R 775 /var/www/colouring-london
 ```
-
-- Install and configure node as per the dev docs (TODO) Note: don't need to run `npm install`
-- Configure Postgres as per dev doc (ignore the step: Allow authenticated connections from any IP (so includes the host). - replace it with:
-
-```bash
-cat <<EOF | sudo tee -a /etc/postgresql/12/main/pg_hba.conf
-local all all    md5 
-host all all 127.0.0.1/32   md5 
-host all all ::1/128   md5
-EOF
-```
-
-<!-- Change the below to the above -->
-<!-- ```bash
-echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/12/main/pg_hba.conf > /dev/null
-``` -->
-
-<!-- TODO: make the clwebapp user not a superuser for prod -->
-
-- Do the Loading the building data section of the dev doc
 
 #### Configure Nginx
 
