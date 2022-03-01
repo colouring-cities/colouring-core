@@ -159,41 +159,43 @@ Perform a global install of PM2
 sudo env "PATH=$PATH" npm install -g pm2
 ```
 
-
-Create an `ecosystem.config.js` file from the template file
+Create colouring-london dir.
 
 ```bash
 mkdir -p /var/www/colouring-london
 cd /var/www/colouring-london
 ```
 
-`nano ecosystem.config.template.js`
+Create an `ecosystem.config.js` file from the template file.
 
+```bash
+cat <<EOF | sudo tee -a ecosystem.config.template.js
+// Template for production ecosystem file
 
-	// Template for production ecosystem file
-	
-	// Copy this file and edit to set up pm2 config
-	// DO NOT COMMIT details to this file (publicly visible)
-	// See https://pm2.io/doc/en/runtime/guide/ecosystem-file/ for docs
-	module.exports = {
-	    apps: [
-	        {
-	            name: "colouringlondon",
-	            script: "./app/build/server.js",
-	            instances: 6,
-	            env: {
-	                NODE_ENV: "production",
-	                PGHOST: "localhost",
-	                PGPORT: 5432,
-	                PGDATABASE: "colouringlondondb",
-	                PGUSER: "<postgres_username>",
-	                PGPASSWORD: "<postgres_password>",
-	                APP_COOKIE_SECRET: "<longrandomsecret>",
-	                TILECACHE_PATH: "/var/www/colouring-london/app/tilecache"
-	            }
-	        }
-	    ]
-	}
+// Copy this file and edit to set up pm2 config
+// DO NOT COMMIT details to this file (publicly visible)
+// See https://pm2.io/doc/en/runtime/guide/ecosystem-file/ for docs
+module.exports = {
+    apps: [
+        {
+            name: "colouringlondon",
+            script: "./app/build/server.js",
+            instances: 6,
+            env: {
+                NODE_ENV: "production",
+                PGHOST: "localhost",
+                PGPORT: 5432,
+                PGDATABASE: "$PGDATABASE",
+                PGUSER: "$PGUSER",
+                PGPASSWORD: "$PGPASSWORD",
+                APP_COOKIE_SECRET: "$(openssl rand -base64 12)",
+                TILECACHE_PATH: "/var/www/colouring-london/app/tilecache"
+            }
+        }
+    ]
+}
+EOF
+```
 
 Edit the above file as appropriate and save as `ecosystem.config.js`
 
