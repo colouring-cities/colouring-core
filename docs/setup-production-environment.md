@@ -3,11 +3,14 @@
 
 #### Preliminaries
 
-This guide assumes a virtual environment (VM) running Ubuntu 20_04.
+This guide assumes a virtual environment (VM) running Ubuntu 18_04.
 
 Install updates to packages:
 
-`sudo apt-get update`
+```bash
+sudo apt-get update -y --quiet
+sudo apt-get upgrade -y --quiet
+```
 
 #### Install Essential Components
 
