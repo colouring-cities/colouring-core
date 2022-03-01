@@ -70,6 +70,7 @@ EOF
 echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/12/main/pg_hba.conf > /dev/null
 ``` -->
 
+<!-- TODO: make the clwebapp user not a superuser for prod -->
 
 #### Configure Postgres
 
