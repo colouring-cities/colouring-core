@@ -54,7 +54,7 @@ sudo chown -R nodeapp:nodeapp /var/www/colouring-london
 sudo chmod -R 775 /var/www/colouring-london
 ```
 
-- Install and configure node as per the dev docs
+- Install and configure node as per the dev docs (TODO)
 - Configure Postgres as per dev doc (ignore the step: Allow authenticated connections from any IP (so includes the host). - replace it with:
 
 ```bash
@@ -71,50 +71,6 @@ echo "host    all             all             all                     md5" | sud
 ``` -->
 
 <!-- TODO: make the clwebapp user not a superuser for prod -->
-
-#### Configure Postgres
-
-`sudo service postgresql start`
-
-`sudo locale-gen en_US.UTF-8`
-
-`sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/10/main/postgresql.conf`
-
-`echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/10/main/pg_hba.conf > /dev/null`
-
-
-For production we do not want to use our Ubuntu username as the Postgres username. So we need to replace peer authentication with password authentication for local connections. 
-
-`sudo sed -i 's/^local.*all.*all.*peer$/local   all             all                                     md5/' /etc/postgresql/10/main/pg_hba.conf`
-
-
-Restart Postgres for the configuration changes to take effect
-
-`sudo service postgresql restart`
-
-Create a distinct Postgres user
-
-`sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<postgres_username>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <postgres_username> SUPERUSER LOGIN PASSWORD '<postgres_password>';"`
-
-
-Create default colouring london database
-
-`sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringlondondb';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <postgres_username> colouringlondondb`
-
-`psql -d colouringlondondb -U <postgres_username> -c "create extension postgis;"`
-
-`psql -d colouringlondondb -U <postgres_username> -c "create extension pgcrypto;"`
-
-`psql -d colouringlondondb -U <postgres_username> -c "create extension pg_trgm;"`
-
-
-Import data from the most recent colouring london database dump
-
-`pg_restore --no-privileges --no-owner --username "<postgres_username>" --dbname "colouringlondondb" --clean "<path/to/database/dump/file>"`
-
-
-***
-
 
 #### Configure NGINX
 
