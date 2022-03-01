@@ -20,16 +20,7 @@ Install some useful development tools
 sudo apt-get install -y build-essential git wget curl --quiet
 ```
 
-Install Postgres and associated tools
-
-`sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3`
-
-`sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev`
-
-Install Python 3 and pip
-
-`sudo apt-get install python3 python3-pip`
-
+- Note: install postgres as per dev doc
 
 Install Nginx
 
