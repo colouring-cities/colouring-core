@@ -203,7 +203,7 @@ npm install
 npm run clean
 npm run build -- --noninteractive
 rm -rf ~/predeploy/app
-mkdir ~/predeploy/app
+mkdir -p ~/predeploy/app
 cp -r package.json package-lock.json build map_styles ~/predeploy/app
 cd ~/predeploy/app
 npm install --production
