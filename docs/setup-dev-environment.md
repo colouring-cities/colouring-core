@@ -66,7 +66,7 @@ sudo apt-get upgrade -y
 Now install some essential tools.
 
 ```bash
-sudo apt-get install -y build-essential git vim-nox wget curl
+sudo apt-get install -y build-essential git wget curl
 ```
 
 ### :red_circle: Installing PostgreSQL
@@ -212,14 +212,12 @@ psql -c "create extension pg_trgm;"
 
 ### :arrow_forward: Configuring Node.js
 
-Now upgrade the npm package manager to the most recent release with global privileges. This needs to be performed as root user, so it is necessary to export the node variables to the root user profile. Don't forget to exit from root at the end.
+Now upgrade the npm package manager to the most recent release with global privileges. This needs to be performed as root user, so it is necessary to export the node variables to the root user profile.
 
 ```bash
-sudo su root
 export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin/
 export PATH=$NODEJS_HOME:$PATH
-npm install -g npm@latest
-exit
+sudo env "PATH=$PATH" npm install -g npm@latest
 ```
 
 Now install the required Node packages. This needs to done from the `app` directory of your

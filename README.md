@@ -30,13 +30,13 @@ for download under a liberal open data license
 
 You can try out the Colouring London application by setting up your own development environment, which includes the option to load test data from OpenStreetMaps (OSM). See [docs/setup-dev-environment](docs/setup-dev-environment.md).
   
-_Last updated 24th February 2022_
+_Last updated March 2022_
 
 #### Create a production version of the application:
 
 We also have documentation on setting up a production environment here: [docs/setup-production-environment](docs/setup-production-environment.md).
   
-_Last updated 24th December 2021_
+_Last updated December 2021_
 
 **Note:** There are additional useful documentation within the `/docs` folder.
 
