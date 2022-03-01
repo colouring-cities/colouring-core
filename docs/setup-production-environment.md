@@ -195,8 +195,23 @@ module.exports = {
 }
 EOF
 ```
+## Deploy
 
-Start the colouring-london app
+```bash
+cd ~/colouring-london/app
+npm install
+npm run clean
+npm run build -- --noninteractive
+rm -rf ~/predeploy/app
+mkdir ~/predeploy/app
+cp -r package.json package-lock.json build map_styles ~/predeploy/app
+cd ~/predeploy/app
+npm install --production
+rsync -r ~/predeploy/app/ /var/www/colouring-london/app
+```
+
+
+## Start the colouring-london app
 
 `cd /var/www/colouring-london`
 
