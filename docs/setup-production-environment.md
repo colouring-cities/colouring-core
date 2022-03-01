@@ -37,12 +37,14 @@ cd ~ && git clone https://github.com/colouring-london/colouring-london.git
 Create a system user (`nodeapp`) to `chown` the `colouring-london` directory
 
 ```bash
-useradd -r -s /bin/nologin nodeapp
+sudo useradd -r -s /bin/nologin nodeapp
 ```
 
 Add the current user to the `nodeapp` group
 
-`sudo usermod -a -G nodeapp <your_ubuntu_username>`
+```bash
+sudo usermod -a -G nodeapp $USER
+```
 
 Make the `nodeapp` user/group `chown` the `colouring-london` directory and its subdirectories
 
