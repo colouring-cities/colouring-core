@@ -393,7 +393,12 @@ Optional: For increased security, restrict the ip addresses that can be used to 
 
 ```bash
 sudo ufw allow from <your_static_ip_address> proto tcp to any port 22
-sudo ufw enable -y
+```
+
+Then run
+
+```bash
+sudo ufw enable
 ```
 
 We can check the status of the firewall with
