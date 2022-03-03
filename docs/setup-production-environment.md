@@ -445,25 +445,37 @@ If all is well, restart Nginx.
 sudo systemctl restart nginx
 ```
 
+<details>
+<summary>
+Test out the configuration
+</summary><p></p>
 
-<!-- Manual debugging step, remove for now: -->
-<!-- Test out the configuration
+Build the application.
 
-`cd /var/www/colouring-london/app`
+```bash
+cd /var/www/colouring-london/app
+npm install
+npm run build
+```
 
-`npm install`
+Run the application (postgres env vars prviously set)
 
-`npm run build`
+```bash
+npm run start:prod
+```
 
+Or set the env vars manually to run the application like so.
 
-`PGPASSWORD=postgres PGDATABASE=colouringlondondb PGUSER=cldbadmin PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 npm run start:prod`
+```bash
+PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=~/colouring-london/app/tilecache npm run start:prod
+```
 
 Now open a browser window on a client machine and navigate to the IP Address of your VM
 
 `http://<ip_address_of_vm>`
 
-You should see the Colouring London homepage. -->
-
+You should see the Colouring London homepage.
+</details>
 
 
 ### :star: Installing & Configuring PM2
