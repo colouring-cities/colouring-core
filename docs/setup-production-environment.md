@@ -28,6 +28,7 @@ Once the Vm has been created, navigate to it in the Azure Portal and click the `
 - [:house: Loading the building data](#house-loading-the-building-data)
 - [:surfer: Installing the web components](#surfer-installing-the-web-components)
 	- [:fire_engine: Installing & Configuring Nginx](#fire_engine-installing--configuring-nginx)
+	- [:seedling: Test the app configuration](seedling-test-the-app-configuration)
 	- [:star: Installing & Configuring PM2](#star-installing--configuring-pm2)
 - [:truck: Deploying the application](#truck-deploying-the-application)
 - [:computer: Running the application](#computer-running-the-application)
@@ -445,9 +446,13 @@ If all is well, restart Nginx.
 sudo systemctl restart nginx
 ```
 
+### :seedling: Test the app configuration
+
+Later on in this guide, we will set up deploy the app and run it with pm2, but you can test the app is configured properly at this point:
+
 <details>
 <summary>
-Test out the configuration
+Build and run the application
 </summary><p></p>
 
 Build the application.
@@ -458,7 +463,7 @@ npm install
 npm run build
 ```
 
-Run the application (postgres env vars prviously set)
+Run the application (postgres env vars previously set)
 
 ```bash
 npm run start:prod
