@@ -97,6 +97,12 @@ cd ~ && git clone https://github.com/colouring-london/colouring-london.git
 
 **Note:** We assume here that you will clone the repo into the home directory of your Ubuntu installation. Watch out for later commands in this guide that assume the repo is located at `~/colouring-london` and modify the path if appropriate.
 
+Create a symlink for the repo in `/var/www/`.
+
+```bash
+sudo ln -s ~/colouring-london /var/www/
+```
+
 ### :arrow_down: Installing Node.js
 
 Now install Node. It is helpful to define some local variables.
@@ -367,7 +373,6 @@ sudo usermod -a -G nodeapp $USER
 Make the `nodeapp` user/group `chown` the `colouring-london` directory and its subdirectories
 
 ```bash
-sudo mkdir /var/www/colouring-london
 sudo chown -R nodeapp:nodeapp /var/www/colouring-london
 sudo chmod -R 775 /var/www/colouring-london
 ```
@@ -441,11 +446,6 @@ sudo systemctl restart nginx
 
 `cd /var/www/colouring-london/app`
 
-sudo ln -s ~/colouring-london/app/src /var/www/colouring-london/app/src
-sudo ln -s ~/colouring-london/app/public /var/www/colouring-london/app/public
-sudo ln -s ~/colouring-london/app/razzle.config.js /var/www/colouring-london/app/razzle.config.js
-sudo ln -s ~/colouring-london/app/tsconfig.json /var/www/colouring-london/app/tsconfig.json
-
 `npm install`
 
 `npm run build`
@@ -469,10 +469,9 @@ Perform a global install of PM2
 sudo env "PATH=$PATH" npm install -g pm2
 ```
 
-Create colouring-london dir.
+Navigate to colouring-london dir.
 
 ```bash
-mkdir -p /var/www/colouring-london
 cd /var/www/colouring-london
 ```
 
