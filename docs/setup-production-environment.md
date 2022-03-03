@@ -441,11 +441,17 @@ sudo systemctl restart nginx
 
 `cd /var/www/colouring-london/app`
 
+sudo ln -s ~/colouring-london/app/src /var/www/colouring-london/app/src
+sudo ln -s ~/colouring-london/app/public /var/www/colouring-london/app/public
+sudo ln -s ~/colouring-london/app/razzle.config.js /var/www/colouring-london/app/razzle.config.js
+sudo ln -s ~/colouring-london/app/tsconfig.json /var/www/colouring-london/app/tsconfig.json
+
+`npm install`
 
 `npm run build`
 
 
-`PGPASSWORD=<postgres_password> PGDATABASE=colouringlondondb PGUSER=<postgres_username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=<secret> npm run start:prod`
+`PGPASSWORD=postgres PGDATABASE=colouringlondondb PGUSER=cldbadmin PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 npm run start:prod`
 
 Now open a browser window on a client machine and navigate to the IP Address of your VM
 
