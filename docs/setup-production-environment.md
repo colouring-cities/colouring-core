@@ -28,7 +28,7 @@ Once the Vm has been created, navigate to it in the Azure Portal and click the `
 - [:house: Loading the building data](#house-loading-the-building-data)
 - [:surfer: Installing the web components](#surfer-installing-the-web-components)
 	- [:fire_engine: Installing & Configuring Nginx](#fire_engine-installing--configuring-nginx)
-	- [:seedling: Test the app configuration](seedling-test-the-app-configuration)
+	- [:seedling: Test the app configuration](#seedling-test-the-app-configuration)
 	- [:star: Installing & Configuring PM2](#star-installing--configuring-pm2)
 - [:truck: Deploying the application](#truck-deploying-the-application)
 - [:computer: Running the application](#computer-running-the-application)
