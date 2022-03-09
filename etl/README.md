@@ -1,12 +1,25 @@
 # Creating a Colouring London database from scratch
 
-## Data loading
+## Data downloading
 
 The scripts in this directory are used to extract, transform and load (ETL) the core datasets
 for Colouring London:
 
 1. Building geometries, sourced from Ordnance Survey MasterMap (Topography Layer)
 1. Unique Property Reference Numbers (UPRNs), sourced from Ordnance Survey AddressBase
+
+To get the required datasets, you'll need to complete the following steps:
+
+1. Sign up for the Ordnance Survey [Data Exploration License](https://www.ordnancesurvey.co.uk/business-government/licensing-agreements/data-exploration-sign-up). You should receive an e-mail with a link to log in to the platform (this could take  up to a week).
+2. Navigate to https://orders.ordnancesurvey.co.uk/orders and click the button for: ✏️ Order. From here you should be able to click another button to add a product.
+3. Drop a rectangle or Polygon over London and make the following selections, clicking the "Add to basket" button for each:
+
+![](screenshot/MasterMap.png)
+<p></p>
+
+![](screenshot/AddressBase.png)
+
+4. You should be then able to check out your basket and download the files
 
 ## Prerequisites
 
