@@ -5,7 +5,7 @@
 The scripts in this directory are used to extract, transform and load (ETL) the core datasets
 for Colouring London:
 
-1. Building geometries, sourced from Ordnance Survey MasterMap (Topography Layer)
+1. Building geometries, sourced from Ordnance Survey (OS) MasterMap (Topography Layer)
 1. Unique Property Reference Numbers (UPRNs), sourced from Ordnance Survey AddressBase
 
 To get the required datasets, you'll need to complete the following steps:
@@ -45,6 +45,9 @@ creation steps below.
 
 Install GNU parallel, this is used to speed up loading bulk data.
 
+## Make data available to Ubuntu
+
+If you didn't download the OS files to the Ubuntu machine where you are setting up your Colouring London application, you will need to make them available there. If you are using Virtualbox, you could host share a folder containing the files with the VM via a shared folder (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
 
 ## Process and load Ordance Survey data
 
