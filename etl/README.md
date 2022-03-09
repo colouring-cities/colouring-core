@@ -35,7 +35,8 @@ export PGDATABASE=<colouringlondondb>
 Create the core database tables:
 
 ```bash
-psql < ../migrations/001.core.up.sql
+cd ~/colouring-london
+psql < migrations/001.core.up.sql
 ```
 
 There is some performance benefit to creating indexes after bulk loading data.
