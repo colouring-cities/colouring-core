@@ -1,4 +1,6 @@
-# Data loading
+# Creating a Colouring London database from scratch
+
+## Data loading
 
 The scripts in this directory are used to extract, transform and load (ETL) the core datasets
 for Colouring London:
@@ -8,20 +10,13 @@ for Colouring London:
 
 ## Prerequisites
 
-Install PostgreSQL and create a database for colouringlondon, with a database
-user that can connect to it. The [PostgreSQL
-documentation](https://www.postgresql.org/docs/12/tutorial-start.html) covers
-installation and getting started.
+You should already have set up PostgreSQL and created a database. Make sure to create environment variables to use `psql` if you haven't already:
 
-Install the [PostGIS extension](https://postgis.net/).
-
-Connect to the colouringlondon database and add the PostGIS, pgcrypto and
-pg_trgm extensions:
-
-```sql
-create extension postgis;
-create extension pgcrypto;
-create extension pg_trgm;
+```bash
+export PGPASSWORD=<pgpassword>
+export PGUSER=<username>
+export PGHOST=localhost
+export PGDATABASE=<colouringlondondb>
 ```
 
 Create the core database tables:
@@ -89,3 +84,5 @@ psql < ../migrations/003.index-buildings.up.sql
 ## Finally
 
 Run the remaining migrations in `../migrations` to create the rest of the database structure.
+
+# Updating the Colouring London database with new OS data

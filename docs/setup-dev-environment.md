@@ -230,8 +230,12 @@ npm install
 
 ## :house: Loading the building data
 
+There are several ways to create the Colouring London database in your environment. The simplest way if you are just trying out the application would be to use test data from OSM, but otherwise you should follow one of the instructions below to create the full database either from scratch, or from a previously made db (via a dump file).
+
+To create the full database from scratch, follow [these instructions](../etl/README.md), otherwise choose one of the following:
+
 <details>
-<summary> With a database dump </summary><p></p>
+<summary> Create database from dump </summary><p></p>
 
 If you are a developer on the Colouring London project (or another Colouring Cities project), you may have a production database (or staging etc) that you wish to duplicate in your development environment.
 
@@ -261,7 +265,7 @@ ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration;
 </details>
 
 <details>
-<summary> With test data </summary><p></p>
+<summary> Create database with test data </summary><p></p>
 
 This section shows how to load test buildings into the application from OpenStreetMaps (OSM).
 
