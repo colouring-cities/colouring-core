@@ -93,11 +93,10 @@ Create a building record per outline.
 sudo ./create_building_records.sh
 ```
 
-Add UPRNs where they match.
-
-<!-- TODO: python install -->
+Ensure you have the `colouringlondon` environment activated, then add UPRNs where they match.
 
 ```bash
+source colouringlondon/bin/activate
 load_uprns.py ./addressbase_dir
 ````
 
