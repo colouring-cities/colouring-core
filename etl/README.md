@@ -49,12 +49,7 @@ Install GNU parallel, this is used to speed up loading bulk data.
 
 If you didn't download the OS files to the Ubuntu machine where you are setting up your Colouring London application, you will need to make them available there. If you are using Virtualbox, you could host share a folder containing the files with the VM via a shared folder (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
 
-## Process and load Ordance Survey data
-
-Before running any of these scripts, you will need the OS data for your area of
-interest. AddressBase and MasterMap are available directly from [Ordnance
-Survey](https://www.ordnancesurvey.co.uk/). The alternative setup below uses
-OpenStreetMap.
+## Process and load Ordnance Survey data
 
 The scripts should be run in the following order:
 
