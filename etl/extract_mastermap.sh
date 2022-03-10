@@ -17,14 +17,6 @@ data_dir=$1
 # Use `fid` as source ID, aka TOID.
 #
 
-#
-# Unzip to GML
-#
-
-find $data_dir -type f -name '*.zip' -printf "%f\n" | \
-parallel \
-unzip -u $data_dir/{} -d $data_dir
-
 find $data_dir -type f -name '*.gz' -printf "%f\n" | \
 parallel \
 gunzip $data_dir/{} -k -S gml
