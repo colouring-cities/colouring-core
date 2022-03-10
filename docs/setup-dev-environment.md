@@ -50,6 +50,7 @@ ssh <linuxusername>@localhost -p 4022
   - [:arrow_down: Installing Node.js](#arrow_down-installing-nodejs)
   - [:large_blue_circle: Configuring PostgreSQL](#large_blue_circle-configuring-postgresql)
   - [:arrow_forward: Configuring Node.js](#arrow_forward-configuring-nodejs)
+  - [Install Python]()
 - [:house: Loading the building data](#house-loading-the-building-data)
 - [:computer: Running the application](#computer-running-the-application)
   - [:eyes: Viewing the application](#eyes-viewing-the-application)
@@ -228,6 +229,42 @@ cd ~/colouring-london/app
 npm install
 ```
 
+### Set up Python
+
+Install python and related tools.
+
+```bash
+sudo apt-get install -y python3 python3-pip python3-dev python3-venv
+```
+
+Now set up a virtual environment for python. In the following example we have named the
+virtual environment *colouringlondon* but it can have any name.
+
+```bash
+pyvenv colouringlondon
+```
+
+Activate the virtual environment so we can install python packages into it.
+
+```bash
+source colouringlondon/bin/activate
+```
+
+Install python pip package manager and related tools.
+
+```bash
+pip install --upgrade pip
+pip install --upgrade setuptools wheel
+```
+
+Install the required python packages. This relies on the `requirements.txt` file located
+in the `etl` folder of your local repository.
+
+```bash
+cd ~/colouring-london/etl/
+pip install -r requirements.txt
+```
+
 ## :house: Loading the building data
 
 There are several ways to create the Colouring London database in your environment. The simplest way if you are just trying out the application would be to use test data from OSM, but otherwise you should follow one of the instructions below to create the full database either from scratch, or from a previously made db (via a dump file).
@@ -269,34 +306,6 @@ ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration;
 
 This section shows how to load test buildings into the application from OpenStreetMaps (OSM).
 
-#### Set up Python
-
-Install python and related tools.
-
-```bash
-sudo apt-get install -y python3 python3-pip python3-dev python3-venv
-```
-
-Now set up a virtual environment for python. In the following example we have named the
-virtual environment *colouringlondon* but it can have any name.
-
-```bash
-pyvenv colouringlondon
-```
-
-Activate the virtual environment so we can install python packages into it.
-
-```bash
-source colouringlondon/bin/activate
-```
-
-Install python pip package manager and related tools.
-
-```bash
-pip install --upgrade pip
-pip install --upgrade setuptools wheel
-```
-
 #### Load OpenStreetMap test polygons
 
 First install prerequisites.
@@ -304,12 +313,10 @@ First install prerequisites.
 sudo apt-get install -y parallel
 ```
 
-Install the required python packages. This relies on the `requirements.txt` file located
-in the `etl` folder of your local repository.
+Ensure you have the `colouringlondon` environment activated.
 
 ```bash
-cd ~/colouring-london/etl/
-pip install -r requirements.txt
+source colouringlondon/bin/activate
 ```
 
 To help test the Colouring London application, `get_test_polygons.py` will attempt to save a small (1.5km²) extract from OpenStreetMap to a format suitable for loading to the database.
