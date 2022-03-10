@@ -76,28 +76,6 @@ load_uprns.py ./addressbase_dir
 psql < ../migrations/003.index-buildings.sql
 ```
 
-## Alternative, using OpenStreetMap
-
-This uses the [osmnx](https://github.com/gboeing/osmnx) python package to get OpenStreetMap data. You will need python and osmnx to run `get_test_polygons.py`.
-
-To help test the Colouring London application, `get_test_polygons.py` will attempt to save a
-small (1.5km²) extract from OpenStreetMap to a format suitable for loading to the database.
-
-In this case, run:
-
-```bash
-# download test data
-python get_test_polygons.py
-# load all building outlines
-./load_geometries.sh ./
-# index geometries (should be faster after loading)
-psql < ../migrations/002.index-geometries.up.sql
-# create a building record per outline
-./create_building_records.sh
-# index building records
-psql < ../migrations/003.index-buildings.up.sql
-```
-
 ## Finally
 
 Run the remaining migrations in `../migrations` to create the rest of the database structure.
