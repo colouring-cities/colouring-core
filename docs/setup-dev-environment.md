@@ -50,7 +50,7 @@ ssh <linuxusername>@localhost -p 4022
   - [:arrow_down: Installing Node.js](#arrow_down-installing-nodejs)
   - [:large_blue_circle: Configuring PostgreSQL](#large_blue_circle-configuring-postgresql)
   - [:arrow_forward: Configuring Node.js](#arrow_forward-configuring-nodejs)
-  - [Install Python]()
+  - [:snake: Set up Python](#snake-set-up-python)
 - [:house: Loading the building data](#house-loading-the-building-data)
 - [:computer: Running the application](#computer-running-the-application)
   - [:eyes: Viewing the application](#eyes-viewing-the-application)
@@ -229,7 +229,7 @@ cd ~/colouring-london/app
 npm install
 ```
 
-### Set up Python
+### :snake: Set up Python
 
 Install python and related tools.
 
