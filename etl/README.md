@@ -55,26 +55,63 @@ The scripts should be run in the following order:
 
 ```bash
 cd ~/colouring-london/etl
-# extract both datasets
+```
+
+Extract the addressBase dataset.
+
+```bash
 sudo ./extract_addressbase.sh ./addressbase_dir
+```
+
+Extract the MasterMap data (this step could take a while).
+
+```bash
 sudo ./extract_mastermap.sh ./mastermap_dir
-# filter mastermap ('building' polygons and any others referenced by addressbase)
+```
+
+Filter MasterMap 'building' polygons and any others referenced by addressbase.
+
+```bash
 sudo ./filter_transform_mastermap_for_loading.sh ./addressbase_dir ./mastermap_dir
-# load all building outlines
+```
+
+Load all building outlines.
+
+```bash
 sudo ./load_geometries.sh ./mastermap_dir
-# index geometries (should be faster after loading)
+```
+
+Index geometries.
+
+```bash
 psql < ../migrations/002.index-geometries.sql
-# create a building record per outline
+```
+
+Create a building record per outline.
+
+```bash
 sudo ./create_building_records.sh
-# add UPRNs where they match
+```
+
+Add UPRNs where they match.
+
+<!-- TODO: python install -->
+
+```bash
 load_uprns.py ./addressbase_dir
-# index building records
+````
+
+Index building records.
+
+```bash
 psql < ../migrations/003.index-buildings.sql
 ```
 
-## Finally
-
 Run the remaining migrations in `../migrations` to create the rest of the database structure.
+
+<!-- ```bash
+
+``` -->
 
 # [WIP] Updating the Colouring London database with new OS data
 
