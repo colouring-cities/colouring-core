@@ -73,6 +73,14 @@ Extract the MasterMap data (this step could take a while).
 sudo ./extract_mastermap.sh ./mastermap_dir
 ```
 
+<!-- Didn't throw an error - did Ctrl-C after an hour -->
+
+Ensure you have the `colouringlondon` environment activated.
+
+```bash
+source colouringlondon/bin/activate
+```
+
 Filter MasterMap 'building' polygons and any others referenced by addressbase.
 
 ```bash
@@ -97,10 +105,9 @@ Create a building record per outline.
 sudo ./create_building_records.sh
 ```
 
-Ensure you have the `colouringlondon` environment activated, then add UPRNs where they match.
+Add UPRNs where they match.
 
 ```bash
-source colouringlondon/bin/activate
 load_uprns.py ./addressbase_dir
 ````
 
