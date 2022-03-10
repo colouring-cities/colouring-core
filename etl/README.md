@@ -84,7 +84,7 @@ sudo ./load_geometries.sh ./mastermap_dir
 Index geometries.
 
 ```bash
-psql < ../migrations/002.index-geometries.sql
+psql < ../migrations/002.index-geometries.up.sql
 ```
 
 Create a building record per outline.
@@ -100,17 +100,11 @@ source colouringlondon/bin/activate
 load_uprns.py ./addressbase_dir
 ````
 
-Index building records.
-
-```bash
-psql < ../migrations/003.index-buildings.sql
-```
-
 Run the remaining migrations in `../migrations` to create the rest of the database structure.
 
-<!-- ```bash
-
-``` -->
+```bash
+ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
+```
 
 # [WIP] Updating the Colouring London database with new OS data
 
