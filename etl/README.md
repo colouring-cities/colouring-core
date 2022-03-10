@@ -19,7 +19,7 @@ To get the required datasets, you'll need to complete the following steps:
 
 ![](screenshot/AddressBase.png)
 
-4. You should be then able to check out your basket and download the files
+4. You should be then able to check out your basket and download the files. Note: there may be multiple `.zip` files to download for MasterMap due to the size of the dataset.
 
 ## Prerequisites
 
