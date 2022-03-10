@@ -21,6 +21,7 @@ To get the required datasets, you'll need to complete the following steps:
 
 4. You should be then able to check out your basket and download the files. Note: there may be multiple `.zip` files to download for MasterMap due to the size of the dataset.
 5. Unzip the AddressBase `.zip` in a convenient location. We will use the unzipped folder in later steps. Rename the folder as appropriate (make sure this folder doesn't contain the original `.zip` file). Note: this folder also contains `.zip` files, do not unzip at this stage as a script will do this later.
+6. Unzip the MasterMap `.zip` files and move all the `.gz` files from each to a single folder in a convenient location. We will use this folder in later steps.
 
 ## Prerequisites
 
