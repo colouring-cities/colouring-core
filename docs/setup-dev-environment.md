@@ -237,10 +237,10 @@ Install python and related tools.
 sudo apt-get install -y python3 python3-pip python3-dev python3-venv
 ```
 
-Now set up a virtual environment for python. In the following example we have named the
-virtual environment *colouringlondon* but it can have any name.
+Create a virtual environment for python in the `etl` folder of your repository. In the following example we have name the virtual environment *colouringlondon* but it can have any name.
 
 ```bash
+cd ~/colouring-london/etl
 pyvenv colouringlondon
 ```
 
@@ -257,11 +257,9 @@ pip install --upgrade pip
 pip install --upgrade setuptools wheel
 ```
 
-Install the required python packages. This relies on the `requirements.txt` file located
-in the `etl` folder of your local repository.
+Install the required python packages.
 
 ```bash
-cd ~/colouring-london/etl/
 pip install -r requirements.txt
 ```
 
