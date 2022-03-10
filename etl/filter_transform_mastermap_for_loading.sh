@@ -9,6 +9,8 @@
 addressbase_dir=$1
 mastermap_dir=$2
 
+PATH+=:~/colouring-london/etl/colouringlondon/bin/python
+
 #
 # Check which TOIDs are matched against UPRNs
 #
