@@ -67,7 +67,7 @@ sudo apt-get upgrade -y
 Now install some essential tools.
 
 ```bash
-sudo apt-get install -y build-essential git wget curl
+sudo apt-get install -y build-essential git wget curl parallel
 ```
 
 ### :red_circle: Installing PostgreSQL
@@ -307,11 +307,6 @@ ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration;
 This section shows how to load test buildings into the application from OpenStreetMaps (OSM).
 
 #### Load OpenStreetMap test polygons
-
-First install prerequisites.
-```bash
-sudo apt-get install -y parallel
-```
 
 Ensure you have the `colouringlondon` environment activated.
 
