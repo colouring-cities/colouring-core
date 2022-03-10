@@ -54,17 +54,18 @@ If you didn't download the OS files to the Ubuntu machine where you are setting 
 The scripts should be run in the following order:
 
 ```bash
+cd ~/colouring-london/etl
 # extract both datasets
-extract_addressbase.sh ./addressbase_dir
-extract_mastermap.sh ./mastermap_dir
+sudo ./extract_addressbase.sh ./addressbase_dir
+sudo ./extract_mastermap.sh ./mastermap_dir
 # filter mastermap ('building' polygons and any others referenced by addressbase)
-filter_transform_mastermap_for_loading.sh ./addressbase_dir ./mastermap_dir
+sudo ./filter_transform_mastermap_for_loading.sh ./addressbase_dir ./mastermap_dir
 # load all building outlines
-load_geometries.sh ./mastermap_dir
+sudo ./load_geometries.sh ./mastermap_dir
 # index geometries (should be faster after loading)
 psql < ../migrations/002.index-geometries.sql
 # create a building record per outline
-create_building_records.sh
+sudo ./create_building_records.sh
 # add UPRNs where they match
 load_uprns.py ./addressbase_dir
 # index building records
