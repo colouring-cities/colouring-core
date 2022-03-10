@@ -76,4 +76,6 @@ psql < ../migrations/003.index-buildings.sql
 
 Run the remaining migrations in `../migrations` to create the rest of the database structure.
 
-# Updating the Colouring London database with new OS data
+# [WIP] Updating the Colouring London database with new OS data
+
+TODO: this section should instruct how to update and existing db
