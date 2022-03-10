@@ -89,6 +89,8 @@ sudo ./filter_transform_mastermap_for_loading.sh ./addressbase_dir ./mastermap_d
 
 Load all building outlines.
 
+<!-- I had to edit the below file to set the psql vars before running -->
+
 ```bash
 sudo ./load_geometries.sh ./mastermap_dir
 ```
@@ -101,14 +103,20 @@ psql < ../migrations/002.index-geometries.up.sql
 
 Create a building record per outline.
 
+<!-- I had to edit the below file to set the psql vars before running -->
+
 ```bash
 sudo ./create_building_records.sh
 ```
 
+<!-- Insert 0.... -->
+
 Add UPRNs where they match.
 
+<!-- I had to edit the below file to set the psql vars before running -->
+
 ```bash
-load_uprns.py ./addressbase_dir
+sudo ./load_uprns.sh ./addressbase_dir
 ````
 
 Run the remaining migrations in `../migrations` to create the rest of the database structure.
