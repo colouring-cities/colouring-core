@@ -53,16 +53,17 @@ If you didn't download the OS files to the Ubuntu machine where you are setting 
 
 ## Process and load Ordnance Survey data
 
-The scripts should be run in the following order:
+Move into the `etl` directory and set execute permission on all scripts.
 
 ```bash
 cd ~/colouring-london/etl
+chmod +x *.sh
 ```
 
 <!-- Extract the addressBase dataset.
 
 ```bash
-sudo ./extract_addressbase.sh ./addressbase_dir
+./extract_addressbase.sh ./addressbase_dir
 ``` -->
 
 <!-- ERROR 1: Couldn't fetch requested layer 'BasicLandPropertyUnit'! -->
@@ -70,7 +71,7 @@ sudo ./extract_addressbase.sh ./addressbase_dir
 Extract the MasterMap data (this step could take a while).
 
 ```bash
-sudo ./extract_mastermap.sh ./mastermap_dir
+./extract_mastermap.sh ./mastermap_dir
 ```
 
 <!-- Didn't throw an error - did Ctrl-C after an hour -->
@@ -84,7 +85,7 @@ source colouringlondon/bin/activate
 Filter MasterMap 'building' polygons and any others referenced by addressbase.
 
 ```bash
-sudo ./filter_transform_mastermap_for_loading.sh ./mastermap_dir
+./filter_transform_mastermap_for_loading.sh ./mastermap_dir
 ```
 
 Load all building outlines.
@@ -92,7 +93,7 @@ Load all building outlines.
 <!-- I had to edit the below file to set the psql vars before running -->
 
 ```bash
-sudo ./load_geometries.sh ./mastermap_dir
+./load_geometries.sh ./mastermap_dir
 ```
 
 Index geometries.
@@ -106,7 +107,7 @@ Create a building record per outline.
 <!-- I had to edit the below file to set the psql vars before running -->
 
 ```bash
-sudo ./create_building_records.sh
+./create_building_records.sh
 ```
 
 <!-- Insert 0.... -->
@@ -116,7 +117,7 @@ Add UPRNs where they match.
 <!-- I had to edit the below file to set the psql vars before running -->
 
 ```bash
-sudo ./load_uprns.sh ./addressbase_dir
+./load_uprns.sh ./addressbase_dir
 ````
 
 Run the remaining migrations in `../migrations` to create the rest of the database structure.
