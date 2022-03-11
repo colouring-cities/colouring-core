@@ -59,11 +59,11 @@ The scripts should be run in the following order:
 cd ~/colouring-london/etl
 ```
 
-Extract the addressBase dataset.
+<!-- Extract the addressBase dataset.
 
 ```bash
 sudo ./extract_addressbase.sh ./addressbase_dir
-```
+``` -->
 
 <!-- ERROR 1: Couldn't fetch requested layer 'BasicLandPropertyUnit'! -->
 
@@ -84,7 +84,7 @@ source colouringlondon/bin/activate
 Filter MasterMap 'building' polygons and any others referenced by addressbase.
 
 ```bash
-sudo ./filter_transform_mastermap_for_loading.sh ./addressbase_dir ./mastermap_dir
+sudo ./filter_transform_mastermap_for_loading.sh ./mastermap_dir
 ```
 
 Load all building outlines.

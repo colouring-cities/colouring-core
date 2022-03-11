@@ -4,27 +4,27 @@
 # Filter and transform for loading
 #
 : ${1?"Usage: $0 ./path/to/addressbase/dir ./path/to/mastermap/dir"}
-: ${2?"Usage: $0 ./path/to/addressbase/dir ./path/to/mastermap/dir"}
+# : ${2?"Usage: $0 ./path/to/addressbase/dir ./path/to/mastermap/dir"}
 
-addressbase_dir=$1
-mastermap_dir=$2
+# addressbase_dir=$1
+mastermap_dir=$1
 
 #
 # Check which TOIDs are matched against UPRNs
 #
-colouringlondon/bin/python check_ab_mm_match.py $addressbase_dir $mastermap_dir
+# colouringlondon/bin/python check_ab_mm_match.py $addressbase_dir $mastermap_dir
 
 #
 # Filter
 # - WHERE descriptiveGroup = '(1:Building)'
 # - OR toid in addressbase_toids
 #
-colouringlondon/bin/python filter_mastermap.py $addressbase_dir $mastermap_dir
+# colouringlondon/bin/python filter_mastermap.py $addressbase_dir $mastermap_dir
 
 #
 # Transform to 3857 (web mercator)
 #
-find $mastermap_dir -type f -name '*.filtered.csv' -printf "%f\n" | \
+find $mastermap_dir -type f -name '*.gml.csv' -printf "%f\n" | \
 parallel \
 ogr2ogr \
     -f CSV $mastermap_dir/{}.3857.csv \
