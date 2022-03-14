@@ -40,7 +40,7 @@ ogr2ogr -f CSV \
 #
 find $data_dir -type f -name '*.gml.csv' -printf "%f\n"  | \
 parallel \
-python filter_addressbase_csv.py $data_dir/{}
+colouringlondon/bin/python filter_addressbase_csv.py $data_dir/{}
 
 
 #
