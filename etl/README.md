@@ -49,7 +49,7 @@ Install GNU parallel, this is used to speed up loading bulk data.
 
 ## Make data available to Ubuntu
 
-If you didn't download the OS files to the Ubuntu machine where you are setting up your Colouring London application, you will need to make them available there. If you are using Virtualbox, you could host share a the two folders containing the files (one for MasterMap, one for AddressBase) with the VM via a shared folder (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
+If you didn't download the OS files to the Ubuntu machine where you are setting up your Colouring London application, you will need to make them available there. If you are using Virtualbox, you could host share a the folder containing the MasteerMap files with the VM via a shared folder (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
 
 ## Process and load Ordnance Survey data
 
