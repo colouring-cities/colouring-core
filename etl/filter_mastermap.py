@@ -1,7 +1,6 @@
-"""Filter MasterMap to buildings and addressbase-matches
+"""Filter MasterMap to buildings
 
 - WHERE descriptiveGroup includes 'Building'
-- OR toid in addressbase_toids
 """
 import csv
 import glob
@@ -13,25 +12,28 @@ from multiprocessing import Pool
 
 csv.field_size_limit(sys.maxsize)
 
-def main(ab_path, mm_path):
-    mm_paths = sorted(glob.glob(os.path.join(mm_path, "*.gml.csv")))
-    toid_paths = sorted(glob.glob(os.path.join(ab_path, "ab_toids_*.txt")))
+def main(mastermap_path):
+    mm_paths = sorted(glob.glob(os.path.join(mastermap_path, "*.gml.csv")))
+    # toid_paths = sorted(glob.glob(os.path.join(ab_path, "ab_toids_*.txt")))
 
-    try:
-        assert len(mm_paths) == len(toid_paths)
-    except AssertionError:
-        print(mm_paths)
-        print(toid_paths)
-    zipped_paths = zip(mm_paths, toid_paths)
+    # try:
+    #     assert len(mm_paths) == len(toid_paths)
+    # except AssertionError:
+    #     print(mm_paths)
+    #     print(toid_paths)
+    # zipped_paths = zip(mm_paths, toid_paths)
 
     # parallel map over tiles
-    with Pool() as p:
-        p.starmap(filter, zipped_paths)
+    # with Pool() as p:
+    #     p.starmap(filter, zipped_paths)
+    
+    for mm_path in mm_paths:
+        filter(mm_path)
 
-def filter(mm_path, toid_path):
-    with open(toid_path, 'r') as fh:
-        r = csv.reader(fh)
-        toids = set(line[0] for line in r)
+def filter(mm_path):
+    # with open(toid_path, 'r') as fh:
+    #     r = csv.reader(fh)
+    #     toids = set(line[0] for line in r)
 
     output_path =  "{}.filtered.csv".format(str(mm_path).replace(".gml.csv", ""))
     alt_output_path =  "{}.filtered_not_building.csv".format(str(mm_path).replace(".gml.csv", ""))
@@ -48,13 +50,13 @@ def filter(mm_path, toid_path):
                     if 'Building' in line['descriptiveGroup']:
                         w.writerow(line)
 
-                    elif line['fid'] in toids:
-                        alt_w.writerow(line)
+                    # elif line['fid'] in toids:
+                    #     alt_w.writerow(line)
 
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
-        print("Usage: filter_mastermap.py ./path/to/addressbase/dir ./path/to/mastermap/dir")
+    if len(sys.argv) != 2:
+        print("Usage: filter_mastermap.py ./path/to/mastermap/dir")
         exit(-1)
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1])
