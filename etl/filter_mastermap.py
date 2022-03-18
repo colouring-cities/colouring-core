@@ -17,7 +17,7 @@ def main(mastermap_path):
         filter_mastermap(mm_path)
 
 
-def filter_mastermap(mm_path)
+def filter_mastermap(mm_path):
     output_path =  "{}.filtered.csv".format(str(mm_path).replace(".gml.csv", ""))
     output_fieldnames = ('WKT', 'fid', 'descriptiveGroup')
     # Open the input csv with all polygons, buildings and others
