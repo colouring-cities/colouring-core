@@ -82,8 +82,6 @@ sudo ./filter_transform_mastermap_for_loading.sh ./mastermap_dir
 
 Load all building outlines.
 
-<!-- I had to edit the below file to set the psql vars before running -->
-
 ```bash
 ./load_geometries.sh ./mastermap_dir
 ```
@@ -104,13 +102,9 @@ TODO: Drop outside limit.
 
 Create a building record per outline.
 
-<!-- I had to edit the below file to set the psql vars before running -->
-
 ```bash
 ./create_building_records.sh
 ```
-
-<!-- Insert 0.... -->
 
 Run the remaining migrations in `../migrations` to create the rest of the database structure.
 
