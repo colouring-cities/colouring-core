@@ -1,0 +1,22 @@
+name: etl
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name:
+        Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+    - name: Run Flake8
+      run: |
+        ls etl/*py | grep -v 'join_building_data' | xargs flake8
+    - name: Run tests
+      run: |
+        python -m pytest
