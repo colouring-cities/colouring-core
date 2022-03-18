@@ -4,12 +4,12 @@
 """
 import csv
 import glob
-import json
 import os
 import sys
 
 
 csv.field_size_limit(sys.maxsize)
+
 
 def main(mastermap_path):
     mm_paths = sorted(glob.glob(os.path.join(mastermap_path, "*.gml.csv")))
@@ -19,7 +19,8 @@ def main(mastermap_path):
 
 
 def filter_mastermap(mm_path):
-    output_path =  "{}.filtered.csv".format(str(mm_path).replace(".gml.csv", ""))
+    output_path = "{}.filtered.csv"
+    output_path.format(str(mm_path).replace(".gml.csv", ""))
     output_fieldnames = ('WKT', 'fid', 'descriptiveGroup')
     # Open the input csv with all polygons, buildings and others
     with open(mm_path, 'r') as fh:
@@ -32,7 +33,8 @@ def filter_mastermap(mm_path):
                 try:
                     if 'Building' in line['descriptiveGroup']:
                         w.writerow(line)
-                except TypeError:  # when descriptiveGroup is missing, ignore this Polygon
+                # when descriptiveGroup is missing, ignore this Polygon
+                except TypeError:
                     pass
 
 

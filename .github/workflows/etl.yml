@@ -16,7 +16,7 @@ jobs:
         python -m pip install -r requirements.txt
     - name: Run Flake8
       run: |
-        ls etl/*py | grep -v 'join_building_data' | xargs flake8
+        ls etl/*py | grep -v 'join_building_data' | xargs flake8 --exclude etl/__init__.py
     - name: Run tests
       run: |
         python -m pytest
