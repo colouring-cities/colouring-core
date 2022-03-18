@@ -7,17 +7,17 @@ def test_filter_mastermap():
     """Test that MasterMap CSV can be correctly filtered to include only buildings."""
     input_file = "tests/test_mastermap.gml.csv"  # Test csv with one building and one non-building
     output_file = input_file.replace('gml', 'filtered')
-    filter_mastermap(input_file)  # creates test_mastermap.filtered.csv
+    filter_mastermap(input_file)  # creates output_file
     with open(output_file, newline='') as csvfile:
         csv_array = list(csv.reader(csvfile))
     assert len(csv_array) == 2  # assert that length is 2 because just one row after header
     
     
-def test_filter_mastermap_missing_type():
+def test_filter_mastermap_missing_descriptivegroup():
     """Test that MasterMap CSV can be correctly filtered when the polygon does not have a type specified."""
-    input_file = "tests/test_mastermap_missing_type.gml.csv"  # Test csv with one building and one non-building
+    input_file = "tests/test_mastermap_missing_descriptivegroup.gml.csv"  # Test csv with one building and one non-building
     output_file = input_file.replace('gml', 'filtered')
-    filter_mastermap(input_file)  # creates test_mastermap.filtered.csv
+    filter_mastermap(input_file)  # creates output_file
     with open(output_file, newline='') as csvfile:
         csv_array = list(csv.reader(csvfile))
-    assert len(csv_array) == 2  # assert that length is 2 because just one row after header
+    assert len(csv_array) == 1  # assert that length is 1 because just header
