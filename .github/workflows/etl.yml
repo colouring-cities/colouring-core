@@ -12,7 +12,7 @@ jobs:
     - name:
         Install dependencies
       run: |
-        apt-get install libgeos-dev
+        sudo apt-get install libgeos-dev
         python -m pip install --upgrade pip
         python -m pip install pytest
         python -m pip install flake8
