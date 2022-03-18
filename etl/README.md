@@ -72,11 +72,13 @@ Ensure you have the `colouringlondon` environment activated.
 source colouringlondon/bin/activate
 ```
 
-Filter MasterMap 'building' polygons and any others referenced by addressbase.
+Filter MasterMap 'building' polygons.
 
 ```bash
 sudo ./filter_transform_mastermap_for_loading.sh ./mastermap_dir
 ```
+
+<!-- Didn't throw an error - did Ctrl-C after a miniute -->
 
 Load all building outlines.
 
