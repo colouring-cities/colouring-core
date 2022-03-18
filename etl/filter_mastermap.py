@@ -14,27 +14,11 @@ csv.field_size_limit(sys.maxsize)
 
 def main(mastermap_path):
     mm_paths = sorted(glob.glob(os.path.join(mastermap_path, "*.gml.csv")))
-    # toid_paths = sorted(glob.glob(os.path.join(ab_path, "ab_toids_*.txt")))
-
-    # try:
-    #     assert len(mm_paths) == len(toid_paths)
-    # except AssertionError:
-    #     print(mm_paths)
-    #     print(toid_paths)
-    # zipped_paths = zip(mm_paths, toid_paths)
-
-    # parallel map over tiles
-    # with Pool() as p:
-    #     p.starmap(filter, zipped_paths)
-    
     for mm_path in mm_paths:
         filter(mm_path)
 
-def filter(mm_path):
-    # with open(toid_path, 'r') as fh:
-    #     r = csv.reader(fh)
-    #     toids = set(line[0] for line in r)
 
+def filter(mm_path)
     output_path =  "{}.filtered.csv".format(str(mm_path).replace(".gml.csv", ""))
     alt_output_path =  "{}.filtered_not_building.csv".format(str(mm_path).replace(".gml.csv", ""))
     output_fieldnames = ('WKT', 'fid', 'descriptiveGroup')
@@ -49,10 +33,6 @@ def filter(mm_path):
                 for line in r:
                     if 'Building' in line['descriptiveGroup']:
                         w.writerow(line)
-
-                    # elif line['fid'] in toids:
-                    #     alt_w.writerow(line)
-
 
 
 if __name__ == '__main__':
