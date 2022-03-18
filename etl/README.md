@@ -128,6 +128,15 @@ Run the remaining migrations in `../migrations` to create the rest of the databa
 ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
 ```
 
+TODO: Drop outside limit.
+
+<!-- But what is the bounddary file? -->
+
+```bash
+./drop_outside_limit.sh ./path/to/boundary_file
+````
+
+
 # [WIP] Updating the Colouring London database with new OS data
 
 TODO: this section should instruct how to update and existing db
