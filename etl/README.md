@@ -6,7 +6,6 @@ The scripts in this directory are used to extract, transform and load (ETL) the 
 for Colouring London:
 
 Building geometries, sourced from Ordnance Survey (OS) MasterMap (Topography Layer)
-<!-- 1. Unique Property Reference Numbers (UPRNs), sourced from Ordnance Survey AddressBase -->
 
 To get the required datasets, you'll need to complete the following steps:
 
@@ -17,10 +16,7 @@ To get the required datasets, you'll need to complete the following steps:
 ![](screenshot/MasterMap.png)
 <p></p>
 
-<!-- ![](screenshot/AddressBase.png) -->
-
 4. You should be then able to check out your basket and download the files. Note: there may be multiple `.zip` files to download for MasterMap due to the size of the dataset.
-<!-- 5. Unzip the AddressBase `.zip` in a convenient location. We will use the unzipped folder in later steps. Rename the folder as appropriate (make sure this folder doesn't contain the original `.zip` file). Note: this folder also contains `.zip` files, do not unzip at this stage as a script will do this later. -->
 6. Unzip the MasterMap `.zip` files and move all the `.gz` files from each to a single folder in a convenient location. We will use this folder in later steps.
 
 ## Prerequisites
@@ -60,14 +56,6 @@ cd ~/colouring-london/etl
 chmod +x *.sh
 ```
 
-<!-- Extract the addressBase dataset.
-
-```bash
-./extract_addressbase.sh ./addressbase_dir
-``` -->
-
-<!-- ERROR 1: Couldn't fetch requested layer 'BasicLandPropertyUnit'! -->
-
 Extract the MasterMap data (this step could take a while).
 
 ```bash
@@ -104,6 +92,14 @@ Index geometries.
 psql < ../migrations/002.index-geometries.up.sql
 ```
 
+TODO: Drop outside limit.
+
+<!-- But what is the boundary file? -->
+
+```bash
+./drop_outside_limit.sh ./path/to/boundary_file
+````
+
 Create a building record per outline.
 
 <!-- I had to edit the below file to set the psql vars before running -->
@@ -114,28 +110,11 @@ Create a building record per outline.
 
 <!-- Insert 0.... -->
 
-Add UPRNs where they match.
-
-<!-- I had to edit the below file to set the psql vars before running -->
-
-```bash
-./load_uprns.sh ./addressbase_dir
-````
-
 Run the remaining migrations in `../migrations` to create the rest of the database structure.
 
 ```bash
 ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
 ```
-
-TODO: Drop outside limit.
-
-<!-- But what is the bounddary file? -->
-
-```bash
-./drop_outside_limit.sh ./path/to/boundary_file
-````
-
 
 # [WIP] Updating the Colouring London database with new OS data
 

@@ -8,11 +8,6 @@
 mastermap_dir=$1
 
 #
-# Check which TOIDs are matched against UPRNs
-#
-# colouringlondon/bin/python check_ab_mm_match.py $addressbase_dir $mastermap_dir
-
-#
 # Filter
 # - WHERE descriptiveGroup = '(1:Building)'
 # - OR toid in addressbase_toids
