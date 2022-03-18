@@ -71,10 +71,12 @@ chmod +x *.sh
 Extract the MasterMap data (this step could take a while).
 
 ```bash
-./extract_mastermap.sh ./mastermap_dir
+sudo ./extract_mastermap.sh ./mastermap_dir
 ```
 
-<!-- Didn't throw an error - did Ctrl-C after an hour -->
+<!-- Note: I removed sudo here before because I addd the chmod +x above - now have had to re-add it, unsure why/ what changed -->
+
+<!-- Didn't throw an error - did Ctrl-C after an hour, so I then ran: `sudo rm ~/map_data/*.gml` -->
 
 Ensure you have the `colouringlondon` environment activated.
 
@@ -85,7 +87,7 @@ source colouringlondon/bin/activate
 Filter MasterMap 'building' polygons and any others referenced by addressbase.
 
 ```bash
-./filter_transform_mastermap_for_loading.sh ./mastermap_dir
+sudo ./filter_transform_mastermap_for_loading.sh ./mastermap_dir
 ```
 
 Load all building outlines.
