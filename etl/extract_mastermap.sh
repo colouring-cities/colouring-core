@@ -23,7 +23,7 @@ gunzip $data_dir/{} -k -S gml
 
 rename 's/$/.gml/' $data_dir/*[^gzvt]
 
-find $data_dir -type f -name '*.gml' -printf "%f\n" | \
+find $data_dir -type f -name '*5690395*.gml' -printf "%f\n" | \
 parallel \
 ogr2ogr \
     -select fid,descriptiveGroup \
