@@ -16,7 +16,7 @@ services:
       - "8080:8080"
   db:
     container_name: postgres-colouring-london
-    image: ubuntu/postgres:13-21.10_beta
+    image: ubuntu/postgres:12-20.04_beta
     ports:
       - "5432:5432"
     volumes: 
