@@ -11,8 +11,6 @@ RUN chmod +x /wait
 
 RUN mkdir /colouring-london
 COPY app /colouring-london/app
-COPY migrations /colouring-london/migrations
-COPY etl /colouring-london/etl
 
 ENV NODE_VERSION=16.13.2
 RUN apt-get install -y curl
