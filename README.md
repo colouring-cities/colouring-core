@@ -26,6 +26,11 @@ for download under a liberal open data license
 
 ## Setup and run
 
+#### Quick run the application
+
+- `chmod +x init-user-db.sh`
+- `docker compose up`
+
 #### Test the application:
 
 You can try out the Colouring London application by setting up your own development environment, which includes the option to load test data from OpenStreetMaps (OSM). See [docs/setup-dev-environment](docs/setup-dev-environment.md).
