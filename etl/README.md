@@ -66,12 +66,6 @@ sudo ./extract_mastermap.sh ./mastermap_dir
 
 <!-- Didn't throw an error - did Ctrl-C after an hour, so I then ran: `sudo rm ~/map_data/*.gml` -->
 
-Ensure you have the `colouringlondon` environment activated.
-
-```bash
-source colouringlondon/bin/activate
-```
-
 Filter MasterMap 'building' polygons.
 
 ```bash

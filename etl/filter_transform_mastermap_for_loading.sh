@@ -12,7 +12,7 @@ mastermap_dir=$1
 # - WHERE descriptiveGroup = '(1:Building)'
 # - OR toid in addressbase_toids
 #
-colouringlondon/bin/python filter_mastermap.py $mastermap_dir
+python filter_mastermap.py $mastermap_dir
 
 #
 # Transform to 3857 (web mercator)
