@@ -149,7 +149,8 @@ const LAYER_QUERIES = {
     landuse: `
         SELECT
             geometry_id,
-            current_landuse_order
+            current_landuse_order,
+            current_landuse_group[1] as current_landuse_group
         FROM
             buildings
         WHERE

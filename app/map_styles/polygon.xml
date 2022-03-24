@@ -518,7 +518,7 @@
             <PolygonSymbolizer fill="#53f5dd" />
         </Rule>
         <Rule>
-            <Filter>[current_landuse_order] = "Unclassified buildings"</Filter>
+            <Filter>[current_landuse_order] = "Unclassified, presumed non-residential"</Filter>
             <PolygonSymbolizer fill="#6c6f8e" />
         </Rule>
         <Rule>
@@ -534,8 +534,16 @@
             <PolygonSymbolizer fill="#cccccc" />
         </Rule>
         <Rule>
-            <Filter>[current_landuse_order] = "Residential"</Filter>
+            <Filter>[current_landuse_order] = "Residential" and not ([current_landuse_group] = "Garden buildings") and not ([current_landuse_group] = "Hotels, boarding and guest houses") </Filter>
             <PolygonSymbolizer fill="#252aa6" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Residential" and [current_landuse_group] = "Hotels, boarding and guest houses"</Filter>
+            <PolygonSymbolizer fill="#3c4194" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Residential" and [current_landuse_group] = "Garden buildings" </Filter>
+            <PolygonSymbolizer fill="#1157fa" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Community Services"</Filter>

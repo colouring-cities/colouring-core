@@ -1,4 +1,4 @@
--- Launch of Constuction category
+-- Launch of Construction category
 -- Fields: Core construction material, Secondary construction materials, Roof covering materials
 
 -- Construction materials: Wood, Stone, Brick, Steel, Reinforced Concrete, Other Metal

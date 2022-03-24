@@ -280,7 +280,15 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         derivedEdit: true,
         verify: false
     },
+    community_activities_current: {
+        edit: true,
+        verify: false
+    },
     community_activities: {
+        edit: true,
+        verify: false
+    },
+    community_activities_always: {
         edit: true,
         verify: false
     },

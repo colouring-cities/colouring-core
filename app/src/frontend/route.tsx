@@ -33,7 +33,12 @@ export const AuthRoute: React.FC<RouteProps> = ({ component: Component, children
         {...rest}
         render={props => {
             if(isAuthenticated) {
-                const { from } = props.location.state ?? { from: '/my-account.html'};
+                let state = props.location.state as any;
+                let from = '/my-account.html';
+                if ('from' in state){
+                    from = state.from;
+                }
+
                 return <Redirect to={{pathname: from }} />;
             } else {
                 if(Component) {

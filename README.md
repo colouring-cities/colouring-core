@@ -1,5 +1,5 @@
 # Colouring London
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors)
 ![Build status](https://github.com/colouring-london/colouring-london/workflows/Node.js%20CI/badge.svg)
 
 How many buildings are there in London? What are their characteristics? Where
@@ -26,26 +26,19 @@ for download under a liberal open data license
 
 ## Setup and run
 
-1. Provision database (see [migrations](migrations/README.md))
-1. Load buildings and geometries to database (see [etl](etl/README.md))
-1. Install app dependencies: `cd app && npm i`
-1. Run tests: `npm test`
-1. Run app: `npm start`
+#### Test the application:
 
-In development, run with environment variables:
+You can try out the Colouring London application by setting up your own development environment, which includes the option to load test data from OpenStreetMaps (OSM). See [docs/setup-dev-environment](docs/setup-dev-environment.md).
+  
+_Last updated March 2022_
 
-```bash
-APP_COOKIE_SECRET=test_secret \
-PGHOST=localhost \
-PGUSER=dbuser \
-PGDATABASE=dbname \
-PGPASSWORD=dbpassword \
-PGPORT=5432 \
-TILECACHE_PATH=/path/to/tilecache/directory \
-    npm start
-```
+#### Create a production version of the application:
 
-[Provision script](provision/vm_provision.sh) can be also of interest.
+We also have documentation on setting up a production environment here: [docs/setup-production-environment](docs/setup-production-environment.md).
+  
+_Last updated December 2021_
+
+**Note:** There are additional useful documentation within the `/docs` folder.
 
 ## Acknowledgements
 

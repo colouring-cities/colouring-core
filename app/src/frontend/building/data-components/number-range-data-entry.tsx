@@ -1,9 +1,8 @@
 import React, { useCallback, useState } from 'react';
 
-import { BaseDataEntryProps } from '../../data-components/data-entry';
-import { DataTitleCopyable } from '../../data-components/data-title';
-import { FieldRow } from '../../data-components/field-row';
-
+import { BaseDataEntryProps } from './data-entry';
+import { DataTitleCopyable } from './data-title';
+import { FieldRow } from './field-row';
 import './number-range-data-entry.css';
 
 interface NumberRangeDataEntryProps extends BaseDataEntryProps {

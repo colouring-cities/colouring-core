@@ -83,10 +83,28 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
         <InfoBox>Can you help add information on community use of buildings?</InfoBox>
         <LogicalDataEntry
+            slug='community_activities_current'
+            title={dataFields.community_activities_current.title}
+            tooltip={dataFields.community_activities_current.tooltip}
+            value={props.building.community_activities_current}
+
+            onChange={props.onChange}
+            mode={props.mode}
+        />
+        <LogicalDataEntry
             slug='community_activities'
             title={dataFields.community_activities.title}
             tooltip={dataFields.community_activities.tooltip}
             value={props.building.community_activities}
+
+            onChange={props.onChange}
+            mode={props.mode}
+        />
+        <LogicalDataEntry
+            slug='community_activities_always'
+            title={dataFields.community_activities_always.title}
+            tooltip={dataFields.community_activities_always.tooltip}
+            value={props.building.community_activities_always}
 
             onChange={props.onChange}
             mode={props.mode}
@@ -107,7 +125,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             title={dataFields.community_public_ownership.title}
             value={props.building.community_public_ownership}
             options={[
-                'State-owned',
+                'Government-owned',
                 'Charity-owned',
                 'Community-owned/cooperative',
                 'Owned by other non-profit body',
