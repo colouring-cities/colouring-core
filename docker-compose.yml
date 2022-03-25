@@ -16,14 +16,19 @@ services:
       - "8080:8080"
   db:
     container_name: postgres-colouring-london
+    # build:
+    #   context: .
+    #   dockerfile: PostgresDockerfile
     image: ubuntu/postgres:12-20.04_beta
+    # image: postgis/postgis:12-3.2-alpine
     ports:
       - "5432:5432"
     volumes: 
       - ./postgresdata:/var/lib/postgresql/data
-      - ./migrations:/colouring-london/migrations
-      - ./etl:/colouring-london/etl
+      # - ./migrations:/colouring-london/migrations
+      # - ./etl:/colouring-london/etl
       - ./init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+      # - ./migrations/001.core.up.sql:/docker-entrypoint-initdb.d/001.core.up.sql
     restart: always
     environment:
       POSTGRES_USER: dockeruser
