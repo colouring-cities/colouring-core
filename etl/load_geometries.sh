@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Gather stored postgres variables
+export PGHOST=${PGHOST}
+export PGDATABASE=${PGDATABASE}
+export PGUSER=${PGUSER}
+export PGPASSWORD=${PGPASSWORD}
+
 #
 # Load geometries from GeoJSON to Postgres
 # - assume postgres connection details are set in the environment using PGUSER, PGHOST etc.
