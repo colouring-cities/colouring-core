@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-# Gather stored postgres variables
-export PGHOST=${PGHOST}
-export PGDATABASE=${PGDATABASE}
-export PGUSER=${PGUSER}
-export PGPASSWORD=${PGPASSWORD}
-
 #
 # Load geometries from GeoJSON to Postgres
 # - assume postgres connection details are set in the environment using PGUSER, PGHOST etc.
@@ -23,12 +17,12 @@ mastermap_dir=$1
 find $mastermap_dir -type f -name '*.3857.csv' \
 -printf "$mastermap_dir/%f\n" | \
 parallel \
-cat {} '|' psql -c "\"COPY geometries ( geometry_geom, source_id ) FROM stdin WITH CSV HEADER;\""
+cat {} '|' PGHOST=$PGHOST PGDATABASE=$PGDATABASE PGUSER=$PGUSER PGPASSWORD=$PGPASSWORD psql -c "\"COPY geometries ( geometry_geom, source_id ) FROM stdin WITH CSV HEADER;\""
 
 #
 # Delete any duplicated geometries (by TOID)
 #
-psql -c "DELETE FROM geometries a USING (
+PGHOST=$PGHOST PGDATABASE=$PGDATABASE PGUSER=$PGUSER PGPASSWORD=$PGPASSWORD psql -c "DELETE FROM geometries a USING (
     SELECT MIN(ctid) as ctid, source_id
     FROM geometries
     GROUP BY source_id
