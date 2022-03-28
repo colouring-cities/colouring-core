@@ -17,12 +17,12 @@ mastermap_dir=$1
 find $mastermap_dir -type f -name '*.3857.csv' \
 -printf "$mastermap_dir/%f\n" | \
 parallel \
-cat {} '|' PGHOST=$PGHOST PGDATABASE=$PGDATABASE PGUSER=$PGUSER PGPASSWORD=$PGPASSWORD psql -c "\"COPY geometries ( geometry_geom, source_id ) FROM stdin WITH CSV HEADER;\""
+cat {} '|' psql -c "\"COPY geometries ( geometry_geom, source_id ) FROM stdin WITH CSV HEADER;\""
 
 #
 # Delete any duplicated geometries (by TOID)
 #
-PGHOST=$PGHOST PGDATABASE=$PGDATABASE PGUSER=$PGUSER PGPASSWORD=$PGPASSWORD psql -c "DELETE FROM geometries a USING (
+psql -c "DELETE FROM geometries a USING (
     SELECT MIN(ctid) as ctid, source_id
     FROM geometries
     GROUP BY source_id
