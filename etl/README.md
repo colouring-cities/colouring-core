@@ -74,10 +74,10 @@ sudo ./filter_transform_mastermap_for_loading.sh /path/to/mastermap_dir
 
 <!-- Didn't throw an error - did Ctrl-C after a miniute -->
 
-Load all building outlines.
+Load all building outlines. Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
 
 ```bash
-sudo ./load_geometries.sh /path/to/mastermap_dir
+./load_geometries.sh /path/to/mastermap_dir
 ```
 
 Index geometries.
