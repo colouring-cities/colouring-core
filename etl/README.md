@@ -86,13 +86,13 @@ Index geometries.
 psql < ../migrations/002.index-geometries.up.sql
 ```
 
-TODO: Drop outside limit.
+<!-- TODO: Drop outside limit. -->
 
 <!-- But what is the boundary file? -->
 
-```bash
+<!-- ```bash
 ./drop_outside_limit.sh /path/to/boundary_file
-````
+```` -->
 
 Create a building record per outline.
 
