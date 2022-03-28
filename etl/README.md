@@ -59,7 +59,7 @@ chmod +x *.sh
 Extract the MasterMap data (this step could take a while).
 
 ```bash
-sudo ./extract_mastermap.sh ./mastermap_dir
+sudo ./extract_mastermap.sh /path/to/mastermap_dir
 ```
 
 <!-- Note: I removed sudo here before because I addd the chmod +x above - now have had to re-add it, unsure why/ what changed -->
@@ -69,7 +69,7 @@ sudo ./extract_mastermap.sh ./mastermap_dir
 Filter MasterMap 'building' polygons.
 
 ```bash
-sudo ./filter_transform_mastermap_for_loading.sh ./mastermap_dir
+sudo ./filter_transform_mastermap_for_loading.sh /path/to/mastermap_dir
 ```
 
 <!-- Didn't throw an error - did Ctrl-C after a miniute -->
@@ -77,7 +77,7 @@ sudo ./filter_transform_mastermap_for_loading.sh ./mastermap_dir
 Load all building outlines.
 
 ```bash
-./load_geometries.sh ./mastermap_dir
+./load_geometries.sh /path/to/mastermap_dir
 ```
 
 Index geometries.
@@ -91,7 +91,7 @@ TODO: Drop outside limit.
 <!-- But what is the boundary file? -->
 
 ```bash
-./drop_outside_limit.sh ./path/to/boundary_file
+./drop_outside_limit.sh /path/to/boundary_file
 ````
 
 Create a building record per outline.
