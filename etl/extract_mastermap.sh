@@ -23,6 +23,7 @@ gunzip $data_dir/{} -k -S gml
 
 rename 's/$/.gml/' $data_dir/*[^gzvt]
 
+# Note: we may need to update the below for other downloads
 find $data_dir -type f -name '*5690395*.gml' -printf "%f\n" | \
 parallel \
 ogr2ogr \
