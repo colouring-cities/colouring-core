@@ -23,7 +23,9 @@ gunzip $data_dir/{} -k -S gml
 
 rename 's/$/.gml/' $data_dir/*[^gzvt]
 
-# Note: we may need to update the below for other downloads
+# Note: previously the rename cmd above resulted in some temp files being renamed to .gml
+# so I have specified the start of the filename (appears to be consistent for all OS MasterMap downloads)
+# we may need to update this below for other downloads
 find $data_dir -type f -name '*5690395*.gml' -printf "%f\n" | \
 parallel \
 ogr2ogr \
