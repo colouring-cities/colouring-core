@@ -77,7 +77,7 @@ sudo ./filter_transform_mastermap_for_loading.sh /path/to/mastermap_dir
 Load all building outlines.
 
 ```bash
-./load_geometries.sh /path/to/mastermap_dir
+sudo ./load_geometries.sh /path/to/mastermap_dir
 ```
 
 Index geometries.
