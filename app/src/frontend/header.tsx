@@ -81,6 +81,11 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 text: "Discussion Forum",
                 external: true
             },
+            {
+                to: "https://discuss.colouring.london/c/blog/9",
+                text: "Blog",
+                external: true
+            },
         ],
         [
             {
