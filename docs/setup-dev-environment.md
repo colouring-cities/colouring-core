@@ -158,7 +158,7 @@ Ensure the `en_US` locale exists.
 sudo locale-gen en_US.UTF-8
 ```
 
-Configure the database to listen on network connection.
+Configure postgres to listen on network connection.
 
 ```bash
 sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/12/main/postgresql.conf
