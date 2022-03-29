@@ -237,32 +237,6 @@ Install python and related tools.
 sudo apt-get install -y python3 python3-pip python3-dev python3-venv
 ```
 
-Create a virtual environment for python in the `etl` folder of your repository. In the following example we have name the virtual environment *colouringlondon* but it can have any name.
-
-```bash
-cd ~/colouring-london/etl
-pyvenv colouringlondon
-```
-
-Activate the virtual environment so we can install python packages into it.
-
-```bash
-source colouringlondon/bin/activate
-```
-
-Install python pip package manager and related tools.
-
-```bash
-pip install --upgrade pip
-pip install --upgrade setuptools wheel
-```
-
-Install the required python packages.
-
-```bash
-pip install -r requirements.txt
-```
-
 ## :house: Loading the building data
 
 There are several ways to create the Colouring London database in your environment. The simplest way if you are just trying out the application would be to use test data from OSM, but otherwise you should follow one of the instructions below to create the full database either from scratch, or from a previously made db (via a dump file).
@@ -306,10 +280,30 @@ This section shows how to load test buildings into the application from OpenStre
 
 #### Load OpenStreetMap test polygons
 
-Ensure you have the `colouringlondon` environment activated.
+Create a virtual environment for python in the `etl` folder of your repository. In the following example we have name the virtual environment *colouringlondon* but it can have any name.
+
+```bash
+cd ~/colouring-london/etl
+pyvenv colouringlondon
+```
+
+Activate the virtual environment so we can install python packages into it.
 
 ```bash
 source colouringlondon/bin/activate
+```
+
+Install python pip package manager and related tools.
+
+```bash
+pip install --upgrade pip
+pip install --upgrade setuptools wheel
+```
+
+Install the required python packages.
+
+```bash
+pip install -r requirements.txt
 ```
 
 To help test the Colouring London application, `get_test_polygons.py` will attempt to save a small (1.5km²) extract from OpenStreetMap to a format suitable for loading to the database.
