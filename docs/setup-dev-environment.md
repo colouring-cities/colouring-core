@@ -59,14 +59,14 @@ ssh <linuxusername>@localhost -p 4022
 First upgrade the installed packages to the latest versions, to remove any security warnings.
 
 ```bash
-sudo apt-get update -y
-sudo apt-get upgrade -y
+sudo apt-get update -y --quiet
+sudo apt-get upgrade -y --quiet
 ```
 
 Now install some essential tools.
 
 ```bash
-sudo apt-get install -y build-essential git wget curl
+sudo apt-get install -y build-essential git wget curl --quiet
 ```
 
 ### :red_circle: Installing PostgreSQL
@@ -86,6 +86,8 @@ sudo apt-get update
 ```
 
 Next install postgres and postgis to enable support for geographical objects.
+
+<!-- TODO: Add variable for quiet -->
 
 ```bash
 sudo apt-get install -y postgresql-12 postgresql-contrib-12 libpq-dev postgis postgresql-12-postgis-3
@@ -201,7 +203,7 @@ export PGDATABASE=<colouringlondondb>
 Create a colouring london database if none exists. The name (`<colouringlondondb>`) is arbitrary.
 
 ```bash
-sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>
+sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '$PGDATABASE';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O $PGUSER $PGDATABASE
 ```
 
 ```bash
