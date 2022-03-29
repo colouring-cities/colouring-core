@@ -14,7 +14,6 @@ csv.field_size_limit(sys.maxsize)
 def main(mastermap_path):
     mm_paths = sorted(glob.glob(os.path.join(mastermap_path, "*.gml.csv")))
     for mm_path in mm_paths:
-        print(mm_path)
         filter_mastermap(mm_path)
 
 
