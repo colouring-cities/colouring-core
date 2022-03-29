@@ -49,6 +49,7 @@ ssh <linuxusername>@localhost -p 4022
   - [:rainbow: Installing Colouring London](#rainbow-installing-colouring-london)
   - [:arrow_down: Installing Node.js](#arrow_down-installing-nodejs)
   - [:large_blue_circle: Configuring PostgreSQL](#large_blue_circle-configuring-postgresql)
+  - [:space_invader: Create an empty database](#space_invader_create_an_empty_database)
   - [:arrow_forward: Configuring Node.js](#arrow_forward-configuring-nodejs)
   - [:snake: Set up Python](#snake-set-up-python)
 - [:house: Loading the building data](#house-loading-the-building-data)
@@ -190,6 +191,10 @@ If you intend to load the full CL database from a dump file into your dev enviro
 
 </details><p></p>
 
+### :space_invader: Create an empty database
+
+Now create an empty database configured with geo-spatial tools. The database name (`<colouringlondondb>`) is arbitrary.
+
 Set environment variables, which will simplify running subsequent `psql` commands.
 
 ```bash
@@ -199,7 +204,7 @@ export PGHOST=localhost
 export PGDATABASE=<colouringlondondb>
 ```
 
-Create a colouring london database if none exists. The name (`<colouringlondondb>`) is arbitrary.
+Create the database.
 
 ```bash
 sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>
