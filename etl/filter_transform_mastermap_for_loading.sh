@@ -1,22 +1,13 @@
 #!/usr/bin/env bash
 
-#
-# Filter and transform for loading
-#
 : ${1?"Usage: $0 ./path/to/mastermap/dir"}
 
 mastermap_dir=$1
 
-#
-# Filter
-# - WHERE descriptiveGroup = '(1:Building)'
-# - OR toid in addressbase_toids
-#
+echo "Filter WHERE descriptiveGroup = '(1:Building)'... "
 python filter_mastermap.py $mastermap_dir
 
-#
-# Transform to 3857 (web mercator)
-#
+echo "Transform to 3857 (web mercator)..."
 find $mastermap_dir -type f -name '*.gml.csv' -printf "%f\n" | \
 parallel \
 ogr2ogr \
@@ -27,13 +18,13 @@ ogr2ogr \
     $mastermap_dir/{} \
     -lco GEOMETRY=AS_WKT
 
-#
-# Update to EWKT (with SRID indicator for loading to Postgres)
-#
+echo "Update to EWKT (with SRID indicator for loading to Postgres)..."
+echo "Updating POLYGONs.."
 find $mastermap_dir -type f -name '*.3857.csv' -printf "%f\n" | \
 parallel \
 sed -i "'s/^\"POLYGON/\"SRID=3857;POLYGON/'" $mastermap_dir/{}
 
+echo "Updating MULTIPOLYGONs.."
 find $mastermap_dir -type f -name '*.3857.csv' -printf "%f\n" | \
 parallel \
 sed -i "'s/^\"MULTIPOLYGON/\"SRID=3857;MULTIPOLYGON/'" $mastermap_dir/{}
