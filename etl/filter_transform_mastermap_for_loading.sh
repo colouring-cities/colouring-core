@@ -8,7 +8,7 @@ echo "Filter WHERE descriptiveGroup = '(1:Building)'... "
 python filter_mastermap.py $mastermap_dir
 
 echo "Transform to 3857 (web mercator)..."
-find $mastermap_dir -type f -name '*.gml.csv' -printf "%f\n" | \
+find $mastermap_dir -type f -name '*.filtered.csv' -printf "%f\n" | \
 parallel \
 ogr2ogr \
     -f CSV $mastermap_dir/{}.3857.csv \
