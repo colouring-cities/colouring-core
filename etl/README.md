@@ -62,17 +62,11 @@ Extract the MasterMap data (this step could take a while).
 sudo ./extract_mastermap.sh /path/to/mastermap_dir
 ```
 
-<!-- Note: I removed sudo here before because I addd the chmod +x above - now have had to re-add it, unsure why/ what changed -->
-
-<!-- Didn't throw an error - did Ctrl-C after an hour, so I then ran: `sudo rm ~/map_data/*.gml` -->
-
 Filter MasterMap 'building' polygons.
 
 ```bash
 sudo ./filter_transform_mastermap_for_loading.sh /path/to/mastermap_dir
 ```
-
-<!-- Didn't throw an error - did Ctrl-C after a miniute -->
 
 Load all building outlines. Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
 
@@ -87,8 +81,6 @@ psql < ../migrations/002.index-geometries.up.sql
 ```
 
 <!-- TODO: Drop outside limit. -->
-
-<!-- But what is the boundary file? -->
 
 <!-- ```bash
 ./drop_outside_limit.sh /path/to/boundary_file
