@@ -32,7 +32,7 @@ Before creating or updating a Colouring London database, you'll need to make sur
 
 ## Prerequisites
 
-You should already have set up PostgreSQL and created a database. Make sure to create environment variables to use `psql` if you haven't already:
+You should already have set up PostgreSQL and created a database in an Ubuntu environment. Make sure to create environment variables to use `psql` if you haven't already:
 
 ```bash
 export PGPASSWORD=<pgpassword>
@@ -52,7 +52,7 @@ There is some performance benefit to creating indexes after bulk loading data.
 Otherwise, it's fine to run all the migrations at this point and skip the index
 creation steps below.
 
-Install GNU parallel, this is used to speed up loading bulk data.
+You should already have installed GNU parallel, which is used to speed up loading bulk data.
 
 ## Processing and loading Ordnance Survey data
 
