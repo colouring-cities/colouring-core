@@ -26,6 +26,7 @@ parallel \
 cat {} '|' psql -c "\"COPY open_toid ( toid, version_number, version_date, source_product, easting, northing ) FROM stdin WITH CSV HEADER;\""
 
 # Convert the northing/easting coordinates to latitude/longitute with PostGIS
+psql -c "select AddGeometryColumn( 'public', 'open_toid', 'the_geom', 27700, 'POINT', 2);"
 psql -c "update open_toid set the_geom=GeomFromText('POINT('||easting||' '||northing||')',27700);"
 psql -c "update open_toid set longitude=st_x(st_transform(the_geom,4326)), latitude=st_y(st_transform(the_geom,4326));"
 
