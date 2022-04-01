@@ -18,6 +18,11 @@ etl/**/*.txt
 etl/**/*.xls
 etl/**/*.xlsx
 etl/**/*.zip
+etl/**/*.gml
+etl/**/*.gz
+etl/**/5690395*
+postgresdata
+*/__pycache__/*
 
 .DS_Store
 
