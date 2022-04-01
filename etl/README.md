@@ -1,4 +1,11 @@
-# Downloading Ordnance Survey data
+# Contents
+
+- :arrow_down: [Downloading Ordnance Survey data](#arrow_down-downloading-ordnance-survey-data)
+- :penguin: [Making data available to Ubuntu](#penguin-making-data-available-to-ubuntu)
+- :new_moon: [Creating a Colouring London database from scratch](#new_moon-creating-a-colouring-london-database from-scratch)
+- :full_moon: [Updating the Colouring London database with new OS data](#full_moon-updating-the-colouring-london-database-with-new-os-data)
+
+# :arrow_down: Downloading Ordnance Survey data
 
 The scripts in this directory are used to extract, transform and load (ETL) the core datasets
 for Colouring London:
@@ -17,11 +24,11 @@ To get the required datasets, you'll need to complete the following steps:
 4. You should be then able to check out your basket and download the files. Note: there may be multiple `.zip` files to download for MasterMap due to the size of the dataset.
 6. Unzip the MasterMap `.zip` files and move all the `.gz` files from each to a single folder in a convenient location. We will use this folder in later steps.
 
-# Make data available to Ubuntu
+# :penguin: Making data available to Ubuntu
 
 Before creating or updating a Colouring London database, you'll need to make sure the downloaded OS files are available to the Ubuntu machine where the database is hosted. If you are using Virtualbox, you could host share folder(s) containing the OS files with the VM (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
 
-# Creating a Colouring London database from scratch
+# :new_moon: Creating a Colouring London database from scratch
 
 ## Prerequisites
 
@@ -47,7 +54,7 @@ creation steps below.
 
 Install GNU parallel, this is used to speed up loading bulk data.
 
-## Process and load Ordnance Survey data
+## Processing and loading Ordnance Survey data
 
 Move into the `etl` directory and set execute permission on all scripts.
 
@@ -98,6 +105,6 @@ Run the remaining migrations in `../migrations` to create the rest of the databa
 ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
 ```
 
-# [WIP] Updating the Colouring London database with new OS data
+# :full_moon: Updating the Colouring London database with new OS data
 
 TODO: this section should instruct how to update and existing db
