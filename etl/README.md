@@ -1,3 +1,7 @@
+# Extract, transform and load
+
+The scripts in this directory are used to extract, transform and load (ETL) the core datasets for Colouring London. This README acts as a guide for setting up the Colouring London database with these datasets and updating it.
+
 # Contents
 
 - :arrow_down: [Downloading Ordnance Survey data](#arrow_down-downloading-ordnance-survey-data)
@@ -7,12 +11,7 @@
 
 # :arrow_down: Downloading Ordnance Survey data
 
-The scripts in this directory are used to extract, transform and load (ETL) the core datasets
-for Colouring London:
-
-Building geometries, sourced from Ordnance Survey (OS) MasterMap (Topography Layer)
-
-To get the required datasets, you'll need to complete the following steps:
+The building geometries are sourced from Ordnance Survey (OS) MasterMap (Topography Layer). To get the required datasets, you'll need to complete the following steps:
 
 1. Sign up for the Ordnance Survey [Data Exploration License](https://www.ordnancesurvey.co.uk/business-government/licensing-agreements/data-exploration-sign-up). You should receive an e-mail with a link to log in to the platform (this could take  up to a week).
 2. Navigate to https://orders.ordnancesurvey.co.uk/orders and click the button for: ✏️ Order. From here you should be able to click another button to add a product.
