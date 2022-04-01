@@ -128,6 +128,7 @@ export PGDATABASE=<colouringlondondb>
 Extract the new MasterMap data (this step could take a while).
 
 ```bash
+cd ~/colouring-london
 sudo ./extract_mastermap.sh /path/to/mastermap_dir
 ```
 
@@ -141,4 +142,29 @@ Load all new building outlines. This step will only add geometries that are not 
 
 ```bash
 ./load_geometries.sh /path/to/mastermap_dir
+```
+
+Create a virtual environment for python in the `etl` folder of your repository. In the following example we have name the virtual environment *colouringlondon* but it can have any name.
+
+```bash
+pyvenv colouringlondon
+```
+
+Activate the virtual environment so we can install python packages into it.
+
+```bash
+source colouringlondon/bin/activate
+```
+
+Install python pip package manager and related tools.
+
+```bash
+pip install --upgrade pip
+pip install --upgrade setuptools wheel
+```
+
+Install the required python packages.
+
+```bash
+pip install -r requirements.txt
 ```
