@@ -11,7 +11,9 @@ The scripts in this directory are used to extract, transform and load (ETL) the 
 
 # :arrow_down: Downloading Ordnance Survey data
 
-The building geometries are sourced from Ordnance Survey (OS) MasterMap (Topography Layer). To get the required datasets, you'll need to complete the following steps:
+The building geometries are sourced from Ordnance Survey (OS) MasterMap (Topography Layer). We also make use of OS Open TOID data which proves access to a generalised location for those geometries.
+
+## Downloading MasterMap data
 
 1. Sign up for the Ordnance Survey [Data Exploration License](https://www.ordnancesurvey.co.uk/business-government/licensing-agreements/data-exploration-sign-up). You should receive an e-mail with a link to log in to the platform (this could take  up to a week).
 2. Navigate to https://orders.ordnancesurvey.co.uk/orders and click the button for: ✏️ Order. From here you should be able to click another button to add a product.
@@ -22,6 +24,15 @@ The building geometries are sourced from Ordnance Survey (OS) MasterMap (Topogra
 
 4. You should be then able to check out your basket and download the files. Note: there may be multiple `.zip` files to download for MasterMap due to the size of the dataset.
 6. Unzip the MasterMap `.zip` files and move all the `.gz` files from each to a single folder in a convenient location. We will use this folder in later steps.
+
+## Downloading OS Open TOID data
+
+1. Navigate to the download page at https://osdatahub.os.uk/downloads/open/OpenTOID
+2. Select the area of the map you require location data for (e.g. the squares covering London) and download the data in CSV format:
+
+![](screenshot/OpenTOID.png)
+
+3. Unzip the `.zip` file(s) to get the CSV files and move them to a single folder in a convenient location. We will use this folder in later steps.
 
 # :penguin: Making data available to Ubuntu
 
