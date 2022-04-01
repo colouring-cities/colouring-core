@@ -106,4 +106,28 @@ ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration;
 
 # :full_moon: Updating the Colouring London database with new OS data
 
-TODO: this section should instruct how to update and existing db
+In the Ubuntu environment where the database exists, set up environment variable to make the following steps simpler.
+```bash
+export PGPASSWORD=<pgpassword>
+export PGUSER=<username>
+export PGHOST=localhost
+export PGDATABASE=<colouringlondondb>
+```
+
+Extract the new MasterMap data (this step could take a while).
+
+```bash
+sudo ./extract_mastermap.sh /path/to/mastermap_dir
+```
+
+Filter MasterMap 'building' polygons.
+
+```bash
+sudo ./filter_transform_mastermap_for_loading.sh /path/to/mastermap_dir
+```
+
+Load all new building outlines. This step will only add geometries that are not already present (based on the `TOID`). Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
+
+```bash
+./load_geometries.sh /path/to/mastermap_dir
+```
