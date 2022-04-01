@@ -1,6 +1,4 @@
-# Creating a Colouring London database from scratch
-
-## Data downloading
+# Downloading Ordnance Survey data
 
 The scripts in this directory are used to extract, transform and load (ETL) the core datasets
 for Colouring London:
@@ -18,6 +16,12 @@ To get the required datasets, you'll need to complete the following steps:
 
 4. You should be then able to check out your basket and download the files. Note: there may be multiple `.zip` files to download for MasterMap due to the size of the dataset.
 6. Unzip the MasterMap `.zip` files and move all the `.gz` files from each to a single folder in a convenient location. We will use this folder in later steps.
+
+# Make data available to Ubuntu
+
+Before creating or updating a Colouring London database, you'll need to make sure the downloaded OS files are available to the Ubuntu machine where the database is hosted. If you are using Virtualbox, you could host share folder(s) containing the OS files with the VM (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
+
+# Creating a Colouring London database from scratch
 
 ## Prerequisites
 
@@ -42,10 +46,6 @@ Otherwise, it's fine to run all the migrations at this point and skip the index
 creation steps below.
 
 Install GNU parallel, this is used to speed up loading bulk data.
-
-## Make data available to Ubuntu
-
-If you didn't download the OS files to the Ubuntu machine where you are setting up your Colouring London application, you will need to make them available there. If you are using Virtualbox, you could host share a the folder containing the MasteerMap files with the VM via a shared folder (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
 
 ## Process and load Ordnance Survey data
 
