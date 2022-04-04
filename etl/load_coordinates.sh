@@ -16,18 +16,18 @@ psql -c "CREATE TABLE open_toid (
     easting float,
     northing float,
     longitude float,
-    latitute float
+    latitude float
 );"
 
 echo "Loading Open TOID CSV(s) to temporary table..."
 find $opentoid_dir -type f -name '*_converted.csv' \
 -printf "$opentoid_dir/%f\n" | \
 parallel \
-cat {} '|' psql -c "\"COPY open_toid ( toid, version_number, version_date, source_product, easting, northing, longitude, latitute ) FROM stdin WITH CSV HEADER;\""
+cat {} '|' psql -c "\"COPY open_toid ( toid, version_number, version_date, source_product, easting, northing, longitude, latitude ) FROM stdin WITH CSV HEADER;\""
 
 echo "Updating the buildings table with coordinates..."
 psql -c "UPDATE buildings
-    SET location_latitude = open_toid.latitute,
+    SET location_latitude = open_toid.latitude,
         location_longitude = open_toid.longitude
     FROM open_toid
     WHERE open_toid.toid = buildings.ref_toid
