@@ -10,7 +10,7 @@ opentoid_dir=$1
 echo "Creating a temporary table for coordinates..."
 psql -c "CREATE TABLE open_toid (
     toid varchar,
-    version_number smallint,
+    version_number float,
     version_date date,
     source_product varchar,
     easting float,
