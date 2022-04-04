@@ -169,6 +169,12 @@ Install the required python packages.
 pip install -r requirements.txt
 ```
 
+Converting the OS Open TOID data OSGB36 Eastings and Northings to WGS84 longitude and latitude coordinates.
+
+```bash
+python convert_opentoid_bng_latlon.py /path/to/opentoids_dir
+```
+
 Assign latitude and longitude to buildings with the downloaded OS Open TOID data.
 
 ```bash
