@@ -168,3 +168,9 @@ Install the required python packages.
 ```bash
 pip install -r requirements.txt
 ```
+
+Assign latitude and longitude to buildings with the downloaded OS Open TOID data.
+
+```bash
+./load_coordinates.sh /path/to/opentoids_dir
+```
