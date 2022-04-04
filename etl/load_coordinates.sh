@@ -7,7 +7,7 @@
 
 opentoid_dir=$1
 
-echo "Creating a temporary table for coordinates..."
+echo "Creating table for open_toid coordinates..."
 psql -c "CREATE TABLE open_toid (
     toid varchar,
     version_number float,
@@ -32,6 +32,3 @@ psql -c "UPDATE buildings
     FROM open_toid
     WHERE open_toid.toid = buildings.ref_toid
 ;"
-
-# Delete the temporary table
-psql -c "DROP TABLE open_toid;"
