@@ -193,3 +193,16 @@ Assign latitude and longitude to buildings with the converted OS Open TOID data.
 ```bash
 ./load_coordinates.sh /path/to/opentoids_dir
 ```
+
+Create building record to match each new geometry (TOID) that doesn't already have a linked building. Ignores geometries in the same location as pre-existing ones based on lat/lon coordinates, in which case marking the old one as valid _up to_ the current date and adding the new one as valid _from_ today, keeping both linked to the existing building record.
+
+```bash
+./update_building_records.sh 
+```
+
+Mark TOIDs not present in the update as demolished.
+
+<!-- TODO: need the open_toids table for this -->
+```bash
+./mark_demolitions.sh
+```
