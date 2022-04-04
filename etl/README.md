@@ -171,6 +171,13 @@ pip install -r requirements.txt
 
 Converting the OS Open TOID data OSGB36 Eastings and Northings to WGS84 longitude and latitude coordinates.
 
+<details>
+<summary>
+WARNING
+</summary>
+EC note: When testing this in my developemt setup, due to memory constraints I actually ended up running this Python step on my Mac directly, rather than in my Ubuntu Virtualbox environment.
+</details><p></p>
+
 ```bash
 python convert_opentoid_bng_latlon.py /path/to/opentoids_dir
 ```
