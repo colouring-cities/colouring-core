@@ -21,7 +21,7 @@ def convert_opentoid_coordinates(ot_path):
     output_path = str(ot_path).replace(".csv", "_converted.csv")
     ot_data = read_csv(ot_path)
     ot_data['longitude'], ot_data['latitude'] = convert_lonlat(ot_data['EASTING'], ot_data['NORTHING'])
-    ot_data.to_csv(ot_path)
+    ot_data.to_csv(output_path, index=False)
 
 
 if __name__ == '__main__':
