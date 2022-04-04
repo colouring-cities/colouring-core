@@ -3,7 +3,7 @@ import csv
 import glob
 import os
 import sys
-from convertbng.util import convert_lonlat
+from convertbng.cutil import convert_lonlat
 from pandas import read_csv
 
 
