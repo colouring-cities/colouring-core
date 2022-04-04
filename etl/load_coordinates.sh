@@ -25,8 +25,13 @@ find $opentoid_dir -type f -name '*_converted.csv' \
 parallel \
 cat {} '|' psql -c "\"COPY open_toid ( toid, version_number, version_date, source_product, easting, northing, longitude, latitute ) FROM stdin WITH CSV HEADER;\""
 
-# Update the buildings table with coordinates
-# psql -c ""
+echo "Updating the buildings table with coordinates..."
+psql -c "UPDATE buildings
+    SET location_latitude = open_toid.latitute,
+        location_longitude = open_toid.longitude
+    FROM open_toid
+    WHERE open_toid.toid = b.ref_toid
+;"
 
 # Delete the temporary table
 # psql -c "DROP TABLE open_toid;"
