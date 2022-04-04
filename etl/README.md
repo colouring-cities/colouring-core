@@ -125,10 +125,16 @@ export PGHOST=localhost
 export PGDATABASE=<colouringlondondb>
 ```
 
+Move into the `etl` directory and set execute permission on all scripts.
+
+```bash
+cd ~/colouring-london/etl
+chmod +x *.sh
+```
+
 Extract the new MasterMap data (this step could take a while).
 
 ```bash
-cd ~/colouring-london
 sudo ./extract_mastermap.sh /path/to/mastermap_dir
 ```
 
