@@ -34,4 +34,4 @@ psql -c "UPDATE buildings
 ;"
 
 # Delete the temporary table
-# psql -c "DROP TABLE open_toid;"
+psql -c "DROP TABLE open_toid;"
