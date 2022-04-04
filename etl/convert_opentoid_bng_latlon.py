@@ -18,6 +18,7 @@ def main(opentoid_path):
 
 def convert_opentoid_coordinates(ot_path):
     """Overwrite the input csv, adding the longitute/latitude from eastings/northings"""
+    output_path = str(ot_path).replace(".csv", "_converted.csv")
     ot_data = read_csv(ot_path)
     ot_data['longitude'], ot_data['latitude'] = convert_lonlat(ot_data['EASTING'], ot_data['NORTHING'])
     ot_data.to_csv(ot_path)
