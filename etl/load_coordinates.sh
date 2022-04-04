@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Assign latitute and longitute to buildings with OpenTOID data
+# Assign latitude and longitude to buildings with OpenTOID data
 # - assume postgres connection details are set in the environment using PGUSER, PGHOST etc.
 
 : ${1?"Usage: $0 ./path/to/opentoid/dir"}
