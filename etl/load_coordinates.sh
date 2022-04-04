@@ -20,7 +20,7 @@ psql -c "CREATE TABLE open_toid (
 );"
 
 echo "Loading Open TOID CSV(s) to temporary table..."
-find $opentoid_dir -type f -name '*.csv' \
+find $opentoid_dir -type f -name '*_converted.csv' \
 -printf "$opentoid_dir/%f\n" | \
 parallel \
 cat {} '|' psql -c "\"COPY open_toid ( toid, version_number, version_date, source_product, easting, northing, longitude, latitute ) FROM stdin WITH CSV HEADER;\""
