@@ -30,7 +30,7 @@ psql -c "UPDATE buildings
     SET location_latitude = open_toid.latitute,
         location_longitude = open_toid.longitude
     FROM open_toid
-    WHERE open_toid.toid = b.ref_toid
+    WHERE open_toid.toid = buildings.ref_toid
 ;"
 
 # Delete the temporary table
