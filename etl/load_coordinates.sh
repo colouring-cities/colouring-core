@@ -7,7 +7,9 @@
 
 opentoid_dir=$1
 
+# Move this to 001.core.up.sql if needed, or otherwise delete as temp table
 echo "Creating table for open_toid coordinates..."
+psql -c "DROP TABLE IF EXISTS open_toid"
 psql -c "CREATE TABLE open_toid (
     toid varchar,
     version_number float,
@@ -31,4 +33,17 @@ psql -c "UPDATE buildings
         location_longitude = open_toid.longitude
     FROM open_toid
     WHERE open_toid.toid = buildings.ref_toid
+;"
+
+# Add these columns here rather than in 001.core.up.sql for legacy reasons
+psql -c "ALTER TABLE geometries
+         ADD longitude float
+         ADD latitude float;"
+
+echo "Updating the geometries table with coordinates..."
+psql -c "UPDATE geometries
+    SET latitude = open_toid.latitude,
+        longitude = open_toid.longitude
+    FROM open_toid
+    WHERE open_toid.toid = geometries.source_id
 ;"
