@@ -36,9 +36,8 @@ psql -c "UPDATE buildings
 ;"
 
 # Add these columns here rather than in 001.core.up.sql for legacy reasons
-psql -c "ALTER TABLE geometries
-         ADD longitude float
-         ADD latitude float;"
+psql -c "ALTER TABLE geometries ADD longitude float;"
+psql -c "ALTER TABLE geometries ADD latitude float;"
 
 echo "Updating the geometries table with coordinates..."
 psql -c "UPDATE geometries
