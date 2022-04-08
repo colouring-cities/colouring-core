@@ -26,7 +26,7 @@ parallel \
 cat {} '|' psql -c "\"COPY release_geometries ( geometry_geom, source_id ) FROM stdin WITH CSV HEADER;\""
 
 # Copy release_geometries into existing geometries table
-psql -c "INSERT INTO geometries SELECT * FROM release_geometries;"
+psql -c "INSERT INTO geometries ( geometry_geom, source_id ) SELECT geometry_geom, source_id FROM release_geometries;"
 
 # Delete any duplicated geometries (by TOID)
 echo "Delete duplicate geometries..."
