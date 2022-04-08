@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+## Prerequisites:
+## - Make geometries table have coordinates (load_coordinates.sh) - DONE
+## - <mastermap download>= release_geometries
   
 # for geometry in geometries
 
