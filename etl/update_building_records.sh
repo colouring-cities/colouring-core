@@ -13,12 +13,21 @@
 
   # if geometry.TOID not in builings
     # Add TOID to temp table called new_geometries
-    # psql -c "INSERT INTO buildings ( geometry_id, ref_toid ) SELECT geometry_id, source_id from geometries;"
+
+psql -c "CREATE TABLE new_geometries (
+        geometry_id serial PRIMARY KEY,
+        source_id varchar(30)
+);"
+psql -c "INSERT INTO buildings ( geometry_id, ref_toid )
+         SELECT geometry_id, source_id
+         FROM geometries
+         ON CONFLICT ( ref_toid )
+         DO UPDATE SET new_geometries.source_id=EXCLUDED.ref_toid
+;"
 
 # for building in buildings
 
-  # if building.TOID not in new <mastermap download>
-    # (need a <mastermap download> table with all TOIDs in the new release, but not the old ones too, which geometires has)
+  # if building.TOID not in new release_geometries
     # buildings.dynamics_has_demolished_buildings = TRUE
     
   # secondarily, if building.coordinates <10m away from any new_geometry.coordinates
