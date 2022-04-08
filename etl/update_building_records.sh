@@ -18,11 +18,13 @@ psql -c "CREATE TABLE new_geometries (
         geometry_id serial PRIMARY KEY,
         source_id varchar(30)
 );"
-psql -c "INSERT INTO buildings ( geometry_id, ref_toid )
-         SELECT geometry_id, source_id
-         FROM geometries
-         ON CONFLICT ( ref_toid )
-         DO UPDATE SET new_geometries.source_id=EXCLUDED.ref_toid
+psql -c "WITH new_geometries AS (
+           INSERT INTO buildings ( geometry_id, ref_toid )
+           SELECT geometry_id, source_id
+           FROM geometries
+           ON CONFLICT ( ref_toid )
+           DO NOTHING RETURNING *
+         )
 ;"
 
 # for building in buildings
