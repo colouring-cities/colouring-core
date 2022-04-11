@@ -14,12 +14,15 @@
   # if geometry.TOID not in builings
     # Add TOID to temp table called new_geometries
 
-# psql -c "CREATE TABLE new_geometries (
-#         geometry_id serial PRIMARY KEY,
-#         source_id varchar(30)
-# );"
-psql -c "INSERT INTO new_geometries ( geometry_id, source_id )
-            SELECT geometry_id, source_id
+psql -c "CREATE TABLE new_geometries (
+        geometry_id serial PRIMARY KEY,
+        source_id varchar(30),
+        geometry_geom geometry(GEOMETRY, 3857),
+        longitude float,
+        latitude float
+);"
+psql -c "INSERT INTO new_geometries *
+            SELECT *
             FROM geometries
             WHERE source_id NOT IN ( SELECT ref_toid FROM buildings);"
 
