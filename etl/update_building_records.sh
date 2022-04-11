@@ -9,6 +9,19 @@
 ## - Make geometries table have coordinates (load_coordinates.sh) - DONE
 ## - <mastermap download>= release_geometries
   
+###############
+### CHECK 1 ###
+###############
+
+# for building in buildings
+
+  # if building.TOID not in new release_geometries
+    # buildings.dynamics_has_demolished_buildings = TRUE
+
+###############
+### CHECK 2 ###
+###############
+
 # for geometry in geometries
 
   # if geometry.TOID not in builings
@@ -25,11 +38,6 @@ psql -c "INSERT INTO new_geometries *
             SELECT *
             FROM geometries
             WHERE source_id NOT IN ( SELECT ref_toid FROM buildings);"
-
-# for building in buildings
-
-  # if building.TOID not in new release_geometries
-    # buildings.dynamics_has_demolished_buildings = TRUE
     
   # secondarily, if building.coordinates <10m away from any new_geometry.coordinates
     # older_building.dynamics_has_demolished_buildings = TRUE
