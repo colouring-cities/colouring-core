@@ -2,7 +2,7 @@
 
 ## Comments:
 ## Is dynamics_has_demolished_buildings = TRUE sufficient to prevent buildings being loaded? - No
-## Lets mark them, then see if there even are any
+## Lets mark them, then see if there even are any - would want to check for entire London
 ## Describe these changes in PR and ask for comment if the bool is sufficient
 
 ## Prerequisites:
@@ -17,6 +17,10 @@
 
   # if building.TOID not in new release_geometries
     # buildings.dynamics_has_demolished_buildings = TRUE
+    
+psql -c "UPDATE buildings
+         SET dynamics_has_demolished_buildings is true
+         WHERE ref_toid NOT IN ( SELECT source_id FROM release_geometries);"
 
 ###############
 ### CHECK 2 ###
@@ -27,17 +31,17 @@
   # if geometry.TOID not in builings
     # Add TOID to temp table called new_geometries
 
-psql -c "CREATE TABLE new_geometries (
-        geometry_id serial PRIMARY KEY,
-        source_id varchar(30),
-        geometry_geom geometry(GEOMETRY, 3857),
-        longitude float,
-        latitude float
-);"
-psql -c "INSERT INTO new_geometries *
-            SELECT *
-            FROM geometries
-            WHERE source_id NOT IN ( SELECT ref_toid FROM buildings);"
+# psql -c "CREATE TABLE new_geometries (
+#         geometry_id serial PRIMARY KEY,
+#         source_id varchar(30),
+#         geometry_geom geometry(GEOMETRY, 3857),
+#         longitude float,
+#         latitude float
+# );"
+# psql -c "INSERT INTO new_geometries *
+#             SELECT *
+#             FROM geometries
+#             WHERE source_id NOT IN ( SELECT ref_toid FROM buildings);"
     
   # secondarily, if building.coordinates <10m away from any new_geometry.coordinates
     # older_building.dynamics_has_demolished_buildings = TRUE
