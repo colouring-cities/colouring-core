@@ -150,6 +150,15 @@ Load all new building outlines. This step will only add geometries that are not 
 ./load_geometries.sh /path/to/mastermap_dir
 ```
 
+Drop building outlines outside London boundary.
+
+```bash
+cd ~/colouring-london/app/public/geometries
+ogr2ogr -t_srs EPSG:3857 -f "ESRI Shapefile" boundary.shp boundary-detailed.geojson
+cd ~/colouring-london/etl/
+./drop_outside_limit.sh ~/colouring-london/app/public/geometries/boundary.shp
+```
+
 Create a virtual environment for python in the `etl` folder of your repository. In the following example we have name the virtual environment *colouringlondon* but it can have any name.
 
 ```bash
