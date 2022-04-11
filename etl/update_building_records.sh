@@ -18,13 +18,9 @@
 #         geometry_id serial PRIMARY KEY,
 #         source_id varchar(30)
 # );"
-psql -c "WITH new_geometries AS (
-           INSERT INTO buildings ( geometry_id, ref_toid )
-           SELECT geometry_id, source_id
-           FROM geometries
-           ON CONFLICT ( ref_toid )
-           DO NOTHING RETURNING *
-         );"
+psql -c "SELECT geometry_id, source_id
+         FROM geometries
+         WHERE source_id NOT IN ( SELECT ref_toid FROM buildings);"
 
 # for building in buildings
 
