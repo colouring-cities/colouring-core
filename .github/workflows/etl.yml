@@ -1,0 +1,25 @@
+name: etl
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+    - name:
+        Install dependencies
+      run: |
+        sudo apt-get install libgeos-dev
+        python -m pip install --upgrade pip
+        python -m pip install pytest
+        python -m pip install flake8
+        python -m pip install -r etl/requirements.txt
+    - name: Run Flake8
+      run: |
+        ls etl/*py | grep -v 'join_building_data' | xargs flake8 --exclude etl/__init__.py
+    - name: Run tests
+      run: |
+        python -m pytest

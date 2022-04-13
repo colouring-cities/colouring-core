@@ -49,7 +49,9 @@ ssh <linuxusername>@localhost -p 4022
   - [:rainbow: Installing Colouring London](#rainbow-installing-colouring-london)
   - [:arrow_down: Installing Node.js](#arrow_down-installing-nodejs)
   - [:large_blue_circle: Configuring PostgreSQL](#large_blue_circle-configuring-postgresql)
+  - [:space_invader: Create an empty database](#space_invader-create-an-empty-database)
   - [:arrow_forward: Configuring Node.js](#arrow_forward-configuring-nodejs)
+  - [:snake: Set up Python](#snake-set-up-python)
 - [:house: Loading the building data](#house-loading-the-building-data)
 - [:computer: Running the application](#computer-running-the-application)
   - [:eyes: Viewing the application](#eyes-viewing-the-application)
@@ -66,7 +68,7 @@ sudo apt-get upgrade -y
 Now install some essential tools.
 
 ```bash
-sudo apt-get install -y build-essential git wget curl
+sudo apt-get install -y build-essential git wget curl parallel rename
 ```
 
 ### :red_circle: Installing PostgreSQL
@@ -157,7 +159,7 @@ Ensure the `en_US` locale exists.
 sudo locale-gen en_US.UTF-8
 ```
 
-Configure the database to listen on network connection.
+Configure postgres to listen on network connection.
 
 ```bash
 sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/12/main/postgresql.conf
@@ -189,6 +191,10 @@ If you intend to load the full CL database from a dump file into your dev enviro
 
 </details><p></p>
 
+### :space_invader: Create an empty database
+
+Now create an empty database configured with geo-spatial tools. The database name (`<colouringlondondb>`) is arbitrary.
+
 Set environment variables, which will simplify running subsequent `psql` commands.
 
 ```bash
@@ -198,7 +204,7 @@ export PGHOST=localhost
 export PGDATABASE=<colouringlondondb>
 ```
 
-Create a colouring london database if none exists. The name (`<colouringlondondb>`) is arbitrary.
+Create the database.
 
 ```bash
 sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>
@@ -228,10 +234,22 @@ cd ~/colouring-london/app
 npm install
 ```
 
+### :snake: Set up Python
+
+Install python and related tools.
+
+```bash
+sudo apt-get install -y python3 python3-pip python3-dev python3-venv
+```
+
 ## :house: Loading the building data
 
+There are several ways to create the Colouring London database in your environment. The simplest way if you are just trying out the application would be to use test data from OSM, but otherwise you should follow one of the instructions below to create the full database either from scratch, or from a previously made db (via a dump file).
+
+To create the full database from scratch, follow [these instructions](../etl/README.md), otherwise choose one of the following:
+
 <details>
-<summary> With a database dump </summary><p></p>
+<summary> Create database from dump </summary><p></p>
 
 If you are a developer on the Colouring London project (or another Colouring Cities project), you may have a production database (or staging etc) that you wish to duplicate in your development environment.
 
@@ -261,22 +279,16 @@ ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration;
 </details>
 
 <details>
-<summary> With test data </summary><p></p>
+<summary> Create database with test data </summary><p></p>
 
 This section shows how to load test buildings into the application from OpenStreetMaps (OSM).
 
-#### Set up Python
+#### Load OpenStreetMap test polygons
 
-Install python and related tools.
-
-```bash
-sudo apt-get install -y python3 python3-pip python3-dev python3-venv
-```
-
-Now set up a virtual environment for python. In the following example we have named the
-virtual environment *colouringlondon* but it can have any name.
+Create a virtual environment for python in the `etl` folder of your repository. In the following example we have name the virtual environment *colouringlondon* but it can have any name.
 
 ```bash
+cd ~/colouring-london/etl
 pyvenv colouringlondon
 ```
 
@@ -293,18 +305,9 @@ pip install --upgrade pip
 pip install --upgrade setuptools wheel
 ```
 
-#### Load OpenStreetMap test polygons
-
-First install prerequisites.
-```bash
-sudo apt-get install -y parallel
-```
-
-Install the required python packages. This relies on the `requirements.txt` file located
-in the `etl` folder of your local repository.
+Install the required python packages.
 
 ```bash
-cd ~/colouring-london/etl/
 pip install -r requirements.txt
 ```
 
