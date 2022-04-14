@@ -147,7 +147,7 @@ sudo ./filter_transform_mastermap_for_loading.sh /path/to/mastermap_dir
 Load all new building outlines. This step will only add geometries that are not already present (based on the `TOID`). Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
 
 ```bash
-./load_geometries.sh /path/to/mastermap_dir
+./load_new_geometries.sh /path/to/mastermap_dir
 ```
 
 Drop building outlines outside London boundary.
@@ -159,59 +159,14 @@ cd ~/colouring-london/etl/
 ./drop_outside_limit.sh ~/colouring-london/app/public/geometries/boundary.shp
 ```
 
-Create a virtual environment for python in the `etl` folder of your repository. In the following example we have name the virtual environment *colouringlondon* but it can have any name.
+Create building record to match each new geometry (TOID) that doesn't already have a linked building.
 
 ```bash
-pyvenv colouringlondon
-```
-
-Activate the virtual environment so we can install python packages into it.
-
-```bash
-source colouringlondon/bin/activate
-```
-
-Install python pip package manager and related tools.
-
-```bash
-pip install --upgrade pip
-pip install --upgrade setuptools wheel
-```
-
-Install the required python packages.
-
-```bash
-pip install -r requirements.txt
-```
-
-Converting the OS Open TOID data OSGB36 Eastings and Northings to WGS84 longitude and latitude coordinates.
-
-<details>
-<summary>
-WARNING
-</summary>
-EC note: When testing this in my developemt setup, due to memory constraints I actually ended up running this Python step on my Mac directly, rather than in my Ubuntu Virtualbox environment.
-</details><p></p>
-
-```bash
-python convert_opentoid_bng_latlon.py /path/to/opentoids_dir
-```
-
-Assign latitude and longitude to buildings with the converted OS Open TOID data.
-
-```bash
-./load_coordinates.sh /path/to/opentoids_dir
-```
-
-Create building record to match each new geometry (TOID) that doesn't already have a linked building. Ignores geometries in the same location as pre-existing ones based on lat/lon coordinates, in which case marking the old one as valid _up to_ the current date and adding the new one as valid _from_ today, keeping both linked to the existing building record.
-
-```bash
-./update_building_records.sh 
+./create_new_building_records.sh 
 ```
 
 Mark TOIDs not present in the update as demolished.
 
-<!-- TODO: need the open_toids table for this -->
 ```bash
 ./mark_demolitions.sh
 ```
