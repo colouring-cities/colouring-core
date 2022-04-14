@@ -1,48 +1,40 @@
 #!/usr/bin/env bash
 
-## Comments:
-## Is dynamics_has_demolished_buildings = TRUE sufficient to prevent buildings being loaded? - No
-## Lets mark them, then see if there even are any - would want to check for entire London
-## Describe these changes in PR and ask for comment if the bool is sufficient
+# Load geometries from GeoJSON to Postgres
+# - assume postgres connection details are set in the environment using PGUSER, PGHOST etc.
 
-## Prerequisites:
-## - Make geometries table have coordinates (load_coordinates.sh) - DONE
-## - <mastermap download>= release_geometries
-  
-###############
-### CHECK 1 ###
-###############
+: ${1?"Usage: $0 ./path/to/mastermap/dir"}
 
-# for building in buildings
+mastermap_dir=$1
 
-  # if building.TOID not in new release_geometries
-    # buildings.dynamics_has_demolished_buildings = TRUE
-    
-psql -c "UPDATE buildings
-         SET dynamics_has_demolished_buildings is true
-         WHERE ref_toid NOT IN ( SELECT source_id FROM release_geometries);"
+# Create 'geometry' record with
+#     id: <polygon-guid>,
+#     source_id: <toid>,
+#     geom: <geom>
 
-###############
-### CHECK 2 ###
-###############
+echo "Creating temporary geometries table for input data..."
+psql -c "CREATE TABLE IF NOT EXISTS release_geometries (
+    geometry_id serial PRIMARY KEY,
+    source_id varchar(30),
+    geometry_geom geometry(GEOMETRY, 3857)
+);"
 
-# for geometry in geometries
+echo "Copy geometries to db..."
+find $mastermap_dir -type f -name '*.3857.csv' \
+-printf "$mastermap_dir/%f\n" | \
+parallel \
+cat {} '|' psql -c "\"COPY release_geometries ( geometry_geom, source_id ) FROM stdin WITH CSV HEADER;\""
 
-  # if geometry.TOID not in builings
-    # Add TOID to temp table called new_geometries
+# Copy release_geometries into existing geometries table
+psql -c "INSERT INTO geometries ( geometry_geom, source_id ) SELECT geometry_geom, source_id FROM release_geometries;"
 
-# psql -c "CREATE TABLE new_geometries (
-#         geometry_id serial PRIMARY KEY,
-#         source_id varchar(30),
-#         geometry_geom geometry(GEOMETRY, 3857),
-#         longitude float,
-#         latitude float
-# );"
-# psql -c "INSERT INTO new_geometries *
-#             SELECT *
-#             FROM geometries
-#             WHERE source_id NOT IN ( SELECT ref_toid FROM buildings);"
-    
-  # secondarily, if building.coordinates <10m away from any new_geometry.coordinates
-    # older_building.dynamics_has_demolished_buildings = TRUE
-    # link new_geometry TOID in the geometries table to old building and delete duplicate building we just created for new_geometry
+# Delete any duplicated geometries (by TOID)
+echo "Delete duplicate geometries..."
+psql -c "DELETE FROM geometries a USING (
+    SELECT MIN(ctid) as ctid, source_id
+    FROM geometries
+    GROUP BY source_id
+    HAVING COUNT(*) > 1
+) b
+WHERE a.source_id = b.source_id
+AND a.ctid <> b.ctid;"
