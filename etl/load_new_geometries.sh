@@ -37,8 +37,10 @@ psql -c "CREATE TABLE IF NOT EXISTS new_geometries (
 echo "Finding geometries that are new to this release..."
 psql -c "INSERT INTO new_geometries ( source_id, geometry_geom )
          SELECT source_id, geometry_geom
-         FROM release_geometries
-         WHERE NOT EXISTS ( SELECT source_id FROM geometries );"
+         FROM release_geometries AS r
+         WHERE NOT EXISTS ( SELECT source_id
+                            FROM geometries AS g
+                            WHERE g.source_id = r.source_id);"
          
 echo "Adding new geometries to geometries table..."
 psql -c "INSERT INTO geometries ( source_id, geometry_geom )
