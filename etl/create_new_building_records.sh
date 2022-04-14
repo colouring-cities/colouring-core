@@ -6,4 +6,9 @@
 #     doc: {},
 #     geom_id: <polygon-guid>
 #
-psql -c "INSERT INTO buildings ( geometry_id, ref_toid ) SELECT geometry_id, source_id from new_geometries;"
+psql -c "INSERT INTO buildings ( geometry_id, ref_toid )
+         SELECT geometry_id, source_id
+         FROM geometries AS g
+         WHERE EXISTS ( SELECT source_id
+                        FROM new_geometries AS ng
+                        WHERE g.source_id = ng.source_id);"
