@@ -18,8 +18,6 @@ psql -c "INSERT INTO old_geometries ( source_id, geometry_geom )
                             
 echo "Set each building's latest_demolish_date for today if linked geometry in the db not present in new data..."
 psql -c "UPDATE buildings AS b
-         SET latest_demolish_date = CURRENT_DATE
-         WHERE b.source_id = g.source_id
-            AND source_id IN (SELECT source_id
-                              FROM old_geometries AS g
-                              );"
+         SET b.latest_demolish_date = CURRENT_DATE
+         FROM old_geometries AS og
+         WHERE b.ref_toid = og.source_id;"
