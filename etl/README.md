@@ -97,11 +97,14 @@ Index geometries.
 psql < ../migrations/002.index-geometries.up.sql
 ```
 
-<!-- TODO: Drop outside limit. -->
+Drop building outlines outside London boundary.
 
-<!-- ```bash
-./drop_outside_limit.sh /path/to/boundary_file
-```` -->
+```bash
+cd ~/colouring-london/app/public/geometries
+ogr2ogr -t_srs EPSG:3857 -f "ESRI Shapefile" boundary.shp boundary-detailed.geojson
+cd ~/colouring-london/etl/
+./drop_outside_limit.sh ~/colouring-london/app/public/geometries/boundary.shp
+```
 
 Create a building record per outline.
 
