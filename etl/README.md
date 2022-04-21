@@ -11,9 +11,7 @@ The scripts in this directory are used to extract, transform and load (ETL) the 
 
 # :arrow_down: Downloading Ordnance Survey data
 
-The building geometries are sourced from Ordnance Survey (OS) MasterMap (Topography Layer). We also make use of OS Open TOID data which proves access to a generalised location for those geometries.
-
-## Downloading MasterMap data
+The building geometries are sourced from Ordnance Survey (OS) MasterMap (Topography Layer).
 
 1. Sign up for the Ordnance Survey [Data Exploration License](https://www.ordnancesurvey.co.uk/business-government/licensing-agreements/data-exploration-sign-up). You should receive an e-mail with a link to log in to the platform (this could take  up to a week).
 2. Navigate to https://orders.ordnancesurvey.co.uk/orders and click the button for: ✏️ Order. From here you should be able to click another button to add a product.
