@@ -31,8 +31,6 @@ Before creating or updating a Colouring London database, you'll need to make sur
 
 # :new_moon: Creating a Colouring London database from scratch
 
-## Prerequisites
-
 You should already have set up PostgreSQL and created a database in an Ubuntu environment. Make sure to create environment variables to use `psql` if you haven't already:
 
 ```bash
@@ -54,8 +52,6 @@ Otherwise, it's fine to run all the migrations at this point and skip the index
 creation steps below.
 
 You should already have installed GNU parallel, which is used to speed up loading bulk data.
-
-## Processing and loading Ordnance Survey data
 
 Move into the `etl` directory and set execute permission on all scripts.
 
