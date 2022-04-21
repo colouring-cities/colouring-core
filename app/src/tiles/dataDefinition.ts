@@ -182,6 +182,19 @@ function getDataConfig(tileset: string): DataConfig {
         throw new Error('Invalid tileset requested');
     }
     
+    const query = `(
+        SELECT
+            d.*,
+            g.geometry_geom
+        FROM (
+            ${table}
+        ) AS d
+        JOIN
+            geometries AS g
+        ON d.geometry_id = g.geometry_id
+    ) AS data
+    `;
+    
     if(table == 'buildings') {
 
         const query = `(
@@ -199,21 +212,6 @@ function getDataConfig(tileset: string): DataConfig {
         ) AS data
         `;
         
-    } else {
-      
-        const query = `(
-            SELECT
-                d.*,
-                g.geometry_geom
-            FROM (
-                ${table}
-            ) AS d
-            JOIN
-                geometries AS g
-            ON d.geometry_id = g.geometry_id
-        ) AS data
-        `;
-      
     }
 
     return {
