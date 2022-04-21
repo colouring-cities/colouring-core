@@ -181,21 +181,40 @@ function getDataConfig(tileset: string): DataConfig {
     if(table == undefined) {
         throw new Error('Invalid tileset requested');
     }
+    
+    if(table == 'buildings') {
 
-    const query = `(
-        SELECT
-            d.*,
-            g.geometry_geom
-        FROM (
-            ${table}
-        ) AS d
-        JOIN
-            geometries AS g
-        ON d.geometry_id = g.geometry_id
-        WHERE
-            d.latest_demolish_date IS NULL
-    ) AS data
-    `;
+        const query = `(
+            SELECT
+                d.*,
+                g.geometry_geom
+            FROM (
+                ${table}
+            ) AS d
+            JOIN
+                geometries AS g
+            ON d.geometry_id = g.geometry_id
+            WHERE
+                d.latest_demolish_date IS NULL
+        ) AS data
+        `;
+        
+    } else {
+      
+        const query = `(
+            SELECT
+                d.*,
+                g.geometry_geom
+            FROM (
+                ${table}
+            ) AS d
+            JOIN
+                geometries AS g
+            ON d.geometry_id = g.geometry_id
+        ) AS data
+        `;
+      
+    }
 
     return {
         geometry_field: GEOMETRY_FIELD,
