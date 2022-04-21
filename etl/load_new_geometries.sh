@@ -18,7 +18,8 @@ psql -c "DROP TABLE IF EXISTS release_geometries;"
 
 echo "Creating temporary geometries table for OS release geometries..."
 psql -c "CREATE TABLE IF NOT EXISTS release_geometries (
-    source_id varchar(30) PRIMARY KEY,
+    geometry_id serial,
+    source_id varchar(30),
     geometry_geom geometry(GEOMETRY, 3857)
 );"
 
@@ -30,9 +31,20 @@ cat {} '|' psql -c "\"COPY release_geometries ( geometry_geom, source_id ) FROM 
 
 echo "Creating temporary geometries table for new geometries only..."
 psql -c "CREATE TABLE IF NOT EXISTS new_geometries (
-    source_id varchar(30) PRIMARY KEY,
+    source_id varchar(30),
     geometry_geom geometry(GEOMETRY, 3857)
 );"
+
+# Delete any duplicated geometries (by TOID)
+echo "Delete duplicate geometries..."
+psql -c "DELETE FROM release_geometries a USING (
+    SELECT MIN(ctid) as ctid, source_id
+    FROM release_geometries
+    GROUP BY source_id
+    HAVING COUNT(*) > 1
+) b
+WHERE a.source_id = b.source_id
+AND a.ctid <> b.ctid;"
 
 echo "Finding geometries that are new to this release..."
 psql -c "INSERT INTO new_geometries ( source_id, geometry_geom )
