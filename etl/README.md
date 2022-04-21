@@ -132,7 +132,7 @@ Filter MasterMap 'building' polygons.
 sudo ./filter_transform_mastermap_for_loading.sh /path/to/mastermap_dir
 ```
 
-Load all new building outlines. This step will only add geometries that are not already present (based on the `TOID`). Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
+Load all new building outlines. This step will only load geometries that are not already present (based on the `TOID`). Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
 
 ```bash
 ./load_new_geometries.sh /path/to/mastermap_dir
@@ -144,7 +144,13 @@ Drop building outlines outside London boundary.
 cd ~/colouring-london/app/public/geometries
 ogr2ogr -t_srs EPSG:3857 -f "ESRI Shapefile" boundary.shp boundary-detailed.geojson
 cd ~/colouring-london/etl/
-./drop_outside_limit.sh ~/colouring-london/app/public/geometries/boundary.shp
+./drop_outside_limit_new_geometries.sh ~/colouring-london/app/public/geometries/boundary.shp
+```
+
+Add new geometries (building outlines) to existing geometries table.
+
+```bash
+./add_new_geometries.sh 
 ```
 
 Create building record to match each new geometry (TOID) that doesn't already have a linked building.

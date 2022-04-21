@@ -53,8 +53,3 @@ psql -c "INSERT INTO new_geometries ( source_id, geometry_geom )
          WHERE NOT EXISTS ( SELECT source_id
                             FROM geometries AS g
                             WHERE g.source_id = r.source_id);"
-         
-echo "Adding new geometries to geometries table..."
-psql -c "INSERT INTO geometries ( source_id, geometry_geom )
-         SELECT source_id, geometry_geom
-         FROM new_geometries;"
