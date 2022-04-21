@@ -7,16 +7,12 @@ const LAYER_QUERIES = {
         SELECT
             geometry_id
         FROM
-            buildings
-        WHERE
-            latest_demolish_date IS NULL`,
+            buildings`,
     base_night: `
         SELECT
             geometry_id
         FROM
-            buildings
-        WHERE
-            latest_demolish_date IS NULL`,
+            buildings`,
     number_labels:`
         SELECT
             geometry_id,
@@ -196,6 +192,8 @@ function getDataConfig(tileset: string): DataConfig {
         JOIN
             geometries AS g
         ON d.geometry_id = g.geometry_id
+        WHERE
+            d.latest_demolish_date IS NULL
     ) AS data
     `;
 
