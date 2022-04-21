@@ -7,12 +7,16 @@ const LAYER_QUERIES = {
         SELECT
             geometry_id
         FROM
-            buildings`,
+            buildings
+        WHERE
+            latest_demolish_date IS NULL`,
     base_night: `
         SELECT
             geometry_id
         FROM
-            buildings`,
+            buildings
+        WHERE
+            latest_demolish_date IS NULL`,
     number_labels:`
         SELECT
             geometry_id,
