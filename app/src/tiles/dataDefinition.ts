@@ -192,27 +192,13 @@ function getDataConfig(tileset: string): DataConfig {
         JOIN
             geometries AS g
         ON d.geometry_id = g.geometry_id
+        JOIN
+            buildings AS b
+        ON d.geometry_id = b.geometry_id
+        WHERE
+            b.latest_demolish_date IS NULL
     ) AS data
     `;
-    
-    if(table == 'buildings') {
-
-        const query = `(
-            SELECT
-                d.*,
-                g.geometry_geom
-            FROM (
-                ${table}
-            ) AS d
-            JOIN
-                geometries AS g
-            ON d.geometry_id = g.geometry_id
-            WHERE
-                d.latest_demolish_date IS NULL
-        ) AS data
-        `;
-        
-    }
 
     return {
         geometry_field: GEOMETRY_FIELD,
