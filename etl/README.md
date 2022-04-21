@@ -25,6 +25,10 @@ The building geometries are sourced from Ordnance Survey (OS) MasterMap (Topogra
 4. You should be then able to check out your basket and download the files. Note: there may be multiple `.zip` files to download for MasterMap due to the size of the dataset.
 6. Unzip the MasterMap `.zip` files and move all the `.gz` files from each to a single folder in a convenient location. We will use this folder in later steps.
 
+# :penguin: Making data available to Ubuntu
+
+Before creating or updating a Colouring London database, you'll need to make sure the downloaded OS files are available to the Ubuntu machine where the database is hosted. If you are using Virtualbox, you could host share folder(s) containing the OS files with the VM (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
+
 # :new_moon: Creating a Colouring London database from scratch
 
 ## Prerequisites
