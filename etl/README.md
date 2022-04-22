@@ -29,7 +29,7 @@ Before creating or updating a Colouring London database, you'll need to make sur
 
 # :new_moon: Creating a Colouring London database from scratch
 
-You should already have set up PostgreSQL and created a database in an Ubuntu environment. Make sure to create environment variables to use `psql` if you haven't already:
+You should already have set up PostgreSQL and created a database in an Ubuntu environment. If not, follow one of the linked guides: [setup dev environment](../docs/setup-dev-environment.md) or [setup prod environment](../docs/setup-production-environment.md). Open a terminal in Ubuntu and create the environment variables to use `psql` if you haven't already:
 
 ```bash
 export PGPASSWORD=<pgpassword>
@@ -105,7 +105,7 @@ ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration;
 
 # :full_moon: Updating the Colouring London database with new OS data
 
-In the Ubuntu environment where the database exists, set up environment variable to make the following steps simpler.
+In the Ubuntu environment where the database exists, set up the environment variables to make the following steps simpler.
 ```bash
 export PGPASSWORD=<pgpassword>
 export PGUSER=<username>
