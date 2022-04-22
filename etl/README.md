@@ -70,7 +70,7 @@ Filter MasterMap 'building' polygons.
 sudo ./filter_transform_mastermap_for_loading.sh /path/to/mastermap_dir
 ```
 
-Load all building outlines. Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
+Load all geometries. Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
 
 ```bash
 ./load_geometries.sh /path/to/mastermap_dir
@@ -82,7 +82,7 @@ Index geometries.
 psql < ../migrations/002.index-geometries.up.sql
 ```
 
-Drop building outlines outside London boundary.
+Drop geometries outside London boundary.
 
 ```bash
 cd ~/colouring-london/app/public/geometries
@@ -132,13 +132,13 @@ Filter MasterMap 'building' polygons.
 sudo ./filter_transform_mastermap_for_loading.sh /path/to/mastermap_dir
 ```
 
-Load all new building outlines. This step will only load geometries that are not already present (based on the `TOID`). Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
+Load all new geometries. This step will only load geometries that are not already present (based on the `TOID`). Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
 
 ```bash
 ./load_new_geometries.sh /path/to/mastermap_dir
 ```
 
-Drop building outlines outside London boundary.
+Drop geometries outside London boundary.
 
 ```bash
 cd ~/colouring-london/app/public/geometries
@@ -147,7 +147,7 @@ cd ~/colouring-london/etl/
 ./drop_outside_limit_new_geometries.sh ~/colouring-london/app/public/geometries/boundary.shp
 ```
 
-Add new geometries (building outlines) to existing geometries table.
+Add new geometries to existing geometries table.
 
 ```bash
 ./add_new_geometries.sh 
