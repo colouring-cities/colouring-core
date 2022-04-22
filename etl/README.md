@@ -138,7 +138,7 @@ Load all new geometries. This step will only load geometries that are not alread
 ./load_new_geometries.sh /path/to/mastermap_dir
 ```
 
-Drop geometries outside London boundary.
+Drop new geometries outside London boundary.
 
 ```bash
 cd ~/colouring-london/app/public/geometries
@@ -153,13 +153,13 @@ Add new geometries to existing geometries table.
 ./add_new_geometries.sh 
 ```
 
-Create building record to match each new geometry (TOID) that doesn't already have a linked building.
+Create building record to match each new geometry that doesn't already have a linked building.
 
 ```bash
 ./create_new_building_records.sh 
 ```
 
-Mark TOIDs not present in the update as demolished.
+Mark buildings with geometries not present in the update as demolished.
 
 ```bash
 ./mark_demolitions.sh
