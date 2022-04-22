@@ -8,6 +8,8 @@ export async function queryBuildingsAtPoint(lng: number, lat: number) {
             WHERE
                 b.geometry_id = g.geometry_id
             AND
+                b.latest_demolish_date IS NULL
+            AND
                 ST_Intersects(
                     ST_Transform(
                         ST_SetSRID(ST_Point($1, $2), 4326),
@@ -45,6 +47,8 @@ export async function queryBuildingsByReference(key: string, ref: string) {
                     buildings as b, building_properties as p
                 WHERE
                     b.building_id = p.building_id
+                AND
+                    b.latest_demolish_date IS NULL
                 AND
                     p.uprn = $1
                 `,

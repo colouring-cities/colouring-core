@@ -181,7 +181,7 @@ function getDataConfig(tileset: string): DataConfig {
     if(table == undefined) {
         throw new Error('Invalid tileset requested');
     }
-
+    
     const query = `(
         SELECT
             d.*,
@@ -192,6 +192,11 @@ function getDataConfig(tileset: string): DataConfig {
         JOIN
             geometries AS g
         ON d.geometry_id = g.geometry_id
+        JOIN
+            buildings AS b
+        ON d.geometry_id = b.geometry_id
+        WHERE
+            b.latest_demolish_date IS NULL
     ) AS data
     `;
 

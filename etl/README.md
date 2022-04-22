@@ -11,7 +11,7 @@ The scripts in this directory are used to extract, transform and load (ETL) the 
 
 # :arrow_down: Downloading Ordnance Survey data
 
-The building geometries are sourced from Ordnance Survey (OS) MasterMap (Topography Layer). To get the required datasets, you'll need to complete the following steps:
+The building geometries are sourced from Ordnance Survey (OS) MasterMap (Topography Layer).
 
 1. Sign up for the Ordnance Survey [Data Exploration License](https://www.ordnancesurvey.co.uk/business-government/licensing-agreements/data-exploration-sign-up). You should receive an e-mail with a link to log in to the platform (this could take  up to a week).
 2. Navigate to https://orders.ordnancesurvey.co.uk/orders and click the button for: ✏️ Order. From here you should be able to click another button to add a product.
@@ -29,9 +29,7 @@ Before creating or updating a Colouring London database, you'll need to make sur
 
 # :new_moon: Creating a Colouring London database from scratch
 
-## Prerequisites
-
-You should already have set up PostgreSQL and created a database in an Ubuntu environment. Make sure to create environment variables to use `psql` if you haven't already:
+You should already have set up PostgreSQL and created a database in an Ubuntu environment. If not, follow one of the linked guides: [setup dev environment](../docs/setup-dev-environment.md) or [setup prod environment](../docs/setup-production-environment.md). Open a terminal in Ubuntu and create the environment variables to use `psql` if you haven't already:
 
 ```bash
 export PGPASSWORD=<pgpassword>
@@ -53,8 +51,6 @@ creation steps below.
 
 You should already have installed GNU parallel, which is used to speed up loading bulk data.
 
-## Processing and loading Ordnance Survey data
-
 Move into the `etl` directory and set execute permission on all scripts.
 
 ```bash
@@ -74,7 +70,7 @@ Filter MasterMap 'building' polygons.
 sudo ./filter_transform_mastermap_for_loading.sh /path/to/mastermap_dir
 ```
 
-Load all building outlines. Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
+Load all geometries. Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
 
 ```bash
 ./load_geometries.sh /path/to/mastermap_dir
@@ -86,11 +82,14 @@ Index geometries.
 psql < ../migrations/002.index-geometries.up.sql
 ```
 
-<!-- TODO: Drop outside limit. -->
+Drop geometries outside London boundary.
 
-<!-- ```bash
-./drop_outside_limit.sh /path/to/boundary_file
-```` -->
+```bash
+cd ~/colouring-london/app/public/geometries
+ogr2ogr -t_srs EPSG:3857 -f "ESRI Shapefile" boundary.shp boundary-detailed.geojson
+cd ~/colouring-london/etl/
+./drop_outside_limit.sh ~/colouring-london/app/public/geometries/boundary.shp
+```
 
 Create a building record per outline.
 
@@ -106,4 +105,62 @@ ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration;
 
 # :full_moon: Updating the Colouring London database with new OS data
 
-TODO: this section should instruct how to update and existing db
+In the Ubuntu environment where the database exists, set up the environment variables to make the following steps simpler.
+```bash
+export PGPASSWORD=<pgpassword>
+export PGUSER=<username>
+export PGHOST=localhost
+export PGDATABASE=<colouringlondondb>
+```
+
+Move into the `etl` directory and set execute permission on all scripts.
+
+```bash
+cd ~/colouring-london/etl
+chmod +x *.sh
+```
+
+Extract the new MasterMap data (this step could take a while).
+
+```bash
+sudo ./extract_mastermap.sh /path/to/mastermap_dir
+```
+
+Filter MasterMap 'building' polygons.
+
+```bash
+sudo ./filter_transform_mastermap_for_loading.sh /path/to/mastermap_dir
+```
+
+Load all new geometries. This step will only load geometries that are not already present (based on the `TOID`). Note: you should ensure that `mastermap_dir` has permissions that will allow the linux `find` command to work without using sudo.
+
+```bash
+./load_new_geometries.sh /path/to/mastermap_dir
+```
+
+Drop new geometries outside London boundary.
+
+```bash
+cd ~/colouring-london/app/public/geometries
+ogr2ogr -t_srs EPSG:3857 -f "ESRI Shapefile" boundary.shp boundary-detailed.geojson
+cd ~/colouring-london/etl/
+./drop_outside_limit_new_geometries.sh ~/colouring-london/app/public/geometries/boundary.shp
+```
+
+Add new geometries to existing geometries table.
+
+```bash
+./add_new_geometries.sh 
+```
+
+Create building record to match each new geometry that doesn't already have a linked building.
+
+```bash
+./create_new_building_records.sh 
+```
+
+Mark buildings with geometries not present in the update as demolished.
+
+```bash
+./mark_demolitions.sh
+```
