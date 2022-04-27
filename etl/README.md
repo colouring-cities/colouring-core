@@ -117,7 +117,7 @@ export PGHOST=localhost
 export PGDATABASE=<colouringlondondb>
 ```
 
-Run any new database migrations from `../migrations` added since the last time the db was updated.
+First make sure to run `git pull` to catch any code changes and run any new database migrations from `../migrations` added since the last time the db was updated.
 
 Move into the `etl` directory and set execute permission on all scripts.
 
