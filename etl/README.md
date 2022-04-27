@@ -25,7 +25,11 @@ The building geometries are sourced from Ordnance Survey (OS) MasterMap (Topogra
 
 # :penguin: Making data available to Ubuntu
 
-Before creating or updating a Colouring London database, you'll need to make sure the downloaded OS files are available to the Ubuntu machine where the database is hosted. If you are using Virtualbox, you could host share folder(s) containing the OS files with the VM (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
+Before creating or updating a Colouring London database, you'll need to make sure the downloaded OS files are available to the Ubuntu machine where the database is hosted.
+
+If you are using Virtualbox, you could host share folder(s) containing the OS files with the VM (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
+
+For a production server hosted on a cloud computing platform (e.g. Azure), you could [use SCP](https://uoa-eresearch.github.io/vmhandbook/doc/copy-file-linux.html).
 
 # :new_moon: Creating a Colouring London database from scratch
 
@@ -113,6 +117,8 @@ export PGHOST=localhost
 export PGDATABASE=<colouringlondondb>
 ```
 
+Run any new database migrations from `../migrations` added since the last time the db was updated.
+
 Move into the `etl` directory and set execute permission on all scripts.
 
 ```bash
@@ -163,4 +169,17 @@ Mark buildings with geometries not present in the update as demolished.
 
 ```bash
 ./mark_demolitions.sh
+```
+
+#### On a production server
+
+**TODO:** Update this after PR [#794](https://github.com/colouring-cities/colouring-london/pull/794)
+
+Run the Colouring London [deployment scripts](https://github.com/colouring-cities/colouring-london-config#deployment).
+
+Restart PM2.
+
+```bash
+cd /var/www/colouring-london
+pm2 start ecosystem.config.js
 ```
