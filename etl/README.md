@@ -176,10 +176,3 @@ Mark buildings with geometries not present in the update as demolished.
 **TODO:** Update this after PR [#794](https://github.com/colouring-cities/colouring-london/pull/794)
 
 Run the Colouring London [deployment scripts](https://github.com/colouring-cities/colouring-london-config#deployment).
-
-Restart PM2.
-
-```bash
-cd /var/www/colouring-london
-pm2 start ecosystem.config.js
-```
