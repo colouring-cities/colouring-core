@@ -515,7 +515,7 @@
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Minerals"</Filter>
-            <PolygonSymbolizer fill="#fa667d" />
+            <PolygonSymbolizer fill="#53f5dd" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Unclassified, presumed non-residential"</Filter>
