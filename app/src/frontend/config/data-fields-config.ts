@@ -199,6 +199,18 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Source for the current land use",
         example: "",
     },
+    current_landuse_source_detail: {
+        category: Category.LandUse,
+        title: "Source details",
+        tooltip: "References for current land use source (max 500 characters)",
+        example: "",
+    },
+    current_landuse_link: {
+        category: Category.LandUse,
+        title: "Text and Image Links",
+        tooltip: "URL for current land use reference",
+        example: ["", "", ""],
+    },
 
     building_attachment_form: {
         category: Category.Type,
