@@ -52,13 +52,13 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             onChange={props.onChange}
         />
         <SelectDataEntry
-            title={dataFields.date_source.title}
+            title={dataFields.current_landuse_source.title}
             slug="use_source"
             value={props.building.date_source}
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
-            tooltip={dataFields.date_source.tooltip}
+            tooltip={dataFields.current_landuse_source.tooltip}
             placeholder=""
             options={[
                 "Expert knowledge of building",
