@@ -29,6 +29,7 @@ VALUES
 ('U030','Minerals','order',NULL,False),
 ('U040','Recreation And Leisure','order',NULL,True),
 ('U070','Residential','order',NULL,True),
+('U070','Residential (verified)','order',NULL,True),
 ('U090','Retail','order',NULL,True),
 ('U050','Transport','order',NULL,True),
 ('U130','Unused Land','order',NULL,False),
