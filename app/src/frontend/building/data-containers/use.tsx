@@ -63,19 +63,12 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             tooltip={dataFields.current_landuse_source.tooltip}
             placeholder=""
             options={[
-                "Expert knowledge of building",
-                "Expert estimate from image",
-                "Survey of London",
-                "Pevsner Guides",
-                "Victoria County History",
-                "Local history publication",
-                "Other publication",
-                "National Heritage List for England",
-                "Other database or gazetteer",
-                "Historical map",
-                "Other archive document",
-                "Film/Video",
-                "Other website",
+                "Expert/personal knowledge of building",
+                "Online streetview image",
+                "Open planning authority dataset",
+                "Open property tax dataset",
+                "Open housing dataset",
+                "Open address dataset",
                 "Other"
             ]}
             />
