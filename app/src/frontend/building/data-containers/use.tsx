@@ -73,7 +73,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             ]}
             />
         <TextboxDataEntry
-            title={dataFields.date_source_detail.title}
+            title={dataFields.current_landuse_source_detail.title}
             slug="current_landuse_source_detail"
             value={props.building.current_landuse_source_detail}
             mode={props.mode}
@@ -82,7 +82,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             tooltip={dataFields.current_landuse_source_detail.tooltip}
             />
         <MultiDataEntry
-            title={dataFields.date_link.title}
+            title={dataFields.current_landuse_link.title}
             slug="current_landuse_link"
             value={props.building.current_landuse_link}
             mode={props.mode}
