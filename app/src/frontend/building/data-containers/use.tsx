@@ -51,6 +51,52 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             copy={props.copy}
             onChange={props.onChange}
         />
+        <SelectDataEntry
+            title={dataFields.date_source.title}
+            slug="use_source"
+            value={props.building.date_source}
+            mode={props.mode}
+            copy={props.copy}
+            onChange={props.onChange}
+            tooltip={dataFields.date_source.tooltip}
+            placeholder=""
+            options={[
+                "Expert knowledge of building",
+                "Expert estimate from image",
+                "Survey of London",
+                "Pevsner Guides",
+                "Victoria County History",
+                "Local history publication",
+                "Other publication",
+                "National Heritage List for England",
+                "Other database or gazetteer",
+                "Historical map",
+                "Other archive document",
+                "Film/Video",
+                "Other website",
+                "Other"
+            ]}
+            />
+        <TextboxDataEntry
+            title={dataFields.date_source_detail.title}
+            slug="use_source_detail"
+            value={props.building.date_source_detail}
+            mode={props.mode}
+            copy={props.copy}
+            onChange={props.onChange}
+            tooltip={dataFields.date_source_detail.tooltip}
+            />
+        <MultiDataEntry
+            title={dataFields.date_link.title}
+            slug="use_link"
+            value={props.building.date_link}
+            mode={props.mode}
+            copy={props.copy}
+            onChange={props.onChange}
+            tooltip={dataFields.date_link.tooltip}
+            placeholder="https://..."
+            editableEntries={true}
+            />
     </Fragment>
 );
 const UseContainer = withCopyEdit(UseView);
