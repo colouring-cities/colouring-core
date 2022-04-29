@@ -4,6 +4,8 @@ import InfoBox from '../../components/info-box';
 import { dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
+import SelectDataEntry from '../data-components/select-data-entry';
+import TextboxDataEntry from '../data-components/textbox-data-entry';
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
