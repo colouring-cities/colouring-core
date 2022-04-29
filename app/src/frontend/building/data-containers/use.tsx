@@ -55,7 +55,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
         />
         <SelectDataEntry
             title={dataFields.current_landuse_source.title}
-            slug="use_source"
+            slug="current_landuse_source"
             value={props.building.current_landuse_source}
             mode={props.mode}
             copy={props.copy}
@@ -74,7 +74,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             />
         <TextboxDataEntry
             title={dataFields.date_source_detail.title}
-            slug="use_source_detail"
+            slug="current_landuse_source_detail"
             value={props.building.current_landuse_source_detail}
             mode={props.mode}
             copy={props.copy}
@@ -83,7 +83,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             />
         <MultiDataEntry
             title={dataFields.date_link.title}
-            slug="use_link"
+            slug="current_landuse_link"
             value={props.building.current_landuse_link}
             mode={props.mode}
             copy={props.copy}
