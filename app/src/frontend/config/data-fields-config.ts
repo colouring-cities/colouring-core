@@ -207,7 +207,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     current_landuse_link: {
         category: Category.LandUse,
-        title: "Text and Image Links",
+        title: "Source Links",
         tooltip: "URL for current land use reference",
         example: ["", "", ""],
     },
