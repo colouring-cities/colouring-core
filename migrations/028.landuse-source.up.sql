@@ -7,3 +7,8 @@ ALTER TABLE buildings ADD CONSTRAINT current_landuse_source_detail_len CHECK (le
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS current_landuse_link text[];
 
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS current_landuse_verified BOOLEAN NOT NULL DEFAULT FALSE;
+
+UPDATE buildings as b
+SET current_landuse_verified = TRUE
+FROM building_verification as v
+WHERE b.building_id = v.building_id;
