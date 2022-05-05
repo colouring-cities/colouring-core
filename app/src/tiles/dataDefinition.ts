@@ -150,7 +150,8 @@ const LAYER_QUERIES = {
         SELECT
             geometry_id,
             current_landuse_order,
-            current_landuse_group[1] as current_landuse_group
+            current_landuse_group[1] as current_landuse_group,
+            current_landuse_verified
         FROM
             buildings
         WHERE
