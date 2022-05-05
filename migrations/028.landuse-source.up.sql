@@ -11,4 +11,5 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS current_landuse_verified BOOLEAN 
 UPDATE buildings as b
 SET current_landuse_verified = TRUE
 FROM building_verification as v
-WHERE b.building_id = v.building_id;
+WHERE b.building_id = v.building_id
+AND v.attribute = 'current_landuse_group';
