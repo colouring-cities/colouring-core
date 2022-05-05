@@ -106,6 +106,15 @@ export async function removeBuildingUserVerifiedAttribute(buildingId: number, us
             `,
             [buildingId, userId, attribute]
         );
+        if (attribute == 'current_landuse_group'){
+            await (db).none(
+                `UPDATE buildings
+                 SET current_landuse_verified = FALSE
+                 WHERE buildings.building_id = $1;"
+                 `,
+                 [buildingId]
+            );
+        }
     } catch(error) {
         throw new DatabaseError(error.detail);
     }
