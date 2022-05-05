@@ -5,3 +5,5 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS current_landuse_source_detail var
 ALTER TABLE buildings ADD CONSTRAINT current_landuse_source_detail_len CHECK (length(current_landuse_source_detail) < 500);
 
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS current_landuse_link text[];
+
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS current_landuse_verified BOOLEAN NOT NULL DEFAULT FALSE;
