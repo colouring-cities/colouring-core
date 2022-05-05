@@ -96,6 +96,15 @@ export async function updateBuildingUserVerifiedAttribute(buildingId: number, us
 
 export async function removeBuildingUserVerifiedAttribute(buildingId: number, userId: string, attribute: string) : Promise<null> {
     try {
+        if (attribute == 'current_landuse_group'){
+            await (db).none(
+                `UPDATE buildings
+                 SET current_landuse_verified = FALSE
+                 WHERE buildings.building_id = $1;
+                 `,
+                 [buildingId]
+            );
+        }
         return await (db).none(
             `DELETE FROM
                 building_verification
@@ -106,15 +115,6 @@ export async function removeBuildingUserVerifiedAttribute(buildingId: number, us
             `,
             [buildingId, userId, attribute]
         );
-        if (attribute == 'current_landuse_group'){
-            await (db).none(
-                `UPDATE buildings
-                 SET current_landuse_verified = FALSE
-                 WHERE buildings.building_id = $1;
-                 `,
-                 [buildingId]
-            );
-        }
     } catch(error) {
         throw new DatabaseError(error.detail);
     }
