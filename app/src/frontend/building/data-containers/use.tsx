@@ -72,16 +72,6 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 "Other"
             ]}
             />
-        // NOTE: This wasn't needed after all but will leave in case it becomes useful
-        // <TextboxDataEntry
-        //     title={dataFields.current_landuse_source_detail.title}
-        //     slug="current_landuse_source_detail"
-        //     value={props.building.current_landuse_source_detail}
-        //     mode={props.mode}
-        //     copy={props.copy}
-        //     onChange={props.onChange}
-        //     tooltip={dataFields.current_landuse_source_detail.tooltip}
-        //     />
         <MultiDataEntry
             title={dataFields.current_landuse_link.title}
             slug="current_landuse_link"
