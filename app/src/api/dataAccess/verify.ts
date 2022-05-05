@@ -78,7 +78,7 @@ export async function updateBuildingUserVerifiedAttribute(buildingId: number, us
             await (db).none(
                 `UPDATE buildings
                  SET current_landuse_verified = TRUE
-                 WHERE buildings.building_id = $1;"
+                 WHERE buildings.building_id = $1;
                  `,
                  [buildingId]
             );
@@ -110,7 +110,7 @@ export async function removeBuildingUserVerifiedAttribute(buildingId: number, us
             await (db).none(
                 `UPDATE buildings
                  SET current_landuse_verified = FALSE
-                 WHERE buildings.building_id = $1;"
+                 WHERE buildings.building_id = $1;
                  `,
                  [buildingId]
             );
