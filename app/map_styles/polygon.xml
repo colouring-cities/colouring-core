@@ -534,8 +534,12 @@
             <PolygonSymbolizer fill="#cccccc" />
         </Rule>
         <Rule>
-            <Filter>[current_landuse_order] = "Residential" and not ([current_landuse_group] = "Garden buildings") and not ([current_landuse_group] = "Hotels, boarding and guest houses") </Filter>
+            <Filter>[current_landuse_order] = "Residential" and not ([current_landuse_group] = "Garden buildings") and not ([current_landuse_group] = "Hotels, boarding and guest houses") and not ([current_landuse_verified])</Filter>
             <PolygonSymbolizer fill="#252aa6" />
+        </Rule>
+        <Rule>
+            <Filter>[current_landuse_order] = "Residential" and not ([current_landuse_group] = "Garden buildings") and not ([current_landuse_group] = "Hotels, boarding and guest houses") and ([current_landuse_verified])</Filter>
+            <PolygonSymbolizer fill="#7025a6" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Residential" and [current_landuse_group] = "Hotels, boarding and guest houses"</Filter>

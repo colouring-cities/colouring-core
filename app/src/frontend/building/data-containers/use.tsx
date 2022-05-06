@@ -4,6 +4,8 @@ import InfoBox from '../../components/info-box';
 import { dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
+import SelectDataEntry from '../data-components/select-data-entry';
+import TextboxDataEntry from '../data-components/textbox-data-entry';
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
@@ -51,6 +53,36 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => (
             copy={props.copy}
             onChange={props.onChange}
         />
+        <SelectDataEntry
+            title={dataFields.current_landuse_source.title}
+            slug="current_landuse_source"
+            value={props.building.current_landuse_source}
+            mode={props.mode}
+            copy={props.copy}
+            onChange={props.onChange}
+            tooltip={dataFields.current_landuse_source.tooltip}
+            placeholder=""
+            options={[
+                "Expert/personal knowledge of building",
+                "Online streetview image",
+                "Open planning authority dataset",
+                "Open property tax dataset",
+                "Open housing dataset",
+                "Open address dataset",
+                "Other"
+            ]}
+            />
+        <MultiDataEntry
+            title={dataFields.current_landuse_link.title}
+            slug="current_landuse_link"
+            value={props.building.current_landuse_link}
+            mode={props.mode}
+            copy={props.copy}
+            onChange={props.onChange}
+            tooltip={dataFields.current_landuse_link.tooltip}
+            placeholder="https://..."
+            editableEntries={true}
+            />
     </Fragment>
 );
 const UseContainer = withCopyEdit(UseView);

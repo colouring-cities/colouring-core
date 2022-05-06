@@ -193,6 +193,24 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Land use Order as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
         example: "",
     },
+    current_landuse_source: {
+        category: Category.LandUse,
+        title: "Source of information",
+        tooltip: "Source for the current land use",
+        example: "",
+    },
+    current_landuse_source_detail: {
+        category: Category.LandUse,
+        title: "Source details",
+        tooltip: "References for current land use source (max 500 characters)",
+        example: "",
+    },
+    current_landuse_link: {
+        category: Category.LandUse,
+        title: "Source Links",
+        tooltip: "URL for current land use reference",
+        example: ["", "", ""],
+    },
 
     building_attachment_form: {
         category: Category.Type,

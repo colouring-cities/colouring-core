@@ -74,6 +74,15 @@ export async function updateBuildingUserVerifiedAttribute(buildingId: number, us
                 [buildingId, userId, attribute, value]
             );
         }
+        if (attribute == 'current_landuse_group'){
+            await (db).none(
+                `UPDATE buildings
+                 SET current_landuse_verified = TRUE
+                 WHERE buildings.building_id = $1;
+                 `,
+                 [buildingId]
+            );
+        }
     } catch(error) {
         console.error(error)
         if(error.detail?.includes('already exists')) {
@@ -87,6 +96,15 @@ export async function updateBuildingUserVerifiedAttribute(buildingId: number, us
 
 export async function removeBuildingUserVerifiedAttribute(buildingId: number, userId: string, attribute: string) : Promise<null> {
     try {
+        if (attribute == 'current_landuse_group'){
+            await (db).none(
+                `UPDATE buildings
+                 SET current_landuse_verified = FALSE
+                 WHERE buildings.building_id = $1;
+                 `,
+                 [buildingId]
+            );
+        }
         return await (db).none(
             `DELETE FROM
                 building_verification
