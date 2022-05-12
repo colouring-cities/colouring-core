@@ -65,7 +65,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                   copy={props.copy}
                   onChange={props.onChange}
                   tooltip={dataFields.date_source.tooltip}
-                  placeholder=""
+                  placeholder={dataFields.date_source.example}
                   options={dataFields.date_source.items}
                   />
           </Fragment>
