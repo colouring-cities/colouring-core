@@ -66,7 +66,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                   copy={props.copy}
                   onChange={props.onChange}
                   tooltip={dataFields.current_landuse_source.tooltip}
-                  placeholder=""
+                  placeholder={dataFields.date_source.example}
                   options={dataFields.current_landuse_source.items}
                   />
           </Fragment>
@@ -119,7 +119,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 copy={props.copy}
                 onChange={props.onChange}
                 tooltip={dataFields.current_landuse_source.tooltip}
-                placeholder=""
+                placeholder={dataFields.date_source.example}
                 options={dataFields.current_landuse_source.items}
                 />
             <MultiDataEntry
