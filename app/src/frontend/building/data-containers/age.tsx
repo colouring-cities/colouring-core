@@ -16,7 +16,7 @@ import { CategoryViewProps } from './category-view-props';
 */
 const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const currentYear = new Date().getFullYear();
-    if (props.building.date_source == "Expert knowledge of building" || "Expert estimate from image"){
+    if (props.building.date_source == "Expert knowledge of building" || props.building.date_source == "Expert estimate from image"){
       return (
           <Fragment>
               <YearDataEntry
