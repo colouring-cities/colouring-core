@@ -207,7 +207,6 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Open address dataset",
             "Other"
         ],
-        example: "",
     },
     current_landuse_source_detail: {
         category: Category.LandUse,
