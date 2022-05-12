@@ -115,6 +115,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 tooltip={dataFields.date_source.tooltip}
                 placeholder=""
                 options={dataFields.date_source.items}
+                placeholder={dataFields.date_source.example}
                 />
             <MultiDataEntry
                 title={dataFields.date_link.title}
