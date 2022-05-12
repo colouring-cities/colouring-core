@@ -294,6 +294,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Other website",
             "Other"
         ],
+        example: "",
     },
     date_source_detail: {
         category: Category.Age,
