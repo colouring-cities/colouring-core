@@ -63,22 +63,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 onChange={props.onChange}
                 tooltip={dataFields.date_source.tooltip}
                 placeholder=""
-                options={[
-                    "Expert knowledge of building",
-                    "Expert estimate from image",
-                    "Survey of London",
-                    "Pevsner Guides",
-                    "Victoria County History",
-                    "Local history publication",
-                    "Other publication",
-                    "National Heritage List for England",
-                    "Other database or gazetteer",
-                    "Historical map",
-                    "Other archive document",
-                    "Film/Video",
-                    "Other website",
-                    "Other"
-                ]}
+                options={dataFields.date_source.items}
                 />
             <TextboxDataEntry
                 title={dataFields.date_source_detail.title}
