@@ -68,6 +68,14 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                   placeholder={dataFields.date_source.example}
                   options={dataFields.date_source.items}
                   />
+              <Verification
+                  slug="date_source"
+                  allow_verify={props.user !== undefined && props.building.date_source !== null && !props.edited}
+                  onVerify={props.onVerify}
+                  user_verified={props.user_verified.hasOwnProperty("date_source")}
+                  user_verified_as={props.user_verified.date_source}
+                  verified_count={props.building.verified.date_source}
+                  />
           </Fragment>
         );
       };
@@ -118,6 +126,14 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 tooltip={dataFields.date_source.tooltip}
                 options={dataFields.date_source.items}
                 placeholder={dataFields.date_source.example}
+                />
+            <Verification
+                slug="date_source"
+                allow_verify={props.user !== undefined && props.building.date_source !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("date_source")}
+                user_verified_as={props.user_verified.date_source}
+                verified_count={props.building.verified.date_source}
                 />
             <MultiDataEntry
                 title={dataFields.date_link.title}
