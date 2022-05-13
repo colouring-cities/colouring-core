@@ -198,6 +198,15 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Source of information",
         tooltip: "Source for the current land use",
         example: "",
+        items: [
+            "Expert/personal knowledge of building",
+            "Online streetview image",
+            "Open planning authority dataset",
+            "Open property tax dataset",
+            "Open housing dataset",
+            "Open address dataset",
+            "Other"
+        ],
     },
     current_landuse_source_detail: {
         category: Category.LandUse,
@@ -269,6 +278,22 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Age,
         title: "Source of information",
         tooltip: "Source for the main start date",
+        items: [
+            "Expert knowledge of building",
+            "Expert estimate from image",
+            "Survey of London",
+            "Pevsner Guides",
+            "Victoria County History",
+            "Local history publication",
+            "Other publication",
+            "National Heritage List for England",
+            "Other database or gazetteer",
+            "Historical map",
+            "Other archive document",
+            "Film/Video",
+            "Other website",
+            "Other"
+        ],
         example: "",
     },
     date_source_detail: {
