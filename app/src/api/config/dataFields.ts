@@ -151,12 +151,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     construction_core_material: {
         edit: true,
+        verify: true,
     },
     construction_secondary_materials: {
         edit: false,
     },
     construction_roof_covering: {
         edit: true,
+        verify: true,
     },
     planning_portal_link: {
         edit: true,
