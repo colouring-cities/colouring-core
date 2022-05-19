@@ -149,6 +149,14 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 placeholder="https://..."
                 editableEntries={true}
                 />
+            <Verification
+                slug="current_landuse_link"
+                allow_verify={props.user !== undefined && props.building.current_landuse_link !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("current_landuse_link")}
+                user_verified_as={props.user_verified.current_landuse_link}
+                verified_count={props.building.verified.current_landuse_link}
+                />
         </Fragment>
       );
 };
