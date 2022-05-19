@@ -25,7 +25,7 @@ class Verification extends Component<VerificationProps, any> {
             const x = e.clientX / document.body.clientWidth;
             const y = e.clientY / document.body.clientHeight;
             const value = null;
-            this.props.onVerify(this.props.slug, verify, x, y);
+            this.props.onVerify(this.props.slug, verify, x, y, value);
         }
     }
 
