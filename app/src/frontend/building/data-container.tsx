@@ -248,7 +248,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             }
             
             const edits = {
-                [slug]: value
+                [slug]: null
             };
 
             this.doSubmit(edits);
