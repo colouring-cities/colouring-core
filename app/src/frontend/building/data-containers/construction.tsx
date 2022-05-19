@@ -4,6 +4,7 @@ import { dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import withCopyEdit from '../data-container';
+import Verification from '../data-components/verification';
 
 import { CategoryViewProps } from './category-view-props';
 
