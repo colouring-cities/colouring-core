@@ -249,7 +249,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             
             if (slug == 'current_landuse_group'){
               const edits = {
-                  ['current_landuse_verified']: TRUE
+                  ['current_landuse_verified']: true
               };
             } else {
               const edits = {
