@@ -77,9 +77,9 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     slug="date_lower"
                     allow_verify={props.allow_verify}
                     onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("date_lower")}
-                    user_verified_as={props.user_verified.date_lower}
-                    verified_count={props.building.verified.date_lower}
+                    user_verified={props.user_verified}
+                    user_verified_as={props.user_verified_as}
+                    verified_count={props.verified_count}
                     />
 
                 <NumericDataEntry
@@ -98,9 +98,9 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     slug="date_upper"
                     allow_verify={props.allow_verify}
                     onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("date_upper")}
-                    user_verified_as={props.user_verified.date_upper}
-                    verified_count={props.building.verified.date_upper}
+                    user_verified={props.user_verified}
+                    user_verified_as={props.user_verified_as}
+                    verified_count={props.verified_count}
                     />
             </Fragment>
         );
