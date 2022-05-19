@@ -316,7 +316,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     community_public_ownership_sources: {
         edit: true,
-        verify: false
+        verify: true
     }
 
 });
