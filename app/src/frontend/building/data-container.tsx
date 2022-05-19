@@ -214,7 +214,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             this.doSubmit(edits);
         }
 
-        async handleVerify(slug: string, verify: boolean, x: number, y: number) {
+        async handleVerify(slug: string, verify: boolean, x: number, y: number, value: any) {
             const verifyPatch = {};
             if (verify) {
                 verifyPatch[slug] = this.props.building[slug];
@@ -246,7 +246,11 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             } catch(err) {
                 this.setState({error: err});
             }
-            const edits = {};
+            
+            const edits = {
+                [slug]: value
+            };
+
             this.doSubmit(edits);
             console.log(slug + " verify button clicked")
         }
