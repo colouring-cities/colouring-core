@@ -127,6 +127,14 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             maxLength={20}
             onChange={props.onChange}
             />
+        <Verification
+            slug="ref_osm_id"
+            allow_verify={props.user !== undefined && props.building.ref_osm_id !== null && !props.edited}
+            onVerify={props.onVerify}
+            user_verified={props.user_verified.hasOwnProperty("ref_osm_id")}
+            user_verified_as={props.user_verified.ref_osm_id}
+            verified_count={props.building.verified.ref_osm_id}
+            />
         <NumericDataEntry
             title={dataFields.location_latitude.title}
             slug="location_latitude"

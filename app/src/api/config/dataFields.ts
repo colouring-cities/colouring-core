@@ -53,6 +53,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     ref_osm_id: {
         edit: true,
+        verify: true,
     },
     location_name: {
         edit: false,
