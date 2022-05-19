@@ -246,6 +246,8 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             } catch(err) {
                 this.setState({error: err});
             }
+            const edits = {};
+            this.doSubmit(edits);
             console.log(slug + " verify button clicked")
         }
 
