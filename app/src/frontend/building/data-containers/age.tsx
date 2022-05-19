@@ -36,22 +36,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                   user_verified_as={props.user_verified.date_year}
                   verified_count={props.building.verified.date_year}
                   />
-              <Verification
-                  slug="date_upper"
-                  allow_verify={props.user !== undefined && props.building.date_upper !== null && !props.edited}
-                  onVerify={props.onVerify}
-                  user_verified={props.user_verified.hasOwnProperty("date_upper")}
-                  user_verified_as={props.user_verified.date_upper}
-                  verified_count={props.building.verified.date_upper}
-                  />
-              <Verification
-                  slug="date_lower"
-                  allow_verify={props.user !== undefined && props.building.date_lower !== null && !props.edited}
-                  onVerify={props.onVerify}
-                  user_verified={props.user_verified.hasOwnProperty("date_lower")}
-                  user_verified_as={props.user_verified.date_lower}
-                  verified_count={props.building.verified.date_lower}
-                  />
               <NumericDataEntry
                   title={dataFields.facade_year.title}
                   slug="facade_year"
@@ -110,22 +94,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 user_verified={props.user_verified.hasOwnProperty("date_year")}
                 user_verified_as={props.user_verified.date_year}
                 verified_count={props.building.verified.date_year}
-                />
-            <Verification
-                slug="date_upper"
-                allow_verify={props.user !== undefined && props.building.date_upper !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("date_upper")}
-                user_verified_as={props.user_verified.date_upper}
-                verified_count={props.building.verified.date_upper}
-                />
-            <Verification
-                slug="date_lower"
-                allow_verify={props.user !== undefined && props.building.date_lower !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("date_lower")}
-                user_verified_as={props.user_verified.date_lower}
-                verified_count={props.building.verified.date_lower}
                 />
             <NumericDataEntry
                 title={dataFields.facade_year.title}

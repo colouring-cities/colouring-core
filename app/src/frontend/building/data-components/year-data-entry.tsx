@@ -73,6 +73,14 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     max={currentYear}
                     tooltip={dataFields.date_lower.tooltip}
                     />
+                <Verification
+                    slug="date_lower"
+                    allow_verify={props.user !== undefined && props.building.date_lower !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("date_lower")}
+                    user_verified_as={props.user_verified.date_lower}
+                    verified_count={props.building.verified.date_lower}
+                    />
 
                 <NumericDataEntry
                     title={dataFields.date_upper.title}
@@ -85,6 +93,14 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     min={1}
                     max={currentYear}
                     tooltip={dataFields.date_upper.tooltip}
+                    />  
+                <Verification
+                    slug="date_upper"
+                    allow_verify={props.user !== undefined && props.building.date_upper !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("date_upper")}
+                    user_verified_as={props.user_verified.date_upper}
+                    verified_count={props.building.verified.date_upper}
                     />
             </Fragment>
         );
