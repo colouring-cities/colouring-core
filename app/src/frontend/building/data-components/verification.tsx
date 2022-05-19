@@ -5,7 +5,7 @@ import './verification.css';
 
 interface VerificationProps {
     slug: string;
-    onVerify: (slug: string, verify: boolean, x: number, y: number) => void;
+    onVerify: (slug: string, verify: boolean, x: number, y: number, value: any) => void;
     user_verified: boolean;
     user_verified_as: string;
     verified_count: number;
