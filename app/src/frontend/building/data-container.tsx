@@ -246,16 +246,10 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             } catch(err) {
                 this.setState({error: err});
             }
-            
-            if (slug == 'current_landuse_group'){
-              const edits = {
-                  ['current_landuse_verified']: true
-              };
-            } else {
-              const edits = {
-                  [slug]: value
-              };
-            }
+
+            const edits = (slug == 'current_landuse_group') ?
+             {['current_landuse_verified']: true} : 
+             {[slug]: value}
 
             this.doSubmit(edits);
             console.log(slug + " verify button clicked")
