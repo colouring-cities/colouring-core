@@ -36,6 +36,14 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                   user_verified_as={props.user_verified.date_year}
                   verified_count={props.building.verified.date_year}
                   />
+              <Verification
+                  slug="date_year"
+                  allow_verify={props.user !== undefined && props.building.date_year !== null && !props.edited}
+                  onVerify={props.onVerify}
+                  user_verified={props.user_verified.hasOwnProperty("date_year")}
+                  user_verified_as={props.user_verified.date_year}
+                  verified_count={props.building.verified.date_year}
+                  />
               <NumericDataEntry
                   title={dataFields.facade_year.title}
                   slug="facade_year"
@@ -89,6 +97,14 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 copy={props.copy}
                 onChange={props.onChange}
 
+                allow_verify={props.user !== undefined && props.building.date_year !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("date_year")}
+                user_verified_as={props.user_verified.date_year}
+                verified_count={props.building.verified.date_year}
+                />
+            <Verification
+                slug="date_year"
                 allow_verify={props.user !== undefined && props.building.date_year !== null && !props.edited}
                 onVerify={props.onVerify}
                 user_verified={props.user_verified.hasOwnProperty("date_year")}
