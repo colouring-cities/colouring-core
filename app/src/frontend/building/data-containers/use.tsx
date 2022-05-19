@@ -74,7 +74,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                   allow_verify={props.user !== undefined && props.building.current_landuse_source !== null && !props.edited}
                   onVerify={props.onVerify}
                   user_verified={props.user_verified.hasOwnProperty("current_landuse_source")}
-                  user_verified_as={props.user_verified.current_landuse_source && props.user_verified.current_landuse_source.join(", ")}
+                  user_verified_as={props.user_verified.current_landuse_source}
                   verified_count={props.building.verified.current_landuse_source}
                   />
           </Fragment>
