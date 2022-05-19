@@ -19,6 +19,19 @@ interface YearDataEntryProps {
     user_verified_as: string;
     verified_count: number;
     allow_verify: boolean;
+    
+    onVerify_upper: (slug: string, verify: boolean, x: number, y: number) => void;
+    user_verified_upper: boolean;
+    user_verified_as_upper: string;
+    verified_count_upper: number;
+    allow_verify_upper: boolean;
+    
+    onVerify_lower: (slug: string, verify: boolean, x: number, y: number) => void;
+    user_verified_lower: boolean;
+    user_verified_as_lower: string;
+    verified_count_lower: number;
+    allow_verify_lower: boolean;
+    
 }
 
 class YearDataEntry extends Component<YearDataEntryProps, any> {
@@ -75,11 +88,11 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     />
                 <Verification
                     slug="date_lower"
-                    allow_verify={props.allow_verify}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified}
-                    user_verified_as={props.user_verified_as}
-                    verified_count={props.verified_count}
+                    allow_verify={props.allow_verify_lower}
+                    onVerify={props.onVerify_lower}
+                    user_verified={props.user_verified_lower}
+                    user_verified_as={props.user_verified_as_lower}
+                    verified_count={props.verified_count_lower}
                     />
 
                 <NumericDataEntry
@@ -96,11 +109,11 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     />  
                 <Verification
                     slug="date_upper"
-                    allow_verify={props.allow_verify}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified}
-                    user_verified_as={props.user_verified_as}
-                    verified_count={props.verified_count}
+                    allow_verify={props.allow_verify_upper}
+                    onVerify={props.onVerify_upper}
+                    user_verified={props.user_verified_upper}
+                    user_verified_as={props.user_verified_as_upper}
+                    verified_count={props.verified_count_upper}
                     />
             </Fragment>
         );
