@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import ReactDOM from 'react-dom';
 import { NavLink, Redirect } from 'react-router-dom';
 import Confetti from 'canvas-confetti';
 import _ from 'lodash';
@@ -247,13 +248,15 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                 this.setState({error: err});
             }
             
-            if (slug == 'current_landuse_group'){
-                const edits = {
-                    ['current_landuse_verified'] = true
-                }
-                this.doSubmit(edits);
-                console.log('current_landuse_verified updated')
-            }
+            // Hack to get tiles to refresh
+            const div = document.createElement('div');
+            ReactDOM.render(
+                <MemoryRouter>
+                    <App revisionId="0" />
+                </MemoryRouter>,
+                div
+            );
+            
             console.log(slug + " verify button clicked")
         }
 
