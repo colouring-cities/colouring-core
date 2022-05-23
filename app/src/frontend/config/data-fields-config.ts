@@ -632,8 +632,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
                 year_demolished: { min: 1993, max: 1994 },
                 lifespan: "2-5", overlap_present: "50%", links: ["", ""]}
         ]
-    },
-    fake_slug: {}
+    }
 };
 
 export const allFieldsConfig = {...dataFields, ...buildingUserFields};
