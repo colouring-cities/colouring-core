@@ -18,7 +18,7 @@ import { CategoryViewProps, CopyProps } from './data-containers/category-view-pr
 import { CopyControl } from './header-buttons/copy-control';
 import { ViewEditControl } from './header-buttons/view-edit-control';
 
-import { App } from '../../app';
+import { App } from '../app';
 
 import './data-container.css';
 
