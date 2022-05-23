@@ -248,7 +248,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             }
             
             const edits = (slug == 'current_landuse_group') ?
-             {['date_year']: value} : 
+             {['fake_slug']: value} : 
              {[slug]: value}
 
             this.doSubmit(edits);
