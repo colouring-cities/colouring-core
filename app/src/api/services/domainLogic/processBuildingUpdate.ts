@@ -36,7 +36,10 @@ async function processCurrentLandUseClassifications(
         if(error instanceof ArgumentError && error.argumentName === 'landUseUpdate') {
             error.argumentName = 'buildingUpdate';
         }
-        throw error;
+        if(error instanceof TypeError && error.argumentName === 'landUseGroupUpdate') {
+        } else {
+            throw error;
+        }
     }
 }
 
