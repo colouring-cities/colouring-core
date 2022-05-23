@@ -1,6 +1,4 @@
 import React, { Fragment } from 'react';
-import ReactDOM from 'react-dom';
-import { MemoryRouter } from 'react-router-dom';
 import { NavLink, Redirect } from 'react-router-dom';
 import Confetti from 'canvas-confetti';
 import _ from 'lodash';
@@ -17,8 +15,6 @@ import ContainerHeader from './container-header';
 import { CategoryViewProps, CopyProps } from './data-containers/category-view-props';
 import { CopyControl } from './header-buttons/copy-control';
 import { ViewEditControl } from './header-buttons/view-edit-control';
-
-import { App } from '../app';
 
 import './data-container.css';
 
@@ -250,15 +246,6 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             } catch(err) {
                 this.setState({error: err});
             }
-            
-            // Hack to get tiles to refresh
-            const div = document.createElement('div');
-            ReactDOM.render(
-                <MemoryRouter>
-                    <App revisionId="0" />
-                </MemoryRouter>,
-                div
-            );
             
             console.log(slug + " verify button clicked")
         }
