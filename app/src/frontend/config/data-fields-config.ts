@@ -220,7 +220,11 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "URL for current land use reference",
         example: ["", "", ""],
     },
-
+    current_landuse_verified: {
+        category: Category.LandUse,
+        title: 'Has this land use been manually verified?',
+        example: true,
+    },
     building_attachment_form: {
         category: Category.Type,
         title: "Adjacency/configuration",
