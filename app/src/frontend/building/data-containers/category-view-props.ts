@@ -14,7 +14,7 @@ interface CategoryViewProps {
     edited: boolean;
     copy: CopyProps;
     onChange: (key: string, value: any) => void;
-    onVerify: (slug: string, verify: boolean, x: number, y: number) => void;
+    onVerify: (slug: string, verify: boolean, x: number, y: number, value: any) => void;
 
     /* Special handler for adding and immediately saving a new item of an array-like attribute */
     onSaveAdd: (slug: string, newItem: any) => void;
