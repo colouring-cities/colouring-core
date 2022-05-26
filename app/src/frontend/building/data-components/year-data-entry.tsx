@@ -20,13 +20,13 @@ interface YearDataEntryProps {
     verified_count: number;
     allow_verify: boolean;
     
-    onVerify_upper: (slug: string, verify: boolean, x: number, y: number) => void;
+    onVerify_upper: (slug: string, verify: boolean, x: number, y: number, value: any) => void;
     user_verified_upper: boolean;
     user_verified_as_upper: string;
     verified_count_upper: number;
     allow_verify_upper: boolean;
     
-    onVerify_lower: (slug: string, verify: boolean, x: number, y: number) => void;
+    onVerify_lower: (slug: string, verify: boolean, x: number, y: number, value: any) => void;
     user_verified_lower: boolean;
     user_verified_as_lower: string;
     verified_count_lower: number;
