@@ -436,6 +436,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "",
         //tooltip: ,
     },
+    planning_live_application: {
+        category: Category.Planning,
+        title: "Planning live application",
+        example: "",
+        //tooltip: ,
+    },
     planning_in_conservation_area: {
         category: Category.Planning,
         title: "In a conservation area?",
