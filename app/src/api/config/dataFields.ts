@@ -108,6 +108,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     facade_year: {
         edit: true,
+        verify: true,
     },
     facade_upper: {
         edit: false,
