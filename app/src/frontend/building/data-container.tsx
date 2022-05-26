@@ -214,7 +214,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             this.doSubmit(edits);
         }
 
-        async handleVerify(slug: string, verify: boolean, x: number, y: number, value: any) {
+        async handleVerify(slug: string, verify: boolean, x: number, y: number) {
             const verifyPatch = {};
             if (verify) {
                 verifyPatch[slug] = this.props.building[slug];
