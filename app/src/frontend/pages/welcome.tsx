@@ -38,6 +38,9 @@ const Welcome = () => (
         <div className="image-row">
             <img src="images/supporter-logos.png" alt="Colouring London collaborating organisations: The Bartlett UCL, Ordnance Survey, Historic England, Greater London Authority" />
         </div>
+        <div className="image-row">
+            <img src="images/logo-loughborough.png" alt="Colouring London collaborating organisations: Loughborough University" />
+        </div>
     </div>
 );
 
