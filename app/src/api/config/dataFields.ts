@@ -53,6 +53,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     ref_osm_id: {
         edit: true,
+        verify: true,
     },
     location_name: {
         edit: false,
@@ -77,9 +78,11 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     location_latitude: {
         edit: true,
+        verify: true,
     },
     location_longitude: {
         edit: true,
+        verify: true,
     },
     date_year: {
         edit: true,
@@ -87,21 +90,26 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     date_lower: {
         edit: true,
+        verify: true,
     },
     date_upper: {
         edit: true,
+        verify: true,
     },
     date_source: {
         edit: true,
+        verify: true,
     },
     date_source_detail: {
         edit: true,
     },
     date_link: {
         edit: true,
+        verify: true,
     },
     facade_year: {
         edit: true,
+        verify: true,
     },
     facade_upper: {
         edit: false,
@@ -145,12 +153,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     construction_core_material: {
         edit: true,
+        verify: true,
     },
     construction_secondary_materials: {
         edit: false,
     },
     construction_roof_covering: {
         edit: true,
+        verify: true,
     },
     planning_portal_link: {
         edit: true,
@@ -259,12 +269,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     current_landuse_source: {
         edit: true,
+        verify: true,
     },
     current_landuse_source_detail: {
         edit: true,
     },
     current_landuse_link: {
         edit: true,
+        verify: true,
     },
     dynamics_has_demolished_buildings: {
         edit: true,
@@ -306,7 +318,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     community_public_ownership_sources: {
         edit: true,
-        verify: false
+        verify: true
     }
 
 });

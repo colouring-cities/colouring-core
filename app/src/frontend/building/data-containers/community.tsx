@@ -155,6 +155,14 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             onChange={props.onChange}
             mode={props.mode}
         />
+        <Verification
+                slug="community_public_ownership_sources"
+                allow_verify={props.user !== undefined && props.building.community_public_ownership_sources !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("community_public_ownership_sources")}
+                user_verified_as={props.user_verified.community_public_ownership_sources}
+                verified_count={props.building.verified.community_public_ownership_sources}
+                />
     </>
 };
 const CommunityContainer = withCopyEdit(CommunityView);

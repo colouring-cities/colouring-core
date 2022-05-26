@@ -127,6 +127,14 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             maxLength={20}
             onChange={props.onChange}
             />
+        <Verification
+            slug="ref_osm_id"
+            allow_verify={props.user !== undefined && props.building.ref_osm_id !== null && !props.edited}
+            onVerify={props.onVerify}
+            user_verified={props.user_verified.hasOwnProperty("ref_osm_id")}
+            user_verified_as={props.user_verified.ref_osm_id}
+            verified_count={props.building.verified.ref_osm_id}
+            />
         <NumericDataEntry
             title={dataFields.location_latitude.title}
             slug="location_latitude"
@@ -139,6 +147,14 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             placeholder="Latitude, e.g. 51.5467"
             onChange={props.onChange}
             />
+        <Verification
+            slug="location_latitude"
+            allow_verify={props.user !== undefined && props.building.location_latitude !== null && !props.edited}
+            onVerify={props.onVerify}
+            user_verified={props.user_verified.hasOwnProperty("location_latitude")}
+            user_verified_as={props.user_verified.location_latitude}
+            verified_count={props.building.verified.location_latitude}
+            />
         <NumericDataEntry
             title={dataFields.location_longitude.title}
             slug="location_longitude"
@@ -150,6 +166,14 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             max={180}
             placeholder="Longitude, e.g. -0.0586"
             onChange={props.onChange}
+            />
+        <Verification
+            slug="location_longitude"
+            allow_verify={props.user !== undefined && props.building.location_longitude !== null && !props.edited}
+            onVerify={props.onVerify}
+            user_verified={props.user_verified.hasOwnProperty("location_longitude")}
+            user_verified_as={props.user_verified.location_longitude}
+            verified_count={props.building.verified.location_longitude}
             />
     </Fragment>
 );
