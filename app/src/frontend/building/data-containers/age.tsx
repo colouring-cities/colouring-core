@@ -170,6 +170,14 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 placeholder="https://..."
                 editableEntries={true}
                 />
+            <Verification
+                slug="date_link"
+                allow_verify={props.user !== undefined && props.building.date_link !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("date_link")}
+                user_verified_as={props.user_verified.date_link}
+                verified_count={props.building.verified.date_link}
+                />
         </Fragment>
     );
 };
