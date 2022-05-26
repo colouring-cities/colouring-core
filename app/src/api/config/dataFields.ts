@@ -166,10 +166,6 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
-    planning_live_application: {
-        edit: true,
-        verify: true,
-    },
     planning_in_conservation_area: {
         edit: true,
         verify: true,

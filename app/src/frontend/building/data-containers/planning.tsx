@@ -40,14 +40,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 value={null}
                 disabled={true}
                 />
-            <Verification
-                slug="planning_live_application"
-                allow_verify={props.user !== undefined && props.building.planning_live_application !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("planning_live_application")}
-                user_verified_as={props.user_verified.planning_live_application}
-                verified_count={props.building.verified.planning_live_application}
-                />
             <CheckboxDataEntry
                 title={dataFields.planning_demolition_proposed.title}
                 slug="planning_demolition_proposed"
