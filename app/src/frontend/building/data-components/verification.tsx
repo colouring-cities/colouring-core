@@ -5,7 +5,7 @@ import './verification.css';
 
 interface VerificationProps {
     slug: string;
-    onVerify: (slug: string, verify: boolean, x: number, y: number, value: any) => void;
+    onVerify: (slug: string, verify: boolean, x: number, y: number) => void;
     user_verified: boolean;
     user_verified_as: string;
     verified_count: number;
@@ -24,8 +24,7 @@ class Verification extends Component<VerificationProps, any> {
             e.preventDefault();
             const x = e.clientX / document.body.clientWidth;
             const y = e.clientY / document.body.clientHeight;
-            const value = null;
-            this.props.onVerify(this.props.slug, verify, x, y, value);
+            this.props.onVerify(this.props.slug, verify, x, y);
         }
     }
 

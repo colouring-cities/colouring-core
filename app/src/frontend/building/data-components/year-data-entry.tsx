@@ -14,19 +14,19 @@ interface YearDataEntryProps {
     mode?: 'view' | 'edit' | 'multi-edit';
     onChange?: (key: string, value: any) => void;
 
-    onVerify: (slug: string, verify: boolean, x: number, y: number, value: any) => void;
+    onVerify: (slug: string, verify: boolean, x: number, y: number) => void;
     user_verified: boolean;
     user_verified_as: string;
     verified_count: number;
     allow_verify: boolean;
     
-    onVerify_upper: (slug: string, verify: boolean, x: number, y: number, value: any) => void;
+    onVerify_upper: (slug: string, verify: boolean, x: number, y: number) => void;
     user_verified_upper: boolean;
     user_verified_as_upper: string;
     verified_count_upper: number;
     allow_verify_upper: boolean;
     
-    onVerify_lower: (slug: string, verify: boolean, x: number, y: number, value: any) => void;
+    onVerify_lower: (slug: string, verify: boolean, x: number, y: number) => void;
     user_verified_lower: boolean;
     user_verified_as_lower: string;
     verified_count_lower: number;
