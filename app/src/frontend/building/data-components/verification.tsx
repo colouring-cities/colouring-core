@@ -26,7 +26,12 @@ class Verification extends Component<VerificationProps, any> {
 
     handleClick(verify) {
         if (verify) {
-          this.incrementVerifiedCount()
+          // this.incrementVerifiedCount()
+          console.log("State: ")
+          console.log(this.state.verified_count)
+          console.log("props: ")
+          console.log(this.props.verified_count)
+          
         } else {
             // this.setState({ verified_count: this.props.verified_count - 1 })
         }
