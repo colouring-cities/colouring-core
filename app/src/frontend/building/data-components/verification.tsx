@@ -20,6 +20,11 @@ class Verification extends Component<VerificationProps, any> {
     }
 
     handleClick(verify) {
+        if (verify) {
+            this.props.verified_count++
+        } else {
+            this.props.verified_count--
+        }
         return (e) => {
             e.preventDefault();
             const x = e.clientX / document.body.clientWidth;
