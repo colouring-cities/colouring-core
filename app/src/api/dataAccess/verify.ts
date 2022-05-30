@@ -2,6 +2,24 @@ import db from '../../db';
 import { DatabaseError, InvalidOperationError } from '../errors/general';
 
 
+export async function getBuildingVerifiedCount(buildingId: number, attribute: string): Promise<any[]> {
+    try {
+        return await (db).manyOrNone(
+            `SELECT
+                count(verification_id)
+            FROM
+                building_verification
+            WHERE
+                building_id = $1
+                AND attribute = $2;
+            `,
+            [buildingId]
+        );
+    } catch(error) {
+        throw new DatabaseError(error.detail);
+    }
+}
+
 export async function getBuildingVerifiedAttributes(buildingId: number): Promise<any[]> {
     try {
         return await (db).manyOrNone(
