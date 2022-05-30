@@ -12,6 +12,11 @@ interface VerificationProps {
     allow_verify: boolean;
 }
 
+incrementVerifiedCount() {
+    this.setState((state) => {
+        return {verified_count: state.verified_count + 1}
+    });
+}
 
 class Verification extends Component<VerificationProps, any> {
     constructor(props) {
@@ -21,9 +26,9 @@ class Verification extends Component<VerificationProps, any> {
 
     handleClick(verify) {
         if (verify) {
-            this.setState({ this.props.verified_count: this.props.verified_count + 1 })
+          this.incrementVerifiedCount()
         } else {
-            this.setState({ this.props.verified_count: this.props.verified_count - 1 })
+            // this.setState({ verified_count: this.props.verified_count - 1 })
         }
         return (e) => {
             e.preventDefault();
