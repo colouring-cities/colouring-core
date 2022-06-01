@@ -695,7 +695,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     designer_awards: {
         category: Category.Team,
-        title: "Did the team win any awards for this building?",
+        title: "Did the design team win any awards for this building?",
         tooltip: "",
         example: false
     },
