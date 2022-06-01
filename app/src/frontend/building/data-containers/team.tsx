@@ -13,6 +13,7 @@ import { CategoryViewProps } from './category-view-props';
 */
 const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const building = props.building;
+    const currentYear = new Date().getFullYear();
     const currentBuildingConstructionYear = building.date_year || undefined;
     return (
         <Fragment>
