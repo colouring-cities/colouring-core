@@ -81,6 +81,17 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               user_verified_as={props.user_verified.designers}
               verified_count={props.building.verified.designers}
               />
+          <MultiDataEntry
+              title={dataFields.designers_source_link.title}
+              slug="designers_source_link"
+              value={props.building.designers_source_link}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              tooltip={dataFields.designers_source_link.tooltip}
+              placeholder="https://..."
+              editableEntries={true}
+              />
           </Fragment>
     );
   };
@@ -146,6 +157,17 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           user_verified={props.user_verified.hasOwnProperty("designers")}
           user_verified_as={props.user_verified.designers}
           verified_count={props.building.verified.designers}
+          />
+      <MultiDataEntry
+          title={dataFields.designers_source_link.title}
+          slug="designers_source_link"
+          value={props.building.designers_source_link}
+          mode={props.mode}
+          copy={props.copy}
+          onChange={props.onChange}
+          tooltip={dataFields.designers_source_link.tooltip}
+          placeholder="https://..."
+          editableEntries={true}
           />
       </Fragment>
 );
