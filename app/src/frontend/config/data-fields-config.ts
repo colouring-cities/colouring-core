@@ -653,7 +653,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "This field is the same as 'Year built (best estimate)' in the Age category'",
         tooltip_extension: "This should be the year the extension was built, not the original building",
         example: 2020
-    }
+    },
+    developer_type: {
+        category: Category.Community,
+        title: "What type of developer built the building?",
+        items: [
+            "State",
+            "Charity",
+            "Community/Cooperative",
+            "Other non-profit body",
+            "Private (individual)",
+            "Private (company/estate)",
+            "Other"
+        ]
+    },
 };
 
 export const allFieldsConfig = {...dataFields, ...buildingUserFields};

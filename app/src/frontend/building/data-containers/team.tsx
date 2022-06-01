@@ -52,6 +52,15 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               user_verified_as={props.user_verified.date_year}
               verified_count={props.building.verified.date_year}
               />
+          <SelectDataEntry
+              slug='developer_type'
+              title={dataFields.developer_type.title}
+              value={props.building.developer_type}
+              options={dataFields.developer_type.items}
+              onChange={props.onChange}
+              mode={props.mode}
+              copy={props.copy}
+          />
           </Fragment>
     );
   };
@@ -90,6 +99,15 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           user_verified_as={props.user_verified.extension_year}
           verified_count={props.building.verified.extension_year}
           />
+      <SelectDataEntry
+          slug='developer_type'
+          title={dataFields.developer_type.title}
+          value={props.building.developer_type}
+          options={dataFields.developer_type.items}
+          onChange={props.onChange}
+          mode={props.mode}
+          copy={props.copy}
+      />
       </Fragment>
 );
 };
