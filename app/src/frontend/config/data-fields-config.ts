@@ -649,7 +649,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     work_carried_out: {
         category: Category.Team,
         title: "When was the work carried out?",
-        tooltip: "This field is the same as 'Year built (best estimate)' in the Age category'"
+        tooltip: "This field is the same as 'Year built (best estimate)' in the Age category'",
+        tooltip_extension: "This should be the year the extension was built, not the original building"
     }
 };
 

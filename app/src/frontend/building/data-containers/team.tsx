@@ -46,6 +46,35 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           </Fragment>
     );
   };
+  return ( // This is what gets used when is_extension == "A major extension"
+      <Fragment>
+          <InfoBox msg="Can you help us capture information on who built the building extension?"></InfoBox>
+      <SelectDataEntry
+          title={dataFields.is_extension.title}
+          slug="is_extension"
+          value={props.building.is_extension}
+          mode={props.mode}
+          copy={props.copy}
+          onChange={props.onChange}
+          tooltip={dataFields.is_extension.tooltip}
+          placeholder={dataFields.is_extension.example}
+          options={dataFields.is_extension.items}
+          />
+        
+      <NumericDataEntry
+          slug='work_carried_out'
+          title={dataFields.work_carried_out.title}
+          value={props.building.work_carried_out}
+          mode={props.mode}
+          copy={props.copy}
+          onChange={props.onChange}
+          step={1}
+          min={1}
+          max={currentYear}
+          tooltip={dataFields.work_carried_out.tooltip_extension}
+      />
+      </Fragment>
+);
 };
 const TeamContainer = withCopyEdit(TeamView);
 
