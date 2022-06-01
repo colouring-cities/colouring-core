@@ -645,6 +645,11 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         items: [
             "A major extension"
         ],
+    },
+    work_carried_out: {
+        category: Category.Team,
+        title: "When was the work carried out?",
+        tooltip: "Best estimate"
     }
 };
 
