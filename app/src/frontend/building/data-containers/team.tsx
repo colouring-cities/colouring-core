@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import InfoBox from '../../components/info-box';
+import { dataFields } from '../../config/data-fields-config';
 
 import withCopyEdit from '../data-container';
 
