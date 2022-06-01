@@ -73,6 +73,14 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               editableEntries={true}
               maxLength={747}
               />
+          <Verification
+              slug="designers"
+              allow_verify={props.user !== undefined && props.building.designers !== null && !props.edited}
+              onVerify={props.onVerify}
+              user_verified={props.user_verified.hasOwnProperty("designers")}
+              user_verified_as={props.user_verified.designers}
+              verified_count={props.building.verified.designers}
+              />
           </Fragment>
     );
   };
@@ -130,6 +138,14 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           tooltip={dataFields.designers.tooltip}
           editableEntries={true}
           maxLength={747}
+          />
+      <Verification
+          slug="designers"
+          allow_verify={props.user !== undefined && props.building.designers !== null && !props.edited}
+          onVerify={props.onVerify}
+          user_verified={props.user_verified.hasOwnProperty("designers")}
+          user_verified_as={props.user_verified.designers}
+          verified_count={props.building.verified.designers}
           />
       </Fragment>
 );
