@@ -657,6 +657,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     developer_type: {
         category: Category.Community,
         title: "What type of developer built the building?",
+        example: "",
         items: [
             "State",
             "Charity",
