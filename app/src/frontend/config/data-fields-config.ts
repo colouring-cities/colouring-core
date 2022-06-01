@@ -636,6 +636,16 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
                 year_demolished: { min: 1993, max: 1994 },
                 lifespan: "2-5", overlap_present: "50%", links: ["", ""]}
         ]
+    },
+    is_extension: {
+        category: Category.Team,
+        title: "Do you wish to add information on:",
+        tooltip: "",
+        example: "The main building",
+        items: [
+            "The main building",
+            "A major extension"
+        ],
     }
 };
 
