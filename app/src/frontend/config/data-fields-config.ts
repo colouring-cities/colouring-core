@@ -655,7 +655,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: 2020
     },
     developer_type: {
-        category: Category.Community,
+        category: Category.Team,
         title: "What type of developer built the building?",
         example: "",
         items: [
@@ -667,7 +667,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Private (company/estate)",
             "Other"
         ]
-    },
+    }
 };
 
 export const allFieldsConfig = {...dataFields, ...buildingUserFields};
