@@ -13,21 +13,6 @@ import { CategoryViewProps } from './category-view-props';
 const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <InfoBox msg="Can you help us capture information on who built the current building?"></InfoBox>
-        <ul>
-            <li>Construction and design team (original building)</li>
-            {
-                // "disabled": true,
-                // "slug": "team_original",
-                // "type": "text"
-            }
-            <li>Construction and design team (significant additional works)</li>
-            {
-                // "disabled": true,
-                // "slug": "team_after_original",
-                // "type": "text_multi"
-            }
-            <li>Awards</li>
-        </ul>
     <SelectDataEntry
         title={dataFields.is_extension.title}
         slug="is_extension"
