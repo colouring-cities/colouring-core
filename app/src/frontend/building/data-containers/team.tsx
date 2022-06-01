@@ -15,35 +15,37 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const building = props.building;
     const currentYear = new Date().getFullYear();
     const currentBuildingConstructionYear = building.date_year || undefined;
-    return (
-        <Fragment>
-            <InfoBox msg="Can you help us capture information on who built the current building?"></InfoBox>
-        <SelectDataEntry
-            title={dataFields.is_extension.title}
-            slug="is_extension"
-            value={props.building.is_extension}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
-            tooltip={dataFields.is_extension.tooltip}
-            placeholder={dataFields.is_extension.example}
-            options={dataFields.is_extension.items}
-            />
+    if (props.building.is_extension == "The main building"){
+      return (
+          <Fragment>
+              <InfoBox msg="Can you help us capture information on who built the current building?"></InfoBox>
+          <SelectDataEntry
+              title={dataFields.is_extension.title}
+              slug="is_extension"
+              value={props.building.is_extension}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              tooltip={dataFields.is_extension.tooltip}
+              placeholder={dataFields.is_extension.example}
+              options={dataFields.is_extension.items}
+              />
             
-        <NumericDataEntry
-            slug='date_year'
-            title={dataFields.work_carried_out.title}
-            value={currentBuildingConstructionYear}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
-            step={1}
-            min={1}
-            max={currentYear}
-            tooltip={dataFields.work_carried_out.tooltip}
-        />
-        </Fragment>
-  );
+          <NumericDataEntry
+              slug='date_year'
+              title={dataFields.work_carried_out.title}
+              value={currentBuildingConstructionYear}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              step={1}
+              min={1}
+              max={currentYear}
+              tooltip={dataFields.work_carried_out.tooltip}
+          />
+          </Fragment>
+    );
+  };
 };
 const TeamContainer = withCopyEdit(TeamView);
 
