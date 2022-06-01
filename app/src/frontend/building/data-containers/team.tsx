@@ -3,6 +3,7 @@ import InfoBox from '../../components/info-box';
 import { dataFields } from '../../config/data-fields-config';
 import SelectDataEntry from '../data-components/select-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
+import Verification from '../data-components/verification';
 
 import withCopyEdit from '../data-container';
 
@@ -43,6 +44,14 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               max={currentYear}
               tooltip={dataFields.year_work_carried_out.tooltip}
           />
+          <Verification
+              slug="date_year"
+              allow_verify={props.user !== undefined && props.building.date_year !== null && !props.edited}
+              onVerify={props.onVerify}
+              user_verified={props.user_verified.hasOwnProperty("date_year")}
+              user_verified_as={props.user_verified.date_year}
+              verified_count={props.building.verified.date_year}
+              />
           </Fragment>
     );
   };
@@ -73,6 +82,14 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           max={currentYear}
           tooltip={dataFields.year_work_carried_out.tooltip_extension}
       />
+      <Verification
+          slug="year_work_carried_out"
+          allow_verify={props.user !== undefined && props.building.year_work_carried_out !== null && !props.edited}
+          onVerify={props.onVerify}
+          user_verified={props.user_verified.hasOwnProperty("year_work_carried_out")}
+          user_verified_as={props.user_verified.year_work_carried_out}
+          verified_count={props.building.verified.year_work_carried_out}
+          />
       </Fragment>
 );
 };
