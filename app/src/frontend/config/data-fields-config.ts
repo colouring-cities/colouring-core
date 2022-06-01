@@ -676,8 +676,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     designers_source_link: {
         category: Category.Team,
-        title: "Source links for designers",
-        tooltip: "URL for source for designers",
+        title: "Source links for designer(s)",
+        tooltip: "URL for source for designer(s)",
         example: ["", "", ""],
     }
 };
