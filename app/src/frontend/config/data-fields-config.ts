@@ -679,6 +679,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Source links for designer(s)",
         tooltip: "URL for source for designer(s)",
         example: ["", "", ""],
+    },
+    lead_designer_type: {
+        category: Category.Team,
+        title: "Which best describes the lead designer?",
+        example: "",
+        items: [
+            "Landowner",
+            "Speculative builder",
+            "Government architecture department",
+            "Architectural firm",
+            "Engineering firm",
+            "Other"
+        ]
     }
 };
 

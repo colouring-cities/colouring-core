@@ -92,6 +92,15 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               placeholder="https://..."
               editableEntries={true}
               />
+          <SelectDataEntry
+              slug='lead_designer_type'
+              title={dataFields.lead_designer_type.title}
+              value={props.building.lead_designer_type}
+              options={dataFields.lead_designer_type.items}
+              onChange={props.onChange}
+              mode={props.mode}
+              copy={props.copy}
+          />
           </Fragment>
     );
   };
@@ -169,6 +178,15 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           placeholder="https://..."
           editableEntries={true}
           />
+      <SelectDataEntry
+          slug='lead_designer_type'
+          title={dataFields.lead_designer_type.title}
+          value={props.building.lead_designer_type}
+          options={dataFields.lead_designer_type.items}
+          onChange={props.onChange}
+          mode={props.mode}
+          copy={props.copy}
+      />
       </Fragment>
 );
 };
