@@ -1,4 +1,5 @@
 import { buildingUserFields, dataFields } from '../config/data-fields-config';
+import { getBuildingVerifiedCount } from '../../api/dataAccess/verify';
 
 type AttributesBasedOnExample<T extends Record<string, {example: any}>> = {[key in keyof T]: T[key]['example']};
 
@@ -11,9 +12,14 @@ type AttributesBasedOnExample<T extends Record<string, {example: any}>> = {[key 
 export type BuildingAttributes = AttributesBasedOnExample<typeof dataFields>;
 export type BuildingUserAttributes = AttributesBasedOnExample<typeof buildingUserFields>;
 
-export type BuildingAttributeVerificationCounts = {[key in keyof typeof dataFields]: number};
+// This should be a dict of dataField keys and verification counts
+// export type BuildingAttributeVerificationCounts = {[key in keyof typeof dataFields]: number};
 
 export type UserVerified = {[key in keyof BuildingAttributes]?: BuildingAttributes[key]};
+
+// BuildingAttributeVerificationCounts = {}
+// for key in BuildingUserAttributes
+//     BuildingAttributeVerificationCounts[key] = getBuildingVerifiedCount(buildingId, attribute);
 
 export interface Building extends BuildingAttributes, BuildingUserAttributes {
     building_id: number;
