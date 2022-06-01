@@ -33,6 +33,13 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
             slug='work_carried_out'
             title={dataFields.work_carried_out.title}
             value={currentBuildingConstructionYear}
+            mode={props.mode}
+            copy={props.copy}
+            onChange={props.onChange}
+            step={1}
+            min={1}
+            max={currentYear}
+            tooltip={dataFields.work_carried_out.tooltip}
         />
         </Fragment>
   );
