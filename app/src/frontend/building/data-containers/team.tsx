@@ -61,6 +61,16 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               mode={props.mode}
               copy={props.copy}
           />
+          <MultiDataEntry
+              title={dataFields.designers.title}
+              slug="designers"
+              value={props.building.designers}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              tooltip={dataFields.designers.tooltip}
+              editableEntries={true}
+              />
           </Fragment>
     );
   };
@@ -108,6 +118,16 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           mode={props.mode}
           copy={props.copy}
       />
+      <MultiDataEntry
+          title={dataFields.designers.title}
+          slug="designers"
+          value={props.building.designers}
+          mode={props.mode}
+          copy={props.copy}
+          onChange={props.onChange}
+          tooltip={dataFields.designers.tooltip}
+          editableEntries={true}
+          />
       </Fragment>
 );
 };

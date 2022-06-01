@@ -667,6 +667,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Private (company/estate)",
             "Other"
         ]
+    },
+    designers: {
+        category: Category.Team,
+        title: "Who were the main designer(s)?",
+        tooltip: "Free text. First name, space, then Last name.",
+        example: ["", "", ""],
     }
 };
 
