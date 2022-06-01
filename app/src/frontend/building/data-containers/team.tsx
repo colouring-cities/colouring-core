@@ -40,7 +40,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
             step={1}
             min={1}
             max={currentYear}
-            tooltip={dataFields.date_year.tooltip}
         />
         </Fragment>
   );
