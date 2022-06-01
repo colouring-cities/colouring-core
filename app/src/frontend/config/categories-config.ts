@@ -59,7 +59,6 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         intro: 'How big are buildings?',
     },
     [Category.Team]: {
-        inactive: true,
         slug: 'team',
         name: 'Team',
         aboutUrl: 'https://pages.colouring.london/team',
