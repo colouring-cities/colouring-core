@@ -4,6 +4,7 @@ import { dataFields } from '../../config/data-fields-config';
 import SelectDataEntry from '../data-components/select-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import Verification from '../data-components/verification';
+import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 
 import withCopyEdit from '../data-container';
 
