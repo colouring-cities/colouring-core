@@ -641,8 +641,9 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Team,
         title: "Do you wish to add information on:",
         tooltip: "",
-        example: "The main building",
+        example: "",
         items: [
+            "The main building",
             "A major extension"
         ],
     },
