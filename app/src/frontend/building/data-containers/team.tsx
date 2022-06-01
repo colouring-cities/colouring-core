@@ -71,7 +71,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               onChange={props.onChange}
               tooltip={dataFields.designers.tooltip}
               editableEntries={true}
-              maxLength={10}
+              maxLength={747}
               />
           </Fragment>
     );
@@ -129,7 +129,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           onChange={props.onChange}
           tooltip={dataFields.designers.tooltip}
           editableEntries={true}
-          maxLength={10}
+          maxLength={747}
           />
       </Fragment>
 );
