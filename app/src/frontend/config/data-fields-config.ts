@@ -643,7 +643,6 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "",
         example: "The main building",
         items: [
-            "The main building",
             "A major extension"
         ],
     }
