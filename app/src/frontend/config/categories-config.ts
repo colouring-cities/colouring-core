@@ -63,7 +63,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         slug: 'team',
         name: 'Team',
         aboutUrl: 'https://pages.colouring.london/team',
-        intro: 'Who built the buildings? Coming soon…',
+        intro: 'Who built the buildings?',
     },
     [Category.Construction]: {
         slug: 'construction',
