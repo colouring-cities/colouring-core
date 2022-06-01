@@ -66,7 +66,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                   copy={props.copy}
                   onChange={props.onChange}
                   tooltip={dataFields.current_landuse_source.tooltip}
-                  placeholder={dataFields.date_source.example}
+                  placeholder={dataFields.current_landuse_source.example}
                   options={dataFields.current_landuse_source.items}
                   />
               <Verification
@@ -127,7 +127,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 copy={props.copy}
                 onChange={props.onChange}
                 tooltip={dataFields.current_landuse_source.tooltip}
-                placeholder={dataFields.date_source.example}
+                placeholder={dataFields.current_landuse_source.example}
                 options={dataFields.current_landuse_source.items}
                 />
             <Verification
