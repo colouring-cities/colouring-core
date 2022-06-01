@@ -33,7 +33,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
             
           <NumericDataEntry
               slug='date_year'
-              title={dataFields.work_carried_out.title}
+              title={dataFields.year_work_carried_out.title}
               value={currentBuildingConstructionYear}
               mode={props.mode}
               copy={props.copy}
@@ -41,7 +41,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               step={1}
               min={1}
               max={currentYear}
-              tooltip={dataFields.work_carried_out.tooltip}
+              tooltip={dataFields.year_work_carried_out.tooltip}
           />
           </Fragment>
     );
@@ -62,16 +62,16 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           />
         
       <NumericDataEntry
-          slug='work_carried_out'
-          title={dataFields.work_carried_out.title}
-          value={props.building.work_carried_out}
+          slug='year_work_carried_out'
+          title={dataFields.year_work_carried_out.title}
+          value={props.building.year_work_carried_out}
           mode={props.mode}
           copy={props.copy}
           onChange={props.onChange}
           step={1}
           min={1}
           max={currentYear}
-          tooltip={dataFields.work_carried_out.tooltip_extension}
+          tooltip={dataFields.year_work_carried_out.tooltip_extension}
       />
       </Fragment>
 );

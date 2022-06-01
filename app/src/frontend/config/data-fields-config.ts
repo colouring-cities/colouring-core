@@ -646,7 +646,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "A major extension"
         ],
     },
-    work_carried_out: {
+    year_work_carried_out: {
         category: Category.Team,
         title: "When was the work carried out?",
         tooltip: "This field is the same as 'Year built (best estimate)' in the Age category'",
