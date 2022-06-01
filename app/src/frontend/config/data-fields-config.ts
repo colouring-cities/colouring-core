@@ -692,7 +692,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Engineering firm",
             "Other"
         ]
-    }
+    },
+    designer_awards: {
+        category: Category.Team,
+        title: "Did the team win any awards for this building?",
+        tooltip: "",
+        example: false
+    },
 };
 
 export const allFieldsConfig = {...dataFields, ...buildingUserFields};

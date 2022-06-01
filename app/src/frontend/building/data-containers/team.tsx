@@ -5,6 +5,7 @@ import SelectDataEntry from '../data-components/select-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import Verification from '../data-components/verification';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
+import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
 
 import withCopyEdit from '../data-container';
 
@@ -101,6 +102,15 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               mode={props.mode}
               copy={props.copy}
           />
+          <LogicalDataEntry
+              slug='designer_awards'
+              title={dataFields.designer_awards.title}
+              tooltip={dataFields.designer_awards.tooltip}
+              value={props.building.designer_awards}
+
+              onChange={props.onChange}
+              mode={props.mode}
+          />
           </Fragment>
     );
   };
@@ -186,6 +196,15 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           onChange={props.onChange}
           mode={props.mode}
           copy={props.copy}
+      />
+      <LogicalDataEntry
+          slug='designer_awards'
+          title={dataFields.designer_awards.title}
+          tooltip={dataFields.designer_awards.tooltip}
+          value={props.building.designer_awards}
+
+          onChange={props.onChange}
+          mode={props.mode}
       />
       </Fragment>
 );
