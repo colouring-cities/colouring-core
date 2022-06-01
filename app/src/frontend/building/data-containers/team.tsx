@@ -34,7 +34,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
             
           <NumericDataEntry
               slug='date_year'
-              title={dataFields.year_work_carried_out.title}
+              title={dataFields.extension_year.title}
               value={currentBuildingConstructionYear}
               mode={props.mode}
               copy={props.copy}
@@ -42,7 +42,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               step={1}
               min={1}
               max={currentYear}
-              tooltip={dataFields.year_work_carried_out.tooltip}
+              tooltip={dataFields.extension_year.tooltip}
           />
           <Verification
               slug="date_year"
@@ -71,24 +71,24 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           />
         
       <NumericDataEntry
-          slug='year_work_carried_out'
-          title={dataFields.year_work_carried_out.title}
-          value={props.building.year_work_carried_out}
+          slug='extension_year'
+          title={dataFields.extension_year.title}
+          value={props.building.extension_year}
           mode={props.mode}
           copy={props.copy}
           onChange={props.onChange}
           step={1}
           min={1}
           max={currentYear}
-          tooltip={dataFields.year_work_carried_out.tooltip_extension}
+          tooltip={dataFields.extension_year.tooltip_extension}
       />
       <Verification
-          slug="year_work_carried_out"
-          allow_verify={props.user !== undefined && props.building.year_work_carried_out !== null && !props.edited}
+          slug="extension_year"
+          allow_verify={props.user !== undefined && props.building.extension_year !== null && !props.edited}
           onVerify={props.onVerify}
-          user_verified={props.user_verified.hasOwnProperty("year_work_carried_out")}
-          user_verified_as={props.user_verified.year_work_carried_out}
-          verified_count={props.building.verified.year_work_carried_out}
+          user_verified={props.user_verified.hasOwnProperty("extension_year")}
+          user_verified_as={props.user_verified.extension_year}
+          verified_count={props.building.verified.extension_year}
           />
       </Fragment>
 );
