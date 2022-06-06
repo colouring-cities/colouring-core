@@ -22,16 +22,13 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
       return (
        <form>
           <InfoBox msg="Can you help us capture information on who built the current building?"></InfoBox>
-          <SelectDataEntry
+          <LogicalDataEntry
               title={dataFields.has_extension.title}
               slug="has_extension"
               value={props.building.has_extension}
               mode={props.mode}
-              copy={props.copy}
               onChange={props.onChange}
               tooltip={dataFields.has_extension.tooltip}
-              placeholder={dataFields.has_extension.example}
-              options={dataFields.has_extension.items}
               />
          {props.building.has_extension ? (
           <>
