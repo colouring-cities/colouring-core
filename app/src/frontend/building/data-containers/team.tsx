@@ -22,6 +22,26 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
       return (
        <form>
           <InfoBox msg="Can you help us capture information on who built the current building?"></InfoBox>
+          <NumericDataEntry
+              slug='date_year'
+              title={dataFields.date_year.title}
+              value={currentBuildingConstructionYear}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              step={1}
+              min={1}
+              max={currentYear}
+              tooltip={dataFields.extension_year.tooltip}
+          />
+          <Verification
+              slug="date_year"
+              allow_verify={props.user !== undefined && props.building.date_year !== null && !props.edited}
+              onVerify={props.onVerify}
+              user_verified={props.user_verified.hasOwnProperty("date_year")}
+              user_verified_as={props.user_verified.date_year}
+              verified_count={props.building.verified.date_year}
+              />
           <LogicalDataEntry
               title={dataFields.has_extension.title}
               slug="has_extension"
@@ -53,30 +73,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.extension_year}
                 />
           </>
-          ) : (
-          <>
-            <NumericDataEntry
-                slug='date_year'
-                title={dataFields.date_year.title}
-                value={currentBuildingConstructionYear}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                step={1}
-                min={1}
-                max={currentYear}
-                tooltip={dataFields.extension_year.tooltip}
-            />
-            <Verification
-                slug="date_year"
-                allow_verify={props.user !== undefined && props.building.date_year !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("date_year")}
-                user_verified_as={props.user_verified.date_year}
-                verified_count={props.building.verified.date_year}
-                />
-          </>
-          )}
+        ) : (null)}
           <SelectDataEntry
               slug='developer_type'
               title={dataFields.developer_type.title}
