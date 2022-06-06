@@ -92,23 +92,23 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               verified_count={props.building.verified.developer_type}
               />
           <MultiDataEntry
-              title={dataFields.designers.title}
-              slug="designers"
-              value={props.building.designers}
+              title={dataFields.building_designers.title}
+              slug="building_designers"
+              value={props.building.building_designers}
               mode={props.mode}
               copy={props.copy}
               onChange={props.onChange}
-              tooltip={dataFields.designers.tooltip}
+              tooltip={dataFields.building_designers.tooltip}
               editableEntries={true}
               maxLength={747}
               />
           <Verification
-              slug="designers"
-              allow_verify={props.user !== undefined && props.building.designers !== null && !props.edited}
+              slug="building_designers"
+              allow_verify={props.user !== undefined && props.building.building_designers !== null && !props.edited}
               onVerify={props.onVerify}
-              user_verified={props.user_verified.hasOwnProperty("designers")}
-              user_verified_as={props.user_verified.designers}
-              verified_count={props.building.verified.designers}
+              user_verified={props.user_verified.hasOwnProperty("building_designers")}
+              user_verified_as={props.user_verified.building_designers}
+              verified_count={props.building.verified.building_designers}
               />
           <MultiDataEntry
               title={dataFields.designers_source_link.title}
