@@ -32,6 +32,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               placeholder={dataFields.is_extension.example}
               options={dataFields.is_extension.items}
               />
+         {props.building.is_extension == "The main building" ? (
           <NumericDataEntry
               slug='date_year'
               title={dataFields.extension_year.title}
@@ -52,6 +53,20 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               user_verified_as={props.user_verified.date_year}
               verified_count={props.building.verified.date_year}
               />
+         ) : (
+           <NumericDataEntry
+               slug='extension_year'
+               title={dataFields.extension_year.title}
+               value={props.building.extension_year}
+               mode={props.mode}
+               copy={props.copy}
+               onChange={props.onChange}
+               step={1}
+               min={1}
+               max={currentYear}
+               tooltip={dataFields.extension_year.tooltip_extension}
+           />
+          )}
           <SelectDataEntry
               slug='developer_type'
               title={dataFields.developer_type.title}
