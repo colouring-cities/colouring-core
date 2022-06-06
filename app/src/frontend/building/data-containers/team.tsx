@@ -100,7 +100,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               onChange={props.onChange}
               tooltip={dataFields.building_designers.tooltip}
               editableEntries={true}
-              maxLength={747}
               />
           <Verification
               slug="building_designers"
