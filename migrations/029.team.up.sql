@@ -1,3 +1,4 @@
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS has_extension smallint;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS extension_year smallint;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS developer_type varchar;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS designers varchar;

@@ -637,15 +637,11 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
                 lifespan: "2-5", overlap_present: "50%", links: ["", ""]}
         ]
     },
-    is_extension: {
+    has_extension: {
         category: Category.Team,
-        title: "Do you wish to add information on:",
+        title: "Is there an extension?",
         tooltip: "",
-        example: "",
-        items: [
-            "The main building",
-            "A major extension"
-        ],
+        example: false
     },
     extension_year: {
         category: Category.Team,
