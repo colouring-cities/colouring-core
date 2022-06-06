@@ -136,6 +136,22 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               onChange={props.onChange}
               mode={props.mode}
           />
+        {props.building.designer_awards ? (
+          <>
+          <MultiDataEntry
+              title={dataFields.awards_source_link.title}
+              slug="awards_source_link"
+              value={props.building.awards_source_link}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              tooltip={dataFields.awards_source_link.tooltip}
+              placeholder="https://..."
+              editableEntries={true}
+              />
+          </>
+        ) : (null)
+       }
      </form>
     );
 };
