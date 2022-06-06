@@ -184,7 +184,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           <Verification
               slug="awards_source_link"
               allow_verify={props.user !== undefined && props.building.awards_source_link !== null && !props.edited}
-              onVerify={props.awards_source_link}
+              onVerify={props.onVerify}
               user_verified={props.user_verified.hasOwnProperty("awards_source_link")}
               user_verified_as={props.user_verified.awards_source_link}
               verified_count={props.building.verified.awards_source_link}
