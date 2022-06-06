@@ -114,7 +114,5 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
     );
 };
 const TeamContainer = withCopyEdit(TeamView);
-const TeamContainer2 = withCopyEdit(TeamView);
 
 export default TeamContainer;
-export default TeamContainer2;
