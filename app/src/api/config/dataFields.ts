@@ -323,7 +323,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
-    is_extension: {
+    has_extension: {
         edit: true,
         verify: true
     },
