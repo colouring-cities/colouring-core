@@ -88,6 +88,14 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               mode={props.mode}
               copy={props.copy}
           />
+          <Verification
+              slug="developer_type"
+              allow_verify={props.user !== undefined && props.building.developer_type !== null && !props.edited}
+              onVerify={props.onVerify}
+              user_verified={props.user_verified.hasOwnProperty("developer_type")}
+              user_verified_as={props.user_verified.developer_type}
+              verified_count={props.building.verified.developer_type}
+              />
           <MultiDataEntry
               title={dataFields.designers.title}
               slug="designers"
@@ -118,6 +126,14 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               placeholder="https://..."
               editableEntries={true}
               />
+          <Verification
+              slug="designers_source_link"
+              allow_verify={props.user !== undefined && props.building.designers_source_link !== null && !props.edited}
+              onVerify={props.onVerify}
+              user_verified={props.user_verified.hasOwnProperty("designers_source_link")}
+              user_verified_as={props.user_verified.designers_source_link}
+              verified_count={props.building.verified.designers_source_link}
+              />
           <SelectDataEntry
               slug='lead_designer_type'
               title={dataFields.lead_designer_type.title}
@@ -127,6 +143,14 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               mode={props.mode}
               copy={props.copy}
           />
+          <Verification
+              slug="lead_designer_type"
+              allow_verify={props.user !== undefined && props.building.lead_designer_type !== null && !props.edited}
+              onVerify={props.onVerify}
+              user_verified={props.user_verified.hasOwnProperty("lead_designer_type")}
+              user_verified_as={props.user_verified.lead_designer_type}
+              verified_count={props.building.verified.lead_designer_type}
+              />
           <LogicalDataEntry
               slug='designer_awards'
               title={dataFields.designer_awards.title}
@@ -136,6 +160,14 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               onChange={props.onChange}
               mode={props.mode}
           />
+          <Verification
+              slug="designer_awards"
+              allow_verify={props.user !== undefined && props.building.designer_awards !== null && !props.edited}
+              onVerify={props.onVerify}
+              user_verified={props.user_verified.hasOwnProperty("designer_awards")}
+              user_verified_as={props.user_verified.designer_awards}
+              verified_count={props.building.verified.designer_awards}
+              />
         {props.building.designer_awards ? (
           <>
           <MultiDataEntry
@@ -148,6 +180,14 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               tooltip={dataFields.awards_source_link.tooltip}
               placeholder="https://..."
               editableEntries={true}
+              />
+          <Verification
+              slug="awards_source_link"
+              allow_verify={props.user !== undefined && props.building.awards_source_link !== null && !props.edited}
+              onVerify={props.awards_source_link}
+              user_verified={props.user_verified.hasOwnProperty("awards_source_link")}
+              user_verified_as={props.user_verified.awards_source_link}
+              verified_count={props.building.verified.awards_source_link}
               />
           </>
         ) : (null)
