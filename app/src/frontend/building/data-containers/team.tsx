@@ -55,8 +55,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               user_verified_as={props.user_verified.date_year}
               verified_count={props.building.verified.date_year}
               />
-          </Fragment>
-          <Fragment>
           <SelectDataEntry
               slug='developer_type'
               title={dataFields.developer_type.title}
@@ -150,8 +148,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               user_verified_as={props.user_verified.extension_year}
               verified_count={props.building.verified.extension_year}
               />
-          </Fragment>
-          <Fragment>
           <SelectDataEntry
               slug='developer_type'
               title={dataFields.developer_type.title}
