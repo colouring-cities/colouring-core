@@ -18,8 +18,9 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const building = props.building;
     const currentYear = new Date().getFullYear();
     const currentBuildingConstructionYear = building.date_year || undefined;
-    if (props.building.is_extension == "The main building"){
       return (
+       <form>
+         {this.props.building.is_extension == "The main building" ? (
           <Fragment>
               <InfoBox msg="Can you help us capture information on who built the current building?"></InfoBox>
           <SelectDataEntry
@@ -112,102 +113,102 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               mode={props.mode}
           />
           </Fragment>
-    );
-  };
-  return ( // This is what gets used when is_extension == "A major extension"
-      <Fragment>
-          <InfoBox msg="Can you help us capture information on who built the building extension?"></InfoBox>
-      <SelectDataEntry
-          title={dataFields.is_extension.title}
-          slug="is_extension"
-          value={props.building.is_extension}
-          mode={props.mode}
-          copy={props.copy}
-          onChange={props.onChange}
-          tooltip={dataFields.is_extension.tooltip}
-          placeholder={dataFields.is_extension.example}
-          options={dataFields.is_extension.items}
+         ) : (
+          <Fragment>
+              <InfoBox msg="Can you help us capture information on who built the building extension?"></InfoBox>
+          <SelectDataEntry
+              title={dataFields.is_extension.title}
+              slug="is_extension"
+              value={props.building.is_extension}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              tooltip={dataFields.is_extension.tooltip}
+              placeholder={dataFields.is_extension.example}
+              options={dataFields.is_extension.items}
+              />
+            
+          <NumericDataEntry
+              slug='extension_year'
+              title={dataFields.extension_year.title}
+              value={props.building.extension_year}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              step={1}
+              min={1}
+              max={currentYear}
+              tooltip={dataFields.extension_year.tooltip_extension}
           />
-        
-      <NumericDataEntry
-          slug='extension_year'
-          title={dataFields.extension_year.title}
-          value={props.building.extension_year}
-          mode={props.mode}
-          copy={props.copy}
-          onChange={props.onChange}
-          step={1}
-          min={1}
-          max={currentYear}
-          tooltip={dataFields.extension_year.tooltip_extension}
-      />
-      <Verification
-          slug="extension_year"
-          allow_verify={props.user !== undefined && props.building.extension_year !== null && !props.edited}
-          onVerify={props.onVerify}
-          user_verified={props.user_verified.hasOwnProperty("extension_year")}
-          user_verified_as={props.user_verified.extension_year}
-          verified_count={props.building.verified.extension_year}
+          <Verification
+              slug="extension_year"
+              allow_verify={props.user !== undefined && props.building.extension_year !== null && !props.edited}
+              onVerify={props.onVerify}
+              user_verified={props.user_verified.hasOwnProperty("extension_year")}
+              user_verified_as={props.user_verified.extension_year}
+              verified_count={props.building.verified.extension_year}
+              />
+          <SelectDataEntry
+              slug='developer_type'
+              title={dataFields.developer_type.title}
+              value={props.building.developer_type}
+              options={dataFields.developer_type.items}
+              onChange={props.onChange}
+              mode={props.mode}
+              copy={props.copy}
           />
-      <SelectDataEntry
-          slug='developer_type'
-          title={dataFields.developer_type.title}
-          value={props.building.developer_type}
-          options={dataFields.developer_type.items}
-          onChange={props.onChange}
-          mode={props.mode}
-          copy={props.copy}
-      />
-      <MultiDataEntry
-          title={dataFields.designers.title}
-          slug="designers"
-          value={props.building.designers}
-          mode={props.mode}
-          copy={props.copy}
-          onChange={props.onChange}
-          tooltip={dataFields.designers.tooltip}
-          editableEntries={true}
-          maxLength={747}
+          <MultiDataEntry
+              title={dataFields.designers.title}
+              slug="designers"
+              value={props.building.designers}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              tooltip={dataFields.designers.tooltip}
+              editableEntries={true}
+              maxLength={747}
+              />
+          <Verification
+              slug="designers"
+              allow_verify={props.user !== undefined && props.building.designers !== null && !props.edited}
+              onVerify={props.onVerify}
+              user_verified={props.user_verified.hasOwnProperty("designers")}
+              user_verified_as={props.user_verified.designers}
+              verified_count={props.building.verified.designers}
+              />
+          <MultiDataEntry
+              title={dataFields.designers_source_link.title}
+              slug="designers_source_link"
+              value={props.building.designers_source_link}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              tooltip={dataFields.designers_source_link.tooltip}
+              placeholder="https://..."
+              editableEntries={true}
+              />
+          <SelectDataEntry
+              slug='lead_designer_type'
+              title={dataFields.lead_designer_type.title}
+              value={props.building.lead_designer_type}
+              options={dataFields.lead_designer_type.items}
+              onChange={props.onChange}
+              mode={props.mode}
+              copy={props.copy}
           />
-      <Verification
-          slug="designers"
-          allow_verify={props.user !== undefined && props.building.designers !== null && !props.edited}
-          onVerify={props.onVerify}
-          user_verified={props.user_verified.hasOwnProperty("designers")}
-          user_verified_as={props.user_verified.designers}
-          verified_count={props.building.verified.designers}
-          />
-      <MultiDataEntry
-          title={dataFields.designers_source_link.title}
-          slug="designers_source_link"
-          value={props.building.designers_source_link}
-          mode={props.mode}
-          copy={props.copy}
-          onChange={props.onChange}
-          tooltip={dataFields.designers_source_link.tooltip}
-          placeholder="https://..."
-          editableEntries={true}
-          />
-      <SelectDataEntry
-          slug='lead_designer_type'
-          title={dataFields.lead_designer_type.title}
-          value={props.building.lead_designer_type}
-          options={dataFields.lead_designer_type.items}
-          onChange={props.onChange}
-          mode={props.mode}
-          copy={props.copy}
-      />
-      <LogicalDataEntry
-          slug='designer_awards'
-          title={dataFields.designer_awards.title}
-          tooltip={dataFields.designer_awards.tooltip}
-          value={props.building.designer_awards}
+          <LogicalDataEntry
+              slug='designer_awards'
+              title={dataFields.designer_awards.title}
+              tooltip={dataFields.designer_awards.tooltip}
+              value={props.building.designer_awards}
 
-          onChange={props.onChange}
-          mode={props.mode}
-      />
-      </Fragment>
-);
+              onChange={props.onChange}
+              mode={props.mode}
+          />
+          </Fragment>
+         )}
+     </form>
+    );
 };
 const TeamContainer = withCopyEdit(TeamView);
 
