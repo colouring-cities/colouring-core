@@ -24,7 +24,9 @@ function canEdit(key: string, allowDerived: boolean = false) {
 
 export function validateFieldChange(field: string, value: any, isExternal: boolean = true) {
     if(!isDefined(field)) {
-        throw new InvalidFieldError('Field does not exist', field);
+        if(field != 'is_extension'){
+            throw new InvalidFieldError('Field does not exist', field);
+        }
     }
     
     const allowDerived = !isExternal;
