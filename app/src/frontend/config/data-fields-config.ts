@@ -645,7 +645,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     extension_year: {
         category: Category.Team,
-        title: "When was the work carried out?",
+        title: "Year extension built (best estimate)",
         tooltip: "This field is the same as 'Year built (best estimate)' in the Age category'",
         tooltip_extension: "This should be the year the extension was built, not the original building",
         example: 2020
