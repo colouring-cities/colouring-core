@@ -19,6 +19,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const currentYear = new Date().getFullYear();
     const currentBuildingConstructionYear = building.date_year || undefined;
       return (
+       <form>
           <InfoBox msg="Can you help us capture information on who built the current building?"></InfoBox>
           <SelectDataEntry
               title={dataFields.is_extension.title}
@@ -131,6 +132,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               onChange={props.onChange}
               mode={props.mode}
           />
+     </form>
     );
 };
 const TeamContainer = withCopyEdit(TeamView);
