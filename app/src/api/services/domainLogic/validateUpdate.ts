@@ -29,9 +29,7 @@ export function validateFieldChange(field: string, value: any, isExternal: boole
     
     const allowDerived = !isExternal;
     if(!canEdit(field, allowDerived)) {
-        if(field != 'is_extension'){
-            throw new InvalidFieldError('Field is not editable', field);
-        }
+        throw new InvalidFieldError('Field is not editable', field);
     }
     
     if(field in compiledSchemas) {
