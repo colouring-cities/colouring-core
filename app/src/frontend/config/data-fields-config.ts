@@ -639,7 +639,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     has_extension: {
         category: Category.Team,
-        title: "Is there an extension?",
+        title: "Year extension built (best estimate)",
         tooltip: "",
         example: false
     },
