@@ -20,7 +20,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const currentBuildingConstructionYear = building.date_year || undefined;
       return (
        <form>
-         {this.props.building.is_extension == "The main building" ? (
+         {props.building.is_extension == "The main building" ? (
           <Fragment>
               <InfoBox msg="Can you help us capture information on who built the current building?"></InfoBox>
           <SelectDataEntry
