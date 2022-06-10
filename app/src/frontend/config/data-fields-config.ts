@@ -665,12 +665,6 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Other"
         ]
     },
-    developer_name: {
-        category: Category.Team,
-        title: "Who were the developer(s)?",
-        tooltip: "Free text. First name, space, then Last name",
-        example: ["", "", ""],
-    },
     developer_source_link: {
         category: Category.Team,
         title: "Source links for developer(s)",

@@ -1,7 +1,6 @@
 ALTER TABLE buildings DROP COLUMN IF EXISTS has_extension;
 ALTER TABLE buildings DROP COLUMN IF EXISTS extension_year;
 ALTER TABLE buildings DROP COLUMN IF EXISTS developer_type;
-ALTER TABLE buildings DROP COLUMN IF EXISTS developer_name;
 ALTER TABLE buildings DROP COLUMN IF EXISTS developer_source_link;
 ALTER TABLE buildings DROP COLUMN IF EXISTS designers;
 ALTER TABLE buildings DROP COLUMN IF EXISTS designers_source_link;
