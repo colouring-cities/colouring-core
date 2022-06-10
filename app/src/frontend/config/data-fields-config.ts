@@ -685,7 +685,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Landowner",
             "Speculative builder",
             "Government architecture department",
-            "Architectural firm",
+            "Architect/ architectural firm",
             "Engineering firm",
             "Other"
         ]
