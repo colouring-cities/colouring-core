@@ -242,6 +242,42 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
            user_verified_as={props.user_verified.builder_source_link}
            verified_count={props.building.verified.builder_source_link}
            />
+       <MultiDataEntry
+           title={dataFields.other_team.title}
+           slug="other_team"
+           value={props.building.other_team}
+           mode={props.mode}
+           copy={props.copy}
+           onChange={props.onChange}
+           placeholder=""
+           editableEntries={true}
+           />
+       <Verification
+           slug="other_team"
+           allow_verify={props.user !== undefined && props.building.other_team !== null && !props.edited}
+           onVerify={props.onVerify}
+           user_verified={props.user_verified.hasOwnProperty("other_team")}
+           user_verified_as={props.user_verified.other_team}
+           verified_count={props.building.verified.other_team}
+           />
+       <MultiDataEntry
+           title={dataFields.other_team_source_link.title}
+           slug="other_team_source_link"
+           value={props.building.other_team_source_link}
+           mode={props.mode}
+           copy={props.copy}
+           onChange={props.onChange}
+           placeholder="https://..."
+           editableEntries={true}
+           />
+       <Verification
+           slug="other_team_source_link"
+           allow_verify={props.user !== undefined && props.building.other_team_source_link !== null && !props.edited}
+           onVerify={props.onVerify}
+           user_verified={props.user_verified.hasOwnProperty("other_team_source_link")}
+           user_verified_as={props.user_verified.other_team_source_link}
+           verified_count={props.building.verified.other_team_source_link}
+           />
      </form>
     );
 };

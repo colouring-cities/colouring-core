@@ -9,3 +9,5 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS designer_awards;
 ALTER TABLE buildings DROP COLUMN IF EXISTS awards_source_link;
 ALTER TABLE buildings DROP COLUMN IF EXISTS builder;
 ALTER TABLE buildings DROP COLUMN IF EXISTS builder_source_link;
+ALTER TABLE buildings DROP COLUMN IF EXISTS other_team;
+ALTER TABLE buildings DROP COLUMN IF EXISTS other_team_source_link;

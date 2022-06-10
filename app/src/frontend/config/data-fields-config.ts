@@ -718,6 +718,16 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Source builder/ construction team",
         example: ["", "", ""],
     },
+    other_team: {
+        category: Category.Team,
+        title: "Other significant members of the team",
+        example: ["", "", ""],
+    },
+    other_team_source_link: {
+        category: Category.Team,
+        title: "Source other significant team members",
+        example: ["", "", ""],
+    },
 };
 
 export const allFieldsConfig = {...dataFields, ...buildingUserFields};

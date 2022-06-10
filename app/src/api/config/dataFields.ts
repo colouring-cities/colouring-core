@@ -366,6 +366,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     builder_source_link: {
         edit: true,
         verify: true
+    },
+    other_team: {
+        edit: true,
+        verify: true
+    },
+    other_team_source_link: {
+        edit: true,
+        verify: true
     }
 
 });
