@@ -93,7 +93,8 @@ const LAYER_QUERIES = {
                 case when builder IS NULL then 0 else 1 end +
                 case when builder_source_link IS NULL then 0 else 1 end +
                 case when other_team IS NULL then 0 else 1 end +
-                case when other_team_source_link IS NULL then 0 else 1 end
+                case when other_team_source_link IS NULL then 0 else 1 end +
+                case when date_year IS NULL then 0 else 1 end
             ) AS team_info_count
         FROM
             buildings`,
