@@ -708,6 +708,16 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "URL for source for designer award(s)",
         example: ["", "", ""],
     },
+    builder: {
+        category: Category.Team,
+        title: "Name of builder/ construction team",
+        example: ["", "", ""],
+    },
+    builder_source_link: {
+        category: Category.Team,
+        title: "Source builder/ construction team",
+        example: ["", "", ""],
+    },
 };
 
 export const allFieldsConfig = {...dataFields, ...buildingUserFields};

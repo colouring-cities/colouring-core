@@ -206,6 +206,44 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
           </>
         ) : (null)
        }
+       <MultiDataEntry
+           title={dataFields.builder.title}
+           slug="builder"
+           value={props.building.builder}
+           mode={props.mode}
+           copy={props.copy}
+           onChange={props.onChange}
+           tooltip={dataFields.builder.tooltip}
+           placeholder=""
+           editableEntries={true}
+           />
+       <Verification
+           slug="builder"
+           allow_verify={props.user !== undefined && props.building.builder !== null && !props.edited}
+           onVerify={props.onVerify}
+           user_verified={props.user_verified.hasOwnProperty("builder")}
+           user_verified_as={props.user_verified.builder}
+           verified_count={props.building.verified.builder}
+           />
+       <MultiDataEntry
+           title={dataFields.builder_source_link.title}
+           slug="builder_source_link"
+           value={props.building.builder_source_link}
+           mode={props.mode}
+           copy={props.copy}
+           onChange={props.onChange}
+           tooltip={dataFields.builder_source_link.tooltip}
+           placeholder="https://..."
+           editableEntries={true}
+           />
+       <Verification
+           slug="builder_source_link"
+           allow_verify={props.user !== undefined && props.building.builder_source_link !== null && !props.edited}
+           onVerify={props.onVerify}
+           user_verified={props.user_verified.hasOwnProperty("builder_source_link")}
+           user_verified_as={props.user_verified.builder_source_link}
+           verified_count={props.building.verified.builder_source_link}
+           />
      </form>
     );
 };
