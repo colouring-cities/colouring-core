@@ -85,19 +85,19 @@
             <PolygonSymbolizer fill="#994d00" />
         </Rule>
         <Rule>
-            <Filter>[team_info_count] &gt;= 6 and [location_info_count] &lt; 8</Filter>
+            <Filter>[team_info_count] &gt;= 6 and [team_info_count] &lt; 8</Filter>
             <PolygonSymbolizer fill="#e67300" />
         </Rule>
         <Rule>
-            <Filter>[team_info_count] &gt;= 4 and [location_info_count] &lt; 6</Filter>
+            <Filter>[team_info_count] &gt;= 4 and [team_info_count] &lt; 6</Filter>
             <PolygonSymbolizer fill="#ff9933" />
         </Rule>
         <Rule>
-            <Filter>[team_info_count] &gt;= 2 and [location_info_count] &lt; 4</Filter>
+            <Filter>[team_info_count] &gt;= 2 and [team_info_count] &lt; 4</Filter>
             <PolygonSymbolizer fill="#ffbf80" />
         </Rule>
         <Rule>
-            <Filter>[team_info_count] &gt; 0 and [location_info_count] &lt; 2</Filter>
+            <Filter>[team_info_count] &gt; 0 and [team_info_count] &lt; 2</Filter>
             <PolygonSymbolizer fill="#ffe6cc" />
         </Rule>
 
