@@ -213,7 +213,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
            mode={props.mode}
            copy={props.copy}
            onChange={props.onChange}
-           tooltip={dataFields.builder.tooltip}
            placeholder=""
            editableEntries={true}
            />
@@ -232,7 +231,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
            mode={props.mode}
            copy={props.copy}
            onChange={props.onChange}
-           tooltip={dataFields.builder_source_link.tooltip}
            placeholder="https://..."
            editableEntries={true}
            />
