@@ -636,7 +636,104 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
                 year_demolished: { min: 1993, max: 1994 },
                 lifespan: "2-5", overlap_present: "50%", links: ["", ""]}
         ]
-    }
+    },
+    has_extension: {
+        category: Category.Team,
+        title: "Is there an extension?",
+        tooltip: "",
+        example: false
+    },
+    extension_year: {
+        category: Category.Team,
+        title: "Year extension built (best estimate)",
+        tooltip: "This field is the same as 'Year built (best estimate)' in the Age category'",
+        tooltip_extension: "This should be the year the extension was built, not the original building",
+        example: 2020
+    },
+    developer_type: {
+        category: Category.Team,
+        title: "What type of developer built the building?",
+        example: "",
+        items: [
+            "State",
+            "Charity",
+            "Community/Cooperative",
+            "Other non-profit body",
+            "Private (individual)",
+            "Private (company/estate)",
+            "Religious body",
+            "Other"
+        ]
+    },
+    developer_name: {
+        category: Category.Team,
+        title: "Who were the developer(s)?",
+        tooltip: "Free text. First name, space, then Last name",
+        example: ["", "", ""],
+    },
+    developer_source_link: {
+        category: Category.Team,
+        title: "Source links for developer(s)",
+        tooltip: "URL for source for developer(s)",
+        example: ["", "", ""],
+    },
+    designers: {
+        category: Category.Team,
+        title: "Who were the main designer(s)?",
+        tooltip: "Free text. First name, space, then Last name",
+        example: ["", "", ""],
+    },
+    designers_source_link: {
+        category: Category.Team,
+        title: "Source links for designer(s)",
+        tooltip: "URL for source for designer(s)",
+        example: ["", "", ""],
+    },
+    lead_designer_type: {
+        category: Category.Team,
+        title: "Which best describes the lead designer?",
+        example: "",
+        items: [
+            "Landowner",
+            "Speculative builder",
+            "Government architecture department",
+            "Architect/ architectural firm",
+            "Engineering firm",
+            "Other"
+        ]
+    },
+    designer_awards: {
+        category: Category.Team,
+        title: "Did the design team win any awards for this building?",
+        tooltip: "",
+        example: false
+    },
+    awards_source_link: {
+        category: Category.Team,
+        title: "Source links for designer award(s)",
+        tooltip: "URL for source for designer award(s)",
+        example: ["", "", ""],
+    },
+    builder: {
+        category: Category.Team,
+        title: "Name of builder/ construction team",
+        example: ["", "", ""],
+    },
+    builder_source_link: {
+        category: Category.Team,
+        title: "Source builder/ construction team",
+        example: ["", "", ""],
+    },
+    other_team: {
+        category: Category.Team,
+        title: "Other significant members of the team",
+        example: ["", "", ""],
+    },
+    other_team_source_link: {
+        category: Category.Team,
+        title: "Source other significant team members",
+        example: ["", "", ""],
+    },
 };
 
 export const allFieldsConfig = {...dataFields, ...buildingUserFields};

@@ -322,6 +322,62 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     community_public_ownership_sources: {
         edit: true,
         verify: true
+    },
+    has_extension: {
+        edit: true,
+        verify: true
+    },
+    extension_year: {
+        edit: true,
+        verify: true
+    },
+    developer_type: {
+        edit: true,
+        verify: true
+    },
+    developer_name: {
+        edit: true,
+        verify: true
+    },
+    developer_source_link: {
+        edit: true,
+        verify: true
+    },
+    designers: {
+        edit: true,
+        verify: true
+    },
+    designers_source_link: {
+        edit: true,
+        verify: true
+    },
+    lead_designer_type: {
+        edit: true,
+        verify: true
+    },
+    designer_awards: {
+        edit: true,
+        verify: true
+    },
+    awards_source_link: {
+        edit: true,
+        verify: true
+    },
+    builder: {
+        edit: true,
+        verify: true
+    },
+    builder_source_link: {
+        edit: true,
+        verify: true
+    },
+    other_team: {
+        edit: true,
+        verify: true
+    },
+    other_team_source_link: {
+        edit: true,
+        verify: true
     }
 
 });
