@@ -14,7 +14,8 @@ export type BuildingMapTileset = 'date_year' |
     'sust_dec' |
     'building_attachment_form' |
     'landuse' |
-    'dynamics_demolished_count';
+    'dynamics_demolished_count' |
+    'team';
 
 export type SpecialMapTileset = 'base_light' | 'base_night' | 'highlight' | 'number_labels';
 
