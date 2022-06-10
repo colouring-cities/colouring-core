@@ -79,6 +79,39 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="team">
+        <Rule>
+            <Filter>[location_info_count] &gt;= 8</Filter>
+            <PolygonSymbolizer fill="#994d00" />
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] &gt;= 6 and [location_info_count] &lt; 8</Filter>
+            <PolygonSymbolizer fill="#e67300" />
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] &gt;= 4 and [location_info_count] &lt; 6</Filter>
+            <PolygonSymbolizer fill="#ff9933" />
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] &gt;= 2 and [location_info_count] &lt; 4</Filter>
+            <PolygonSymbolizer fill="#ffbf80" />
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] &gt; 0 and [location_info_count] &lt; 2</Filter>
+            <PolygonSymbolizer fill="#ffe6cc" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="size_storeys">
         <Rule>
             <Filter>[size_storeys] &gt;= 40</Filter>
