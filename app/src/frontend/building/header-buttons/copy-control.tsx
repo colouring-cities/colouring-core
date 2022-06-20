@@ -10,6 +10,7 @@ interface CopyControlProps {
 
 function initCopyControlProps(options?: Partial<CopyControlProps>): CopyControlProps {
     const defaults = {
+        cat: '',
         copying: true
     };
 
