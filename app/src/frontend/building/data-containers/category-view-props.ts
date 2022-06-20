@@ -19,12 +19,14 @@ function initCopyProps(options?: Partial<CopyProps>): CopyProps {
     };
 }
 
+const defaultCopyProps: CopyProps = initCopyProps();
+
 interface CategoryViewProps {
     intro: string;
     building: Building;
     mode: 'view' | 'edit' | 'multi-edit';
     edited: boolean;
-    copy: CopyProps;
+    copy: defaultCopyProps;
     onChange: (key: string, value: any) => void;
     onVerify: (slug: string, verify: boolean, x: number, y: number) => void;
 
