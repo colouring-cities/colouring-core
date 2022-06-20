@@ -12,7 +12,8 @@ function initCopyControlProps(options?: Partial<CopyControlProps>): CopyControlP
     const defaults = {
         cat: '',
         data_string: '',
-        copying: true
+        copying: true,
+        toggleCopying: undefined
     };
 
     return {
