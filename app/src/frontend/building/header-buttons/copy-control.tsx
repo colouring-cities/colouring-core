@@ -8,20 +8,6 @@ interface CopyControlProps {
     toggleCopying: () => void;
 }
 
-function initCopyControlProps(options?: Partial<CopyControlProps>): CopyControlProps {
-    const defaults = {
-        cat: '',
-        data_string: '',
-        copying: true,
-        toggleCopying: undefined
-    };
-
-    return {
-        ...defaults,
-        ...options,
-    };
-}
-
 const CopyControl: React.FC<CopyControlProps> = props => (
     props.copying ?
         <>

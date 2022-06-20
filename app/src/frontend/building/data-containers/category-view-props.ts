@@ -7,6 +7,18 @@ interface CopyProps {
     copyingKey: (key: string) => boolean;
 }
 
+function initCopyProps(options?: Partial<CopyProps>): CopyProps {
+    const defaults = {
+        copying: true,
+        toggleCopying: undefined
+    };
+
+    return {
+        ...defaults,
+        ...options,
+    };
+}
+
 interface CategoryViewProps {
     intro: string;
     building: Building;
