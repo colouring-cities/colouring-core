@@ -150,10 +150,10 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             isUrl={true}
             placeholder={'https://...'}
             editableEntries={true}
-            
             value={props.building.community_public_ownership_sources}
             onChange={props.onChange}
             mode={props.mode}
+            copy={props.copy}
         />
         <Verification
                 slug="community_public_ownership_sources"
