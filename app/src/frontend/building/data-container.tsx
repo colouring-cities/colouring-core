@@ -81,11 +81,15 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
         static getDerivedStateFromProps(props, state): DataContainerState {
             const newBuildingId = props.building == undefined ? undefined : props.building.building_id;
             const newBuildingRevisionId = props.building == undefined ? undefined : props.building.revision_id;
+            const categoryKeys = {};
+            for (let key in myDictionary) {
+                categoryKeys[key] = true;
+            }
             if(newBuildingId !== state.currentBuildingId || newBuildingRevisionId > state.currentBuildingRevisionId) {
                 return {
                     error: undefined,
                     copying: false,
-                    keys_to_copy: {},
+                    keys_to_copy: categoryKeys,
                     buildingEdits: {},
                     currentBuildingId: newBuildingId,
                     currentBuildingRevisionId: newBuildingRevisionId
