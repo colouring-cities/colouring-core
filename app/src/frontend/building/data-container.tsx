@@ -82,8 +82,11 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             const newBuildingId = props.building == undefined ? undefined : props.building.building_id;
             const newBuildingRevisionId = props.building == undefined ? undefined : props.building.revision_id;
             const categoryKeys = {};
+
             for (let key in dataFields) {
-                categoryKeys[key] = true;
+                if (dataFields[key].category == props.cat){
+                    categoryKeys[key] = true;
+                }
             }
             if(newBuildingId !== state.currentBuildingId || newBuildingRevisionId > state.currentBuildingRevisionId) {
                 return {
