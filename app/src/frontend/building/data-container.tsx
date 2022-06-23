@@ -17,6 +17,7 @@ import { CopyControl } from './header-buttons/copy-control';
 import { ViewEditControl } from './header-buttons/view-edit-control';
 
 import './data-container.css';
+import { dataFields } from '../config/data-fields-config'
 
 interface DataContainerProps {
     title: string;
