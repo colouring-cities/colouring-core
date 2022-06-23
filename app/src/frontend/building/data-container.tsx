@@ -84,7 +84,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             const categoryKeys = {};
 
             for (let key in dataFields) {
-                if (dataFields[key].category == props.cat){
+                if (dataFields[key].category == props.cat && props.building[key] != null){
                     categoryKeys[key] = true;
                 }
             }
