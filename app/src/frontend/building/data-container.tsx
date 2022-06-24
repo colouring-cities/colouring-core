@@ -81,10 +81,12 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
         static getDerivedStateFromProps(props, state): DataContainerState {
             const newBuildingId = props.building == undefined ? undefined : props.building.building_id;
             const newBuildingRevisionId = props.building == undefined ? undefined : props.building.revision_id;
+
             const categoryKeys = {};
 
-            for (let key in dataFields) {
-                if (dataFields[key].category == props.cat && props.building[key] != null){
+            for (let key in dataFields) {  
+                let fieldName = props.building == undefined ? undefined : props.building[key];    
+                if (dataFields[key].category == props.cat && fieldName != null){
                     categoryKeys[key] = true;
                 }
             }
