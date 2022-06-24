@@ -47,6 +47,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               slug="has_extension"
               value={props.building.has_extension}
               mode={props.mode}
+              copy={props.copy}
               onChange={props.onChange}
               tooltip={dataFields.has_extension.tooltip}
               />
@@ -189,7 +190,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               title={dataFields.designer_awards.title}
               tooltip={dataFields.designer_awards.tooltip}
               value={props.building.designer_awards}
-
+              copy={props.copy}
               onChange={props.onChange}
               mode={props.mode}
           />

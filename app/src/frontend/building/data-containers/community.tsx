@@ -36,6 +36,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 onChange={props.onSaveChange}
                 mode={props.mode}
                 copy={props.copy}
+
             />
             <LogicalDataEntry
                 slug='community_type_worth_keeping'
@@ -47,7 +48,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
                 onChange={props.onSaveChange}
                 mode={props.mode}
-                copy={props.copy}
+
             />
             {
                 props.building.community_type_worth_keeping !== false &&
@@ -64,6 +65,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             label: definition.title
                         }))
                     }
+                    
                     mode={props.mode}
                 />
             }
@@ -87,7 +89,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             title={dataFields.community_activities_current.title}
             tooltip={dataFields.community_activities_current.tooltip}
             value={props.building.community_activities_current}
-
+            copy={props.copy}
             onChange={props.onChange}
             mode={props.mode}
         />
@@ -96,7 +98,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             title={dataFields.community_activities.title}
             tooltip={dataFields.community_activities.tooltip}
             value={props.building.community_activities}
-
+            copy={props.copy}
             onChange={props.onChange}
             mode={props.mode}
         />
@@ -105,7 +107,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             title={dataFields.community_activities_always.title}
             tooltip={dataFields.community_activities_always.tooltip}
             value={props.building.community_activities_always}
-
+            copy={props.copy}
             onChange={props.onChange}
             mode={props.mode}
         />
@@ -150,10 +152,10 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             isUrl={true}
             placeholder={'https://...'}
             editableEntries={true}
-            
             value={props.building.community_public_ownership_sources}
             onChange={props.onChange}
             mode={props.mode}
+            copy={props.copy}
         />
         <Verification
                 slug="community_public_ownership_sources"

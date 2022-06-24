@@ -17,6 +17,7 @@ import { CopyControl } from './header-buttons/copy-control';
 import { ViewEditControl } from './header-buttons/view-edit-control';
 
 import './data-container.css';
+import { dataFields } from '../config/data-fields-config'
 
 interface DataContainerProps {
     title: string;
@@ -80,11 +81,31 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
         static getDerivedStateFromProps(props, state): DataContainerState {
             const newBuildingId = props.building == undefined ? undefined : props.building.building_id;
             const newBuildingRevisionId = props.building == undefined ? undefined : props.building.revision_id;
+
+            const categoryKeys = {};
+            const blackListedKeys = ['current_landuse_order',
+                                     'current_landuse_verified',
+                                     'planning_in_list',
+                                     'planning_list_id',
+                                     'planning_list_cat',
+                                     'planning_list_grade',
+                                     'likes_total',
+                                     'community_local_significance_total'
+                                    ]
+            for (let key in dataFields) {  
+                let fieldName = props.building == undefined ? undefined : props.building[key];    
+                if (dataFields[key].category == props.cat && fieldName != null && !blackListedKeys.includes(key)){
+                    categoryKeys[key] = true;
+                }
+                if (props.cat == 'team' && key == 'date_year' && fieldName != null && !blackListedKeys.includes(key)){
+                    categoryKeys[key] = true;
+                }
+            }
             if(newBuildingId !== state.currentBuildingId || newBuildingRevisionId > state.currentBuildingRevisionId) {
                 return {
                     error: undefined,
                     copying: false,
-                    keys_to_copy: {},
+                    keys_to_copy: categoryKeys,
                     buildingEdits: {},
                     currentBuildingId: newBuildingId,
                     currentBuildingRevisionId: newBuildingRevisionId
