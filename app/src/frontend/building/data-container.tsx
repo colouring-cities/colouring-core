@@ -88,7 +88,9 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                      'planning_in_list',
                                      'planning_list_id',
                                      'planning_list_cat',
-                                     'planning_list_grade'
+                                     'planning_list_grade',
+                                     'likes_total',
+                                     'community_local_significance_total'
                                     ]
             for (let key in dataFields) {  
                 let fieldName = props.building == undefined ? undefined : props.building[key];    
