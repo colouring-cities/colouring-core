@@ -35,7 +35,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
                 onChange={props.onSaveChange}
                 mode={props.mode}
-
+                copy={props.copy}
 
             />
             <LogicalDataEntry
@@ -79,7 +79,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
                 onChange={props.onSaveChange}
                 mode={props.mode}
-
+                copy={props.copy}
             />
         </div>
 
