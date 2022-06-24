@@ -89,7 +89,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                 if (dataFields[key].category == props.cat && fieldName != null){
                     categoryKeys[key] = true;
                 }
-                if (props.cat == 'team' && key == 'date_year' fieldName != null){
+                if (props.cat == 'team' && key == 'date_year' && fieldName != null){
                     categoryKeys[key] = true;
                 }
             }
