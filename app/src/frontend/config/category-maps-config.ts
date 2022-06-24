@@ -219,7 +219,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
     [Category.Streetscape]: [{
         mapStyle: undefined,
         legend: {
-            title: 'Streetscape',
+            title: 'Street Context',
             elements: []
         },
     }],
