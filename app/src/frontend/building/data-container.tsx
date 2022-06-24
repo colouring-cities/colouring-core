@@ -83,13 +83,15 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             const newBuildingRevisionId = props.building == undefined ? undefined : props.building.revision_id;
 
             const categoryKeys = {};
-
+            const blackListedKeys = ['current_landuse_order',
+                                     'current_landuse_verified'
+                                    ]
             for (let key in dataFields) {  
                 let fieldName = props.building == undefined ? undefined : props.building[key];    
-                if (dataFields[key].category == props.cat && fieldName != null){
+                if (dataFields[key].category == props.cat && fieldName != null && !blackListedKeys.includes(key)){
                     categoryKeys[key] = true;
                 }
-                if (props.cat == 'team' && key == 'date_year' && fieldName != null){
+                if (props.cat == 'team' && key == 'date_year' && fieldName != null && !blackListedKeys.includes(key)){
                     categoryKeys[key] = true;
                 }
             }
