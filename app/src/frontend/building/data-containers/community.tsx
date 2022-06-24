@@ -35,7 +35,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
                 onChange={props.onSaveChange}
                 mode={props.mode}
-                copy={props.copy}
             />
             <LogicalDataEntry
                 slug='community_type_worth_keeping'
@@ -47,7 +46,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
                 onChange={props.onSaveChange}
                 mode={props.mode}
-                copy={props.copy}
             />
             {
                 props.building.community_type_worth_keeping !== false &&
@@ -64,7 +62,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             label: definition.title
                         }))
                     }
-                    copy={props.copy}
                     mode={props.mode}
                 />
             }
@@ -78,7 +75,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
                 onChange={props.onSaveChange}
                 mode={props.mode}
-                copy={props.copy}
             />
         </div>
 
