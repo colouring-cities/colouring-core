@@ -87,7 +87,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             title={dataFields.community_activities_current.title}
             tooltip={dataFields.community_activities_current.tooltip}
             value={props.building.community_activities_current}
-
+            copy={props.copy}
             onChange={props.onChange}
             mode={props.mode}
         />
@@ -96,7 +96,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             title={dataFields.community_activities.title}
             tooltip={dataFields.community_activities.tooltip}
             value={props.building.community_activities}
-
+            copy={props.copy}
             onChange={props.onChange}
             mode={props.mode}
         />
@@ -105,7 +105,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             title={dataFields.community_activities_always.title}
             tooltip={dataFields.community_activities_always.tooltip}
             value={props.building.community_activities_always}
-
+            copy={props.copy}
             onChange={props.onChange}
             mode={props.mode}
         />
