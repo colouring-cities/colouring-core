@@ -109,7 +109,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
     [Category.Streetscape]: {
         inactive: true,
         slug: 'streetscape',
-        name: 'Streetscape',
+        name: 'Street Context',
         aboutUrl: 'https://pages.colouring.london/greenery',
         intro: "What's the building's context? Coming soon…",
     },
