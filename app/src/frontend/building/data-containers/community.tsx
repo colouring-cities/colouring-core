@@ -64,6 +64,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             label: definition.title
                         }))
                     }
+                    copy={props.copy}
                     mode={props.mode}
                 />
             }
