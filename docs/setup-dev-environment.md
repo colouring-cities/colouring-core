@@ -69,7 +69,8 @@ psql -c "create extension pg_trgm;"
 ```bash
 mkdir Projects
 cd Projects/
-git clone https://github.com/colouring-london/colouring-london.git
+git clone https://github.com/osgeolabud/colouring-colombia.git
+
 ```
 
 ### Instalar node.js
