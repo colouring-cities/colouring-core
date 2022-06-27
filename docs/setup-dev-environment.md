@@ -1,3 +1,113 @@
+# Configuración de un ambiente local para desarrollo
+## Precaución: Estas instrucciones son para ambientes de desarrrollo, por favor no emplearlas en el ambiente de producción
+
+Este documento tiene las instrucciones de configuración de un entorno de desarrollo local para la aplicación Colouring London. Se asume que de tiene  acceso a una máquina con Ubuntu 20.04 instalado.
+
+## Instalación
+### Actualizar el sistema
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
+### Instalar el conjunto de herramientas básicas
+```bash
+sudo apt-get install -y build-essential git wget curl parallel rename
+sudo apt-get install -y python3 python3-pip python3-dev python3-venv
+```
+
+### Agregar las variables de entorno
+
+Para facilitar la instalación del ambiente de desarrollo se van a declarar un conjunto de variables de entorno de manera persistente.
+
+1. Abrir el archivo .profile
+nano ~/.profile
+
+2. Copiar y pegar al final del archivo la definición de las siguientes variables de entorno. Tener en cuenta que los valores de usuarios y claves son solo de referencia y se recomienda personalizarla en cada instalación
+
+```bash
+export NODE_VERSION=v16.13.2
+export DISTRO=linux-x64
+export PGPASSWORD=colouringud
+export PGUSER=colouring
+export PGHOST=localhost
+export PGDATABASE=colouringdb
+export NODEJS_HOME=/usr/local/lib/node/node-$NODE_VERSION/bin
+export PATH=$NODEJS_HOME:$PATH
+export PGPORT=5432
+export APP_COOKIE_SECRET=123456
+export TILECACHE_PATH=~/Projects/colouring-london/app/tilecache
+```
+Guardar el archivo (ctrl+x, ingresar Y y enter)
+
+Una vez que estemos en el terminal procesamos el archivo con:
+
+```bash
+source ~/.profile
+```
+
+
+### Instalar la base de datos
+```bash
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+sudo wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install -y postgresql-12 postgresql-contrib-12 libpq-dev postgis postgresql-12-postgis-3
+sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
+sudo service postgresql start
+sudo locale-gen en_US.UTF-8
+sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/12/main/postgresql.conf
+echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/12/main/pg_hba.conf > /dev/null
+sudo service postgresql restart
+sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = 'colouring';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE colouring SUPERUSER LOGIN PASSWORD 'colouringud';"
+sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringdb';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O colouring colouringdb
+psql -c "create extension postgis;"
+psql -c "create extension pgcrypto;"
+psql -c "create extension pg_trgm;"
+```
+
+### Clonar el repositorio 
+
+```bash
+mkdir Projects
+cd Projects/
+git clone https://github.com/colouring-london/colouring-london.git
+```
+
+### Instalar node.js
+
+```bash
+wget -nc https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-$DISTRO.tar.xz
+sudo mkdir /usr/local/lib/node
+sudo tar xf node-$NODE_VERSION-$DISTRO.tar.xz -C /usr/local/lib/node
+sudo mv /usr/local/lib/node/node-$NODE_VERSION-$DISTRO /usr/local/lib/node/node-$NODE_VERSION
+rm node-$NODE_VERSION-$DISTRO.tar.xz
+sudo env "PATH=$PATH" npm install -g npm@latest
+cd colouring-london/app/
+mkdir tilecache
+npm install --legacy-peer-deps
+```
+
+### Agregar unos polígonos de prueba
+
+```bash
+cd ../etl/
+python3 -m venv colouring
+source colouring/bin/activate
+pip install --upgrade pip
+pip install --upgrade setuptools wheel
+pip install -r requirements.txt
+python get_test_polygons.py
+ls ~/Projects/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
+./load_geometries.sh ./
+./create_building_records.sh
+cd ../app/
+npm start
+```
+
+A continuación las instrucciones originales del proyecto Colouring London.
+
+## Precaución: Las instrucciones siguientes es para sistemas con Ubuntu 18.04
+
+
 # Setting up a local development environment
 
 ### WARNING: Setup document suitable for development environment, not production server
