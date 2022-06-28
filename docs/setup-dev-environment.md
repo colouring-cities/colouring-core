@@ -19,7 +19,9 @@ sudo apt-get install -y python3 python3-pip python3-dev python3-venv
 Para facilitar la instalación del ambiente de desarrollo se van a declarar un conjunto de variables de entorno de manera persistente.
 
 1. Abrir el archivo .profile
+```bash
 nano ~/.profile
+```
 
 2. Copiar y pegar al final del archivo la definición de las siguientes variables de entorno. Tener en cuenta que los valores de usuarios y claves son solo de referencia y se recomienda personalizarla en cada instalación
 
