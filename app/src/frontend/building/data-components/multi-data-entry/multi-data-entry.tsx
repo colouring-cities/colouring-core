@@ -16,7 +16,7 @@ interface MultiDataEntryProps extends BaseDataEntryProps, TextDataEntryInputProp
 
 export const MultiDataEntry: React.FC<MultiDataEntryProps> = ({
     editableEntries = false,
-    copyable = false,
+    copyable = true,
     confirmOnEnter = true,
     ...props
 }) => {

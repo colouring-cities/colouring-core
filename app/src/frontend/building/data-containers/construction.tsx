@@ -5,6 +5,7 @@ import DataEntry from '../data-components/data-entry';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import withCopyEdit from '../data-container';
+import Verification from '../data-components/verification';
 
 import { CategoryViewProps } from './category-view-props';
 import Verification from '../data-components/verification';
@@ -47,6 +48,14 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                 copy={props.copy}
                 onChange={props.onChange}
             />
+            <Verification
+                slug="construction_core_material"
+                allow_verify={props.user !== undefined && props.building.construction_core_material !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("construction_core_material")}
+                user_verified_as={props.user_verified.construction_core_material}
+                verified_count={props.building.verified.construction_core_material}
+                />
             <MultiDataEntry
                 title={dataFields.construction_secondary_materials.title}
                 slug="construction_secondary_materials"
@@ -79,6 +88,14 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                 copy={props.copy}
                 onChange={props.onChange}
             />
+            <Verification
+                slug="construction_roof_covering"
+                allow_verify={props.user !== undefined && props.building.construction_roof_covering !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("construction_roof_covering")}
+                user_verified_as={props.user_verified.construction_roof_covering}
+                verified_count={props.building.verified.construction_roof_covering}
+                />
             <DataEntry
                 title="Construction system type"
                 slug=""

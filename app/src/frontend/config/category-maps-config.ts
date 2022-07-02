@@ -64,10 +64,17 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         },
     }],
     [Category.Team]: [{
-        mapStyle: undefined,
+        mapStyle: 'team',
         legend: {
             title: 'Team',
-            elements: []
+            description: '% data collected',
+            elements: [
+                { color: '#994d00', text: '≥80%' },
+                { color: '#e67300', text: '60–80%' },
+                { color: '#ff9933', text: '40–60%' },
+                { color: '#ffbf80', text: '20–40%' },
+                { color: '#ffe6cc', text: '<20%' }
+            ]
         },
     }],
     [Category.Construction]: [{
@@ -193,7 +200,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             elements: [
                 { color: '#e5050d', text: 'Mixed Use' },
                 { subtitle: 'Single use:'},
-                { color: '#252aa6', text: 'Residential' },
+                { color: '#252aa6', text: 'Residential (unverified)' },
+                { color: '#7025a6', text: 'Residential (verified)' },
                 { color: '#ff8c00', text: 'Retail' },
                 { color: '#f5f58f', text: 'Industry & Business' },
                 { color: '#73ccd1', text: 'Community Services' },
@@ -211,7 +219,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
     [Category.Streetscape]: [{
         mapStyle: undefined,
         legend: {
-            title: 'Streetscape',
+            title: 'Street Context',
             elements: []
         },
     }],

@@ -7,7 +7,7 @@ import DataEntry, { BaseDataEntryProps } from '../../data-components/data-entry'
 import { dataFields } from '../../../config/data-fields-config';
 import SelectDataEntry from '../../data-components/select-data-entry';
 import { MultiDataEntry } from '../../data-components/multi-data-entry/multi-data-entry';
-import { NumberRangeDataEntry } from './number-range-data-entry';
+import { NumberRangeDataEntry } from '../../data-components/number-range-data-entry';
 
 import './dynamics-data-entry.css';
 import { CloseIcon } from '../../../components/icons';

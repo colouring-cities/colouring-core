@@ -76,6 +76,28 @@ const LAYER_QUERIES = {
             ) AS location_info_count
         FROM
             buildings`,
+    team: `
+        SELECT
+            geometry_id,
+            (
+                case when has_extension IS NULL then 0 else 1 end +
+                case when extension_year IS NULL then 0 else 1 end +
+                case when developer_type IS NULL then 0 else 1 end +
+                case when developer_name IS NULL then 0 else 1 end +
+                case when developer_source_link IS NULL then 0 else 1 end +
+                case when designers IS NULL then 0 else 1 end +
+                case when designers_source_link IS NULL then 0 else 1 end +
+                case when lead_designer_type IS NULL then 0 else 1 end +
+                case when designer_awards IS NULL then 0 else 1 end +
+                case when awards_source_link IS NULL then 0 else 1 end +
+                case when builder IS NULL then 0 else 1 end +
+                case when builder_source_link IS NULL then 0 else 1 end +
+                case when other_team IS NULL then 0 else 1 end +
+                case when other_team_source_link IS NULL then 0 else 1 end +
+                case when date_year IS NULL then 0 else 1 end
+            ) AS team_info_count
+        FROM
+            buildings`,
     likes: `
         SELECT
             geometry_id,
@@ -150,7 +172,8 @@ const LAYER_QUERIES = {
         SELECT
             geometry_id,
             current_landuse_order,
-            current_landuse_group[1] as current_landuse_group
+            current_landuse_group[1] as current_landuse_group,
+            current_landuse_verified
         FROM
             buildings
         WHERE
@@ -181,7 +204,7 @@ function getDataConfig(tileset: string): DataConfig {
     if(table == undefined) {
         throw new Error('Invalid tileset requested');
     }
-
+    
     const query = `(
         SELECT
             d.*,
@@ -192,6 +215,11 @@ function getDataConfig(tileset: string): DataConfig {
         JOIN
             geometries AS g
         ON d.geometry_id = g.geometry_id
+        JOIN
+            buildings AS b
+        ON d.geometry_id = b.geometry_id
+        WHERE
+            b.latest_demolish_date IS NULL
     ) AS data
     `;
 

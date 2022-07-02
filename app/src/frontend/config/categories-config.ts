@@ -59,11 +59,10 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         intro: 'How big are buildings?',
     },
     [Category.Team]: {
-        inactive: true,
         slug: 'team',
         name: 'Team',
         aboutUrl: 'https://pages.colouring.london/team',
-        intro: 'Who built the buildings? Coming soon…',
+        intro: 'Who built the buildings?',
     },
     [Category.Construction]: {
         slug: 'construction',
@@ -110,7 +109,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
     [Category.Streetscape]: {
         inactive: true,
         slug: 'streetscape',
-        name: 'Streetscape',
+        name: 'Street Context',
         aboutUrl: 'https://pages.colouring.london/greenery',
         intro: "What's the building's context? Coming soon…",
     },

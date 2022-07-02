@@ -193,7 +193,38 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Land use Order as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
         example: "",
     },
-
+    current_landuse_source: {
+        category: Category.LandUse,
+        title: "Source of information",
+        tooltip: "Source for the current land use",
+        example: "",
+        items: [
+            "Expert/personal knowledge of building",
+            "Online streetview image",
+            "Open planning authority dataset",
+            "Open property tax dataset",
+            "Open housing dataset",
+            "Open address dataset",
+            "Other"
+        ],
+    },
+    current_landuse_source_detail: {
+        category: Category.LandUse,
+        title: "Source details",
+        tooltip: "References for current land use source (max 500 characters)",
+        example: "",
+    },
+    current_landuse_link: {
+        category: Category.LandUse,
+        title: "Source Links",
+        tooltip: "URL for current land use reference",
+        example: ["", "", ""],
+    },
+    current_landuse_verified: {
+        category: Category.LandUse,
+        title: 'Has this land use been manually verified?',
+        example: true,
+    },
     building_attachment_form: {
         category: Category.Type,
         title: "Adjacency/configuration",
@@ -251,6 +282,22 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Age,
         title: "Source of information",
         tooltip: "Source for the main start date",
+        items: [
+            "Expert knowledge of building",
+            "Expert estimate from image",
+            "Survey of London",
+            "Pevsner Guides",
+            "Victoria County History",
+            "Local history publication",
+            "Other publication",
+            "National Heritage List for England",
+            "Other database or gazetteer",
+            "Historical map",
+            "Other archive document",
+            "Film/Video",
+            "Other website",
+            "Other"
+        ],
         example: "",
     },
     date_source_detail: {
@@ -515,21 +562,15 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: 100,
     },
 
-    community_activities: {
-        category: Category.Community,
-        title: "Has this ever been used for community activities in the past?",
-        tooltip: "E.g. youth club, place of worship, GP surgery, pub",
-        example: true
-    },
     community_activities_current: {
         category: Category.Community,
         title: "Are activities open to the community currently taking place in the building?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
-    community_activities_past: {
+    community_activities: {
         category: Category.Community,
-        title: "Has the building been used in the past for community activities?",
+        title: "Has this ever been used for community activities in the past?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
@@ -595,7 +636,104 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
                 year_demolished: { min: 1993, max: 1994 },
                 lifespan: "2-5", overlap_present: "50%", links: ["", ""]}
         ]
-    }
+    },
+    has_extension: {
+        category: Category.Team,
+        title: "Is there an extension?",
+        tooltip: "",
+        example: false
+    },
+    extension_year: {
+        category: Category.Team,
+        title: "Year extension built (best estimate)",
+        tooltip: "This field is the same as 'Year built (best estimate)' in the Age category'",
+        tooltip_extension: "This should be the year the extension was built, not the original building",
+        example: 2020
+    },
+    developer_type: {
+        category: Category.Team,
+        title: "What type of developer built the building?",
+        example: "",
+        items: [
+            "State",
+            "Charity",
+            "Community/Cooperative",
+            "Other non-profit body",
+            "Private (individual)",
+            "Private (company/estate)",
+            "Religious body",
+            "Other"
+        ]
+    },
+    developer_name: {
+        category: Category.Team,
+        title: "Who were the developer(s)?",
+        tooltip: "Free text. First name, space, then Last name",
+        example: ["", "", ""],
+    },
+    developer_source_link: {
+        category: Category.Team,
+        title: "Source links for developer(s)",
+        tooltip: "URL for source for developer(s)",
+        example: ["", "", ""],
+    },
+    designers: {
+        category: Category.Team,
+        title: "Who were the main designer(s)?",
+        tooltip: "Free text. First name, space, then Last name",
+        example: ["", "", ""],
+    },
+    designers_source_link: {
+        category: Category.Team,
+        title: "Source links for designer(s)",
+        tooltip: "URL for source for designer(s)",
+        example: ["", "", ""],
+    },
+    lead_designer_type: {
+        category: Category.Team,
+        title: "Which best describes the lead designer?",
+        example: "",
+        items: [
+            "Landowner",
+            "Speculative builder",
+            "Government architecture department",
+            "Architect/ architectural firm",
+            "Engineering firm",
+            "Other"
+        ]
+    },
+    designer_awards: {
+        category: Category.Team,
+        title: "Did the design team win any awards for this building?",
+        tooltip: "",
+        example: false
+    },
+    awards_source_link: {
+        category: Category.Team,
+        title: "Source links for designer award(s)",
+        tooltip: "URL for source for designer award(s)",
+        example: ["", "", ""],
+    },
+    builder: {
+        category: Category.Team,
+        title: "Name of builder/ construction team",
+        example: ["", "", ""],
+    },
+    builder_source_link: {
+        category: Category.Team,
+        title: "Source builder/ construction team",
+        example: ["", "", ""],
+    },
+    other_team: {
+        category: Category.Team,
+        title: "Other significant members of the team",
+        example: ["", "", ""],
+    },
+    other_team_source_link: {
+        category: Category.Team,
+        title: "Source other significant team members",
+        example: ["", "", ""],
+    },
 };
 
 export const allFieldsConfig = {...dataFields, ...buildingUserFields};

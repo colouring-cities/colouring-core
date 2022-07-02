@@ -1,0 +1,14 @@
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS has_extension boolean null;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS extension_year smallint;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS developer_type varchar;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS developer_name text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS developer_source_link text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS designers text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS designers_source_link text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS lead_designer_type varchar;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS designer_awards boolean null;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS awards_source_link text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS builder text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS builder_source_link text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS other_team text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS other_team_source_link text[];

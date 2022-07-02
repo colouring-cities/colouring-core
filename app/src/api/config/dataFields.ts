@@ -53,6 +53,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     ref_osm_id: {
         edit: true,
+        verify: true,
     },
     location_name: {
         edit: false,
@@ -77,9 +78,11 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     location_latitude: {
         edit: true,
+        verify: true,
     },
     location_longitude: {
         edit: true,
+        verify: true,
     },
     date_year: {
         edit: true,
@@ -87,21 +90,26 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     date_lower: {
         edit: true,
+        verify: true,
     },
     date_upper: {
         edit: true,
+        verify: true,
     },
     date_source: {
         edit: true,
+        verify: true,
     },
     date_source_detail: {
         edit: true,
     },
     date_link: {
         edit: true,
+        verify: true,
     },
     facade_year: {
         edit: true,
+        verify: true,
     },
     facade_upper: {
         edit: false,
@@ -145,12 +153,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     construction_core_material: {
         edit: true,
+        verify: true,
     },
     construction_secondary_materials: {
         edit: true,
     },
     construction_roof_covering: {
         edit: true,
+        verify: true,
     },
     planning_portal_link: {
         edit: true,
@@ -257,7 +267,20 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         derivedEdit: true,
         verify: false,
     },
-
+    current_landuse_source: {
+        edit: true,
+        verify: true,
+    },
+    current_landuse_source_detail: {
+        edit: true,
+    },
+    current_landuse_link: {
+        edit: true,
+        verify: true,
+    },
+    current_landuse_verified: {
+        edit: true,
+    },
     dynamics_has_demolished_buildings: {
         edit: true,
         verify: true
@@ -280,15 +303,11 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         derivedEdit: true,
         verify: false
     },
-    community_activities: {
-        edit: true,
-        verify: false
-    },
     community_activities_current: {
         edit: true,
         verify: false
     },
-    community_activities_past: {
+    community_activities: {
         edit: true,
         verify: false
     },
@@ -302,7 +321,63 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     community_public_ownership_sources: {
         edit: true,
-        verify: false
+        verify: true
+    },
+    has_extension: {
+        edit: true,
+        verify: true
+    },
+    extension_year: {
+        edit: true,
+        verify: true
+    },
+    developer_type: {
+        edit: true,
+        verify: true
+    },
+    developer_name: {
+        edit: true,
+        verify: true
+    },
+    developer_source_link: {
+        edit: true,
+        verify: true
+    },
+    designers: {
+        edit: true,
+        verify: true
+    },
+    designers_source_link: {
+        edit: true,
+        verify: true
+    },
+    lead_designer_type: {
+        edit: true,
+        verify: true
+    },
+    designer_awards: {
+        edit: true,
+        verify: true
+    },
+    awards_source_link: {
+        edit: true,
+        verify: true
+    },
+    builder: {
+        edit: true,
+        verify: true
+    },
+    builder_source_link: {
+        edit: true,
+        verify: true
+    },
+    other_team: {
+        edit: true,
+        verify: true
+    },
+    other_team_source_link: {
+        edit: true,
+        verify: true
     }
 
 });

@@ -13,6 +13,6 @@ psql -c "DROP TABLE IF EXISTS boundary"
 shp2pgsql -s 3857 $boundary_file boundary | psql
 
 echo "Delete geometries (hence buildings, building_properties)..."
-psql -c "DELETE FROM geometries as g
+psql -c "DELETE FROM new_geometries as g
 USING boundary as b
 WHERE b.gid = 1 AND NOT ST_ContainsProperly(b.geom, g.geometry_geom);"
