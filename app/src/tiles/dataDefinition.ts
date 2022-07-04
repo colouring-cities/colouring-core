@@ -115,6 +115,15 @@ const LAYER_QUERIES = {
         WHERE
             community_local_significance_total > 0
     `,
+    community_expected_planning_application_total: `
+        SELECT
+            geometry_id,
+            community_expected_planning_application_total
+        FROM
+            buildings
+        WHERE
+        community_expected_planning_application_total > 0
+    `,
     community_in_public_ownership: `
         SELECT
             geometry_id,

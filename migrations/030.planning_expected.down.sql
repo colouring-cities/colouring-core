@@ -1,0 +1,5 @@
+ALTER TABLE building_user_attributes
+DROP COLUMN IF EXISTS community_expected_planning_application;
+
+ALTER TABLE buildings
+DROP COLUMN IF EXISTS community_expected_planning_application_total;

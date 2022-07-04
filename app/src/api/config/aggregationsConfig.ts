@@ -24,5 +24,11 @@ export const aggregationsConfig: { [key in keyof typeof buildingUserAttributesCo
             aggregateFieldName: 'community_local_significance_total',
             aggregationMethod: 'countTrue'
         }
+    ],
+    community_expected_planning_application: [
+        {
+            aggregateFieldName: 'community_expected_planning_application_total',
+            aggregationMethod: 'countTrue'
+        }
     ]
 };

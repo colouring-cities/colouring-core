@@ -303,6 +303,11 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         derivedEdit: true,
         verify: false
     },
+    community_expected_planning_application_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
     community_activities_current: {
         edit: true,
         verify: false
@@ -400,6 +405,11 @@ export const buildingUserAttributesConfig = valueType<DataFieldConfig>()({
         verify: false
     },
     community_local_significance: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_expected_planning_application: {
         perUser: true,
         edit: true,
         verify: false

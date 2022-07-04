@@ -105,6 +105,12 @@ export const buildingUserFields = {
         category: Category.Community,
         title: "Do you think this building should be recorded as a local heritage asset?",
         example: true
+    },
+    community_expected_planning_application: {
+        perUser: true,
+        category: Category.Community,
+        title: "Do you expect this site to be affected by a planning application in the near future?",
+        example: true
     }
 };
 
@@ -559,6 +565,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     community_local_significance_total: {
         category: Category.Community,
         title: "People who think the building should be recorded as one of local significance",
+        example: 100,
+    },
+
+    community_expected_planning_application_total: {
+        category: Category.Community,
+        title: "People who think the building will be affected by a planning application in the near future",
         example: 100,
     },
 
