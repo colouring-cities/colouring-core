@@ -81,6 +81,17 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 mode={props.mode}
                 copy={props.copy}
             />
+
+            <UserOpinionEntry
+                slug='community_expected_planning_application'
+                title={buildingUserFields.community_expected_planning_application.title}
+                
+                userValue={props.building.community_expected_planning_application}
+
+                onChange={props.onSaveChange}
+                mode={props.mode}
+                copy={props.copy}
+            />
         </div>
 
         <InfoBox>Can you help add information on community use of buildings?</InfoBox>

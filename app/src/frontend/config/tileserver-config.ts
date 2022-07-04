@@ -9,6 +9,7 @@ export type BuildingMapTileset = 'date_year' |
     'location' |
     'likes' |
     'community_local_significance_total' |
+    'community_expected_planning_application_total' |
     'community_in_public_ownership' |
     'planning_combined' |
     'sust_dec' |
