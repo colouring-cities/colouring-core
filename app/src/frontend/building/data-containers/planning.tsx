@@ -16,6 +16,9 @@ import { CategoryViewProps } from './category-view-props';
 */
 const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
+        <InfoBox type='warning'>
+            This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G2.-Data-capture-(2).-Live-streaming-and-automated-methods">read here</a>.
+        </InfoBox>
         <DataEntry
             title={dataFields.planning_portal_link.title}
             slug="planning_portal_link"
