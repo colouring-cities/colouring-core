@@ -79,6 +79,15 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
+            />
+        <Verification
+            slug="location_line_two"
+            allow_verify={props.user !== undefined && props.building.location_line_two !== null && !props.edited}
+            onVerify={props.onVerify}
+            user_verified={props.user_verified.hasOwnProperty("location_line_two")}
+            user_verified_as={props.user_verified.location_line_two}
+            verified_count={props.building.verified.location_line_two}
+            />
             
             />
         <DataEntry
@@ -90,6 +99,14 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             onChange={props.onChange}
             
             />
+        <Verification
+            slug="location_town"
+            allow_verify={props.user !== undefined && props.building.location_town !== null && !props.edited}
+            onVerify={props.onVerify}
+            user_verified={props.user_verified.hasOwnProperty("location_town")}
+            user_verified_as={props.user_verified.location_town}
+            verified_count={props.building.verified.location_town}
+            />
         <DataEntry
             title={dataFields.location_postcode.title}
             slug="location_postcode"
@@ -100,6 +117,14 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             maxLength={8}
             valueTransform={x=>x.toUpperCase()}
             
+            />
+        <Verification
+            slug="location_postcode"
+            allow_verify={props.user !== undefined && props.building.location_postcode !== null && !props.edited}
+            onVerify={props.onVerify}
+            user_verified={props.user_verified.hasOwnProperty("location_postcode")}
+            user_verified_as={props.user_verified.location_postcode}
+            verified_count={props.building.verified.location_postcode}
             />
         <DataEntry
             title={dataFields.ref_toid.title}
