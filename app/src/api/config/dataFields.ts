@@ -56,7 +56,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true,
     },
     location_name: {
-        edit: false,
+        edit: true,
         verify: true,
     },
     location_number: {
@@ -64,17 +64,20 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true,
     },
     location_street: {
-        edit: false,
+        edit: true,
         verify: true,
     },
     location_line_two: {
-        edit: false,
+        edit: true,
+        verify: true
     },
     location_town: {
-        edit: false,
+        edit: true,
+        verify: true
     },
     location_postcode: {
-        edit: false,
+        edit: true,
+        verify: true
     },
     location_latitude: {
         edit: true,
