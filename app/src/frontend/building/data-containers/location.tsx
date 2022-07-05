@@ -88,8 +88,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             user_verified_as={props.user_verified.location_line_two}
             verified_count={props.building.verified.location_line_two}
             />
-            
-            />
         <DataEntry
             title={dataFields.location_town.title}
             slug="location_town"
