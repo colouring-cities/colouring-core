@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { useAuth } from '../auth-context';
 import ErrorBox from '../components/error-box';
@@ -8,7 +8,7 @@ import InfoBox from '../components/info-box';
 import SupporterLogos from '../components/supporter-logos';
 
 export const SignUp: React.FC = () => {
-    const { isLoading, signup } = useAuth();
+    const { isLoading, signup, login } = useAuth();
     const [error, setError] = useState(undefined);
 
     const [username, setUsername] = useState('');
@@ -22,10 +22,16 @@ export const SignUp: React.FC = () => {
         e => {
             e.preventDefault();
             signup({ username, email, confirmEmail, password }, setError);
+            login({ username, password });
         },
         [username, email, confirmEmail, password, confirmConditions, signup]
+        // return <Redirect to="/my-account.html" />
     );
-
+    // const redirectToReferrer = this.state.redirectToReferrer;
+    // if (redirectToReferrer) {
+    //     return <Redirect to="/my-account.html" />
+    // }
+    // return <Redirect to="/my-account.html" />
     return (
         <article>
             <section className="main-col">
