@@ -15,7 +15,6 @@ const locationNumberPattern = "[1-9]\\d*[a-z]?(-([1-9]\\d*))?"; ///[1-9]\d*[a-z]
 
 const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        <InfoBox msg="Text-based address fields are disabled at the moment. We're looking into how best to collect this data." />
         <DataEntry
             title={dataFields.location_name.title}
             slug="location_name"
