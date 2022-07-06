@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { VerifyIcon } from '../../components/icons';
+import { DataTitleCopyable } from 'data-title';
 
 import './verification.css';
 
@@ -10,6 +11,7 @@ interface VerificationProps {
     user_verified_as: string;
     verified_count: number;
     allow_verify: boolean;
+    copyable?: boolean;
 }
 
 
