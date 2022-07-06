@@ -61,7 +61,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
-            
+            maxLength={30}
             />
         <Verification
             slug="location_street"
@@ -79,6 +79,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
+            maxLength={30}
             />
         <Verification
             slug="location_line_two"
