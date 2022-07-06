@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { VerifyIcon } from '../../components/icons';
-import { DataTitleCopyable } from 'data-title';
+import { DataTitleCopyable } from './data-title';
 
 import './verification.css';
 
