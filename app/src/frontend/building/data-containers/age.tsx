@@ -169,6 +169,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 tooltip={dataFields.date_link.tooltip}
                 placeholder="https://..."
                 editableEntries={true}
+                isUrl={true}
                 />
             <Verification
                 slug="date_link"
