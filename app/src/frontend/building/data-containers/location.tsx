@@ -24,7 +24,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             onChange={props.onChange}
             tooltip={dataFields.location_name.tooltip}
             placeholder="https://..."
-            
+            isUrl={true}
             />
         <Verification
             slug="location_name"
