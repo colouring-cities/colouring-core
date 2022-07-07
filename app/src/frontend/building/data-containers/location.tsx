@@ -23,7 +23,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             copy={props.copy}
             onChange={props.onChange}
             tooltip={dataFields.location_name.tooltip}
-            placeholder="Building name (if any)"
+            placeholder="https://..."
             
             />
         <Verification
