@@ -23,8 +23,8 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             copy={props.copy}
             onChange={props.onChange}
             tooltip={dataFields.location_name.tooltip}
-            placeholder="Building name (if any)"
-            
+            placeholder="https://..."
+            isUrl={true}
             />
         <Verification
             slug="location_name"
@@ -61,7 +61,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
-            
+            maxLength={30}
             />
         <Verification
             slug="location_street"
@@ -79,6 +79,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
+            maxLength={30}
             />
         <Verification
             slug="location_line_two"

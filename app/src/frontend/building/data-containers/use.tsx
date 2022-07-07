@@ -148,6 +148,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 tooltip={dataFields.current_landuse_link.tooltip}
                 placeholder="https://..."
                 editableEntries={true}
+                isUrl={true}
                 />
             <Verification
                 slug="current_landuse_link"

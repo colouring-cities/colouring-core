@@ -118,9 +118,9 @@ export const buildingUserFields = {
 export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name: {
         category: Category.Location,
-        title: "Building Name",
-        tooltip: "May not be needed for many buildings.",
-        example: "The Cruciform",
+        title: "Building information (link)",
+        tooltip: "Link to a website with information on the building, not needed for most.",
+        example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
     },
     location_number: {
         category: Category.Location,

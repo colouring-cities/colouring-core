@@ -121,6 +121,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               tooltip={dataFields.developer_source_link.tooltip}
               placeholder="https://..."
               editableEntries={true}
+              isUrl={true}
               />
           <Verification
               slug="developer_source_link"
@@ -159,6 +160,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               tooltip={dataFields.designers_source_link.tooltip}
               placeholder="https://..."
               editableEntries={true}
+              isUrl={true}
               />
           <Verification
               slug="designers_source_link"
@@ -214,6 +216,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               tooltip={dataFields.awards_source_link.tooltip}
               placeholder="https://..."
               editableEntries={true}
+              isUrl={true}
               />
           <Verification
               slug="awards_source_link"
@@ -253,6 +256,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
            onChange={props.onChange}
            placeholder="https://..."
            editableEntries={true}
+           isUrl={true}
            />
        <Verification
            slug="builder_source_link"
@@ -289,6 +293,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
            onChange={props.onChange}
            placeholder="https://..."
            editableEntries={true}
+           isUrl={true}
            />
        <Verification
            slug="other_team_source_link"
