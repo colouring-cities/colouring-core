@@ -13,7 +13,7 @@
 -- ALTER TABLE buildings
 --     ADD COLUMN IF NOT EXISTS ownership_type ownership_type DEFAULT 'Private individual';
 
--- Ownerhsip perception, would you describe this as a community asset?
+-- Ownership perception, would you describe this as a community asset?
 -- Boolean yes / no
 -- Below accepts t/f, yes/no, y/n, 0/1 as valid inputs all of which
 

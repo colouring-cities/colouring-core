@@ -105,6 +105,12 @@ export const buildingUserFields = {
         category: Category.Community,
         title: "Do you think this building should be recorded as a local heritage asset?",
         example: true
+    },
+    community_expected_planning_application: {
+        perUser: true,
+        category: Category.Community,
+        title: "Do you expect this site to be affected by a planning application in the near future?",
+        example: true
     }
 };
 
@@ -112,9 +118,9 @@ export const buildingUserFields = {
 export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name: {
         category: Category.Location,
-        title: "Building Name",
-        tooltip: "May not be needed for many buildings.",
-        example: "The Cruciform",
+        title: "Building information (link)",
+        tooltip: "Link to a website with information on the building, not needed for most.",
+        example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
     },
     location_number: {
         category: Category.Location,
@@ -559,6 +565,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     community_local_significance_total: {
         category: Category.Community,
         title: "People who think the building should be recorded as one of local significance",
+        example: 100,
+    },
+
+    community_expected_planning_application_total: {
+        category: Category.Community,
+        title: "People who think the building will be affected by a planning application in the near future",
         example: 100,
     },
 

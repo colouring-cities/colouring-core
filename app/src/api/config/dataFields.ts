@@ -56,7 +56,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true,
     },
     location_name: {
-        edit: false,
+        edit: true,
         verify: true,
     },
     location_number: {
@@ -64,17 +64,20 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true,
     },
     location_street: {
-        edit: false,
+        edit: true,
         verify: true,
     },
     location_line_two: {
-        edit: false,
+        edit: true,
+        verify: true
     },
     location_town: {
-        edit: false,
+        edit: true,
+        verify: true
     },
     location_postcode: {
-        edit: false,
+        edit: true,
+        verify: true
     },
     location_latitude: {
         edit: true,
@@ -303,6 +306,11 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         derivedEdit: true,
         verify: false
     },
+    community_expected_planning_application_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
     community_activities_current: {
         edit: true,
         verify: false
@@ -400,6 +408,11 @@ export const buildingUserAttributesConfig = valueType<DataFieldConfig>()({
         verify: false
     },
     community_local_significance: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_expected_planning_application: {
         perUser: true,
         edit: true,
         verify: false

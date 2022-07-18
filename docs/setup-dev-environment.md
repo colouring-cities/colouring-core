@@ -217,7 +217,7 @@ sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 Now clone the `colouring-london` codebase. 
 
 ```bash
-cd ~ && git clone https://github.com/colouring-london/colouring-london.git
+cd ~ && git clone https://github.com/colouring-cities/colouring-london.git
 ```
 
 **Note:** We assume here that you will clone the repo into the home directory of your Ubuntu installation. Watch out for later commands in this guide that assume the repo is located at `~/colouring-london` and modify the path if appropriate.
