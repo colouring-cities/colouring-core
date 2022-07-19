@@ -24,8 +24,11 @@ export const SignUp: React.FC = () => {
             signup({ username, email, confirmEmail, password }, setError);
         },
         [username, email, confirmEmail, password, confirmConditions, signup]
-        return <Redirect to="/my-account.html" />
     );
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer) {
+        return <Redirect to="/my-account.html" />
+    }
     return (
         <article>
             <section className="main-col">
