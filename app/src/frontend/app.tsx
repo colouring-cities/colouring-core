@@ -67,7 +67,7 @@ export const App: React.FC<AppProps> = props => {
                 <AuthRoute exact path="/login.html" component={Login} />
                 <AuthRoute exact path="/forgotten-password.html" component={ForgottenPassword} />
                 <AuthRoute exact path="/password-reset.html" component={PasswordReset} />
-                <AuthRoute exact path="/sign-up.html" component={SignUp} />
+                <AuthRoute exact path="/my-account.html" component={SignUp} />
                 <PrivateRoute exact path="/my-account.html" component={MyAccountPage} />
                 <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
                 <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
