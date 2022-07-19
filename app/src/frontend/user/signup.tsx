@@ -8,7 +8,7 @@ import InfoBox from '../components/info-box';
 import SupporterLogos from '../components/supporter-logos';
 
 export const SignUp: React.FC = () => {
-    const { isLoading, signup, login } = useAuth();
+    const { isLoading, signup } = useAuth();
     const [error, setError] = useState(undefined);
 
     const [username, setUsername] = useState('');
@@ -22,9 +22,9 @@ export const SignUp: React.FC = () => {
         e => {
             e.preventDefault();
             signup({ username, email, confirmEmail, password }, setError);
-            login({ username, password });
         },
         [username, email, confirmEmail, password, confirmConditions, signup]
+        return <Redirect to="/my-account.html" />
     );
     return (
         <article>
