@@ -1,7 +1,7 @@
 # Configuración de un ambiente local para desarrollo
 ## Precaución: Estas instrucciones son para ambientes de desarrrollo, por favor no emplearlas en el ambiente de producción
 
-Este documento tiene las instrucciones de configuración de un entorno de desarrollo local para la aplicación Colouring London. Se asume que de tiene  acceso a una máquina con Ubuntu 20.04 instalado.
+Este documento tiene las instrucciones de configuración de un entorno de desarrollo local para la aplicación Colouring London. Se asume que de tiene  acceso a una máquina con Ubuntu 20.04 o 22.04 instalado.
 
 ## Instalación
 ### Actualizar el sistema
@@ -10,8 +10,7 @@ sudo apt-get upgrade -y
 
 ### Instalar el conjunto de herramientas básicas
 ```bash
-sudo apt-get install -y build-essential git wget curl parallel rename
-sudo apt-get install -y python3 python3-pip python3-dev python3-venv
+sudo apt-get install -y build-essential git wget curl parallel rename python3 python3-pip python3-dev python3-venv
 ```
 
 ### Agregar las variables de entorno
@@ -84,7 +83,7 @@ sudo tar xf node-$NODE_VERSION-$DISTRO.tar.xz -C /usr/local/lib/node
 sudo mv /usr/local/lib/node/node-$NODE_VERSION-$DISTRO /usr/local/lib/node/node-$NODE_VERSION
 rm node-$NODE_VERSION-$DISTRO.tar.xz
 sudo env "PATH=$PATH" npm install -g npm@latest
-cd colouring-london/app/
+cd colouring-colombia/app/
 mkdir tilecache
 npm install --legacy-peer-deps
 ```
@@ -99,7 +98,7 @@ pip install --upgrade pip
 pip install --upgrade setuptools wheel
 pip install -r requirements.txt
 python get_test_polygons.py
-ls ~/Projects/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
+ls ~/Projects/colouring-colombia/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
 ./load_geometries.sh ./
 ./create_building_records.sh
 cd ../app/
