@@ -689,6 +689,18 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "URL for source for developer(s)",
         example: ["", "", ""],
     },
+    landowner: {
+        category: Category.Team,
+        title: "Landowner(s) at time of construction",
+        tooltip: "Free text. First name, space, then Last name",
+        example: ["", "", ""],
+    },
+    landowner_source_link: {
+        category: Category.Team,
+        title: "Source links for landowner(s)",
+        tooltip: "URL for source for landowner(s)",
+        example: ["", "", ""],
+    },
     designers: {
         category: Category.Team,
         title: "Who were the main designer(s)?",
