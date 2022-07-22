@@ -23,8 +23,9 @@ export function CityBaseMapLayer({ theme }: { theme: MapTheme }) {
     // In either theme case, we will use OS's light theme, but add our own filter
     const theme_class = theme === 'light' ? "light-theme" : "night-theme";
 
-    const baseUrl = `https://api.os.uk/maps/raster/v1/zxy/${layer}/{z}/{x}/{y}.png?key=${apiKey}`;
-    const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>';
+    const baseUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    const attribution = 'Building attribute data is © Colouring Athens contributors. &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+
 
     return <TileLayer
         url={baseUrl}

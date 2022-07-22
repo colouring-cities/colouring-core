@@ -1,5 +1,8 @@
 # Packages
 node_modules
+# app Packages
+
+app/node_modules
 
 # Config
 config.json
@@ -10,6 +13,7 @@ html/norton*.html
 .vscode
 
 # Data
+etl/colouring/*
 etl/cache/*
 etl/images/*
 etl/*.geojson
