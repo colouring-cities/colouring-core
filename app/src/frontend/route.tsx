@@ -35,7 +35,7 @@ export const AuthRoute: React.FC<RouteProps> = ({ component: Component, children
             if(isAuthenticated) {
                 let state = props.location.state as any;
                 let from = '/my-account.html';
-                if ('from' in state){
+                if (typeof state == 'object' && 'from' in state){
                     from = state.from;
                 }
 
