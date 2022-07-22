@@ -672,7 +672,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Community/Cooperative",
             "Other non-profit body",
             "Private (individual)",
-            "Private (company/estate)",
+            "Commercial (company/estate)",
             "Religious body",
             "Other"
         ]
