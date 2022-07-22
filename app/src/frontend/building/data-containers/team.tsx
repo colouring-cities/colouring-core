@@ -34,10 +34,10 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               editableEntries={true}
               />
           <Verification
-              slug="developelandownerr_name"
+              slug="landowner"
               allow_verify={props.user !== undefined && props.building.landowner !== null && !props.edited}
               onVerify={props.onVerify}
-              user_verified={props.user_verified.hasOwnProperty("develolandownerer_name")}
+              user_verified={props.user_verified.hasOwnProperty("landowner")}
               user_verified_as={props.user_verified.landowner}
               verified_count={props.building.verified.landowner}
               />
