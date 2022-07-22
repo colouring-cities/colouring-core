@@ -672,7 +672,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Community/Cooperative",
             "Other non-profit body",
             "Private (individual)",
-            "Private (company/estate)",
+            "Commercial (company/estate)",
             "Religious body",
             "Other"
         ]
@@ -687,6 +687,18 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Team,
         title: "Source links for developer(s)",
         tooltip: "URL for source for developer(s)",
+        example: ["", "", ""],
+    },
+    landowner: {
+        category: Category.Team,
+        title: "Landowner(s) at time of construction",
+        tooltip: "Free text. First name, space, then Last name",
+        example: ["", "", ""],
+    },
+    landowner_source_link: {
+        category: Category.Team,
+        title: "Source links for landowner(s)",
+        tooltip: "URL for source for landowner(s)",
         example: ["", "", ""],
     },
     designers: {
@@ -710,7 +722,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Speculative builder",
             "Government architecture department",
             "Architect/ architectural firm",
-            "Engineering firm",
+            "Engineer/ Engineering firm",
             "Other"
         ]
     },

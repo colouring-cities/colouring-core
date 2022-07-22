@@ -107,3 +107,41 @@ export const LogicalDataEntry: React.FC<LogicalDataEntryProps> = (props) => {
         </>
     );
 };
+
+export const LogicalDataEntryYesOnly: React.FC<LogicalDataEntryProps> = (props) => {
+    function handleValueChange(e: React.ChangeEvent<HTMLInputElement>) {
+        props.onChange?.(props.slug, e.target.value === 'true');
+    }
+
+    function handleClear(e: React.MouseEvent<HTMLButtonElement>) {
+        props.onChange?.(props.slug, null);
+    }
+
+    const isDisabled = props.mode === 'view' || props.disabled;
+
+    return (
+        <>
+            <DataTitleCopyable
+                slug={props.slug}
+                title={props.title}
+                tooltip={props.tooltip}
+                disabled={props.disabled || props.value == undefined}
+                copy={props.copy}
+            />
+            <div className="btn-group btn-group-toggle">
+                <ToggleButton
+                    value="true"
+                    checked={props.value === true}
+                    disabled={isDisabled || props.disallowTrue}
+                    checkedClassName='btn-outline-dark active'
+                    uncheckedClassName='btn-outline-dark'
+                    onChange={handleValueChange}
+                >Yes</ToggleButton>
+            </div>
+                {
+                    !isDisabled && props.value != null &&
+                    <ClearButton onClick={handleClear} disabled={props.disallowNull}/>
+                }
+        </>
+    );
+};
