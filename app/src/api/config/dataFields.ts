@@ -178,16 +178,20 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true,
     },
     planning_in_list: {
-        edit: false,
+        edit: true,
+        verify: true,
     },
     planning_list_id: {
-        edit: false,
+        edit: true,
+        verify: true,
     },
     planning_list_cat: {
-        edit: false,
+        edit: true,
+        verify: true,
     },
     planning_list_grade: {
-        edit: false,
+        edit: true,
+        verify: true,
     },
     planning_heritage_at_risk_id: {
         edit: true,
