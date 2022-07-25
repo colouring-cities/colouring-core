@@ -460,9 +460,15 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_in_list: {
         category: Category.Planning,
-        title: "Is listed on the National Heritage List for England?",
+        title: "Is it listed on the National Heritage List for England?",
         example: true,
         //tooltip: ,
+    },
+    planning_nhle_link: {
+        category: Category.Planning,
+        title: "NHLE list entry link",
+        tooltip: "URL for National Heritage List for England entry",
+        example: ["", "", ""],
     },
     planning_list_id: {
         category: Category.Planning,
