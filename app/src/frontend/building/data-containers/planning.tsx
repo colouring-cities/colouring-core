@@ -131,6 +131,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 copy={props.copy}
                 onChange={props.onChange}
                 />
+            <Verification
+                slug="planning_in_list"
+                allow_verify={props.user !== undefined && props.building.planning_in_list !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("planning_in_list")}
+                user_verified_as={props.user_verified.planning_in_list}
+                verified_count={props.building.verified.planning_in_list}
+                />
             <DataEntry
                 title={dataFields.planning_list_id.title}
                 slug="planning_list_id"
@@ -139,6 +147,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 disabled={false}
                 copy={props.copy}
                 onChange={props.onChange}
+                />
+            <Verification
+                slug="planning_list_id"
+                allow_verify={props.user !== undefined && props.building.planning_list_id !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("planning_list_id")}
+                user_verified_as={props.user_verified.planning_list_id}
+                verified_count={props.building.verified.planning_list_id}
                 />
             <SelectDataEntry
                 title={dataFields.planning_list_cat.title}
@@ -156,6 +172,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     "None"
                 ]}
                 />
+            <Verification
+                slug="planning_list_cat"
+                allow_verify={props.user !== undefined && props.building.planning_list_cat !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("planning_list_cat")}
+                user_verified_as={props.user_verified.planning_list_cat}
+                verified_count={props.building.verified.planning_list_cat}
+                />
             <SelectDataEntry
                 title={dataFields.planning_list_grade.title}
                 slug="planning_list_grade"
@@ -170,6 +194,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     "II",
                     "None"
                 ]}
+                />
+            <Verification
+                slug="planning_list_grade"
+                allow_verify={props.user !== undefined && props.building.planning_list_grade !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("planning_list_grade")}
+                user_verified_as={props.user_verified.planning_list_grade}
+                verified_count={props.building.verified.planning_list_grade}
                 />
             <DataEntry
                 title={dataFields.planning_heritage_at_risk_id.title}
