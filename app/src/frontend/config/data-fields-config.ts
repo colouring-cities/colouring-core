@@ -460,7 +460,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_in_list: {
         category: Category.Planning,
-        title: "Is listed on the National Heritage List for England?",
+        title: "Is it listed on the National Heritage List for England?",
         example: true,
         //tooltip: ,
     },
