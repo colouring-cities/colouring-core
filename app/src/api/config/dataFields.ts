@@ -237,6 +237,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    planning_nhle_link: {
+        edit: true,
+        verify: true,
+    },
     sust_breeam_rating: {
         edit: true,
         verify: true,

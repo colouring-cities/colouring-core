@@ -140,6 +140,22 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 verified_count={props.building.verified.planning_in_list}
                 />
             <DataEntry
+                title={dataFields.planning_nhle_link.title}
+                slug="planning_portal_link"
+                value={props.building.planning_nhle_link}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                />
+            <Verification
+                slug="planning_nhle_link"
+                allow_verify={props.user !== undefined && props.building.planning_nhle_link !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("planning_nhle_link")}
+                user_verified_as={props.user_verified.planning_nhle_link}
+                verified_count={props.building.verified.planning_nhle_link}
+                />
+            <DataEntry
                 title={dataFields.planning_list_id.title}
                 slug="planning_list_id"
                 value={props.building.planning_list_id}
