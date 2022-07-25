@@ -141,7 +141,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 />
             <DataEntry
                 title={dataFields.planning_nhle_link.title}
-                slug="planning_portal_link"
+                slug="planning_nhle_link"
                 value={props.building.planning_nhle_link}
                 mode={props.mode}
                 copy={props.copy}
