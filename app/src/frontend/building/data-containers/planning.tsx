@@ -147,7 +147,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
-                tooltip={dataFields.planning_nhle_link.tooltip}
                 placeholder="https://..."
                 editableEntries={true}
                 isUrl={true}
