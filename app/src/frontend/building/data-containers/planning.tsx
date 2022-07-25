@@ -146,6 +146,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
+                disabled={false}
                 />
             <Verification
                 slug="planning_nhle_link"
