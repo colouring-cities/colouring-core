@@ -467,8 +467,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     planning_nhle_link: {
         category: Category.Planning,
         title: "NHLE list entry link",
-        example: "",
-        //tooltip: ,
+        tooltip: "URL for National Heritage List for England entry",
+        example: ["", "", ""],
     },
     planning_list_id: {
         category: Category.Planning,
