@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 
 import InfoBox from '../../components/info-box';
 import { dataFields } from '../../config/data-fields-config';
+import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
 import DataEntry from '../data-components/data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
@@ -139,14 +140,17 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.planning_in_list}
                 verified_count={props.building.verified.planning_in_list}
                 />
-            <DataEntry
+            <MultiDataEntry
                 title={dataFields.planning_nhle_link.title}
                 slug="planning_nhle_link"
                 value={props.building.planning_nhle_link}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
-                disabled={false}
+                tooltip={dataFields.planning_nhle_link.tooltip}
+                placeholder="https://..."
+                editableEntries={true}
+                isUrl={true}
                 />
             <Verification
                 slug="planning_nhle_link"
