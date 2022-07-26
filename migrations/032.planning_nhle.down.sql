@@ -1,0 +1,1 @@
+ALTER TABLE buildings DROP COLUMN IF EXISTS planning_nhle_link;
