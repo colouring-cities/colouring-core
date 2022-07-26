@@ -8,4 +8,4 @@ This folder contains scripts for adding data to the Colouring London database fr
 | 🔓  | 2        | Data released by organisations other than government |
 | 🖥️  | 3        | Inferences from computational methods |
 | 📶  | 4        | Live streamed sources |
-| 👤  | 5        | Crowdsourced edits |
+| 👤  | 0        | Crowdsourced edits |
