@@ -15,6 +15,11 @@ import { CategoryViewProps } from './category-view-props';
 * Age view/edit section
 */
 const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
+    if (props.building.datasource_id == 0 ){
+        const emoji = 👤;
+    } else {
+        const emoji = 'test string';
+    }
     const currentYear = new Date().getFullYear();
     if (props.building.date_source == "Expert knowledge of building" ||
         props.building.date_source == "Expert estimate from image" ||
@@ -48,6 +53,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                   user_verified_as_lower={props.user_verified.date_lower}
                   verified_count_lower={props.building.verified.date_lower}
                   />
+              <p>{emoji}</p>
               <NumericDataEntry
                   title={dataFields.facade_year.title}
                   slug="facade_year"

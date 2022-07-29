@@ -55,7 +55,6 @@ class Verification extends Component<VerificationProps, any> {
                             onClick={this.handleClick(false)}>
                             Remove
                         </button>
-                        👤
                     </Fragment>
                 :
                     <Fragment>
