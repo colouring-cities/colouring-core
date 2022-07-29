@@ -15,7 +15,7 @@ import { CategoryViewProps } from './category-view-props';
 * Age view/edit section
 */
 const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
-    if (props.building.datasource_id !== undefined && props.building.datasource_id == 0 ){
+    if (props.building.datasource_id == 0 ){
         const emoji = 👤;
     } else {
         const emoji = 'test string';
