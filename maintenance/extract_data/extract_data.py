@@ -68,7 +68,7 @@ def make_data_extract(current_time, connection, zip_file_path):
 
     try:
         with zipfile.ZipFile(zip_file_path, mode='w') as newzip:
-            newzip.write(source_dir_path / 'README.txt', arcname='README.txt')
+            newzip.write(source_dir_path / 'README.md', arcname='README.md')
             newzip.write('/tmp/building_attributes.csv', arcname='building_attributes.csv')
             newzip.write('/tmp/building_uprns.csv', arcname='building_uprns.csv')
             newzip.write('/tmp/edit_history.csv', arcname='edit_history.csv')
