@@ -232,6 +232,10 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             const edits = {
                 [slug]: value
             };
+            
+            if (slug == 'current_landuse_group' && value == 'Dwellings'){
+                edits['current_landuse_verified'].push(true);
+            }
 
             this.doSubmit(edits);
         }
