@@ -31,7 +31,7 @@ export async function sendBuildingUpdate(buildingId: number, edits: BuildingEdit
     );
     console.log('sent a building update')
     if (edits['current_landuse_group'] == 'Dwellings'){
-        edits['current_landuse_verified'].push(true);
+        edits['current_landuse_verified'] = true;
     }
     if (data.error) {
         throw data.error;
