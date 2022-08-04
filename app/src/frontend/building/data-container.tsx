@@ -276,7 +276,6 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
 
                 this.doSubmit(edits);
             }
-            console.log(slug + " verify button clicked")
         }
 
         render() {
