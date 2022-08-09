@@ -30,8 +30,6 @@ const EditHistoryLatest: React.FunctionComponent<EditHistoryLatestProps> = (prop
     
     return (
         <>
-            <ContainerHeader title="Edit history" backLink='.' cat='edit-history' />
-
             <ul className="edit-history-list">
                 {history && history.map(entry => (
                     <li key={`${entry.revision_id}`} className="edit-history-list-element">
