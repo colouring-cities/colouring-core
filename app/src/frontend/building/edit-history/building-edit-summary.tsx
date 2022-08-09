@@ -82,30 +82,6 @@ const BuildingEditSummary: React.FunctionComponent<BuildingEditSummaryProps> = (
     );
 };
 
-const BuildingEditSummaryBrief: React.FunctionComponent<BuildingEditSummaryProps> = ({
-    historyEntry,
-    showBuildingId = false,
-    hyperlinkCategories = false
-}) => {
-    const entriesWithMetadata = enrichHistoryEntries(historyEntry.forward_patch, historyEntry.reverse_patch);
-    const entriesByCategory = arrayToDictionary(entriesWithMetadata, x => x.category);
-
-    const categoryHyperlinkTemplate = hyperlinkCategories && historyEntry.building_id != undefined ?
-            `/edit/$category/${historyEntry.building_id}` :
-            undefined;
-
-    return (
-        <div className="edit-history-entry">
-            <h2 className="edit-history-timestamp">Edited on {formatDate(parseDate(historyEntry.revision_timestamp))}</h2>
-        </div>
-    );
-};
-
 export {
     BuildingEditSummary
 };
-
-export {
-    BuildingEditSummaryBrief
-};
-
