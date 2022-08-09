@@ -59,7 +59,7 @@ const BuildingEditLatest: React.FunctionComponent<BuildingEditLatestProps> = ({
 
     return (
         <div className="edit-history-entry">
-            <h2 className="edit-history-timestamp">Edited on {formatDate(parseDate(historyEntry.revision_timestamp))}</h2>
+            <h2 className="edit-history-timestamp">Building last edited on {formatDate(parseDate(historyEntry.revision_timestamp))}</h2>
         </div>
     );
 };
