@@ -8,7 +8,7 @@ import TextboxDataEntry from '../data-components/textbox-data-entry';
 import Verification from '../data-components/verification';
 import YearDataEntry from '../data-components/year-data-entry';
 import withCopyEdit from '../data-container';
-import { EditHistory } from '../edit-history/edit-history';
+import { EditHistoryLatest } from '../edit-history/edit-history';
 
 import { CategoryViewProps } from './category-view-props';
 
@@ -23,7 +23,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
        ){
       return (
           <Fragment>
-              <EditHistory
+              <EditHistoryLatest
                   building={props.building}
               />
               <YearDataEntry
@@ -97,7 +97,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
       };
     return (
         <Fragment>
-            <EditHistory
+            <EditHistoryLatest
                 building={props.building}
             />
             <YearDataEntry
