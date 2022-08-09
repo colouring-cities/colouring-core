@@ -33,7 +33,7 @@
 
 .section-header .section-header-actions {
     display: inline-block;
-    flex-basis: 200px;
+    flex-basis: 400px;
     display: flex;
     flex-flow: row wrap;
     align-items: center;
