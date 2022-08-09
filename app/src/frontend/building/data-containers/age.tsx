@@ -8,7 +8,7 @@ import TextboxDataEntry from '../data-components/textbox-data-entry';
 import Verification from '../data-components/verification';
 import YearDataEntry from '../data-components/year-data-entry';
 import withCopyEdit from '../data-container';
-import { EditHistoryLatest } from '../edit-history/edit-history';
+import { EditHistoryLatest } from '../edit-history/edit-history-latest';
 
 import { CategoryViewProps } from './category-view-props';
 
