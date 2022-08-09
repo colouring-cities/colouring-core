@@ -23,7 +23,9 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
        ){
       return (
           <Fragment>
-              <EditHistory/>
+              <EditHistory
+                  building={props.building}
+              />
               <YearDataEntry
                   year={props.building.date_year}
                   upper={props.building.date_upper}
@@ -95,7 +97,9 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
       };
     return (
         <Fragment>
-            <EditHistory/>
+            <EditHistory
+                building={props.building}
+            />
             <YearDataEntry
                 year={props.building.date_year}
                 upper={props.building.date_upper}
