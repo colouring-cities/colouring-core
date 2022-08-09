@@ -13,7 +13,7 @@ interface EditHistoryLatestProps {
     building: Building;
 }
 
-const EditHistory: React.FunctionComponent<EditHistoryLatestProps> = (props) => {
+const EditHistoryLatest: React.FunctionComponent<EditHistoryLatestProps> = (props) => {
     const [history, setHistory] = useState<EditHistoryEntry[]>(undefined);
 
     useEffect(() => {
