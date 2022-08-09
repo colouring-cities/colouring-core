@@ -30,10 +30,12 @@ const EditHistoryLatest: React.FunctionComponent<EditHistoryLatestProps> = (prop
     
     return (
         <>
-            <ul className="edit-history-list"
-              <li key={`${history[0].revision_id}`} className="edit-history-list-element">
-                  <BuildingEditLatest historyEntry={history[0]} />
-              </li>
+            <ul className="edit-history-first" id="first-only">
+                {history && history.map(entry => (
+                    <li key={`${entry.revision_id}`} className="edit-history-list-element">
+                        <BuildingEditLatest historyEntry={entry} />
+                    </li>
+                ))}
             </ul>
         </>
     );

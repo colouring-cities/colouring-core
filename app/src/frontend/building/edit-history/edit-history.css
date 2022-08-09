@@ -6,3 +6,16 @@
     list-style: none;
     padding-left: 1rem;
 }
+
+ul[id="first-only"] li{
+    color: black;
+    display: none;
+    position: absolute;
+    font-size: 30px;
+}
+ul[id="first-only"] li:first-of-type {
+    color: black;
+    display: block;
+    position: absolute;
+    font-size: 30px;
+}
