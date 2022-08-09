@@ -27,9 +27,14 @@ const EditHistoryLatest: React.FunctionComponent<EditHistoryLatestProps> = (prop
             fetchData(); // define and call, because effect cannot return anything and an async fn always returns a Promise
         }
     }, [props.building]); // only re-run effect on building prop change
+    
     return (
         <>
-            <BuildingEditLatest historyEntry={history[0]} />
+            <ul className="edit-history-list"
+              <li key={`${history[0].revision_id}`} className="edit-history-list-element">
+                  <BuildingEditLatest historyEntry={history[0]} />
+              </li>
+            </ul>
         </>
     );
 };
