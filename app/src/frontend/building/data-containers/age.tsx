@@ -8,6 +8,7 @@ import TextboxDataEntry from '../data-components/textbox-data-entry';
 import Verification from '../data-components/verification';
 import YearDataEntry from '../data-components/year-data-entry';
 import withCopyEdit from '../data-container';
+import BuildingEditSummaryBrief from '../edit-history/building-edit-summary';
 
 import { CategoryViewProps } from './category-view-props';
 
@@ -22,6 +23,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
        ){
       return (
           <Fragment>
+              <BuildingEditSummaryBrief/>
               <YearDataEntry
                   year={props.building.date_year}
                   upper={props.building.date_upper}
@@ -93,6 +95,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
       };
     return (
         <Fragment>
+            <BuildingEditSummaryBrief/>
             <YearDataEntry
                 year={props.building.date_year}
                 upper={props.building.date_upper}
