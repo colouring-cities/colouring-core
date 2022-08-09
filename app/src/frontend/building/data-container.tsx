@@ -307,9 +307,6 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                     cat={this.props.cat}
                     title={this.props.title}
                 >
-                <EditHistoryLatest
-                    building={this.props.building}
-                />
                 {
                     this.props.help && !copy.copying?
                         <a
@@ -350,6 +347,9 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                 }
                 </ContainerHeader>
                 <div className="section-body">
+                <EditHistoryLatest
+                    building={this.props.building}
+                />
                 {
                     this.props.inactive ?
                         <Fragment>
