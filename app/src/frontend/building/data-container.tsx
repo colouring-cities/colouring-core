@@ -300,16 +300,16 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             const edited = this.isEdited();
 
             return (
+                <EditHistoryLatest
+                    building={this.props.building}
+                />
                 <section
                     id={this.props.cat}
                     className="data-section">
                 <ContainerHeader
                     cat={this.props.cat}
                     title={this.props.title}
-                >
-                <EditHistoryLatest
-                    building={this.props.building}
-                />
+                >                
                 {
                     this.props.help && !copy.copying?
                         <a
