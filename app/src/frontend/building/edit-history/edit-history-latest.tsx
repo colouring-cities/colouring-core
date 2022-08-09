@@ -29,9 +29,7 @@ const EditHistoryLatest: React.FunctionComponent<EditHistoryLatestProps> = (prop
     }, [props.building]); // only re-run effect on building prop change
     return (
         <>
-        <p key={`${history[0].revision_id}`} className="edit-history-list-element">
             <BuildingEditLatest historyEntry={history[0]} />
-        </p>
         </>
     );
 };
