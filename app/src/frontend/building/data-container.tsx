@@ -19,6 +19,8 @@ import { ViewEditControl } from './header-buttons/view-edit-control';
 import './data-container.css';
 import { dataFields } from '../config/data-fields-config'
 
+import { EditHistoryLatest } from './edit-history/edit-history-latest';
+
 interface DataContainerProps {
     title: string;
     cat: string;
@@ -305,6 +307,9 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                     cat={this.props.cat}
                     title={this.props.title}
                 >
+                <EditHistoryLatest
+                    building={this.props.building}
+                />
                 {
                     this.props.help && !copy.copying?
                         <a
