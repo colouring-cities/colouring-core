@@ -20,7 +20,7 @@ export const Login: React.FC = () => {
         e.preventDefault();
         setError(undefined);
 
-        login({ username, password });
+        login({ username, password }, setError);
     }, [username, password]);
 
     return (

@@ -5,7 +5,7 @@ import SelectDataEntry from '../data-components/select-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import Verification from '../data-components/verification';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
-import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
+import { LogicalDataEntry, LogicalDataEntryYesOnly } from '../data-components/logical-data-entry/logical-data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 
 import withCopyEdit from '../data-container';
@@ -22,6 +22,45 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
       return (
        <form>
           <InfoBox msg="Can you help us capture information on who built the current building?"></InfoBox>
+          <MultiDataEntry
+              title={dataFields.landowner.title}
+              slug="landowner"
+              value={props.building.landowner}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              tooltip={dataFields.landowner.tooltip}
+              placeholder=""
+              editableEntries={true}
+              />
+          <Verification
+              slug="landowner"
+              allow_verify={props.user !== undefined && props.building.landowner !== null && !props.edited}
+              onVerify={props.onVerify}
+              user_verified={props.user_verified.hasOwnProperty("landowner")}
+              user_verified_as={props.user_verified.landowner}
+              verified_count={props.building.verified.landowner}
+              />
+          <MultiDataEntry
+              title={dataFields.landowner_source_link.title}
+              slug="landowner_source_link"
+              value={props.building.landowner_source_link}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              tooltip={dataFields.landowner_source_link.tooltip}
+              placeholder="https://..."
+              editableEntries={true}
+              isUrl={true}
+              />
+          <Verification
+              slug="landowner_source_link"
+              allow_verify={props.user !== undefined && props.building.landowner_source_link !== null && !props.edited}
+              onVerify={props.onVerify}
+              user_verified={props.user_verified.hasOwnProperty("landowner_source_link")}
+              user_verified_as={props.user_verified.landowner_source_link}
+              verified_count={props.building.verified.landowner_source_link}
+              />
           <NumericDataEntry
               slug='date_year'
               title={dataFields.date_year.title}
@@ -187,7 +226,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               user_verified_as={props.user_verified.lead_designer_type}
               verified_count={props.building.verified.lead_designer_type}
               />
-          <LogicalDataEntry
+          <LogicalDataEntryYesOnly
               slug='designer_awards'
               title={dataFields.designer_awards.title}
               tooltip={dataFields.designer_awards.tooltip}

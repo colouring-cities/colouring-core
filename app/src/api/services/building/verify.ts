@@ -59,7 +59,8 @@ export async function getBuildingVerifications(building: BaseBuilding) {
 
     for (const item of verifications) {
         if (JSON.stringify(building[item.attribute]) == JSON.stringify(item.verified_value)) {
-            verified[item.attribute] = verified[item.attribute] ?? 0 + 1;
+            const count = verified[item.attribute] || 0;
+            verified[item.attribute] = count + 1;
         }
     }
     return verified;

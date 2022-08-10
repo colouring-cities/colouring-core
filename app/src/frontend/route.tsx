@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Route, RouteProps, Redirect } from 'react-router-dom';
+import { SpinnerIcon } from './components/icons';
 
 import { useAuth } from './auth-context';
 
 export const PrivateRoute: React.FC<RouteProps> = ({component: Component, children, ...rest}) => {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, isLoading } = useAuth();
 
     return <Route
         {...rest}
@@ -15,14 +16,17 @@ export const PrivateRoute: React.FC<RouteProps> = ({component: Component, childr
                 } else if(children) {
                     return <>{children}</>;
                 }
-                
+
             } else {
+                if (isLoading) {
+                    return <Fragment><SpinnerIcon spin={true} /> Loading user info...</Fragment>
+                }
                 return <Redirect to={{
                     pathname: "/login.html",
                     state: { from: props.location.pathname }
                 }} />;
             }
-        }} 
+        }}
     />
 };
 
@@ -35,7 +39,7 @@ export const AuthRoute: React.FC<RouteProps> = ({ component: Component, children
             if(isAuthenticated) {
                 let state = props.location.state as any;
                 let from = '/my-account.html';
-                if ('from' in state){
+                if (typeof state == 'object' && 'from' in state){
                     from = state.from;
                 }
 
@@ -47,6 +51,6 @@ export const AuthRoute: React.FC<RouteProps> = ({ component: Component, children
                     return <>{children}</>;
                 }
             }
-        }} 
+        }}
     />
 };

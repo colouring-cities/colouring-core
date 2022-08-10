@@ -102,7 +102,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
     },
     [Category.LandUse]: {
         slug: 'use',
-        name: 'Current Use',
+        name: 'Land Use',
         aboutUrl: 'https://pages.colouring.london/use',
         intro: 'How are buildings used, and how does use change over time?',
     },
