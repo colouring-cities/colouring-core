@@ -93,7 +93,7 @@ function renderHTML(context, data, req, res) {
 
         <meta property="og:url"                content="https://colouring.london" />
         <meta property="og:type"               content="website" />
-        <meta property="og:title"              content="Colouring London" />
+        <meta property="og:title"              content="Colouring Cities" />
         <meta property="og:description"        content="Colouring London is a knowledge exchange platform collecting information on every building in London, to help make the city more sustainable. We’re building it at The Bartlett Centre for Advanced Spatial Analysis, University College London." />
         <meta property="og:locale"             content="en_GB" />
         <meta property="og:image"              content="https://colouring.london/images/logo-cl-square.png" />
@@ -108,7 +108,7 @@ function renderHTML(context, data, req, res) {
         <meta name="mobile-web-app-capable" content="yes">
         <link rel="icon" sizes="192x192" href="icon-192x192.png">
 
-        <title>Colouring London</title>
+        <title>Colouring Cities</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <style>
           @font-face {

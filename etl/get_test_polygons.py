@@ -19,7 +19,10 @@ osmnx.config(log_console=True, use_cache=True)
 size = 256
 
 # load buildings from about 1.5km² around UCL
-point = (51.524498, -0.133874)
+#point = (51.524498, -0.133874)
+
+#Load buildings from about 1.5 km² around Biblioteca Luis Angel Arango
+point = (4.59729, -74.07290)
 dist = 612
 tags = {'building': True}
 #gdf = osmnx.footprints_from_point(point=point, dist=dist)
