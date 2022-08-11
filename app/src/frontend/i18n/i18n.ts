@@ -1,5 +1,8 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { i18nextPlugin } from 'translation-check'
+
+
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -22,11 +25,27 @@ const resources = {
       "Welcome Second Paragraph":"Colouring Cities es también un programa de investigación, con sede en el Instituto Alan Turing (el instituto nacional del Reino Unido para la ciencia de los datos y la inteligencia artificial). El programa trabaja con socios locales, regionales, nacionales e internacionales para desarrollar un código de plataforma abierta que también sea relevante para otras ciudades.",
       "Welcome Third Paragraph":"Continuamente se añaden nuevos conjuntos de datos y características. Cualquier ayuda que pueda prestar, coloreando nuestros mapas de edificios y enriqueciendo y verificando nuestros conjuntos de datos abiertos, será muy apreciada.",
       "welcome_fourth_paragraph": 'Todos nuestros <1>datos</1> y <3>código</3> pueden descargarse, utilizarse y compartirse libremente con arreglo a las condiciones de nuestra licencia abierta.',
-      "Start Colouring Here!":"Empieza a colorear tu ciudad!"
-
+      "Start Colouring Here!":"Empieza a colorear tu ciudad!",
+      "Age":"Edad",
+      "Location":"Localización",
+      "Land Use":"Uso",
+      "Type":"Tipo",
+      "Size":"Tamaño",
+      "Construction":"Construcción",
+      "Street Context":"Contexto",
+      "Team":"Constructor",
+      "Planning":"Planificación",
+      "Sustainability":"Sustentabilidad",
+      "Dynamics":"Mutaciones",
+      "Community":"Comunidad"
     }
   }
 };
+
+
+if (typeof window !== "undefined") {
+  i18n.use(i18nextPlugin)
+}
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next

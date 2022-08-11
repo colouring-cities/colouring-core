@@ -5,6 +5,7 @@ import { ListWrapper } from '../components/list-wrapper';
 
 import './categories.css';
 import { categoriesOrder, categoriesConfig } from '../config/categories-config';
+import { useTranslation } from 'react-i18next';
 
 interface CategoriesProps {
     mode: 'view' | 'edit' | 'multi-edit';
@@ -21,9 +22,10 @@ const Categories: React.FC<CategoriesProps> = (props) => (
                 inactive = false
             } = categoriesConfig[category];
 
+            const {t} = useTranslation();
             return <CategoryLink
                 key={category}
-                title={name}
+                title={t(name)}
                 slug={slug}
                 help={aboutUrl}
                 inactive={inactive}

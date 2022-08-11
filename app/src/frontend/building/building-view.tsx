@@ -6,6 +6,7 @@ import { categoryUiConfig } from '../config/category-ui-config';
 import { Building, UserVerified } from '../models/building';
 
 import BuildingNotFound from './building-not-found';
+import { Trans, useTranslation } from 'react-i18next';
 
 interface BuildingViewProps {
     cat: Category;
@@ -38,9 +39,11 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         inactive = false
     } = categoryConfig;
 
+    const {t} = useTranslation();
+
     return <DataContainer
         {...props}
-        title={name}
+        title={t(name)}
         help={aboutUrl}
         intro={intro}
         inactive={inactive}
