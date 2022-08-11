@@ -9,9 +9,7 @@
 
 ul[id="first-only"] li{
     display: none;
-    padding-left: 0;
 }
 ul[id="first-only"] li:first-of-type {
     display: block;
-    padding-left: 0;
 }
