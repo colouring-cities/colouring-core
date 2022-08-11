@@ -30,7 +30,7 @@ const CategoryEditSummary: React.FunctionComponent<CategoryEditSummaryProps> = p
                 {
                     props.hyperlinkCategory && props.hyperlinkTemplate != undefined ?
                         <Link to={props.hyperlinkTemplate.replace(/\$category/, categorySlug)}>{categoryName}</Link> :
-                        categoryName
+                        categoryName+'etretre'
                 }:
             </h3>
             <ul>
