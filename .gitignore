@@ -13,7 +13,7 @@ html/norton*.html
 .vscode
 
 # Data
-etl/colouring/*
+etl/
 etl/cache/*
 etl/images/*
 etl/*.geojson
