@@ -6,3 +6,10 @@
     list-style: none;
     padding-left: 1rem;
 }
+
+ul[id="first-only"] li{
+    display: none;
+}
+ul[id="first-only"] li:first-of-type {
+    display: block;
+}

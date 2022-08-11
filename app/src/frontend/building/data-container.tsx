@@ -19,6 +19,8 @@ import { ViewEditControl } from './header-buttons/view-edit-control';
 import './data-container.css';
 import { dataFields } from '../config/data-fields-config'
 
+import { EditHistoryLatest } from './edit-history/edit-history-latest';
+
 interface DataContainerProps {
     title: string;
     cat: string;
@@ -330,7 +332,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                     <NavLink
                                         className="icon-button history"
                                         to={`/${this.props.mode}/${this.props.cat}/${this.props.building.building_id}/history`}
-                                    >History</NavLink>
+                                    >Edit History</NavLink>
                                     <ViewEditControl
                                         cat={this.props.cat}
                                         mode={this.props.mode}
@@ -345,6 +347,9 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                 }
                 </ContainerHeader>
                 <div className="section-body">
+                <EditHistoryLatest
+                    building={this.props.building}
+                />
                 {
                     this.props.inactive ?
                         <Fragment>
