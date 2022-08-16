@@ -24,12 +24,12 @@ const Welcome = () => (
             and enriching and verifying our open datasets is very much appreciated.
         </p>
         <p>
-            All our <Link to="/data-extracts.html">data</Link> and <a href="https://github.com/colouring-london/colouring-london">code</a> are 
-            free to download, use and share under our open licence terms.
-        </p>
-        <p>
-            See also Colouring London's <a href="https://github.com/colouring-cities/manual/wiki">open manual</a>, which provides easy-to-use non-technical information
-            about the CCRP for anyone interested in our research.
+            All our <Link to="/data-extracts.html">data</Link> and
+            <a href="https://github.com/colouring-london/colouring-london">code</a> are 
+            free to download, use and share under our open licence terms. 
+            Our <a href="https://github.com/colouring-cities/manual/wiki">open manual</a>
+            provides detailed non-technical information on the CCRP, and our international collaborators, 
+            for anyone interested in our research.
         </p>
         <Link to="/view/categories"
             className="btn btn-outline-dark btn-lg btn-block">
