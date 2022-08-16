@@ -14,7 +14,7 @@ const Welcome = () => (
         </p>
         <p>
 
-            Colouring London is also the prototype for the Colouring Cities Research programme
+            Colouring London is also the prototype for the Colouring Cities Research Programme (CCRP)
             based at the Alan Turing Institute (the UK's national Institute for data science and artificial intelligence).
             The programme works with local, regional, national and international partners to develop
             open platform code also of relevance to other cities.
@@ -29,7 +29,7 @@ const Welcome = () => (
         </p>
         <p>
             See also Colouring London's <a href="https://github.com/colouring-cities/manual/wiki">open manual</a>, which provides easy-to-use non-technical information
-            about the Colouring Cities Research Programme (CCRP) for anyone interested in our research.
+            about the CCRP for anyone interested in our research.
         </p>
         <Link to="/view/categories"
             className="btn btn-outline-dark btn-lg btn-block">
