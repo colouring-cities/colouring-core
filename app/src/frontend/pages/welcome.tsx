@@ -28,9 +28,8 @@ const Welcome = () => (
             free to download, use and share under our open licence terms.
         </p>
         <p>
-            Colouring London's <a href="https://github.com/colouring-cities/manual/wiki">open manual</a> provides easy-to-use non-technical information
-            about the Colouring Cities Research Programme (CCRP), and is written both for CCRP academic partners working on our open code,
-            and for anyone interested in our research.
+            See also Colouring London's <a href="https://github.com/colouring-cities/manual/wiki">open manual</a>, which provides easy-to-use non-technical information
+            about the Colouring Cities Research Programme (CCRP) for anyone interested in our research.
         </p>
         <Link to="/view/categories"
             className="btn btn-outline-dark btn-lg btn-block">
