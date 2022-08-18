@@ -204,3 +204,14 @@ Create a new table for the EPC data and load the csv data into it.
 ```
 ./load_epc.sh
 ```
+
+### TODO
+
+1. Refactor (probably easier in Python) so that we get the following:
+    - `current_energy_rating` is null/blank when "Invalid!" (and then limit the sql column to char(1)) 
+    - `floor_level` <- check if we can change this to be integer, e.g. substitute ground level for 0
+    - wrangle a year out of `construction_age_band` and make this an int
+    - check if UPRN is anywhere in the db already and whether it should be an int
+2. ~~Write the script that updates the buildings table from the epc table~~ <- what we really want is a way to edit the fields via website API OR at least make sure these are recorded as edits!!! <- perhaps update/re-jig issue #815
+3. Make sure the data can be viewed in the correct fields of the app as per PH comment
+4. Add this section to the ETL contents at top
