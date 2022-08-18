@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS epc;
+
 -- Create EPC data table
 CREATE TABLE epc (
   
