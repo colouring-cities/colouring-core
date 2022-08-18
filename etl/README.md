@@ -176,3 +176,29 @@ Mark buildings with geometries not present in the update as demolished.
 **TODO:** Update this after PR [#794](https://github.com/colouring-cities/colouring-london/pull/794)
 
 Run the Colouring London [deployment scripts](https://github.com/colouring-cities/colouring-london-config#deployment).
+
+# Adding EPC data
+
+Download the EPC data.
+
+```
+git clone https://github.com/iagw/colouring-cities
+```
+
+Copy `gla-epc-subset.zstd.parquet` into `colouring-london/etl`.
+
+```
+cp /path/to/gla-epc-subset.zstd.parquet /path/to/colouring-london/etl
+```
+
+Run a conversion to csv (make sure you have an up to date Python 3 environment and pip installation and run `pip install -r requirements.txt` first if you haven't already).
+
+```
+python epc.py
+```
+
+Create a new table for the EPC data and add to it.
+
+```
+psql < load_epc.sql
+```
