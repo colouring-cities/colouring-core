@@ -1,6 +1,20 @@
 psql -c "DROP TABLE IF EXISTS epc;"
 psql -c "DROP TABLE IF EXISTS temp;"
 
+# Create temp data table mayching CSV headers
+psql -c "
+CREATE TABLE temp (
+  
+    CURRENT_ENERGY_RATING char(1),
+    LODGEMENT_DATE timestamp,
+    FLOOR_LEVEL integer,
+    CONSTRUCTION_AGE_BAND varchar,
+    UPRN integer,
+    EPCDatafromFile varchar,
+    TOID varchar
+);
+"
+
 # Create EPC data table
 psql -c "
 CREATE TABLE epc (
