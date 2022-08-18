@@ -1,4 +1,5 @@
 psql -c "DROP TABLE IF EXISTS epc;"
+psql -c "DROP TABLE IF EXISTS temp;"
 
 # Create EPC data table
 psql -c "
@@ -9,14 +10,22 @@ CREATE TABLE epc (
     floor_level integer,
     construction_age_band varchar,
     uprn integer,
-    epcdatafromfile varchar,
     toid varchar
 );
 "
 
 # Read in the EPC data
 psql -c "
-\copy epc (CURRENT_ENERGY_RATING, LODGEMENT_DATE, FLOOR_LEVEL, CONSTRUCTION_AGE_BAND, UPRN, EPCDatafromFile, TOID)
+\copy temp
 FROM 'gla-epc-subset.csv'
 WITH (FORMAT csv, HEADER true);
 "
+
+# Move to the EPC table
+psql -c "
+INSERT INTO epc (current_energy_rating, lodgement_date, floor_level, construction_age_band, uprn, toid)
+SELECT CURRENT_ENERGY_RATING, LODGEMENT_DATE, FLOOR_LEVEL, CONSTRUCTION_AGE_BAND, UPRN, TOID
+FROM temp;
+"
+
+psql -c "DROP TABLE temp;"
