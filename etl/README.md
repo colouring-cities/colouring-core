@@ -197,7 +197,7 @@ Run a conversion to csv (make sure you have an up to date Python 3 environment a
 python epc.py
 ```
 
-Create a new table for the EPC data and add to it.
+Open `load_epc.sql` and edit `'gla-epc-subset.csv'` to be the full path to the csv, then run this script to create a new table for the EPC data and load the csv data into it.
 
 ```
 psql < load_epc.sql
