@@ -4,7 +4,7 @@ psql -c "DROP TABLE IF EXISTS temp;"
 # Create temp data table mayching CSV headers
 psql -c "
 CREATE TABLE temp (
-  
+    INDEX integer,
     CURRENT_ENERGY_RATING char(1),
     LODGEMENT_DATE timestamp,
     FLOOR_LEVEL integer,
