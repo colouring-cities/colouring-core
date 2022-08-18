@@ -15,4 +15,4 @@ CREATE TABLE epc (
 "
 
 # Read in the EPC data
-psql -c "\copy epc FROM 'gla-epc-subset.csv' WITH (FORMAT csv HEADER true);"
+psql -c "\copy epc FROM 'gla-epc-subset.csv' DELIMITER ',' CSV HEADER;"
