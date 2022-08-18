@@ -6,7 +6,7 @@ CREATE TABLE epc (
     index integer,
     current_energy_rating varchar(8),
     lodgement_date timestamp,
-    floor_level integer,
+    floor_level varchar(4),
     construction_age_band varchar,
     uprn real,
     epc_data_from_file varchar,
