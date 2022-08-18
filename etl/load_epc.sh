@@ -29,11 +29,7 @@ CREATE TABLE epc (
 "
 
 # Read in the EPC data
-psql -c "
-\copy temp
-FROM 'gla-epc-subset.csv'
-WITH (FORMAT csv, HEADER true);
-"
+psql -c "\copy temp FROM 'gla-epc-subset.csv' WITH (FORMAT csv);"
 
 # Move to the EPC table
 psql -c "
