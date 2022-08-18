@@ -4,7 +4,7 @@ psql -c "DROP TABLE IF EXISTS epc;"
 psql -c "
 CREATE TABLE epc (
     index integer,
-    current_energy_rating varchar(10),
+    current_energy_rating varchar(8),
     lodgement_date timestamp,
     floor_level integer,
     construction_age_band varchar,
@@ -15,4 +15,4 @@ CREATE TABLE epc (
 "
 
 # Read in the EPC data
-psql -c "\copy epc FROM 'gla-epc-subset.csv' WITH (FORMAT csv);"
+psql -c "\copy epc FROM 'gla-epc-subset.csv' WITH (FORMAT csv HEADER true);"
