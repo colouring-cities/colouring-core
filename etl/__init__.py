@@ -1,2 +1,2 @@
 from .filter_mastermap import filter_mastermap
-from .epc_cleaning_functions import floor_level_to_int
+from .epc_cleaning_functions import floor_level_to_int, construction_to_int

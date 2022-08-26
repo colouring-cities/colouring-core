@@ -1,5 +1,5 @@
 import pytest
-from etl import floor_level_to_int#, construction_to_int
+from etl import floor_level_to_int, construction_to_int
 
 
 def test_floor_level_to_int():
@@ -12,8 +12,10 @@ def test_floor_level_to_int():
         assert floor_level_to_int(lvl) == ex
         
         
-# def test_construction_to_int():
-#     """Test that differently formatted construction ages can correctly converted."""
-#     test_dates = ['England and Wales: before 1900', None, 'England and Wales: 1991-1995',
-#                   'NO DATA!', 'England and Wales: 2007 onwards', 'INVALID!', '1950']
-#     expected  = [1900, ]
+def test_construction_to_int():
+    """Test that differently formatted construction ages can correctly converted."""
+    test_dates = ['England and Wales: before 1900', None, 'England and Wales: 1991-1996',
+                  'NO DATA!', 'England and Wales: 2007 onwards', 'INVALID!', '1950']
+    expected  = [1900, None, 1994, None, 2007, None, 1950]
+    for date, ex in zip(test_dates, expected):
+        assert construction_to_int(date) == ex

@@ -32,3 +32,7 @@ def floor_level_to_int(lvl):
         else:
             return None
         return int(lvl)
+        
+        
+def construction_to_int(year):
+    return 1
