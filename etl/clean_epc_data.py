@@ -9,20 +9,11 @@ from epc_cleaning_functions import floor_level_to_int
 
 gla = pd.read_parquet('gla-epc-subset.zstd.parquet')
 
-gla
-
-# Remove invalid CURRENT_ENERGY_RATING
-
+# Clean the CURRENT_ENERGY_RATING column
 gla = gla.replace('INVALID!', None)
 
-
 # Clean the FLOOR_LEVEL column
-
 gla['FLOOR_LEVEL'] = gla['FLOOR_LEVEL'].apply(floor_level_to_int)
 
-# +
-# for fl in gla['FLOOR_LEVEL']:
-#     print(fl)
-
-# +
-# gla.to_csv('gla-epc-subset.csv')
+# Export to csv
+gla.to_csv('gla-epc-subset.csv')
