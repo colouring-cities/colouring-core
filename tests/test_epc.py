@@ -8,8 +8,5 @@ def test_floor_level_to_int():
     expected = [1, 2, 1, 2, 3, 4, 1, 2, 0, 0, None, 'mid floor', 'Basement']
     i = 0
     for lvl in test_levels:
-        try:
-            assert floor_level_to_int(lvl) == expected[i]
-        except AssertionError:
-            print(lvl)
+        assert floor_level_to_int(lvl) == expected[i]
         i+=1
