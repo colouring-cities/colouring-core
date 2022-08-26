@@ -1,6 +1,6 @@
 def floor_level_to_int(lvl):
     """Convert differently formatted floor level strings to ints."""
-    if lvl == 'Ground':
+    if 'Ground' in lvl or 'ground' in lvl:
         lvl = 0
     elif lvl == 'NODATA!':
         lvl = None
