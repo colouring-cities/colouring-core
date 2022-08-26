@@ -8,4 +8,6 @@ import pandas as pd
 
 gla = pd.read_parquet('gla-epc-subset.zstd.parquet')
 
+gla = gla.replace('INVALID!', None)
+
 gla.to_csv('gla-epc-subset.csv')

@@ -4,7 +4,7 @@ psql -c "DROP TABLE IF EXISTS epc;"
 psql -c "
 CREATE TABLE epc (
     index integer,
-    current_energy_rating varchar(8),
+    current_energy_rating char(1),
     lodgement_date timestamp,
     floor_level varchar(16),
     construction_age_band varchar,
