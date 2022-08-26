@@ -1,5 +1,5 @@
 import pytest
-from etl import filter_mastermap
+from etl import floor_level_to_int
 
 
 def test_floor_level_to_int():
