@@ -8,12 +8,15 @@ import pandas as pd
 
 gla = pd.read_parquet('gla-epc-subset.zstd.parquet')
 
+# Remove invalid CURRENT_ENERGY_RATING
+
 gla = gla.replace('INVALID!', None)
 
-'01'[1]
 
-levels = ['01', '02' '1st', '2nd', '3rd', '4th', '1', '2', '0', 'Ground', 'NODATA!', 'mid floor', 'Basement']
+# Clean the FLOOR_LEVEL column
+
 def floor_level_to_int(lvl):
+    """Convert differently formatted floor level strings to ints."""
     if lvl == 'Ground':
         lvl = 0
     elif lvl == 'NODATA!':
@@ -29,7 +32,6 @@ def floor_level_to_int(lvl):
     except:
         pass
     return lvl
-list(map(floor_level_to_int, levels))
 
 # +
 # for fl in gla['FLOOR_LEVEL']:
