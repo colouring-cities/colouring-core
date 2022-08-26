@@ -35,4 +35,17 @@ def floor_level_to_int(lvl):
         
         
 def construction_to_int(year):
-    return 1
+    if year == None:
+        return None
+    elif type(year) == int:
+        return year
+    # else assume we have a string
+    if 'before' in year:
+        return int(year.split('before ')[-1])
+    elif '-' in year:
+        return round(sum(list(map(float, year.split(' ')[-1].split('-'))))/2)
+    elif 'onwards' in year:
+        return int(year.split(' onwards')[-2].split(' ')[-1])
+    elif year == 'NO DATA!' or year == 'INVALID!':
+        return None
+    return int(year)
