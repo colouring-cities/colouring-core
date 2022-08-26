@@ -1,5 +1,10 @@
 def floor_level_to_int(lvl):
-    """Convert differently formatted floor level strings to ints."""
+    """Convert differently formatted floor level strings to ints.
+       As you can see below, there are some assumptions made such as
+       the 'top floor' being 2. This has been done so we can get an int value
+       for the floor for each building automatically populated by EPC data.
+       Incorrect assumptions can be updated later via the Colouring London interface.
+    """
     lvl = lvl.replace('or above', '')
     lvl = lvl.replace('+', '')
     if 'Ground' in lvl or 'ground' in lvl:
