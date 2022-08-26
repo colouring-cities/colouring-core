@@ -5,6 +5,11 @@ def floor_level_to_int(lvl):
        for the floor for each building automatically populated by EPC data.
        Incorrect assumptions can be updated later via the Colouring London interface.
     """
+    if lvl == None:
+        return 0
+    elif type(lvl) == int:
+        return lvl
+    # else assume we have a string
     ordinals = ['st', 'nd', 'rd', 'th']
     lvl = lvl.replace('or above', '')
     lvl = lvl.replace('+', '')
