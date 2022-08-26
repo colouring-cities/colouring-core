@@ -194,7 +194,7 @@ cp /path/to/gla-epc-subset.zstd.parquet /path/to/colouring-london/etl
 Run a conversion to csv (make sure you have an up to date Python 3 environment and pip installation and run `pip install -r requirements.txt` first if you haven't already).
 
 ```
-python epc.py
+python clean_epc_data.py
 ```
 
 This should have created a csv in the `/etl` dir called `'gla-epc-subset.csv'`.
