@@ -10,13 +10,24 @@ gla = pd.read_parquet('gla-epc-subset.zstd.parquet')
 
 gla = gla.replace('INVALID!', None)
 
-'1st'.replace('st', '')
+'01'[1]
 
-levels = ['01', '1st', '1', 'Ground', 'NODATA!', 'mid floor', 'Basement']
+levels = ['01', '02' '1st', '2nd', '3rd', '4th', '1', '2', '0', 'Ground', 'NODATA!', 'mid floor', 'Basement']
 def floor_level_to_int(lvl):
-    ordinals = ['st', 'nd', 'rd', 'th']
-    for ordinal in ordinals:
-        lvl.replace(ordinal, '')
+    if lvl == 'Ground':
+        lvl = 0
+    elif lvl == 'NODATA!':
+        lvl = None
+    else:
+        ordinals = ['st', 'nd', 'rd', 'th']
+        for ordinal in ordinals:
+            lvl = lvl.replace(ordinal, '')
+        if lvl[0] == '0' and lvl != '0':
+            lvl = lvl[1]
+    try:
+        lvl = int(lvl)
+    except:
+        pass
     return lvl
 list(map(floor_level_to_int, levels))
 
