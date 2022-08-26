@@ -10,4 +10,19 @@ gla = pd.read_parquet('gla-epc-subset.zstd.parquet')
 
 gla = gla.replace('INVALID!', None)
 
-gla.to_csv('gla-epc-subset.csv')
+'1st'.replace('st', '')
+
+levels = ['01', '1st', '1', 'Ground', 'NODATA!', 'mid floor', 'Basement']
+def floor_level_to_int(lvl):
+    ordinals = ['st', 'nd', 'rd', 'th']
+    for ordinal in ordinals:
+        lvl.replace(ordinal, '')
+    return lvl
+list(map(floor_level_to_int, levels))
+
+# +
+# for fl in gla['FLOOR_LEVEL']:
+#     print(fl)
+
+# +
+# gla.to_csv('gla-epc-subset.csv')
