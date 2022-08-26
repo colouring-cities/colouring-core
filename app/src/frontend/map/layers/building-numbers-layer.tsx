@@ -8,7 +8,7 @@ export function BuildingNumbersLayer({revisionId}: {revisionId: string}) {
                 key={`numbers-${revisionId}`} /* needed because TileLayer url is not mutable in react-leaflet v3 */
                 url={getTileLayerUrl('number_labels', {rev: revisionId})}
                 minZoom={17}
-                maxZoom={19}
+                maxZoom={21}
                 detectRetina={true}
             />;
 }

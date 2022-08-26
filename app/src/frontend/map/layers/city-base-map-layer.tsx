@@ -29,8 +29,8 @@ export function CityBaseMapLayer({ theme }: { theme: MapTheme }) {
     return <TileLayer
         url={baseUrl}
         attribution={attribution}
-        maxNativeZoom={18}
-        maxZoom={19}
+        maxNativeZoom={20}
+        maxZoom={21}
         detectRetina={true}
         className={theme_class}
     />;

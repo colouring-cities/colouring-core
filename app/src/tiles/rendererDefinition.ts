@@ -47,7 +47,7 @@ const tileCache = new TileCache(
     {
         tilesets: getBuildingLayerNames(),
         minZoom: 9,
-        maxZoom: 19,
+        maxZoom: 21,
         scales: [1, 2]
     },
     shouldCacheFn,
