@@ -5,8 +5,11 @@
 # 2. Run this script to convert it to CSV for easy loading into Postgres
 
 import pandas as pd
+from epc_cleaning_functions import floor_level_to_int
 
 gla = pd.read_parquet('gla-epc-subset.zstd.parquet')
+
+gla
 
 # Remove invalid CURRENT_ENERGY_RATING
 
@@ -14,6 +17,8 @@ gla = gla.replace('INVALID!', None)
 
 
 # Clean the FLOOR_LEVEL column
+
+gla['FLOOR_LEVEL'] = gla['FLOOR_LEVEL'].apply(floor_level_to_int)
 
 # +
 # for fl in gla['FLOOR_LEVEL']:
