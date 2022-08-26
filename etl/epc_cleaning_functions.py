@@ -6,7 +6,7 @@ def floor_level_to_int(lvl):
        Incorrect assumptions can be updated later via the Colouring London interface.
     """
     if lvl == None:
-        return 0
+        return None
     elif type(lvl) == int:
         return lvl
     # else assume we have a string
@@ -30,5 +30,5 @@ def floor_level_to_int(lvl):
             for ordinal in ordinals:
                 lvl = lvl.replace(ordinal, '')
         else:
-            lvl = 0
+            return None
         return int(lvl)
