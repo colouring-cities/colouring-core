@@ -21,12 +21,14 @@ export function useBuildingData(buildingId: number, preloadedData: Building, inc
             return;
         }
         try {
-            let [building, buildingUprns] = await Promise.all([
+            let [building, buildingUprns, planningData] = await Promise.all([
                 apiGet(`/api/buildings/${buildingId}.json${includeUserAttributes ? '?user_attributes=true' : ''}`),
-                apiGet(`/api/buildings/${buildingId}/uprns.json`)
+                apiGet(`/api/buildings/${buildingId}/uprns.json`),
+                apiGet(`/api/buildings/${buildingId}/planning_data.json`)
             ]);
 
             building.uprns = buildingUprns.uprns;
+            building.planning_data = planningData.data; // TODO use planningData?
             building = Object.assign(building, {...building.user_attributes});
             delete building.user_attributes;
 

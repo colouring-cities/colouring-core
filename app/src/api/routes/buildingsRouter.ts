@@ -26,6 +26,7 @@ router.route('/:building_id.json')
 // GET building UPRNs
 router.get('/:building_id/uprns.json', buildingController.getBuildingUPRNsById);
 
+router.get('/:building_id/planning_data.json', buildingController.getBuildingPlanningDataById);
 
 // POST verify building attribute
 router.route('/:building_id/verify.json')

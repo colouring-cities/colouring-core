@@ -167,18 +167,32 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         }
     ],
-    [Category.Planning]: [{
-        mapStyle: 'planning_combined',
-        legend: {
-            title: 'Statutory protections',
-            disclaimer: 'All data relating to designated buildings should be checked on the National Heritage List for England or local authority websites where used for planning or development purposes',
-            elements: [
-                { color: '#95beba', text: 'In conservation area'},
-                { color: '#c72e08', text: 'Grade I listed'},
-                { color: '#e75b42', text: 'Grade II* listed'},
-                { color: '#ffbea1', text: 'Grade II listed'},
-                { color: '#858ed4', text: 'Locally listed'},
-            ]
+    [Category.Planning]: [
+        {
+            mapStyle: 'planning_applications_status',
+            legend: {
+                title: 'Planning applications',
+                elements: [
+                    { color: '#00ffff', text: 'Submitted' },
+                    { color: '#00ff00', text: 'Approved' },
+                    { color: '#ffff00', text: 'Appeal In Progress' },
+                    { color: '#ff0000', text: 'Refused' },
+                    { color: '#999999', text: 'Withdrawn' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'planning_combined',
+            legend: {
+                title: 'Statutory protections',
+                disclaimer: 'All data relating to designated buildings should be checked on the National Heritage List for England or local authority websites where used for planning or development purposes',
+                elements: [
+                    { color: '#95beba', text: 'In conservation area'},
+                    { color: '#c72e08', text: 'Grade I listed'},
+                    { color: '#e75b42', text: 'Grade II* listed'},
+                    { color: '#ffbea1', text: 'Grade II listed'},
+                    { color: '#858ed4', text: 'Locally listed'},
+                ]
         },
     }],
     [Category.Sustainability]: [{

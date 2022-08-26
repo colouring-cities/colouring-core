@@ -9,17 +9,18 @@ import { DataEntryGroup } from '../data-components/data-entry-group';
 import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
+import PlanningDataOfficialDataEntry from '../data-components/planning-data-entry';
 
 import { CategoryViewProps } from './category-view-props';
 
-/**
-* Planning view/edit section
-*/
 const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <InfoBox type='warning'>
             This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G2.-Data-capture-(2).-Live-streaming-and-automated-methods">read here</a>.
         </InfoBox>
+            <PlanningDataOfficialDataEntry
+            value={props.building.planning_data}
+            />
         <DataEntry
             title={dataFields.planning_portal_link.title}
             slug="planning_portal_link"

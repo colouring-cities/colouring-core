@@ -56,4 +56,5 @@ export * from './edit';
 export * from './history';
 export * from './query';
 export * from './uprn';
+export * from './planningData';
 export * from './verify';
