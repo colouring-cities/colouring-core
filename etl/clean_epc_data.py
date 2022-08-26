@@ -5,15 +5,18 @@
 # 2. Run this script to convert it to CSV for easy loading into Postgres
 
 import pandas as pd
-from epc_cleaning_functions import floor_level_to_int
+from epc_cleaning_functions import floor_level_to_int, construction_to_int
 
 gla = pd.read_parquet('gla-epc-subset.zstd.parquet')
 
-# Clean the CURRENT_ENERGY_RATING column
+# Remove invalid CURRENT_ENERGY_RATING
 gla = gla.replace('INVALID!', None)
 
 # Clean the FLOOR_LEVEL column
 gla['FLOOR_LEVEL'] = gla['FLOOR_LEVEL'].apply(floor_level_to_int)
+
+# Clean the CONSTRUCTION_AGE_BAND column
+gla['CONSTRUCTION_AGE_BAND'] = gla['CONSTRUCTION_AGE_BAND'].apply(construction_to_int)
 
 # Export to csv
 gla.to_csv('gla-epc-subset.csv')
