@@ -173,10 +173,10 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Planning applications',
                 elements: [
-                    { color: '#00ffff', text: 'Submitted' },
-                    { color: '#00ff00', text: 'Approved' },
-                    { color: '#ffff00', text: 'Appeal In Progress' },
-                    { color: '#ff0000', text: 'Refused' },
+                    { color: '#53f5dd', text: 'Submitted' },
+                    { color: '#16cf15', text: 'Approved' },
+                    { color: '#fff200', text: 'Appeal In Progress' },
+                    { color: '#e31d23', text: 'Refused' },
                     { color: '#999999', text: 'Withdrawn' },
                 ]
             }
