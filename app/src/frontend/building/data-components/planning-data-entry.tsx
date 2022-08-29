@@ -61,17 +61,11 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                 <b>Current planning application status for this site:</b> {data[0]["status"]}
                 <br/>
                 <b>Decision date</b>: {data[0]["decision_date"].toString()}
-                <br/>
-                <b>Description of proposed work</b>: <LongText content = {data[0]["description"]} limit = {400}/> 
-                <br/>
-                <b>Planning application ID:</b> {data[0]["planning_application_id"]}
-                <br/>
-                <b>Planning portal link</b>: not provided
-                <br/>
-                <b>Most recent update by data provider:</b> {data[0]["decision_date"]}
-                <br/>
-                <b>Data source:</b> <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a>
-                <br/>
+                <div><b>Description of proposed work</b>: <LongText content = {data[0]["description"]} limit = {400}/></div>
+                <div><b>Planning application ID:</b> {data[0]["planning_application_id"]}</div>
+                <div><b>Planning portal link</b>: not provided</div>
+                <div><b>Most recent update by data provider:</b> {data[0]["decision_date"]}</div>
+                <div><b>Data source:</b> <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a></div>
                 <div>Disclaimer: data is imported from the official source, but Planning London DataHub is known to be incomplete.</div>
                 <CheckboxDataEntry
                 title="Show conservation area layer (Ian Hall dataset)"
