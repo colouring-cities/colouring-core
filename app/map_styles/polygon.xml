@@ -316,19 +316,19 @@
     <Style name="planning_applications_status">
         <Rule>
             <Filter>[status] = "Submitted"</Filter>
-            <PolygonSymbolizer fill="#00ffff"/>
+            <PolygonSymbolizer fill="#53f5dd"/>
         </Rule>
         <Rule>
             <Filter>[status] = "Approved"</Filter>
-            <PolygonSymbolizer fill="#00ff00"/>
+            <PolygonSymbolizer fill="#16cf15"/>
         </Rule>
         <Rule>
             <Filter>[status] = "Appeal In Progress"</Filter>
-            <PolygonSymbolizer fill="#ffff00"/>
+            <PolygonSymbolizer fill="#fff200"/>
         </Rule>
         <Rule>
             <Filter>[status] = "Refused"</Filter>
-            <PolygonSymbolizer fill="#ff0000"/>
+            <PolygonSymbolizer fill="#e31d23"/>
         </Rule>
         <Rule>
             <Filter>[status] = "Withdrawn"</Filter>
