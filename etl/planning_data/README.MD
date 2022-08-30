@@ -11,7 +11,7 @@ python3 load_into_database
 rm /srv/colouring-london/tilecache/planning_applications_status/* -rf
 ```
 
-As loading into databases expects environment variables to be set, one option to actually schedult it in a cron is something like
+As loading into databases expects environment variables to be set, one option to actually schedule it in a cron is something like
 
 ```
 export $(cat ~/scripts/.env | xargs) && /usr/bin/python3 ~/colouring-london/etl/planning_data/load_into_database.py
