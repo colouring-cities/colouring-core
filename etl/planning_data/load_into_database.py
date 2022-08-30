@@ -12,7 +12,7 @@ def get_connection():
     )
 
 def filepath():
-    return "data.json"
+    return os.path.dirname(os.path.realpath(__file__)) + "data.json"
 
 def insert_entry(connection, entry):
     elements = []
