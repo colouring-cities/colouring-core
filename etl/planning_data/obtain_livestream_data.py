@@ -33,7 +33,7 @@ def get_query():
                         "date_histogram": {
                             "field": "last_updated",
                             "calendar_interval": "1d",
-                            "time_zone": "Europe/Warsaw",
+                            "time_zone": "Europe/London",
                             "min_doc_count": 1
                         }
                     }
