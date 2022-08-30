@@ -35,6 +35,8 @@ const LongText = ({ content,limit}) => {
   </div>
 }
 
+const Disclaimer = () => { return <Fragment><div>Disclaimer: Planning application status is visualised using data uploaded by local authorities to the <a href="https://data.london.gov.uk/dataset/planning-london-datahub?_gl=1%2aprwpc%2a_ga%2aMzQyOTg0MjcxLjE2NTk0NDA4NTM">Greater London Authority's Planning London DataHub</a>. Please note that these data are currently incomplete and also often do not provide information on minor alterations. For comprehensive information on all applications please visit the UK Planning Portal site.</div></Fragment> }
+
 const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps> = (props) => {
 
     const data = props.value || [];
@@ -45,8 +47,8 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                     title={"Planning Application Status"}
                     tooltip={null}
                 />
-                <i>No live planning data available currently for this building polygon via the Planning London DataHub.</i>
-                <div>Disclaimer: data is imported from the official source, but Planning London DataHub is known to be incomplete.</div>
+                  <i>No live planning data available currently for this building polygon via the Planning London DataHub.</i>
+                  <Disclaimer />
                   </InfoBox>
                 </Fragment>);
     }
@@ -66,7 +68,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                 <div><b>Planning portal link</b>: not provided</div>
                 <div><b>Most recent update by data provider:</b> {data[0]["decision_date"]}</div>
                 <div><b>Data source:</b> <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a></div>
-                <div>Disclaimer: data is imported from the official source, but Planning London DataHub is known to be incomplete.</div>
+                <Disclaimer />
                 <CheckboxDataEntry
                 title="Show conservation area layer (Ian Hall dataset)"
                 slug="planning_recent_outcome"
