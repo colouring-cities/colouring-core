@@ -69,12 +69,17 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                 <div><b>Most recent update by data provider:</b> {data[0]["decision_date"]}</div>
                 <div><b>Data source:</b> <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a></div>
                 <Disclaimer />
-                <CheckboxDataEntry
-                title="Show conservation area layer (Ian Hall dataset)"
-                slug="planning_recent_outcome"
-                value={null}
-                disabled={true}
-                />
+                <div className="form-check">
+                <label
+                    className="form-check-label">
+                    Show conservation areas from '<a href="http://www.bedfordpark.net/leo/planning/">English Conservation Area dataset 2020</a>' by Ian Hall."
+                    <input className="form-check-input" type="checkbox"
+                        checked={false}
+                        disabled={true}
+                        />
+                </label>
+                </div>
+ 
             </Fragment>
         </InfoBox>
         </Fragment>
