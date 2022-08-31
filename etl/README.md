@@ -177,7 +177,7 @@ Mark buildings with geometries not present in the update as demolished.
 
 Run the Colouring London [deployment scripts](https://github.com/colouring-cities/colouring-london-config#deployment).
 
-# Adding EPC data
+# ⚡ Adding EPC data
 
 Download the EPC data.
 
