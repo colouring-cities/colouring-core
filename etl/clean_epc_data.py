@@ -18,5 +18,14 @@ gla['FLOOR_LEVEL'] = gla['FLOOR_LEVEL'].apply(floor_level_to_int)
 # Clean the CONSTRUCTION_AGE_BAND column
 gla['CONSTRUCTION_AGE_BAND'] = gla['CONSTRUCTION_AGE_BAND'].apply(construction_to_int)
 
+# Remove NaNs
+gla.dropna(inplace=True)
+
+# Ensure int not float
+gla['CONSTRUCTION_AGE_BAND'] = gla['CONSTRUCTION_AGE_BAND'].astype(int)
+
+# Ensure int not float
+gla['FLOOR_LEVEL'] = gla['FLOOR_LEVEL'].astype(int)
+
 # Export to csv
 gla.to_csv('gla-epc-subset.csv')
