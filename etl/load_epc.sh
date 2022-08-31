@@ -8,7 +8,7 @@ CREATE TABLE epc (
     lodgement_date timestamp,
     floor_level varchar(16),
     construction_age_band varchar,
-    uprn real,
+    uprn bigint,
     epc_data_from_file varchar,
     toid varchar
 );
