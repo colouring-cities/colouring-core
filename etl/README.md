@@ -200,7 +200,7 @@ python clean_epc_data.py
 
 This should have created a csv in the `/etl` dir called `'gla-epc-subset.csv'`.
 
-Create a new table for the EPC data and load the csv data into it.
+Create a new table for the EPC data and load the csv data into it (if you didn't already, don't forget to change the permissions so this file can be run `chmod +x *.sh`)
 
 ```
 ./load_epc.sh
