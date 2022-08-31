@@ -8,6 +8,7 @@ The scripts in this directory are used to extract, transform and load (ETL) the 
 - :penguin: [Making data available to Ubuntu](#penguin-making-data-available-to-ubuntu)
 - :new_moon: [Creating a Colouring London database from scratch](#new_moon-creating-a-colouring-london-database-from-scratch)
 - :full_moon: [Updating the Colouring London database with new OS data](#full_moon-updating-the-colouring-london-database-with-new-os-data)
+- ⚡ [Adding EPC data](#-adding-epc-data)
 
 # :arrow_down: Downloading Ordnance Survey data
 
