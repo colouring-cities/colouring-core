@@ -3,9 +3,10 @@ def floor_level_to_int(lvl):
        As you can see below, there are some assumptions made such as
        the 'top floor' being 2. This has been done so we can get an int value
        for the floor for each building automatically populated by EPC data.
-       Incorrect assumptions can be updated later via the Colouring London interface.
+       Incorrect assumptions can be updated later via the Colouring London
+       interface.
     """
-    if lvl == None:
+    if lvl is None:
         return None
     elif type(lvl) == int:
         return lvl
@@ -32,10 +33,10 @@ def floor_level_to_int(lvl):
         else:
             return None
         return int(lvl)
-        
-        
+
+
 def construction_to_int(year):
-    if year == None:
+    if year is None:
         return None
     elif type(year) == int:
         return year
