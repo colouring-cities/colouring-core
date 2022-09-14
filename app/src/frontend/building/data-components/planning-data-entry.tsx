@@ -34,7 +34,7 @@ const LongText = ({ content,limit}) => {
   </div>
 }
 
-const Disclaimer = () => { return <Fragment><div>Disclaimer: these data are currently incomplete and also often do not provide information on minor alterations. For comprehensive information on all applications please visit the UK Planning Portal site.</div></Fragment> }
+const Disclaimer = () => { return <Fragment><div>Disclaimer: these data are currently incomplete and also often do not provide information on minor alterations. For comprehensive information on all applications please visit the local authorities' planning websites.</div></Fragment> }
 
 const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps> = (props) => {
 
