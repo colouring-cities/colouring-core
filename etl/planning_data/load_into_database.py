@@ -66,7 +66,8 @@ def main():
             if status == "Appeal Received":
                 status = "Appeal In Progress"
             if (status not in ["Approved", "Rejected", "Appeal In Progress", "Withdrawn", "Unknown"]):
-                raise Exception("Unexpected status " + status)
+                print("Unexpected status " + status)
+                #raise Exception("Unexpected status " + status)
             if uprn == None:
                 continue
             entry = {
