@@ -58,7 +58,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             />
 
 
-            <InfoBox>To see the data visualised, and to add information on how well buildings in the city work visit <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
+            <InfoBox>To see the data visualised, and to add your opinion on how well buildings work for the community, visit <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
 
 
             <CheckboxDataEntry
