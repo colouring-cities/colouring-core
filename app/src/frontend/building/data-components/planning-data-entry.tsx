@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 
-import DataTitle from './data-title';
 import InfoBox from '../../components/info-box';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
 
@@ -54,10 +53,6 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
     }
     return (
         <Fragment>
-        <DataTitle
-                title={"Planning Application Status"}
-                tooltip={null}
-        />
         <InfoBox type='success'>
             <Fragment>
                 <b>Current planning application status for this site:</b> {data[0]["status"]}

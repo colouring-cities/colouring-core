@@ -14,6 +14,7 @@ import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
 import PlanningDataOfficialDataEntry from '../data-components/planning-data-entry';
+import DataTitle from './data-title';
 
 import { CategoryViewProps } from './category-view-props';
 import { Category } from '../../config/categories-config';
@@ -26,6 +27,19 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     <Fragment>
         <InfoBox type='warning'>
             This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G.-Data-capture-methods">read here</a>.
+        <DataTitle
+            title={"Planning Application Status"}
+            tooltip={null}
+        />
+
+        <Verification
+        slug="planning_portal_link"
+        allow_verify={props.user !== undefined && props.building.planning_portal_link !== null && !props.edited}
+        onVerify={props.onVerify}
+        user_verified={props.user_verified.hasOwnProperty("planning_portal_link")}
+        user_verified_as={props.user_verified.planning_portal_link}
+        verified_count={props.building.verified.planning_portal_link}
+        />
         </InfoBox>
             <PlanningDataOfficialDataEntry
             value={props.building.planning_data}
@@ -37,14 +51,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
-            />
-        <Verification
-            slug="planning_portal_link"
-            allow_verify={props.user !== undefined && props.building.planning_portal_link !== null && !props.edited}
-            onVerify={props.onVerify}
-            user_verified={props.user_verified.hasOwnProperty("planning_portal_link")}
-            user_verified_as={props.user_verified.planning_portal_link}
-            verified_count={props.building.verified.planning_portal_link}
             />
             <UserOpinionEntry
                 slug='community_expected_planning_application'
