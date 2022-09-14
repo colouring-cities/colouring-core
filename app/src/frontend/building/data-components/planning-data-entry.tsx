@@ -54,11 +54,11 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
     }
     return (
         <Fragment>
+        <DataTitle
+                title={"Planning Application Status"}
+                tooltip={null}
+        />
         <InfoBox type='success'>
-            <DataTitle
-                    title={"Planning Application Status"}
-                    tooltip={null}
-            />
             <Fragment>
                 <b>Current planning application status for this site:</b> {data[0]["status"]}
                 <br/>
