@@ -14,7 +14,7 @@ import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
 import PlanningDataOfficialDataEntry from '../data-components/planning-data-entry';
-import DataTitle from './data-title';
+import DataTitle from '../data-components/data-title';
 
 import { CategoryViewProps } from './category-view-props';
 import { Category } from '../../config/categories-config';
