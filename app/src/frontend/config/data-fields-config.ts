@@ -450,7 +450,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     planning_portal_link: {
         category: Category.Planning,
-        title: "Planning portal link",
+        title: "Local authority planning application link",
         example: "",
         //tooltip: ,
     },
