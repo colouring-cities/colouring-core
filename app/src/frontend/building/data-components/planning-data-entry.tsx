@@ -42,11 +42,11 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
     const data = props.value || [];
     if(data.length == 0) {
         return (<Fragment>
-                  <InfoBox type='success'>
                   <DataTitle
                     title={"Planning Application Status"}
                     tooltip={null}
-                />
+                  />
+                  <InfoBox type='success'>
                   <i>No live planning data available currently for this building polygon via the Planning London DataHub.</i>
                   <Disclaimer />
                   </InfoBox>
@@ -55,11 +55,11 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
     return (
         <Fragment>
         <InfoBox type='success'>
-            <Fragment>
-                <DataTitle
+            <DataTitle
                     title={"Planning Application Status"}
                     tooltip={null}
-                />
+            />
+            <Fragment>
                 <b>Current planning application status for this site:</b> {data[0]["status"]}
                 <br/>
                 <b>Decision date</b>: {data[0]["decision_date"].toString()}
