@@ -54,7 +54,7 @@ def main():
             last_synced_date = parse_date_string_into_datestring(entry['_source']['last_synced'])
             uprn = entry['_source']['uprn']
             status = entry['_source']['status']
-            if status in ["No Objection to Proposal (OBS only)", "Not Required", None, "Lapsed", "SECS", "Comment Issued"]:
+            if status in ["No Objection to Proposal (OBS only)", "Not Required", None, "Lapsed", "SECS", "Comment Issued", "ALL DECISIONS ISSUED"]:
                 continue
             if status in []:
                 opts = jsbeautifier.default_options()
