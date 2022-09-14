@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 
+import { Link } from 'react-router-dom';
 import InfoBox from '../../components/info-box';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
 import NumericDataEntryWithFormattedLink from '../data-components/numeric-data-entry-with-formatted-link';
@@ -15,10 +16,13 @@ import withCopyEdit from '../data-container';
 import PlanningDataOfficialDataEntry from '../data-components/planning-data-entry';
 
 import { CategoryViewProps } from './category-view-props';
+import { Category } from '../../config/categories-config';
 
 const currentYear = new Date().getFullYear();
 
-const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
+const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
+    const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
+    return (
     <Fragment>
         <InfoBox type='warning'>
             This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G.-Data-capture-methods">read here</a>.
@@ -52,6 +56,11 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 mode={props.mode}
                 copy={props.copy}
             />
+
+
+            <InfoBox>To see more crowdsourced visit <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
+
+
             <CheckboxDataEntry
                 title="Are you aware of a planning application that has been recently submitted for this site and is not listed above?"
                 slug="planning_live_application"
@@ -343,7 +352,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
             </DataEntryGroup>
         </DataEntryGroup>
     </Fragment>
-);
+)};
 const PlanningContainer = withCopyEdit(PlanningView);
 
 export default PlanningContainer;
