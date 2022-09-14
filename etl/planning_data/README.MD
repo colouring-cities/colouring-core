@@ -20,7 +20,7 @@ export $(cat ~/scripts/.env | xargs) && /usr/bin/python3 ~/colouring-london/etl/
 with
 
 ```
-~/script/.env
+~/scripts/.env
 ```
 
 being in following format
