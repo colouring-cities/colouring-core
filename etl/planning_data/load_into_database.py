@@ -80,7 +80,7 @@ def main():
                 "registered_with_local_authority_date": parse_date_string_into_datestring(entry['_source']['valid_date']),
                 "uprn": uprn,
                 "status": status,
-                "data_source": "The Planning London DataHub Greater London Authority",
+                "data_source": "Greater London Authority's Planning London DataHub",
                 "data_source_link": "https://data.london.gov.uk/dataset/planning-london-datahub?_gl=1%2aprwpc%2a_ga%2aMzQyOTg0MjcxLjE2NTk0NDA4NTM", # TODO test
                 }
             insert_entry(connection, entry)
