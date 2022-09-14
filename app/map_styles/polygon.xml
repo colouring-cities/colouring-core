@@ -339,11 +339,11 @@
             <LineSymbolizer stroke="#fff200" stroke-width="1.5" />
         </Rule>
         <Rule>
-            <Filter>[status] = "Refused"</Filter>
+            <Filter>[status] = "Rejected"</Filter>
             <PolygonSymbolizer fill="#e31d23"/>
         </Rule>
         <Rule>
-            <Filter>[status] = "Refused"</Filter>
+            <Filter>[status] = "Rejected"</Filter>
             <LineSymbolizer stroke="#e31d23" stroke-width="1.5" />
         </Rule>
         <Rule>

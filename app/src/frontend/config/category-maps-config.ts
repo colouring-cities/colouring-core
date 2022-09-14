@@ -176,7 +176,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#53f5dd', text: 'Submitted' },
                     { color: '#16cf15', text: 'Approved' },
                     { color: '#fff200', text: 'Appeal In Progress' },
-                    { color: '#e31d23', text: 'Refused' },
+                    { color: '#e31d23', text: 'Rejected' },
                     { color: '#999999', text: 'Withdrawn' },
                     { color: '#eacad0', text: 'Unknown' },
                 ]
