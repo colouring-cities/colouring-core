@@ -27,6 +27,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     <Fragment>
         <InfoBox type='warning'>
             This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G.-Data-capture-methods">read here</a>.
+        </InfoBox>
         <DataTitle
             title={"Planning Application Status"}
             tooltip={null}
@@ -40,10 +41,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         user_verified_as={props.user_verified.planning_portal_link}
         verified_count={props.building.verified.planning_portal_link}
         />
-        </InfoBox>
-            <PlanningDataOfficialDataEntry
+        <PlanningDataOfficialDataEntry
             value={props.building.planning_data}
-            />
+        />
         <DataEntry
             title={dataFields.planning_portal_link.title}
             slug="planning_portal_link"
