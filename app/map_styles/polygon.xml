@@ -334,6 +334,10 @@
             <Filter>[status] = "Withdrawn"</Filter>
             <PolygonSymbolizer fill="#999999"/>
         </Rule>
+        <Rule>
+            <Filter>[status] = "Unknown"</Filter>
+            <PolygonSymbolizer fill="#eacad0"/>
+        </Rule>
     </Style>
     <Style name="planning_combined">
         <Rule>

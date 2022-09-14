@@ -54,7 +54,7 @@ def main():
             last_synced_date = parse_date_string_into_datestring(entry['_source']['last_synced'])
             uprn = entry['_source']['uprn']
             status = entry['_source']['status']
-            if status in ["No Objection to Proposal (OBS only)", "Not Required", None, "Lapsed", "Unknown", "SECS", "Comment Issued"]:
+            if status in ["No Objection to Proposal (OBS only)", "Not Required", None, "Lapsed", "SECS", "Comment Issued"]:
                 continue
             if status in []:
                 opts = jsbeautifier.default_options()
@@ -65,7 +65,7 @@ def main():
                 status = "Rejected"
             if status == "Appeal Received":
                 status = "Appeal In Progress"
-            if (status not in ["Approved", "Rejected", "Appeal In Progress", "Withdrawn", ]):
+            if (status not in ["Approved", "Rejected", "Appeal In Progress", "Withdrawn", "Unknown"]):
                 raise Exception("Unexpected status " + status)
             if uprn == None:
                 continue
