@@ -33,14 +33,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             tooltip={null}
         />
 
-        <Verification
-        slug="planning_portal_link"
-        allow_verify={props.user !== undefined && props.building.planning_portal_link !== null && !props.edited}
-        onVerify={props.onVerify}
-        user_verified={props.user_verified.hasOwnProperty("planning_portal_link")}
-        user_verified_as={props.user_verified.planning_portal_link}
-        verified_count={props.building.verified.planning_portal_link}
-        />
         <PlanningDataOfficialDataEntry
             value={props.building.planning_data}
         />
@@ -51,7 +43,15 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             mode={props.mode}
             copy={props.copy}
             onChange={props.onChange}
-            />
+        />
+        <Verification
+        slug="planning_portal_link"
+        allow_verify={props.user !== undefined && props.building.planning_portal_link !== null && !props.edited}
+        onVerify={props.onVerify}
+        user_verified={props.user_verified.hasOwnProperty("planning_portal_link")}
+        user_verified_as={props.user_verified.planning_portal_link}
+        verified_count={props.building.verified.planning_portal_link}
+        />
             <UserOpinionEntry
                 slug='community_expected_planning_application'
                 title={buildingUserFields.community_expected_planning_application.title}
