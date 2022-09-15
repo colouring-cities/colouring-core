@@ -73,17 +73,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 value={null}
                 disabled={true}
                 />
-            <NumericDataEntry
-                title={"Crowdsourced planning application submission edit date"}
-                slug="date_year"
-                value={2019}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                min={1}
-                max={currentYear}
-                // "type": "year_estimator"
-                />
             <CheckboxDataEntry
                 title="Has the work on this site been completed?"
                 slug="planning_live_application"
@@ -91,7 +80,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 disabled={false}
                 />
             <NumericDataEntry
-                title={"Estimated date of completion"}
+                title={"Year of completion"}
                 slug="date_year"
                 value={2019}
                 mode={props.mode}
