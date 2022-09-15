@@ -55,7 +55,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                 <br/>
                 <div>Planning application status is visualised using data uploaded by local authorities to the <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a></div>
                 <div><b>Planning application ID:</b> {data[0]["planning_application_id"]}</div>
-                <div><b>Date registered by the planning authority (validation date)</b>: TODO</div>
+                <div><b>Date registered by the planning authority (validation date)</b>: {data[0]["registered_with_local_authority_date"]}</div>
                 <div><b>Decision date</b>: {data[0]["decision_date"].toString()}</div>
                 <div><b>Description of proposed work</b>: <LongText content = {data[0]["description"]} limit = {400}/></div>
                 <div><b>Most recent update by data provider:</b> {data[0]["decision_date"]}</div>
