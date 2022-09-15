@@ -51,7 +51,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
         <Fragment>
         <InfoBox type='success'>
             <Fragment>
-                <div>Planning application status is visualised using data uploaded by local authorities to the <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a></div>
+                <div>Planning application status is streamed using live data uploaded by local authorities to the <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a></div>
                 <br/>
                 <div><b>Current planning application status for this site:</b> {data[0]["status"]}</div>
                 <div><b>Planning application ID:</b> {data[0]["planning_application_id"]}</div>
