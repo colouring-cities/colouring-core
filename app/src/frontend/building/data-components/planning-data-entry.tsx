@@ -62,7 +62,9 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                 <div><b>Most recent update by data provider:</b> {data[0]["decision_date"]}</div>
                 <br/>
                 <Disclaimer />
-                <div className="form-check">
+            </Fragment>
+        </InfoBox>
+        <div className="form-check">
                 <label
                     className="form-check-label">
                     Show conservation areas from '<a href="http://www.bedfordpark.net/leo/planning/">English Conservation Area dataset 2020</a>' by Ian Hall.
@@ -72,9 +74,6 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                         />
                 </label>
                 </div>
- 
-            </Fragment>
-        </InfoBox>
         </Fragment>
         );
 };
