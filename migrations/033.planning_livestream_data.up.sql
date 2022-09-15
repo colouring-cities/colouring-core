@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS planning_data (
         planning_application_id VARCHAR(50),
         planning_application_link VARCHAR(260),
         description VARCHAR,
+        registered_with_local_authority_date date,
         decision_date date,
         last_synced_date date,
         status VARCHAR(20),

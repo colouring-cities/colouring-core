@@ -21,10 +21,10 @@ def insert_entry(connection, e):
         application_url = "'" + e["application_url"] + "'"
     with connection.cursor() as cur:
         cur.execute('''INSERT INTO
-                planning_data (planning_application_id, planning_application_link, description, decision_date, last_synced_date, status, data_source, data_source_link, uprn)
+                planning_data (planning_application_id, planning_application_link, description, registered_with_local_authority_date, decision_date, last_synced_date, status, data_source, data_source_link, uprn)
             VALUES
-                (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-        ''', (e["application_id"], application_url, e["description"], e["decision_date"], e["last_synced_date"], e["status"], e["data_source"], e["data_source_link"], e["uprn"]))
+                (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        ''', (e["application_id"], application_url, e["description"], e["registered_with_local_authority_date"], e["decision_date"], e["last_synced_date"], e["status"], e["data_source"], e["data_source_link"], e["uprn"]))
         connection.commit()
 
     return """INSERT INTO planning_data
@@ -98,6 +98,7 @@ def main():
                 "last_synced_date": last_synced_date,
                 "application_id": application_id,
                 "application_url": entry['_source']['url_planning_app'],
+                "registered_with_local_authority_date": parse_date_string_into_datestring(entry['_source']['valid_date']),
                 "uprn": uprn,
                 "status": status,
                 "data_source": "The Planning London DataHub Greater London Authority",
