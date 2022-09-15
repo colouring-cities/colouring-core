@@ -360,7 +360,7 @@
         </Rule>
         <Rule>
             <Filter>[status] = "Unknown"</Filter>
-            <LineSymbolizer stroke="#eacad0" stroke-width="1.5" />
+            <LineSymbolizer stroke="#eacad0" stroke-width="15" />
         </Rule>
     </Style>
     <Style name="planning_combined">
