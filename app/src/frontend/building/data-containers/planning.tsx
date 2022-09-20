@@ -89,7 +89,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 />
             */}
         </DataEntryGroup>
-        <DataEntryGroup name="Designation and Protection" collapsed={false} >
+        <DataEntryGroup name="Designation/protection" collapsed={false} >
+            <DataEntryGroup name="Conservation" collapsed={false} >
             <CheckboxDataEntry
                 title={dataFields.planning_in_conservation_area.title}
                 slug="planning_in_conservation_area"
@@ -122,7 +123,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.planning_conservation_area_name}
                 verified_count={props.building.verified.planning_conservation_area_name}
                 />
-
+            </DataEntryGroup>
+            <DataEntryGroup name="Listed buildings & scheduled monuments" collapsed={false} >
             <CheckboxDataEntry
                 title={dataFields.planning_in_list.title}
                 slug="planning_in_list"
@@ -339,7 +341,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.planning_apa_tier}
                 verified_count={props.building.verified.planning_apa_tier}
                 />
-
+            </DataEntryGroup>
+            <DataEntryGroup name="Other types of protection & recording" collapsed={false} >
             <CheckboxDataEntry
                 title={dataFields.planning_in_local_list.title}
                 slug="planning_in_local_list"
@@ -405,7 +408,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.planning_historic_area_assessment_url}
                 verified_count={props.building.verified.planning_historic_area_assessment_url}
                 />
-
+            </DataEntryGroup>
         </DataEntryGroup>
     </Fragment>
 );
