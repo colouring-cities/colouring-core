@@ -145,15 +145,22 @@ const LAYER_QUERIES = {
                     WHEN planning_list_grade = 'II*' THEN 'Grade II* Listed'
                     WHEN planning_list_grade = 'II' THEN 'Grade II Listed'
                     WHEN planning_local_list_url <> '' THEN 'Locally Listed'
+                    WHEN planning_heritage_at_risk_url <> '' THEN 'Heritage at Risk'
+                    WHEN planning_world_list_url <> '' THEN 'In World Heritage Site'
+                    WHEN planning_in_apa_url <> '' THEN 'In Archaeological Priority Area'
                     ELSE 'None'
                 END
             ) AS listing_type,
             planning_in_conservation_area_url <> '' AS planning_in_conservation_area
         FROM buildings
         WHERE
-            planning_in_conservation_area_url <> ''
+            planning_list_grade IS NOT NULL
+            OR planning_in_conservation_area_url <> ''
             OR planning_local_list_url <> ''
-            OR planning_list_grade IS NOT NULL`,
+            OR planning_world_list_url <> ''
+            OR planning_heritage_at_risk_url <> ''
+            OR planning_in_apa_url <> ''
+            `,
     conservation_area: `
         SELECT
             geometry_id
