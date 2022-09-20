@@ -70,22 +70,14 @@ This is the main table, containing almost all data collected by Colouring London
 - `sust_dec`: DEC rating
 - `sust_retrofit_date`: year of last significant retrofit
 - `planning_portal_link`: link to an entry on https://www.planningportal.co.uk/
-- `planning_in_conservation_area`: in a conservation area? (True/False)
-- `planning_conservation_area_name`: conservation area name
-- `planning_in_list`: in the National Heritage List for England? (True/False)
-- `planning_list_id`: National Heritage List for England ID
-- `planning_list_cat`: National Heritage List for England listing type
+- `planning_in_conservation_area_url`: conservation area appraisal link
+- `planning_in_conservation_area_url`: conservation area data source link
 - `planning_list_grade`: National Heritage List for England listing grade
-- `planning_heritage_at_risk_id`: on the Heritage at Risk list? (True/False)
-- `planning_world_list_id`: UNESCO World Heritage list ID
-- `planning_in_glher`: in the Greater London Historic Environment Record? (True/False)
+- `planning_heritage_at_risk_url`: Heritage at Risk link
+- `planning_world_list_url`: UNESCO World Heritage list id
 - `planning_glher_url`: Greater London Historic Environment Record link
-- `planning_in_apa`: in an Architectural Priority Area? (True/False)
-- `planning_apa_name`: Architectural Priority Area name
-- `planning_apa_tier`: Architectural Priority Area tier
-- `planning_in_local_list`: in a local list? (True/False)
+- `planning_in_apa_url`: an Archeological Priority Area (APA) link
 - `planning_local_list_url`: local list reference link
-- `planning_in_historic_area_assessment`: within a historic area assessment? (True/False)
 - `planning_historic_area_assessment_url`: historic area assessment reference link
 - `likes_total`: number of times the building has been liked by Colouring London users
 

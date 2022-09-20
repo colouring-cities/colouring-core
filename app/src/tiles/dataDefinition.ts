@@ -141,26 +141,26 @@ const LAYER_QUERIES = {
             geometry_id,
             (
                 CASE
-                    WHEN planning_list_cat = 'Listed Building' and planning_list_grade = 'I' THEN 'Grade I Listed'
-                    WHEN planning_list_cat = 'Listed Building' and planning_list_grade = 'II*' THEN 'Grade II* Listed'
-                    WHEN planning_list_cat = 'Listed Building' and planning_list_grade = 'II' THEN 'Grade II Listed'
-                    WHEN planning_in_local_list THEN 'Locally Listed'
+                    WHEN planning_list_grade = 'I' THEN 'Grade I Listed'
+                    WHEN planning_list_grade = 'II*' THEN 'Grade II* Listed'
+                    WHEN planning_list_grade = 'II' THEN 'Grade II Listed'
+                    WHEN planning_local_list_url <> '' THEN 'Locally Listed'
                     ELSE 'None'
                 END
             ) AS listing_type,
-            planning_in_conservation_area
+            planning_in_conservation_area_url <> '' AS planning_in_conservation_area
         FROM buildings
         WHERE
-            planning_in_conservation_area
-            OR planning_in_local_list
-            OR planning_list_cat IS NOT NULL`,
+            planning_in_conservation_area_url <> ''
+            OR planning_local_list_url <> ''
+            OR planning_list_grade IS NOT NULL`,
     conservation_area: `
         SELECT
             geometry_id
         FROM
             buildings
         WHERE
-            planning_in_conservation_area = true`,
+            planning_in_conservation_area_url = true`,
     sust_dec: `
         SELECT
             geometry_id,

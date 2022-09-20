@@ -91,21 +91,23 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
         </DataEntryGroup>
         <DataEntryGroup name="Designation/protection" collapsed={false} >
             <DataEntryGroup name="Conservation" collapsed={false} >
-                <CheckboxDataEntry
-                    title={dataFields.planning_in_conservation_area.title}
-                    slug="planning_in_conservation_area"
-                    value={props.building.planning_in_conservation_area}
+                <DataEntry
+                    title={dataFields.planning_in_conservation_area_url.title}
+                    slug="planning_in_conservation_area_url"
+                    value={props.building.planning_in_conservation_area_url}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                    isUrl={true}
+                    placeholder="https://..."
                     />
                 <Verification
-                    slug="planning_in_conservation_area"
-                    allow_verify={props.user !== undefined && props.building.planning_in_conservation_area !== null && !props.edited}
+                    slug="planning_in_conservation_area_url"
+                    allow_verify={props.user !== undefined && props.building.planning_in_conservation_area_url !== null && !props.edited}
                     onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area")}
-                    user_verified_as={props.user_verified.planning_in_conservation_area}
-                    verified_count={props.building.verified.planning_in_conservation_area}
+                    user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area_url")}
+                    user_verified_as={props.user_verified.planning_in_conservation_area_url}
+                    verified_count={props.building.verified.planning_in_conservation_area_url}
                     />
                 <DataEntry
                     title={dataFields.planning_conservation_area_name.title}
@@ -125,33 +127,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     />
             </DataEntryGroup>
             <DataEntryGroup name="Listed buildings & scheduled monuments" collapsed={false} >
-                <CheckboxDataEntry
-                    title={dataFields.planning_in_list.title}
-                    slug="planning_in_list"
-                    value={props.building.planning_in_list}
-                    mode={props.mode}
-                    disabled={false}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    />
-                <Verification
-                    slug="planning_in_list"
-                    allow_verify={props.user !== undefined && props.building.planning_in_list !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_in_list")}
-                    user_verified_as={props.user_verified.planning_in_list}
-                    verified_count={props.building.verified.planning_in_list}
-                    />
-                <MultiDataEntry
+                <DataEntry
                     title={dataFields.planning_nhle_link.title}
                     slug="planning_nhle_link"
                     value={props.building.planning_nhle_link}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.planning_nhle_link.tooltip}
                     placeholder="https://..."
-                    editableEntries={true}
                     isUrl={true}
                     />
                 <Verification
@@ -161,47 +144,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     user_verified={props.user_verified.hasOwnProperty("planning_nhle_link")}
                     user_verified_as={props.user_verified.planning_nhle_link}
                     verified_count={props.building.verified.planning_nhle_link}
-                    />
-                <DataEntry
-                    title={dataFields.planning_list_id.title}
-                    slug="planning_list_id"
-                    value={props.building.planning_list_id}
-                    mode={props.mode}
-                    disabled={false}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    />
-                <Verification
-                    slug="planning_list_id"
-                    allow_verify={props.user !== undefined && props.building.planning_list_id !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_list_id")}
-                    user_verified_as={props.user_verified.planning_list_id}
-                    verified_count={props.building.verified.planning_list_id}
-                    />
-                <SelectDataEntry
-                    title={dataFields.planning_list_cat.title}
-                    slug="planning_list_cat"
-                    value={props.building.planning_list_cat}
-                    mode={props.mode}
-                    disabled={false}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    options={[
-                        "Listed Building",
-                        "Scheduled Monument",
-                        "World Heritage Site",
-                        "Building Preservation Notice",
-                        "None"
-                    ]}
-                    />
-                <Verification
-                    slug="planning_list_cat"
-                    allow_verify={props.user !== undefined && props.building.planning_list_cat !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_list_cat")}
-                    user_verified_as={props.user_verified.planning_list_cat}
-                    verified_count={props.building.verified.planning_list_cat}
                     />
                 <SelectDataEntry
                     title={dataFields.planning_list_grade.title}
@@ -227,55 +169,60 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     verified_count={props.building.verified.planning_list_grade}
                     />
                 <DataEntry
-                    title={dataFields.planning_heritage_at_risk_id.title}
-                    slug="planning_heritage_at_risk_id"
-                    value={props.building.planning_heritage_at_risk_id}
+                    title={dataFields.planning_heritage_at_risk_url.title}
+                    slug="planning_heritage_at_risk_url"
+                    value={props.building.planning_heritage_at_risk_url}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
                     />
                 <Verification
-                    slug="planning_heritage_at_risk_id"
-                    allow_verify={props.user !== undefined && props.building.planning_heritage_at_risk_id !== null && !props.edited}
+                    slug="planning_heritage_at_risk_url"
+                    allow_verify={props.user !== undefined && props.building.planning_heritage_at_risk_url !== null && !props.edited}
                     onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_heritage_at_risk_id")}
-                    user_verified_as={props.user_verified.planning_heritage_at_risk_id}
-                    verified_count={props.building.verified.planning_heritage_at_risk_id}
+                    user_verified={props.user_verified.hasOwnProperty("planning_heritage_at_risk_url")}
+                    user_verified_as={props.user_verified.planning_heritage_at_risk_url}
+                    verified_count={props.building.verified.planning_heritage_at_risk_url}
                     />
-
+            </DataEntryGroup>
+            <DataEntryGroup name="Other types of protection & recording" collapsed={false} >
                 <DataEntry
-                    title={dataFields.planning_world_list_id.title}
-                    slug="planning_world_list_id"
-                    value={props.building.planning_world_list_id}
+                    title={dataFields.planning_local_list_url.title}
+                    slug="planning_local_list_url"
+                    value={props.building.planning_local_list_url}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                    isUrl={true}
+                    placeholder="https://..."
                     />
                 <Verification
-                    slug="planning_world_list_id"
-                    allow_verify={props.user !== undefined && props.building.planning_world_list_id !== null && !props.edited}
+                    slug="planning_local_list_url"
+                    allow_verify={props.user !== undefined && props.building.planning_local_list_url !== null && !props.edited}
                     onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_world_list_id")}
-                    user_verified_as={props.user_verified.planning_world_list_id}
-                    verified_count={props.building.verified.planning_world_list_id}
+                    user_verified={props.user_verified.hasOwnProperty("planning_local_list_url")}
+                    user_verified_as={props.user_verified.planning_local_list_url}
+                    verified_count={props.building.verified.planning_local_list_url}
+                    />
+                <DataEntry
+                    title={dataFields.planning_world_list_url.title}
+                    slug="planning_world_list_url"
+                    value={props.building.planning_world_list_url}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    isUrl={true}
+                    placeholder="https://..."
+                    />
+                <Verification
+                    slug="planning_world_list_url"
+                    allow_verify={props.user !== undefined && props.building.planning_world_list_url !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("planning_world_list_url")}
+                    user_verified_as={props.user_verified.planning_world_list_url}
+                    verified_count={props.building.verified.planning_world_list_url}
                     />
 
-                <CheckboxDataEntry
-                    title={dataFields.planning_in_glher.title}
-                    slug="planning_in_glher"
-                    value={props.building.planning_in_glher}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    />
-                <Verification
-                    slug="planning_in_glher"
-                    allow_verify={props.user !== undefined && props.building.planning_in_glher !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_in_glher")}
-                    user_verified_as={props.user_verified.planning_in_glher}
-                    verified_count={props.building.verified.planning_in_glher}
-                    />
                 <DataEntry
                     title={dataFields.planning_glher_url.title}
                     slug="planning_glher_url"
@@ -283,6 +230,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                    isUrl={true}
+                    placeholder="https://..."
                     />
                 <Verification
                     slug="planning_glher_url"
@@ -293,104 +242,23 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     verified_count={props.building.verified.planning_glher_url}
                     />
 
-                <CheckboxDataEntry
-                    title={dataFields.planning_in_apa.title}
-                    slug="planning_in_apa"
-                    value={props.building.planning_in_apa}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    />
-                <Verification
-                    slug="planning_in_apa"
-                    allow_verify={props.user !== undefined && props.building.planning_in_apa !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_in_apa")}
-                    user_verified_as={props.user_verified.planning_in_apa}
-                    verified_count={props.building.verified.planning_in_apa}
-                    />
                 <DataEntry
-                    title={dataFields.planning_apa_name.title}
-                    slug="planning_apa_name"
-                    value={props.building.planning_apa_name}
+                    title={dataFields.planning_in_apa_url.title}
+                    slug="planning_in_apa_url"
+                    value={props.building.planning_in_apa_url}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                    isUrl={true}
+                    placeholder="https://..."
                     />
                 <Verification
-                    slug="planning_apa_name"
-                    allow_verify={props.user !== undefined && props.building.planning_apa_name !== null && !props.edited}
+                    slug="planning_in_apa_url"
+                    allow_verify={props.user !== undefined && props.building.planning_in_apa_url !== null && !props.edited}
                     onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_apa_name")}
-                    user_verified_as={props.user_verified.planning_apa_name}
-                    verified_count={props.building.verified.planning_apa_name}
-                    />
-                <DataEntry
-                    title={dataFields.planning_apa_tier.title}
-                    slug="planning_apa_tier"
-                    value={props.building.planning_apa_tier}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    />
-                <Verification
-                    slug="planning_apa_tier"
-                    allow_verify={props.user !== undefined && props.building.planning_apa_tier !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_apa_tier")}
-                    user_verified_as={props.user_verified.planning_apa_tier}
-                    verified_count={props.building.verified.planning_apa_tier}
-                    />
-            </DataEntryGroup>
-            <DataEntryGroup name="Other types of protection & recording" collapsed={false} >
-                <CheckboxDataEntry
-                    title={dataFields.planning_in_local_list.title}
-                    slug="planning_in_local_list"
-                    value={props.building.planning_in_local_list}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    />
-                <Verification
-                    slug="planning_in_local_list"
-                    allow_verify={props.user !== undefined && props.building.planning_in_local_list !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_in_local_list")}
-                    user_verified_as={props.user_verified.planning_in_local_list}
-                    verified_count={props.building.verified.planning_in_local_list}
-                    />
-                <DataEntry
-                    title={dataFields.planning_local_list_url.title}
-                    slug="planning_local_list_url"
-                    value={props.building.planning_local_list_url}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    />
-                <Verification
-                    slug="planning_local_list_url"
-                    allow_verify={props.user !== undefined && props.building.planning_local_list_url !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_local_list_url")}
-                    user_verified_as={props.user_verified.planning_local_list_url}
-                    verified_count={props.building.verified.planning_local_list_url}
-                    />
-
-                <CheckboxDataEntry
-                    title={dataFields.planning_in_historic_area_assessment.title}
-                    slug="planning_in_historic_area_assessment"
-                    value={props.building.planning_in_historic_area_assessment}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    />
-                <Verification
-                    slug="planning_in_historic_area_assessment"
-                    allow_verify={props.user !== undefined && props.building.planning_in_historic_area_assessment !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_in_historic_area_assessment")}
-                    user_verified_as={props.user_verified.planning_in_historic_area_assessment}
-                    verified_count={props.building.verified.planning_in_historic_area_assessment}
+                    user_verified={props.user_verified.hasOwnProperty("planning_in_apa_url")}
+                    user_verified_as={props.user_verified.planning_in_apa_url}
+                    verified_count={props.building.verified.planning_in_apa_url}
                     />
                 <DataEntry
                     title={dataFields.planning_historic_area_assessment_url.title}
@@ -399,6 +267,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                    isUrl={true}
+                    placeholder="https://..."
                     />
                 <Verification
                     slug="planning_historic_area_assessment_url"

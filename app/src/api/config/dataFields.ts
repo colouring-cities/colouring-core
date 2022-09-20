@@ -169,23 +169,11 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
-    planning_in_conservation_area: {
+    planning_in_conservation_area_url: {
         edit: true,
         verify: true,
     },
-    planning_conservation_area_name: {
-        edit: true,
-        verify: true,
-    },
-    planning_in_list: {
-        edit: true,
-        verify: true,
-    },
-    planning_list_id: {
-        edit: true,
-        verify: true,
-    },
-    planning_list_cat: {
+    planning_in_conservation_area_source_url: {
         edit: true,
         verify: true,
     },
@@ -193,15 +181,11 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
-    planning_heritage_at_risk_id: {
+    planning_heritage_at_risk_url: {
         edit: true,
         verify: true,
     },
-    planning_world_list_id: {
-        edit: true,
-        verify: true,
-    },
-    planning_in_glher: {
+    planning_world_list_url: {
         edit: true,
         verify: true,
     },
@@ -209,27 +193,11 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
-    planning_in_apa: {
-        edit: true,
-        verify: true,
-    },
-    planning_apa_name: {
-        edit: true,
-        verify: true,
-    },
-    planning_apa_tier: {
-        edit: true,
-        verify: true,
-    },
-    planning_in_local_list: {
+    planning_in_apa_url: {
         edit: true,
         verify: true,
     },
     planning_local_list_url: {
-        edit: true,
-        verify: true,
-    },
-    planning_in_historic_area_assessment: {
         edit: true,
         verify: true,
     },
