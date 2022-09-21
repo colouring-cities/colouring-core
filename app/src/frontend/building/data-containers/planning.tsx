@@ -175,6 +175,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                    placeholder="https://..."
+                    isUrl={true}
                     />
                 <Verification
                     slug="planning_heritage_at_risk_url"
