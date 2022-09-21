@@ -65,16 +65,6 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                 <Disclaimer />
             </Fragment>
         </InfoBox>
-        <div className="form-check">
-                <label
-                    className="form-check-label">
-                    Show conservation areas from '<a href="http://www.bedfordpark.net/leo/planning/">English Conservation Area dataset 2020</a>' by Ian Hall.
-                    <input className="form-check-input" type="checkbox"
-                        checked={false}
-                        disabled={true}
-                        />
-                </label>
-                </div>
         </Fragment>
         );
 };
