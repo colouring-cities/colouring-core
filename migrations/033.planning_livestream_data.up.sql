@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS planning_data (
         registered_with_local_authority_date date,
         decision_date date,
         last_synced_date date,
-        status VARCHAR(20),
+        status VARCHAR(50),
         data_source VARCHAR(70),
         data_source_link VARCHAR(150),
         uprn bigint

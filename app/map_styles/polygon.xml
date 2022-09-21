@@ -355,11 +355,11 @@
             <LineSymbolizer stroke="#999999" stroke-width="1.5" />
         </Rule>
         <Rule>
-            <Filter>[status] = "Unknown"</Filter>
+            <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn"</Filter>
             <PolygonSymbolizer fill="#eacad0"/>
         </Rule>
         <Rule>
-            <Filter>[status] = "Unknown"</Filter>
+            <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn"</Filter>
             <LineSymbolizer stroke="#eacad0" stroke-width="15" />
         </Rule>
     </Style>

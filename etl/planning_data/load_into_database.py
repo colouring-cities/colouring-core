@@ -35,6 +35,25 @@ def parse_date_string_into_datestring(incoming):
         date = datetime.datetime.strptime(incoming, "%Y-%m-%dT%H:%M:%S.%fZ") # '2022-08-08T20:07:22.238Z'
     return datetime.datetime.strftime(date, "%Y-%m-%d")
 
+def process_status(status):
+    """return None if status is invalid"""
+    if status == "Refused":
+        status = "Rejected"
+    if status == "Appeal Received":
+        status = "Appeal In Progress"
+    if status == None:
+        status = "Unknown"
+    if (status in ["Approved", "Rejected", "Appeal In Progress", "Withdrawn", "Unknown"]):
+        return status
+    print("Unexpected status " + status)
+    if status not in ["No Objection to Proposal (OBS only)", "Objection Raised to Proposal (OBS only)", "Not Required", "Unknown", "Lapsed", "SECS", "Comment Issued", "ALL DECISIONS ISSUED", "Closed", "Declined to Determine"]:
+        print("New unexpected status " + status)
+    status_length_limit = 50 # see migrations/033.planning_livestream_data.up.sql
+    if len(status) > 50:
+        print("Status was too long and was skipped:", status)
+        return None
+    return status
+
 def main():
     connection = get_connection()
     with connection.cursor() as cur:
@@ -53,22 +72,7 @@ def main():
             decision_date = parse_date_string_into_datestring(entry['_source']['decision_date'])
             last_synced_date = parse_date_string_into_datestring(entry['_source']['last_synced'])
             uprn = entry['_source']['uprn']
-            status = entry['_source']['status']
-            if status in ["No Objection to Proposal (OBS only)", "Objection Raised to Proposal (OBS only)", "Not Required", None, "Lapsed", "SECS", "Comment Issued", "ALL DECISIONS ISSUED", "Closed", "Declined to Determine"]:
-                continue
-            if status in []:
-                opts = jsbeautifier.default_options()
-                opts.indent_size = 2
-                print(jsbeautifier.beautify(json.dumps(entry), opts))            
-                continue
-            if status == "Refused":
-                status = "Rejected"
-            if status == "Appeal Received":
-                status = "Appeal In Progress"
-            if (status not in ["Approved", "Rejected", "Appeal In Progress", "Withdrawn", "Unknown"]):
-                print("Unexpected status " + status)
-                continue
-                #raise Exception("Unexpected status " + status)
+            status = process_status(entry['_source']['status'])
             if uprn == None:
                 continue
             entry = {

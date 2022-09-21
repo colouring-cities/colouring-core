@@ -53,6 +53,25 @@ def shorten_description(original_description):
         description += "... <i>(show more)</i>"
     return description
 
+def process_status(status):
+    """return None if status is invalid"""
+    if status == "Refused":
+        status = "Rejected"
+    if status == "Appeal Received":
+        status = "Appeal In Progress"
+    if status == None:
+        status = "Unknown"
+    if (status in ["Approved", "Rejected", "Appeal In Progress", "Withdrawn", "Unknown"]):
+        return status
+    print("Unexpected status " + status)
+    if status not in ["No Objection to Proposal (OBS only)", "Objection Raised to Proposal (OBS only)", "Not Required", "Unknown", "Lapsed", "SECS", "Comment Issued", "ALL DECISIONS ISSUED", "Closed", "Declined to Determine"]:
+        print("New unexpected status " + status)
+    status_length_limit = 50 # see migrations/033.planning_livestream_data.up.sql
+    if len(status) > 50:
+        print("Status was too long and was skipped:", status)
+        return None
+    return status
+
 def main():
     connection = get_connection()
     with connection.cursor() as cur:
@@ -61,29 +80,11 @@ def main():
         data = json.load(content_file)
         for entry in data['features']:
             description = entry['properties']['description']
-            application_id = "unknown"
+            application_id = "not available"
             decision_date = parse_date_string_into_datestring(entry['properties']['decision_date'])
             last_synced_date = parse_date_string_into_datestring(entry['properties']['decision_date'])
             uprn = entry['properties']['uprn']
-            status = entry['properties']['status']
-            if status in ["No Objection to Proposal (OBS only)", "Not Required", None, "Lapsed", "SECS", "Comment Issued",
-
-            # new ones
-            "ALL DECISIONS ISSUED", "Closed", "?", ""
-            ]: 
-                continue
-            if status in []:
-                opts = jsbeautifier.default_options()
-                opts.indent_size = 2
-                print(jsbeautifier.beautify(json.dumps(entry), opts))            
-                continue
-            if status == "Refused":
-                status = "Rejected"
-            if status == "Appeal Received":
-                status = "Appeal In Progress"
-            if (status not in ["Approved", "Rejected", "Appeal In Progress", "Withdrawn", "Unknown"]):
-                print("Unexpected status " + status)
-                continue
+            status = process_status(entry['properties']['status'])
             if uprn == None:
                 continue
             entry = {
