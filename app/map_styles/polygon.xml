@@ -320,7 +320,7 @@
         </Rule>
         <Rule>
             <Filter>[status] = "Submitted"</Filter>
-            <LineSymbolizer stroke="#53f5dd" stroke-width="1.5" />
+            <LineSymbolizer stroke="#53f5dd" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Approved"</Filter>
@@ -328,7 +328,7 @@
         </Rule>
         <Rule>
             <Filter>[status] = "Approved"</Filter>
-            <LineSymbolizer stroke="#16cf15" stroke-width="1.5" />
+            <LineSymbolizer stroke="#16cf15" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Appeal In Progress"</Filter>
@@ -336,7 +336,7 @@
         </Rule>
         <Rule>
             <Filter>[status] = "Appeal In Progress"</Filter>
-            <LineSymbolizer stroke="#fff200" stroke-width="1.5" />
+            <LineSymbolizer stroke="#fff200" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Rejected"</Filter>
@@ -344,7 +344,7 @@
         </Rule>
         <Rule>
             <Filter>[status] = "Rejected"</Filter>
-            <LineSymbolizer stroke="#e31d23" stroke-width="1.5" />
+            <LineSymbolizer stroke="#e31d23" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Withdrawn"</Filter>
@@ -352,7 +352,7 @@
         </Rule>
         <Rule>
             <Filter>[status] = "Withdrawn"</Filter>
-            <LineSymbolizer stroke="#999999" stroke-width="1.5" />
+            <LineSymbolizer stroke="#999999" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn"</Filter>
@@ -360,7 +360,7 @@
         </Rule>
         <Rule>
             <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn"</Filter>
-            <LineSymbolizer stroke="#eacad0" stroke-width="15" />
+            <LineSymbolizer stroke="#eacad0" stroke-width="1.75" />
         </Rule>
     </Style>
     <Style name="planning_combined">
