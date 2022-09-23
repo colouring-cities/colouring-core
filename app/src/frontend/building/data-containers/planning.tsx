@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import InfoBox from '../../components/info-box';
 import { dataFields } from '../../config/data-fields-config';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
-import DataEntry from '../data-components/data-entry';
+import NumericDataEntryWithFormattedLink from '../data-components/numeric-data-entry-with-formatted-link';import DataEntry from '../data-components/data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
@@ -126,23 +126,23 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     />
             </DataEntryGroup>
             <DataEntryGroup name="Listed buildings & scheduled monuments" collapsed={false} >
-                <DataEntry
-                    title={dataFields.planning_nhle_link.title}
-                    slug="planning_nhle_link"
-                    value={props.building.planning_nhle_link}
+                <NumericDataEntryWithFormattedLink
+                    title={dataFields.planning_list_id.title}
+                    slug="planning_list_id"
+                    value={props.building.planning_list_id}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    placeholder="https://..."
-                    isUrl={true}
-                    />
+                    linkTargetFunction={(id: String) => { return "https://historicengland.org.uk/listing/the-list/list-entry/" + id + "?section=official-list-entry" } }
+                    linkDescriptionFunction={(id: String) => { return "description at the official site" } }
+                />
                 <Verification
-                    slug="planning_nhle_link"
-                    allow_verify={props.user !== undefined && props.building.planning_nhle_link !== null && !props.edited}
+                    slug="planning_list_id"
+                    allow_verify={props.user !== undefined && props.building.planning_list_id !== null && !props.edited}
                     onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_nhle_link")}
-                    user_verified_as={props.user_verified.planning_nhle_link}
-                    verified_count={props.building.verified.planning_nhle_link}
+                    user_verified={props.user_verified.hasOwnProperty("planning_list_id")}
+                    user_verified_as={props.user_verified.planning_list_id}
+                    verified_count={props.building.verified.planning_list_id}
                     />
                 <SelectDataEntry
                     title={dataFields.planning_list_grade.title}

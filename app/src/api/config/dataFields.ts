@@ -205,7 +205,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
-    planning_nhle_link: {
+    planning_list_id: {
         edit: true,
         verify: true,
     },

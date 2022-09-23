@@ -1,0 +1,9 @@
+.narrow-input-form {
+    max-width: 40%;
+    float: left;
+}
+
+.with-margin {
+    margin-left: 0.7em;
+    margin-right: 0.7em;
+}

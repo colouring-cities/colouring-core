@@ -458,10 +458,11 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "",
         //tooltip: ,
     },
-    planning_nhle_link: {
+    planning_list_id: {
         category: Category.Planning,
         title: "Is the building on the <a href=\"https://historicengland.org.uk/advice/hpg/heritage-assets/nhle/\" target=\"_blank\">National Heritage List for England</a>?",
-        example: "",
+        example: "121436",
+        //tooltip: ,
     },
     planning_list_grade: {
         category: Category.Planning,
