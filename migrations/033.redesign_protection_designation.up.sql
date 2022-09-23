@@ -39,5 +39,3 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS planning_apa_name;
 ALTER TABLE buildings DROP COLUMN IF EXISTS planning_apa_tier;
 ALTER TABLE buildings DROP COLUMN IF EXISTS planning_in_local_list;
 ALTER TABLE buildings DROP COLUMN IF EXISTS planning_in_historic_area_assessment;
-
-rg "planning_in_apa|planning_world_list_id|planning_heritage_at_risk_id|planning_in_conservation_area|planning_in_glher|planning_apa_name|planning_apa_tier|planning_in_local_list|planning_in_historic_area_assessment"
