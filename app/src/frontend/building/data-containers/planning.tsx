@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 
 import InfoBox from '../../components/info-box';
 import { dataFields } from '../../config/data-fields-config';
-import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
 import DataEntry from '../data-components/data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
