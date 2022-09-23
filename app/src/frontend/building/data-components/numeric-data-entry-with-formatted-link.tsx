@@ -48,7 +48,9 @@ const NumericDataEntryWithFormattedLink: React.FunctionComponent<NumericDataEntr
                         )
                     }
                 />
-                {props.value == undefined ? <div></div> : <a className="with-margin" href={props.linkTargetFunction(props.value)} target="_blank">{props.linkDescriptionFunction(props.value)}</a>}
+                <div className="input-lookalike with-margin">
+                    {props.value == undefined ? <div></div> : <a className="with-margin" href={props.linkTargetFunction(props.value)} target="_blank">{props.linkDescriptionFunction(props.value)}</a>}
+                </div>
             </FieldRow>
         </Fragment>
     );

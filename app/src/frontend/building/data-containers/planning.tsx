@@ -133,8 +133,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                    placeholder="If yes, add ID"
                     linkTargetFunction={(id: String) => { return "https://historicengland.org.uk/listing/the-list/list-entry/" + id + "?section=official-list-entry" } }
-                    linkDescriptionFunction={(id: String) => { return "description at the official site" } }
+                    linkDescriptionFunction={(id: String) => { return "ID Link" } }
                 />
                 <Verification
                     slug="planning_list_id"
