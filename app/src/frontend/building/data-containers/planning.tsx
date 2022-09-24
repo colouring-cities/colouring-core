@@ -188,24 +188,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     />
             </DataEntryGroup>
             <DataEntryGroup name="Other types of protection & recording" collapsed={false} >
-                <DataEntry
-                    title={dataFields.planning_local_list_url.title}
-                    slug="planning_local_list_url"
-                    value={props.building.planning_local_list_url}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    isUrl={true}
-                    placeholder="https://..."
-                    />
-                <Verification
-                    slug="planning_local_list_url"
-                    allow_verify={props.user !== undefined && props.building.planning_local_list_url !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_local_list_url")}
-                    user_verified_as={props.user_verified.planning_local_list_url}
-                    verified_count={props.building.verified.planning_local_list_url}
-                    />
                 <NumericDataEntryWithFormattedLink
                     title={dataFields.planning_world_list_id.title}
                     slug="planning_world_list_id"
@@ -225,26 +207,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     user_verified_as={props.user_verified.planning_world_list_id}
                     verified_count={props.building.verified.planning_world_list_id}
                     />
-
-                <DataEntry
-                    title={dataFields.planning_glher_url.title}
-                    slug="planning_glher_url"
-                    value={props.building.planning_glher_url}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    isUrl={true}
-                    placeholder="https://..."
-                    />
-                <Verification
-                    slug="planning_glher_url"
-                    allow_verify={props.user !== undefined && props.building.planning_glher_url !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_glher_url")}
-                    user_verified_as={props.user_verified.planning_glher_url}
-                    verified_count={props.building.verified.planning_glher_url}
-                    />
-
                 <DataEntry
                     title={dataFields.planning_in_apa_url.title}
                     slug="planning_in_apa_url"
@@ -262,6 +224,42 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     user_verified={props.user_verified.hasOwnProperty("planning_in_apa_url")}
                     user_verified_as={props.user_verified.planning_in_apa_url}
                     verified_count={props.building.verified.planning_in_apa_url}
+                    />
+                <DataEntry
+                    title={dataFields.planning_local_list_url.title}
+                    slug="planning_local_list_url"
+                    value={props.building.planning_local_list_url}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    isUrl={true}
+                    placeholder="https://..."
+                    />
+                <Verification
+                    slug="planning_local_list_url"
+                    allow_verify={props.user !== undefined && props.building.planning_local_list_url !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("planning_local_list_url")}
+                    user_verified_as={props.user_verified.planning_local_list_url}
+                    verified_count={props.building.verified.planning_local_list_url}
+                    />
+                <DataEntry
+                    title={dataFields.planning_glher_url.title}
+                    slug="planning_glher_url"
+                    value={props.building.planning_glher_url}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    isUrl={true}
+                    placeholder="https://..."
+                    />
+                <Verification
+                    slug="planning_glher_url"
+                    allow_verify={props.user !== undefined && props.building.planning_glher_url !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("planning_glher_url")}
+                    user_verified_as={props.user_verified.planning_glher_url}
+                    verified_count={props.building.verified.planning_glher_url}
                     />
                 <DataEntry
                     title={dataFields.planning_historic_area_assessment_url.title}
