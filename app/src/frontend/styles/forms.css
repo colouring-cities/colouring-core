@@ -5,9 +5,7 @@ input[type="text"],
 input[type="number"],
 input[type="password"],
 input[type="email"] {
-    border-color: #999;
     padding: 0.25rem 0.5rem;
-    border-radius: 0;
 }
 input[type="number"] {
     padding-right: 0.25rem;
