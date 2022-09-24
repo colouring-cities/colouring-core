@@ -206,23 +206,24 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     user_verified_as={props.user_verified.planning_local_list_url}
                     verified_count={props.building.verified.planning_local_list_url}
                     />
-                <DataEntry
-                    title={dataFields.planning_world_list_url.title}
-                    slug="planning_world_list_url"
-                    value={props.building.planning_world_list_url}
+                <NumericDataEntryWithFormattedLink
+                    title={dataFields.planning_world_list_id.title}
+                    slug="planning_world_list_id"
+                    value={props.building.planning_world_list_id}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    isUrl={true}
-                    placeholder="https://..."
+                    placeholder="If yes, add ID"
+                    linkTargetFunction={(id: String) => { return "https://whc.unesco.org/en/list/" + id } }
+                    linkDescriptionFunction={(id: String) => { return "ID Link" } }
                     />
                 <Verification
-                    slug="planning_world_list_url"
-                    allow_verify={props.user !== undefined && props.building.planning_world_list_url !== null && !props.edited}
+                    slug="planning_world_list_id"
+                    allow_verify={props.user !== undefined && props.building.planning_world_list_id !== null && !props.edited}
                     onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_world_list_url")}
-                    user_verified_as={props.user_verified.planning_world_list_url}
-                    verified_count={props.building.verified.planning_world_list_url}
+                    user_verified={props.user_verified.hasOwnProperty("planning_world_list_id")}
+                    user_verified_as={props.user_verified.planning_world_list_id}
+                    verified_count={props.building.verified.planning_world_list_id}
                     />
 
                 <DataEntry

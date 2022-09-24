@@ -75,7 +75,7 @@ This is the main table, containing almost all data collected by Colouring London
 - `planning_in_conservation_area_url`: conservation area data source link
 - `planning_list_grade`: National Heritage List for England listing grade
 - `planning_heritage_at_risk_url`: Heritage at Risk link
-- `planning_world_list_url`: UNESCO World Heritage list id
+- `planning_world_list_id`: UNESCO World Heritage list id
 - `planning_glher_url`: Greater London Historic Environment Record link
 - `planning_in_apa_url`: an Archeological Priority Area (APA) link
 - `planning_local_list_url`: local list reference link

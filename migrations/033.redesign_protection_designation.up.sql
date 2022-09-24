@@ -13,9 +13,6 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS planning_nhle_link;
 ALTER TABLE buildings DROP COLUMN IF EXISTS planning_in_apa;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_in_apa_url VARCHAR DEFAULT '';
 
-ALTER TABLE buildings DROP COLUMN IF EXISTS planning_world_list_id;
-ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_world_list_url VARCHAR DEFAULT '';
-
 ALTER TABLE buildings DROP COLUMN IF EXISTS planning_heritage_at_risk_id;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_heritage_at_risk_url VARCHAR DEFAULT '';
 

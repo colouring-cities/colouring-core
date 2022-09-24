@@ -185,7 +185,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
-    planning_world_list_url: {
+    planning_world_list_id: {
         edit: true,
         verify: true,
     },

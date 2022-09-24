@@ -476,10 +476,10 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "",
         //tooltip: ,
     },
-    planning_world_list_url: {
+    planning_world_list_id: {
         category: Category.Planning,
         title: "Is it within a <a href=\"https://historicengland.org.uk/advice/hpg/has/whs/\" target=\"_blank\">World Heritage Site</a>?",
-        example: "",
+        example: "488",
         //tooltip: ,
     },
     planning_glher_url: {

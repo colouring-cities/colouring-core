@@ -48,7 +48,7 @@ COPY (SELECT
     planning_list_cat,
     planning_list_grade,
     planning_heritage_at_risk_url,
-    planning_world_list_url,
+    planning_world_list_id,
     planning_glher_url,
     planning_in_apa_url,
     planning_local_list_url,

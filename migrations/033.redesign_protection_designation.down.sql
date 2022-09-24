@@ -5,9 +5,6 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_nhle_link text[];
 ALTER TABLE buildings DROP COLUMN IF EXISTS planning_in_apa_url;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_in_apa boolean DEFAULT FALSE;
 
-ALTER TABLE buildings DROP COLUMN IF EXISTS planning_world_list_url;
-ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_world_list_id int DEFAULT NULL;
-
 ALTER TABLE buildings DROP COLUMN IF EXISTS planning_heritage_at_risk_url;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_heritage_at_risk_id int DEFAULT NULL;
 
