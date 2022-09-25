@@ -47,7 +47,7 @@ export const SignUp: React.FC = () => {
                         value={username} onChange={e => setUsername(e.target.value)}
                         placeholder="not-your-real-name" required
                         minLength={4}
-                        maxLength={30}
+                        maxLength={29}
                         pattern="\w+"
                         title="Usernames can contain only letters, numbers and the underscore"
                     />
