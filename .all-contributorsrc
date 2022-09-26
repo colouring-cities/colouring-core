@@ -32,7 +32,7 @@
         "code",
         "doc"
       ]
-    },    
+    },
     {
       "login": "mz8i",
       "name": "mz8i",
@@ -122,6 +122,16 @@
       "name": "Mateusz Konieczny",
       "avatar_url": "https://avatars.githubusercontent.com/u/899988?v=4",
       "profile": "https://mapsaregreat.com/",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "mdsimpson42",
+      "name": "Mike Simpson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21125422?v=4",
+      "profile": "https://github.com/mdsimpson42",
       "contributions": [
         "code",
         "doc"
