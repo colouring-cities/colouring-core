@@ -98,7 +98,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     copy={props.copy}
                     onChange={props.onChange}
                     isUrl={true}
-                    placeholder="https://..."
+                    placeholder="Please add relevant link here"
                     />
                 <Verification
                     slug="planning_in_conservation_area_url"
@@ -175,7 +175,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    placeholder="https://..."
+                    placeholder="Please add relevant link here"
                     isUrl={true}
                     />
                 <Verification
@@ -215,7 +215,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     copy={props.copy}
                     onChange={props.onChange}
                     isUrl={true}
-                    placeholder="https://..."
+                    placeholder="Please add relevant link here"
                     />
                 <Verification
                     slug="planning_in_apa_url"
@@ -233,7 +233,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     copy={props.copy}
                     onChange={props.onChange}
                     isUrl={true}
-                    placeholder="https://..."
+                    placeholder="Please add relevant link here"
                     />
                 <Verification
                     slug="planning_local_list_url"
@@ -251,7 +251,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     copy={props.copy}
                     onChange={props.onChange}
                     isUrl={true}
-                    placeholder="https://..."
+                    placeholder="Please add relevant link here"
                     />
                 <Verification
                     slug="planning_glher_url"
@@ -269,7 +269,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     copy={props.copy}
                     onChange={props.onChange}
                     isUrl={true}
-                    placeholder="https://..."
+                    placeholder="Please add relevant link here"
                     />
                 <Verification
                     slug="planning_historic_area_assessment_url"
