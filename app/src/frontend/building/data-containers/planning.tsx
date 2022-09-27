@@ -279,6 +279,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     user_verified_as={props.user_verified.planning_historic_area_assessment_url}
                     verified_count={props.building.verified.planning_historic_area_assessment_url}
                     />
+                <InfoBox msg="Designation data is currently incomplete. We are aiming for 100% coverage by April 2023." />
             </DataEntryGroup>
         </DataEntryGroup>
     </Fragment>
