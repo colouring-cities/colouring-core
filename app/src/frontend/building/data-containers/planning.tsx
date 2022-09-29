@@ -91,14 +91,13 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
         <DataEntryGroup name="Designation/protection" collapsed={false} >
             <DataEntryGroup name="Conservation" collapsed={false} >
                 <DataEntry
-                    title={dataFields.planning_in_conservation_area_url.title}
-                    slug="planning_in_conservation_area_url"
-                    value={props.building.planning_in_conservation_area_url}
+                    title={dataFields.planning_in_conservation_area_id.title}
+                    slug="planning_in_conservation_area_id"
+                    value={props.building.planning_in_conservation_area_id}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    isUrl={true}
-                    placeholder="Please add relevant link here"
+                    placeholder="Please add Conservation Area identifier"
                     />
                 <Verification
                     slug="planning_in_conservation_area_url"
@@ -107,6 +106,16 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area_url")}
                     user_verified_as={props.user_verified.planning_in_conservation_area_url}
                     verified_count={props.building.verified.planning_in_conservation_area_url}
+                    />
+                <DataEntry
+                    title={dataFields.planning_in_conservation_area_url.title}
+                    slug="planning_in_conservation_area_url"
+                    value={props.building.planning_in_conservation_area_url}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    isUrl={true}
+                    placeholder="Please add CA appraisal link here"
                     />
                 <DataEntry
                     title={dataFields.planning_conservation_area_name.title}

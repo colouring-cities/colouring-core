@@ -452,6 +452,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "",
         //tooltip: ,
     },
+    planning_in_conservation_area_id: {
+        category: Category.Planning,
+        title: "Conservation Area identifier",
+        example: "",
+        //tooltip: ,
+    },
     planning_conservation_area_name: {
         category: Category.Planning,
         title: "Conservation Area Name",

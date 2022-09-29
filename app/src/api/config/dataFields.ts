@@ -169,6 +169,22 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    work_on_site_is_completed: {
+        edit: true,
+        verify: true,
+    },
+    work_on_site_is_completed_on_year: {
+        edit: true,
+        verify: true,
+    },
+    planning_planning_application_id_crowdsourced: {
+        edit: true,
+        verify: true,
+    },
+    planning_in_conservation_area_id: {
+        edit: true,
+        verify: true,
+    },
     planning_in_conservation_area_url: {
         edit: true,
         verify: true,

@@ -8,8 +8,9 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_in_apa boolean DEFAULT F
 ALTER TABLE buildings DROP COLUMN IF EXISTS planning_heritage_at_risk_url;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_heritage_at_risk_id int DEFAULT NULL;
 
-ALTER TABLE buildings DROP COLUMN IF EXISTS planning_in_conservation_area_url;
+ALTER TABLE buildings DROP COLUMN IF EXISTS planning_in_conservation_area_id;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_in_conservation_area boolean DEFAULT FALSE;
+ALTER TABLE buildings DROP COLUMN IF EXISTS planning_in_conservation_area_url;
 
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_in_glher boolean DEFAULT FALSE;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_apa_name VARCHAR DEFAULT '';
