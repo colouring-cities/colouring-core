@@ -6,6 +6,11 @@ SET planning_local_list_url = 'identified as listed: please replace with link'
 WHERE planning_local_list_url = ''
 AND planning_in_local_list;
 
+UPDATE buildings
+SET planning_in_conservation_area_url = 'identified as within conservation area: please replace with link'
+WHERE planning_in_conservation_area_url = ''
+AND planning_in_conservation_area;
+
 --no need to store both id and link that can be derived from it
 ALTER TABLE buildings DROP COLUMN IF EXISTS planning_nhle_link;
 
