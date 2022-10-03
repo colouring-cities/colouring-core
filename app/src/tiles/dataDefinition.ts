@@ -141,26 +141,33 @@ const LAYER_QUERIES = {
             geometry_id,
             (
                 CASE
-                    WHEN planning_list_cat = 'Listed Building' and planning_list_grade = 'I' THEN 'Grade I Listed'
-                    WHEN planning_list_cat = 'Listed Building' and planning_list_grade = 'II*' THEN 'Grade II* Listed'
-                    WHEN planning_list_cat = 'Listed Building' and planning_list_grade = 'II' THEN 'Grade II Listed'
-                    WHEN planning_in_local_list THEN 'Locally Listed'
+                    WHEN planning_list_grade = 'I' THEN 'Grade I Listed'
+                    WHEN planning_list_grade = 'II*' THEN 'Grade II* Listed'
+                    WHEN planning_list_grade = 'II' THEN 'Grade II Listed'
+                    WHEN planning_local_list_url <> '' THEN 'Locally Listed'
+                    WHEN planning_heritage_at_risk_url <> '' THEN 'Heritage at Risk'
+                    WHEN planning_world_list_id IS NOT NULL THEN 'In World Heritage Site'
+                    WHEN planning_in_apa_url <> '' THEN 'In Archaeological Priority Area'
                     ELSE 'None'
                 END
             ) AS listing_type,
-            planning_in_conservation_area
+            planning_in_conservation_area_url <> '' AS planning_in_conservation_area
         FROM buildings
         WHERE
-            planning_in_conservation_area
-            OR planning_in_local_list
-            OR planning_list_cat IS NOT NULL`,
+            planning_list_grade IS NOT NULL
+            OR planning_in_conservation_area_url <> ''
+            OR planning_local_list_url <> ''
+            OR planning_world_list_id IS NOT NULL
+            OR planning_heritage_at_risk_url <> ''
+            OR planning_in_apa_url <> ''
+            `,
     conservation_area: `
         SELECT
             geometry_id
         FROM
             buildings
         WHERE
-            planning_in_conservation_area = true`,
+            planning_in_conservation_area_url = true`,
     sust_dec: `
         SELECT
             geometry_id,

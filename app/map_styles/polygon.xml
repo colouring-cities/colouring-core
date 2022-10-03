@@ -334,6 +334,18 @@
             <Filter>[listing_type] = "Locally Listed"</Filter>
             <PolygonSymbolizer fill="#858ed4"/>
         </Rule>
+        <Rule>
+            <Filter>[listing_type] = "Heritage at Risk"</Filter>
+            <PolygonSymbolizer fill="#85ffd4"/>
+        </Rule>
+        <Rule>
+            <Filter>[listing_type] = "In World Heritage Site"</Filter>
+            <PolygonSymbolizer fill="#858eff"/>
+        </Rule>
+        <Rule>
+            <Filter>[listing_type] = "In Archaeological Priority Area"</Filter>
+            <PolygonSymbolizer fill="#8500d4"/>
+        </Rule>
 
         <Rule>
             <Filter>[listing_type] != "None" or [planning_in_conservation_area] = true</Filter>

@@ -169,23 +169,27 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
-    planning_in_conservation_area: {
+    work_on_site_is_completed: {
         edit: true,
         verify: true,
     },
-    planning_conservation_area_name: {
+    work_on_site_is_completed_on_year: {
         edit: true,
         verify: true,
     },
-    planning_in_list: {
+    planning_planning_application_id_crowdsourced: {
         edit: true,
         verify: true,
     },
-    planning_list_id: {
+    planning_in_conservation_area_id: {
         edit: true,
         verify: true,
     },
-    planning_list_cat: {
+    planning_in_conservation_area_url: {
+        edit: true,
+        verify: true,
+    },
+    planning_in_conservation_area_source_url: {
         edit: true,
         verify: true,
     },
@@ -193,7 +197,7 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
-    planning_heritage_at_risk_id: {
+    planning_heritage_at_risk_url: {
         edit: true,
         verify: true,
     },
@@ -201,27 +205,11 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
-    planning_in_glher: {
-        edit: true,
-        verify: true,
-    },
     planning_glher_url: {
         edit: true,
         verify: true,
     },
-    planning_in_apa: {
-        edit: true,
-        verify: true,
-    },
-    planning_apa_name: {
-        edit: true,
-        verify: true,
-    },
-    planning_apa_tier: {
-        edit: true,
-        verify: true,
-    },
-    planning_in_local_list: {
+    planning_in_apa_url: {
         edit: true,
         verify: true,
     },
@@ -229,15 +217,11 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
-    planning_in_historic_area_assessment: {
-        edit: true,
-        verify: true,
-    },
     planning_historic_area_assessment_url: {
         edit: true,
         verify: true,
     },
-    planning_nhle_link: {
+    planning_list_id: {
         edit: true,
         verify: true,
     },
