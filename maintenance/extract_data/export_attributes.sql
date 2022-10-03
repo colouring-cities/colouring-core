@@ -40,6 +40,7 @@ COPY (SELECT
     construction_secondary_materials,
     construction_roof_covering,
     planning_portal_link,
+    planning_in_conservation_area_id,
     planning_in_conservation_area_url,
     planning_in_conservation_area_source_url,
     planning_conservation_area_name,

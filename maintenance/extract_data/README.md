@@ -71,6 +71,7 @@ This is the main table, containing almost all data collected by Colouring London
 - `sust_retrofit_date`: year of last significant retrofit
 - `planning_portal_link`: link to an entry on https://www.planningportal.co.uk/
 - `planning_list_id`: National Heritage List for England ID
+- `planning_in_conservation_area_id`: conservation area ID
 - `planning_in_conservation_area_url`: conservation area appraisal link
 - `planning_in_conservation_area_source_url`: conservation area data source link
 - `planning_list_grade`: National Heritage List for England listing grade
