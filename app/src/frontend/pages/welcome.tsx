@@ -43,6 +43,7 @@ const Welcome = () => (
         </div>
         <div className="image-row">
             <img src="images/logo-loughborough.png" alt="Colouring London collaborating organisations: Loughborough University" />
+            <img src="images/logo-newcastle.png" alt="Colouring London collaborating organisations: Newcastle University" />
         </div>
     </div>
 );
