@@ -1,11 +1,13 @@
 import React, { Fragment } from 'react';
 
 import InfoBox from '../../components/info-box';
-import { dataFields } from '../../config/data-fields-config';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
 import NumericDataEntryWithFormattedLink from '../data-components/numeric-data-entry-with-formatted-link';
-import DataEntry from '../data-components/data-entry';
+import { buildingUserFields, dataFields } from '../../config/data-fields-config';
 import NumericDataEntry from '../data-components/numeric-data-entry';
+import UserOpinionEntry from '../data-components/user-opinion-data-entry';
+
+import DataEntry from '../data-components/data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
@@ -40,13 +42,16 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
             user_verified_as={props.user_verified.planning_portal_link}
             verified_count={props.building.verified.planning_portal_link}
             />
-            <CheckboxDataEntry
-                title="Do you think a planning application is going to be submitted for this site that is not currently visualised?"
-                slug="planning_live_application"
-                value={null}
-                disabled={true}
-                />
+            <UserOpinionEntry
+                slug='community_expected_planning_application'
+                title={buildingUserFields.community_expected_planning_application.title}
+                
+                userValue={props.building.community_expected_planning_application}
 
+                onChange={props.onSaveChange}
+                mode={props.mode}
+                copy={props.copy}
+            />
             <CheckboxDataEntry
                 title="Are you aware of a planning application that has been recently submitted for this site and is not listed above?"
                 slug="planning_live_application"
