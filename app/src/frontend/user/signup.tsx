@@ -58,7 +58,7 @@ export const SignUp: React.FC = () => {
                         value={email} onChange={e => setEmail(e.target.value)}
                         placeholder="someone@example.com"
                     />
-                    <InfoBox msg="Please note that if you forget your password, you will only be able to recover your account if you provide an email address." />
+                    <InfoBox msg="Our policy is to avoid collecting personal data wherever possible. An email address is only necessary if you wish to be able to recover your account should you forget your password." />
                     
                     <label htmlFor="confirm_email">Confirm email (optional)</label>
                     <input name="confirm_email" id="confirm_email"
