@@ -3,7 +3,9 @@ import React, { Fragment } from 'react';
 import InfoBox from '../../components/info-box';
 import { dataFields } from '../../config/data-fields-config';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
-import NumericDataEntryWithFormattedLink from '../data-components/numeric-data-entry-with-formatted-link';import DataEntry from '../data-components/data-entry';
+import NumericDataEntryWithFormattedLink from '../data-components/numeric-data-entry-with-formatted-link';
+import DataEntry from '../data-components/data-entry';
+import NumericDataEntry from '../data-components/numeric-data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
@@ -11,6 +13,8 @@ import withCopyEdit from '../data-container';
 import PlanningDataOfficialDataEntry from '../data-components/planning-data-entry';
 
 import { CategoryViewProps } from './category-view-props';
+
+const currentYear = new Date().getFullYear();
 
 const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
@@ -36,6 +40,47 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
             user_verified_as={props.user_verified.planning_portal_link}
             verified_count={props.building.verified.planning_portal_link}
             />
+            <CheckboxDataEntry
+                title="Do you think a planning application is going to be submitted for this site that is not currently visualised?"
+                slug="planning_live_application"
+                value={null}
+                disabled={true}
+                />
+
+            <CheckboxDataEntry
+                title="Are you aware of a planning application that has been recently submitted for this site and is not listed above?"
+                slug="planning_live_application"
+                value={null}
+                disabled={true}
+                />
+            <NumericDataEntry
+                title={"Crowdsourced planning application submission edit date"}
+                slug="date_year"
+                value={2019}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                min={1}
+                max={currentYear}
+                // "type": "year_estimator"
+                />
+            <CheckboxDataEntry
+                title="Has the work on this site been completed?"
+                slug="planning_live_application"
+                value={null}
+                disabled={false}
+                />
+            <NumericDataEntry
+                title={"Estimated date of completion"}
+                slug="date_year"
+                value={2019}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                min={1}
+                max={currentYear}
+                // "type": "year_estimator"
+                />
 
         <DataEntryGroup name="Planning Status">
             <CheckboxDataEntry
