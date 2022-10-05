@@ -167,7 +167,21 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         }
     ],
-    [Category.Planning]: [{
+    [Category.Planning]: [
+        {
+            mapStyle: 'planning_applications_status',
+            legend: {
+                title: 'Planning applications',
+                elements: [
+                    { color: '#00ffff', text: 'Submitted' },
+                    { color: '#00ff00', text: 'Approved' },
+                    { color: '#ffff00', text: 'Appeal In Progress' },
+                    { color: '#ff0000', text: 'Refused' },
+                    { color: '#999999', text: 'Withdrawn' },
+                ]
+            }
+        },
+        {
         mapStyle: 'planning_combined',
         legend: {
             title: 'Designation/protection',

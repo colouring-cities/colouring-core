@@ -2,7 +2,7 @@ import React from 'react';
 
 interface InfoBoxProps {
     msg?: string;
-    type?: 'info' | 'warning'
+    type?: 'info' | 'warning' | 'success'
 }
 
 const InfoBox: React.FC<InfoBoxProps> = ({msg, children, type = 'info'}) => (

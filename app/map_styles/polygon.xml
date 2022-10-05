@@ -313,6 +313,28 @@
             <PolygonSymbolizer fill="#73ebaf" />
         </Rule>
     </Style>
+    <Style name="planning_applications_status">
+        <Rule>
+            <Filter>[status] = "Submitted"</Filter>
+            <PolygonSymbolizer fill="#00ffff"/>
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Approved"</Filter>
+            <PolygonSymbolizer fill="#00ff00"/>
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Appeal In Progress"</Filter>
+            <PolygonSymbolizer fill="#ffff00"/>
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Refused"</Filter>
+            <PolygonSymbolizer fill="#ff0000"/>
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Withdrawn"</Filter>
+            <PolygonSymbolizer fill="#999999"/>
+        </Rule>
+    </Style>
     <Style name="planning_combined">
         <Rule>
             <Filter>[planning_in_conservation_area] = true</Filter>

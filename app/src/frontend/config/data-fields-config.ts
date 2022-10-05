@@ -170,6 +170,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: [{uprn: "", parent_uprn: "" }, {uprn: "", parent_uprn: "" }],
     },
 
+    planning_data: {
+        category: Category.Location,
+        title: "PLANNING DATA",
+        tooltip: "PLANNING DATA",
+        example: [{}],
+    },
+
+
     ref_osm_id: {
         category: Category.Location,
         title: "OSM ID",
