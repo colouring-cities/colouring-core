@@ -183,6 +183,22 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         },
         {
+            mapStyle: 'community_expected_planning_application_total',
+            legend: {
+                title: 'Expected planning application',
+                description: 'People who think the building will be affected by a planning application in the near future',
+                elements: [
+                    { color: '#bd0026', text: '100+' },
+                    { color: '#e31a1c', text: '50–99' },
+                    { color: '#fc4e2a', text: '20–49' },
+                    { color: '#fd8d3c', text: '10–19' },
+                    { color: '#feb24c', text: '3–9' },
+                    { color: '#fed976', text: '2' },
+                    { color: '#ffe8a9', text: '1'}
+                ]
+            }
+        },
+        {
         mapStyle: 'planning_combined',
         legend: {
             title: 'Designation/protection',
@@ -193,9 +209,9 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 { color: '#e75b42', text: 'Grade II* Listed'},
                 { color: '#ffbea1', text: 'Grade II Listed'},
                 { color: '#85ffd4', text: 'Heritage at Risk'},
+                { color: '#858ed4', text: 'Locally Listed'},
                 { color: '#858eff', text: 'In World Heritage Site'},
                 { color: '#8500d4', text: 'In Archaeological Priority Area'},
-                { color: '#858ed4', text: 'Locally Listed'},
             ]
         },
     }],
