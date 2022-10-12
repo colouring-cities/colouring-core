@@ -12,6 +12,7 @@ export type MapTheme = 'light' | 'night';
 
 export type BoroughEnablementState = 'enabled' | 'disabled';
 
+export type ParcelEnablementState = 'enabled' | 'disabled';
 
 export const mapBackgroundColor: Record<MapTheme, string> = {
     light: '#F0EEEB',

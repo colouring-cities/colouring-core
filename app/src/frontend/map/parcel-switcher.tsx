@@ -1,0 +1,19 @@
+import React from 'react';
+
+import './parcel-switcher.css';
+
+interface ParcelSwitcherProps {
+    currentDisplay: string;
+    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+const ParcelSwitcher: React.FC<ParcelSwitcherProps> = (props) => (
+    <form className={`parcel-switcher ${props.currentDisplay}`} onSubmit={props.onSubmit}>
+        <button className="btn btn-outline btn-outline-dark"
+            type="submit">
+            Switch parcel overlay ({(props.currentDisplay === 'enabled')? 'Enabled' : 'Disabled'})
+        </button>
+    </form>
+);
+
+export default ParcelSwitcher;

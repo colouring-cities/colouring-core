@@ -8,12 +8,13 @@ import { apiGet } from '../apiHelpers';
 import { HelpIcon } from '../components/icons';
 import { categoryMapsConfig } from '../config/category-maps-config';
 import { Category } from '../config/categories-config';
-import { initialMapViewport, mapBackgroundColor, MapTheme, BoroughEnablementState } from '../config/map-config';
+import { initialMapViewport, mapBackgroundColor, MapTheme, BoroughEnablementState, ParcelEnablementState } from '../config/map-config';
 import { Building } from '../models/building';
 
 import { CityBaseMapLayer } from './layers/city-base-map-layer';
 import { CityBoundaryLayer } from './layers/city-boundary-layer';
 import { BoroughBoundaryLayer } from './layers/borough-boundary-layer';
+import { ParcelBoundaryLayer } from './layers/parcel-boundary-layer';
 import { BuildingBaseLayer } from './layers/building-base-layer';
 import { BuildingDataLayer } from './layers/building-data-layer';
 import { BuildingNumbersLayer } from './layers/building-numbers-layer';
@@ -23,6 +24,7 @@ import { Legend } from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
 import BoroughSwitcher from './borough-switcher';
+import ParcelSwitcher from './parcel-switcher';
 import { BuildingMapTileset } from '../config/tileserver-config';
 
 interface ColouringMapProps {
@@ -44,6 +46,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
 
     const [theme, setTheme] = useState<MapTheme>('night');
     const [borough, setBorough] = useState<BoroughEnablementState>('disabled');
+    const [parcel, setParcel] = useState<ParcelEnablementState>('disabled');
     const [position, setPosition] = useState(initialMapViewport.position);
     const [zoom, setZoom] = useState(initialMapViewport.zoom);
 
@@ -83,6 +86,15 @@ export const ColouringMap : FC<ColouringMapProps> = ({
             setBorough(newBorough);
         },
         [borough],
+    )
+
+    const parcelSwitch = useCallback(
+        (e) => {
+            e.preventDefault();
+            const newParcel = (parcel === 'enabled')? 'disabled' : 'enabled';
+            setParcel(newParcel);
+        },
+        [parcel],
     )
 
     const categoryMapDefinitions = useMemo(() => categoryMapsConfig[category], [category]);
@@ -134,7 +146,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                 >
                     <CityBoundaryLayer />
                     <BoroughBoundaryLayer enablement={borough}/>
-                    { /*borough=="enabled" ?  <BoroughBoundaryLayer enablement={borough}/> : <BoroughBoundaryLayer enablement={borough} /> */ }
+                    <ParcelBoundaryLayer enablement={parcel}/>
                     <BuildingNumbersLayer revisionId={revisionId} />
                     {
                         selectedBuildingId &&
@@ -160,6 +172,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={setMapColourScale}/>
                     <ThemeSwitcher onSubmit={themeSwitch} currentTheme={theme} />
                     <BoroughSwitcher onSubmit={boroughSwitch} currentDisplay={borough} />
+                    <ParcelSwitcher onSubmit={parcelSwitch} currentDisplay={parcel} />
                     <SearchBox onLocate={handleLocate} />
                 </>
             }
