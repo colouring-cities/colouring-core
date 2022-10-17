@@ -74,59 +74,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 max={currentYear}
                 // "type": "year_estimator"
                 />
-
-        <DataEntryGroup name="Planning Status">
-            <CheckboxDataEntry
-                title="Is a planning application live for this site?"
-                slug="planning_live_application"
-                value={null}
-                disabled={false}
-                />
-            <CheckboxDataEntry
-                title={dataFields.planning_demolition_proposed.title}
-                slug="planning_demolition_proposed"
-                value={props.building.planning_demolition_proposed}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                disabled={false}
-                />
-            <CheckboxDataEntry
-                title="Has this application recently been been approved/refused?"
-                slug="planning_recent_outcome"
-                value={null}
-                disabled={false}
-                />
-            <CheckboxDataEntry
-                title="Has the work been carried out?"
-                slug="planning_carried_out"
-                value={null}
-                disabled={false}
-                />
-            <InfoBox msg="For historical planning applications see Planning Portal link" />
-            {/*
-                Move to Demolition:
-
-                <CheckboxDataEntry
-                title={dataFields.planning_demolition_complete.title}
-                slug="planning_demolition_complete"
-                value={props.building.planning_demolition_complete}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                disabled={false}
-                />
-            <DataEntry
-                title={dataFields.planning_demolition_history.title}
-                slug="planning_demolition_history"
-                value={props.building.planning_demolition_history}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                disabled={false}
-                />
-            */}
-        </DataEntryGroup>
         <DataEntryGroup name="Designation/protection" collapsed={false} >
             <DataEntryGroup name="Conservation" collapsed={false} >
                 <DataEntry
