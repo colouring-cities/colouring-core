@@ -25,39 +25,16 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     return (
     <Fragment>
+        <DataEntryGroup name="Official data" collapsed={false} >
         <InfoBox type='warning'>
             This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G.-Data-capture-methods">read here</a>.
         </InfoBox>
-        <DataTitle
-            title={"Planning Application Status"}
-            tooltip={null}
-        />
-
         <PlanningDataOfficialDataEntry
             value={props.building.planning_data}
         />
-            <UserOpinionEntry
-                slug='community_expected_planning_application'
-                title={buildingUserFields.community_expected_planning_application.title}
-                
-                userValue={props.building.community_expected_planning_application}
-
-                onChange={props.onSaveChange}
-                mode={props.mode}
-                copy={props.copy}
-            />
-
-
-            <InfoBox>To also add your opinion on how well buildings work for the community, visit <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
-
-
-            <CheckboxDataEntry
-                title="Are you aware of a planning application that has been recently submitted for this site and is not listed above?"
-                slug="planning_live_application"
-                value={null}
-                disabled={true}
-                />
-            <CheckboxDataEntry
+        </DataEntryGroup>
+        <DataEntryGroup name="Crowdsourced planning application data" collapsed={false} >
+        <CheckboxDataEntry
                 title="Has the work on this site been completed?"
                 slug="planning_live_application"
                 value={null}
@@ -74,6 +51,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 max={currentYear}
                 // "type": "year_estimator"
                 />
+        </DataEntryGroup>
         <DataEntryGroup name="Designation/protection" collapsed={false} >
             <DataEntryGroup name="Conservation" collapsed={false} >
                 <DataEntry
