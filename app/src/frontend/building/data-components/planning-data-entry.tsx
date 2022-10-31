@@ -46,6 +46,10 @@ function ShowIfAvailable(data) {
   return <>{data ? data.toString() : MissingData }</>
 }
 
+const LinkIfAvailable = (link) => {
+  return <>{link ? <a href={link.toString()}>{link.toString()}</a> : MissingData }</>
+}
+
 const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps> = (props) => {
 
     const data = props.value || [];
@@ -68,7 +72,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                 <div><b>Planning application ID:</b> {ShowIfAvailable(item["planning_application_id"])}</div>
                 <div><b>Date registered by the planning authority (validation date)</b>: {ShowIfAvailable(item["registered_with_local_authority_date"])}</div>
                 <div><b>Decision date</b>: {ShowIfAvailable(item["decision_date"])}</div>
-                <div><b>Planning application link</b>: {ShowIfAvailable(item["planning_application_link"])}</div>
+                <div><b>Planning application link</b>: {LinkIfAvailable(item["planning_application_link"])}</div>
                 <div><b>Description of proposed work</b>: {item["description"] ? <LongText content = {item["description"]} limit = {400}/> : MissingData}</div>
                 <div><b>Most recent update by data provider:</b> {ShowIfAvailable(item["decision_date"])}</div>
                 <br/>
