@@ -174,8 +174,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 title: 'Planning applications',
                 elements: [
                     { color: '#53f5dd', text: 'Submitted' },
-                    { color: '#16cf15', text: 'Approved' },
                     { color: '#fff200', text: 'Appeal In Progress' },
+                    { color: '#16cf15', text: 'Approved' },
                     { color: '#e31d23', text: 'Rejected' },
                     { color: '#999999', text: 'Withdrawn' },
                     { color: '#eacad0', text: 'Other' },
