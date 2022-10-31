@@ -58,25 +58,27 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                   </InfoBox>
                 </Fragment>);
     }
-    return (
+    return (data.map((item) => (
         <Fragment>
         <InfoBox type='success'>
             <Fragment>
-                <div><i>Planning application status is streamed using live data uploaded by local authorities to the <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a>.</i></div>
+                <div><i>Planning application status is streamed using live data uploaded by local authorities to the <a href={item["data_source_link"]}>{item["data_source"]}</a>.</i></div>
                 <br/>
-                <div><b>Current planning application status for this site:</b> {ShowIfAvailable(data[0]["status"])}</div>
-                <div><b>Planning application ID:</b> {ShowIfAvailable(data[0]["planning_application_id"])}</div>
-                <div><b>Date registered by the planning authority (validation date)</b>: {ShowIfAvailable(data[0]["registered_with_local_authority_date"])}</div>
-                <div><b>Decision date</b>: {ShowIfAvailable(data[0]["decision_date"])}</div>
-                <div><b>Planning application link</b>: {ShowIfAvailable(data[0]["planning_application_link"])}</div>
-                <div><b>Description of proposed work</b>: {data[0]["description"] ? <LongText content = {data[0]["description"]} limit = {400}/> : MissingData}</div>
-                <div><b>Most recent update by data provider:</b> {ShowIfAvailable(data[0]["decision_date"])}</div>
+                <div><b>Current planning application status for this site:</b> {ShowIfAvailable(item["status"])}</div>
+                <div><b>Planning application ID:</b> {ShowIfAvailable(item["planning_application_id"])}</div>
+                <div><b>Date registered by the planning authority (validation date)</b>: {ShowIfAvailable(item["registered_with_local_authority_date"])}</div>
+                <div><b>Decision date</b>: {ShowIfAvailable(item["decision_date"])}</div>
+                <div><b>Planning application link</b>: {ShowIfAvailable(item["planning_application_link"])}</div>
+                <div><b>Description of proposed work</b>: {item["description"] ? <LongText content = {item["description"]} limit = {400}/> : MissingData}</div>
+                <div><b>Most recent update by data provider:</b> {ShowIfAvailable(item["decision_date"])}</div>
                 <br/>
                 <Disclaimer />
             </Fragment>
         </InfoBox>
         </Fragment>
-        );
+        )
+      )
+    )
 };
 
 export default PlanningDataOfficialDataEntry;
