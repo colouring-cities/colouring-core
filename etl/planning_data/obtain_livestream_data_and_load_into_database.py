@@ -131,7 +131,7 @@ def insert_entry(cursor, e):
     elements = []
     application_url = None
     if e["application_url"] != None:
-        application_url = "'" + e["application_url"] + "'"
+        application_url = e["application_url"]
     cursor.execute('''INSERT INTO
             planning_data (planning_application_id, planning_application_link, description, registered_with_local_authority_date, decision_date, last_synced_date, status, data_source, data_source_link, uprn)
         VALUES
