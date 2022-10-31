@@ -40,7 +40,7 @@ const LongText = ({ content,limit}) => {
 
 const Disclaimer = () => { return <Fragment><div><i><u>Disclaimer</u>: these data are currently incomplete and also often do not provide information on minor alterations. For comprehensive information on all applications please visit the local authorities' planning websites.</i></div></Fragment> }
 
-const MissingData = "not available"
+const MissingData = "not provided by data source"
 
 function ShowIfAvailable(data) {
   return <>{data ? data.toString() : MissingData }</>
