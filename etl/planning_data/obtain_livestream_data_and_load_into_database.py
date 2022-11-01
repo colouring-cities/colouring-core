@@ -62,7 +62,7 @@ def load_data_into_database(cursor, data):
                 "uprn": uprn,
                 "status": status,
                 "data_source": "Greater London Authority's Planning London DataHub",
-                "data_source_link": "https://data.london.gov.uk/dataset/planning-london-datahub?_gl=1%2aprwpc%2a_ga%2aMzQyOTg0MjcxLjE2NTk0NDA4NTM", # TODO not an actual source...
+                "data_source_link": None
                 }
             insert_entry(cursor, entry)
         except TypeError as e:
