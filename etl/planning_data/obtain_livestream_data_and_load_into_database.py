@@ -44,7 +44,7 @@ def load_data_into_database(cursor, data):
             decision_date = parse_date_string_into_datestring(entry['_source']['decision_date'])
             last_synced_date = parse_date_string_into_datestring(entry['_source']['last_synced'])
             uprn = entry['_source']['uprn']
-            status = process_status(entry['_source']['status'])
+            status = process_status(entry['_source']['status'], decision_date)
             if uprn == None:
                 continue
             try:
@@ -148,10 +148,11 @@ def parse_date_string_into_datestring(incoming):
         date = datetime.datetime.strptime(incoming, "%Y-%m-%dT%H:%M:%S.%fZ") # '2022-08-08T20:07:22.238Z'
     return datetime.datetime.strftime(date, "%Y-%m-%d")
 
-def process_status(status):
+def process_status(status, decision_date):
     """return None if status is invalid"""
     if status in ["Application Under Consideration", "Application Received"]:
-        status = "Submitted"
+        if decision_date == None:
+            status = "Submitted"
     if status in ["Refused", "Refusal", "Refusal (P)", "Application Invalid", "Insufficient Fee"]:
         status = "Rejected"
     if status == "Appeal Received":
