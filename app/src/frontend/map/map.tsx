@@ -8,11 +8,12 @@ import { apiGet } from '../apiHelpers';
 import { HelpIcon } from '../components/icons';
 import { categoryMapsConfig } from '../config/category-maps-config';
 import { Category } from '../config/categories-config';
-import { initialMapViewport, mapBackgroundColor, MapTheme } from '../config/map-config';
+import { initialMapViewport, mapBackgroundColor, MapTheme, BoroughEnablementState } from '../config/map-config';
 import { Building } from '../models/building';
 
 import { CityBaseMapLayer } from './layers/city-base-map-layer';
 import { CityBoundaryLayer } from './layers/city-boundary-layer';
+import { BoroughBoundaryLayer } from './layers/borough-boundary-layer';
 import { BuildingBaseLayer } from './layers/building-base-layer';
 import { BuildingDataLayer } from './layers/building-data-layer';
 import { BuildingNumbersLayer } from './layers/building-numbers-layer';
@@ -21,6 +22,7 @@ import { BuildingHighlightLayer } from './layers/building-highlight-layer';
 import { Legend } from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
+import BoroughSwitcher from './borough-switcher';
 import { BuildingMapTileset } from '../config/tileserver-config';
 
 interface ColouringMapProps {
@@ -41,6 +43,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
 }) => {
 
     const [theme, setTheme] = useState<MapTheme>('night');
+    const [borough, setBorough] = useState<BoroughEnablementState>('disabled');
     const [position, setPosition] = useState(initialMapViewport.position);
     const [zoom, setZoom] = useState(initialMapViewport.zoom);
 
@@ -71,6 +74,15 @@ export const ColouringMap : FC<ColouringMapProps> = ({
             setTheme(newTheme);
         },
         [theme],
+    )
+
+    const boroughSwitch = useCallback(
+        (e) => {
+            e.preventDefault();
+            const newBorough = (borough === 'enabled')? 'disabled' : 'enabled';
+            setBorough(newBorough);
+        },
+        [borough],
     )
 
     const categoryMapDefinitions = useMemo(() => categoryMapsConfig[category], [category]);
@@ -121,6 +133,8 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     style={{zIndex: 300}}
                 >
                     <CityBoundaryLayer />
+                    <BoroughBoundaryLayer enablement={borough}/>
+                    { /*borough=="enabled" ?  <BoroughBoundaryLayer enablement={borough}/> : <BoroughBoundaryLayer enablement={borough} /> */ }
                     <BuildingNumbersLayer revisionId={revisionId} />
                     {
                         selectedBuildingId &&
@@ -145,6 +159,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     }
                     <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={setMapColourScale}/>
                     <ThemeSwitcher onSubmit={themeSwitch} currentTheme={theme} />
+                    <BoroughSwitcher onSubmit={boroughSwitch} currentDisplay={borough} />
                     <SearchBox onLocate={handleLocate} />
                 </>
             }

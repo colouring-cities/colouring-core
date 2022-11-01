@@ -10,6 +10,9 @@ export const initialMapViewport: MapViewport = {
 
 export type MapTheme = 'light' | 'night';
 
+export type BoroughEnablementState = 'enabled' | 'disabled';
+
+
 export const mapBackgroundColor: Record<MapTheme, string> = {
     light: '#F0EEEB',
     night: '#162639'
