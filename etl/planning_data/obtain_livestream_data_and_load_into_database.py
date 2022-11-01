@@ -64,6 +64,10 @@ def load_data_into_database(cursor, data):
                 "data_source": "Greater London Authority's Planning London DataHub",
                 "data_source_link": None
                 }
+            if "Hackney" in entry["application_id"]:
+                entry["application_url"] != None:
+                    if "https://" not in entry["application_url"]:
+                        entry["application_url"] = "https://developmentandhousing.hackney.gov.uk" + entry["application_url"]
             insert_entry(cursor, entry)
         except TypeError as e:
             print()
