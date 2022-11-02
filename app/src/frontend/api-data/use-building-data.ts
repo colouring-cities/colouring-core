@@ -28,7 +28,7 @@ export function useBuildingData(buildingId: number, preloadedData: Building, inc
             ]);
 
             building.uprns = buildingUprns.uprns;
-            building.planning_data = planningData.data; // TODO use planningData?
+            building.planning_data = planningData.data;
             building = Object.assign(building, {...building.user_attributes});
             delete building.user_attributes;
 
