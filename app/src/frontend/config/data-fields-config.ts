@@ -50,6 +50,8 @@ export interface DataFieldDefinition {
      * 
      * Making it semantically correct is useful but not necessary.
      * E.g. for building attachment form, you could use "Detached" as example
+     * 
+     * This field is later processed by AttributesBasedOnExample
      */
     example: any;
 
@@ -174,7 +176,9 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "PLANNING DATA",
         tooltip: "PLANNING DATA",
-        example: [{}],
+        example: [{uprn: "", building_id: 1, "data_source": ""},
+                  {uprn: "", building_id: 1, "data_source": "", decision_date: "", description: "", planning_application_link: "", registered_with_local_authority_date: "", last_synced_date: "", data_source_link: ""},
+                ],
     },
 
 

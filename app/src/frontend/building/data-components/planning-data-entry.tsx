@@ -3,9 +3,18 @@ import React, { Fragment } from 'react';
 import InfoBox from '../../components/info-box';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
 
-
 interface PlanningDataOfficialDataEntryProps {
-    value: any; // TODO: proper structuring!
+    value: {
+      uprn: string;
+      building_id: number;
+      description?: string;
+      planning_application_link?: string;
+      registered_with_local_authority_date?: string;
+      decision_date?: string;
+      last_synced_date?: string;
+      data_source: string;
+      data_source_link?: string;
+  }[];
 }
 
 const {useState} = React;
@@ -51,7 +60,6 @@ const LinkIfAvailable = (link) => {
 }
 
 const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps> = (props) => {
-
     const data = props.value || [];
     if(data.length == 0) {
         return (<Fragment>
@@ -62,7 +70,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                   </InfoBox>
                 </Fragment>);
     }
-    return (data.map((item) => (
+    return <>{data.map((item) => (
         <Fragment>
         <InfoBox type='success'>
             <Fragment>
@@ -82,7 +90,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
         </Fragment>
         )
       )
-    )
+  }</>
 };
 
 export default PlanningDataOfficialDataEntry;
