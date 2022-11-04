@@ -317,49 +317,31 @@
         <Rule>
             <Filter>[status] = "Submitted"</Filter>
             <PolygonSymbolizer fill="#53f5dd"/>
-        </Rule>
-        <Rule>
-            <Filter>[status] = "Submitted"</Filter>
             <LineSymbolizer stroke="#53f5dd" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Approved"</Filter>
             <PolygonSymbolizer fill="#16cf15"/>
-        </Rule>
-        <Rule>
-            <Filter>[status] = "Approved"</Filter>
             <LineSymbolizer stroke="#16cf15" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Appeal In Progress"</Filter>
             <PolygonSymbolizer fill="#fff200"/>
-        </Rule>
-        <Rule>
-            <Filter>[status] = "Appeal In Progress"</Filter>
             <LineSymbolizer stroke="#fff200" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Rejected"</Filter>
             <PolygonSymbolizer fill="#e31d23"/>
-        </Rule>
-        <Rule>
-            <Filter>[status] = "Rejected"</Filter>
             <LineSymbolizer stroke="#e31d23" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Withdrawn"</Filter>
             <PolygonSymbolizer fill="#999999"/>
-        </Rule>
-        <Rule>
-            <Filter>[status] = "Withdrawn"</Filter>
             <LineSymbolizer stroke="#999999" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn"</Filter>
             <PolygonSymbolizer fill="#eacad0"/>
-        </Rule>
-        <Rule>
-            <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn"</Filter>
             <LineSymbolizer stroke="#eacad0" stroke-width="1.75" />
         </Rule>
     </Style>
