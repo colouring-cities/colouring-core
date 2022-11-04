@@ -33,7 +33,6 @@ function parseDate(isoUtcDate: string): Date {
 
 function isArchived(item) {
     const decisionDate = item.decision_date;
-    console.warn(decisionDate)
     if(decisionDate != null) {
         if ((currentTimestamp - parseDate(decisionDate).valueOf()) > milisecondsInYear) {
             return true;
