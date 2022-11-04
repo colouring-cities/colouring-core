@@ -315,24 +315,44 @@
     </Style>
     <Style name="planning_applications_status">
         <Rule>
-            <Filter>[status] = "Submitted"</Filter>
+            <Filter>[status] = "Submitted" and [days_since_registered_with_local_authority_date] &lt; 366</Filter>
             <PolygonSymbolizer fill="#53f5dd"/>
             <LineSymbolizer stroke="#53f5dd" stroke-width="1.75" />
         </Rule>
         <Rule>
-            <Filter>[status] = "Approved"</Filter>
+            <Filter>[status] = "Submitted" and [days_since_registered_with_local_authority_date] &gt;= 366</Filter>
+            <PolygonSymbolizer fill="#467c74"/>
+            <LineSymbolizer stroke="#467c74" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Approved" and [days_since_decision_date] &lt; 366</Filter>
             <PolygonSymbolizer fill="#16cf15"/>
             <LineSymbolizer stroke="#16cf15" stroke-width="1.75" />
         </Rule>
         <Rule>
-            <Filter>[status] = "Appeal In Progress"</Filter>
+            <Filter>[status] = "Approved" and [days_since_decision_date] &gt;= 366</Filter>
+            <PolygonSymbolizer fill="#053405"/>
+            <LineSymbolizer stroke="#053405" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Appeal In Progress" and [days_since_decision_date] &lt; 366</Filter>
             <PolygonSymbolizer fill="#fff200"/>
             <LineSymbolizer stroke="#fff200" stroke-width="1.75" />
         </Rule>
         <Rule>
-            <Filter>[status] = "Rejected"</Filter>
+            <Filter>[status] = "Appeal In Progress" and [days_since_decision_date] &gt;= 366</Filter>
+            <PolygonSymbolizer fill="#807b2b"/>
+            <LineSymbolizer stroke="#807b2b" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Rejected" and [days_since_decision_date] &lt; 366</Filter>
             <PolygonSymbolizer fill="#e31d23"/>
             <LineSymbolizer stroke="#e31d23" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Rejected" and [days_since_decision_date] &gt;= 366</Filter>
+            <PolygonSymbolizer fill="#763436"/>
+            <LineSymbolizer stroke="#763436" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Withdrawn"</Filter>
