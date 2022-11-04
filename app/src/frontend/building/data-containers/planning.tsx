@@ -51,7 +51,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     return (
     <Fragment>
-        <DataEntryGroup name="Official data" collapsed={false} >
+        <DataEntryGroup name="Official planning data" collapsed={false} >
         <InfoBox type='warning'>
             This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G.-Data-capture-methods">read here</a>.
         </InfoBox>
@@ -60,7 +60,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
         />
         </DataEntryGroup>
-        <DataEntryGroup name="Older planning data" collapsed={true} >
+        <DataEntryGroup name="Older official planning data" collapsed={true} >
         <PlanningDataOfficialDataEntry  
             shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item)) : []}
             allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
