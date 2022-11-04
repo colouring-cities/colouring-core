@@ -20,6 +20,32 @@ import { CategoryViewProps } from './category-view-props';
 import { Category } from '../../config/categories-config';
 
 const currentYear = new Date().getFullYear();
+const currentTimestamp = new Date().valueOf();
+const milisecondsInYear = 1000 * 60 * 60 * 24 * 365;
+
+// TODO: there is already "parseDate" in helpers
+function parseDate(isoUtcDate: string): Date {
+    const [year, month, day] = isoUtcDate.match(/^(\d{4})-(\d\d)-(\d\d)$/)
+        .splice(1)
+        .map(x => parseInt(x, 10));
+    return new Date(Date.UTC(year, month-1, day));
+}
+
+function isArchived(item) {
+    const decisionDate = item.decision_date;
+    console.warn(decisionDate)
+    if(decisionDate != null) {
+        if ((currentTimestamp - parseDate(decisionDate).valueOf()) > milisecondsInYear) {
+            return true;
+        }
+    }
+    if(item.registered_with_local_authority_date != null) {
+        if ((currentTimestamp - parseDate(item.registered_with_local_authority_date).valueOf()) > milisecondsInYear) {
+            return true;
+        }
+    }
+    return false;
+}
 
 const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
@@ -29,8 +55,15 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         <InfoBox type='warning'>
             This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G.-Data-capture-methods">read here</a>.
         </InfoBox>
-        <PlanningDataOfficialDataEntry
-            value={props.building.planning_data}
+        <PlanningDataOfficialDataEntry  
+            shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item) == false) : []}
+            allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
+        />
+        </DataEntryGroup>
+        <DataEntryGroup name="Older planning data" collapsed={true} >
+        <PlanningDataOfficialDataEntry  
+            shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item)) : []}
+            allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
         />
         </DataEntryGroup>
         <DataEntryGroup name="Crowdsourced planning application data" collapsed={false} >

@@ -4,7 +4,7 @@ import InfoBox from '../../components/info-box';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
 
 interface PlanningDataOfficialDataEntryProps {
-    value: {
+    shownData: {
       uprn: string;
       building_id: number;
       description?: string;
@@ -15,6 +15,7 @@ interface PlanningDataOfficialDataEntryProps {
       data_source: string;
       data_source_link?: string;
   }[];
+    allEntryCount: number,
 }
 
 const {useState} = React;
@@ -60,8 +61,9 @@ const LinkIfAvailable = (link) => {
 }
 
 const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps> = (props) => {
-    const data = props.value || [];
+    const data = props.shownData || [];
     if(data.length == 0) {
+      if (props.allEntryCount == 0) {
         return (<Fragment>
                   <InfoBox type='success'>
                   <i>No live planning data available currently for this building polygon via the Planning London DataHub.</i>
@@ -69,8 +71,17 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                   <Disclaimer />
                   </InfoBox>
                 </Fragment>);
+    } else {
+      return (<Fragment>
+                <InfoBox type='success'>
+                <i>No live planning data for this date range, but this building has associated planning data now shown here.</i>
+                <br/>
+                <Disclaimer />
+                </InfoBox>
+              </Fragment>);
     }
-    return <>{data.map((item) => (
+  }
+  return <>{data.map((item) => (
         <Fragment>
         <InfoBox type='success'>
             <Fragment>
