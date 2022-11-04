@@ -331,8 +331,8 @@
         </Rule>
         <Rule>
             <Filter>[status] = "Approved" and [days_since_decision_date] &gt;= 366</Filter>
-            <PolygonSymbolizer fill="#053405"/>
-            <LineSymbolizer stroke="#053405" stroke-width="1.75" />
+            <PolygonSymbolizer fill="#021102"/>
+            <LineSymbolizer stroke="#021102" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Appeal In Progress" and [days_since_decision_date] &lt; 366</Filter>
@@ -355,14 +355,24 @@
             <LineSymbolizer stroke="#763436" stroke-width="1.75" />
         </Rule>
         <Rule>
-            <Filter>[status] = "Withdrawn"</Filter>
+            <Filter>[status] = "Withdrawn" and [days_since_registered_with_local_authority_date] &lt; 366</Filter>
             <PolygonSymbolizer fill="#999999"/>
             <LineSymbolizer stroke="#999999" stroke-width="1.75" />
         </Rule>
         <Rule>
-            <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn"</Filter>
+            <Filter>[status] = "Withdrawn" and [days_since_registered_with_local_authority_date] &gt;= 366</Filter>
+            <PolygonSymbolizer fill="#262626"/>
+            <LineSymbolizer stroke="#262626" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn" and [days_since_registered_with_local_authority_date] &lt; 366</Filter>
             <PolygonSymbolizer fill="#eacad0"/>
             <LineSymbolizer stroke="#eacad0" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn" and [days_since_registered_with_local_authority_date] &gt;= 366</Filter>
+            <PolygonSymbolizer fill="#2f282a"/>
+            <LineSymbolizer stroke="#2f282a" stroke-width="1.75" />
         </Rule>
     </Style>
     <Style name="planning_combined">
