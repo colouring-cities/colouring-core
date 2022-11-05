@@ -78,6 +78,7 @@ def load_data_into_database(cursor, data):
             print(e)
             print()
             print(json.dumps(entry, indent = 4))
+            raise e
 
 def query(search_after):
     headers = {
