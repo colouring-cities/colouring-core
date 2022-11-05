@@ -161,7 +161,7 @@ def process_status(status, decision_date):
         status = "Rejected"
     if status == "Appeal Received":
         status = "Appeal In Progress"
-    if status in ["Completed", "Allowed"]:
+    if status in ["Completed", "Allowed", "Approval"]:
         status = "Approved"
     if status in [None, "NOT_MAPPED"]:
         status = "Unknown"
