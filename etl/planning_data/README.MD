@@ -1,6 +1,6 @@
 Following instructions assume that code is placed within `~/colouring-london/etl/planning_data/`
 
-To install necessary dependecies use `cd ~/colouring-london/etl/planning_data/ && pip3 install -r requirements.txt`
+To install necessary dependencies use `cd ~/colouring-london/etl/planning_data/ && pip3 install -r requirements.txt`
 
 Following scripts should be scheduled to run regularly to load livestream data into database.
 
