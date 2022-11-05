@@ -176,8 +176,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "PLANNING DATA",
         tooltip: "PLANNING DATA",
-        example: [{uprn: "", building_id: 1, "data_source": ""},
-                  {uprn: "", building_id: 1, "data_source": "", decision_date: "", description: "", planning_application_link: "", registered_with_local_authority_date: "", last_synced_date: "", data_source_link: ""},
+        example: [{uprn: "", building_id: 1, data_source: ""},
+                  {uprn: "", building_id: 1, data_source: "", status: "", decision_date: "", description: "", planning_application_link: "", registered_with_local_authority_date: "", last_synced_date: "", data_source_link: ""},
                 ],
     },
 

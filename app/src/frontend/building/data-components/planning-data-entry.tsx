@@ -7,6 +7,7 @@ interface PlanningDataOfficialDataEntryProps {
     shownData: {
       uprn: string;
       building_id: number;
+      status?: string,
       description?: string;
       planning_application_link?: string;
       registered_with_local_authority_date?: string;
