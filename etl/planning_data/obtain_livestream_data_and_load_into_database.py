@@ -157,7 +157,7 @@ def process_status(status, decision_date):
     if status in ["Application Under Consideration", "Application Received"]:
         if decision_date == None:
             status = "Submitted"
-    if status in ["Refused", "Refusal", "Refusal (P)", "Application Invalid", "Insufficient Fee"]:
+    if status in ["Refused", "Refusal", "Refusal (P)", "Application Invalid", "Insufficient Fee", "Dismissed"]:
         status = "Rejected"
     if status == "Appeal Received":
         status = "Appeal In Progress"
