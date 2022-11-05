@@ -11,6 +11,8 @@ export type BuildingMapTileset = 'date_year' |
     'community_local_significance_total' |
     'community_expected_planning_application_total' |
     'community_in_public_ownership' |
+    'planning_applications_status_all' |
+    'planning_applications_status_recent' |
     'planning_applications_status' |
     'planning_combined' |
     'sust_dec' |
