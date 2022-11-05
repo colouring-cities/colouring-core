@@ -44,7 +44,8 @@ def load_data_into_database(cursor, data):
             decision_date = parse_date_string_into_datestring(entry['_source']['decision_date'])
             last_synced_date = parse_date_string_into_datestring(entry['_source']['last_synced'])
             uprn = entry['_source']['uprn']
-            status = process_status(entry['_source']['status'], decision_date)
+            status_before_aliasing = entry['_source']['status']
+            status = process_status(status_before_aliasing, decision_date)
             if uprn == None:
                 continue
             try:
@@ -61,6 +62,7 @@ def load_data_into_database(cursor, data):
                 "registered_with_local_authority_date": parse_date_string_into_datestring(entry['_source']['valid_date']),
                 "uprn": uprn,
                 "status": status,
+                "status_before_aliasing": status_before_aliasing,
                 "data_source": "Greater London Authority's Planning London DataHub",
                 "data_source_link": None
                 }
@@ -137,10 +139,10 @@ def insert_entry(cursor, e):
     if e["application_url"] != None:
         application_url = e["application_url"]
     cursor.execute('''INSERT INTO
-            planning_data (planning_application_id, planning_application_link, description, registered_with_local_authority_date, decision_date, last_synced_date, status, data_source, data_source_link, uprn)
+            planning_data (planning_application_id, planning_application_link, description, registered_with_local_authority_date, decision_date, last_synced_date, status, status_before_aliasing, data_source, data_source_link, uprn)
         VALUES
-            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    ''', (e["application_id"], application_url, e["description"], e["registered_with_local_authority_date"], e["decision_date"], e["last_synced_date"], e["status"], e["data_source"], e["data_source_link"], e["uprn"]))
+            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ''', (e["application_id"], application_url, e["description"], e["registered_with_local_authority_date"], e["decision_date"], e["last_synced_date"], e["status"], e["status_before_aliasing"], e["data_source"], e["data_source_link"], e["uprn"]))
 
 def parse_date_string_into_datestring(incoming):
     if incoming == None:

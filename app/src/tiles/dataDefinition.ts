@@ -137,7 +137,7 @@ const LAYER_QUERIES = {
             community_public_ownership IS NOT NULL
     `,
     planning_applications_status_all: `SELECT 
-        buildings.geometry_id, building_properties.uprn, building_properties.building_id, planning_data.status AS status, planning_data.uprn, 
+        buildings.geometry_id, building_properties.uprn, building_properties.building_id, planning_data.status AS status, planning_data.uprn
         FROM building_properties
         INNER JOIN planning_data ON building_properties.uprn = planning_data.uprn
         INNER JOIN buildings ON building_properties.building_id = buildings.building_id`,

@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS planning_data (
         decision_date date,
         last_synced_date date,
         status VARCHAR(50),
+        status_before_aliasing VARCHAR(50),
         data_source VARCHAR(70),
         data_source_link VARCHAR(150),
         uprn bigint

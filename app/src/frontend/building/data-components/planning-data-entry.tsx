@@ -8,6 +8,7 @@ interface PlanningDataOfficialDataEntryProps {
       uprn: string;
       building_id: number;
       status?: string,
+      status_before_aliasing?: string,
       description?: string;
       planning_application_link?: string;
       registered_with_local_authority_date?: string;
@@ -61,6 +62,16 @@ const LinkIfAvailable = (link) => {
   return <>{link ? <a href={link.toString()}>{link.toString()}</a> : MissingData }</>
 }
 
+const StatusInfo = ({status, statusBeforeAliasing}) => {
+  if(status == null) {
+    return <div><b>Current planning application status for this site</b>: {LinkIfAvailable(null)}</div>
+  }
+  if(status != statusBeforeAliasing) {
+    return <div><b>Current planning application status for this site:</b> {status} - status in raw data was: {statusBeforeAliasing}</div>
+  }
+  return <div><b>Current planning application status for this site:</b> {status}</div>
+}
+
 const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps> = (props) => {
     const data = props.shownData || [];
     if(data.length == 0) {
@@ -88,7 +99,10 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
             <Fragment>
                 <div><i>Planning application status is streamed using live data uploaded by local authorities to the {item["data_source_link"] ? <a href={item["data_source_link"]}>{item["data_source"]}</a> : item["data_source"] }.</i></div>
                 <br/>
-                <div><b>Current planning application status for this site:</b> {ShowIfAvailable(item["status"])}</div>
+                <div><b>Current planning application status for this site:</b> <StatusInfo 
+                  statusBeforeAliasing={item["status_before_aliasing"]}
+                  status={item["status"]}
+                /></div>
                 <div><b>Planning application ID:</b> {ShowIfAvailable(item["planning_application_id"])}</div>
                 <div><b>Date registered by the planning authority (validation date)</b>: {ShowIfAvailable(item["registered_with_local_authority_date"])}</div>
                 <div><b>Decision date</b>: {ShowIfAvailable(item["decision_date"])}</div>
