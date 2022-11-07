@@ -192,6 +192,19 @@ def obtain_entry_link(provided_link, application_id):
     if "Newham" in application_id:
         # sadly, specific links seems impossible
         return "https://pa.newham.gov.uk/online-applications/"
+    if "Westminster" in application_id:
+        # sadly, specific links seems impossible
+        return "https://idoxpa.westminster.gov.uk/online-applications/"
+    if "Enfield" in application_id:
+        # sadly, specific links seems impossible
+        return "https://planningandbuildingcontrol.enfield.gov.uk/online-applications/"
+    if "Southwark" in application_id:
+        # sadly, specific links seems impossible
+        return "https://planning.southwark.gov.uk/online-applications/"
+    if "Hammersmith" in application_id:
+        return "https://public-access.lbhf.gov.uk/online-applications/search.do?action=simple&searchType=Application"
+    if "City_of_London" in application_id:
+        return "https://www.planning2.cityoflondon.gov.uk/online-applications/"
     return None
     # Richmond is simply broken
 
