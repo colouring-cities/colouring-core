@@ -53,38 +53,38 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         <InfoBox type='warning'>
             This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G.-Data-capture-methods">read here</a>.
         </InfoBox>
-        <DataEntryGroup name="Official planning data" collapsed={false} >
-        <DataEntryGroup name="Active planning applications" collapsed={true} >
-            <PlanningDataOfficialDataEntry  
-                shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item) == false) : []}
-                allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
+        <DataEntryGroup name="Planning application information" collapsed={false} >
+            <DataEntryGroup name="Active applications (official data)" collapsed={true} >
+                <PlanningDataOfficialDataEntry  
+                    shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item) == false) : []}
+                    allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
+                />
+            </DataEntryGroup>
+            <DataEntryGroup name="Historical applications (official data)" collapsed={true} >
+                <PlanningDataOfficialDataEntry  
+                    shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item)) : []}
+                    allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
             />
             </DataEntryGroup>
-            <DataEntryGroup name="No activity in the last year" collapsed={true} >
-            <PlanningDataOfficialDataEntry  
-                shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item)) : []}
-                allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
-            />
+            <DataEntryGroup name="Crowdsourced info on planning applications" collapsed={false} >
+                <CheckboxDataEntry
+                        title="Has the work on this site been completed?"
+                        slug="planning_live_application"
+                        value={null}
+                        disabled={false}
+                        />
+                    <NumericDataEntry
+                        title={"Year of completion"}
+                        slug="date_year"
+                        value={2019}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        min={1}
+                        max={currentYear}
+                        // "type": "year_estimator"
+                        />
             </DataEntryGroup>
-        </DataEntryGroup>
-        <DataEntryGroup name="Crowdsourced planning application data" collapsed={false} >
-        <CheckboxDataEntry
-                title="Has the work on this site been completed?"
-                slug="planning_live_application"
-                value={null}
-                disabled={false}
-                />
-            <NumericDataEntry
-                title={"Year of completion"}
-                slug="date_year"
-                value={2019}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                min={1}
-                max={currentYear}
-                // "type": "year_estimator"
-                />
         </DataEntryGroup>
         <DataEntryGroup name="Designation/protection" collapsed={false} >
             <DataEntryGroup name="Conservation" collapsed={false} >
