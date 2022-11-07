@@ -26,7 +26,6 @@ const DataEntryGroup: React.FunctionComponent<DataEntryGroupProps> = (props) => 
                 <CollapseIcon collapsed={collapsed} />
                 <span className='data-entry-group-title'>
                     {props.name}
-                    <span className='data-entry-group-count'>{showCount && ` (${React.Children.count(props.children)} attributes)`}</span>
                 </span>
             </div>
             <div className={`data-entry-group-body ${collapsed ? 'collapse' : ''}`}>
