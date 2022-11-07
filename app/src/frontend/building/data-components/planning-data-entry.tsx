@@ -64,12 +64,12 @@ const LinkIfAvailable = (link) => {
 
 const StatusInfo = ({status, statusBeforeAliasing}) => {
   if(status == null) {
-    return <div><b>Current planning application status for this site</b>: {LinkIfAvailable(null)}</div>
+    return <>{LinkIfAvailable(null)}</>
   }
   if(status != statusBeforeAliasing) {
-    return <div><b>Current planning application status for this site:</b> {status} - status in raw data was: {statusBeforeAliasing}</div>
+    return <>{status} - status in raw data was: {statusBeforeAliasing}</>
   }
-  return <div><b>Current planning application status for this site:</b> {status}</div>
+  return <>{status}</>
 }
 
 const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps> = (props) => {
