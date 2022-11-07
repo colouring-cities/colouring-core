@@ -168,6 +168,8 @@ def process_status(status, decision_date):
         status = "Approved"
     if status in [None, "NOT_MAPPED"]:
         status = "Unknown"
+    if status in ["Lapsed"]:
+        status = "Withdrawn"
     if (status in ["Submitted", "Approved", "Rejected", "Appeal In Progress", "Withdrawn", "Unknown"]):
         return status
     print("Unexpected status " + status)
