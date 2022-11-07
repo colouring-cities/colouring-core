@@ -13,7 +13,9 @@ export type BuildingMapTileset = 'date_year' |
     'community_in_public_ownership' |
     'planning_applications_status_all' |
     'planning_applications_status_recent' |
+    'planning_applications_status_very_recent' |
     'planning_applications_status' |
+    'planning_applications_status_secretary_of_state' |
     'planning_combined' |
     'sust_dec' |
     'building_attachment_form' |

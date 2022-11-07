@@ -444,6 +444,75 @@
             <LineSymbolizer stroke="#eacad0" stroke-width="1.75" />
         </Rule>
     </Style>
+    <Style name="planning_applications_status_very_recent">
+        <Rule>
+            <Filter>[status] = "Submitted" and [days_since_registered_with_local_authority_date] &lt;= 7</Filter>
+            <PolygonSymbolizer fill="#53f5dd"/>
+            <LineSymbolizer stroke="#53f5dd" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Approved" and [days_since_decision_date] &lt;= 7</Filter>
+            <PolygonSymbolizer fill="#16cf15"/>
+            <LineSymbolizer stroke="#16cf15" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Appeal In Progress" and [days_since_decision_date] &lt;= 7</Filter>
+            <PolygonSymbolizer fill="#fff200"/>
+            <LineSymbolizer stroke="#fff200" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Rejected" and [days_since_decision_date] &lt;= 7</Filter>
+            <PolygonSymbolizer fill="#e31d23"/>
+            <LineSymbolizer stroke="#e31d23" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Withdrawn" and [days_since_registered_with_local_authority_date] &lt;= 7</Filter>
+            <PolygonSymbolizer fill="#999999"/>
+            <LineSymbolizer stroke="#999999" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn" and [days_since_registered_with_local_authority_date] &lt;= 7</Filter>
+            <PolygonSymbolizer fill="#eacad0"/>
+            <LineSymbolizer stroke="#eacad0" stroke-width="1.75" />
+        </Rule>
+    </Style>
+    <Style name="planning_applications_status_secretary_of_state">
+        <Rule>
+            <Filter>[status] = "Submitted"</Filter>
+            <PolygonSymbolizer fill="#53f5dd"/>
+            <LineSymbolizer stroke="#53f5dd" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Approved"</Filter>
+            <PolygonSymbolizer fill="#16cf15"/>
+            <LineSymbolizer stroke="#16cf15" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Appeal In Progress"</Filter>
+            <PolygonSymbolizer fill="#fff200"/>
+            <LineSymbolizer stroke="#fff200" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Rejected"</Filter>
+            <PolygonSymbolizer fill="#e31d23"/>
+            <LineSymbolizer stroke="#e31d23" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Withdrawn"</Filter>
+            <PolygonSymbolizer fill="#999999"/>
+            <LineSymbolizer stroke="#999999" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Withdrawn"</Filter>
+            <PolygonSymbolizer fill="#262626"/>
+            <LineSymbolizer stroke="#262626" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn"</Filter>
+            <PolygonSymbolizer fill="#eacad0"/>
+            <LineSymbolizer stroke="#eacad0" stroke-width="1.75" />
+        </Rule>
+    </Style>
     <Style name="planning_combined">
         <Rule>
             <Filter>[planning_in_conservation_area] = true</Filter>
