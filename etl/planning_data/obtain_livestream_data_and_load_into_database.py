@@ -46,6 +46,7 @@ def load_data_into_database(cursor, data):
             uprn = entry['_source']['uprn']
             status_before_aliasing = entry['_source']['status']
             status = process_status(status_before_aliasing, decision_date)
+            planning_url = obtain_entry_link(entry['_source']['url_planning_app'], application_id)
             if uprn == None:
                 continue
             try:
@@ -58,7 +59,7 @@ def load_data_into_database(cursor, data):
                 "decision_date": decision_date,
                 "last_synced_date": last_synced_date,
                 "application_id": application_id,
-                "application_url": entry['_source']['url_planning_app'],
+                "application_url": planning_url,
                 "registered_with_local_authority_date": parse_date_string_into_datestring(entry['_source']['valid_date']),
                 "uprn": uprn,
                 "status": status,
@@ -154,6 +155,45 @@ def parse_date_string_into_datestring(incoming):
     except ValueError:
         date = datetime.datetime.strptime(incoming, "%Y-%m-%dT%H:%M:%S.%fZ") # '2022-08-08T20:07:22.238Z'
     return datetime.datetime.strftime(date, "%Y-%m-%d")
+
+def obtain_entry_link(provided_link, application_id):
+    if provided_link != None:
+        if "Ealing" in application_id:
+            if ";" == provided_link[-1]:
+                return provided_link[:-1]
+        return provided_link
+    if "Hackney" in application_id:
+        # https://cl-staging.uksouth.cloudapp.azure.com/view/planning/1377846
+        # Planning application ID: Hackney-2021_2491
+        # https://developmentandhousing.hackney.gov.uk/planning/index.html?fa=getApplication&reference=2021/2491
+        ref_for_link = application_id.replace("Hackney-", "").replace("_", "/")
+        return "https://developmentandhousing.hackney.gov.uk/planning/index.html?fa=getApplication&reference=" + ref_for_link
+    if "Lambeth" in application_id:
+        # sadly, specific links seems impossible
+        return "https://planning.lambeth.gov.uk/online-applications/refineSearch.do?action=refine"
+    if "Barnet" in application_id:
+        # sadly, specific links seems impossible
+        return "https://publicaccess.barnet.gov.uk/online-applications/"
+    if "Kingston" in application_id:
+        # sadly, specific links seems impossible
+        return "https://publicaccess.kingston.gov.uk/online-applications/"
+    if "Sutton" in application_id:
+        # sadly, specific links seems impossible
+        return "https://publicaccess.sutton.gov.uk/online-applications/"
+    if "Croydon" in application_id:
+        # sadly, specific links seems impossible
+        return "https://publicaccess3.croydon.gov.uk/online-applications/"
+    if "Bromley" in application_id:
+        # sadly, specific links seems impossible
+        return "https://searchapplications.bromley.gov.uk/online-applications/"
+    if "Bexley" in application_id:
+        # sadly, specific links seems impossible
+        return "https://pa.bexley.gov.uk/online-applications/search.do?action=simple&searchType=Application"
+    if "Newham" in application_id:
+        # sadly, specific links seems impossible
+        return "https://pa.newham.gov.uk/online-applications/"
+    return None
+    # Richmond is simply broken
 
 def process_status(status, decision_date):
     """return None if status is invalid"""
