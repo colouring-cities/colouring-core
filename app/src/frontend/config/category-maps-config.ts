@@ -185,7 +185,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'planning_applications_status_recent',
             legend: {
-                title: 'Recent planning applications',
+                title: 'Active planning applications in the last year',
                 elements: [
                     { color: '#53f5dd', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
@@ -199,7 +199,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'planning_applications_status_very_recent',
             legend: {
-                title: 'Very recent planning applications',
+                title: 'Submissions/decisions in last 7 days',
                 elements: [
                     { color: '#53f5dd', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
