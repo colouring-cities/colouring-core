@@ -41,8 +41,8 @@ def load_data_into_database(cursor, data):
             if entry['_source']['description'] != None:
                 description = entry['_source']['description'].strip()
             application_id = entry['_source']['id']
-            decision_date = parse_date_string_into_datestring(entry['_source']['decision_date'])
-            last_synced_date = parse_date_string_into_datestring(entry['_source']['last_synced'])
+            decision_date = parse_date_string_into_date_object(entry['_source']['decision_date'])
+            last_synced_date = parse_date_string_into_date_object(entry['_source']['last_synced'])
             uprn = entry['_source']['uprn']
             status_before_aliasing = entry['_source']['status']
             status = process_status(status_before_aliasing, decision_date)
@@ -60,7 +60,7 @@ def load_data_into_database(cursor, data):
                 "last_synced_date": last_synced_date,
                 "application_id": application_id,
                 "application_url": planning_url,
-                "registered_with_local_authority_date": parse_date_string_into_datestring(entry['_source']['valid_date']),
+                "registered_with_local_authority_date": parse_date_string_into_date_object(entry['_source']['valid_date']),
                 "uprn": uprn,
                 "status": status,
                 "status_before_aliasing": status_before_aliasing,
@@ -144,9 +144,14 @@ def insert_entry(cursor, e):
             planning_data (planning_application_id, planning_application_link, description, registered_with_local_authority_date, decision_date, last_synced_date, status, status_before_aliasing, data_source, data_source_link, uprn)
         VALUES
             (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    ''', (e["application_id"], application_url, e["description"], e["registered_with_local_authority_date"], e["decision_date"], e["last_synced_date"], e["status"], e["status_before_aliasing"], e["data_source"], e["data_source_link"], e["uprn"]))
+    ''', (e["application_id"], application_url, e["description"], date_object_into_date_string(e["registered_with_local_authority_date"]), date_object_into_date_string(e["decision_date"]), date_object_into_date_string(e["last_synced_date"]), e["status"], e["status_before_aliasing"], e["data_source"], e["data_source_link"], e["uprn"]))
 
-def parse_date_string_into_datestring(incoming):
+def date_object_into_date_string(date):
+    if(date == None):
+        return None
+    return datetime.datetime.strftime(date, "%Y-%m-%d")
+
+def parse_date_string_into_date_object(incoming):
     if incoming == None:
         return None
     date = None
@@ -154,7 +159,7 @@ def parse_date_string_into_datestring(incoming):
         date = datetime.datetime.strptime(incoming, "%d/%m/%Y") # '21/07/2022'
     except ValueError:
         date = datetime.datetime.strptime(incoming, "%Y-%m-%dT%H:%M:%S.%fZ") # '2022-08-08T20:07:22.238Z'
-    return datetime.datetime.strftime(date, "%Y-%m-%d")
+    return date
 
 def obtain_entry_link(provided_link, application_id):
     if provided_link != None:
