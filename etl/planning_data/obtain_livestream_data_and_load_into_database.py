@@ -1,6 +1,5 @@
 import requests
 import json
-import json
 import datetime
 import psycopg2
 import os
