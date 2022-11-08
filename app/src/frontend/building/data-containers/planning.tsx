@@ -88,53 +88,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 />
             */}
         </DataEntryGroup>
-        <DataEntryGroup name="Designation/protection" collapsed={false} >
-            <DataEntryGroup name="Conservation" collapsed={false} >
-                <DataEntry
-                    title={dataFields.planning_in_conservation_area_id.title}
-                    slug="planning_in_conservation_area_id"
-                    value={props.building.planning_in_conservation_area_id}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    placeholder="Please add Conservation Area identifier"
-                    />
-                <Verification
-                    slug="planning_in_conservation_area_url"
-                    allow_verify={props.user !== undefined && props.building.planning_in_conservation_area_url !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area_url")}
-                    user_verified_as={props.user_verified.planning_in_conservation_area_url}
-                    verified_count={props.building.verified.planning_in_conservation_area_url}
-                    />
-                <DataEntry
-                    title={dataFields.planning_in_conservation_area_url.title}
-                    slug="planning_in_conservation_area_url"
-                    value={props.building.planning_in_conservation_area_url}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    isUrl={true}
-                    placeholder="Please add CA appraisal link here"
-                    />
-                <DataEntry
-                    title={dataFields.planning_conservation_area_name.title}
-                    slug="planning_conservation_area_name"
-                    value={props.building.planning_conservation_area_name}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    />
-                <Verification
-                    slug="planning_conservation_area_name"
-                    allow_verify={props.user !== undefined && props.building.planning_conservation_area_name !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_conservation_area_name")}
-                    user_verified_as={props.user_verified.planning_conservation_area_name}
-                    verified_count={props.building.verified.planning_conservation_area_name}
-                    />
-            </DataEntryGroup>
-            <DataEntryGroup name="Listed buildings & scheduled monuments" collapsed={false} >
+        <DataEntryGroup name="Planning contraints and building protection" collapsed={false} >
+            <DataEntryGroup name="Building protection" collapsed={false} >
                 <NumericDataEntryWithFormattedLink
                     title={dataFields.planning_list_id.title}
                     slug="planning_list_id"
@@ -195,8 +150,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     user_verified_as={props.user_verified.planning_heritage_at_risk_url}
                     verified_count={props.building.verified.planning_heritage_at_risk_url}
                     />
-            </DataEntryGroup>
-            <DataEntryGroup name="Other types of protection & recording" collapsed={false} >
                 <NumericDataEntryWithFormattedLink
                     title={dataFields.planning_world_list_id.title}
                     slug="planning_world_list_id"
@@ -217,24 +170,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     verified_count={props.building.verified.planning_world_list_id}
                     />
                 <DataEntry
-                    title={dataFields.planning_in_apa_url.title}
-                    slug="planning_in_apa_url"
-                    value={props.building.planning_in_apa_url}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    isUrl={true}
-                    placeholder="Please add relevant link here"
-                    />
-                <Verification
-                    slug="planning_in_apa_url"
-                    allow_verify={props.user !== undefined && props.building.planning_in_apa_url !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_in_apa_url")}
-                    user_verified_as={props.user_verified.planning_in_apa_url}
-                    verified_count={props.building.verified.planning_in_apa_url}
-                    />
-                <DataEntry
                     title={dataFields.planning_local_list_url.title}
                     slug="planning_local_list_url"
                     value={props.building.planning_local_list_url}
@@ -252,23 +187,51 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     user_verified_as={props.user_verified.planning_local_list_url}
                     verified_count={props.building.verified.planning_local_list_url}
                     />
+                <InfoBox msg="Designation data is currently incomplete. We are aiming for 100% coverage by April 2023." />
+            </DataEntryGroup>
+            <DataEntryGroup name="Area protection" collapsed={false} >
                 <DataEntry
-                    title={dataFields.planning_glher_url.title}
-                    slug="planning_glher_url"
-                    value={props.building.planning_glher_url}
+                    title={dataFields.planning_in_conservation_area_id.title}
+                    slug="planning_in_conservation_area_id"
+                    value={props.building.planning_in_conservation_area_id}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    placeholder="Please add Conservation Area identifier"
+                    />
+                <Verification
+                    slug="planning_in_conservation_area_url"
+                    allow_verify={props.user !== undefined && props.building.planning_in_conservation_area_url !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area_url")}
+                    user_verified_as={props.user_verified.planning_in_conservation_area_url}
+                    verified_count={props.building.verified.planning_in_conservation_area_url}
+                    />
+                <DataEntry
+                    title={dataFields.planning_in_conservation_area_url.title}
+                    slug="planning_in_conservation_area_url"
+                    value={props.building.planning_in_conservation_area_url}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
                     isUrl={true}
-                    placeholder="Please add relevant link here"
+                    placeholder="Please add CA appraisal link here"
+                    />
+                <DataEntry
+                    title={dataFields.planning_conservation_area_name.title}
+                    slug="planning_conservation_area_name"
+                    value={props.building.planning_conservation_area_name}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
                     />
                 <Verification
-                    slug="planning_glher_url"
-                    allow_verify={props.user !== undefined && props.building.planning_glher_url !== null && !props.edited}
+                    slug="planning_conservation_area_name"
+                    allow_verify={props.user !== undefined && props.building.planning_conservation_area_name !== null && !props.edited}
                     onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_glher_url")}
-                    user_verified_as={props.user_verified.planning_glher_url}
-                    verified_count={props.building.verified.planning_glher_url}
+                    user_verified={props.user_verified.hasOwnProperty("planning_conservation_area_name")}
+                    user_verified_as={props.user_verified.planning_conservation_area_name}
+                    verified_count={props.building.verified.planning_conservation_area_name}
                     />
                 <DataEntry
                     title={dataFields.planning_historic_area_assessment_url.title}
@@ -288,7 +251,102 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     user_verified_as={props.user_verified.planning_historic_area_assessment_url}
                     verified_count={props.building.verified.planning_historic_area_assessment_url}
                     />
-                <InfoBox msg="Designation data is currently incomplete. We are aiming for 100% coverage by April 2023." />
+                <DataEntry
+                    title={dataFields.planning_in_apa_url.title}
+                    slug="planning_in_apa_url"
+                    value={props.building.planning_in_apa_url}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    isUrl={true}
+                    placeholder="Please add relevant link here"
+                    />
+                <Verification
+                    slug="planning_in_apa_url"
+                    allow_verify={props.user !== undefined && props.building.planning_in_apa_url !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("planning_in_apa_url")}
+                    user_verified_as={props.user_verified.planning_in_apa_url}
+                    verified_count={props.building.verified.planning_in_apa_url}
+                    />
+            </DataEntryGroup>
+            <DataEntryGroup name="Other types of zoning" collapsed={false} >
+                <CheckboxDataEntry
+                title="Is the building inside a flood zone?"
+                slug="planning_live_application"
+                value={null}
+                disabled={true}
+                />
+                <Verification
+                    slug="dummy"
+                    allow_verify={false}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("dummy")}
+                    user_verified_as={props.user_verified.planning_in_apa_url}
+                    verified_count={props.building.verified.planning_in_apa_url}
+                />
+                <CheckboxDataEntry
+                title="Is the building in strategic zone for housing?"
+                slug="planning_live_application"
+                value={null}
+                disabled={true}
+                />
+                <Verification
+                    slug="dummy"
+                    allow_verify={false}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("dummy")}
+                    user_verified_as={props.user_verified.planning_in_apa_url}
+                    verified_count={props.building.verified.planning_in_apa_url}
+                />
+                <CheckboxDataEntry
+                title="Is the building in strategic development zone for commerce or industry?"
+                slug="planning_live_application"
+                value={null}
+                disabled={true}
+                />
+                <Verification
+                    slug="dummy"
+                    allow_verify={false}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("dummy")}
+                    user_verified_as={props.user_verified.planning_in_apa_url}
+                    verified_count={props.building.verified.planning_in_apa_url}
+                />
+                <CheckboxDataEntry
+                title="Is the building in line of a protected sight line?"
+                slug="planning_live_application"
+                value={null}
+                disabled={true}
+                />
+                <Verification
+                    slug="dummy"
+                    allow_verify={false}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("dummy")}
+                    user_verified_as={props.user_verified.planning_in_apa_url}
+                    verified_count={props.building.verified.planning_in_apa_url}
+                />
+                {/*
+                    <DataEntry
+                    title={dataFields.planning_glher_url.title}
+                    slug="planning_glher_url"
+                    value={props.building.planning_glher_url}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    isUrl={true}
+                    placeholder="Please add relevant link here"
+                    />
+                <Verification
+                    slug="planning_glher_url"
+                    allow_verify={props.user !== undefined && props.building.planning_glher_url !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("planning_glher_url")}
+                    user_verified_as={props.user_verified.planning_glher_url}
+                    verified_count={props.building.verified.planning_glher_url}
+                    />
+                */}
             </DataEntryGroup>
         </DataEntryGroup>
     </Fragment>
