@@ -19,24 +19,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
         <InfoBox type='warning'>
             This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G2.-Data-capture-(2).-Live-streaming-and-automated-methods">read here</a>.
         </InfoBox>
-        <DataEntry
-            title={dataFields.planning_portal_link.title}
-            slug="planning_portal_link"
-            value={props.building.planning_portal_link}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
-            />
-        <Verification
-            slug="planning_portal_link"
-            allow_verify={props.user !== undefined && props.building.planning_portal_link !== null && !props.edited}
-            onVerify={props.onVerify}
-            user_verified={props.user_verified.hasOwnProperty("planning_portal_link")}
-            user_verified_as={props.user_verified.planning_portal_link}
-            verified_count={props.building.verified.planning_portal_link}
-            />
-
-        <DataEntryGroup name="Planning Status">
+        <DataEntryGroup name="Planning application information">
             <CheckboxDataEntry
                 title="Is a planning application live for this site?"
                 slug="planning_live_application"
@@ -270,84 +253,110 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     verified_count={props.building.verified.planning_in_apa_url}
                     />
             </DataEntryGroup>
-            <DataEntryGroup name="Other types of zoning" collapsed={false} >
-                <CheckboxDataEntry
-                title="Is the building inside a flood zone?"
-                slug="planning_live_application"
-                value={null}
-                disabled={true}
+        </DataEntryGroup>
+        <DataEntryGroup name="Other types of zoning" collapsed={false} >
+            <CheckboxDataEntry
+            title="Is the building inside a flood zone?"
+            slug="planning_live_application"
+            value={null}
+            disabled={true}
+            />
+            <Verification
+                slug="dummy"
+                allow_verify={false}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("dummy")}
+                user_verified_as={props.user_verified.planning_in_apa_url}
+                verified_count={props.building.verified.planning_in_apa_url}
+            />
+            <CheckboxDataEntry
+            title="Is the building in a strategic development zone for housing?"
+            slug="planning_live_application"
+            value={null}
+            disabled={true}
+            />
+            <Verification
+                slug="dummy"
+                allow_verify={false}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("dummy")}
+                user_verified_as={props.user_verified.planning_in_apa_url}
+                verified_count={props.building.verified.planning_in_apa_url}
+            />
+            <CheckboxDataEntry
+            title="Is the building in a strategic development zone for commerce or industry?"
+            slug="planning_live_application"
+            value={null}
+            disabled={true}
+            />
+            <Verification
+                slug="dummy"
+                allow_verify={false}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("dummy")}
+                user_verified_as={props.user_verified.planning_in_apa_url}
+                verified_count={props.building.verified.planning_in_apa_url}
+            />
+            <CheckboxDataEntry
+            title="Is the building within a protected sightline?"
+            slug="planning_live_application"
+            value={null}
+            disabled={true}
+            />
+            <Verification
+                slug="dummy"
+                allow_verify={false}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("dummy")}
+                user_verified_as={props.user_verified.planning_in_apa_url}
+                verified_count={props.building.verified.planning_in_apa_url}
+            />
+            {/*
+                <DataEntry
+                title={dataFields.planning_glher_url.title}
+                slug="planning_glher_url"
+                value={props.building.planning_glher_url}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                isUrl={true}
+                placeholder="Please add relevant link here"
                 />
-                <Verification
-                    slug="dummy"
-                    allow_verify={false}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("dummy")}
-                    user_verified_as={props.user_verified.planning_in_apa_url}
-                    verified_count={props.building.verified.planning_in_apa_url}
+            <Verification
+                slug="planning_glher_url"
+                allow_verify={props.user !== undefined && props.building.planning_glher_url !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("planning_glher_url")}
+                user_verified_as={props.user_verified.planning_glher_url}
+                verified_count={props.building.verified.planning_glher_url}
                 />
-                <CheckboxDataEntry
-                title="Is the building in a strategic development zone for housing?"
-                slug="planning_live_application"
-                value={null}
-                disabled={true}
-                />
-                <Verification
-                    slug="dummy"
-                    allow_verify={false}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("dummy")}
-                    user_verified_as={props.user_verified.planning_in_apa_url}
-                    verified_count={props.building.verified.planning_in_apa_url}
-                />
-                <CheckboxDataEntry
-                title="Is the building in a strategic development zone for commerce or industry?"
-                slug="planning_live_application"
-                value={null}
-                disabled={true}
-                />
-                <Verification
-                    slug="dummy"
-                    allow_verify={false}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("dummy")}
-                    user_verified_as={props.user_verified.planning_in_apa_url}
-                    verified_count={props.building.verified.planning_in_apa_url}
-                />
-                <CheckboxDataEntry
-                title="Is the building within a protected sightline?"
-                slug="planning_live_application"
-                value={null}
-                disabled={true}
-                />
-                <Verification
-                    slug="dummy"
-                    allow_verify={false}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("dummy")}
-                    user_verified_as={props.user_verified.planning_in_apa_url}
-                    verified_count={props.building.verified.planning_in_apa_url}
-                />
-                {/*
-                    <DataEntry
-                    title={dataFields.planning_glher_url.title}
-                    slug="planning_glher_url"
-                    value={props.building.planning_glher_url}
+            */}
+        </DataEntryGroup>
+        <DataEntryGroup name="Land parcel ownership" collapsed={false} >
+                <SelectDataEntry
+                    slug='community_public_ownership'
+                    title={"What type of owner owns this land parcel? "}
+                    value={props.building.community_public_ownership}
+                    options={[
+                        'Government-owned',
+                        'Charity-owned',
+                        'Community-owned/cooperative',
+                        'Owned by other non-profit body',
+                        'Not in public/community ownership',
+                    ]}
+
+                    onChange={props.onChange}
                     mode={props.mode}
                     copy={props.copy}
-                    onChange={props.onChange}
-                    isUrl={true}
-                    placeholder="Please add relevant link here"
-                    />
+                />
                 <Verification
-                    slug="planning_glher_url"
-                    allow_verify={props.user !== undefined && props.building.planning_glher_url !== null && !props.edited}
+                    slug="community_public_ownership"
+                    allow_verify={props.user !== undefined && props.building.community_public_ownership !== null && !props.edited}
                     onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_glher_url")}
-                    user_verified_as={props.user_verified.planning_glher_url}
-                    verified_count={props.building.verified.planning_glher_url}
-                    />
-                */}
-            </DataEntryGroup>
+                    user_verified={props.user_verified.hasOwnProperty("community_public_ownership")}
+                    user_verified_as={props.user_verified.community_public_ownership}
+                    verified_count={props.building.verified.community_public_ownership}
+                />
         </DataEntryGroup>
     </Fragment>
 );
