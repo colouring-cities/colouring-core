@@ -143,7 +143,17 @@ def insert_entry(cursor, e):
             planning_data (planning_application_id, planning_application_link, description, registered_with_local_authority_date, decision_date, last_synced_date, status, status_before_aliasing, data_source, data_source_link, uprn)
         VALUES
             (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    ''', (e["application_id"], application_url, e["description"], date_object_into_date_string(e["registered_with_local_authority_date"]), date_object_into_date_string(e["decision_date"]), date_object_into_date_string(e["last_synced_date"]), e["status"], e["status_before_aliasing"], e["data_source"], e["data_source_link"], e["uprn"]))
+    ''', (
+        e["application_id"],
+        application_url, e["description"],
+        date_object_into_date_string(e["registered_with_local_authority_date"]), 
+        date_object_into_date_string(e["decision_date"]),
+        date_object_into_date_string(e["last_synced_date"]),
+        e["status"], e["status_before_aliasing"],
+        e["data_source"],
+        e["data_source_link"],
+        e["uprn"])
+        )
 
 def date_object_into_date_string(date):
     if(date == None):
