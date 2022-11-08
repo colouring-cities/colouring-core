@@ -16,7 +16,7 @@ export function FloodBoundaryLayer({enablement}: {enablement: FloodEnablementSta
         return boundaryGeojson &&
         <GeoJSON 
         data={boundaryGeojson}
-        style={{color: '#00f', fill: false, weight: 1}}
+        style={{color: '#00f', fill: true, weight: 1, opacity: 0.6}}
     />;
     } else if (enablement == "disabled") {
         return <div></div>
