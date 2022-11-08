@@ -16,6 +16,8 @@ export type ParcelEnablementState = 'enabled' | 'disabled';
 
 export type FloodEnablementState = 'enabled' | 'disabled';
 
+export type ConservationAreasEnablementState = 'enabled' | 'disabled';
+
 export const mapBackgroundColor: Record<MapTheme, string> = {
     light: '#F0EEEB',
     night: '#162639'

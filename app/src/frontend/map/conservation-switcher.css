@@ -1,0 +1,37 @@
+.conservation-theme {
+    filter: grayscale(100%) invert(1);
+}
+
+.conservation-theme {
+    filter: none;
+}
+
+.conservation-switcher {
+    z-index: 1000;
+    position: absolute;
+    top: 237px;
+    right: 10px;
+    float: right;
+    background: white;
+    border-radius: 4px;
+}
+.conservation-switcher .btn {
+    margin: 0;
+    min-width: 280px;
+}
+.conservation-switcher.night .btn {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+.conservation-switcher.night .btn:hover {
+    color: #343a40;
+    background-color: transparent;
+    background-image: none;
+    border-color: #343a40;
+}
+@media (max-width: 990px){
+    .conservation-switcher {
+        visibility: hidden;
+    }
+}
