@@ -19,24 +19,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
         <InfoBox type='warning'>
             This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G2.-Data-capture-(2).-Live-streaming-and-automated-methods">read here</a>.
         </InfoBox>
-        <DataEntry
-            title={dataFields.planning_portal_link.title}
-            slug="planning_portal_link"
-            value={props.building.planning_portal_link}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
-            />
-        <Verification
-            slug="planning_portal_link"
-            allow_verify={props.user !== undefined && props.building.planning_portal_link !== null && !props.edited}
-            onVerify={props.onVerify}
-            user_verified={props.user_verified.hasOwnProperty("planning_portal_link")}
-            user_verified_as={props.user_verified.planning_portal_link}
-            verified_count={props.building.verified.planning_portal_link}
-            />
-
-        <DataEntryGroup name="Planning Status">
+        <DataEntryGroup name="Planning application information">
             <CheckboxDataEntry
                 title="Is a planning application live for this site?"
                 slug="planning_live_application"
