@@ -286,7 +286,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     verified_count={props.building.verified.planning_in_apa_url}
                 />
                 <CheckboxDataEntry
-                title="Is the building in strategic zone for housing?"
+                title="Is the building in a strategic development zone for housing?"
                 slug="planning_live_application"
                 value={null}
                 disabled={true}
@@ -300,7 +300,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     verified_count={props.building.verified.planning_in_apa_url}
                 />
                 <CheckboxDataEntry
-                title="Is the building in strategic development zone for commerce or industry?"
+                title="Is the building in a strategic development zone for commerce or industry?"
                 slug="planning_live_application"
                 value={null}
                 disabled={true}
@@ -314,7 +314,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     verified_count={props.building.verified.planning_in_apa_url}
                 />
                 <CheckboxDataEntry
-                title="Is the building in line of a protected sight line?"
+                title="Is the building within a protected sightline?"
                 slug="planning_live_application"
                 value={null}
                 disabled={true}
