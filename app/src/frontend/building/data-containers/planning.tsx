@@ -348,6 +348,32 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     />
                 */}
             </DataEntryGroup>
+            <DataEntryGroup name="Land parcel ownership" collapsed={false} >
+                <SelectDataEntry
+                    slug='community_public_ownership'
+                    title={"What type of owner owns this land parcel? "}
+                    value={props.building.community_public_ownership}
+                    options={[
+                        'Government-owned',
+                        'Charity-owned',
+                        'Community-owned/cooperative',
+                        'Owned by other non-profit body',
+                        'Not in public/community ownership',
+                    ]}
+
+                    onChange={props.onChange}
+                    mode={props.mode}
+                    copy={props.copy}
+                />
+                <Verification
+                    slug="community_public_ownership"
+                    allow_verify={props.user !== undefined && props.building.community_public_ownership !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("community_public_ownership")}
+                    user_verified_as={props.user_verified.community_public_ownership}
+                    verified_count={props.building.verified.community_public_ownership}
+                />
+            </DataEntryGroup>
         </DataEntryGroup>
     </Fragment>
 );
