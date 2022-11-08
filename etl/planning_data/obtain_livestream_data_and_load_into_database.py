@@ -66,6 +66,19 @@ def load_data_into_database(cursor, data):
                 "data_source": "Greater London Authority's Planning London DataHub",
                 "data_source_link": None
                 }
+            if date_in_future(entry["registered_with_local_authority_date"]):
+                print("registered_with_local_authority_date is treated as invalid:", entry["registered_with_local_authority_date"])
+                # Brent-87_0946 has "valid_date": "23/04/9187"
+                entry["registered_with_local_authority_date"] = None
+
+            if date_in_future(entry["decision_date"]):
+                print("decision_date is treated as invalid:", entry["decision_date"])
+                entry["decision_date"] = None
+
+            if date_in_future(entry["last_synced_date"]):
+                print("last_synced_date is treated as invalid:", entry["last_synced_date"])
+                entry["last_synced_date"] = None
+
             if "Hackney" in entry["application_id"]:
                 if entry["application_url"] != None:
                     if "https://" not in entry["application_url"]:
@@ -79,6 +92,11 @@ def load_data_into_database(cursor, data):
             print()
             print(json.dumps(entry, indent = 4))
             raise e
+
+def date_in_future(date):
+    if date == None:
+        return False
+    return date > datetime.datetime.now()
 
 def query(search_after):
     headers = {
