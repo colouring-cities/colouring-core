@@ -153,27 +153,31 @@ def filepath():
     return os.path.dirname(os.path.realpath(__file__)) + os.sep + "data.json"
 
 def insert_entry(cursor, e):
-    now = datetime.datetime.now()
-    application_url = None
-    if e["application_url"] != None:
-        application_url = e["application_url"]
-    cursor.execute('''INSERT INTO
-            planning_data (planning_application_id, planning_application_link, description, registered_with_local_authority_date, days_since_registration_cached, decision_date, days_since_decision_date_cached, last_synced_date, status, status_before_aliasing, data_source, data_source_link, uprn)
-        VALUES
-            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    ''', (
-        e["application_id"],
-        application_url, e["description"],
-        date_object_into_date_string(e["registered_with_local_authority_date"]), 
-        days_since(e["registered_with_local_authority_date"], now),
-        date_object_into_date_string(e["decision_date"]),
-        days_since(e["decision_date"], now),
-        date_object_into_date_string(e["last_synced_date"]),
-        e["status"], e["status_before_aliasing"],
-        e["data_source"],
-        e["data_source_link"],
-        e["uprn"])
-        )
+    try:
+        now = datetime.datetime.now()
+        application_url = None
+        if e["application_url"] != None:
+            application_url = e["application_url"]
+        cursor.execute('''INSERT INTO
+                planning_data (planning_application_id, planning_application_link, description, registered_with_local_authority_date, days_since_registration_cached, decision_date, days_since_decision_date_cached, last_synced_date, status, status_before_aliasing, data_source, data_source_link, uprn)
+            VALUES
+                (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        ''', (
+            e["application_id"],
+            application_url, e["description"],
+            date_object_into_date_string(e["registered_with_local_authority_date"]),
+            days_since(e["registered_with_local_authority_date"], now),
+            date_object_into_date_string(e["decision_date"]),
+            days_since(e["decision_date"], now),
+            date_object_into_date_string(e["last_synced_date"]),
+            e["status"], e["status_before_aliasing"],
+            e["data_source"],
+            e["data_source_link"],
+            e["uprn"])
+            )
+    except psycopg2.errors.Error as error:
+        show_dictionary(e)
+        raise error
 
 def show_dictionary(data):
     for key in data.keys():
