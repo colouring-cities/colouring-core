@@ -265,6 +265,11 @@ In your Ubuntu installation where you have been running these setup steps (e.g. 
 
 ```bash
 psql < <dumpfile>
+```  
+  
+Alternatively, if you get errors using the above command, use pg_restore:  
+  ```bash
+pg_restore -d <colouringlondondb> <dumpfile>
 ```
 
 #### Run migrations
