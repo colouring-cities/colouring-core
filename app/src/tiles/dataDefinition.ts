@@ -143,15 +143,15 @@ const LAYER_QUERIES = {
         INNER JOIN buildings ON building_properties.building_id = buildings.building_id`,
     planning_applications_status_recent: `SELECT 
         buildings.geometry_id, building_properties.uprn, building_properties.building_id, planning_data.status AS status, planning_data.uprn, 
-        EXTRACT(epoch FROM age(decision_date))/3600/24 AS days_since_decision_date,
-        EXTRACT(epoch FROM age(registered_with_local_authority_date))/3600/24 AS days_since_registered_with_local_authority_date
+        1 AS days_since_decision_date,
+        1 AS days_since_registered_with_local_authority_date
         FROM building_properties
         INNER JOIN planning_data ON building_properties.uprn = planning_data.uprn
         INNER JOIN buildings ON building_properties.building_id = buildings.building_id`,
     planning_applications_status_very_recent: `SELECT 
         buildings.geometry_id, building_properties.uprn, building_properties.building_id, planning_data.status AS status, planning_data.uprn, 
-        EXTRACT(epoch FROM age(decision_date))/3600/24 AS days_since_decision_date,
-        EXTRACT(epoch FROM age(registered_with_local_authority_date))/3600/24 AS days_since_registered_with_local_authority_date
+        planning_data.days_since_decision_date_cached AS days_since_decision_date,
+        planning_data.days_since_registration_cached AS days_since_registered_with_local_authority_date
         FROM building_properties
         INNER JOIN planning_data ON building_properties.uprn = planning_data.uprn
         INNER JOIN buildings ON building_properties.building_id = buildings.building_id`,
