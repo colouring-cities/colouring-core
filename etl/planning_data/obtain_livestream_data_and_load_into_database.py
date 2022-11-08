@@ -90,7 +90,7 @@ def load_data_into_database(cursor, data):
             print()
             print(e)
             print()
-            print(json.dumps(entry, indent = 4))
+            show_dictionary(entry)
             raise e
 
 def date_in_future(date):
@@ -174,6 +174,10 @@ def insert_entry(cursor, e):
         e["data_source_link"],
         e["uprn"])
         )
+
+def show_dictionary(data):
+    for key in data.keys():
+        print(key, "=", data[key])
 
 def days_since(date, now):
     if(date == None):
