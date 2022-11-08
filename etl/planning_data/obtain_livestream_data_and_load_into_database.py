@@ -136,7 +136,6 @@ def filepath():
     return os.path.dirname(os.path.realpath(__file__)) + os.sep + "data.json"
 
 def insert_entry(cursor, e):
-    elements = []
     application_url = None
     if e["application_url"] != None:
         application_url = e["application_url"]
