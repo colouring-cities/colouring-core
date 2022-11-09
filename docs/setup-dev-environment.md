@@ -280,7 +280,12 @@ do this are located in the `migrations` folder of your local repository.
 ```bash
 ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
 ```
-
+                                                                                                      
+Again, if you get errors, you may need to manually specify the database name                                                                                           
+                                                                                                      
+```bash
+ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
+```
 </details>
 
 <details>
