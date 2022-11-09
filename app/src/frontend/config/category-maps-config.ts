@@ -199,7 +199,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'planning_applications_status_very_recent',
             legend: {
-                title: 'Submissions/decisions in last 7 days',
+                title: 'Submissions/decisions in last 30 days',
                 elements: [
                     { color: '#53f5dd', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
