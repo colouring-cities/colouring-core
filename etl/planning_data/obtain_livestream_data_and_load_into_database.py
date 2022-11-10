@@ -1,8 +1,8 @@
-import requests
 import json
 import datetime
-import psycopg2
 import os
+import requests
+import psycopg2
 
 
 def main():
