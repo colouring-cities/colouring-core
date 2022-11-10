@@ -174,7 +174,8 @@ def insert_entry(cursor, e):
             date_object_into_date_string(e["decision_date"]),
             days_since(e["decision_date"], now),
             date_object_into_date_string(e["last_synced_date"]),
-            e["status"], e["status_before_aliasing"],
+            e["status"],
+            e["status_before_aliasing"],
             e["data_source"],
             e["data_source_link"],
             e["uprn"])
