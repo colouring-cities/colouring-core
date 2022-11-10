@@ -26,10 +26,9 @@ def main():
     connection.commit()
 
 
-
 def load_data_into_database(cursor, data):
     if "timed_out" not in data:
-        print(json.dumps(data, indent = 4))
+        print(json.dumps(data, indent=4))
         print("timed_out field missing in provided data")
     else:
         if data['timed_out']:
@@ -93,10 +92,12 @@ def load_data_into_database(cursor, data):
             show_dictionary(entry)
             raise e
 
+
 def date_in_future(date):
     if date == None:
         return False
     return date > datetime.datetime.now()
+
 
 def query(search_after):
     headers = {
@@ -141,6 +142,7 @@ def query(search_after):
     print(json_data)
     return requests.post('https://planningdata.london.gov.uk/api-guest/applications/_search', headers=headers, json=json_data)
 
+
 def get_connection():
     return psycopg2.connect(
         host=os.environ['PGHOST'],
@@ -149,8 +151,10 @@ def get_connection():
         password=os.environ['PGPASSWORD']
     )
 
+
 def filepath():
     return os.path.dirname(os.path.realpath(__file__)) + os.sep + "data.json"
+
 
 def insert_entry(cursor, e):
     try:
@@ -255,6 +259,7 @@ def obtain_entry_link(provided_link, application_id):
     return None
     # Richmond is simply broken
 
+
 def process_status(status, decision_date):
     """return None if status is invalid"""
     if status in ["Application Under Consideration", "Application Received"]:
@@ -275,11 +280,12 @@ def process_status(status, decision_date):
     print("Unexpected status " + status)
     if status not in ["No Objection to Proposal (OBS only)", "Objection Raised to Proposal (OBS only)", "Not Required", "Unknown", "Lapsed", "SECS", "Comment Issued", "ALL DECISIONS ISSUED", "Closed", "Declined to Determine"]:
         print("New unexpected status " + status)
-    status_length_limit = 50 # see migrations/033.planning_livestream_data.up.sql
+    status_length_limit = 50  # see migrations/033.planning_livestream_data.up.sql
     if len(status) > 50:
         print("Status was too long and was skipped:", status)
         return None
     return status
+
 
 if __name__ == '__main__':
     main()
