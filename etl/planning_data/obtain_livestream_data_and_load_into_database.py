@@ -261,6 +261,10 @@ def obtain_entry_link(provided_link, application_id):
 
 
 def process_status(status, decision_date):
+    status_length_limit = 50  # see migrations/034.planning_livestream_data.up.sql
+    if len(status) > status_length_limit:
+        print("Status was too long and was skipped:", status)
+        return None
     """return None if status is invalid"""
     if status in ["Application Under Consideration", "Application Received"]:
         if decision_date == None:
@@ -280,10 +284,6 @@ def process_status(status, decision_date):
     print("Unexpected status " + status)
     if status not in ["No Objection to Proposal (OBS only)", "Objection Raised to Proposal (OBS only)", "Not Required", "Unknown", "Lapsed", "SECS", "Comment Issued", "ALL DECISIONS ISSUED", "Closed", "Declined to Determine"]:
         print("New unexpected status " + status)
-    status_length_limit = 50  # see migrations/033.planning_livestream_data.up.sql
-    if len(status) > 50:
-        print("Status was too long and was skipped:", status)
-        return None
     return status
 
 
