@@ -38,7 +38,7 @@ def load_data_into_database(cursor, data):
             description = None
             if entry['_source']['description'] != None:
                 description = entry['_source']['description'].strip()
-            application_id = entry['_source']['id']
+            application_id = entry['_source']['lpa_app_no']
             decision_date = parse_date_string_into_date_object(entry['_source']['decision_date'])
             last_synced_date = parse_date_string_into_date_object(entry['_source']['last_synced'])
             uprn = entry['_source']['uprn']
