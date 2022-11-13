@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS planning_data (
         last_synced_date date,
         status VARCHAR(50),
         status_before_aliasing VARCHAR(50),
+        status_explanation_note VARCHAR(250),
         data_source VARCHAR(70),
         data_source_link VARCHAR(150),
         uprn bigint

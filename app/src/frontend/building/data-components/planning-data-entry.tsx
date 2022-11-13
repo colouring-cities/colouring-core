@@ -103,6 +103,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                   statusBeforeAliasing={item["status_before_aliasing"]}
                   status={item["status"]}
                 /></div>
+                {item["status_explanation_note"] ? <div><b>Explanation</b>: {item["status_explanation_note"]}</div> : <></>}
                 <div><b>Planning application ID:</b> {ShowIfAvailable(item["planning_application_id"])}</div>
                 <div><b>Date registered by the planning authority (validation date)</b>: {ShowIfAvailable(item["registered_with_local_authority_date"])}</div>
                 <div><b>Decision date</b>: {ShowIfAvailable(item["decision_date"])}</div>
