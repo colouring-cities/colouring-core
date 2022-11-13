@@ -67,7 +67,7 @@ def load_data_into_database(cursor, data):
                 "status_explanation_note": status_explanation_note,
                 "data_source": "Greater London Authority's Planning London DataHub",
                 "data_source_link": None
-                }
+            }
             if date_in_future(entry["registered_with_local_authority_date"]):
                 print("registered_with_local_authority_date is treated as invalid:", entry["registered_with_local_authority_date"])
                 # Brent-87_0946 has "valid_date": "23/04/9187"
@@ -183,34 +183,39 @@ def insert_entry(cursor, e):
             e["data_source"],
             e["data_source_link"],
             e["uprn"])
-            )
+        )
     except psycopg2.errors.Error as error:
         show_dictionary(e)
         raise error
 
+
 def show_dictionary(data):
     for key in data.keys():
         print(key, "=", data[key])
+
 
 def days_since(date, now):
     if(date == None):
         return None
     return (now - date).days
 
+
 def date_object_into_date_string(date):
     if(date == None):
         return None
     return datetime.datetime.strftime(date, "%Y-%m-%d")
+
 
 def parse_date_string_into_date_object(incoming):
     if incoming == None:
         return None
     date = None
     try:
-        date = datetime.datetime.strptime(incoming, "%d/%m/%Y") # '21/07/2022'
+        date = datetime.datetime.strptime(incoming, "%d/%m/%Y")  # '21/07/2022'
     except ValueError:
-        date = datetime.datetime.strptime(incoming, "%Y-%m-%dT%H:%M:%S.%fZ") # '2022-08-08T20:07:22.238Z'
+        date = datetime.datetime.strptime(incoming, "%Y-%m-%dT%H:%M:%S.%fZ")  # '2022-08-08T20:07:22.238Z'
     return date
+
 
 def obtain_entry_link(provided_link, application_id):
     if provided_link != None:
@@ -285,7 +290,7 @@ def process_status(status, decision_date):
         return {"status": "Processing failed", "status_explanation_note": "status was unusally long and it was imposible to save it"}
     if (status in ["Submitted", "Approved", "Rejected", "Appeal In Progress", "Withdrawn", "Unknown"]):
         return {"status": status, "status_explanation_note": None}
-    if status in ["No Objection to Proposal (OBS only)", "Objection Raised to Proposal (OBS only)"]: 
+    if status in ["No Objection to Proposal (OBS only)", "Objection Raised to Proposal (OBS only)"]:
         return {"status": "Approved", "status_explanation_note": "preapproved application, local authority is unable to reject it"}
     print("Unexpected status " + status)
     if status not in ["Not Required", "SECS", "Comment Issued", "ALL DECISIONS ISSUED", "Closed", "Declined to Determine"]:
