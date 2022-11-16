@@ -1,11 +1,14 @@
+import { CCConfig } from '../../cc-config';
+let config: CCConfig = require('../../cc-config.json')
+
 interface MapViewport {
     position: [number, number];
     zoom: number;
 }
 
 export const initialMapViewport: MapViewport = {
-  position: [51.5245255, -0.1338422], // lat,lng
-  zoom: 16,
+  position: [config.initialMapPosition[0], config.initialMapPosition[1]], // lat,lng
+  zoom: config.initialZoomLevel,
 };
 
 export type MapTheme = 'light' | 'night';
