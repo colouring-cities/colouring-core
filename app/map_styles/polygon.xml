@@ -5,8 +5,6 @@
         </Rule>
         <Rule>
             <LineSymbolizer stroke="#222222aa" stroke-width="0.5" />
-            <MaxScaleDenominator>17000</MaxScaleDenominator>
-            <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
     </Style>
     <Style name="base_night">
