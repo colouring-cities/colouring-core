@@ -8,13 +8,14 @@ import { apiGet } from '../apiHelpers';
 import { HelpIcon } from '../components/icons';
 import { categoryMapsConfig } from '../config/category-maps-config';
 import { Category } from '../config/categories-config';
-import { initialMapViewport, mapBackgroundColor, MapTheme, BoroughEnablementState, ParcelEnablementState, FloodEnablementState, ConservationAreasEnablementState } from '../config/map-config';
+import { initialMapViewport, mapBackgroundColor, MapTheme, BoroughEnablementState, ParcelEnablementState, FloodEnablementState, ConservationAreasEnablementState, HistoricDataEnablementState } from '../config/map-config';
 import { Building } from '../models/building';
 
 import { CityBaseMapLayer } from './layers/city-base-map-layer';
 import { CityBoundaryLayer } from './layers/city-boundary-layer';
 import { BoroughBoundaryLayer } from './layers/borough-boundary-layer';
 import { ParcelBoundaryLayer } from './layers/parcel-boundary-layer';
+import { HistoricDataLayer } from './layers/historic-data-layer';
 import { FloodBoundaryLayer } from './layers/flood-boundary-layer';
 import { ConservationAreaBoundaryLayer } from './layers/conservation-boundary-layer';
 import { BuildingBaseLayer } from './layers/building-base-layer';
@@ -29,6 +30,7 @@ import BoroughSwitcher from './borough-switcher';
 import ParcelSwitcher from './parcel-switcher';
 import FloodSwitcher from './flood-switcher';
 import ConservationAreaSwitcher from './conservation-switcher';
+import HistoricDataSwitcher from './historic-data-switcher';
 import { BuildingMapTileset } from '../config/tileserver-config';
 
 interface ColouringMapProps {
@@ -53,6 +55,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
     const [parcel, setParcel] = useState<ParcelEnablementState>('disabled');
     const [flood, setFlood] = useState<FloodEnablementState>('disabled');
     const [conservation, setConservation] = useState<ConservationAreasEnablementState>('disabled');
+    const [historicData, setHistoricData] = useState<HistoricDataEnablementState>('disabled');
     const [position, setPosition] = useState(initialMapViewport.position);
     const [zoom, setZoom] = useState(initialMapViewport.zoom);
 
@@ -121,6 +124,15 @@ export const ColouringMap : FC<ColouringMapProps> = ({
         [conservation],
     )
 
+    const historicDataSwitch = useCallback(
+        (e) => {
+            e.preventDefault();
+            const newHistoric = (historicData === 'enabled')? 'disabled' : 'enabled';
+            setHistoricData(newHistoric);
+        },
+        [historicData],
+    )
+
     const categoryMapDefinitions = useMemo(() => categoryMapsConfig[category], [category]);
 
     useEffect(() => {
@@ -169,6 +181,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     style={{zIndex: 300}}
                 >
                     <CityBoundaryLayer />
+                    <HistoricDataLayer enablement={historicData}/>
                     <BoroughBoundaryLayer enablement={borough}/>
                     <ParcelBoundaryLayer enablement={parcel}/>
                     <FloodBoundaryLayer enablement={flood}/>
@@ -201,6 +214,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <ParcelSwitcher onSubmit={parcelSwitch} currentDisplay={parcel} />
                     <FloodSwitcher onSubmit={floodSwitch} currentDisplay={flood} />
                     <ConservationAreaSwitcher onSubmit={conservationSwitch} currentDisplay={conservation} />
+                    <HistoricDataSwitcher onSubmit={historicDataSwitch} currentDisplay={historicData} />
                     <SearchBox onLocate={handleLocate} />
                 </>
             }
