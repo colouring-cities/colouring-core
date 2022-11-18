@@ -19,6 +19,13 @@
             <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
     </Style>
+    <Style name="base_night_outlines">
+        <Rule>
+            <LineSymbolizer stroke="#ffccccaa" stroke-width="0.5" />
+            <MaxScaleDenominator>17000</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+        </Rule>
+    </Style>
     <Style name="number_labels">
         <Rule>
             <TextSymbolizer

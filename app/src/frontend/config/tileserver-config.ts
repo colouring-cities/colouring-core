@@ -21,6 +21,6 @@ export type BuildingMapTileset = 'date_year' |
     'dynamics_demolished_count' |
     'team';
 
-export type SpecialMapTileset = 'base_light' | 'base_night' | 'highlight' | 'number_labels';
+export type SpecialMapTileset = 'base_light' | 'base_night' | 'base_night_outlines' | 'highlight' | 'number_labels';
 
 export type MapTileset = BuildingMapTileset | SpecialMapTileset;

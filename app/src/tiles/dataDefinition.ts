@@ -13,6 +13,11 @@ const LAYER_QUERIES = {
             geometry_id
         FROM
             buildings`,
+    base_night_outlines: `
+        SELECT
+            geometry_id
+        FROM
+            buildings`,
     number_labels:`
         SELECT
             geometry_id,
