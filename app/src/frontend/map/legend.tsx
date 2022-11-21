@@ -81,7 +81,7 @@ export const Legend : FC<LegendProps> = ({
             }
             {
                 elements.length === 0 ?
-                    <p className="data-intro">Coming soon…</p> :
+                    ( disclaimer ? <ul className={collapseList ? 'collapse data-legend' : 'data-legend'} ><p className='legend-disclaimer'>{disclaimer}</p></ul> : <p className="data-intro">Coming soon…</p>) :
                     <ul className={collapseList ? 'collapse data-legend' : 'data-legend'} >
                         {
                             disclaimer && <p className='legend-disclaimer'>{disclaimer}</p>
