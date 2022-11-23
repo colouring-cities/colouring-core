@@ -38,16 +38,16 @@ router.get('/:tileset/:z/:x/:y(\\d+):scale(@\\dx)?.png', handleTileRequest);
 function parseTileParams(params: any): TileParams {
     const { tileset, z, x, y, scale } = params;
 
-    if (!allTilesets.includes(tileset)) throw new Error('Invalid value for tileset');
+    if (!allTilesets.includes(tileset)) throw new Error('Invalid value for tileset: ' + tileset);
     
     const intZ = strictParseInt(z);
-    if (isNaN(intZ)) throw new Error('Invalid value for z');
+    if (isNaN(intZ)) throw new Error('Invalid value for z: ' + intZ);
 
     const intX = strictParseInt(x);
-    if (isNaN(intX)) throw new Error('Invalid value for x');
+    if (isNaN(intX)) throw new Error('Invalid value for x: ' + intX);
 
     const intY = strictParseInt(y);
-    if (isNaN(intY)) throw new Error('Invalid value for y');
+    if (isNaN(intY)) throw new Error('Invalid value for y: ' + intY);
 
     let intScale: number;
     if (scale === '@2x') {
