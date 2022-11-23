@@ -169,9 +169,13 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
     ],
     [Category.Planning]: [
         {
+            // this database commad allows to see statistics about decision dates per year
+            // SELECT COUNT(*), date_part('year', decision_date) as year from planning_data WHERE decision_date IS NOT NULL GROUP BY year ORDER BY year ASC;
+            // SELECT COUNT(*), date_part('year', registered_with_local_authority_date) as year from planning_data WHERE decision_date IS NOT NULL GROUP BY year ORDER BY year ASC;
             mapStyle: 'planning_applications_status_all',
             legend: {
-                title: 'All planning applications',
+                title: 'All planning applications available from GLA Data Hub',
+                disclaimer: 'The map shows official data available from the GLA Data Hub. What you are looking at is mainly applications from 2019 onwards.',
                 elements: [
                     { color: '#53f5dd', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
@@ -185,7 +189,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'planning_applications_status_recent',
             legend: {
-                title: 'Active planning applications in the last year',
+                title: 'Last year - planning applications submissions/decisions',
+                disclaimer: 'The map shows applications where the submission or decision data falls within last year.',
                 elements: [
                     { color: '#53f5dd', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
@@ -199,7 +204,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'planning_applications_status_very_recent',
             legend: {
-                title: 'Submissions/decisions in last 30 days',
+                title: 'Last 30 days - planning applications submissions/decisions',
                 elements: [
                     { color: '#53f5dd', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
