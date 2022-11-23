@@ -16,5 +16,6 @@ CREATE TABLE IF NOT EXISTS planning_data (
         status_explanation_note VARCHAR(250),
         data_source VARCHAR(70),
         data_source_link VARCHAR(150),
+        address VARCHAR(300),
         uprn bigint
 );

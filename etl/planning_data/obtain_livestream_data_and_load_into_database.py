@@ -3,7 +3,7 @@ import datetime
 import os
 import requests
 import psycopg2
-
+import address_data
 
 def main():
     connection = get_connection()
@@ -66,8 +66,14 @@ def load_data_into_database(cursor, data):
                 "status_before_aliasing": status_before_aliasing,
                 "status_explanation_note": status_explanation_note,
                 "data_source": "Greater London Authority's Planning London DataHub",
-                "data_source_link": None
+                "data_source_link": None,
+                "address": address_data.planning_data_entry_to_address(entry),
             }
+            if entry["address"] != None:
+                maximum_address_length = 300
+                if len(entry["address"]) > maximum_address_length:
+                    print("address is too long, shortening", entry["address"])
+                    entry["address"] = entry["address"][0:maximum_address_length]
             if date_in_future(entry["registered_with_local_authority_date"]):
                 print("registered_with_local_authority_date is treated as invalid:", entry["registered_with_local_authority_date"])
                 # Brent-87_0946 has "valid_date": "23/04/9187"
@@ -166,9 +172,9 @@ def insert_entry(cursor, e):
         if e["application_url"] != None:
             application_url = e["application_url"]
         cursor.execute('''INSERT INTO
-                planning_data (planning_application_id, planning_application_link, description, registered_with_local_authority_date, days_since_registration_cached, decision_date, days_since_decision_date_cached, last_synced_date, status, status_before_aliasing, status_explanation_note, data_source, data_source_link, uprn)
+                planning_data (planning_application_id, planning_application_link, description, registered_with_local_authority_date, days_since_registration_cached, decision_date, days_since_decision_date_cached, last_synced_date, status, status_before_aliasing, status_explanation_note, data_source, data_source_link, address, uprn)
             VALUES
-                (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         ''', (
             e["application_id"],
             application_url, e["description"],
@@ -182,7 +188,9 @@ def insert_entry(cursor, e):
             e["status_explanation_note"],
             e["data_source"],
             e["data_source_link"],
-            e["uprn"])
+            e["address"],
+            e["uprn"],
+            )
         )
     except psycopg2.errors.Error as error:
         show_dictionary(e)

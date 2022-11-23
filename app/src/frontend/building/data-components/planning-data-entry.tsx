@@ -16,6 +16,7 @@ interface PlanningDataOfficialDataEntryProps {
       last_synced_date?: string;
       data_source: string;
       data_source_link?: string;
+      address?: string;
   }[];
     allEntryCount: number,
 }
@@ -109,6 +110,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                 <div><b>Decision date</b>: {ShowIfAvailable(item["decision_date"])}</div>
                 <div><b>Planning application link</b>: {LinkIfAvailable(item["planning_application_link"])}</div>
                 <div><b>Description of proposed work</b>: {item["description"] ? <LongText content = {item["description"]} limit = {400}/> : MissingData}</div>
+                <div><b>Address of the location:</b> {ShowIfAvailable(item["address"])}</div>
                 <div><b>Most recent update by data provider:</b> {ShowIfAvailable(item["decision_date"])}</div>
                 <br/>
                 <Disclaimer />
