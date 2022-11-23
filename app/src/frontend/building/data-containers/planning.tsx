@@ -54,7 +54,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G.-Data-capture-methods">read here</a>.
         </InfoBox>
         <DataEntryGroup name="Planning application information" collapsed={false} >
-            <DataEntryGroup name="Active applications (official data)" collapsed={true} >
+            <DataEntryGroup name="Active applications (official data)" collapsed={false} >
                 <PlanningDataOfficialDataEntry  
                     shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item) == false) : []}
                     allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
@@ -66,7 +66,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
             />
             </DataEntryGroup>
-            <DataEntryGroup name="Crowdsourced info on planning applications" collapsed={false} >
+            <DataEntryGroup name="Crowdsourced info on planning applications" collapsed={true} >
                 <CheckboxDataEntry
                         title="Has the work on this site been completed?"
                         slug="planning_live_application"
@@ -86,7 +86,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
             </DataEntryGroup>
         </DataEntryGroup>
-        <DataEntryGroup name="Planning contraints and building protection" collapsed={false} >
+        <DataEntryGroup name="Planning contraints and building protection" collapsed={true} >
             <DataEntryGroup name="Building protection" collapsed={false} >
                 <NumericDataEntryWithFormattedLink
                     title={dataFields.planning_list_id.title}
@@ -269,7 +269,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     />
             </DataEntryGroup>
         </DataEntryGroup>
-        <DataEntryGroup name="Other types of zoning" collapsed={false} >
+        <DataEntryGroup name="Other types of zoning" collapsed={true} >
             <CheckboxDataEntry
             title="Is the building inside a flood zone?"
             slug="planning_live_application"
@@ -347,7 +347,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             */}
         </DataEntryGroup>
-        <DataEntryGroup name="Land parcel ownership" collapsed={false} >
+        <DataEntryGroup name="Land parcel ownership" collapsed={true} >
                 <SelectDataEntry
                     slug='community_public_ownership'
                     title={"What type of owner owns this land parcel? "}
