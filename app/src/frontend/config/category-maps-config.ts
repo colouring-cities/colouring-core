@@ -171,7 +171,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         mapStyle: 'planning_combined',
         legend: {
             title: 'Designation/protection',
-            disclaimer: 'All data relating to designated buildings should be checked on the National Heritage List for England or local authority websites where used for planning or development purposes',
+            disclaimer: 'All data relating to designated buildings should be checked against the National Heritage List for England and local authority websites. Designation data is currently incomplete. We are aiming for 100% coverage by April 2023.',
             elements: [
                 { color: '#95beba', text: 'In Conservation Area'},
                 { color: '#c72e08', text: 'Grade I Listed'},
