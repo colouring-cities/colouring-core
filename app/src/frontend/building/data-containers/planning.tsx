@@ -95,7 +95,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    placeholder="If yes, add ID"
+                    placeholder="If yes, add ID here"
                     linkTargetFunction={(id: String) => { return "https://historicengland.org.uk/listing/the-list/list-entry/" + id + "?section=official-list-entry" } }
                     linkDescriptionFunction={(id: String) => { return "ID Link" } }
                 />
@@ -155,7 +155,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    placeholder="If yes, add ID"
+                    placeholder="If yes, add ID here"
                     linkTargetFunction={(id: String) => { return "https://whc.unesco.org/en/list/" + id } }
                     linkDescriptionFunction={(id: String) => { return "ID Link" } }
                     />

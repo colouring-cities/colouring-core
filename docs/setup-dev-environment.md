@@ -265,6 +265,11 @@ In your Ubuntu installation where you have been running these setup steps (e.g. 
 
 ```bash
 psql < <dumpfile>
+```  
+  
+Alternatively, if you get errors using the above command, use pg_restore:  
+  ```bash
+pg_restore -d <colouringlondondb> <dumpfile>
 ```
 
 #### Run migrations
@@ -275,7 +280,12 @@ do this are located in the `migrations` folder of your local repository.
 ```bash
 ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
 ```
-
+                                                                                                      
+Again, if you get errors, you may need to manually specify the database name                                                                                           
+                                                                                                      
+```bash
+ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
+```
 </details>
 
 <details>
