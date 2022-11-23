@@ -40,18 +40,16 @@ def generate_address(site_name, site_number, street_name, secondary_street_name)
 
     if secondary_street_name != None:
         if street_name == None:
-            print('raise Exception("secondary_street_name != None, street_name == None")')
+            print('"secondary_street_name != None, street_name == None"')
             show_data(site_name, site_number, street_name, secondary_street_name, "???????")
-            #raise Exception("secondary_street_name != None, street_name == None")
         else:
             street_name += " - with secondary road name: " + secondary_street_name
 
     if site_number != None and street_name != None:
         address = site_number + " " + street_name
         if site_name != None:
-            print('raise Exception("site_name != None and site_number != None and street_name != None")')
+            print('"site_name != None and site_number != None and street_name != None"')
             show_data(site_name, site_number, street_name, secondary_street_name, address)
-            #raise Exception("site_name != None and site_number != None")
 
         return {'result': address, 'data': data}
 
@@ -74,27 +72,23 @@ def generate_address(site_name, site_number, street_name, secondary_street_name)
                     return {'result': site_name, 'data': data}
                 except ValueError:
                     pass
-            print('raise Exception("site_name != None and street_name != None")')
+            print('"site_name != None and street_name != None"')
             show_data(site_name, site_number, street_name, secondary_street_name, site_name)
-            #raise Exception("site_name != None and street_name != None")
         if site_number != None:
-            print('raise Exception("site_name != None and site_number != None")')
+            print('"site_name != None and site_number != None"')
             show_data(site_name, site_number, street_name, secondary_street_name, site_name)
-            #raise Exception("site_name != None and site_number != None")
         return {'result': site_name, 'data': data}
     else:
         if street_name != None:
             if site_number != None:
                 return {'result': site_number + " " + street_name, 'data': data}
         if street_name != None and site_number == None:
-            print('raise Exception("street_name != None or site_number == None")')
+            print('"street_name != None or site_number == None"')
             show_data(site_name, site_number, street_name, secondary_street_name, None)
-            #raise Exception("street_name != None or site_number == None")
             return {'result': None, 'data': data}
         if street_name == None and site_number != None:
-            print('raise Exception("street_name == None or site_number != None")')
+            print('"street_name == None or site_number != None"')
             show_data(site_name, site_number, street_name, secondary_street_name, None)
-            #raise Exception("street_name == None or site_number != None")
             return {'result': None, 'data': data}
         return {'result': None, 'data': data}
 
@@ -104,6 +98,6 @@ def show_data(site_name, site_number, street_name, secondary_street_name, addres
     print("site_number:", site_number)
     print("street_name:", street_name)
     print("secondary_street_name:", secondary_street_name)
-    print("address:", address)
+    print("address generated based on this data:", address)
     print()
     print()
