@@ -68,7 +68,7 @@ const StatusInfo = ({status, statusBeforeAliasing}) => {
     return <>{LinkIfAvailable(null)}</>
   }
   if(status != statusBeforeAliasing) {
-    return <>{status} - status in raw data was: {statusBeforeAliasing}</>
+    return <>{status} - status in data source was: {statusBeforeAliasing}</>
   }
   return <>{status}</>
 }
