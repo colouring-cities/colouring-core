@@ -60,7 +60,10 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Historical applications (official data)" collapsed={true} >
+            <DataEntryGroup name="Past applications (official data)" collapsed={true} >
+                <InfoBox type='warning'>
+                    Past applications, including those with no decision in over a year
+                </InfoBox>
                 <PlanningDataOfficialDataEntry  
                     shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item)) : []}
                     allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
