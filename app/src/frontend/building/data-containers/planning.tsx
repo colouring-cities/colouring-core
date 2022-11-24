@@ -50,9 +50,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     return (
     <Fragment>
-        <InfoBox type='warning'>
-            This section is under development as part of the project CLPV Tool. For more details and progress <a href="https://github.com/colouring-cities/manual/wiki/G.-Data-capture-methods">read here</a>.
-        </InfoBox>
         <DataEntryGroup name="Planning application information" collapsed={false} >
             <DataEntryGroup name="Active applications (official data)" collapsed={false} >
                 <PlanningDataOfficialDataEntry  
