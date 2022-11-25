@@ -174,8 +174,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             // SELECT COUNT(*), date_part('year', registered_with_local_authority_date) as year from planning_data WHERE decision_date IS NOT NULL GROUP BY year ORDER BY year ASC;
             mapStyle: 'planning_applications_status_all',
             legend: {
-                title: 'All planning applications available from GLA Data Hub',
-                disclaimer: 'The map shows official data available from the GLA Data Hub. What you are looking at is mainly applications from 2019 onwards.',
+                title: 'All planning applications available from GLA',
+                disclaimer: 'The map shows official data available from the GLA Planning London Datahub. What you are looking at is mainly applications from 2019 onwards.',
                 elements: [
                     { color: '#53f5dd', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
