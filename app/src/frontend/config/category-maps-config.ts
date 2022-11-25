@@ -143,7 +143,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'community_expected_planning_application_total',
             legend: {
                 title: 'Expected planning application',
-                description: 'People who think the building will be affected by a planning application in the near future',
+                description: 'Sites identified by users as likely to be subject to planning application over the next six months',
                 elements: [
                     { color: '#bd0026', text: '100+' },
                     { color: '#e31a1c', text: '50–99' },
