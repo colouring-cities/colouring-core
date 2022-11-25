@@ -508,7 +508,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_historic_area_assessment_url: {
         category: Category.Planning,
-        title: "Does it have any other type of <a href=\"https://historicengland.org.uk/images-books/publications/understanding-place-historic-area-assessments/\" target=\"_blank\">Historic Area Assessment</a>?",
+        title: "Does it have an <a href=\"https://historicengland.org.uk/images-books/publications/understanding-place-historic-area-assessments/\" target=\"_blank\">Historic Area Assessment</a>?",
         example: "",
         //tooltip: ,
     },
