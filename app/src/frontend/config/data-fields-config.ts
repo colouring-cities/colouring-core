@@ -111,7 +111,7 @@ export const buildingUserFields = {
     community_expected_planning_application: {
         perUser: true,
         category: Category.Community,
-        title: "Do you expect this site to be affected by a planning application in the near future?",
+        title: "Select any building that you think may be subject to a planning application over the next six months and tick the box below to colour it.",
         example: true
     }
 };
