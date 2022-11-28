@@ -51,29 +51,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
     <Fragment>
         <DataEntryGroup name="Planning application information" collapsed={false} >
-            <DataEntryGroup name="Active applications (official data)" collapsed={false} >
+            <DataEntryGroup name="Current/active applications (official data)" collapsed={false} >
                 <PlanningDataOfficialDataEntry  
                     shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item) == false) : []}
                     allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Past applications (official data)" collapsed={true} >
-                <InfoBox type='warning'>
-                    Past applications, including those with no decision in over a year
-                </InfoBox>
-                <PlanningDataOfficialDataEntry  
-                    shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item)) : []}
-                    allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
-            />
-            </DataEntryGroup>
-            <DataEntryGroup name="Crowdsourced info on planning applications" collapsed={true} >
-                <CheckboxDataEntry
-                        title="Has the work on this site been completed?"
-                        slug="planning_live_application"
-                        value={null}
-                        disabled={false}
-                        />
-                    <NumericDataEntry
+            <DataEntryGroup name="Other active application info (crowdsourced data)" collapsed={true} >
+                <NumericDataEntry
                         title={"Year of completion"}
                         slug="date_year"
                         value={2019}
@@ -84,6 +69,17 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         max={currentYear}
                         // "type": "year_estimator"
                         />
+            </DataEntryGroup>
+            <DataEntryGroup name="Past applications (official data)" collapsed={true} >
+                <InfoBox type='warning'>
+                    Past applications, including those with no decision in over a year
+                </InfoBox>
+                <PlanningDataOfficialDataEntry
+                    shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item)) : []}
+                    allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
+                />
+            </DataEntryGroup>
+            <DataEntryGroup name="Possible future applications (crowdsourced data)" collapsed={true} >
             </DataEntryGroup>
         </DataEntryGroup>
         <DataEntryGroup name="Planning contraints and building protection" collapsed={true} >
