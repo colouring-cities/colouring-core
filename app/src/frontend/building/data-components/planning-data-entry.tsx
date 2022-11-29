@@ -81,7 +81,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                   <InfoBox type='success'>
                     <Disclaimer />
                   </InfoBox>
-                  <InfoBox type='success'>
+                  <InfoBox type='info'>
                   No live planning data available currently for this building polygon via the Planning London DataHub.
                   <br/>
                   </InfoBox>
@@ -91,7 +91,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                   <InfoBox type='success'>
                     <Disclaimer />
                   </InfoBox>
-                <InfoBox type='success'>
+                <InfoBox type='info'>
                 No live planning data for this date range, but this building has associated planning data now shown here.
                 <br/>
                 </InfoBox>
@@ -106,7 +106,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
           <div>Planning application status is streamed using live data uploaded by local authorities to the {data[0]["data_source_link"] ? <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a> : data[0]["data_source"] }.</div>        </InfoBox>
         {data.map((item) => (
         <Fragment>
-        <InfoBox type='success'>
+        <InfoBox type='info'>
             <Fragment>
                 <div><b>Current planning application status for this site:</b> <StatusInfo 
                   statusBeforeAliasing={item["status_before_aliasing"]}

@@ -2,7 +2,9 @@ import React from 'react';
 
 interface InfoBoxProps {
     msg?: string;
-    type?: 'info' | 'warning' | 'success'
+    // https://react-bootstrap.github.io/components/alerts/
+    // predefined valid values
+    type?: 'info' | 'warning' | 'success' | 'danger'
 }
 
 const InfoBox: React.FC<InfoBoxProps> = ({msg, children, type = 'info'}) => (

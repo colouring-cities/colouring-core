@@ -109,7 +109,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
             </DataEntryGroup>
             <DataEntryGroup name="Past applications (official data)" collapsed={true} >
-                <InfoBox type='warning'>
+                <InfoBox type='success'>
                     Past applications, including those with no decision in over a year
                 </InfoBox>
                 <PlanningDataOfficialDataEntry
@@ -134,7 +134,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                 />
-                <InfoBox>To also add your opinion on how well this building works for the community, visit <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
+                <InfoBox type='danger'>To also add your opinion on how well this building works for the community, visit <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
             </DataEntryGroup>
         </DataEntryGroup>
         <DataEntryGroup name="Planning contraints and building protection" collapsed={true} >
