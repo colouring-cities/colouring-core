@@ -149,56 +149,56 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             value={null}
             disabled={true}
             />
-            {/*
-            <form className={`layer-switcher-inline`}>
+            {
+            <form className={`map-switcher-inline`}>
                 <button className="btn btn-outline btn-outline-dark"
                     type="submit">
                     Click to see the data mapped
                 </button>
             </form>
-            */}
+            }
             <LogicalDataEntry
             title="Is the building in a strategic development zone for housing?"
             slug="planning_live_application"
             value={null}
             disabled={true}
             />
-            {/*
-            <form className={`layer-switcher-inline`}>
+            {
+            <form className={`map-switcher-inline`}>
                 <button className="btn btn-outline btn-outline-dark"
                     type="submit">
                     Click to see the data mapped
                 </button>
             </form>
-            */}
+            }
             <LogicalDataEntry
             title="Is the building in a strategic development zone for commerce or industry?"
             slug="planning_live_application"
             value={null}
             disabled={true}
             />
-            {/*
-            <form className={`layer-switcher-inline`}>
+            {
+            <form className={`map-switcher-inline`}>
                 <button className="btn btn-outline btn-outline-dark"
                     type="submit">
                     Click to see the data mapped
                 </button>
             </form>
-            */}
+            }
             <LogicalDataEntry
             title="Is the building within a protected sightline?"
             slug="planning_live_application"
             value={null}
             disabled={true}
             />
-            {/*
-            <form className={`layer-switcher-inline`}>
+            {
+            <form className={`map-switcher-inline`}>
                 <button className="btn btn-outline btn-outline-dark"
                     type="submit">
                     Click to see the data mapped
                 </button>
             </form>
-            */}
+            }
             {/*
                 <DataEntry
                 title={dataFields.planning_glher_url.title}
