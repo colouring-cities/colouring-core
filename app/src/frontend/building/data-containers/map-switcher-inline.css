@@ -1,0 +1,33 @@
+.map-theme {
+    filter: grayscale(100%) invert(1);
+}
+
+.map-theme {
+    filter: none;
+}
+
+.map-switcher-inline {
+    border-radius: 4px;
+}
+.map-switcher-inline .btn {
+    background: #FFC0CB;
+    margin: 0;
+    min-width: 280px;
+}
+.map-switcher-inline.night .btn {
+    background: #FFC0CB;
+    color: #fff;
+    background-color: #343a40;
+    border-color: #ff6065;
+}
+.map-switcher-inline.night .btn:hover {
+    color: #343a40;
+    background-color: transparent;
+    background-image: none;
+    border-color: #ff6065;
+}
+@media (max-width: 990px){
+    .map-switcher-inline {
+        visibility: hidden;
+    }
+}

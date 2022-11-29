@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 
+import './map-switcher-inline.css'; // import in a proper place
 import { Link } from 'react-router-dom';
 import InfoBox from '../../components/info-box';
 import CheckboxDataEntry from '../data-components/checkbox-data-entry';
@@ -118,7 +119,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Possible future applications (crowdsourced data)" collapsed={true} >
-                <form className={`flood-switcher-inline`}>
+                <form className={`map-switcher-inline`}>
                     <button className="btn btn-outline btn-outline-dark"
                         type="submit">
                         Click to see the data mapped
