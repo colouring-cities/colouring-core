@@ -59,16 +59,54 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </DataEntryGroup>
             <DataEntryGroup name="Other active application info (crowdsourced data)" collapsed={true} >
                 <NumericDataEntry
-                        title={"Year of completion"}
-                        slug="date_year"
-                        value={2019}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        min={1}
-                        max={currentYear}
-                        // "type": "year_estimator"
-                        />
+                    title={dataFields.planning_crowdsourced_site_completion_year.title}
+                    slug="planning_crowdsourced_site_completion_year"
+                    value={props.building.planning_crowdsourced_site_completion_year}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    disabled={true}
+                    />
+                <Verification
+                    slug="planning_crowdsourced_site_completion_year"
+                    allow_verify={false}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("planning_crowdsourced_site_completion_year")}
+                    user_verified_as={props.user_verified.planning_crowdsourced_site_completion_year}
+                    verified_count={props.building.verified.planning_crowdsourced_site_completion_year}
+                    />
+                    {/*disabled={true}*/}
+
+                <DataEntry
+                    title={dataFields.planning_crowdsourced_planning_id.title}
+                    slug="planning_crowdsourced_planning_id"
+                    value={props.building.planning_crowdsourced_planning_id}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                 />
+                <Verification
+                    slug="planning_crowdsourced_planning_id"
+                    allow_verify={props.user !== undefined && props.building.planning_crowdsourced_planning_id !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("planning_crowdsourced_planning_id")}
+                    user_verified_as={props.user_verified.planning_crowdsourced_planning_id}
+                    verified_count={props.building.verified.planning_crowdsourced_planning_id}
+                    />
+
+                <UserOpinionEntry
+                    slug='community_expected_planning_application'
+                    title={"If any of the active planning applications are not mapped onto the correct site, please tick here ☑"}
+                    
+                    userValue={props.building.community_expected_planning_application}
+
+                    onChange={props.onSaveChange}
+                    mode={props.mode}
+                    copy={props.copy}
+                />
+                { /* TODO: have just checkbox, without "Yes" */ }
+                    {/*disabled={true}*/}
+
             </DataEntryGroup>
             <DataEntryGroup name="Past applications (official data)" collapsed={true} >
                 <InfoBox type='warning'>
@@ -80,6 +118,23 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Possible future applications (crowdsourced data)" collapsed={true} >
+                <form className={`flood-switcher-inline`}>
+                    <button className="btn btn-outline btn-outline-dark"
+                        type="submit">
+                        Click to see the data mapped
+                    </button>
+                </form>
+                <UserOpinionEntry
+                    slug='community_expected_planning_application'
+                    title={buildingUserFields.community_expected_planning_application.title}
+                    
+                    userValue={props.building.community_expected_planning_application}
+
+                    onChange={props.onSaveChange}
+                    mode={props.mode}
+                    copy={props.copy}
+                />
+                <InfoBox>To also add your opinion on how well this building works for the community, visit <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
             </DataEntryGroup>
         </DataEntryGroup>
         <DataEntryGroup name="Planning contraints and building protection" collapsed={true} >

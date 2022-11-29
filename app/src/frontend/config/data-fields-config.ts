@@ -452,6 +452,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         //tooltip: ,
     },
 
+    edit_history: {
+        category: Category.Planning,
+        title: "PLANNING DATA",
+        tooltip: "PLANNING DATA",
+        example: [{}],
+    },
+
+
     planning_portal_link: {
         category: Category.Planning,
         title: "Local authority planning application link",
@@ -462,6 +470,24 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Planning,
         title: "Is the building in a <a href=\"https://historicengland.org.uk/listing/what-is-designation/local/conservation-areas/\" target=\"_blank\">Conservation Area</a>?",
         example: "",
+        //tooltip: ,
+    },
+    planning_crowdsourced_site_completion_status: {
+        category: Category.Planning,
+        title: "Has the work on this site been completed?",
+        example: true,
+        //tooltip: ,
+    },
+    planning_crowdsourced_site_completion_year: {
+        category: Category.Planning,
+        title: "Year of completion if known",
+        example: 2022,
+        //tooltip: ,
+    },
+    planning_crowdsourced_planning_id: {
+        category: Category.Planning,
+        title: "Are you aware of a planning application that has been recently submitted for this site and is not listed in the green box above, please enter planning application ID below:",
+        example: "1112/QWERTY",
         //tooltip: ,
     },
     planning_in_conservation_area_id: {
