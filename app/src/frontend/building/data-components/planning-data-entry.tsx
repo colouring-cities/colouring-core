@@ -79,27 +79,35 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
       if (props.allEntryCount == 0) {
         return (<Fragment>
                   <InfoBox type='success'>
+                    <Disclaimer />
+                  </InfoBox>
+                  <InfoBox type='success'>
                   No live planning data available currently for this building polygon via the Planning London DataHub.
                   <br/>
-                  <Disclaimer />
                   </InfoBox>
                 </Fragment>);
     } else {
       return (<Fragment>
+                  <InfoBox type='success'>
+                    <Disclaimer />
+                  </InfoBox>
                 <InfoBox type='success'>
                 No live planning data for this date range, but this building has associated planning data now shown here.
                 <br/>
-                <Disclaimer />
                 </InfoBox>
               </Fragment>);
     }
   }
-  return <>{data.map((item) => (
+  return <>
+        <InfoBox type='success'>
+          <Disclaimer />
+          <br/>
+          {/* TODO: data[0] is problematic here... Compute it from listed elements and show all distinct variants? Error if they are not distinct? Hardcode it? */}
+          <div>Planning application status is streamed using live data uploaded by local authorities to the {data[0]["data_source_link"] ? <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a> : data[0]["data_source"] }.</div>        </InfoBox>
+        {data.map((item) => (
         <Fragment>
         <InfoBox type='success'>
             <Fragment>
-                <div>Planning application status is streamed using live data uploaded by local authorities to the {item["data_source_link"] ? <a href={item["data_source_link"]}>{item["data_source"]}</a> : item["data_source"] }.</div>
-                <br/>
                 <div><b>Current planning application status for this site:</b> <StatusInfo 
                   statusBeforeAliasing={item["status_before_aliasing"]}
                   status={item["status"]}
@@ -113,7 +121,6 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                 <div><b>Address of the location:</b> {ShowIfAvailable(item["address"])}</div>
                 <div><b>Most recent update by data provider:</b> {ShowIfAvailable(item["decision_date"])}</div>
                 <br/>
-                <Disclaimer />
             </Fragment>
         </InfoBox>
         </Fragment>
