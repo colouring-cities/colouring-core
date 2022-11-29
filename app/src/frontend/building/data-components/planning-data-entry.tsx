@@ -51,7 +51,7 @@ const LongText = ({ content,limit}) => {
   </div>
 }
 
-const Disclaimer = () => { return <Fragment><div><i><u>Disclaimer</u>: these data are currently incomplete and also often do not provide information on minor alterations. For comprehensive information on all applications please visit the local authorities' planning websites.</i></div></Fragment> }
+const Disclaimer = () => { return <Fragment><div><u>Disclaimer</u>: these data are currently incomplete and also often do not provide information on minor alterations. For comprehensive information on all applications please visit the local authorities' planning websites.</div></Fragment> }
 
 const MissingData = "not provided by data source"
 
@@ -79,7 +79,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
       if (props.allEntryCount == 0) {
         return (<Fragment>
                   <InfoBox type='success'>
-                  <i>No live planning data available currently for this building polygon via the Planning London DataHub.</i>
+                  No live planning data available currently for this building polygon via the Planning London DataHub.
                   <br/>
                   <Disclaimer />
                   </InfoBox>
@@ -87,7 +87,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
     } else {
       return (<Fragment>
                 <InfoBox type='success'>
-                <i>No live planning data for this date range, but this building has associated planning data now shown here.</i>
+                No live planning data for this date range, but this building has associated planning data now shown here.
                 <br/>
                 <Disclaimer />
                 </InfoBox>
@@ -98,7 +98,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
         <Fragment>
         <InfoBox type='success'>
             <Fragment>
-                <div><i>Planning application status is streamed using live data uploaded by local authorities to the {item["data_source_link"] ? <a href={item["data_source_link"]}>{item["data_source"]}</a> : item["data_source"] }.</i></div>
+                <div>Planning application status is streamed using live data uploaded by local authorities to the {item["data_source_link"] ? <a href={item["data_source_link"]}>{item["data_source"]}</a> : item["data_source"] }.</div>
                 <br/>
                 <div><b>Current planning application status for this site:</b> <StatusInfo 
                   statusBeforeAliasing={item["status_before_aliasing"]}
