@@ -7,6 +7,8 @@ import { Logo } from './components/logo';
 import { WithSeparator } from './components/with-separator';
 import { useAuth } from './auth-context';
 
+import { CCConfig } from '../cc-config';
+let config: CCConfig = require('../cc-config.json')
 
 interface MenuLink {
     to: string;
@@ -33,7 +35,7 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 text: "Download data"
             },
             {
-                to: "https://github.com/colouring-london/colouring-london",
+                to: config.githubURL,
                 text: "Access open code",
                 external: true
             },

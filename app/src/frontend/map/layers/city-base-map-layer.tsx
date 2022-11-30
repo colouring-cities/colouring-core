@@ -24,7 +24,7 @@ export function CityBaseMapLayer({ theme }: { theme: MapTheme }) {
     const theme_class = theme === 'light' ? "light-theme" : "night-theme";
 
     const baseUrl = `https://api.os.uk/maps/raster/v1/zxy/${layer}/{z}/{x}/{y}.png?key=${apiKey}`;
-    const attribution = 'Building attribute data is © Colouring London contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>';
+    const attribution = `Building attribute data is © Colouring Cities contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>`;
 
     return <TileLayer
         url={baseUrl}
