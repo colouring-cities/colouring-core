@@ -143,7 +143,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'community_expected_planning_application_total',
             legend: {
                 title: 'Expected planning application',
-                description: 'People who think the building will be affected by a planning application in the near future',
+                description: 'Sites identified by users as likely to be subject to planning application over the next six months',
                 elements: [
                     { color: '#bd0026', text: '100+' },
                     { color: '#e31a1c', text: '50–99' },
@@ -171,7 +171,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         mapStyle: 'planning_combined',
         legend: {
             title: 'Designation/protection',
-            disclaimer: 'All data relating to designated buildings should be checked on the National Heritage List for England or local authority websites where used for planning or development purposes',
+            disclaimer: 'All data relating to designated buildings should be checked against the National Heritage List for England and local authority websites. Designation data is currently incomplete. We are aiming for 100% coverage by April 2023.',
             elements: [
                 { color: '#95beba', text: 'In Conservation Area'},
                 { color: '#c72e08', text: 'Grade I Listed'},

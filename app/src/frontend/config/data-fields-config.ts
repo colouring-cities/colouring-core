@@ -109,7 +109,7 @@ export const buildingUserFields = {
     community_expected_planning_application: {
         perUser: true,
         category: Category.Community,
-        title: "Do you expect this site to be affected by a planning application in the near future?",
+        title: "Select any building that you think may be subject to a planning application over the next six months and tick the box below to colour it.",
         example: true
     }
 };
@@ -508,7 +508,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_historic_area_assessment_url: {
         category: Category.Planning,
-        title: "Does it have any other type of <a href=\"https://historicengland.org.uk/images-books/publications/understanding-place-historic-area-assessments/\" target=\"_blank\">Historic Area Assessment</a>?",
+        title: "Does it have an <a href=\"https://historicengland.org.uk/images-books/publications/understanding-place-historic-area-assessments/\" target=\"_blank\">Historic Area Assessment</a>?",
         example: "",
         //tooltip: ,
     },
