@@ -77,7 +77,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.planning_crowdsourced_site_completion_year}
                     verified_count={props.building.verified.planning_crowdsourced_site_completion_year}
                     />
-                    {/*disabled={true}*/}
 
                 <DataEntry
                     title={dataFields.planning_crowdsourced_planning_id.title}
