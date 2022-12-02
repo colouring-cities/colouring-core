@@ -486,7 +486,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_crowdsourced_planning_id: {
         category: Category.Planning,
-        title: "Are you aware of a planning application that has been recently submitted for this site and is not listed in the green box above, please enter planning application ID below:",
+        title: "If you know of a planning application that has been recently submitted for this site, and is not listed in the blue box above, please enter its planning application ID below:",
         example: "1112/QWERTY",
         //tooltip: ,
     },
