@@ -200,7 +200,7 @@ const LAYER_QUERIES = {
             buildings
         WHERE
             sust_dec IS NOT NULL`,
-        conservation_area: `
+    conservation_area: `
         SELECT
             geometry_id
         FROM
