@@ -51,7 +51,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
 }) => {
 
     const [theme, setTheme] = useState<MapTheme>('night');
-    const [borough, setBorough] = useState<BoroughEnablementState>('disabled');
+    const [borough, setBorough] = useState<BoroughEnablementState>('enabled');
     const [parcel, setParcel] = useState<ParcelEnablementState>('disabled');
     const [flood, setFlood] = useState<FloodEnablementState>('disabled');
     const [conservation, setConservation] = useState<ConservationAreasEnablementState>('disabled');
