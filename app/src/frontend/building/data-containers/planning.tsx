@@ -68,6 +68,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     onChange={props.onChange}
                     disabled={true}
+                    placeholder="Category not yet activated"
                     />
                 <Verification
                     slug="planning_crowdsourced_site_completion_year"
@@ -86,6 +87,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     onChange={props.onChange}
                     disabled={true}
+                    placeholder="Category not yet activated"
                  />
                 <Verification
                     slug="planning_crowdsourced_planning_id"
