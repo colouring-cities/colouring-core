@@ -14,8 +14,6 @@ export type BuildingMapTileset = 'date_year' |
     'planning_applications_status_all' |
     'planning_applications_status_recent' |
     'planning_applications_status_very_recent' |
-    'planning_applications_status' |
-    'planning_applications_status_secretary_of_state' |
     'planning_combined' |
     'empty_map' |
     'sust_dec' |

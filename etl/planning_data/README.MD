@@ -8,8 +8,10 @@ Following scripts should be scheduled to run regularly to load livestream data i
 # querying API to obtain data & loading data into Colouring database
 python3 obtain_livestream_data_and_load_into_database.py
 
-# removing tile cache for planning_applications_status layer - note that location of cache depends on your configuration
-rm /srv/colouring-london/tilecache/planning_applications_status/* -rf
+# removing tile cache for planning applications status layers - note that location of cache depends on your configuration
+rm /srv/colouring-london/tilecache/planning_applications_status_all/* -rf
+rm /srv/colouring-london/tilecache/planning_applications_status_recent/* -rf
+rm /srv/colouring-london/tilecache/planning_applications_status_very_recent/* -rf
 ```
 
 As loading into databases expects environment variables to be set, one option to actually schedule it in a cron is something like

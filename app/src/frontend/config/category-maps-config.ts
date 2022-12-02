@@ -216,34 +216,6 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         },
         {
-            mapStyle: 'planning_applications_status_secretary_of_state',
-            legend: {
-                title: 'Called in by Secretary of State',
-                elements: [
-                    { color: '#53f5dd', text: 'Submitted, awaiting decision' },
-                    { color: '#fff200', text: 'Appeal In Progress' },
-                    { color: '#16cf15', text: 'Approved' },
-                    { color: '#e31d23', text: 'Rejected' },
-                    { color: '#999999', text: 'Withdrawn' },
-                    { color: '#eacad0', text: 'Other' },
-                ]
-            }
-        },
-        {
-            mapStyle: 'planning_applications_status',
-            legend: {
-                title: 'All planning applications, old ones with a dark styling',
-                elements: [
-                    { color: '#53f5dd', text: 'Submitted, awaiting decision' },
-                    { color: '#fff200', text: 'Appeal In Progress' },
-                    { color: '#16cf15', text: 'Approved' },
-                    { color: '#e31d23', text: 'Rejected' },
-                    { color: '#999999', text: 'Withdrawn' },
-                    { color: '#eacad0', text: 'Other' },
-                ]
-            }
-        },
-        {
             mapStyle: 'community_expected_planning_application_total',
             legend: {
                 title: 'Expected planning applications',

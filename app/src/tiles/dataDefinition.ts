@@ -155,19 +155,6 @@ const LAYER_QUERIES = {
         FROM building_properties
         INNER JOIN planning_data ON building_properties.uprn = planning_data.uprn
         INNER JOIN buildings ON building_properties.building_id = buildings.building_id`,
-    planning_applications_status_secretary_of_state: `SELECT 
-        buildings.geometry_id, building_properties.uprn, building_properties.building_id, planning_data.status AS status, planning_data.uprn
-        FROM building_properties
-        INNER JOIN planning_data ON building_properties.uprn = planning_data.uprn
-        INNER JOIN buildings ON building_properties.building_id = buildings.building_id
-        WHERE status_before_aliasing = 'Called in by Secretary of State'`,
-    planning_applications_status: `SELECT 
-        buildings.geometry_id, building_properties.uprn, building_properties.building_id, planning_data.status AS status, planning_data.uprn, 
-        EXTRACT(epoch FROM age(decision_date))/3600/24 AS days_since_decision_date,
-        EXTRACT(epoch FROM age(registered_with_local_authority_date))/3600/24 AS days_since_registered_with_local_authority_date
-        FROM building_properties
-        INNER JOIN planning_data ON building_properties.uprn = planning_data.uprn
-        INNER JOIN buildings ON building_properties.building_id = buildings.building_id`,
     planning_combined: `
         SELECT
             geometry_id,
