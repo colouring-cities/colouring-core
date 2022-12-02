@@ -15,6 +15,7 @@ export function FloodBoundaryLayer({enablement}: {enablement: FloodEnablementSta
     if(enablement == "enabled") {
         return boundaryGeojson &&
         <GeoJSON 
+        attribution='Flood zone from <a href=https://data.london.gov.uk/dataset/flood-risk-zones>London Datastore</a>: © Environment Agency copyright and/or database right 2017. All rights reserved. Some features of this map are based on digital spatial data from the Centre for Ecology & Hydrology, © NERC (CEH) © Crown copyright and database rights 2017 Ordnance Survey 100024198'
         data={boundaryGeojson}
         style={{color: '#00f', fill: true, weight: 1, opacity: 0.6}}
     />;

@@ -15,6 +15,7 @@ export function ParcelBoundaryLayer({enablement}: {enablement: ParcelEnablementS
     if(enablement == "enabled") {
         return boundaryGeojson &&
         <GeoJSON 
+        attribution='Parcel boundary from <a href=https://use-land-property-data.service.gov.uk/datasets/inspire/download>Index polygons spatial data (INSPIRE)</a> - <a href=www.nationalarchives.gov.uk/doc/open-government-licence/version/3/>Open Government Licence v3</a>'
         data={boundaryGeojson}
         style={{color: '#ff0', fill: false, weight: 1}}
        /* minNativeZoom={17}*/

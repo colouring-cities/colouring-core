@@ -15,7 +15,7 @@ export function ConservationAreaBoundaryLayer({enablement}: {enablement: Conserv
     if(enablement == "enabled") {
         return boundaryGeojson &&
         <GeoJSON 
-        attribution='Conservation areas by <a href=http://www.bedfordpark.net/leo/planning/>Leo Hall</a> on CC-BY 4.0 licence, contains data under the Open Government Licence v.3.0'
+        attribution='Conservation areas by <a href=http://www.bedfordpark.net/leo/planning/>Leo Hall</a> on <a href=https://creativecommons.org/licenses/by/4.0/legalcode>CC-BY 4.0 licence</a>, contains data under <a href=https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/>the Open Government Licence v.3.0</a>'
         data={boundaryGeojson}
         style={{color: '#cd7090', fill: true, weight: 1, opacity: 1, fillOpacity: 0.8}}
     />;
