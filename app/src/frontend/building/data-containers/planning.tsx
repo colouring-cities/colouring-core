@@ -102,7 +102,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
                 <LogicalDataEntry
                     slug='community_expected_planning_application_is_inaccurate'
-                    title={"If any of the active planning applications are not mapped onto the correct site, please tick here"}
+                    title={"If any of the active planning applications are not mapped onto the correct site, please tick here (category not yet activated)"}
                     value={null}
 
                     onChange={props.onSaveChange}
