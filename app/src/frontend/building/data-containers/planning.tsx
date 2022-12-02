@@ -110,8 +110,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     disabled={true}
                 />
-                {/* userValue={props.building.community_expected_planning_application_is_inaccurate} */ }
-                { /* TODO: UserOpinionEntry - but have just checkbox, without "Yes" */ }
+                { /* on enabling switch it to UserOpinionEntry, remove value and restore userValue*/ }
 
             </DataEntryGroup>
             <DataEntryGroup name="Past applications (official data)" collapsed={true} >
