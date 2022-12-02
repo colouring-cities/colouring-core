@@ -25,8 +25,10 @@ const currentYear = new Date().getFullYear();
 const currentTimestamp = new Date().valueOf();
 const milisecondsInYear = 1000 * 60 * 60 * 24 * 365;
 
-// TODO: there is already "parseDate" in helpers
-function parseDate(isoUtcDate: string): Date {
+// there is already "parseDate" in helpers
+// but it is using timestamp as input, while this one
+// uses lower accuracy (as actual data is using the same accuracy)
+function parseDateSpecifiedWithDailyAccuracy(isoUtcDate: string): Date {
     const [year, month, day] = isoUtcDate.match(/^(\d{4})-(\d\d)-(\d\d)$/)
         .splice(1)
         .map(x => parseInt(x, 10));
@@ -36,12 +38,12 @@ function parseDate(isoUtcDate: string): Date {
 function isArchived(item) {
     const decisionDate = item.decision_date;
     if(decisionDate != null) {
-        if ((currentTimestamp - parseDate(decisionDate).valueOf()) > milisecondsInYear) {
+        if ((currentTimestamp - parseDateSpecifiedWithDailyAccuracy(decisionDate).valueOf()) > milisecondsInYear) {
             return true;
         }
     }
     if(item.registered_with_local_authority_date != null) {
-        if ((currentTimestamp - parseDate(item.registered_with_local_authority_date).valueOf()) > milisecondsInYear) {
+        if ((currentTimestamp - parseDateSpecifiedWithDailyAccuracy(item.registered_with_local_authority_date).valueOf()) > milisecondsInYear) {
             return true;
         }
     }
