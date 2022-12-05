@@ -3,7 +3,6 @@ import React, { Fragment } from 'react';
 import './map-switcher-inline.css'; // import in a proper place
 import { Link } from 'react-router-dom';
 import InfoBox from '../../components/info-box';
-import CheckboxDataEntry from '../data-components/checkbox-data-entry';
 import NumericDataEntryWithFormattedLink from '../data-components/numeric-data-entry-with-formatted-link';
 import { buildingUserFields, dataFields } from '../../config/data-fields-config';
 import NumericDataEntry from '../data-components/numeric-data-entry';
@@ -16,12 +15,10 @@ import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
 import PlanningDataOfficialDataEntry from '../data-components/planning-data-entry';
-import DataTitle from '../data-components/data-title';
 
 import { CategoryViewProps } from './category-view-props';
 import { Category } from '../../config/categories-config';
 
-const currentYear = new Date().getFullYear();
 const currentTimestamp = new Date().valueOf();
 const milisecondsInYear = 1000 * 60 * 60 * 24 * 365;
 
