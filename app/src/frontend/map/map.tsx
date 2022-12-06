@@ -30,6 +30,7 @@ import { BuildingHighlightLayer } from './layers/building-highlight-layer';
 import { Legend } from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
+import DataLayerSwitcher from './data-switcher';
 import BoroughSwitcher from './borough-switcher';
 import ParcelSwitcher from './parcel-switcher';
 import FloodSwitcher from './flood-switcher';
@@ -57,6 +58,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
     children
 }) => {
     const [theme, setTheme] = useState<MapTheme>('night');
+    const [dataLayers, setDataLayers] = useState<LayerEnablementState>('disabled');
     {/* TODO start change remaining ones */}
     const [borough, setBorough] = useState<LayerEnablementState>('enabled');
     const [parcel, setParcel] = useState<LayerEnablementState>('disabled');
@@ -96,6 +98,15 @@ export const ColouringMap : FC<ColouringMapProps> = ({
             setTheme(newTheme);
         },
         [theme],
+    )
+
+    const layerSwitch = useCallback(
+        (e) => {
+            e.preventDefault();
+            const newDisplayState = (dataLayers === 'enabled')? 'disabled' : 'enabled';
+            setDataLayers(newDisplayState);
+        },
+        [dataLayers],
     )
 
     {/* change remaining ones */}
@@ -243,16 +254,22 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     }
                     <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={setMapColourScale}/>
                     <ThemeSwitcher onSubmit={themeSwitch} currentTheme={theme} />
-
+                    <DataLayerSwitcher onSubmit={layerSwitch} currentDisplay={dataLayers} />
+                    {
+                        (dataLayers == "enabled") ?
+                        <>
+                            <BoroughSwitcher onSubmit={boroughSwitch} currentDisplay={borough} />
+                            <ParcelSwitcher onSubmit={parcelSwitch} currentDisplay={parcel} />
+                            <FloodSwitcher />
+                            <ConservationAreaSwitcher onSubmit={conservationSwitch} currentDisplay={conservation} />
+                            <HistoricDataSwitcher onSubmit={historicDataSwitch} currentDisplay={historicData} />
+                            <VistaSwitcher />
+                            <HousingSwitcher />
+                            <CreativeSwitcher />
+                        </>
+                        : <></>
+                    }
                     {/* TODO change remaining ones*/}
-                    <BoroughSwitcher onSubmit={boroughSwitch} currentDisplay={borough} />
-                    <ParcelSwitcher onSubmit={parcelSwitch} currentDisplay={parcel} />
-                    <FloodSwitcher />
-                    <ConservationAreaSwitcher onSubmit={conservationSwitch} currentDisplay={conservation} />
-                    <HistoricDataSwitcher onSubmit={historicDataSwitch} currentDisplay={historicData} />
-                    <VistaSwitcher />
-                    <HousingSwitcher />
-                    <CreativeSwitcher />
                     <SearchBox onLocate={handleLocate} />
                 </>
             }

@@ -1,37 +1,37 @@
-.housing-theme {
+.data-theme {
     filter: grayscale(100%) invert(1);
 }
 
-.housing-theme {
+.data-theme {
     filter: none;
 }
 
-.housing-switcher {
+.data-switcher {
     z-index: 1000;
     position: absolute;
-    top: 197px;
+    top: 117px;
     right: 10px;
     float: right;
     background: white;
     border-radius: 4px;
 }
-.housing-switcher .btn {
+.data-switcher .btn {
     margin: 0;
     min-width: 280px;
 }
-.housing-switcher.night .btn {
+.data-switcher.night .btn {
     color: #fff;
     background-color: #343a40;
     border-color: #343a40;
 }
-.housing-switcher.night .btn:hover {
+.data-switcher.night .btn:hover {
     color: #343a40;
     background-color: transparent;
     background-image: none;
     border-color: #343a40;
 }
 @media (max-width: 990px){
-    .housing-switcher {
+    .data-switcher {
         visibility: hidden;
     }
 }
