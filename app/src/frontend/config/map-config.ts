@@ -20,6 +20,12 @@ export type ConservationAreasEnablementState = 'enabled' | 'disabled';
 
 export type HistoricDataEnablementState = 'enabled' | 'disabled';
 
+export type VistaEnablementState = 'enabled' | 'disabled';
+
+export type HousingEnablementState = 'enabled' | 'disabled';
+
+export type CreativeEnablementState = 'enabled' | 'disabled';
+
 export const mapBackgroundColor: Record<MapTheme, string> = {
     light: '#F0EEEB',
     night: '#162639',

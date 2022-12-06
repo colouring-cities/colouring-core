@@ -8,7 +8,7 @@ import { apiGet } from '../apiHelpers';
 import { HelpIcon } from '../components/icons';
 import { categoryMapsConfig } from '../config/category-maps-config';
 import { Category } from '../config/categories-config';
-import { initialMapViewport, mapBackgroundColor, MapTheme, BoroughEnablementState, ParcelEnablementState, FloodEnablementState, ConservationAreasEnablementState, HistoricDataEnablementState } from '../config/map-config';
+import { initialMapViewport, mapBackgroundColor, MapTheme, BoroughEnablementState, ParcelEnablementState, FloodEnablementState, ConservationAreasEnablementState, HistoricDataEnablementState, CreativeEnablementState, HousingEnablementState, VistaEnablementState } from '../config/map-config';
 import { Building } from '../models/building';
 
 import { CityBaseMapLayer } from './layers/city-base-map-layer';
@@ -18,6 +18,9 @@ import { ParcelBoundaryLayer } from './layers/parcel-boundary-layer';
 import { HistoricDataLayer } from './layers/historic-data-layer';
 import { FloodBoundaryLayer } from './layers/flood-boundary-layer';
 import { ConservationAreaBoundaryLayer } from './layers/conservation-boundary-layer';
+import { VistaBoundaryLayer } from './layers/vista-boundary-layer';
+import { HousingBoundaryLayer } from './layers/housing-boundary-layer';
+import { CreativeBoundaryLayer } from './layers/creative-boundary-layer';
 import { BuildingBaseLayer } from './layers/building-base-layer';
 import { BuildingDataLayer } from './layers/building-data-layer';
 import { BuildingNumbersLayer } from './layers/building-numbers-layer';
@@ -31,6 +34,9 @@ import ParcelSwitcher from './parcel-switcher';
 import FloodSwitcher from './flood-switcher';
 import ConservationAreaSwitcher from './conservation-switcher';
 import HistoricDataSwitcher from './historic-data-switcher';
+import VistaSwitcher from './vista-switcher';
+import CreativeSwitcher from './creative-switcher';
+import HousingSwitcher from './housing-switcher';
 import { BuildingMapTileset } from '../config/tileserver-config';
 
 interface ColouringMapProps {
@@ -56,6 +62,9 @@ export const ColouringMap : FC<ColouringMapProps> = ({
     const [flood, setFlood] = useState<FloodEnablementState>('disabled');
     const [conservation, setConservation] = useState<ConservationAreasEnablementState>('disabled');
     const [historicData, setHistoricData] = useState<HistoricDataEnablementState>('disabled');
+    const [creative, setCreative] = useState<CreativeEnablementState>('disabled');
+    const [housing, setHousing] = useState<HousingEnablementState>('disabled');
+    const [vista, setVista] = useState<VistaEnablementState>('disabled');
     const [position, setPosition] = useState(initialMapViewport.position);
     const [zoom, setZoom] = useState(initialMapViewport.zoom);
 
@@ -133,6 +142,33 @@ export const ColouringMap : FC<ColouringMapProps> = ({
         [historicData],
     )
 
+    const vistaSwitch = useCallback(
+        (e) => {
+            e.preventDefault();
+            const newVista = (vista === 'enabled')? 'disabled' : 'enabled';
+            setVista(newVista);
+        },
+        [vista],
+    )
+
+    const housingSwitch = useCallback(
+        (e) => {
+            e.preventDefault();
+            const newHousing = (housing === 'enabled')? 'disabled' : 'enabled';
+            setHousing(newHousing);
+        },
+        [housing],
+    )
+
+    const creativeSwitch = useCallback(
+        (e) => {
+            e.preventDefault();
+            const newCreative = (creative === 'enabled')? 'disabled' : 'enabled';
+            setCreative(newCreative);
+        },
+        [creative],
+    )
+
     const categoryMapDefinitions = useMemo(() => categoryMapsConfig[category], [category]);
 
     useEffect(() => {
@@ -186,6 +222,9 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <ParcelBoundaryLayer enablement={parcel}/>
                     <FloodBoundaryLayer enablement={flood}/>
                     <ConservationAreaBoundaryLayer enablement={conservation}/>
+                    <VistaBoundaryLayer enablement={vista}/>
+                    <HousingBoundaryLayer enablement={housing}/>
+                    <CreativeBoundaryLayer enablement={creative}/>
                     <BuildingNumbersLayer revisionId={revisionId} />
                     {
                         selectedBuildingId &&
@@ -215,6 +254,9 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <FloodSwitcher onSubmit={floodSwitch} currentDisplay={flood} />
                     <ConservationAreaSwitcher onSubmit={conservationSwitch} currentDisplay={conservation} />
                     <HistoricDataSwitcher onSubmit={historicDataSwitch} currentDisplay={historicData} />
+                    <VistaSwitcher onSubmit={vistaSwitch} currentDisplay={vista} />
+                    <HousingSwitcher onSubmit={housingSwitch} currentDisplay={housing} />
+                    <CreativeSwitcher onSubmit={creativeSwitch} currentDisplay={creative} />
                     <SearchBox onLocate={handleLocate} />
                 </>
             }
