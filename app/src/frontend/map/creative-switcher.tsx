@@ -3,10 +3,7 @@ import React from 'react';
 import './creative-switcher.css';
 import { useDisplayPreferences } from '../displayPreferences-context';
 
-interface CreativeSwitcherProps {
-}
-
-const CreativeSwitcherProps: React.FC<CreativeSwitcherProps> = (props) => {
+export const CreativeSwitcher: React.FC<{}> = () => {
     const { creative, creativeSwitch } = useDisplayPreferences();
     return (
         <form className={`creative-switcher ${creative}`} onSubmit={creativeSwitch}>
@@ -17,4 +14,3 @@ const CreativeSwitcherProps: React.FC<CreativeSwitcherProps> = (props) => {
         </form>
     );
 }
-export default CreativeSwitcherProps;

@@ -33,12 +33,12 @@ import ThemeSwitcher from './theme-switcher';
 import DataLayerSwitcher from './data-switcher';
 import BoroughSwitcher from './borough-switcher';
 import ParcelSwitcher from './parcel-switcher';
-import FloodSwitcher from './flood-switcher';
+import { FloodSwitcher } from './flood-switcher';
 import ConservationAreaSwitcher from './conservation-switcher';
 import HistoricDataSwitcher from './historic-data-switcher';
-import VistaSwitcher from './vista-switcher';
-import CreativeSwitcher from './creative-switcher';
-import HousingSwitcher from './housing-switcher';
+import { VistaSwitcher } from './vista-switcher';
+import { CreativeSwitcher } from './creative-switcher';
+import { HousingSwitcher } from './housing-switcher';
 import { BuildingMapTileset } from '../config/tileserver-config';
 
 interface ColouringMapProps {

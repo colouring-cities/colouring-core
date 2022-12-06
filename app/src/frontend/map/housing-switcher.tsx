@@ -3,10 +3,7 @@ import React from 'react';
 import './housing-switcher.css';
 import { useDisplayPreferences } from '../displayPreferences-context';
 
-interface HousingSwitcherProps {
-}
-
-const HousingSwitcherProps: React.FC<HousingSwitcherProps> = (props) => {
+export const HousingSwitcher: React.FC<{}> = () => {
     const { housing, housingSwitch } = useDisplayPreferences();
     return (
     <form className={`housing-switcher ${housing}`} onSubmit={housingSwitch}>
@@ -17,5 +14,3 @@ const HousingSwitcherProps: React.FC<HousingSwitcherProps> = (props) => {
     </form>
     );
 }
-
-export default HousingSwitcherProps;

@@ -3,10 +3,7 @@ import React from 'react';
 import './flood-switcher.css';
 import { useDisplayPreferences } from '../displayPreferences-context';
 
-interface FloodSwitcherProps {
-}
-
-const FloodSwitcherProps: React.FC<FloodSwitcherProps> = (props) => {
+export const FloodSwitcher: React.FC<{}> = () => {
     const { flood, floodSwitch } = useDisplayPreferences();
     return (
         <form className={`flood-switcher ${flood}`} onSubmit={floodSwitch}>
@@ -17,4 +14,3 @@ const FloodSwitcherProps: React.FC<FloodSwitcherProps> = (props) => {
         </form>
     );
 }
-export default FloodSwitcherProps;

@@ -3,10 +3,7 @@ import React from 'react';
 import './vista-switcher.css';
 import { useDisplayPreferences } from '../displayPreferences-context';
 
-interface VistaSwitcherProps {
-}
-
-const VistaSwitcherProps: React.FC<VistaSwitcherProps> = (props) => {
+export const VistaSwitcher: React.FC<{}> = () => {
     const { vista, vistaSwitch } = useDisplayPreferences();
     return (
     <form className={`vista-switcher ${vista}`} onSubmit={vistaSwitch}>
@@ -17,5 +14,3 @@ const VistaSwitcherProps: React.FC<VistaSwitcherProps> = (props) => {
     </form>
     );
 }
-
-export default VistaSwitcherProps; // TODO remove
