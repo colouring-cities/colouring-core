@@ -20,6 +20,27 @@ interface MenuLink {
 function getCurrentMenuLinks(username: string): MenuLink[][] {
     return [
         [
+            ...(
+                username != undefined ?
+                    [
+                        {
+                            to: "/my-account.html",
+                            text: `Account (${username})`
+                        }
+                    ] :
+                    [
+                        {
+                            to: "/login.html",
+                            text: "Log in"
+                        },
+                        {
+                            to: "/sign-up.html",
+                            text: "Sign up"
+                        }
+                    ]
+            )
+        ],
+        [
             {
                 to: "/view/categories",
                 text: "View Maps"
@@ -114,25 +135,6 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 to: "/contact.html",
                 text: "Contact"
             },
-            ...(
-                username != undefined ?
-                    [
-                        {
-                            to: "/my-account.html",
-                            text: `Account (${username})`
-                        }
-                    ] :
-                    [
-                        {
-                            to: "/login.html",
-                            text: "Log in"
-                        },
-                        {
-                            to: "/sign-up.html",
-                            text: "Sign up"
-                        }
-                    ]
-            )
         ],
     ];
 }
