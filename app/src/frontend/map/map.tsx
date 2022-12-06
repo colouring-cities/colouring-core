@@ -8,7 +8,8 @@ import { apiGet } from '../apiHelpers';
 import { HelpIcon } from '../components/icons';
 import { categoryMapsConfig } from '../config/category-maps-config';
 import { Category } from '../config/categories-config';
-import { initialMapViewport, mapBackgroundColor, MapTheme, BoroughEnablementState, ParcelEnablementState, FloodEnablementState, ConservationAreasEnablementState, HistoricDataEnablementState, CreativeEnablementState, HousingEnablementState, VistaEnablementState } from '../config/map-config';
+import { initialMapViewport, mapBackgroundColor, MapTheme, LayerEnablementState } from '../config/map-config';
+
 import { Building } from '../models/building';
 
 import { CityBaseMapLayer } from './layers/city-base-map-layer';
@@ -55,16 +56,16 @@ export const ColouringMap : FC<ColouringMapProps> = ({
     selectedBuildingId,
     children
 }) => {
-
     const [theme, setTheme] = useState<MapTheme>('night');
-    const [borough, setBorough] = useState<BoroughEnablementState>('enabled');
-    const [parcel, setParcel] = useState<ParcelEnablementState>('disabled');
-    const [flood, setFlood] = useState<FloodEnablementState>('disabled');
-    const [conservation, setConservation] = useState<ConservationAreasEnablementState>('disabled');
-    const [historicData, setHistoricData] = useState<HistoricDataEnablementState>('disabled');
-    const [creative, setCreative] = useState<CreativeEnablementState>('disabled');
-    const [housing, setHousing] = useState<HousingEnablementState>('disabled');
-    const [vista, setVista] = useState<VistaEnablementState>('disabled');
+    {/* TODO start change remaining ones */}
+    const [borough, setBorough] = useState<LayerEnablementState>('enabled');
+    const [parcel, setParcel] = useState<LayerEnablementState>('disabled');
+    const [flood, setFlood] = useState<LayerEnablementState>('disabled');
+    const [conservation, setConservation] = useState<LayerEnablementState>('disabled');
+    const [historicData, setHistoricData] = useState<LayerEnablementState>('disabled');
+    const [creative, setCreative] = useState<LayerEnablementState>('disabled');
+    const [housing, setHousing] = useState<LayerEnablementState>('disabled');
+    {/* TODO end */}
     const [position, setPosition] = useState(initialMapViewport.position);
     const [zoom, setZoom] = useState(initialMapViewport.zoom);
 
@@ -97,6 +98,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
         [theme],
     )
 
+    {/* change remaining ones */}
     const boroughSwitch = useCallback(
         (e) => {
             e.preventDefault();
@@ -142,15 +144,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
         [historicData],
     )
 
-    const vistaSwitch = useCallback(
-        (e) => {
-            e.preventDefault();
-            const newVista = (vista === 'enabled')? 'disabled' : 'enabled';
-            setVista(newVista);
-        },
-        [vista],
-    )
-
     const housingSwitch = useCallback(
         (e) => {
             e.preventDefault();
@@ -168,6 +161,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
         },
         [creative],
     )
+    {/* TODO end */}
 
     const categoryMapDefinitions = useMemo(() => categoryMapsConfig[category], [category]);
 
@@ -220,11 +214,11 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <HistoricDataLayer enablement={historicData}/>
                     <BoroughBoundaryLayer enablement={borough}/>
                     <ParcelBoundaryLayer enablement={parcel}/>
-                    <FloodBoundaryLayer enablement={flood}/>
+                    <FloodBoundaryLayer />
                     <ConservationAreaBoundaryLayer enablement={conservation}/>
-                    <VistaBoundaryLayer enablement={vista}/>
-                    <HousingBoundaryLayer enablement={housing}/>
-                    <CreativeBoundaryLayer enablement={creative}/>
+                    <VistaBoundaryLayer />
+                    <HousingBoundaryLayer />
+                    <CreativeBoundaryLayer />
                     <BuildingNumbersLayer revisionId={revisionId} />
                     {
                         selectedBuildingId &&
@@ -249,14 +243,16 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     }
                     <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={setMapColourScale}/>
                     <ThemeSwitcher onSubmit={themeSwitch} currentTheme={theme} />
+
+                    {/* TODO change remaining ones*/}
                     <BoroughSwitcher onSubmit={boroughSwitch} currentDisplay={borough} />
                     <ParcelSwitcher onSubmit={parcelSwitch} currentDisplay={parcel} />
-                    <FloodSwitcher onSubmit={floodSwitch} currentDisplay={flood} />
+                    <FloodSwitcher />
                     <ConservationAreaSwitcher onSubmit={conservationSwitch} currentDisplay={conservation} />
                     <HistoricDataSwitcher onSubmit={historicDataSwitch} currentDisplay={historicData} />
-                    <VistaSwitcher onSubmit={vistaSwitch} currentDisplay={vista} />
-                    <HousingSwitcher onSubmit={housingSwitch} currentDisplay={housing} />
-                    <CreativeSwitcher onSubmit={creativeSwitch} currentDisplay={creative} />
+                    <VistaSwitcher />
+                    <HousingSwitcher />
+                    <CreativeSwitcher />
                     <SearchBox onLocate={handleLocate} />
                 </>
             }

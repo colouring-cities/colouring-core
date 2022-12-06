@@ -15,9 +15,9 @@ import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
 import PlanningDataOfficialDataEntry from '../data-components/planning-data-entry';
-
 import { CategoryViewProps } from './category-view-props';
 import { Category } from '../../config/categories-config';
+import { useDisplayPreferences } from '../../displayPreferences-context';
 
 const currentTimestamp = new Date().valueOf();
 const milisecondsInYear = 1000 * 60 * 60 * 24 * 365;
@@ -48,6 +48,7 @@ function isArchived(item) {
 }
 
 const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
+    const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick } = useDisplayPreferences();
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     return (
     <Fragment>
@@ -121,12 +122,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Possible future applications (crowdsourced data)" collapsed={true} >
-                <form className={`map-switcher-inline`}>
-                    <button className="btn btn-outline btn-outline-dark"
-                        type="submit">
-                        Click to see the data mapped
-                    </button>
-                </form>
                 <UserOpinionEntry
                     slug='community_expected_planning_application'
                     title={buildingUserFields.community_expected_planning_application.title}
@@ -149,56 +144,37 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             value={null}
             disabled={true}
             />
-            {
-            <form className={`map-switcher-inline`}>
-                <button className="btn btn-outline btn-outline-dark"
-                    type="submit">
-                    Click to see the data mapped
-                </button>
-            </form>
-            }
+            <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={floodSwitchOnClick}>
+                {(flood === 'enabled')? 'Click to hide overlay' : 'Click to see the data mapped'}
+            </button>
             <LogicalDataEntry
             title="Is the building in a Housing Zone?"
             slug="planning_live_application"
             value={null}
             disabled={true}
             />
-            {
-            <form className={`map-switcher-inline`}>
-                <button className="btn btn-outline btn-outline-dark"
-                    type="submit">
-                    Click to see the data mapped
-                </button>
-            </form>
-            }
+            <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={housingSwitchOnClick}>
+                {(housing === 'enabled')? 'Click to hide overlay' : 'Click to see the data mapped'}
+            </button>
             <LogicalDataEntry
             title="Is the building in a Creative Enterprise Zone?"
             slug="planning_live_application"
             value={null}
             disabled={true}
             />
-            {
-            <form className={`map-switcher-inline`}>
-                <button className="btn btn-outline btn-outline-dark"
-                    type="submit">
-                    Click to see the data mapped
-                </button>
-            </form>
-            }
+            <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={creativeSwitchOnClick}>
+                {(creative === 'enabled')? 'Click to hide overlay' : 'Click to see the data mapped'}
+            </button>
             <LogicalDataEntry
             title="Is the building within a Protected Vista?"
             slug="planning_live_application"
             value={null}
             disabled={true}
             />
-            {
-            <form className={`map-switcher-inline`}>
-                <button className="btn btn-outline btn-outline-dark"
-                    type="submit">
-                    Click to see the data mapped
-                </button>
-            </form>
-            }
+            <br/>
+            <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={vistaSwitchOnClick}>
+                {(vista === 'enabled')? 'Click to hide overlay' : 'Click to see the data mapped'}
+            </button>
             {/*
                 <DataEntry
                 title={dataFields.planning_glher_url.title}

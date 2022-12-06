@@ -1,19 +1,20 @@
 import React from 'react';
 
 import './flood-switcher.css';
+import { useDisplayPreferences } from '../displayPreferences-context';
 
 interface FloodSwitcherProps {
-    currentDisplay: string;
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const FloodSwitcherProps: React.FC<FloodSwitcherProps> = (props) => (
-    <form className={`flood-switcher ${props.currentDisplay}`} onSubmit={props.onSubmit}>
-        <button className="btn btn-outline btn-outline-dark"
-            type="submit">
-            Switch flood zone overlay ({(props.currentDisplay === 'enabled')? 'Enabled' : 'Disabled'})
-        </button>
-    </form>
-);
-
+const FloodSwitcherProps: React.FC<FloodSwitcherProps> = (props) => {
+    const { flood, floodSwitch } = useDisplayPreferences();
+    return (
+        <form className={`flood-switcher ${flood}`} onSubmit={floodSwitch}>
+            <button className="btn btn-outline btn-outline-dark"
+                type="submit">
+                Switch flood zone overlay ({(flood === 'enabled')? 'Enabled' : 'Disabled'})
+            </button>
+        </form>
+    );
+}
 export default FloodSwitcherProps;

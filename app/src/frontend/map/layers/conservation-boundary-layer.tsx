@@ -1,10 +1,10 @@
 import { GeoJsonObject } from 'geojson';
 import React, { useEffect, useState } from 'react';
 import { GeoJSON } from 'react-leaflet';
-import { ConservationAreasEnablementState } from '../../config/map-config';
+import { LayerEnablementState } from '../../config/map-config';
 import { apiGet } from '../../apiHelpers';
 
-export function ConservationAreaBoundaryLayer({enablement}: {enablement: ConservationAreasEnablementState}) {
+export function ConservationAreaBoundaryLayer({enablement}: {enablement: LayerEnablementState}) {
     const [boundaryGeojson, setBoundaryGeojson] = useState<GeoJsonObject>(null);
 
     useEffect(() => {

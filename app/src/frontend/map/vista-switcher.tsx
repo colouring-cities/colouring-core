@@ -1,19 +1,21 @@
 import React from 'react';
 
 import './vista-switcher.css';
+import { useDisplayPreferences } from '../displayPreferences-context';
 
 interface VistaSwitcherProps {
-    currentDisplay: string;
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const VistaSwitcherProps: React.FC<VistaSwitcherProps> = (props) => (
-    <form className={`vista-switcher ${props.currentDisplay}`} onSubmit={props.onSubmit}>
+const VistaSwitcherProps: React.FC<VistaSwitcherProps> = (props) => {
+    const { vista, vistaSwitch } = useDisplayPreferences();
+    return (
+    <form className={`vista-switcher ${vista}`} onSubmit={vistaSwitch}>
         <button className="btn btn-outline btn-outline-dark"
             type="submit">
-            Protected Vistas ({(props.currentDisplay === 'enabled')? 'Enabled' : 'Disabled'})
+            Protected Vistas ({(vista === 'enabled')? 'Enabled' : 'Disabled'})
         </button>
     </form>
-);
+    );
+}
 
-export default VistaSwitcherProps;
+export default VistaSwitcherProps; // TODO remove

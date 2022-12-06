@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { TileLayer } from 'react-leaflet';
-import { HistoricDataEnablementState } from '../../config/map-config';
+import { LayerEnablementState } from '../../config/map-config';
 import { BuildingBaseLayer } from './building-base-layer';
 
-export function HistoricDataLayer({enablement}: {enablement: HistoricDataEnablementState}) {
+export function HistoricDataLayer({enablement}: {enablement: LayerEnablementState}) {
     if(enablement == "enabled") {
         return <><TileLayer
             url="https://mapseries-tilesets.s3.amazonaws.com/london_1890s/{z}/{x}/{y}.png"

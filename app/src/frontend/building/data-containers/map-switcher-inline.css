@@ -9,12 +9,12 @@
 .map-switcher-inline {
     border-radius: 4px;
 }
-.map-switcher-inline .btn {
+.map-switcher-inline {
     background: #FFC0CB;
     margin: 0;
     min-width: 280px;
 }
-.map-switcher-inline.night .btn {
+.map-switcher-inline.night {
     background: #FFC0CB;
     color: #fff;
     background-color: #343a40;

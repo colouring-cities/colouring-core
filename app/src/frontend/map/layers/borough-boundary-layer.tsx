@@ -1,10 +1,10 @@
 import { GeoJsonObject } from 'geojson';
 import React, { useEffect, useState } from 'react';
 import { GeoJSON } from 'react-leaflet';
-import { BoroughEnablementState } from '../../config/map-config';
+import { LayerEnablementState } from '../../config/map-config';
 import { apiGet } from '../../apiHelpers';
 
-export function BoroughBoundaryLayer({enablement}: {enablement: BoroughEnablementState}) {
+export function BoroughBoundaryLayer({enablement}: {enablement: LayerEnablementState}) {
     const [boundaryGeojson, setBoundaryGeojson] = useState<GeoJsonObject>(null);
 
     useEffect(() => {

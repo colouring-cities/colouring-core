@@ -10,21 +10,7 @@ export const initialMapViewport: MapViewport = {
 
 export type MapTheme = 'light' | 'night' | 'night_outlines';
 
-export type BoroughEnablementState = 'enabled' | 'disabled';
-
-export type ParcelEnablementState = 'enabled' | 'disabled';
-
-export type FloodEnablementState = 'enabled' | 'disabled';
-
-export type ConservationAreasEnablementState = 'enabled' | 'disabled';
-
-export type HistoricDataEnablementState = 'enabled' | 'disabled';
-
-export type VistaEnablementState = 'enabled' | 'disabled';
-
-export type HousingEnablementState = 'enabled' | 'disabled';
-
-export type CreativeEnablementState = 'enabled' | 'disabled';
+export type LayerEnablementState = 'enabled' | 'disabled';
 
 export const mapBackgroundColor: Record<MapTheme, string> = {
     light: '#F0EEEB',
