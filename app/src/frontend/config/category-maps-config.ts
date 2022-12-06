@@ -174,7 +174,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             // SELECT COUNT(*), date_part('year', registered_with_local_authority_date) as year from planning_data WHERE decision_date IS NOT NULL GROUP BY year ORDER BY year ASC;
             mapStyle: 'planning_applications_status_all',
             legend: {
-                title: 'All planning applications available from GLA',
+                title: 'All planning applications available from GLA (official data)',
                 disclaimer: 'The map shows official data available from the GLA Planning London Datahub. What you are looking at is mainly applications from 2019 onwards.',
                 elements: [
                     { color: '#53f5dd', text: 'Submitted, awaiting decision' },
@@ -189,7 +189,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'planning_applications_status_recent',
             legend: {
-                title: 'Last 12 months - planning applications submissions/decisions',
+                title: 'Last 12 months - planning applications submissions/decisions (official data)',
                 disclaimer: 'The map shows applications where the submission or decision data falls within last 12 months.',
                 elements: [
                     { color: '#53f5dd', text: 'Submitted, awaiting decision' },
@@ -204,7 +204,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'planning_applications_status_very_recent',
             legend: {
-                title: 'Last 30 days - planning applications submissions/decisions',
+                title: 'Last 30 days - planning applications submissions/decisions (official data)',
                 disclaimer: 'The map shows applications where the submission or decision data falls within last 30 days.',
                 elements: [
                     { color: '#53f5dd', text: 'Submitted, awaiting decision' },
@@ -219,7 +219,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'community_expected_planning_application_total',
             legend: {
-                title: 'Expected planning applications',
+                title: 'Expected planning applications (crowdsourced data)',
                 disclaimer: 'Sites identified by users as likely to be subject to planning application over the next six months',
                 elements: [
                     { color: '#bd0026', text: '100+' },
@@ -235,7 +235,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'planning_combined',
             legend: {
-                title: 'Designation/protection',
+                title: 'Designation/protection (official and crowdsourced data)',
                 disclaimer: 'All data relating to designated buildings should be checked against the National Heritage List for England and local authority websites. Designation data is currently incomplete. We are aiming for 100% coverage by April 2023.',
                 elements: [
                     { color: '#95beba', text: 'In Conservation Area'},
