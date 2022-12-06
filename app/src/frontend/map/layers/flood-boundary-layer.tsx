@@ -22,14 +22,6 @@ export function FloodBoundaryLayer() {
     />;
     } else if (flood == "disabled") {
         return <div></div>
-        // do not display anything
-        return boundaryGeojson &&
-        <GeoJSON 
-        data={boundaryGeojson}
-        style={{color: '#0f0', fill: false, weight: 1}} />
-    } else {
-        return boundaryGeojson &&
-        <GeoJSON data={boundaryGeojson} style={{color: '#0f0', fill: true}}/>;
     }
 }
 

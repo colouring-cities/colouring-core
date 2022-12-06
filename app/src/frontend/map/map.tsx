@@ -62,11 +62,8 @@ export const ColouringMap : FC<ColouringMapProps> = ({
     {/* TODO start change remaining ones */}
     const [borough, setBorough] = useState<LayerEnablementState>('enabled');
     const [parcel, setParcel] = useState<LayerEnablementState>('disabled');
-    const [flood, setFlood] = useState<LayerEnablementState>('disabled');
     const [conservation, setConservation] = useState<LayerEnablementState>('disabled');
     const [historicData, setHistoricData] = useState<LayerEnablementState>('disabled');
-    const [creative, setCreative] = useState<LayerEnablementState>('disabled');
-    const [housing, setHousing] = useState<LayerEnablementState>('disabled');
     {/* TODO end */}
     const [position, setPosition] = useState(initialMapViewport.position);
     const [zoom, setZoom] = useState(initialMapViewport.zoom);
@@ -128,15 +125,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
         [parcel],
     )
 
-    const floodSwitch = useCallback(
-        (e) => {
-            e.preventDefault();
-            const newFlood = (flood === 'enabled')? 'disabled' : 'enabled';
-            setFlood(newFlood);
-        },
-        [flood],
-    )
-
     const conservationSwitch = useCallback(
         (e) => {
             e.preventDefault();
@@ -153,24 +141,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
             setHistoricData(newHistoric);
         },
         [historicData],
-    )
-
-    const housingSwitch = useCallback(
-        (e) => {
-            e.preventDefault();
-            const newHousing = (housing === 'enabled')? 'disabled' : 'enabled';
-            setHousing(newHousing);
-        },
-        [housing],
-    )
-
-    const creativeSwitch = useCallback(
-        (e) => {
-            e.preventDefault();
-            const newCreative = (creative === 'enabled')? 'disabled' : 'enabled';
-            setCreative(newCreative);
-        },
-        [creative],
     )
     {/* TODO end */}
 
