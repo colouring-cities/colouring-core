@@ -11,8 +11,8 @@ interface AuthContextState {
     login: (data: UserLoginData, cb?: (err) => void) => void;
     logout: (cb?: (err) => void) => void;
     signup: (data: UserSignupData, cb?: (err) => void) => void;
-    deleteAccount: (cb?: (err) => void) => void;
     generateApiKey: (cb?: (err) => void) => void;
+    deleteAccount: (cb?: (err) => void) => void;
 }
 
 interface UserLoginData {
