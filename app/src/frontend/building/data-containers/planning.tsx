@@ -51,7 +51,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     return (
     <Fragment>
-        <DataEntryGroup name="Planning application information" collapsed={false} >
+        <DataEntryGroup name="Planning application information" collapsed={true} >
             <DataEntryGroup name="Current/active applications (official data)" collapsed={false} >
                 <PlanningDataOfficialDataEntry  
                     shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item) == false) : []}
