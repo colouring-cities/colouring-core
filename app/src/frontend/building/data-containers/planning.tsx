@@ -136,11 +136,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </DataEntryGroup>
         <DataEntryGroup name="Planning zones" collapsed={true} >
             <InfoBox type='success'>
-            Data in this section comes from the Greater London Authority's Planning London Datahub. Please check the original GLA source when using for planning purposes.
-
-            You can use pink buttons to see boundaries of zones.
-
-            Information on whether specific building is in zone will be added automatically in future.
+            Data in this section comes from the Greater London Authority's Planning London Datahub. Please check the original GLA source when using for planning purposes. You can use pink buttons to see the zones. You may need to zoom out to see them fully. Information on whether specific building is in zone will be added automatically in future.
             </InfoBox>
             <LogicalDataEntry
             title="Is the building inside a flood zone?"
