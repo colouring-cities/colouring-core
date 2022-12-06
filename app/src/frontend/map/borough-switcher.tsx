@@ -11,7 +11,7 @@ const BoroughSwitcher: React.FC<BoroughSwitcherProps> = (props) => (
     <form className={`borough-switcher ${props.currentDisplay}`} onSubmit={props.onSubmit}>
         <button className="btn btn-outline btn-outline-dark"
             type="submit">
-            {(props.currentDisplay === 'enabled')? 'Switch off Borough overlay' : 'Switch on Borough overlay'}
+            {(props.currentDisplay === 'enabled')? 'Switch off Borough Boundaries' : 'Switch on Borough Boundaries'}
         </button>
     </form>
 );

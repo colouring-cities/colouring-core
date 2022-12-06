@@ -12,7 +12,7 @@ const FloodSwitcherProps: React.FC<FloodSwitcherProps> = (props) => {
         <form className={`flood-switcher ${flood}`} onSubmit={floodSwitch}>
             <button className="btn btn-outline btn-outline-dark"
                 type="submit">
-                {(flood === 'enabled')? 'Switch off Flood Zone overlay' : 'Switch on Flood Zone overlay'}
+                {(flood === 'enabled')? 'Switch off Flood Zones' : 'Switch on Flood Zones'}
             </button>
         </form>
     );

@@ -11,7 +11,7 @@ const DataLayerSwitcher: React.FC<DataLayerSwitcherProps> = (props) => (
     <form className={`data-switcher ${props.currentDisplay}`} onSubmit={props.onSubmit}>
         <button className="btn btn-outline btn-outline-dark"
             type="submit">
-            {(props.currentDisplay === 'enabled')? 'Switch off layer listing' : 'Switch on layer listing'}
+            {(props.currentDisplay === 'enabled')? 'Hide layer options' : 'Show layer options'}
         </button>
     </form>
 );

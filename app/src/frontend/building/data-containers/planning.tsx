@@ -145,7 +145,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             disabled={true}
             />
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={floodSwitchOnClick}>
-                {(flood === 'enabled')? 'Click to hide overlay' : 'Click to see the data mapped'}
+                {(flood === 'enabled')? 'Click to hide layer' : 'Click to see the data mapped'}
             </button>
             <LogicalDataEntry
             title="Is the building in a Housing Zone?"
@@ -154,7 +154,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             disabled={true}
             />
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={housingSwitchOnClick}>
-                {(housing === 'enabled')? 'Click to hide overlay' : 'Click to see the data mapped'}
+                {(housing === 'enabled')? 'Click to hide layer' : 'Click to see the data mapped'}
             </button>
             <LogicalDataEntry
             title="Is the building in a Creative Enterprise Zone?"
@@ -163,7 +163,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             disabled={true}
             />
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={creativeSwitchOnClick}>
-                {(creative === 'enabled')? 'Click to hide overlay' : 'Click to see the data mapped'}
+                {(creative === 'enabled')? 'Click to hide layer' : 'Click to see the data mapped'}
             </button>
             <LogicalDataEntry
             title="Is the building within a Protected Vista?"
@@ -172,7 +172,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             disabled={true}
             />
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={vistaSwitchOnClick}>
-                {(vista === 'enabled')? 'Click to hide overlay' : 'Click to see the data mapped'}
+                {(vista === 'enabled')? 'Click to hide layer' : 'Click to see the data mapped'}
             </button>
             {/*
                 <DataEntry

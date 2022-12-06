@@ -12,7 +12,7 @@ const VistaSwitcherProps: React.FC<VistaSwitcherProps> = (props) => {
     <form className={`vista-switcher ${vista}`} onSubmit={vistaSwitch}>
         <button className="btn btn-outline btn-outline-dark"
             type="submit">
-            {(vista === 'enabled')? 'Switch off Protected Vistas overlay' : 'Switch on Protected Vistas overlay'}
+            {(vista === 'enabled')? 'Switch off Protected Vistas' : 'Switch on Protected Vistas'}
         </button>
     </form>
     );

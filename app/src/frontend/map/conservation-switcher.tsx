@@ -11,7 +11,7 @@ const ConservationAreaSwitcherProps: React.FC<ConservationAreaSwitcherProps> = (
     <form className={`conservation-switcher ${props.currentDisplay}`} onSubmit={props.onSubmit}>
         <button className="btn btn-outline btn-outline-dark"
             type="submit">
-            {(props.currentDisplay === 'enabled')? 'Switch off Conservation Area overlay' : 'Switch on Conservation Area overlay'}
+            {(props.currentDisplay === 'enabled')? 'Switch off Conservation Areas' : 'Switch on Conservation Areas'}
         </button>
     </form>
 );

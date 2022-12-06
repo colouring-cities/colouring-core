@@ -12,7 +12,7 @@ const HousingSwitcherProps: React.FC<HousingSwitcherProps> = (props) => {
     <form className={`housing-switcher ${housing}`} onSubmit={housingSwitch}>
         <button className="btn btn-outline btn-outline-dark"
             type="submit">
-            {(housing === 'enabled')? 'Switch off Housing Zones overlay' : 'Switch on Housing Zones overlay'}
+            {(housing === 'enabled')? 'Switch off Housing Zones' : 'Switch on Housing Zones'}
         </button>
     </form>
     );
