@@ -152,6 +152,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             slug="planning_live_application"
             value={null}
             disabled={true}
+            tooltip={"GLA official description: \"Housing zones are areas funded by the Mayor and government to attract developers and relevant partners to build new homes.\""}
             />
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={housingSwitchOnClick}>
                 {(housing === 'enabled')? 'Click to hide layer' : 'Click to see the data mapped'}
@@ -161,6 +162,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             slug="planning_live_application"
             value={null}
             disabled={true}
+            tooltip={"GLA official description: \"Creative Enterprise Zones are a new Mayoral initiative to designate areas of London where artists and creative businesses can find permanent affordable space to work; are supported to start-up and grow; and where local people are helped to learn creative sector skills and find new jobs.\""}
             />
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={creativeSwitchOnClick}>
                 {(creative === 'enabled')? 'Click to hide layer' : 'Click to see the data mapped'}
