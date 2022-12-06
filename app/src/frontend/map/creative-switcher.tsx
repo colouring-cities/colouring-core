@@ -12,7 +12,7 @@ const CreativeSwitcherProps: React.FC<CreativeSwitcherProps> = (props) => {
         <form className={`creative-switcher ${creative}`} onSubmit={creativeSwitch}>
             <button className="btn btn-outline btn-outline-dark"
                 type="submit">
-                {(creative === 'enabled')? 'Switch off Creative Enterprise Zones overlay' : 'Switch on Flood Zones overlay'}
+                {(creative === 'enabled')? 'Switch off Creative Enterprise Zones overlay' : 'Switch on Creative Enterprise Zones overlay'}
             </button>
         </form>
     );
