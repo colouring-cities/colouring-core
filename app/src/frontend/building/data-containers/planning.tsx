@@ -144,8 +144,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             value={null}
             disabled={true}
             />
-            <br/>
-            <br/>
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={floodSwitchOnClick}>
                 {(flood === 'enabled')? 'Click to hide overlay' : 'Click to see the data mapped'}
             </button>
@@ -155,8 +153,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             value={null}
             disabled={true}
             />
-            <br/>
-            <br/>
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={housingSwitchOnClick}>
                 {(housing === 'enabled')? 'Click to hide overlay' : 'Click to see the data mapped'}
             </button>
@@ -166,8 +162,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             value={null}
             disabled={true}
             />
-            <br/>
-            <br/>
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={creativeSwitchOnClick}>
                 {(creative === 'enabled')? 'Click to hide overlay' : 'Click to see the data mapped'}
             </button>
@@ -177,8 +171,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             value={null}
             disabled={true}
             />
-            <br/>
-            <br/>
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={vistaSwitchOnClick}>
                 {(vista === 'enabled')? 'Click to hide overlay' : 'Click to see the data mapped'}
             </button>

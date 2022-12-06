@@ -11,7 +11,7 @@
 }
 .map-switcher-inline {
     background: #FFC0CB;
-    margin: 0;
+    margin: 12px;
     min-width: 280px;
 }
 .map-switcher-inline.night {
