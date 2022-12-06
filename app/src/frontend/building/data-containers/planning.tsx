@@ -158,7 +158,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </form>
             }
             <LogicalDataEntry
-            title="Is the building in a strategic development zone for housing?"
+            title="Is the building in a Housing Zone?"
             slug="planning_live_application"
             value={null}
             disabled={true}
@@ -172,7 +172,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </form>
             }
             <LogicalDataEntry
-            title="Is the building in a strategic development zone for commerce or industry?"
+            title="Is the building in a Creative Enterprise Zone?"
             slug="planning_live_application"
             value={null}
             disabled={true}
@@ -186,7 +186,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </form>
             }
             <LogicalDataEntry
-            title="Is the building within a protected sightline?"
+            title="Is the building within a Protected Vista?"
             slug="planning_live_application"
             value={null}
             disabled={true}
