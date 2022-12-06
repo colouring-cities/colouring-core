@@ -51,7 +51,7 @@ const LongText = ({ content,limit}) => {
   </div>
 }
 
-const Disclaimer = () => { return <Fragment><div><u>Disclaimer</u>: these data are currently incomplete and also often do not provide information on minor alterations. For comprehensive information on all applications please visit the local authorities' planning websites.</div></Fragment> }
+const Disclaimer = () => { return <Fragment><div><u>Disclaimer</u>: Not all applications for London are displayed. Some boroughs do not yet provide planning data to the GLA. For comprehensive information on applications please visit the relevant local authority's planning website.</div></Fragment> }
 
 const MissingData = "not provided by data source"
 
@@ -100,10 +100,13 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
   }
   return <>
         <InfoBox type='success'>
+          {/* TODO: data[0] is problematic here... Compute it from listed elements and show all distinct variants? Error if they are not distinct? Hardcode it? */}
+          <div>
+            Planning application status is streamed using live data uploaded by local authorities to {data[0]["data_source_link"] ? <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a> : data[0]["data_source"] }.
+          </div>
           <Disclaimer />
           <br/>
-          {/* TODO: data[0] is problematic here... Compute it from listed elements and show all distinct variants? Error if they are not distinct? Hardcode it? */}
-          <div>Planning application status is streamed using live data uploaded by local authorities to the {data[0]["data_source_link"] ? <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a> : data[0]["data_source"] }.</div>        </InfoBox>
+        </InfoBox>
         {data.map((item) => (
         <Fragment>
         <InfoBox type='info'>
