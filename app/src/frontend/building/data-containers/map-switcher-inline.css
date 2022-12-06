@@ -1,15 +1,5 @@
-.map-theme {
-    filter: grayscale(100%) invert(1);
-}
-
-.map-theme {
-    filter: none;
-}
-
 .map-switcher-inline {
     border-radius: 4px;
-}
-.map-switcher-inline {
     background: #FFC0CB;
     margin: 12px;
     min-width: 280px;
@@ -25,9 +15,4 @@
     background-color: transparent;
     background-image: none;
     border-color: #ff6065;
-}
-@media (max-width: 990px){
-    .map-switcher-inline {
-        visibility: hidden;
-    }
 }
