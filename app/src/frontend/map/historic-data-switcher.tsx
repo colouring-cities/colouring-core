@@ -11,7 +11,7 @@ const HistoricDataSwitcherProps: React.FC<HistoricDataSwitcherProps> = (props) =
     <form className={`historic-data-switcher ${props.currentDisplay}`} onSubmit={props.onSubmit}>
         <button className="btn btn-outline btn-outline-dark"
             type="submit">
-            Switch to the OS 1890s historical map ({(props.currentDisplay === 'enabled')? 'Enabled' : 'Disabled'})
+            {(props.currentDisplay === 'enabled')? 'Switch off the OS 1890s Historical Map overlay' : 'Switch on the OS 1890s Historical Map overlay'}
         </button>
     </form>
 );
