@@ -16,7 +16,7 @@ import { parseBuildingURL } from './parse';
 import asyncController from './api/routes/asyncController';
 
 import { CCConfig } from './cc-config';
-let config: CCConfig = require('../../cc-config.json')
+let config: CCConfig = require('./cc-config.json')
 
 
 // reference packed assets
