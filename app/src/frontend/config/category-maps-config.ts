@@ -177,7 +177,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 title: 'All planning applications available from GLA (official data)',
                 disclaimer: 'The map shows official data available from the GLA Planning London Datahub. What you are looking at is mainly applications from 2019 onwards.',
                 elements: [
-                    { color: '#53f5dd', text: 'Submitted, awaiting decision' },
+                    { color: '#2a7aee', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
                     { color: '#16cf15', text: 'Approved' },
                     { color: '#e31d23', text: 'Rejected' },
@@ -192,7 +192,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 title: 'Last 12 months - planning applications submissions/decisions (official data)',
                 disclaimer: 'The map shows applications where the submission or decision data falls within last 12 months.',
                 elements: [
-                    { color: '#53f5dd', text: 'Submitted, awaiting decision' },
+                    { color: '#2a7aee', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
                     { color: '#16cf15', text: 'Approved' },
                     { color: '#e31d23', text: 'Rejected' },
@@ -207,7 +207,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 title: 'Last 30 days - planning applications submissions/decisions (official data)',
                 disclaimer: 'The map shows applications where the submission or decision data falls within last 30 days.',
                 elements: [
-                    { color: '#53f5dd', text: 'Submitted, awaiting decision' },
+                    { color: '#2a7aee', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
                     { color: '#16cf15', text: 'Approved' },
                     { color: '#e31d23', text: 'Rejected' },
