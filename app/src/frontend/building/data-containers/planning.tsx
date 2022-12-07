@@ -59,6 +59,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Other active application info (crowdsourced data)" collapsed={true} >
+                <InfoBox type='warning'>
+                    This category is not yet activated.
+                </InfoBox>
                 <NumericDataEntry
                     title={dataFields.planning_crowdsourced_site_completion_year.title}
                     slug="planning_crowdsourced_site_completion_year"
