@@ -122,6 +122,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Possible future applications (crowdsourced data)" collapsed={true} >
+                <InfoBox>You can click and colour any other building on the map as well. To add your opinion on how well this building works for the community, please visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
                 <UserOpinionEntry
                     slug='community_expected_planning_application'
                     title={buildingUserFields.community_expected_planning_application.title}
@@ -131,7 +132,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                 />
-                <InfoBox>You can click and colour any other building on the map as well. To add your opinion on how well this building works for the community, please visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
             </DataEntryGroup>
         </DataEntryGroup>
         <DataEntryGroup name="Planning zones" collapsed={true} >
