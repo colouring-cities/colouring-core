@@ -407,6 +407,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
         </DataEntryGroup>
         <DataEntryGroup name="Land ownership type" collapsed={true} >
+                <InfoBox type='warning'>
+                    This category is not yet activated.
+                </InfoBox>
                 <InfoBox type='success'>
                     This section is designed to provide information on land parcels and their ownership type. Can you help us to crowdsource this information?
                 </InfoBox>
