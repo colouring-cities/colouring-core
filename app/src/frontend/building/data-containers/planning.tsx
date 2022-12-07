@@ -132,6 +132,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                 />
+                <button className="map-switcher-inline btn btn-outline btn-outline-dark" > {/*onClick={floodSwitchOnClick}*/}
+                    {'Click here to switch map key to this info'}
+                </button>
             </DataEntryGroup>
         </DataEntryGroup>
         <DataEntryGroup name="Planning zones" collapsed={true} >
@@ -207,6 +210,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <InfoBox>
                 This section provides information on heritage assets and building protection. To produce the most accurate spatial map possible we need to combine official data with crowdsourced data. Help us create this map together by checking, verifying and adding information.
             </InfoBox>
+            <button className="map-switcher-inline btn btn-outline btn-outline-dark" > {/*onClick={floodSwitchOnClick}*/}
+                    {'Click here to switch map key to this info'}
+            </button>
             <NumericDataEntryWithFormattedLink
                 title={dataFields.planning_list_id.title}
                 slug="planning_list_id"
