@@ -100,7 +100,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
   }
   return <>
         <InfoBox type='info'>
-          To see planning applications visualised for different periods click on the dropdown on the map key.
+          To see planning applications visualised for different periods click on the map key dropdown.
         </InfoBox>
         <InfoBox type='info'>
           {/* TODO: data[0] is problematic here... Compute it from listed elements and show all distinct variants? Error if they are not distinct? Hardcode it? */}
