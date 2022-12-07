@@ -92,6 +92,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 mode={props.mode}
                 copy={props.copy}
             />
+            <InfoBox>You can click and colour any other building on the map as well.</InfoBox>
         </div>
 
         <InfoBox>Can you help add information on community use of buildings?</InfoBox>
