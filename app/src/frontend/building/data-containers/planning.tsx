@@ -136,13 +136,18 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </DataEntryGroup>
         <DataEntryGroup name="Planning zones" collapsed={true} >
             <InfoBox type='success'>
-            Data in this section comes from the Greater London Authority's Planning London Datahub. Please check the original GLA source when using for planning purposes. You can use pink buttons to see the zones. You may need to zoom out to see them fully. Information on whether specific building is in zone will be added automatically in future.
+                Use the pink buttons to visualise planning zone data. You may need to <u>zoom out</u>.
+            </InfoBox>
+            <InfoBox type='success'>
+                Data in this section comes from the Greater London Authority's Planning London Datahub. Please check the original GLA source when using for planning purposes.
+                Information on whether a specific building is in a zone will be added automatically in future.
             </InfoBox>
             <LogicalDataEntry
-            title="Is the building inside a flood zone?"
+            title="Is the building inside a Flood Zone?"
             slug="planning_live_application"
             value={null}
             disabled={true}
+            tooltip={"GLA official description: \"All areas with more than a 1 in 1,000 annual probability of either river or sea flooding.\""}
             />
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={floodSwitchOnClick}>
                 {(flood === 'enabled')? 'Click to hide layer' : 'Click to see the data mapped'}
@@ -172,6 +177,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             slug="planning_live_application"
             value={null}
             disabled={true}
+            tooltip={"GLA official description: \"The Protected Vistas are established in the London Plan with more detailed guidance provided in the London View Management Framework (LVMF). The London Plan seeks to protect the significant views which help to define London, including the panoramas, linear views and townscape views in this layer.\""}
             />
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={vistaSwitchOnClick}>
                 {(vista === 'enabled')? 'Click to hide layer' : 'Click to see the data mapped'}
