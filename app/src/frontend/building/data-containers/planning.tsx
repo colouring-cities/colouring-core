@@ -70,7 +70,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     onChange={props.onChange}
                     disabled={true}
-                    placeholder="Category not yet activated"
                     />
                 <Verification
                     slug="planning_crowdsourced_site_completion_year"
@@ -89,7 +88,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     onChange={props.onChange}
                     disabled={true}
-                    placeholder="Category not yet activated"
                  />
                 <Verification
                     slug="planning_crowdsourced_planning_id"
@@ -102,7 +100,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
                 <LogicalDataEntry
                     slug='community_expected_planning_application_is_inaccurate'
-                    title={"If any of the active planning applications are not mapped onto the correct site, please tick here (category not yet activated)"}
+                    title={"If any of the active planning applications are not mapped onto the correct site, please tick here"}
                     value={null}
 
                     onChange={props.onSaveChange}
