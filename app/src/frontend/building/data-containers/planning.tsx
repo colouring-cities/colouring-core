@@ -113,7 +113,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
             </DataEntryGroup>
             <DataEntryGroup name="Past applications (official data)" collapsed={true} >
-                <InfoBox type='success'>
+                <InfoBox>
                     Past applications, including those with no decision in over a year
                 </InfoBox>
                 <PlanningDataOfficialDataEntry
@@ -122,7 +122,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Possible future applications (crowdsourced data)" collapsed={true} >
-                <InfoBox>Click and colour buildings here if you think that there will be a future planning application. To add your opinion on how well this building works for the community, please visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
+                <InfoBox type='success'>Click and colour buildings here if you think that there will be a future planning application. To add your opinion on how well this building works for the community, please visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
                 <UserOpinionEntry
                     slug='community_expected_planning_application'
                     title={buildingUserFields.community_expected_planning_application.title}
@@ -135,10 +135,10 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </DataEntryGroup>
         </DataEntryGroup>
         <DataEntryGroup name="Planning zones" collapsed={true} >
-            <InfoBox type='success'>
+            <InfoBox>
                 Use the pink buttons to visualise planning zone data. You may need to <u>zoom out</u>.
             </InfoBox>
-            <InfoBox type='success'>
+            <InfoBox>
                 Data in this section comes from the Greater London Authority's Planning London Datahub. Please check the original GLA source when using for planning purposes.
                 Information on whether a specific building is in a zone will be added automatically in future.
             </InfoBox>
@@ -204,7 +204,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             */}
         </DataEntryGroup>
         <DataEntryGroup name="Building protection" collapsed={true} >
-            <InfoBox type='success'>
+            <InfoBox>
                 This section provides information on heritage assets and building protection. To produce the most accurate spatial map possible we need to combine official data with crowdsourced data. Help us create this map together by checking, verifying and adding information.
             </InfoBox>
             <NumericDataEntryWithFormattedLink
@@ -393,7 +393,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox type='warning'>
                     This category is not yet activated.
                 </InfoBox>
-                <InfoBox type='success'>
+                <InfoBox>
                     This section is designed to provide information on land parcels and their ownership type. Can you help us to crowdsource this information?
                 </InfoBox>
                 <SelectDataEntry

@@ -78,20 +78,20 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
     if(data.length == 0) {
       if (props.allEntryCount == 0) {
         return (<Fragment>
-                  <InfoBox type='success'>
+                  <InfoBox>
                     <Disclaimer />
                   </InfoBox>
-                  <InfoBox type='info'>
+                  <InfoBox type='success'>
                   No live planning data available currently for this building polygon via the Planning London DataHub.
                   <br/>
                   </InfoBox>
                 </Fragment>);
     } else {
       return (<Fragment>
-                  <InfoBox type='success'>
+                  <InfoBox>
                     <Disclaimer />
                   </InfoBox>
-                <InfoBox type='info'>
+                <InfoBox type='success'>
                 No live planning data for this date range, but this building has associated planning data now shown here.
                 <br/>
                 </InfoBox>
@@ -99,10 +99,10 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
     }
   }
   return <>
-        <InfoBox type='success'>
+        <InfoBox type='info'>
           To see planning applications visualised for different periods click on the dropdown on the map key.
         </InfoBox>
-        <InfoBox type='success'>
+        <InfoBox type='info'>
           {/* TODO: data[0] is problematic here... Compute it from listed elements and show all distinct variants? Error if they are not distinct? Hardcode it? */}
           <div>
             Planning application status is streamed using live data uploaded by local authorities to {data[0]["data_source_link"] ? <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a> : data[0]["data_source"] }.
@@ -112,7 +112,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
         </InfoBox>
         {data.map((item) => (
         <Fragment>
-        <InfoBox type='info'>
+        <InfoBox type='success'>
             <Fragment>
                 <div><b>Current planning application status for this site:</b> <StatusInfo 
                   statusBeforeAliasing={item["status_before_aliasing"]}
