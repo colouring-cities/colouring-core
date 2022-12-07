@@ -1,19 +1,16 @@
 import React from 'react';
 
 import './borough-switcher.css';
+import { useDisplayPreferences } from '../displayPreferences-context';
 
-interface BoroughSwitcherProps {
-    currentDisplay: string;
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+export const BoroughSwitcher: React.FC<{}> = () => {
+    const { borough, boroughSwitch, darkLightTheme } = useDisplayPreferences();
+    return (
+        <form className={`borough-switcher ${darkLightTheme}`} onSubmit={boroughSwitch}>
+            <button className="btn btn-outline btn-outline-dark"
+                type="submit">
+                {(borough === 'enabled')? 'Switch off Borough Boundaries' : 'Switch on Borough Boundaries'}
+            </button>
+        </form>
+    );
 }
-
-const BoroughSwitcher: React.FC<BoroughSwitcherProps> = (props) => (
-    <form className={`borough-switcher ${props.currentDisplay}`} onSubmit={props.onSubmit}>
-        <button className="btn btn-outline btn-outline-dark"
-            type="submit">
-            {(props.currentDisplay === 'enabled')? 'Switch off Borough Boundaries' : 'Switch on Borough Boundaries'}
-        </button>
-    </form>
-);
-
-export default BoroughSwitcher;

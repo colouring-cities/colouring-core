@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
-import { LayerEnablementState } from './config/map-config';
+import { LayerEnablementState, MapTheme } from './config/map-config';
 
 interface DisplayPreferencesContextState {
     vista: LayerEnablementState;
@@ -18,6 +18,26 @@ interface DisplayPreferencesContextState {
     housing: LayerEnablementState;
     housingSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     housingSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
+    conservation: LayerEnablementState;
+    conservationSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    conservationSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
+    parcel: LayerEnablementState;
+    parcelSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    parcelSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
+    borough: LayerEnablementState;
+    boroughSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    boroughSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
+    historicData: LayerEnablementState;
+    historicDataSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    historicDataSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
+    darkLightTheme: MapTheme;
+    darkLightThemeSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    darkLightThemeSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const stub = (): never => {
@@ -41,7 +61,6 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     housingSwitch: stub,
     housingSwitchOnClick: undefined,
 
-    /*
     conservation: undefined,
     conservationSwitch: stub,
     conservationSwitchOnClick: undefined,
@@ -53,10 +72,14 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     borough: undefined,
     boroughSwitch: stub,
     boroughSwitchOnClick: undefined,
-    not needed right now
 
-    historicData
-    */
+    historicData: undefined,
+    historicDataSwitch: stub,
+    historicDataSwitchOnClick: undefined,
+
+    darkLightTheme: undefined,
+    darkLightThemeSwitch: stub,
+    darkLightThemeSwitchOnClick: undefined,
 });
 
 const noop = () => {};
@@ -66,14 +89,11 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [flood, setFlood] = useState<LayerEnablementState>('disabled');
     const [creative, setCreative] = useState<LayerEnablementState>('disabled');
     const [housing, setHousing] = useState<LayerEnablementState>('disabled');
-
-    /*
     const [borough, setBorough] = useState<LayerEnablementState>('enabled');
     const [parcel, setParcel] = useState<LayerEnablementState>('disabled');
     const [conservation, setConservation] = useState<LayerEnablementState>('disabled');
     const [historicData, setHistoricData] = useState<LayerEnablementState>('disabled');
-    */
-
+    const [darkLightTheme, setDarkLightTheme] = useState<MapTheme>('night');
 
     const vistaSwitch = useCallback(
         (e) => {
@@ -135,6 +155,82 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         setCreative(newCreative);
     }
 
+    const boroughSwitch = useCallback(
+        (e) => {
+            flipBorough(e)
+        },
+        [borough],
+    )
+    const boroughSwitchOnClick = (e) => {
+        flipBorough(e)
+    }
+    function flipBorough(e) {
+        e.preventDefault();
+        const newBorough = (borough === 'enabled')? 'disabled' : 'enabled';
+        setBorough(newBorough);
+    }
+
+    const parcelSwitch = useCallback(
+        (e) => {
+            flipParcel(e)
+        },
+        [parcel],
+    )
+    const parcelSwitchOnClick = (e) => {
+        flipParcel(e)
+    }
+    function flipParcel(e) {
+        e.preventDefault();
+        const newParcel = (parcel === 'enabled')? 'disabled' : 'enabled';
+        setParcel(newParcel);
+    }
+
+    const conservationSwitch = useCallback(
+        (e) => {
+            flipConservation(e)
+        },
+        [conservation],
+    )
+    const conservationSwitchOnClick = (e) => {
+        flipConservation(e)
+    }
+    function flipConservation(e) {
+        e.preventDefault();
+        const newConservation = (conservation === 'enabled')? 'disabled' : 'enabled';
+        setConservation(newConservation);
+    }
+
+    const historicDataSwitch = useCallback(
+        (e) => {
+            flipHistoricData(e)
+        },
+        [historicData],
+    )
+    const historicDataSwitchOnClick = (e) => {
+        flipHistoricData(e)
+    }
+    function flipHistoricData(e) {
+        e.preventDefault();
+        const newHistoric = (historicData === 'enabled')? 'disabled' : 'enabled';
+        setHistoricData(newHistoric);
+    }
+
+    const darkLightThemeSwitch = useCallback(
+        (e) => {
+            flipDarkLightTheme(e)
+        },
+        [darkLightTheme],
+    )
+    const darkLightThemeSwitchOnClick = (e) => {
+        flipDarkLightTheme(e)
+    }
+    function flipDarkLightTheme(e) {
+        e.preventDefault();
+        const newDarkLightTheme = (darkLightTheme === 'light')? 'night' : 'light';
+        setDarkLightTheme(newDarkLightTheme);
+    }
+
+
     return (
         <DisplayPreferencesContext.Provider value={{
             vista,
@@ -148,7 +244,25 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             creativeSwitchOnClick,
             housing,
             housingSwitch,
-            housingSwitchOnClick
+            housingSwitchOnClick,
+            conservation,
+            conservationSwitch,
+            conservationSwitchOnClick,
+            parcel,
+            parcelSwitch,
+            parcelSwitchOnClick,
+        
+            borough,
+            boroughSwitch,
+            boroughSwitchOnClick,
+        
+            historicData,
+            historicDataSwitch,
+            historicDataSwitchOnClick,
+
+            darkLightTheme,
+            darkLightThemeSwitch,
+            darkLightThemeSwitchOnClick
         }}>
             {children}
         </DisplayPreferencesContext.Provider>

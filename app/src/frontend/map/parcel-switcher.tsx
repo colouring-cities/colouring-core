@@ -1,19 +1,16 @@
 import React from 'react';
 
 import './parcel-switcher.css';
+import { useDisplayPreferences } from '../displayPreferences-context';
 
-interface ParcelSwitcherProps {
-    currentDisplay: string;
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+export const ParcelSwitcher: React.FC<{}> = () => {
+    const { parcel, parcelSwitch, darkLightTheme } = useDisplayPreferences();
+    return (
+        <form className={`parcel-switcher ${darkLightTheme}`} onSubmit={parcelSwitch}>
+            <button className="btn btn-outline btn-outline-dark"
+                type="submit">
+                {(parcel === 'enabled')? 'Switch off Parcel (sample) overlay' : 'Switch on Parcel (sample) overlay'}
+            </button>
+        </form>
+    );
 }
-
-const ParcelSwitcher: React.FC<ParcelSwitcherProps> = (props) => (
-    <form className={`parcel-switcher ${props.currentDisplay}`} onSubmit={props.onSubmit}>
-        <button className="btn btn-outline btn-outline-dark"
-            type="submit">
-            {(props.currentDisplay === 'enabled')? 'Switch off Parcel (sample) overlay' : 'Switch on Parcel (sample) overlay'}
-        </button>
-    </form>
-);
-
-export default ParcelSwitcher;

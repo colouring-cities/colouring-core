@@ -31,15 +31,16 @@ import { Legend } from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
 import DataLayerSwitcher from './data-switcher';
-import BoroughSwitcher from './borough-switcher';
-import ParcelSwitcher from './parcel-switcher';
+import { BoroughSwitcher } from './borough-switcher';
+import { ParcelSwitcher } from './parcel-switcher';
 import { FloodSwitcher } from './flood-switcher';
-import ConservationAreaSwitcher from './conservation-switcher';
-import HistoricDataSwitcher from './historic-data-switcher';
+import { ConservationAreaSwitcher } from './conservation-switcher';
+import { HistoricDataSwitcher } from './historic-data-switcher';
 import { VistaSwitcher } from './vista-switcher';
 import { CreativeSwitcher } from './creative-switcher';
 import { HousingSwitcher } from './housing-switcher';
 import { BuildingMapTileset } from '../config/tileserver-config';
+import { useDisplayPreferences } from '../displayPreferences-context';
 
 interface ColouringMapProps {
     selectedBuildingId: number;
@@ -57,14 +58,8 @@ export const ColouringMap : FC<ColouringMapProps> = ({
     selectedBuildingId,
     children
 }) => {
-    const [theme, setTheme] = useState<MapTheme>('night');
+    const { darkLightTheme, darkLightThemeSwitch } = useDisplayPreferences();
     const [dataLayers, setDataLayers] = useState<LayerEnablementState>('disabled');
-    {/* TODO start change remaining ones */}
-    const [borough, setBorough] = useState<LayerEnablementState>('enabled');
-    const [parcel, setParcel] = useState<LayerEnablementState>('disabled');
-    const [conservation, setConservation] = useState<LayerEnablementState>('disabled');
-    const [historicData, setHistoricData] = useState<LayerEnablementState>('disabled');
-    {/* TODO end */}
     const [position, setPosition] = useState(initialMapViewport.position);
     const [zoom, setZoom] = useState(initialMapViewport.zoom);
 
@@ -88,15 +83,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
         [onBuildingAction],
     )
 
-    const themeSwitch = useCallback(
-        (e) => {
-            e.preventDefault();
-            const newTheme = (theme === 'light')? 'night' : 'light';
-            setTheme(newTheme);
-        },
-        [theme],
-    )
-
     const layerSwitch = useCallback(
         (e) => {
             e.preventDefault();
@@ -105,44 +91,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
         },
         [dataLayers],
     )
-
-    {/* change remaining ones */}
-    const boroughSwitch = useCallback(
-        (e) => {
-            e.preventDefault();
-            const newBorough = (borough === 'enabled')? 'disabled' : 'enabled';
-            setBorough(newBorough);
-        },
-        [borough],
-    )
-
-    const parcelSwitch = useCallback(
-        (e) => {
-            e.preventDefault();
-            const newParcel = (parcel === 'enabled')? 'disabled' : 'enabled';
-            setParcel(newParcel);
-        },
-        [parcel],
-    )
-
-    const conservationSwitch = useCallback(
-        (e) => {
-            e.preventDefault();
-            const newConservation = (conservation === 'enabled')? 'disabled' : 'enabled';
-            setConservation(newConservation);
-        },
-        [conservation],
-    )
-
-    const historicDataSwitch = useCallback(
-        (e) => {
-            e.preventDefault();
-            const newHistoric = (historicData === 'enabled')? 'disabled' : 'enabled';
-            setHistoricData(newHistoric);
-        },
-        [historicData],
-    )
-    {/* TODO end */}
 
     const categoryMapDefinitions = useMemo(() => categoryMapsConfig[category], [category]);
 
@@ -167,16 +115,16 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                 attributionControl={false}
             >
                 <ClickHandler onClick={handleClick} />
-                <MapBackgroundColor theme={theme} />
+                <MapBackgroundColor theme={darkLightTheme} />
                 <MapViewport position={position} zoom={zoom} />
 
                 <Pane
-                    key={theme}
+                    key={darkLightTheme}
                     name={'cc-base-pane'}
                     style={{zIndex: 50}}
                 >
-                    <CityBaseMapLayer theme={theme} />
-                    <BuildingBaseLayer theme={theme} />
+                    <CityBaseMapLayer theme={darkLightTheme} />
+                    <BuildingBaseLayer theme={darkLightTheme} />
                 </Pane>
 
                 {
@@ -191,15 +139,15 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     name='cc-overlay-pane'
                     style={{zIndex: 300}}
                 >
-                    <CityBoundaryLayer />
-                    <HistoricDataLayer enablement={historicData}/>
-                    <BoroughBoundaryLayer enablement={borough}/>
-                    <ParcelBoundaryLayer enablement={parcel}/>
-                    <FloodBoundaryLayer />
-                    <ConservationAreaBoundaryLayer enablement={conservation}/>
-                    <VistaBoundaryLayer />
-                    <HousingBoundaryLayer />
-                    <CreativeBoundaryLayer />
+                    <CityBoundaryLayer/>
+                    <HistoricDataLayer/>
+                    <BoroughBoundaryLayer/>
+                    <ParcelBoundaryLayer/>
+                    <FloodBoundaryLayer/>
+                    <ConservationAreaBoundaryLayer/>
+                    <VistaBoundaryLayer/>
+                    <HousingBoundaryLayer/>
+                    <CreativeBoundaryLayer/>
                     <BuildingNumbersLayer revisionId={revisionId} />
                     {
                         selectedBuildingId &&
@@ -223,16 +171,16 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                         </div>
                     }
                     <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={setMapColourScale}/>
-                    <ThemeSwitcher onSubmit={themeSwitch} currentTheme={theme} />
+                    <ThemeSwitcher onSubmit={darkLightThemeSwitch} currentTheme={darkLightTheme} />
                     <DataLayerSwitcher onSubmit={layerSwitch} currentDisplay={dataLayers} />
                     {
                         (dataLayers == "enabled") ?
                         <>
-                            <BoroughSwitcher onSubmit={boroughSwitch} currentDisplay={borough} />
-                            <ParcelSwitcher onSubmit={parcelSwitch} currentDisplay={parcel} />
-                            <FloodSwitcher />
-                            <ConservationAreaSwitcher onSubmit={conservationSwitch} currentDisplay={conservation} />
-                            <HistoricDataSwitcher onSubmit={historicDataSwitch} currentDisplay={historicData} />
+                            <BoroughSwitcher/>
+                            <ParcelSwitcher/>
+                            <FloodSwitcher/>
+                            <ConservationAreaSwitcher/>
+                            <HistoricDataSwitcher/>
                             <VistaSwitcher />
                             <HousingSwitcher />
                             <CreativeSwitcher />

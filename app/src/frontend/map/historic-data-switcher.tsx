@@ -1,19 +1,16 @@
 import React from 'react';
 
 import './historic-data-switcher.css';
+import { useDisplayPreferences } from '../displayPreferences-context';
 
-interface HistoricDataSwitcherProps {
-    currentDisplay: string;
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+export const HistoricDataSwitcher: React.FC<{}> = (props) => {
+    const { historicData, historicDataSwitch, darkLightTheme } = useDisplayPreferences();
+    return (
+        <form className={`historic-data-switcher ${darkLightTheme}`} onSubmit={historicDataSwitch}>
+            <button className="btn btn-outline btn-outline-dark"
+                type="submit">
+                {(historicData === 'enabled')? 'Switch off the OS 1890s Historical Map' : 'Switch on the OS 1890s Historical Map'}
+            </button>
+        </form>
+    );
 }
-
-const HistoricDataSwitcherProps: React.FC<HistoricDataSwitcherProps> = (props) => (
-    <form className={`historic-data-switcher ${props.currentDisplay}`} onSubmit={props.onSubmit}>
-        <button className="btn btn-outline btn-outline-dark"
-            type="submit">
-            {(props.currentDisplay === 'enabled')? 'Switch off the OS 1890s Historical Map' : 'Switch on the OS 1890s Historical Map'}
-        </button>
-    </form>
-);
-
-export default HistoricDataSwitcherProps;

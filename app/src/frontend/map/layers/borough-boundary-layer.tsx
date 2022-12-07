@@ -1,18 +1,19 @@
 import { GeoJsonObject } from 'geojson';
 import React, { useEffect, useState } from 'react';
 import { GeoJSON } from 'react-leaflet';
-import { LayerEnablementState } from '../../config/map-config';
+import { useDisplayPreferences } from '../../displayPreferences-context';
 import { apiGet } from '../../apiHelpers';
 
-export function BoroughBoundaryLayer({enablement}: {enablement: LayerEnablementState}) {
+export function BoroughBoundaryLayer({}) {
     const [boundaryGeojson, setBoundaryGeojson] = useState<GeoJsonObject>(null);
+    const { borough } = useDisplayPreferences();
 
     useEffect(() => {
         apiGet('/geometries/boroughs.geojson')
             .then(data => setBoundaryGeojson(data as GeoJsonObject));
     }, []);
 
-    if(enablement == "enabled") {
+    if(borough == "enabled") {
         return boundaryGeojson &&
         <GeoJSON 
         attribution='Borough boundary from <a href=https://data.london.gov.uk/dataset/london_boroughs>London Datastore</a> Ordnance Survey Open Data - Contains public sector information licensed under the <a href=https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/>Open Government Licence v3.0</a>'
@@ -20,7 +21,7 @@ export function BoroughBoundaryLayer({enablement}: {enablement: LayerEnablementS
         style={{color: '#f00', fill: false, weight: 1}}
        /* minNativeZoom={17}*/
     />;
-    } else if (enablement == "disabled") {
+    } else if (borough == "disabled") {
         return <div></div>
         // do not display anything
         return boundaryGeojson &&
