@@ -78,7 +78,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
     if(data.length == 0) {
       if (props.allEntryCount == 0) {
         return (<Fragment>
-                  <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13 }}>
+                  <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <Disclaimer />
                   </div>
                   <InfoBox type='success'>
@@ -87,7 +87,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                 </Fragment>);
     } else {
       return (<Fragment>
-                  <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13 }}>
+                  <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <Disclaimer />
                   </div>
                 <InfoBox type='success'>
@@ -100,7 +100,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
         <InfoBox type='info'>
           To see planning applications visualised for different periods click on the map key dropdown.
         </InfoBox>
-        <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13 }}>
+        <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9"}}>
           {/* TODO: data[0] is problematic here... Compute it from listed elements and show all distinct variants? Error if they are not distinct? Hardcode it? */}
           <div>
             Planning application status is streamed using live data uploaded by local authorities to {data[0]["data_source_link"] ? <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a> : data[0]["data_source"] }.
