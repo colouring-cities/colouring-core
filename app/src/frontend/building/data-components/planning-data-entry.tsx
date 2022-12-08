@@ -78,22 +78,20 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
     if(data.length == 0) {
       if (props.allEntryCount == 0) {
         return (<Fragment>
-                  <InfoBox>
+                  <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13 }}>
                     <Disclaimer />
-                  </InfoBox>
+                  </div>
                   <InfoBox type='success'>
                   No live planning data available currently for this building polygon via the Planning London DataHub.
-                  <br/>
                   </InfoBox>
                 </Fragment>);
     } else {
       return (<Fragment>
-                  <InfoBox>
+                  <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13 }}>
                     <Disclaimer />
-                  </InfoBox>
+                  </div>
                 <InfoBox type='success'>
                 No live planning data for this date range, but this building has associated planning data now shown here.
-                <br/>
                 </InfoBox>
               </Fragment>);
     }
@@ -102,14 +100,14 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
         <InfoBox type='info'>
           To see planning applications visualised for different periods click on the map key dropdown.
         </InfoBox>
-        <InfoBox type='info'>
+        <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13 }}>
           {/* TODO: data[0] is problematic here... Compute it from listed elements and show all distinct variants? Error if they are not distinct? Hardcode it? */}
           <div>
             Planning application status is streamed using live data uploaded by local authorities to {data[0]["data_source_link"] ? <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a> : data[0]["data_source"] }.
           </div>
           <Disclaimer />
           <br/>
-        </InfoBox>
+        </div>
         {data.map((item) => (
         <Fragment>
         <InfoBox type='success'>
