@@ -1,9 +1,8 @@
-
-.map-button-theme {
+.night-theme {
     filter: grayscale(100%) invert(1);
 }
 
-.map-button-theme {
+.light-theme {
     filter: none;
 }
 
