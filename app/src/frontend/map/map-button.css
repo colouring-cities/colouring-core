@@ -16,7 +16,7 @@
 }
 .map-button .btn {
     margin: 0;
-    min-width: 280px;
+    min-width: 310px;
 }
 .map-button.night .btn {
     color: #fff;
@@ -38,9 +38,15 @@
 .theme-switcher {
     top: 77px;
 }
+.theme-switcher .btn {
+    min-width: 340px;
+}
 
 .data-switcher {
     top: 117px;
+}
+.data-switcher .btn {
+    min-width: 340px;
 }
 
 .borough-switcher {
