@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './data-switcher.css';
+import './map-button.css';
 import { useDisplayPreferences } from '../displayPreferences-context';
 
 interface DataLayerSwitcherProps {
@@ -11,7 +11,7 @@ interface DataLayerSwitcherProps {
 const DataLayerSwitcher: React.FC<DataLayerSwitcherProps> = (props) => {
     const { darkLightTheme } = useDisplayPreferences();
     return (
-        <form className={`data-switcher ${darkLightTheme}`} onSubmit={props.onSubmit}>
+        <form className={`data-switcher map-button ${darkLightTheme}`} onSubmit={props.onSubmit}>
             <button className="btn btn-outline btn-outline-dark"
                 type="submit">
                 {(props.currentDisplay === 'enabled')? 'Hide layer options' : 'Show layer options'}

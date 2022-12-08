@@ -1,0 +1,77 @@
+
+.map-button-theme {
+    filter: grayscale(100%) invert(1);
+}
+
+.map-button-theme {
+    filter: none;
+}
+
+.map-button {
+    z-index: 1000;
+    position: absolute;
+    right: 10px;
+    float: right;
+    background: white;
+    border-radius: 4px;
+}
+.map-button .btn {
+    margin: 0;
+    min-width: 280px;
+}
+.map-button.night .btn {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+.map-button.night .btn:hover {
+    color: #343a40;
+    background-color: transparent;
+    background-image: none;
+    border-color: #343a40;
+}
+@media (max-width: 990px){
+    .map-button {
+        visibility: hidden;
+    }
+}
+
+.theme-switcher {
+    top: 77px;
+}
+
+.data-switcher {
+    top: 117px;
+}
+
+.borough-switcher {
+    top: 157px;
+}
+
+.housing-switcher {
+    top: 197px;
+}
+
+.creative-switcher {
+    top: 237px;
+}
+
+.flood-switcher {
+    top: 277px;
+}
+
+.vista-switcher {
+    top: 317px;
+}
+
+.conservation-switcher {
+    top: 357px;
+}
+
+.historic-data-switcher {
+    top: 397px;
+}
+
+.parcel-switcher {
+    top: 437px;
+}
