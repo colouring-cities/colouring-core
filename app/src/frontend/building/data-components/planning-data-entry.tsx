@@ -106,7 +106,6 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
             Planning application status is streamed using live data uploaded by local authorities to {data[0]["data_source_link"] ? <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a> : data[0]["data_source"] }.
           </div>
           <Disclaimer />
-          <br/>
         </div>
         {data.map((item) => (
         <Fragment>
@@ -124,7 +123,6 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                 <div><b>Description of proposed work</b>: {item["description"] ? <LongText content = {item["description"]} limit = {400}/> : MissingData}</div>
                 <div><b>Address of the location as provided by local authority:</b> {ShowIfAvailable(item["address"])}</div>
                 <div><b>Most recent update by data provider:</b> {ShowIfAvailable(item["decision_date"])}</div>
-                <br/>
             </Fragment>
         </InfoBox>
         </Fragment>
