@@ -122,7 +122,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Possible future applications (crowdsourced data)" collapsed={true} >
-                <InfoBox type='success'>Click and colour buildings here if you think that there will be a future planning application. To add your opinion on how well this building works for the community, please visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
+                <InfoBox type='info'>Click and colour buildings here if you think that there will be a future planning application. To add your opinion on how well this building works for the community, please visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
                 <UserOpinionEntry
                     slug='community_expected_planning_application'
                     title={buildingUserFields.community_expected_planning_application.title}
