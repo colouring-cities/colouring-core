@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import loadable from '@loadable/component';
 
@@ -18,7 +18,8 @@ import Welcome from './pages/welcome';
 import { PrivateRoute } from './route';
 import { useLastNotEmpty } from './hooks/use-last-not-empty';
 import { Category } from './config/categories-config';
-import { defaultMapCategory } from './config/category-maps-config';
+import { BuildingMapTileset } from './config/tileserver-config';
+import { defaultMapCategory, categoryMapsConfig } from './config/category-maps-config';
 import { useMultiEditData } from './hooks/use-multi-edit-data';
 import { useAuth } from './auth-context';
 import { sendBuildingUpdate } from './api-data/building-update';
@@ -57,6 +58,15 @@ function setOrToggle<T>(currentValue: T, newValue: T): T {
     } else {
         return newValue;
     }
+}
+
+function useStateWithOptions<T>(defaultValue: T, options: T[]): [T, (x: T) => void] {
+    const [value, setValue] = useState(defaultValue);
+
+    const effectiveValue = options.includes(value) ? value : options[0];
+    const handleChange = useCallback((x) => setValue(x), []);
+
+    return [effectiveValue, handleChange];
 }
 
 export const MapApp: React.FC<MapAppProps> = props => {
@@ -121,6 +131,11 @@ export const MapApp: React.FC<MapAppProps> = props => {
         }
     }, [selectedBuildingId, updateUserVerified, reloadBuilding, userVerified]);
 
+
+    const categoryMapDefinitions = useMemo(() => categoryMapsConfig[displayCategory], [displayCategory]);
+    const availableMapStyles = useMemo(() => categoryMapDefinitions.map(x => x.mapStyle), [categoryMapDefinitions]);
+    const [mapColourScale, setMapColourScale] = useStateWithOptions<BuildingMapTileset>(undefined, availableMapStyles);
+
     return (
         <>
             <PrivateRoute path="/:mode(edit|multi-edit)" /> {/* empty private route to ensure auth for editing */}
@@ -158,9 +173,11 @@ export const MapApp: React.FC<MapAppProps> = props => {
             <ColouringMap
                 selectedBuildingId={selectedBuildingId}
                 mode={mode || 'basic'}
-                category={displayCategory}
                 revisionId={revisionId}
                 onBuildingAction={mode === 'multi-edit' ? colourBuilding : selectBuilding}
+                mapColourScale={mapColourScale}
+                onMapColourScale={setMapColourScale}
+                categoryMapDefinitions={categoryMapDefinitions}
             />
         </>
     );

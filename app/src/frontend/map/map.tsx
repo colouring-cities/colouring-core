@@ -6,7 +6,6 @@ import './map.css';
 
 import { apiGet } from '../apiHelpers';
 import { HelpIcon } from '../components/icons';
-import { categoryMapsConfig } from '../config/category-maps-config';
 import { Category } from '../config/categories-config';
 import { initialMapViewport, mapBackgroundColor, MapTheme, LayerEnablementState } from '../config/map-config';
 
@@ -41,21 +40,26 @@ import { CreativeSwitcher } from './creative-switcher';
 import { HousingSwitcher } from './housing-switcher';
 import { BuildingMapTileset } from '../config/tileserver-config';
 import { useDisplayPreferences } from '../displayPreferences-context';
+import { CategoryMapDefinition } from '../config/category-maps-config';
 
 interface ColouringMapProps {
     selectedBuildingId: number;
     mode: 'basic' | 'view' | 'edit' | 'multi-edit';
-    category: Category;
     revisionId: string;
     onBuildingAction: (building: Building) => void;
+    mapColourScale: BuildingMapTileset;
+    onMapColourScale: (x: BuildingMapTileset) => void;
+    categoryMapDefinitions: CategoryMapDefinition[]
 }
 
 export const ColouringMap : FC<ColouringMapProps> = ({
-    category,
     mode,
     revisionId,
     onBuildingAction,
     selectedBuildingId,
+    mapColourScale,
+    onMapColourScale,
+    categoryMapDefinitions,
     children
 }) => {
     const { darkLightTheme, darkLightThemeSwitch } = useDisplayPreferences();
@@ -63,7 +67,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
     const [position, setPosition] = useState(initialMapViewport.position);
     const [zoom, setZoom] = useState(initialMapViewport.zoom);
 
-    const [mapColourScale, setMapColourScale] = useState<BuildingMapTileset>();
 
     const handleLocate = useCallback(
         (lat: number, lng: number, zoom: number) => {
@@ -91,14 +94,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
         },
         [dataLayers],
     )
-
-    const categoryMapDefinitions = useMemo(() => categoryMapsConfig[category], [category]);
-
-    useEffect(() => {
-        if(!categoryMapDefinitions.some(def => def.mapStyle === mapColourScale)) {
-            setMapColourScale(categoryMapDefinitions[0].mapStyle);
-        }
-    }, [categoryMapDefinitions, mapColourScale]);
 
     const hasSelection = selectedBuildingId != undefined;
     const isEdit = ['edit', 'multi-edit'].includes(mode);
@@ -170,7 +165,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                             <HelpIcon /> {isEdit ? 'Click a building to edit' : 'Click a building for details'}
                         </div>
                     }
-                    <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={setMapColourScale}/>
+                    <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={onMapColourScale}/>
                     <ThemeSwitcher onSubmit={darkLightThemeSwitch} currentTheme={darkLightTheme} />
                     <DataLayerSwitcher onSubmit={layerSwitch} currentDisplay={dataLayers} />
                     {
