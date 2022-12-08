@@ -51,7 +51,7 @@ const LongText = ({ content,limit}) => {
   </div>
 }
 
-const Disclaimer = () => { return <Fragment><div><u>Disclaimer</u>: Not all applications for London are displayed. Some boroughs do not yet provide planning data to the GLA. For comprehensive information on applications please visit the relevant local authority's planning website.</div></Fragment> }
+const Disclaimer = () => { return <Fragment><i><div><u>Disclaimer</u>: Not all applications for London are displayed. Some boroughs do not yet provide planning data to the GLA. For comprehensive information on applications please visit the relevant local authority's planning website.</div></i></Fragment> }
 
 const MissingData = "not provided by data source"
 
