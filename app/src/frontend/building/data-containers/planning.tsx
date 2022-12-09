@@ -52,6 +52,10 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const switchToExpectedApplicationMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('community_expected_planning_application_total')
+    }
+    const switchToBuildingProtectionMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('planning_combined')
     }    
     const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick } = useDisplayPreferences();
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
@@ -215,7 +219,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <InfoBox>
                 This section provides information on heritage assets and building protection. To produce the most accurate spatial map possible we need to combine official data with crowdsourced data. Help us create this map together by checking, verifying and adding information.
             </InfoBox>
-            <button className="map-switcher-inline btn btn-outline btn-outline-dark" > {/*onClick={floodSwitchOnClick}*/}
+            <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToBuildingProtectionMapStyle}>
                     {'Click here to switch map key to this info'}
             </button>
             <NumericDataEntryWithFormattedLink
