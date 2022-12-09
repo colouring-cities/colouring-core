@@ -18,6 +18,7 @@ import PlanningDataOfficialDataEntry from '../data-components/planning-data-entr
 import { CategoryViewProps } from './category-view-props';
 import { Category } from '../../config/categories-config';
 import { useDisplayPreferences } from '../../displayPreferences-context';
+import { processParam } from '../../../api/parameters';
 
 const currentTimestamp = new Date().valueOf();
 const milisecondsInYear = 1000 * 60 * 60 * 24 * 365;
@@ -48,6 +49,10 @@ function isArchived(item) {
 }
 
 const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
+    const switchToExpectedApplicationMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('community_expected_planning_application_total')
+    }    
     const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick } = useDisplayPreferences();
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     return (
@@ -132,7 +137,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                 />
-                <button className="map-switcher-inline btn btn-outline btn-outline-dark" > {/*onClick={floodSwitchOnClick}*/}
+                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToExpectedApplicationMapStyle}> 
                     {'Click here to switch map key to this info'}
                 </button>
             </DataEntryGroup>

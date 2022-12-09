@@ -161,6 +161,8 @@ export const MapApp: React.FC<MapAppProps> = props => {
                                     user_verified={userVerified ?? {}}
                                     onBuildingUpdate={handleBuildingUpdate}
                                     onUserVerifiedUpdate={handleUserVerifiedUpdate}
+                                    mapColourScale={mapColourScale}
+                                    onMapColourScale={setMapColourScale}
                                 />
                             </Route>
                         </Switch>
