@@ -91,7 +91,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                     <Disclaimer />
                   </div>
                 <InfoBox type='success'>
-                No live planning data for this date range, but this building has associated planning data now shown here.
+                No live planning data for this date range, but this building has associated planning data not shown here.
                 </InfoBox>
               </Fragment>);
     }
