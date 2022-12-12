@@ -82,7 +82,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
                     <Disclaimer />
                   </div>
                   <InfoBox type='success'>
-                  No live planning data available currently for this building polygon via the Planning London DataHub.
+                  No live planning data are currently available for this building from the Planning London DataHub.
                   </InfoBox>
                 </Fragment>);
     } else {
