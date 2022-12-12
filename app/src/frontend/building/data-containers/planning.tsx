@@ -138,7 +138,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </DataEntryGroup>
             <DataEntryGroup name="Past applications (official data)" collapsed={true} >
                 <InfoBox>
-                    Past applications, including those with no decision in over a year
+                    This section provides data on past applications where available from the GLA, including those with no decision in over a year
                 </InfoBox>
                 <PlanningDataOfficialDataEntry
                     shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item)) : []}
