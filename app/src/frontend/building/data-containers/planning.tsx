@@ -215,9 +215,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             */}
         </DataEntryGroup>
-        <DataEntryGroup name="Building protection" collapsed={true} >
+        <DataEntryGroup name="Heritage assets and building protection" collapsed={true} >
             <InfoBox>
-                This section provides information on heritage assets and building protection. To produce the most accurate spatial map possible we need to combine official data with crowdsourced data. Help us create this map together by checking, verifying and adding information.
+            Please help us produce the most accurate map possible of London's historic buildings, by adding data where missing and verifying official data where accurately mapped.
             </InfoBox>
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToBuildingProtectionMapStyle}>
                     {'Click here to switch map key to this info'}
