@@ -157,7 +157,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                 />
                 <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToExpectedApplicationMapStyle}> 
-                    {'Click here to switch map key to this info'}
+                    {'Click here to view possible locations of future applications'}
                 </button>
             </DataEntryGroup>
         </DataEntryGroup>
@@ -237,7 +237,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             Please help us produce the most accurate map possible of London's historic buildings, by adding data where missing and verifying official data where accurately mapped.
             </InfoBox>
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToBuildingProtectionMapStyle}>
-                    {'Click here to switch map key to this info'}
+                    {'Click here to see the historic buildings map'}
             </button>
             <NumericDataEntryWithFormattedLink
                 title={dataFields.planning_list_id.title}
