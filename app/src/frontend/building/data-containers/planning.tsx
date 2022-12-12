@@ -426,7 +426,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.planning_in_apa_url}
                 />
         </DataEntryGroup>
-        <DataEntryGroup name="Land ownership type" collapsed={true} >
+        <DataEntryGroup name="Land ownership type [inactive]" collapsed={true} >
                 <InfoBox type='warning'>
                     This category is not yet activated.
                 </InfoBox>
