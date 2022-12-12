@@ -68,10 +68,23 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Other active application info (crowdsourced data)" collapsed={true} >
+            <DataEntryGroup name="Active application info (crowdsourced) [inactive]" collapsed={true} >
+                {/* will be titled "Other active application info (crowdsourced data)" once active" */}
                 <InfoBox type='warning'>
                     This category is not yet activated.
                 </InfoBox>
+                {/* that is placeholder display, will be replaced by actual code */}
+                <div className="data-title">
+                    <div className="data-title-text">
+                        <ul>
+                            <li>Year of completion if known</li>
+                            <li>If you know of a planning application that has been recently submitted for this site, and is not listed in the blue box above, please enter its planning application ID below:</li>
+                            <li>If any of the active planning applications are not mapped onto the correct site, please tick here</li>
+                        </ul>
+                    </div>
+                </div>
+                {
+                    /*
                 <NumericDataEntry
                     title={dataFields.planning_crowdsourced_site_completion_year.title}
                     slug="planning_crowdsourced_site_completion_year"
@@ -118,7 +131,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     disabled={true}
                 />
-                { /* on enabling switch it to UserOpinionEntry, remove value and restore userValue*/ }
+                on enabling switch it to UserOpinionEntry, remove value and restore userValue
+                */
+                }
 
             </DataEntryGroup>
             <DataEntryGroup name="Past applications (official data)" collapsed={true} >
