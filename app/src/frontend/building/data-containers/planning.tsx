@@ -146,7 +146,10 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Possible future applications (crowdsourced data)" collapsed={true} >
-                <InfoBox type='info'>Click and colour buildings here if you think that there will be a future planning application. To add your opinion on how well this building works for the community, please also visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
+                <InfoBox type='info'>Click and colour buildings here if you think they may be subject to a future planning application involving demolition. To add your opinion on how well this building works, please also visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
+                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToExpectedApplicationMapStyle}> 
+                    {'Click here to view possible locations of future applications'}
+                </button>
                 <UserOpinionEntry
                     slug='community_expected_planning_application'
                     title={buildingUserFields.community_expected_planning_application.title}
@@ -156,9 +159,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                 />
-                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToExpectedApplicationMapStyle}> 
-                    {'Click here to view possible locations of future applications'}
-                </button>
             </DataEntryGroup>
         </DataEntryGroup>
         <DataEntryGroup name="Planning zones" collapsed={true} >
