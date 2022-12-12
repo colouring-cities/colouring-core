@@ -163,7 +163,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </DataEntryGroup>
         <DataEntryGroup name="Planning zones" collapsed={true} >
             <InfoBox>
-                Use the pink buttons to visualise planning zone data. You may need to <u>zoom out</u>.
+                To view planning zone data for London click the pink buttons. You may need to <u>zoom out</u>.
                 Information on whether a specific building is in a zone will be added automatically in future.
             </InfoBox>
             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
