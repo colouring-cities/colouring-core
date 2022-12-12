@@ -103,7 +103,9 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
         <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9"}}>
           {/* TODO: data[0] is problematic here... Compute it from listed elements and show all distinct variants? Error if they are not distinct? Hardcode it? */}
           <div>
-            Planning application status is streamed using live data uploaded by local authorities to {data[0]["data_source_link"] ? <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a> : data[0]["data_source"] }.
+            <i>
+              Planning application status is streamed using live data uploaded by local authorities to {data[0]["data_source_link"] ? <a href={data[0]["data_source_link"]}>{data[0]["data_source"]}</a> : data[0]["data_source"] }.
+            </i>
           </div>
           <Disclaimer />
         </div>
