@@ -321,8 +321,8 @@
     <Style name="planning_applications_status_all">
         <Rule>
             <Filter>[status] = "Submitted"</Filter>
-            <PolygonSymbolizer fill="#2a7aee"/>
-            <LineSymbolizer stroke="#2a7aee" stroke-width="1.75" />
+            <PolygonSymbolizer fill="#800080"/>
+            <LineSymbolizer stroke="#800080" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Approved"</Filter>
@@ -358,8 +358,8 @@
     <Style name="planning_applications_status_recent">
         <Rule>
             <Filter>[status] = "Submitted" and [days_since_registered_with_local_authority_date] &lt; 366</Filter>
-            <PolygonSymbolizer fill="#2a7aee"/>
-            <LineSymbolizer stroke="#2a7aee" stroke-width="1.75" />
+            <PolygonSymbolizer fill="#800080"/>
+            <LineSymbolizer stroke="#800080" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Approved" and [days_since_decision_date] &lt; 366</Filter>
@@ -390,8 +390,8 @@
     <Style name="planning_applications_status_very_recent">
         <Rule>
             <Filter>[status] = "Submitted" and [days_since_registered_with_local_authority_date] &lt;= 30</Filter>
-            <PolygonSymbolizer fill="#2a7aee"/>
-            <LineSymbolizer stroke="#2a7aee" stroke-width="1.75" />
+            <PolygonSymbolizer fill="#800080"/>
+            <LineSymbolizer stroke="#800080" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] = "Approved" and [days_since_decision_date] &lt;= 30</Filter>
