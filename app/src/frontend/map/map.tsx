@@ -122,6 +122,13 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <BuildingBaseLayer theme={darkLightTheme} />
                 </Pane>
 
+                <Pane
+                    name='cc-overlay-pane-shown-behind-buildings'
+                    style={{zIndex: 199}}
+                >
+                    <ConservationAreaBoundaryLayer/>
+                </Pane>
+
                 {
                     mapColourScale &&
                         <BuildingDataLayer
@@ -139,7 +146,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <BoroughBoundaryLayer/>
                     <ParcelBoundaryLayer/>
                     <FloodBoundaryLayer/>
-                    <ConservationAreaBoundaryLayer/>
                     <VistaBoundaryLayer/>
                     <HousingBoundaryLayer/>
                     <CreativeBoundaryLayer/>
