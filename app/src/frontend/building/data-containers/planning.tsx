@@ -63,6 +63,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     <Fragment>
         <DataEntryGroup name="Planning application information" collapsed={true} >
             <DataEntryGroup name="Current/active applications (official data)" collapsed={false} >
+                <InfoBox>
+                    To see planning applications visualised for different periods click on the map key dropdown.
+                </InfoBox>
                 <PlanningDataOfficialDataEntry  
                     shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item) == false) : []}
                     allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
