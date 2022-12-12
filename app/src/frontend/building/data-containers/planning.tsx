@@ -433,6 +433,15 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox>
                     This section is designed to provide information on land parcels and their ownership type. Can you help us to crowdsource this information?
                 </InfoBox>
+                <div className="data-title">
+                    <div className="data-title-text">
+                        <ul>
+                            <li>What type of owner owns this land parcel?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                {/*
                 <SelectDataEntry
                     slug='community_public_ownership'
                     title={"What type of owner owns this land parcel? "}
@@ -457,6 +466,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.community_public_ownership}
                     verified_count={props.building.verified.community_public_ownership}
                 />
+                */
+                }
         </DataEntryGroup>
     </Fragment>
 )};
