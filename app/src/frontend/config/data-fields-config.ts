@@ -504,7 +504,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_list_id: {
         category: Category.Planning,
-        title: "Is the building on the <a href=\"https://historicengland.org.uk/advice/hpg/heritage-assets/nhle/\" target=\"_blank\">National Heritage List for England</a>?",
+        title: "If the building is on the <a href=\"https://historicengland.org.uk/advice/hpg/heritage-assets/nhle/\" target=\"_blank\">National Heritage List for England (NHLE)</a> please add the ID:",
         example: "121436",
         //tooltip: ,
     },
@@ -516,13 +516,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_heritage_at_risk_url: {
         category: Category.Planning,
-        title: "Is it on the <a href=\"https://historicengland.org.uk/advice/heritage-at-risk/search-register/\" target=\"_blank\">Heritage at Risk</a> register?",
+        title: "If the building is on the <a href=\"https://historicengland.org.uk/advice/heritage-at-risk/search-register/\" target=\"_blank\">Heritage at Risk</a> register please add the ID:",
         example: "",
         //tooltip: ,
     },
     planning_world_list_id: {
         category: Category.Planning,
-        title: "Is it within a <a href=\"https://historicengland.org.uk/advice/hpg/has/whs/\" target=\"_blank\">World Heritage Site</a>?",
+        title: "If the building is on a <a href=\"https://historicengland.org.uk/advice/hpg/has/whs/\" target=\"_blank\">World Heritage Site</a> please add the ID:",
         example: "488",
         //tooltip: ,
     },
