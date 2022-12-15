@@ -65,8 +65,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <DataEntryGroup name="Current/active applications (official data)" collapsed={false} >
                 <InfoBox>
                     To see planning applications visualised for different periods click on the map key dropdown.
-
-                    To comment on applications follow the application link or find the application in local authority's portal and comment there.
+                
+                    To comment on an application follow the application link if provided, or visit the relevant local authority's planning page
                 </InfoBox>
                 <PlanningDataOfficialDataEntry  
                     shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item) == false) : []}
@@ -242,7 +242,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             Help us produce the most accurate map possible of London's historic buildings. Please add data if missing or click "Verify" where entries are correct.
             </InfoBox>
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToBuildingProtectionMapStyle}>
-                    {'Click here to see the historic buildings map'}
+                    {'Click here to see the designated/protected buildings map'}
             </button>
             <NumericDataEntryWithFormattedLink
                 title={dataFields.planning_list_id.title}
