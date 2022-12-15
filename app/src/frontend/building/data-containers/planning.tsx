@@ -57,7 +57,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('planning_combined')
     }    
-    const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick } = useDisplayPreferences();
+    const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, parcel, parcelSwitchOnClick } = useDisplayPreferences();
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     return (
     <Fragment>
@@ -433,6 +433,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox>
                     This section is designed to provide information on land parcels and their ownership type. Can you help us to crowdsource this information?
                 </InfoBox>
+                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={parcelSwitchOnClick}>
+                {(parcel === 'enabled')? 'Click to hide sample of parcel data (in City)' : 'Click to see sample of parcel data (in City) mapped'}
+                </button>
                 <div className="data-title">
                     <div className="data-title-text">
                         <ul>
