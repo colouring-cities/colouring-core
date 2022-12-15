@@ -57,7 +57,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('planning_combined')
     }    
-    const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, parcel, parcelSwitchOnClick } = useDisplayPreferences();
+    const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, parcel, parcelSwitchOnClick, conservation, conservationSwitchOnClick } = useDisplayPreferences();
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     return (
     <Fragment>
@@ -239,11 +239,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </DataEntryGroup>
         <DataEntryGroup name="Heritage assets and building protection" collapsed={true} >
             <InfoBox>
-            Help us produce the most accurate map possible of London's historic buildings. Please add data if missing or click "Verify" where entries are correct.
+            Help us produce the most accurate map possible for London's designated/protected buildings. Please add data if missing or click "Verify" where entries are correct.
             </InfoBox>
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToBuildingProtectionMapStyle}>
-                    {'Click here to see the designated/protected buildings map'}
+                    {'Click to see individual protected buildings mapped'}
             </button>
+            <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={conservationSwitchOnClick}>
+                {(conservation === 'enabled')? 'Click to hide Convervation Areas' : 'Click to see Convervation Areas'}
+                </button>
             <NumericDataEntryWithFormattedLink
                 title={dataFields.planning_list_id.title}
                 slug="planning_list_id"
