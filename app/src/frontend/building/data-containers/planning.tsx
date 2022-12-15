@@ -66,7 +66,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox>
                     To see planning applications visualised for different periods click on the map key dropdown.
                 
-                    To comment on an application follow the application link if provided, or visit the relevant local authority's planning page
+                    To comment on an application follow the application link if provided, or visit the relevant local authority's planning page.
                 </InfoBox>
                 <PlanningDataOfficialDataEntry  
                     shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item) == false) : []}
