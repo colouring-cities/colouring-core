@@ -24,6 +24,11 @@
             <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
     </Style>
+    <Style name="base_boroughs">
+        <Rule>
+            <TextSymbolizer size="24" fill="#f99" face-name="DejaVu Sans Bold Oblique" halo-radius="1" wrap-width="20">[name]</TextSymbolizer>
+        </Rule>
+    </Style>
     <Style name="number_labels">
         <Rule>
             <TextSymbolizer

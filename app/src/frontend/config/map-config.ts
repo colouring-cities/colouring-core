@@ -8,12 +8,13 @@ export const initialMapViewport: MapViewport = {
   zoom: 16,
 };
 
-export type MapTheme = 'light' | 'night' | 'night_outlines';
+export type MapTheme = 'light' | 'night' | 'night_outlines' | 'boroughs';
 
 export type LayerEnablementState = 'enabled' | 'disabled';
 
 export const mapBackgroundColor: Record<MapTheme, string> = {
     light: '#F0EEEB',
     night: '#162639',
-    night_outlines: '#162639'
+    night_outlines: '#162639',
+    boroughs: '#ff0000',
 };

@@ -18,6 +18,12 @@ const LAYER_QUERIES = {
             geometry_id
         FROM
             buildings`,
+    base_boroughs: `
+        SELECT
+            geometry_id,
+            name
+        FROM
+            external_data_borough_boundary`,
     number_labels:`
         SELECT
             geometry_id,
@@ -245,6 +251,29 @@ function getDataConfig(tileset: string): DataConfig {
         throw new Error('Invalid tileset requested');
     }
     
+    if(tileset == 'base_boroughs') {
+        const query = `(
+            SELECT
+            d.*,
+            g.geometry_geom
+        FROM (
+            ${table}
+        ) AS d
+        JOIN
+            geometries AS g
+        ON d.geometry_id = g.geometry_id
+        JOIN
+            external_data_borough_boundary AS b
+        ON d.geometry_id = b.geometry_id
+    ) AS data
+        `;
+    
+        return {
+            geometry_field: GEOMETRY_FIELD,
+            table: query
+        };    
+    }
+
     const query = `(
         SELECT
             d.*,
