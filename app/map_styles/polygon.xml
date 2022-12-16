@@ -20,13 +20,17 @@
     <Style name="base_night_outlines">
         <Rule>
             <LineSymbolizer stroke="#ff0000ff" stroke-width="1" />
-            <MaxScaleDenominator>17000</MaxScaleDenominator>
-            <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
     </Style>
     <Style name="base_boroughs">
         <Rule>
-            <TextSymbolizer size="24" fill="#f99" face-name="DejaVu Sans Bold Oblique" halo-radius="1" wrap-width="20">[name]</TextSymbolizer>
+            <TextSymbolizer size="24" fill="#f77" face-name="DejaVu Sans Bold Oblique" halo-radius="1" wrap-width="20">[name]</TextSymbolizer>
+            <MaxScaleDenominator>17000</MaxScaleDenominator>
+            <MinScaleDenominator>2000</MinScaleDenominator>
+        </Rule>
+        <Rule>
+            <TextSymbolizer size="14" fill="#f77" face-name="DejaVu Sans Bold Oblique" halo-radius="1" wrap-width="20">[name]</TextSymbolizer>
+            <MinScaleDenominator>17000</MinScaleDenominator>
         </Rule>
     </Style>
     <Style name="number_labels">
