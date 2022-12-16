@@ -24,13 +24,18 @@
     </Style>
     <Style name="base_boroughs">
         <Rule>
-            <TextSymbolizer size="24" fill="#f77" face-name="DejaVu Sans Bold Oblique" halo-radius="1" wrap-width="20">[name]</TextSymbolizer>
-            <MaxScaleDenominator>17000</MaxScaleDenominator>
+            <TextSymbolizer size="24" fill="#f66" face-name="DejaVu Serif Book" halo-radius="1" wrap-width="20">[name]</TextSymbolizer>
             <MinScaleDenominator>2000</MinScaleDenominator>
+            <MaxScaleDenominator>17000</MaxScaleDenominator>
         </Rule>
         <Rule>
-            <TextSymbolizer size="14" fill="#f77" face-name="DejaVu Sans Bold Oblique" halo-radius="1" wrap-width="20">[name]</TextSymbolizer>
+            <TextSymbolizer size="20" fill="#f66" face-name="DejaVu Serif Book" halo-radius="1" wrap-width="20">[name]</TextSymbolizer>
             <MinScaleDenominator>17000</MinScaleDenominator>
+            <MaxScaleDenominator>27000</MaxScaleDenominator>
+        </Rule>
+        <Rule>
+            <TextSymbolizer size="16" fill="#f66" face-name="DejaVu Serif Book" halo-radius="1" wrap-width="20">[name]</TextSymbolizer>
+            <MinScaleDenominator>27000</MinScaleDenominator>
         </Rule>
     </Style>
     <Style name="number_labels">
