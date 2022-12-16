@@ -52,8 +52,8 @@ const tileCache = new TileCache(
     },
     shouldCacheFn,
     
-    // don't clear base_light and base_night on bounding box cache clear
-    (tileset: string) => tileset !== 'base_light' && tileset !== 'base_night' && tileset !== 'base_night_outlines'
+    // don't clear on bounding box cache clear tilesets not affected by user-editable data
+    (tileset: string) => tileset !== 'base_light' && tileset !== 'base_night' && tileset !== 'base_night_outlines' && tileset !== 'base_burough' && tileset !== "planning_applications_status_recent" && tileset !== "planning_applications_status_very_recent" && tileset !== "planning_applications_status_all"
 );
 
 const renderBuildingTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getDataConfig, getLayerVariables);
