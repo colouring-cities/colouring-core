@@ -35,11 +35,11 @@ if(!allLayersCacheSwitch) {
     // cache age data and base building outlines for more zoom levels than other layers
     shouldCacheFn = ({ tileset, z }: TileParams) =>
         (tileset === 'date_year' && z <= 16) ||
-        (['base_light', 'base_night'].includes(tileset) && z <= 17) ||
+        (['base_light', 'base_night', 'base_night_outlines', 'base_boroughs'].includes(tileset) && z <= 17) ||
         z <= 13;
 } else {
     shouldCacheFn = ({ tileset, z }: TileParams) =>
-        ['base_light', 'base_night'].includes(tileset) && z <= 17;
+        ['base_light', 'base_night', 'base_night_outlines', 'base_boroughs'].includes(tileset) && z <= 17;
 }
 
 const tileCache = new TileCache(
@@ -53,7 +53,7 @@ const tileCache = new TileCache(
     shouldCacheFn,
     
     // don't clear base_light and base_night on bounding box cache clear
-    (tileset: string) => tileset !== 'base_light' && tileset !== 'base_night'
+    (tileset: string) => tileset !== 'base_light' && tileset !== 'base_night' && tileset !== 'base_night_outlines'
 );
 
 const renderBuildingTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getDataConfig, getLayerVariables);
