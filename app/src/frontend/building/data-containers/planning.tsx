@@ -73,74 +73,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Active application info (crowdsourced) [inactive]" collapsed={true} >
-                {/* will be titled "Other active application info (crowdsourced data)" once active" */}
-                <InfoBox type='warning'>
-                    This category is not yet activated.
-                </InfoBox>
-                {/* that is placeholder display, will be replaced by actual code */}
-                <div className="data-title">
-                    <div className="data-title-text">
-                        <ul>
-                            <li>Year of completion if known</li>
-                            <li>If you know of a planning application that has been recently submitted for this site, and is not listed in the blue box above, please enter its planning application ID below:</li>
-                            <li>If any of the active planning applications are not mapped onto the correct site, please tick here</li>
-                        </ul>
-                    </div>
-                </div>
-                {
-                    /*
-                <NumericDataEntry
-                    title={dataFields.planning_crowdsourced_site_completion_year.title}
-                    slug="planning_crowdsourced_site_completion_year"
-                    value={props.building.planning_crowdsourced_site_completion_year}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    disabled={true}
-                    />
-                <Verification
-                    slug="planning_crowdsourced_site_completion_year"
-                    allow_verify={false}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_crowdsourced_site_completion_year")}
-                    user_verified_as={props.user_verified.planning_crowdsourced_site_completion_year}
-                    verified_count={props.building.verified.planning_crowdsourced_site_completion_year}
-                    />
-
-                <DataEntry
-                    title={dataFields.planning_crowdsourced_planning_id.title}
-                    slug="planning_crowdsourced_planning_id"
-                    value={props.building.planning_crowdsourced_planning_id}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    disabled={true}
-                 />
-                <Verification
-                    slug="planning_crowdsourced_planning_id"
-                    allow_verify={false && props.user !== undefined && props.building.planning_crowdsourced_planning_id !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("planning_crowdsourced_planning_id")}
-                    user_verified_as={props.user_verified.planning_crowdsourced_planning_id}
-                    verified_count={props.building.verified.planning_crowdsourced_planning_id}
-                    />
-
-                <LogicalDataEntry
-                    slug='community_expected_planning_application_is_inaccurate'
-                    title={"If any of the active planning applications are not mapped onto the correct site, please tick here"}
-                    value={null}
-
-                    onChange={props.onSaveChange}
-                    mode={props.mode}
-                    copy={props.copy}
-                    disabled={true}
-                />
-                on enabling switch it to UserOpinionEntry, remove value and restore userValue
-                */
-                }
-
-            </DataEntryGroup>
             <DataEntryGroup name="Past applications (official data)" collapsed={true} >
                 <InfoBox>
                     This section provides data on past applications where available from the GLA, including those with no decision in over a year
@@ -429,51 +361,121 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.planning_in_apa_url}
                 />
         </DataEntryGroup>
-        <DataEntryGroup name="Land ownership type [inactive]" collapsed={true} >
+        <DataEntryGroup name="Forthcoming data (sections to be activated)" collapsed={true} >        
+        <DataEntryGroup name="Active application info (crowdsourced)" collapsed={true} >
+                {/* will be titled "Other active application info (crowdsourced data)" once active" */}
                 <InfoBox type='warning'>
                     This category is not yet activated.
                 </InfoBox>
-                <InfoBox>
-                    This section is designed to provide information on land parcels and their ownership type. Can you help us to crowdsource this information?
-                </InfoBox>
-                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={parcelSwitchOnClick}>
-                {(parcel === 'enabled')? 'Click to hide sample of parcel data (in City)' : 'Click to see sample of parcel data (in City) mapped'}
-                </button>
+                {/* that is placeholder display, will be replaced by actual code */}
                 <div className="data-title">
                     <div className="data-title-text">
                         <ul>
-                            <li>What type of owner owns this land parcel?</li>
+                            <li>Year of completion if known</li>
+                            <li>If you know of a planning application that has been recently submitted for this site, and is not listed in the blue box above, please enter its planning application ID below:</li>
+                            <li>If any of the active planning applications are not mapped onto the correct site, please tick here</li>
                         </ul>
                     </div>
                 </div>
-
-                {/*
-                <SelectDataEntry
-                    slug='community_public_ownership'
-                    title={"What type of owner owns this land parcel? "}
-                    value={props.building.community_public_ownership}
-                    options={[
-                        'Government-owned',
-                        'Charity-owned',
-                        'Community-owned/cooperative',
-                        'Owned by other non-profit body',
-                        'Not in public/community ownership',
-                    ]}
-
-                    onChange={props.onChange}
+                {
+                    /*
+                <NumericDataEntry
+                    title={dataFields.planning_crowdsourced_site_completion_year.title}
+                    slug="planning_crowdsourced_site_completion_year"
+                    value={props.building.planning_crowdsourced_site_completion_year}
                     mode={props.mode}
                     copy={props.copy}
-                />
+                    onChange={props.onChange}
+                    disabled={true}
+                    />
                 <Verification
-                    slug="community_public_ownership"
-                    allow_verify={props.user !== undefined && props.building.community_public_ownership !== null && !props.edited}
+                    slug="planning_crowdsourced_site_completion_year"
+                    allow_verify={false}
                     onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("community_public_ownership")}
-                    user_verified_as={props.user_verified.community_public_ownership}
-                    verified_count={props.building.verified.community_public_ownership}
+                    user_verified={props.user_verified.hasOwnProperty("planning_crowdsourced_site_completion_year")}
+                    user_verified_as={props.user_verified.planning_crowdsourced_site_completion_year}
+                    verified_count={props.building.verified.planning_crowdsourced_site_completion_year}
+                    />
+
+                <DataEntry
+                    title={dataFields.planning_crowdsourced_planning_id.title}
+                    slug="planning_crowdsourced_planning_id"
+                    value={props.building.planning_crowdsourced_planning_id}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    disabled={true}
+                 />
+                <Verification
+                    slug="planning_crowdsourced_planning_id"
+                    allow_verify={false && props.user !== undefined && props.building.planning_crowdsourced_planning_id !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("planning_crowdsourced_planning_id")}
+                    user_verified_as={props.user_verified.planning_crowdsourced_planning_id}
+                    verified_count={props.building.verified.planning_crowdsourced_planning_id}
+                    />
+
+                <LogicalDataEntry
+                    slug='community_expected_planning_application_is_inaccurate'
+                    title={"If any of the active planning applications are not mapped onto the correct site, please tick here"}
+                    value={null}
+
+                    onChange={props.onSaveChange}
+                    mode={props.mode}
+                    copy={props.copy}
+                    disabled={true}
                 />
+                on enabling switch it to UserOpinionEntry, remove value and restore userValue
                 */
                 }
+
+            </DataEntryGroup>
+            <DataEntryGroup name="Land ownership type" collapsed={true} >
+                    <InfoBox type='warning'>
+                        This category is not yet activated.
+                    </InfoBox>
+                    <InfoBox>
+                        This section is designed to provide information on land parcels and their ownership type. Can you help us to crowdsource this information?
+                    </InfoBox>
+                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={parcelSwitchOnClick}>
+                    {(parcel === 'enabled')? 'Click to hide sample of parcel data (in City)' : 'Click to see sample of parcel data (in City) mapped'}
+                    </button>
+                    <div className="data-title">
+                        <div className="data-title-text">
+                            <ul>
+                                <li>What type of owner owns this land parcel?</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/*
+                    <SelectDataEntry
+                        slug='community_public_ownership'
+                        title={"What type of owner owns this land parcel? "}
+                        value={props.building.community_public_ownership}
+                        options={[
+                            'Government-owned',
+                            'Charity-owned',
+                            'Community-owned/cooperative',
+                            'Owned by other non-profit body',
+                            'Not in public/community ownership',
+                        ]}
+
+                        onChange={props.onChange}
+                        mode={props.mode}
+                        copy={props.copy}
+                    />
+                    <Verification
+                        slug="community_public_ownership"
+                        allow_verify={props.user !== undefined && props.building.community_public_ownership !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("community_public_ownership")}
+                        user_verified_as={props.user_verified.community_public_ownership}
+                        verified_count={props.building.verified.community_public_ownership}
+                    />
+                    */
+                    }
+            </DataEntryGroup>
         </DataEntryGroup>
     </Fragment>
 )};
