@@ -24,18 +24,69 @@
     </Style>
     <Style name="base_boroughs">
         <Rule>
-            <TextSymbolizer size="24" fill="#f66" face-name="DejaVu Serif Book" halo-radius="1" wrap-width="20">[name]</TextSymbolizer>
-            <MinScaleDenominator>2000</MinScaleDenominator>
-            <MaxScaleDenominator>17000</MaxScaleDenominator>
+            <TextSymbolizer
+                face-name="DejaVu Sans Condensed Bold"
+                fill="#eee"
+                size="24"
+                halo-radius="2"
+                halo-fill="#333"
+                wrap-width="40"
+                clip="false"
+                margin="20"
+            >
+                [name]
+            </TextSymbolizer>
+            <MinScaleDenominator>10000</MinScaleDenominator>
+            <MaxScaleDenominator>20000</MaxScaleDenominator>
         </Rule>
         <Rule>
-            <TextSymbolizer size="20" fill="#f66" face-name="DejaVu Serif Book" halo-radius="1" wrap-width="20">[name]</TextSymbolizer>
-            <MinScaleDenominator>17000</MinScaleDenominator>
-            <MaxScaleDenominator>27000</MaxScaleDenominator>
+            <TextSymbolizer
+                face-name="DejaVu Sans Condensed Bold"
+                fill="#eee"
+                size="21"
+                halo-radius="2"
+                halo-fill="#333"
+                wrap-width="35"
+                clip="false"
+                margin="20"
+            >
+                [name]
+            </TextSymbolizer>
+            <MinScaleDenominator>20000</MinScaleDenominator>
+            <MaxScaleDenominator>80000</MaxScaleDenominator>
         </Rule>
         <Rule>
-            <TextSymbolizer size="16" fill="#f66" face-name="DejaVu Serif Book" halo-radius="1" wrap-width="20">[name]</TextSymbolizer>
-            <MinScaleDenominator>27000</MinScaleDenominator>
+            <TextSymbolizer
+                face-name="DejaVu Sans Condensed Bold"
+                fill="#eee"
+                size="15"
+                halo-radius="2"
+                halo-fill="#333"
+                wrap-width="35"
+                clip="false"
+                margin="20"
+            >
+                [name]
+            </TextSymbolizer>
+            <MinScaleDenominator>80000</MinScaleDenominator>
+            <MaxScaleDenominator>200000</MaxScaleDenominator>
+        </Rule>
+        <Rule>
+            <TextSymbolizer
+                face-name="DejaVu Sans Condensed Bold"
+                fill="#eee"
+                size="10"
+                halo-radius="2"
+                halo-fill="#333"
+                wrap-width="30"
+                clip="false"
+                minimum-distance="50"
+                placement="interior"
+            >
+                [name]
+            </TextSymbolizer>
+            <MinScaleDenominator>200000</MinScaleDenominator>
+            <MaxScaleDenominator>360000</MaxScaleDenominator>
         </Rule>
     </Style>
     <Style name="number_labels">
