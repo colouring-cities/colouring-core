@@ -63,7 +63,7 @@ function cacheOrCreateBuildingTile(tileParams: TileParams, dataParams: any): Pro
 }
 
 function stitchOrRenderBuildingTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
-    if (tileParams.z <= STITCH_THRESHOLD) {
+    if (tileParams.z <= STITCH_THRESHOLD && tileParams.tileset != "base_boroughs") {
         // stitch tile, using cache recursively
         return stitchTile(tileParams, dataParams, cacheOrCreateBuildingTile);
     } else {
