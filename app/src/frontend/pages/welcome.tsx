@@ -1,19 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import Categories from '../building/categories';
 import './welcome.css';
 
 const Welcome = () => (
     <div className="section-body welcome">
+        <Categories mode="view"/>
         <h1 className="h2">Welcome to Colouring London!</h1>
         <p>
-
             Colouring London is a free knowledge exchange platform designed to provide over fifty types
             of open data on London buildings, to help make the city more sustainable.
-
         </p>
         <p>
-
             Colouring London is also the prototype for the Colouring Cities Research Programme (CCRP)
             based at the Alan Turing Institute (the UK's national Institute for data science and artificial intelligence).
             The programme works with local, regional, national and international partners to develop
