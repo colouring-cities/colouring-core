@@ -57,7 +57,7 @@ export const Legend : FC<LegendProps> = ({
             <Logo variant="default" />
             {
                 mapColourScaleDefinitions.length > 1 ?
-                    <select className='style-select' onChange={e => onMapColourScale(e.target.value as BuildingMapTileset)}>
+                    <select className='style-select' onChange={e => onMapColourScale(e.target.value as BuildingMapTileset)} value={mapColourScale}>
                         {
                             mapColourScaleDefinitions.map(def => 
                                 <option key={def.mapStyle} value={def.mapStyle}>{def.legend.title}</option>    
