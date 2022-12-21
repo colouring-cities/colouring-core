@@ -289,13 +289,13 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 { color: '#7025a6', text: 'Residential (verified)' },
                 { color: '#ff8c00', text: 'Retail' },
                 { color: '#f5f58f', text: 'Industry & Business' },
-                { color: '#73ccd1', text: 'Community Services' },
+                { color: '#fa667d', text: 'Community Services' },
                 { color: '#ffbfbf', text: 'Recreation & Leisure' },
                 { color: '#b3de69', text: 'Transport' },
                 { color: '#cccccc', text: 'Utilities & Infrastructure' },
                 { color: '#898944', text: 'Defence' },
-                { color: '#fa667d', text: 'Agriculture' },
-                { color: '#53f5dd', text: 'Minerals' },
+                { color: '#73ccd1', text: 'Agriculture' },
+                { color: '#45cce3', text: 'Minerals' },
                 { color: '#ffffff', text: 'Vacant & Derelict' },
                 { color: '#6c6f8e', text: 'Unclassified, presumed non-residential' }
             ]

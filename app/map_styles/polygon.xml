@@ -768,11 +768,11 @@
     <Style name="landuse">
         <Rule>
             <Filter>[current_landuse_order] = "Agriculture And Fisheries"</Filter>
-            <PolygonSymbolizer fill="#fa667d" />
+            <PolygonSymbolizer fill="#73ccd1" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Minerals"</Filter>
-            <PolygonSymbolizer fill="#53f5dd" />
+            <PolygonSymbolizer fill="#45cce3" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Unclassified, presumed non-residential"</Filter>
@@ -808,7 +808,7 @@
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Community Services"</Filter>
-            <PolygonSymbolizer fill="#73ccd1" />
+            <PolygonSymbolizer fill="#fa667d" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Retail"</Filter>
