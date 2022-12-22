@@ -68,19 +68,35 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 
                     To comment on an application follow the application link if provided, or visit the relevant local authority's planning page.
                 </InfoBox>
-                <PlanningDataOfficialDataEntry  
-                    shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item) == false) : []}
-                    allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
-                />
+                {props.building.planning_data ?
+                    <PlanningDataOfficialDataEntry  
+                        shownData={props.building.planning_data.filter(item => isArchived(item) == false)}
+                        messageOnMissingData={
+                            props.building.planning_data.length > 0 ?
+                                "Only past application data is currently available for this site"
+                                :
+                                "No live planning data are currently available for this building from the Planning London DataHub."
+                        }
+                    />
+                : <></>
+                }
             </DataEntryGroup>
             <DataEntryGroup name="Past applications (official data)" collapsed={true} >
                 <InfoBox>
                     This section provides data on past applications where available from the GLA, including those with no decision in over a year
                 </InfoBox>
-                <PlanningDataOfficialDataEntry
-                    shownData={props.building.planning_data ? props.building.planning_data.filter(item => isArchived(item)) : []}
-                    allEntryCount={props.building.planning_data ? props.building.planning_data.length : 0}
-                />
+                {props.building.planning_data ?
+                    <PlanningDataOfficialDataEntry  
+                        shownData={props.building.planning_data.filter(item => isArchived(item))}
+                        messageOnMissingData={
+                            props.building.planning_data.length > 0 ?
+                                "Only current application data is currently available for this site"
+                                :
+                                "No live planning data are currently available for this building from the Planning London DataHub."
+                        }
+                    />
+                : <></>
+                }
             </DataEntryGroup>
             <DataEntryGroup name="Possible future applications (crowdsourced data)" collapsed={true} >
                 <InfoBox type='info'>Click and colour buildings here if you think they may be subject to a future planning application involving demolition. To add your opinion on how well this building works, please also visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>

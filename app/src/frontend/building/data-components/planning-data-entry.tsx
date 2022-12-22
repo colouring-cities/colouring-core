@@ -18,7 +18,7 @@ interface PlanningDataOfficialDataEntryProps {
       data_source_link?: string;
       address?: string;
   }[];
-    allEntryCount: number,
+    messageOnMissingData: string,
 }
 
 const {useState} = React;
@@ -76,25 +76,14 @@ const StatusInfo = ({status, statusBeforeAliasing}) => {
 const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps> = (props) => {
     const data = props.shownData || [];
     if(data.length == 0) {
-      if (props.allEntryCount == 0) {
         return (<Fragment>
                   <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <Disclaimer />
                   </div>
                   <InfoBox type='success'>
-                  No live planning data are currently available for this building from the Planning London DataHub.
+                  {props.messageOnMissingData}
                   </InfoBox>
                 </Fragment>);
-    } else {
-      return (<Fragment>
-                  <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
-                    <Disclaimer />
-                  </div>
-                <InfoBox type='success'>
-                No live planning data for this date range, but this building has associated planning data not shown here.
-                </InfoBox>
-              </Fragment>);
-    }
   }
   return <>
         <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9"}}>
