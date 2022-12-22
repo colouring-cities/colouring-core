@@ -378,6 +378,8 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="empty_map">
+    </Style>
     <Style name="conservation_area">
         <Rule>
             <PolygonSymbolizer fill="#73ebaf" />

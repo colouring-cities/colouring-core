@@ -191,6 +191,13 @@ const LAYER_QUERIES = {
             OR planning_heritage_at_risk_url <> ''
             OR planning_in_apa_url <> ''
             `,
+    empty_map: `
+        SELECT
+            geometry_id
+        FROM
+            buildings
+        WHERE
+            sust_dec IS NOT NULL`,
     conservation_area: `
         SELECT
             geometry_id
