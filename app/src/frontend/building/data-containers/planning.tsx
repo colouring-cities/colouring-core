@@ -56,7 +56,11 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const switchToBuildingProtectionMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('planning_combined')
-    }    
+    }
+    const switchToEmptyMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('empty_map')
+    }
     const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, parcel, parcelSwitchOnClick, conservation, conservationSwitchOnClick } = useDisplayPreferences();
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     return (
@@ -100,9 +104,16 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </DataEntryGroup>
             <DataEntryGroup name="Possible future applications (crowdsourced data)" collapsed={true} >
                 <InfoBox type='info'>Click and colour buildings here if you think they may be subject to a future planning application involving demolition. To add your opinion on how well this building works, please also visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
-                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToExpectedApplicationMapStyle}> 
+                {
+                props.mapColourScale != "community_expected_planning_application_total" ?
+                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToExpectedApplicationMapStyle}>
                     {'Click here to view possible locations of future applications'}
-                </button>
+                    </button>
+                :
+                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToEmptyMapStyle}>
+                    {'Click here to hide possible locations of future applications'}
+                    </button>
+                }
                 <UserOpinionEntry
                     slug='community_expected_planning_application'
                     title={buildingUserFields.community_expected_planning_application.title}
@@ -189,9 +200,16 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <InfoBox>
             Help us produce the most accurate map possible for London's designated/protected buildings. Please add data if missing or click "Verify" where entries are correct.
             </InfoBox>
-            <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToBuildingProtectionMapStyle}>
+            {
+                props.mapColourScale != "planning_combined" ?
+                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToBuildingProtectionMapStyle}>
                     {'Click to see individual protected buildings mapped'}
-            </button>
+                    </button>
+                :
+                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToEmptyMapStyle}>
+                    {'Click to hide individual protected buildings on map'}
+                    </button>
+            }
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={conservationSwitchOnClick}>
                 {(conservation === 'enabled')? 'Click to hide Convervation Areas' : 'Click to see Convervation Areas'}
                 </button>
