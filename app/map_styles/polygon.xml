@@ -69,24 +69,7 @@
                 [name]
             </TextSymbolizer>
             <MinScaleDenominator>80000</MinScaleDenominator>
-            <MaxScaleDenominator>200000</MaxScaleDenominator>
-        </Rule>
-        <Rule>
-            <TextSymbolizer
-                face-name="DejaVu Sans Condensed Bold"
-                fill="#eee"
-                size="10"
-                halo-radius="2"
-                halo-fill="#333"
-                wrap-width="30"
-                clip="false"
-                minimum-distance="50"
-                placement="interior"
-            >
-                [name]
-            </TextSymbolizer>
-            <MinScaleDenominator>200000</MinScaleDenominator>
-            <MaxScaleDenominator>360000</MaxScaleDenominator>
+            <MaxScaleDenominator>400000</MaxScaleDenominator>
         </Rule>
     </Style>
     <Style name="number_labels">
