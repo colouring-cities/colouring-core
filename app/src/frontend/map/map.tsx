@@ -165,12 +165,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
             {
                 mode !== 'basic' &&
                 <>
-                    {
-                        !hasSelection &&
-                        <div className="map-notice">
-                            <HelpIcon /> {isEdit ? 'Click a building to edit' : 'Click a building for details'}
-                        </div>
-                    }
                     <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={onMapColourScale}/>
                     <ThemeSwitcher onSubmit={darkLightThemeSwitch} currentTheme={darkLightTheme} />
                     <DataLayerSwitcher onSubmit={layerSwitch} currentDisplay={dataLayers} />
