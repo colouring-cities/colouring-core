@@ -1,0 +1,18 @@
+.map-switcher-inline {
+    border-radius: 4px;
+    background: #FFC0CB;
+    margin: 12px;
+    min-width: 400px;
+}
+.map-switcher-inline.night {
+    background: #FFC0CB;
+    color: #fff;
+    background-color: #343a40;
+    border-color: #ff6065;
+}
+.map-switcher-inline.night .btn:hover {
+    color: #343a40;
+    background-color: transparent;
+    background-image: none;
+    border-color: #ff6065;
+}

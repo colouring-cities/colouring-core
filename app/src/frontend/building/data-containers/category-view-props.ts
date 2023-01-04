@@ -1,4 +1,5 @@
 import { Building, BuildingAttributes } from '../../models/building';
+import { BuildingMapTileset } from '../config/tileserver-config';
 
 interface CopyProps {
     copying: boolean;
@@ -38,6 +39,9 @@ interface CategoryViewProps {
 
     user_verified: any;
     user?: any;
+
+    mapColourScale: BuildingMapTileset;
+    onMapColourScale: (x: BuildingMapTileset) => void;
 }
 
 export {

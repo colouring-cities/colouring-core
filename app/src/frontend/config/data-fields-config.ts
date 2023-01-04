@@ -50,6 +50,8 @@ export interface DataFieldDefinition {
      * 
      * Making it semantically correct is useful but not necessary.
      * E.g. for building attachment form, you could use "Detached" as example
+     * 
+     * This field is later processed by AttributesBasedOnExample
      */
     example: any;
 
@@ -109,7 +111,7 @@ export const buildingUserFields = {
     community_expected_planning_application: {
         perUser: true,
         category: Category.Community,
-        title: "Select any building that you think may be subject to a planning application over the next six months and tick the box below to colour it.",
+        title: "Do you think that this building may be subject to a planning application, involving demolition, over the next six months?",
         example: true
     }
 };
@@ -169,6 +171,16 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Unique Property Reference Numbers (to be filled automatically)",
         example: [{uprn: "", parent_uprn: "" }, {uprn: "", parent_uprn: "" }],
     },
+
+    planning_data: {
+        category: Category.Location,
+        title: "PLANNING DATA",
+        tooltip: "PLANNING DATA",
+        example: [{uprn: "", building_id: 1, data_source: ""},
+                  {uprn: "", building_id: 1, data_source: "", status: "", status_before_aliasing: "", decision_date: "", description: "", planning_application_link: "", registered_with_local_authority_date: "", last_synced_date: "", data_source_link: "", address: ""},
+                ],
+    },
+
 
     ref_osm_id: {
         category: Category.Location,
@@ -440,9 +452,17 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         //tooltip: ,
     },
 
+    edit_history: {
+        category: Category.Planning,
+        title: "PLANNING DATA",
+        tooltip: "PLANNING DATA",
+        example: [{}],
+    },
+
+
     planning_portal_link: {
         category: Category.Planning,
-        title: "Planning portal link",
+        title: "Local authority planning application link",
         example: "",
         //tooltip: ,
     },
@@ -450,6 +470,24 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Planning,
         title: "Is the building in a <a href=\"https://historicengland.org.uk/listing/what-is-designation/local/conservation-areas/\" target=\"_blank\">Conservation Area</a>?",
         example: "",
+        //tooltip: ,
+    },
+    planning_crowdsourced_site_completion_status: {
+        category: Category.Planning,
+        title: "Has the work on this site been completed?",
+        example: true,
+        //tooltip: ,
+    },
+    planning_crowdsourced_site_completion_year: {
+        category: Category.Planning,
+        title: "Year of completion if known",
+        example: 2022,
+        //tooltip: ,
+    },
+    planning_crowdsourced_planning_id: {
+        category: Category.Planning,
+        title: "If you know of a planning application that has been recently submitted for this site, and is not listed in the blue box above, please enter its planning application ID below:",
+        example: "1112/QWERTY",
         //tooltip: ,
     },
     planning_in_conservation_area_id: {
@@ -466,7 +504,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_list_id: {
         category: Category.Planning,
-        title: "Is the building on the <a href=\"https://historicengland.org.uk/advice/hpg/heritage-assets/nhle/\" target=\"_blank\">National Heritage List for England</a>?",
+        title: "If the building is on the <a href=\"https://historicengland.org.uk/advice/hpg/heritage-assets/nhle/\" target=\"_blank\">National Heritage List for England (NHLE)</a> please add the ID:",
         example: "121436",
         //tooltip: ,
     },
@@ -478,13 +516,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_heritage_at_risk_url: {
         category: Category.Planning,
-        title: "Is it on the <a href=\"https://historicengland.org.uk/advice/heritage-at-risk/search-register/\" target=\"_blank\">Heritage at Risk</a> register?",
+        title: "If the building is on the <a href=\"https://historicengland.org.uk/advice/heritage-at-risk/search-register/\" target=\"_blank\">Heritage at Risk</a> register please add the ID:",
         example: "",
         //tooltip: ,
     },
     planning_world_list_id: {
         category: Category.Planning,
-        title: "Is it within a <a href=\"https://historicengland.org.uk/advice/hpg/has/whs/\" target=\"_blank\">World Heritage Site</a>?",
+        title: "If the building is on a <a href=\"https://historicengland.org.uk/advice/hpg/has/whs/\" target=\"_blank\">World Heritage Site</a> please add the ID:",
         example: "488",
         //tooltip: ,
     },

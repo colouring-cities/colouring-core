@@ -13,6 +13,17 @@ const LAYER_QUERIES = {
             geometry_id
         FROM
             buildings`,
+    base_night_outlines: `
+        SELECT
+            geometry_id
+        FROM
+            buildings`,
+    base_boroughs: `
+        SELECT
+            geometry_id,
+            name
+        FROM
+            external_data_borough_boundary`,
     number_labels:`
         SELECT
             geometry_id,
@@ -136,6 +147,25 @@ const LAYER_QUERIES = {
         WHERE
             community_public_ownership IS NOT NULL
     `,
+    planning_applications_status_all: `SELECT 
+        buildings.geometry_id, building_properties.uprn, building_properties.building_id, planning_data.status AS status, planning_data.uprn
+        FROM building_properties
+        INNER JOIN planning_data ON building_properties.uprn = planning_data.uprn
+        INNER JOIN buildings ON building_properties.building_id = buildings.building_id`,
+    planning_applications_status_recent: `SELECT 
+        buildings.geometry_id, building_properties.uprn, building_properties.building_id, planning_data.status AS status, planning_data.uprn, 
+        1 AS days_since_decision_date,
+        1 AS days_since_registered_with_local_authority_date
+        FROM building_properties
+        INNER JOIN planning_data ON building_properties.uprn = planning_data.uprn
+        INNER JOIN buildings ON building_properties.building_id = buildings.building_id`,
+    planning_applications_status_very_recent: `SELECT 
+        buildings.geometry_id, building_properties.uprn, building_properties.building_id, planning_data.status AS status, planning_data.uprn, 
+        planning_data.days_since_decision_date_cached AS days_since_decision_date,
+        planning_data.days_since_registration_cached AS days_since_registered_with_local_authority_date
+        FROM building_properties
+        INNER JOIN planning_data ON building_properties.uprn = planning_data.uprn
+        INNER JOIN buildings ON building_properties.building_id = buildings.building_id`,
     planning_combined: `
         SELECT
             geometry_id,
@@ -161,6 +191,13 @@ const LAYER_QUERIES = {
             OR planning_heritage_at_risk_url <> ''
             OR planning_in_apa_url <> ''
             `,
+    empty_map: `
+        SELECT
+            geometry_id
+        FROM
+            buildings
+        WHERE
+            sust_dec IS NOT NULL`,
     conservation_area: `
         SELECT
             geometry_id
@@ -221,6 +258,29 @@ function getDataConfig(tileset: string): DataConfig {
         throw new Error('Invalid tileset requested');
     }
     
+    if(tileset == 'base_boroughs') {
+        const query = `(
+            SELECT
+            d.*,
+            g.geometry_geom
+        FROM (
+            ${table}
+        ) AS d
+        JOIN
+            geometries AS g
+        ON d.geometry_id = g.geometry_id
+        JOIN
+            external_data_borough_boundary AS b
+        ON d.geometry_id = b.geometry_id
+    ) AS data
+        `;
+    
+        return {
+            geometry_field: GEOMETRY_FIELD,
+            table: query
+        };    
+    }
+
     const query = `(
         SELECT
             d.*,

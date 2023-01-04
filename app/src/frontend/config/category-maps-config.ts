@@ -142,8 +142,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'community_expected_planning_application_total',
             legend: {
-                title: 'Expected planning application',
-                description: 'Sites identified by users as likely to be subject to planning application over the next six months',
+                title: 'Expected planning applications',
+                disclaimer: 'Sites identified by users as likely to be subject to planning application over the next six months',
                 elements: [
                     { color: '#bd0026', text: '100+' },
                     { color: '#e31a1c', text: '50–99' },
@@ -167,23 +167,98 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         }
     ],
-    [Category.Planning]: [{
-        mapStyle: 'planning_combined',
-        legend: {
-            title: 'Designation/protection',
-            disclaimer: 'All data relating to designated buildings should be checked against the National Heritage List for England and local authority websites. Designation data is currently incomplete. We are aiming for 100% coverage by April 2023.',
-            elements: [
-                { color: '#95beba', text: 'In Conservation Area'},
-                { color: '#c72e08', text: 'Grade I Listed'},
-                { color: '#e75b42', text: 'Grade II* Listed'},
-                { color: '#ffbea1', text: 'Grade II Listed'},
-                { color: '#85ffd4', text: 'Heritage at Risk'},
-                { color: '#858eff', text: 'In World Heritage Site'},
-                { color: '#8500d4', text: 'In Archaeological Priority Area'},
-                { color: '#858ed4', text: 'Locally Listed'},
-            ]
+    [Category.Planning]: [
+        {
+            // this database commad allows to see statistics about decision dates per year
+            // SELECT COUNT(*), date_part('year', decision_date) as year from planning_data WHERE decision_date IS NOT NULL GROUP BY year ORDER BY year ASC;
+            // SELECT COUNT(*), date_part('year', registered_with_local_authority_date) as year from planning_data WHERE decision_date IS NOT NULL GROUP BY year ORDER BY year ASC;
+            mapStyle: 'planning_applications_status_all',
+            legend: {
+                title: 'All planning applications available from GLA (official data)',
+                disclaimer: 'The map shows official data available from the GLA Planning London Datahub. What you are looking at is mainly applications from 2019 onwards.',
+                elements: [
+                    { color: '#a040a0', text: 'Submitted, awaiting decision' },
+                    { color: '#fff200', text: 'Appeal In Progress' },
+                    { color: '#16cf15', text: 'Approved' },
+                    { color: '#e31d23', text: 'Rejected' },
+                    { color: '#999999', text: 'Withdrawn' },
+                    { color: '#eacad0', text: 'Other' },
+                ]
+            }
         },
-    }],
+        {
+            mapStyle: 'planning_applications_status_recent',
+            legend: {
+                title: 'Last 12 months - planning applications submissions/decisions (official data)',
+                disclaimer: 'The map shows applications where the submission or decision data falls within last 12 months.',
+                elements: [
+                    { color: '#a040a0', text: 'Submitted, awaiting decision' },
+                    { color: '#fff200', text: 'Appeal In Progress' },
+                    { color: '#16cf15', text: 'Approved' },
+                    { color: '#e31d23', text: 'Rejected' },
+                    { color: '#999999', text: 'Withdrawn' },
+                    { color: '#eacad0', text: 'Other' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'planning_applications_status_very_recent',
+            legend: {
+                title: 'Last 30 days - planning applications submissions/decisions (official data)',
+                disclaimer: 'The map shows applications where the submission or decision data falls within last 30 days.',
+                elements: [
+                    { color: '#a040a0', text: 'Submitted, awaiting decision' },
+                    { color: '#fff200', text: 'Appeal In Progress' },
+                    { color: '#16cf15', text: 'Approved' },
+                    { color: '#e31d23', text: 'Rejected' },
+                    { color: '#999999', text: 'Withdrawn' },
+                    { color: '#eacad0', text: 'Other' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_expected_planning_application_total',
+            legend: {
+                title: 'Expected planning applications (crowdsourced data)',
+                disclaimer: 'Sites identified by users as likely to be subject to planning application over the next six months',
+                elements: [
+                    { color: '#bd0026', text: '100+' },
+                    { color: '#e31a1c', text: '50–99' },
+                    { color: '#fc4e2a', text: '20–49' },
+                    { color: '#fd8d3c', text: '10–19' },
+                    { color: '#feb24c', text: '3–9' },
+                    { color: '#fed976', text: '2' },
+                    { color: '#ffe8a9', text: '1'}
+                ]
+            }
+        },
+        {
+            mapStyle: 'planning_combined',
+            legend: {
+                title: 'Designation/protection (official and crowdsourced data)',
+                disclaimer: 'All data relating to designated buildings should be checked against the National Heritage List for England and local authority websites. Designation data is currently incomplete. We are aiming for 100% coverage by April 2023.',
+                elements: [
+                    { color: '#95beba', text: 'In Conservation Area'},
+                    { color: '#c72e08', text: 'Grade I Listed'},
+                    { color: '#e75b42', text: 'Grade II* Listed'},
+                    { color: '#ffbea1', text: 'Grade II Listed'},
+                    { color: '#85ffd4', text: 'Heritage at Risk'},
+                    { color: '#858ed4', text: 'Locally Listed'},
+                    { color: '#858eff', text: 'In World Heritage Site'},
+                    { color: '#8500d4', text: 'In Archaeological Priority Area'},
+                ]
+            },
+        },
+        {
+            mapStyle: 'empty_map',
+            legend: {
+                title: 'Empty map',
+                disclaimer: 'This is an empty map to see overlays without distraction.',
+                elements: [
+                ]
+            },
+        }
+    ],
     [Category.Sustainability]: [{
         mapStyle: 'sust_dec',
         legend: {
@@ -223,12 +298,12 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 { color: '#7025a6', text: 'Residential (verified)' },
                 { color: '#ff8c00', text: 'Retail' },
                 { color: '#f5f58f', text: 'Industry & Business' },
-                { color: '#73ccd1', text: 'Community Services' },
+                { color: '#fa667d', text: 'Community Services' },
                 { color: '#ffbfbf', text: 'Recreation & Leisure' },
                 { color: '#b3de69', text: 'Transport' },
                 { color: '#cccccc', text: 'Utilities & Infrastructure' },
                 { color: '#898944', text: 'Defence' },
-                { color: '#fa667d', text: 'Agriculture' },
+                { color: '#73ccd1', text: 'Agriculture' },
                 { color: '#45cce3', text: 'Minerals' },
                 { color: '#ffffff', text: 'Vacant & Derelict' },
                 { color: '#6c6f8e', text: 'Unclassified, presumed non-residential' }

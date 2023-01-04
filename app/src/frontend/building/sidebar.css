@@ -150,6 +150,9 @@
     position: static;
     margin-right: 0.5em;
 }
+.data-section a {
+    overflow-wrap: break-word;
+}
 .data-list dd {
     margin: 0 0 0.5rem;
     line-height: 1.5;

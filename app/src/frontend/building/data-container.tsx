@@ -9,6 +9,7 @@ import ErrorBox from '../components/error-box';
 import InfoBox from '../components/info-box';
 import { compareObjects } from '../helpers';
 import { Building, BuildingEdits, BuildingUserAttributes, UserVerified } from '../models/building';
+import { BuildingMapTileset } from '../config/tileserver-config';
 import { User } from '../models/user';
 
 import ContainerHeader from './container-header';
@@ -34,6 +35,9 @@ interface DataContainerProps {
     user_verified?: any;
     onBuildingUpdate: (buildingId: number, updatedData: Building) => void;
     onUserVerifiedUpdate: (buildingId: number, updatedData: UserVerified) => void;
+
+    mapColourScale: BuildingMapTileset;
+    onMapColourScale: (x: BuildingMapTileset) => void;
 }
 
 interface DataContainerState {
@@ -43,6 +47,8 @@ interface DataContainerState {
     currentBuildingId: number;
     currentBuildingRevisionId: number;
     buildingEdits: BuildingEdits;
+    mapColourScale: BuildingMapTileset;
+    onMapColourScale: (x: BuildingMapTileset) => void;
 }
 
 export type DataContainerType = React.ComponentType<DataContainerProps>;
@@ -66,7 +72,9 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                 keys_to_copy: {},
                 buildingEdits: {},
                 currentBuildingId: undefined,
-                currentBuildingRevisionId: undefined
+                currentBuildingRevisionId: undefined,
+                mapColourScale: undefined,
+                onMapColourScale: undefined
             };
 
             this.handleChange = this.handleChange.bind(this);
@@ -108,7 +116,9 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                     keys_to_copy: categoryKeys,
                     buildingEdits: {},
                     currentBuildingId: newBuildingId,
-                    currentBuildingRevisionId: newBuildingRevisionId
+                    currentBuildingRevisionId: newBuildingRevisionId,
+                    mapColourScale: props.mapColourScale,
+                    onMapColourScale: props.onMapColourScale
                 };
             }
 
@@ -361,6 +371,8 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                 onSaveAdd={undefined}
                                 onSaveChange={undefined}
                                 user_verified={[]}
+                                mapColourScale={undefined}
+                                onMapColourScale={undefined}
                             />
                         </Fragment> :
                         this.props.building != undefined ?
@@ -413,6 +425,8 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                     onSaveChange={this.handleSaveChange}
                                     user_verified={this.props.user_verified}
                                     user={this.props.user}
+                                    mapColourScale={this.props.mapColourScale}
+                                    onMapColourScale={this.props.onMapColourScale}
                                 />
                             </form> :
                             <InfoBox msg="Select a building to view data"></InfoBox>
