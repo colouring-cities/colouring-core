@@ -20,7 +20,7 @@ ALTER TABLE buildings
 ALTER TABLE buildings
     ADD COLUMN IF NOT EXISTS sust_breeam_date smallint;
 
--- DEC (display energy certifcate, only applies to non domestic buildings)
+-- DEC (display energy certificate, only applies to non domestic buildings)
 -- A - G
 CREATE TYPE sust_dec
 AS ENUM ('A',
