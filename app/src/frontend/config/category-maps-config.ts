@@ -317,10 +317,10 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             elements: []
         },
     }],
-    [Category.Dynamics]: [{
+    [Category.Resilience]: [{
         mapStyle: 'dynamics_demolished_count',
         legend: {
-            title: 'Dynamics',
+            title: 'Resilience',
             description: 'Demolished buildings on the same site',
             elements: [
                 {
