@@ -99,7 +99,7 @@ const PlanningDataOfficialDataEntry: React.FC<PlanningDataOfficialDataEntryProps
         <Fragment>
         <InfoBox type='success'>
             <Fragment>
-                <div><b>Current planning application status for this site:</b> <StatusInfo 
+                <div><b>Planning application status for this site:</b> <StatusInfo
                   statusBeforeAliasing={item["status_before_aliasing"]}
                   status={item["status"]}
                 /></div>
