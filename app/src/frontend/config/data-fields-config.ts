@@ -452,6 +452,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         //tooltip: ,
     },
 
+    historical_status: {
+        category: Category.Age,
+        title: "Historical Status",
+        tooltip: "Survival and Loss tracked using Historical Maps",
+    },
+
     edit_history: {
         category: Category.Planning,
         title: "PLANNING DATA",
@@ -613,13 +619,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
 
     dynamics_has_demolished_buildings: {
-        category: Category.Dynamics,
+        category: Category.Resilience,
         title: 'Were any other buildings ever built on this site?',
         example: true,
     },
 
     demolished_buildings: {
-        category: Category.Dynamics,
+        category: Category.Resilience,
         title: 'Past (demolished) buildings on this site',
         items: {
             year_constructed: {

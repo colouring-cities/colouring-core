@@ -13,7 +13,7 @@ export enum Category {
     Team = 'team',
     Planning = 'planning',
     Sustainability = 'sustainability',
-    Dynamics = 'dynamics',
+    Resilience = 'resilience',
     Community = 'community',
 }
 
@@ -26,14 +26,14 @@ export const categoriesOrder: Category[] = [
     Category.Location,
     Category.LandUse,
     Category.Type,
-    Category.Age,
     Category.Size,
     Category.Construction,
+    Category.Age,
     Category.Streetscape,
     Category.Team,
     Category.Planning,
     Category.Sustainability,
-    Category.Dynamics,
+    Category.Resilience,
     Category.Community,
 ];
 
@@ -48,13 +48,13 @@ interface CategoryDefinition {
 export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
     [Category.Age]: {
         slug: 'age',
-        name: 'Age',
+        name: 'Age & History',
         aboutUrl: 'https://pages.colouring.london/age',
         intro: 'Building age data can support energy analysis and help predict long-term change.',
     },
     [Category.Size]: {
         slug: 'size',
-        name: 'Size',
+        name: 'Size & Form',
         aboutUrl: 'https://pages.colouring.london/shapeandsize',
         intro: 'How big are buildings?',
     },
@@ -84,19 +84,19 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
     },
     [Category.Planning]: {
         slug: 'planning',
-        name: 'Planning',
+        name: 'Planning Controls',
         aboutUrl: 'https://pages.colouring.london/planning',
         intro: 'Planning controls relating to protection and reuse.',
     },
     [Category.Sustainability]: {
         slug: 'sustainability',
-        name: 'Sustainability',
+        name: 'Energy Performance',
         aboutUrl: 'https://pages.colouring.london/sustainability',
         intro: 'Are buildings energy efficient?',
     },
     [Category.Type]: {
         slug: 'type',
-        name: 'Type',
+        name: 'Typology',
         aboutUrl: 'https://pages.colouring.london/buildingtypology',
         intro: 'How were buildings previously used?',
     },
@@ -113,9 +113,9 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         aboutUrl: 'https://pages.colouring.london/greenery',
         intro: "What's the building's context? Coming soon…",
     },
-    [Category.Dynamics]: {
-        slug: 'dynamics',
-        name: 'Dynamics',
+    [Category.Resilience]: {
+        slug: 'resilience',
+        name: 'Resilience',
         aboutUrl: 'https://pages.colouring.london/dynamics',
         intro: 'How has the site of this building changed over time?'
     },
