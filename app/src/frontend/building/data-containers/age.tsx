@@ -17,6 +17,7 @@ import InfoBox from '../../components/info-box';
 
 import { CategoryViewProps } from './category-view-props';
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
+import { useDisplayPreferences } from '../../displayPreferences-context';
 
 const HistoricalStatusOptions = [
     'The current footprint matches/almost exactly matches the historical map beneath, and/or is known to have been built before the map was made',
@@ -35,6 +36,8 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const currentBuildingConstructionYear = building.date_year || undefined;
 
     const ageLinkUrl = `/${props.mode}/${Category.Age}/${props.building.building_id}`;
+
+    const { historicData, historicDataSwitchOnClick } = useDisplayPreferences();
 
     if (props.building.date_source == "Expert knowledge of building" ||
         props.building.date_source == "Expert estimate from image" ||
@@ -522,8 +525,8 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox>
                     This section is under development.
                 </InfoBox>
-                <button className="map-switcher-inline btn btn-outline btn-outline-dark" /*onClick={}*/> 
-                    {'Click here for historical maps'}
+                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={historicDataSwitchOnClick}> 
+                    {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <SelectDataEntry
                     title={dataFields.historical_status.title}
