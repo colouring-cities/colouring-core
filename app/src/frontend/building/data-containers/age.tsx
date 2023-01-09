@@ -245,8 +245,8 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox>
                     This section is under development.
                 </InfoBox>
-                <button className="map-switcher-inline btn btn-outline btn-outline-dark" /*onClick={}*/> 
-                    {'Click here for historical maps'}
+                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={historicDataSwitchOnClick}> 
+                    {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <SelectDataEntry
                     title={dataFields.historical_status.title}
