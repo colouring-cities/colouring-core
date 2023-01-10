@@ -14,6 +14,7 @@ import { Building } from '../models/building';
 import { CityBaseMapLayer } from './layers/city-base-map-layer';
 import { CityBoundaryLayer } from './layers/city-boundary-layer';
 import { BoroughBoundaryLayer } from './layers/borough-boundary-layer';
+import { BoroughLabelLayer } from './layers/borough-label-layer';
 import { ParcelBoundaryLayer } from './layers/parcel-boundary-layer';
 import { HistoricDataLayer } from './layers/historic-data-layer';
 import { FloodBoundaryLayer } from './layers/flood-boundary-layer';
@@ -157,6 +158,12 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                                 baseTileset={mapColourScale} 
                             />
                     }
+                </Pane>
+                <Pane
+                    name='cc-label-overlay-pane'
+                    style={{zIndex: 1000}}
+                >
+                    <BoroughLabelLayer/>
                 </Pane>
 
                 <ZoomControl position="topright" />
