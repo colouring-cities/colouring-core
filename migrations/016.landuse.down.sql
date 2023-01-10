@@ -1,4 +1,4 @@
---Landuse is hierachical. Highest level is Order (ie. Residential) then Group (ie Residential-Dwelling) then Class (ie Residential-Dwelling-Detached house)
+--Landuse is hierarchical. Highest level is Order (ie. Residential) then Group (ie Residential-Dwelling) then Class (ie Residential-Dwelling-Detached house)
 --Interface will collected most detailed (class) but visualise highest level (order)
 --Landuse is a table as #358
 --Land use class, group and order will be stored in a new table
