@@ -9,7 +9,7 @@ export const BoroughSwitcher: React.FC<{}> = () => {
         <form className={`borough-switcher map-button ${darkLightTheme}`} onSubmit={boroughSwitch}>
             <button className="btn btn-outline btn-outline-dark"
                 type="submit">
-                {(borough === 'enabled')? 'Switch off Borough Boundaries' : 'Switch on Borough Boundaries'}
+                {(borough === 'enabled')? 'Borough Boundaries on' : 'Borough Boundaries off'}
             </button>
         </form>
     );
