@@ -140,7 +140,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             slug="planning_live_application"
             value={null}
             disabled={true}
-            tooltip={"GLA official description: \"All areas with more than a 1 in 1,000 annual probability of either river or sea flooding.\""}
+            tooltip={"the GLA official description: \"All areas with more than a 1 in 1,000 annual probability of either river or sea flooding.\""}
             />
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={floodSwitchOnClick}>
                 {(flood === 'enabled')? 'Click to hide Flood Zones' : 'Click to see Flood Zones mapped'}
@@ -150,7 +150,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             slug="planning_live_application"
             value={null}
             disabled={true}
-            tooltip={"GLA official description: \"Housing zones are areas funded by the Mayor and government to attract developers and relevant partners to build new homes.\""}
+            tooltip={"the GLA official description: \"Housing zones are areas funded by the Mayor and government to attract developers and relevant partners to build new homes.\""}
             />
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={housingSwitchOnClick}>
                 {(housing === 'enabled')? 'Click to hide Housing Zones' : 'Click to see Housing Zones mapped'}

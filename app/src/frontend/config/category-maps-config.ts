@@ -189,8 +189,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'planning_applications_status_recent',
             legend: {
-                title: 'Last 12 months - planning applications submissions/decisions (official data)',
-                disclaimer: 'The map shows applications where the submission or decision data falls within last 12 months.',
+                title: 'The last 12 months - planning applications submissions/decisions (official data)',
+                disclaimer: 'The map shows applications where the submission or decision data falls within the last 12 months.',
                 elements: [
                     { color: '#a040a0', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
