@@ -248,15 +248,6 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#8500d4', text: 'In Archaeological Priority Area'},
                 ]
             },
-        },
-        {
-            mapStyle: 'empty_map',
-            legend: {
-                title: 'Empty map',
-                disclaimer: 'This is an empty map to see overlays without distraction.',
-                elements: [
-                ]
-            },
         }
     ],
     [Category.Sustainability]: [{
