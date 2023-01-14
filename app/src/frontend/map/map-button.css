@@ -29,6 +29,44 @@
     background-image: none;
     border-color: #343a40;
 }
+.map-button.disabled-state,
+.map-button.disabled-state .btn{
+    background-color: #df7474;
+}
+.map-button.night.disabled-state,
+.map-button.night.disabled-state .btn{
+    background-color: #b03f3f;
+}
+.map-button.disabled .btn:hover {
+    background-color: transparent;
+    background-image: none;
+}
+.map-button.night.disabled .btn:hover {
+    background-color: transparent;
+    background-image: none;
+}
+.map-button.enabled-state {
+    color: #61ef61;
+    background-color: #61ef61;
+}
+.map-button.enabled-state .btn{
+    background-color: #61ef61;
+}
+.map-button.night.enabled-state {
+    color: #448844;
+    background-color: #448844;
+}
+.map-button.night.enabled-state .btn{
+    background-color: #448844;
+}
+.map-button.enabled .btn:hover {
+    background-color: transparent;
+    background-image: none;
+}
+.map-button.night.enabled .btn:hover {
+    background-color: transparent;
+    background-image: none;
+}
 @media (max-width: 990px){
     .map-button {
         visibility: hidden;
