@@ -399,7 +399,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         <DataEntryGroup name="Active application info (crowdsourced)" collapsed={true} >
                 {/* will be titled "Other active application info (crowdsourced data)" once active" */}
                 <InfoBox type='warning'>
-                    This category is not yet activated.
+                    This category is not yet activated -  Until this section is activated please report inaccuracies or problems on the <a href=" https://github.com/colouring-cities/colouring-london/discussions/categories/planning-section-comments">Discussion Forum</a>.
                 </InfoBox>
                 {/* that is placeholder display, will be replaced by actual code */}
                 <div className="data-title">
