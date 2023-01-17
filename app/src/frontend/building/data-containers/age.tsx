@@ -135,6 +135,9 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan and Site History" collapsed={true} >
+                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={historicDataSwitchOnClick}> 
+                    {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
+                </button>
                 <DataEntryGroup collapsed={false} name="Constructions and demolitions on this site" showCount={false}>
                     <DynamicsBuildingPane>
                         <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
@@ -415,6 +418,9 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan and Site History" collapsed={true} >
+                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={historicDataSwitchOnClick}> 
+                    {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
+                </button>
                 <DataEntryGroup collapsed={false} name="Constructions and demolitions on this site" showCount={false}>
                     <DynamicsBuildingPane>
                         <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
