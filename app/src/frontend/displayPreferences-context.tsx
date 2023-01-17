@@ -3,6 +3,9 @@ import React, { createContext, useCallback, useContext, useEffect, useState } fr
 import { LayerEnablementState, MapTheme } from './config/map-config';
 
 interface DisplayPreferencesContextState {
+    resetLayers: (e: React.FormEvent<HTMLFormElement>) => void;
+    anyLayerModifiedState: () => boolean;
+
     vista: LayerEnablementState;
     vistaSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     vistaSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -45,6 +48,9 @@ const stub = (): never => {
 };
 
 export const DisplayPreferencesContext = createContext<DisplayPreferencesContextState>({
+    resetLayers: stub,
+    anyLayerModifiedState: stub,
+
     vista: undefined,
     vistaSwitch: stub,
     vistaSwitchOnClick: undefined,
@@ -85,15 +91,68 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
 const noop = () => {};
 
 export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
-    const [vista, setVista] = useState<LayerEnablementState>('disabled');
-    const [flood, setFlood] = useState<LayerEnablementState>('disabled');
-    const [creative, setCreative] = useState<LayerEnablementState>('disabled');
-    const [housing, setHousing] = useState<LayerEnablementState>('disabled');
-    const [borough, setBorough] = useState<LayerEnablementState>('enabled');
-    const [parcel, setParcel] = useState<LayerEnablementState>('disabled');
-    const [conservation, setConservation] = useState<LayerEnablementState>('disabled');
-    const [historicData, setHistoricData] = useState<LayerEnablementState>('disabled');
+    const defaultVista = 'disabled'
+    const defaultFlood = 'disabled'
+    const defaultCreative = 'disabled'
+    const defaultHousing = 'disabled'
+    const defaultBorough = 'enabled'
+    const defaultParcel = 'disabled'
+    const defaultConservation = 'disabled'
+    const defaultHistoricData = 'disabled'
+    const [vista, setVista] = useState<LayerEnablementState>(defaultVista);
+    const [flood, setFlood] = useState<LayerEnablementState>(defaultFlood);
+    const [creative, setCreative] = useState<LayerEnablementState>(defaultCreative);
+    const [housing, setHousing] = useState<LayerEnablementState>(defaultHousing);
+    const [borough, setBorough] = useState<LayerEnablementState>(defaultBorough);
+    const [parcel, setParcel] = useState<LayerEnablementState>(defaultParcel);
+    const [conservation, setConservation] = useState<LayerEnablementState>(defaultConservation);
+    const [historicData, setHistoricData] = useState<LayerEnablementState>(defaultHistoricData);
     const [darkLightTheme, setDarkLightTheme] = useState<MapTheme>('night');
+
+    const resetLayers = useCallback(
+        (e) => {
+            e.preventDefault();
+            setVista(defaultVista);
+            setFlood(defaultFlood);
+            setCreative(defaultCreative);
+            setHousing(defaultHousing);
+            setBorough(defaultBorough)
+            setParcel(defaultParcel);
+            setConservation(defaultConservation);
+            setHistoricData(defaultHistoricData);
+            //setDarkLightTheme('night'); // reset only layers
+        },
+        []
+    )
+
+    function anyLayerModifiedState() {
+        if(vista != defaultVista) {
+            return true;
+        }
+        if(flood != defaultFlood) {
+            return true;
+        }
+        if(creative != defaultCreative) {
+            return true;
+        }
+        if(housing != defaultHousing) {
+            return true;
+        }
+        if(borough != defaultBorough) {
+            return true;
+        }
+        if(parcel != defaultParcel) {
+            return true;
+        }
+        if(conservation != defaultConservation) {
+            return true;
+        }
+        if(historicData != defaultHistoricData) {
+            return true;
+        }
+        //darkLightTheme not handled here
+        return false;
+    }
 
     const vistaSwitch = useCallback(
         (e) => {
@@ -233,6 +292,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
 
     return (
         <DisplayPreferencesContext.Provider value={{
+            resetLayers,
+            anyLayerModifiedState,
+
             vista,
             vistaSwitch,
             vistaSwitchOnClick,

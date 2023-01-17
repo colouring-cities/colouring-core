@@ -13,7 +13,7 @@ import { CategoryViewProps } from './category-view-props';
 */
 const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        <InfoBox msg="This is what we're planning to collect on the building's context" />
+        <InfoBox type='warning' msg="This is what we're planning to collect on the building's context" />
         <ul className="data-list">
             <li>Gardens</li>
             <li>Trees</li>

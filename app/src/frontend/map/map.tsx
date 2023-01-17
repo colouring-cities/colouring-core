@@ -14,6 +14,7 @@ import { Building } from '../models/building';
 import { CityBaseMapLayer } from './layers/city-base-map-layer';
 import { CityBoundaryLayer } from './layers/city-boundary-layer';
 import { BoroughBoundaryLayer } from './layers/borough-boundary-layer';
+import { BoroughLabelLayer } from './layers/borough-label-layer';
 import { ParcelBoundaryLayer } from './layers/parcel-boundary-layer';
 import { HistoricDataLayer } from './layers/historic-data-layer';
 import { FloodBoundaryLayer } from './layers/flood-boundary-layer';
@@ -30,6 +31,7 @@ import { Legend } from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
 import DataLayerSwitcher from './data-switcher';
+import { ResetSwitcher } from './reset-switcher';
 import { BoroughSwitcher } from './borough-switcher';
 import { ParcelSwitcher } from './parcel-switcher';
 import { FloodSwitcher } from './flood-switcher';
@@ -158,6 +160,12 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                             />
                     }
                 </Pane>
+                <Pane
+                    name='cc-label-overlay-pane'
+                    style={{zIndex: 1000}}
+                >
+                    <BoroughLabelLayer/>
+                </Pane>
 
                 <ZoomControl position="topright" />
                 <AttributionControl prefix=""/>
@@ -165,13 +173,8 @@ export const ColouringMap : FC<ColouringMapProps> = ({
             {
                 mode !== 'basic' &&
                 <>
-                    {
-                        !hasSelection &&
-                        <div className="map-notice">
-                            <HelpIcon /> {isEdit ? 'Click a building to edit' : 'Click a building for details'}
-                        </div>
-                    }
                     <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={onMapColourScale}/>
+                    <ResetSwitcher/>
                     <ThemeSwitcher onSubmit={darkLightThemeSwitch} currentTheme={darkLightTheme} />
                     <DataLayerSwitcher onSubmit={layerSwitch} currentDisplay={dataLayers} />
                     {

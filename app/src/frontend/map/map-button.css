@@ -35,6 +35,14 @@
     }
 }
 
+.reset-switcher {
+    top: 37px;
+    margin-right: 60px;
+}
+.reset-switcher .btn {
+    min-width: 280px;
+}
+
 .theme-switcher {
     top: 77px;
 }
