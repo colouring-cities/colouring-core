@@ -68,7 +68,6 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 to: "/showcase.html",
                 text: "Case Study Showcase",
                 disabled: true,
-                note: "Not Yet Activated"
             },
         ],
         [
