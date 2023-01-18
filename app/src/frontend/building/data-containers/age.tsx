@@ -135,6 +135,9 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan and Site History" collapsed={true} >
+                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={historicDataSwitchOnClick}> 
+                    {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
+                </button>
                 <DataEntryGroup collapsed={false} name="Constructions and demolitions on this site" showCount={false}>
                     <DynamicsBuildingPane>
                         <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
@@ -216,26 +219,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Future planned data collection" collapsed={false} showCount={false}>
-                    <DataEntry
-                        title="Historical land use change"
-                        slug=""
-                        value=""
-                        mode='view'
-                    />
-                    <DataEntry
-                        title="Longitudinal historical footprints (raster) link"
-                        slug=""
-                        value=""
-                        mode='view'
-                    />
-                    <DataEntry
-                        title="Longitudinal historical footprints (vector) link"
-                        slug=""
-                        value=""
-                        mode='view'
-                    />
-                </DataEntryGroup>
                 <InfoBox>
                     This section is under development in collaboration with the historic environment sector.
                     Please let us know your suggestions on the <a href="https://discuss.colouring.london/t/dynamics-category-discussion/107">discussion forum</a>! (external link - save your edits first)
@@ -245,8 +228,8 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox>
                     This section is under development.
                 </InfoBox>
-                <button className="map-switcher-inline btn btn-outline btn-outline-dark" /*onClick={}*/> 
-                    {'Click here for historical maps'}
+                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={historicDataSwitchOnClick}> 
+                    {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <SelectDataEntry
                     title={dataFields.historical_status.title}
@@ -257,6 +240,12 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                />
+                <DataEntry
+                    title="Historical land use change"
+                    slug=""
+                    value=""
+                    mode='view'
                 />
             </DataEntryGroup>
           </Fragment>
@@ -415,6 +404,9 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan and Site History" collapsed={true} >
+                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={historicDataSwitchOnClick}> 
+                    {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
+                </button>
                 <DataEntryGroup collapsed={false} name="Constructions and demolitions on this site" showCount={false}>
                     <DynamicsBuildingPane>
                         <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
@@ -496,26 +488,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Future planned data collection" collapsed={false} showCount={false}>
-                    <DataEntry
-                        title="Historical land use change"
-                        slug=""
-                        value=""
-                        mode='view'
-                    />
-                    <DataEntry
-                        title="Longitudinal historical footprints (raster) link"
-                        slug=""
-                        value=""
-                        mode='view'
-                    />
-                    <DataEntry
-                        title="Longitudinal historical footprints (vector) link"
-                        slug=""
-                        value=""
-                        mode='view'
-                    />
-                </DataEntryGroup>
                 <InfoBox>
                     This section is under development in collaboration with the historic environment sector.
                     Please let us know your suggestions on the <a href="https://discuss.colouring.london/t/dynamics-category-discussion/107">discussion forum</a>! (external link - save your edits first)
@@ -537,6 +509,12 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                />
+                <DataEntry
+                    title="Historical land use change"
+                    slug=""
+                    value=""
+                    mode='view'
                 />
             </DataEntryGroup>
         </Fragment>
