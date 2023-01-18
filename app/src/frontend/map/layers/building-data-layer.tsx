@@ -11,6 +11,6 @@ export function BuildingDataLayer({tileset, revisionId} : { tileset: BuildingMap
                 url={getTileLayerUrl(tileset, {rev: revisionId})}
                 minZoom={9}
                 maxZoom={19}
-                detectRetina={true}
+                detectRetina={false}
             />;
 }

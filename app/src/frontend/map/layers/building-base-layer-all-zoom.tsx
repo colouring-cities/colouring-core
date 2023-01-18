@@ -14,6 +14,6 @@ export function BuildingBaseLayerAllZoom({ theme }: {theme: MapTheme}) {
                 url={getTileLayerUrl(tileset)}
                 minZoom={1}
                 maxZoom={109}
-                detectRetina={true}
+                detectRetina={false}
             />;
 }
