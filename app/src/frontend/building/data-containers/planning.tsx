@@ -57,9 +57,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('planning_combined')
     }
-    const switchToEmptyMapStyle = (e) => {
+    const switchToAllPlanningApplicationsMapStyle = (e) => {
         e.preventDefault();
-        props.onMapColourScale('empty_map')
+        props.onMapColourScale('planning_applications_status_all')
     }
     const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, parcel, parcelSwitchOnClick, conservation, conservationSwitchOnClick } = useDisplayPreferences();
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
@@ -204,8 +204,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     {'Click to see individual protected buildings mapped'}
                     </button>
                 :
-                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToEmptyMapStyle}>
-                    {'Click to hide individual protected buildings on map'}
+                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToAllPlanningApplicationsMapStyle}>
+                    {'Click to see planning applications'}
                     </button>
             }
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={conservationSwitchOnClick}>
