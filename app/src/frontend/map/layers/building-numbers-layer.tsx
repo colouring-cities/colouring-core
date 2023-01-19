@@ -9,6 +9,6 @@ export function BuildingNumbersLayer({revisionId}: {revisionId: string}) {
                 url={getTileLayerUrl('number_labels', {rev: revisionId})}
                 minZoom={17}
                 maxZoom={19}
-                detectRetina={true}
+                detectRetina={false}
             />;
 }

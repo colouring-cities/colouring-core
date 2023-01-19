@@ -31,7 +31,7 @@ export function CityBaseMapLayer({ theme }: { theme: MapTheme }) {
         attribution={attribution}
         maxNativeZoom={18}
         maxZoom={19}
-        detectRetina={true}
+        detectRetina={false}
         className={theme_class}
     />;
 }

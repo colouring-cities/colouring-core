@@ -22,16 +22,8 @@ export function ParcelBoundaryLayer() {
         style={{color: '#ff0', fill: false, weight: 1}}
        /* minNativeZoom={17}*/
     />;
-    } else if (parcel == "disabled") {
-        return <div></div>
-        // do not display anything
-        return boundaryGeojson &&
-        <GeoJSON 
-        data={boundaryGeojson}
-        style={{color: '#0f0', fill: false, weight: 1}} />
     } else {
-        return boundaryGeojson &&
-        <GeoJSON data={boundaryGeojson} style={{color: '#0f0', fill: true}}/>;
+        return <div></div>
     }
 }
 

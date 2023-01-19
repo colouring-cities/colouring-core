@@ -39,6 +39,7 @@ def load_data_into_database(cursor, data):
             if entry['_source']['description'] != None:
                 description = entry['_source']['description'].strip()
             application_id = entry['_source']['lpa_app_no']
+            application_id_with_borough_identifier = entry['_source']['id']
             decision_date = parse_date_string_into_date_object(entry['_source']['decision_date'])
             last_synced_date = parse_date_string_into_date_object(entry['_source']['last_synced'])
             uprn = entry['_source']['uprn']
@@ -65,8 +66,8 @@ def load_data_into_database(cursor, data):
                 "status": status,
                 "status_before_aliasing": status_before_aliasing,
                 "status_explanation_note": status_explanation_note,
-                "data_source": "Greater London Authority's Planning London DataHub",
-                "data_source_link": None,
+                "data_source": "the Greater London Authority's Planning London DataHub",
+                "data_source_link": "https://www.london.gov.uk/programmes-strategies/planning/digital-planning/planning-london-datahub",
                 "address": address_data.planning_data_entry_to_address(entry),
             }
             if entry["address"] != None:
@@ -87,7 +88,7 @@ def load_data_into_database(cursor, data):
                 print("last_synced_date is treated as invalid:", entry["last_synced_date"])
                 entry["last_synced_date"] = None
 
-            if "Hackney" in entry["application_id"]:
+            if "Hackney" in application_id_with_borough_identifier:
                 if entry["application_url"] != None:
                     if "https://" not in entry["application_url"]:
                         entry["application_url"] = "https://developmentandhousing.hackney.gov.uk" + entry["application_url"]

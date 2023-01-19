@@ -17,6 +17,10 @@
 .map-button .btn {
     margin: 0;
     min-width: 310px;
+    color: #191b1d;
+}
+.map-button .btn:hover {
+    color: #fff;
 }
 .map-button.night .btn {
     color: #fff;
@@ -24,23 +28,53 @@
     border-color: #343a40;
 }
 .map-button.night .btn:hover {
-    color: #343a40;
+    color: #d4d7da;
     background-color: transparent;
     background-image: none;
     border-color: #343a40;
+}
+.map-button.disabled-state,
+.map-button.disabled-state .btn{
+    background-color: #df7474;
+}
+.map-button.night.disabled-state,
+.map-button.night.disabled-state .btn{
+    background-color: #b03f3f;
+}
+.map-button.disabled .btn:hover {
+    background-color: transparent;
+    background-image: none;
+}
+.map-button.night.disabled .btn:hover {
+    background-color: transparent;
+    background-image: none;
+}
+.map-button.enabled-state {
+    color: #75e775;
+    background-color: #75e775;
+}
+.map-button.enabled-state .btn{
+    background-color: #75e775;
+}
+.map-button.night.enabled-state {
+    color: #448844;
+    background-color: #448844;
+}
+.map-button.night.enabled-state .btn{
+    background-color: #448844;
+}
+.map-button.enabled .btn:hover {
+    background-color: transparent;
+    background-image: none;
+}
+.map-button.night.enabled .btn:hover {
+    background-color: transparent;
+    background-image: none;
 }
 @media (max-width: 990px){
     .map-button {
         visibility: hidden;
     }
-}
-
-.reset-switcher {
-    top: 37px;
-    margin-right: 60px;
-}
-.reset-switcher .btn {
-    min-width: 280px;
 }
 
 .theme-switcher {

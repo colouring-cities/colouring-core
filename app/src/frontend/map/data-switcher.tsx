@@ -4,17 +4,23 @@ import './map-button.css';
 import { useDisplayPreferences } from '../displayPreferences-context';
 
 interface DataLayerSwitcherProps {
-    currentDisplay: string;
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const DataLayerSwitcher: React.FC<DataLayerSwitcherProps> = (props) => {
-    const { darkLightTheme } = useDisplayPreferences();
+    const { showLayerSelection, showOverlayList, resetLayersAndHideTheirList, darkLightTheme } = useDisplayPreferences();
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        if (showLayerSelection === 'enabled') {
+            resetLayersAndHideTheirList(evt)
+        } else {
+            showOverlayList(evt)
+        }
+    }
     return (
-        <form className={`data-switcher map-button ${darkLightTheme}`} onSubmit={props.onSubmit}>
+        <form className={`data-switcher map-button ${darkLightTheme}`} onSubmit={handleSubmit}>
             <button className="btn btn-outline btn-outline-dark"
                 type="submit">
-                {(props.currentDisplay === 'enabled')? 'Hide layer options' : 'Show layer options'}
+                {(showLayerSelection === 'enabled')? 'Clear layer options' : 'Show layer options'}
             </button>
         </form>
     );

@@ -60,7 +60,7 @@ function ShowIfAvailable(data) {
 }
 
 const LinkIfAvailable = (link) => {
-  return <>{link ? <a href={link.toString()}>{link.toString()}</a> : MissingData }</>
+  return <>{link ? <a href={link.toString()} target="_blank">{link.toString()}</a> : MissingData }</>
 }
 
 const StatusInfo = ({status, statusBeforeAliasing}) => {

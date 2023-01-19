@@ -57,9 +57,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('planning_combined')
     }
-    const switchToEmptyMapStyle = (e) => {
+    const switchToAllPlanningApplicationsMapStyle = (e) => {
         e.preventDefault();
-        props.onMapColourScale('empty_map')
+        props.onMapColourScale('planning_applications_status_all')
     }
     const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, parcel, parcelSwitchOnClick, conservation, conservationSwitchOnClick } = useDisplayPreferences();
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
@@ -110,8 +110,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     {'Click here to view possible locations of future applications'}
                     </button>
                 :
-                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToEmptyMapStyle}>
-                    {'Click here to hide possible locations of future applications'}
+                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToAllPlanningApplicationsMapStyle}>
+                    {'Click to see planning applications'}
                     </button>
                 }
                 <UserOpinionEntry
@@ -140,7 +140,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             slug="planning_live_application"
             value={null}
             disabled={true}
-            tooltip={"GLA official description: \"All areas with more than a 1 in 1,000 annual probability of either river or sea flooding.\""}
+            tooltip={"the GLA official description: \"All areas with more than a 1 in 1,000 annual probability of either river or sea flooding.\""}
             />
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={floodSwitchOnClick}>
                 {(flood === 'enabled')? 'Click to hide Flood Zones' : 'Click to see Flood Zones mapped'}
@@ -150,7 +150,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             slug="planning_live_application"
             value={null}
             disabled={true}
-            tooltip={"GLA official description: \"Housing zones are areas funded by the Mayor and government to attract developers and relevant partners to build new homes.\""}
+            tooltip={"the GLA official description: \"Housing zones are areas funded by the Mayor and government to attract developers and relevant partners to build new homes.\""}
             />
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={housingSwitchOnClick}>
                 {(housing === 'enabled')? 'Click to hide Housing Zones' : 'Click to see Housing Zones mapped'}
@@ -206,12 +206,12 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     {'Click to see individual protected buildings mapped'}
                     </button>
                 :
-                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToEmptyMapStyle}>
-                    {'Click to hide individual protected buildings on map'}
+                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToAllPlanningApplicationsMapStyle}>
+                    {'Click to see planning applications'}
                     </button>
             }
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={conservationSwitchOnClick}>
-                {(conservation === 'enabled')? 'Click to hide Convervation Areas' : 'Click to see Convervation Areas'}
+                {(conservation === 'enabled')? 'Click to hide Conservation Areas' : 'Click to see Conservation Areas'}
                 </button>
             <NumericDataEntryWithFormattedLink
                 title={dataFields.planning_list_id.title}
