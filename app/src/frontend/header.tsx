@@ -54,8 +54,13 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 text: "Download data"
             },
             {
+                to: "https://github.com/colouring-cities/manual/wiki",
+                text: "Open Manual - Wiki",
+                external: true
+            },
+            {
                 to: "https://github.com/colouring-london/colouring-london",
-                text: "Access open code",
+                text: "Open code",
                 external: true
             },
             {
