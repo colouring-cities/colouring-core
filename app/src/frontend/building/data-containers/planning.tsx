@@ -211,7 +211,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </button>
             }
             <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={conservationSwitchOnClick}>
-                {(conservation === 'enabled')? 'Click to hide Convervation Areas' : 'Click to see Convervation Areas'}
+                {(conservation === 'enabled')? 'Click to hide Conservation Areas' : 'Click to see Conservation Areas'}
                 </button>
             <NumericDataEntryWithFormattedLink
                 title={dataFields.planning_list_id.title}
