@@ -29,7 +29,6 @@ import { Legend } from './legend';
 import SearchBox from './search-box';
 import ThemeSwitcher from './theme-switcher';
 import DataLayerSwitcher from './data-switcher';
-import { ResetSwitcher } from './reset-switcher';
 import { BoroughSwitcher } from './borough-switcher';
 import { ParcelSwitcher } from './parcel-switcher';
 import { FloodSwitcher } from './flood-switcher';
@@ -62,8 +61,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
     categoryMapDefinitions,
     children
 }) => {
-    const { darkLightTheme, darkLightThemeSwitch } = useDisplayPreferences();
-    const [dataLayers, setDataLayers] = useState<LayerEnablementState>('disabled');
+    const { darkLightTheme, darkLightThemeSwitch, showLayerSelection } = useDisplayPreferences();
     const [position, setPosition] = useState(initialMapViewport.position);
     const [zoom, setZoom] = useState(initialMapViewport.zoom);
 
@@ -84,15 +82,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
             onBuildingAction(building);
         },
         [onBuildingAction],
-    )
-
-    const layerSwitch = useCallback(
-        (e) => {
-            e.preventDefault();
-            const newDisplayState = (dataLayers === 'enabled')? 'disabled' : 'enabled';
-            setDataLayers(newDisplayState);
-        },
-        [dataLayers],
     )
 
     return (
@@ -169,11 +158,10 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                 mode !== 'basic' &&
                 <>
                     <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={onMapColourScale}/>
-                    <ResetSwitcher/>
                     <ThemeSwitcher onSubmit={darkLightThemeSwitch} currentTheme={darkLightTheme} />
-                    <DataLayerSwitcher onSubmit={layerSwitch} currentDisplay={dataLayers} />
+                    <DataLayerSwitcher />
                     {
-                        (dataLayers == "enabled") ?
+                        (showLayerSelection == "enabled") ?
                         <>
                             <BoroughSwitcher/>
                             <ParcelSwitcher/>

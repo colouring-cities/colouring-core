@@ -17,6 +17,10 @@
 .map-button .btn {
     margin: 0;
     min-width: 310px;
+    color: #191b1d;
+}
+.map-button .btn:hover {
+    color: #fff;
 }
 .map-button.night .btn {
     color: #fff;
@@ -24,7 +28,7 @@
     border-color: #343a40;
 }
 .map-button.night .btn:hover {
-    color: #343a40;
+    color: #d4d7da;
     background-color: transparent;
     background-image: none;
     border-color: #343a40;
@@ -46,11 +50,11 @@
     background-image: none;
 }
 .map-button.enabled-state {
-    color: #61ef61;
-    background-color: #61ef61;
+    color: #75e775;
+    background-color: #75e775;
 }
 .map-button.enabled-state .btn{
-    background-color: #61ef61;
+    background-color: #75e775;
 }
 .map-button.night.enabled-state {
     color: #448844;
@@ -71,14 +75,6 @@
     .map-button {
         visibility: hidden;
     }
-}
-
-.reset-switcher {
-    top: 37px;
-    margin-right: 60px;
-}
-.reset-switcher .btn {
-    min-width: 280px;
 }
 
 .theme-switcher {

@@ -3,8 +3,8 @@ import React, { createContext, useCallback, useContext, useEffect, useState } fr
 import { LayerEnablementState, MapTheme } from './config/map-config';
 
 interface DisplayPreferencesContextState {
-    resetLayers: (e: React.FormEvent<HTMLFormElement>) => void;
-    anyLayerModifiedState: () => boolean;
+    showOverlayList: (e: React.FormEvent<HTMLFormElement>) => void;
+    resetLayersAndHideTheirList: (e: React.FormEvent<HTMLFormElement>) => void;
 
     vista: LayerEnablementState;
     vistaSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -41,6 +41,10 @@ interface DisplayPreferencesContextState {
     darkLightTheme: MapTheme;
     darkLightThemeSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     darkLightThemeSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
+    showLayerSelection: LayerEnablementState;
+    showLayerSelectionSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    showLayerSelectionSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const stub = (): never => {
@@ -48,8 +52,8 @@ const stub = (): never => {
 };
 
 export const DisplayPreferencesContext = createContext<DisplayPreferencesContextState>({
-    resetLayers: stub,
-    anyLayerModifiedState: stub,
+    showOverlayList: stub,
+    resetLayersAndHideTheirList: stub,
 
     vista: undefined,
     vistaSwitch: stub,
@@ -86,6 +90,10 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     darkLightTheme: undefined,
     darkLightThemeSwitch: stub,
     darkLightThemeSwitchOnClick: undefined,
+
+    showLayerSelection: undefined,
+    showLayerSelectionSwitch: stub,
+    showLayerSelectionSwitchOnClick: undefined,
 });
 
 const noop = () => {};
@@ -99,6 +107,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultParcel = 'disabled'
     const defaultConservation = 'disabled'
     const defaultHistoricData = 'disabled'
+    const defaultShowLayerSelection = 'disabled'
     const [vista, setVista] = useState<LayerEnablementState>(defaultVista);
     const [flood, setFlood] = useState<LayerEnablementState>(defaultFlood);
     const [creative, setCreative] = useState<LayerEnablementState>(defaultCreative);
@@ -108,10 +117,17 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [conservation, setConservation] = useState<LayerEnablementState>(defaultConservation);
     const [historicData, setHistoricData] = useState<LayerEnablementState>(defaultHistoricData);
     const [darkLightTheme, setDarkLightTheme] = useState<MapTheme>('night');
+    const [showLayerSelection, setShowLayerSelection] = useState<LayerEnablementState>(defaultShowLayerSelection);
 
-    const resetLayers = useCallback(
+    const showOverlayList = useCallback(
         (e) => {
-            e.preventDefault();
+            setShowLayerSelection('enabled')
+        },
+        []
+    )
+
+    const resetLayersAndHideTheirList = useCallback(
+        (e) => {
             setVista(defaultVista);
             setFlood(defaultFlood);
             setCreative(defaultCreative);
@@ -120,8 +136,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             setParcel(defaultParcel);
             setConservation(defaultConservation);
             setHistoricData(defaultHistoricData);
+            setShowLayerSelection(defaultShowLayerSelection); // reset layers + hiding this panel is integrated into one action
             //setDarkLightTheme('night'); // reset only layers
-        },
+    },
         []
     )
 
@@ -289,11 +306,26 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         setDarkLightTheme(newDarkLightTheme);
     }
 
+    const showLayerSelectionSwitch = useCallback(
+        (e) => {
+            flipShowLayerSelection(e)
+        },
+        [showLayerSelection],
+    )
+    const showLayerSelectionSwitchOnClick = (e) => {
+        flipShowLayerSelection(e)
+    }
+    function flipShowLayerSelection(e) {
+        e.preventDefault();
+        const newShowLayerSelection = (showLayerSelection === 'enabled')? 'disabled' : 'enabled';
+        setShowLayerSelection(newShowLayerSelection);
+    }
+
 
     return (
         <DisplayPreferencesContext.Provider value={{
-            resetLayers,
-            anyLayerModifiedState,
+            showOverlayList,
+            resetLayersAndHideTheirList,
 
             vista,
             vistaSwitch,
@@ -324,7 +356,11 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
 
             darkLightTheme,
             darkLightThemeSwitch,
-            darkLightThemeSwitchOnClick
+            darkLightThemeSwitchOnClick,
+
+            showLayerSelection,
+            showLayerSelectionSwitch,
+            showLayerSelectionSwitchOnClick
         }}>
             {children}
         </DisplayPreferencesContext.Provider>
