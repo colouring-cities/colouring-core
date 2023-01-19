@@ -110,9 +110,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     {'Click here to view possible locations of future applications'}
                     </button>
                 :
-                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToEmptyMapStyle}>
-                    {'Click here to hide possible locations of future applications'}
-                    </button>
+                    <></>
                 }
                 <UserOpinionEntry
                     slug='community_expected_planning_application'
