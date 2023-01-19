@@ -5,8 +5,6 @@ import 'leaflet/dist/leaflet.css';
 import './map.css';
 
 import { apiGet } from '../apiHelpers';
-import { HelpIcon } from '../components/icons';
-import { Category } from '../config/categories-config';
 import { initialMapViewport, mapBackgroundColor, MapTheme, LayerEnablementState } from '../config/map-config';
 
 import { Building } from '../models/building';
@@ -96,9 +94,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
         },
         [dataLayers],
     )
-
-    const hasSelection = selectedBuildingId != undefined;
-    const isEdit = ['edit', 'multi-edit'].includes(mode);
 
     return (
         <div className="map-container">
