@@ -32,14 +32,10 @@ let shouldCacheFn: (t: TileParams) => boolean;
 if(!allLayersCacheSwitch) {
     shouldCacheFn = t => false;
 } else if(dataLayersCacheSwitch) {
-    // cache age data and base building outlines for more zoom levels than other layers
-    shouldCacheFn = ({ tileset, z }: TileParams) =>
-        (tileset === 'date_year' && z <= 16) ||
-        (['base_light', 'base_night', 'base_night_outlines', 'base_boroughs'].includes(tileset) && z <= 17) ||
-        z <= 13;
+    shouldCacheFn = ({ tileset, z }: TileParams) => z <= 18;
 } else {
     shouldCacheFn = ({ tileset, z }: TileParams) =>
-        ['base_light', 'base_night', 'base_night_outlines', 'base_boroughs'].includes(tileset) && z <= 17;
+        ['base_light', 'base_night', 'base_night_outlines', 'base_boroughs'].includes(tileset) && z <= 18;
 }
 
 const tileCache = new TileCache(
