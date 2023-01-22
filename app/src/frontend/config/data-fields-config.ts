@@ -111,7 +111,7 @@ export const buildingUserFields = {
     community_expected_planning_application: {
         perUser: true,
         category: Category.Community,
-        title: "Do you think that this building may be subject to a planning application, involving demolition, over the next six months?",
+        title: "Do you think that this building may be subject to a planning application, involving demolition, over the next six months? Tick here to add (or remove) your opinion, to this you need to be in the edit mode.",
         example: true
     }
 };
