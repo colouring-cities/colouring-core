@@ -474,7 +474,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_in_conservation_area_url: {
         category: Category.Planning,
-        title: "Is the building in a <a href=\"https://historicengland.org.uk/listing/what-is-designation/local/conservation-areas/\" target=\"_blank\">Conservation Area</a>?",
+        title: "Is the building in a <a href=\"https://historicengland.org.uk/listing/what-is-designation/local/conservation-areas/\" target=\"_blank\">Conservation Area (CA)</a>?",
         example: "",
         //tooltip: ,
     },
