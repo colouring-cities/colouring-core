@@ -66,7 +66,7 @@ def load_data_into_database(cursor, data):
                 "status": status,
                 "status_before_aliasing": status_before_aliasing,
                 "status_explanation_note": status_explanation_note,
-                "data_source": "the Greater London Authority's Planning London DataHub",
+                "data_source": "the Greater London Authority's Planning London Datahub",
                 "data_source_link": "https://www.london.gov.uk/programmes-strategies/planning/digital-planning/planning-london-datahub",
                 "address": address_data.planning_data_entry_to_address(entry),
             }
