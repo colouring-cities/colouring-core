@@ -135,7 +135,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </InfoBox>
             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                 <i>
-                    Data in this section comes from the Greater London Authority's Planning London Datahub. Please check the original GLA source when using for planning purposes.
+                    Data in this section comes from <a href="https://www.london.gov.uk/programmes-strategies/planning/digital-planning/planning-london-datahub">the Greater London Authority's Planning London Datahub</a>. Please check the original GLA source when using for planning purposes.
                 </i>
             </div>
             <LogicalDataEntry
