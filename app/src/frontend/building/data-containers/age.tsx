@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 
+import '../../map/map-button.css';
 import { dataFields } from '../../config/data-fields-config';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
@@ -37,7 +38,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     const ageLinkUrl = `/${props.mode}/${Category.Age}/${props.building.building_id}`;
 
-    const { historicData, historicDataSwitchOnClick } = useDisplayPreferences();
+    const { historicData, historicDataSwitchOnClick, darkLightTheme } = useDisplayPreferences();
 
     if (props.building.date_source == "Expert knowledge of building" ||
         props.building.date_source == "Expert estimate from image" ||
@@ -135,7 +136,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan and Site History" collapsed={true} >
-                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={historicDataSwitchOnClick}> 
+                <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                     {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <DataEntryGroup collapsed={false} name="Constructions and demolitions on this site" showCount={false}>
@@ -228,7 +229,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox>
                     This section is under development.
                 </InfoBox>
-                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={historicDataSwitchOnClick}> 
+                <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                     {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <SelectDataEntry
@@ -404,7 +405,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan and Site History" collapsed={true} >
-                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={historicDataSwitchOnClick}> 
+                <button className={`map-switcher-inline ${historicData} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                     {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <DataEntryGroup collapsed={false} name="Constructions and demolitions on this site" showCount={false}>
@@ -497,7 +498,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox>
                     This section is under development.
                 </InfoBox>
-                <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={historicDataSwitchOnClick}> 
+                <button className={`map-switcher-inline ${historicData} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                     {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <SelectDataEntry

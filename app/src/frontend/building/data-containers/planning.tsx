@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import './map-switcher-inline.css'; // import in a proper place
+import '../../map/map-button.css';
 import { Link } from 'react-router-dom';
 import InfoBox from '../../components/info-box';
 import NumericDataEntryWithFormattedLink from '../data-components/numeric-data-entry-with-formatted-link';
@@ -61,15 +61,15 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('planning_applications_status_all')
     }
-    const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, parcel, parcelSwitchOnClick, conservation, conservationSwitchOnClick } = useDisplayPreferences();
+    const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, parcel, parcelSwitchOnClick, conservation, conservationSwitchOnClick, darkLightTheme } = useDisplayPreferences();
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     return (
     <Fragment>
         <DataEntryGroup name="Planning application information" collapsed={true} >
             <DataEntryGroup name="Current/active applications (official data)" collapsed={false} >
                 <InfoBox>
-                    To see planning applications visualised for different periods click on the map key dropdown.
-                
+                    This section lists active applications. Active applications are defined here as ones with a decision date less than year ago <i>and</i> time with a registration date less than year ago.
+                    <br />
                     To comment on an application follow the application link if provided, or visit the relevant local authority's planning page.
                 </InfoBox>
                 {props.building.planning_data ?
@@ -106,11 +106,11 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox type='info'>Click and colour buildings here if you think they may be subject to a future planning application involving demolition. To add your opinion on how well this building works, please also visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
                 {
                 props.mapColourScale != "community_expected_planning_application_total" ?
-                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToExpectedApplicationMapStyle}>
+                    <button className={`map-switcher-inline no-applicable-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToExpectedApplicationMapStyle}>
                     {'Click here to view possible locations of future applications'}
                     </button>
                 :
-                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToAllPlanningApplicationsMapStyle}>
+                    <button className={`map-switcher-inline no-applicable-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAllPlanningApplicationsMapStyle}>
                     {'Click to see planning applications'}
                     </button>
                 }
@@ -130,12 +130,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </DataEntryGroup>
         <DataEntryGroup name="Planning zones" collapsed={true} >
             <InfoBox>
-                To view planning zone data for London click the pink buttons. You may need to <u>zoom out</u>.
+                To view planning zone data for London click the buttons below. You may need to <u>zoom out</u>.
                 Information on whether a specific building is in a zone will be added automatically in future.
             </InfoBox>
             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                 <i>
-                    Data in this section comes from the Greater London Authority's Planning London Datahub. Please check the original GLA source when using for planning purposes.
+                    Data in this section comes from <a href="https://www.london.gov.uk/programmes-strategies/planning/digital-planning/planning-london-datahub">the Greater London Authority's Planning London Datahub</a>. Please check the original GLA source when using for planning purposes.
+                    <br />
+                    Specific sources are mentioned in the footer of map for currently enabled layers.
                 </i>
             </div>
             <LogicalDataEntry
@@ -145,7 +147,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             disabled={true}
             tooltip={"the GLA official description: \"All areas with more than a 1 in 1,000 annual probability of either river or sea flooding.\""}
             />
-            <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={floodSwitchOnClick}>
+            <button className={`map-switcher-inline ${flood}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={floodSwitchOnClick}>
                 {(flood === 'enabled')? 'Click to hide Flood Zones' : 'Click to see Flood Zones mapped'}
             </button>
             <LogicalDataEntry
@@ -155,7 +157,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             disabled={true}
             tooltip={"the GLA official description: \"Housing zones are areas funded by the Mayor and government to attract developers and relevant partners to build new homes.\""}
             />
-            <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={housingSwitchOnClick}>
+            <button className={`map-switcher-inline ${housing}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={housingSwitchOnClick}>
                 {(housing === 'enabled')? 'Click to hide Housing Zones' : 'Click to see Housing Zones mapped'}
             </button>
             <LogicalDataEntry
@@ -165,7 +167,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             disabled={true}
             tooltip={"GLA official description: \"Creative Enterprise Zones are a new Mayoral initiative to designate areas of London where artists and creative businesses can find permanent affordable space to work; are supported to start-up and grow; and where local people are helped to learn creative sector skills and find new jobs.\""}
             />
-            <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={creativeSwitchOnClick}>
+            <button className={`map-switcher-inline ${creative}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={creativeSwitchOnClick}>
                 {(creative === 'enabled')? 'Click to hide Creative Enterprise Zones' : 'Click to see Creative Enterprise Zones'}
             </button>
             <LogicalDataEntry
@@ -175,7 +177,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             disabled={true}
             tooltip={"GLA official description: \"The Protected Vistas are established in the London Plan with more detailed guidance provided in the London View Management Framework (LVMF). The London Plan seeks to protect the significant views which help to define London, including the panoramas, linear views and townscape views in this layer.\""}
             />
-            <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={vistaSwitchOnClick}>
+            <button className={`map-switcher-inline ${vista}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={vistaSwitchOnClick}>
                 {(vista === 'enabled')? 'Click to hide Protected Vistas' : 'Click to see Protected Vistas'}
             </button>
             {/*
@@ -205,15 +207,15 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </InfoBox>
             {
                 props.mapColourScale != "planning_combined" ?
-                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToBuildingProtectionMapStyle}>
+                    <button className={`map-switcher-inline no-applicable-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToBuildingProtectionMapStyle}>
                     {'Click to see individual protected buildings mapped'}
                     </button>
                 :
-                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={switchToAllPlanningApplicationsMapStyle}>
+                    <button className={`map-switcher-inline no-applicable-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAllPlanningApplicationsMapStyle}>
                     {'Click to see planning applications'}
                     </button>
             }
-            <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={conservationSwitchOnClick}>
+            <button className={`map-switcher-inline ${conservation}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={conservationSwitchOnClick}>
                 {(conservation === 'enabled')? 'Click to hide Conservation Areas' : 'Click to see Conservation Areas'}
                 </button>
             <NumericDataEntryWithFormattedLink
@@ -474,7 +476,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <InfoBox>
                         This section is designed to provide information on land parcels and their ownership type. Can you help us to crowdsource this information?
                     </InfoBox>
-                    <button className="map-switcher-inline btn btn-outline btn-outline-dark" onClick={parcelSwitchOnClick}>
+                    <button className={`map-switcher-inline ${parcel}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={parcelSwitchOnClick}>
                     {(parcel === 'enabled')? 'Click to hide sample of parcel data (in City)' : 'Click to see sample of parcel data (in City) mapped'}
                     </button>
                     <div className="data-title">
