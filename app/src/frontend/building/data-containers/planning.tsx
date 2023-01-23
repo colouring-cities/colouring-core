@@ -123,6 +123,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                 />
+                <InfoBox type='warning'>
+                    Further improvements to this feature are currently being made.
+                </InfoBox>
             </DataEntryGroup>
         </DataEntryGroup>
         <DataEntryGroup name="Planning zones" collapsed={true} >
