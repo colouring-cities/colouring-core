@@ -136,6 +136,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                 <i>
                     Data in this section comes from <a href="https://www.london.gov.uk/programmes-strategies/planning/digital-planning/planning-london-datahub">the Greater London Authority's Planning London Datahub</a>. Please check the original GLA source when using for planning purposes.
+                    <br />
+                    Specific sources are mentioned in the footer of map for currently enabled layers.
                 </i>
             </div>
             <LogicalDataEntry
