@@ -181,7 +181,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#fff200', text: 'Appeal In Progress' },
                     { color: '#16cf15', text: 'Approved' },
                     { color: '#e31d23', text: 'Rejected' },
-                    { color: '#999999', text: 'Withdrawn' },
+                    { color: '#546083', text: 'Withdrawn' },
                     { color: '#eacad0', text: 'Other' },
                 ]
             }
@@ -196,7 +196,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#fff200', text: 'Appeal In Progress' },
                     { color: '#16cf15', text: 'Approved' },
                     { color: '#e31d23', text: 'Rejected' },
-                    { color: '#999999', text: 'Withdrawn' },
+                    { color: '#546083', text: 'Withdrawn' },
                     { color: '#eacad0', text: 'Other' },
                 ]
             }
@@ -211,7 +211,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#fff200', text: 'Appeal In Progress' },
                     { color: '#16cf15', text: 'Approved' },
                     { color: '#e31d23', text: 'Rejected' },
-                    { color: '#999999', text: 'Withdrawn' },
+                    { color: '#546083', text: 'Withdrawn' },
                     { color: '#eacad0', text: 'Other' },
                 ]
             }
