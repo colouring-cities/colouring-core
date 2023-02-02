@@ -205,6 +205,9 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <InfoBox>
             Help us produce the most accurate map possible for London's designated/protected buildings. Please add data if missing or click "Verify" where entries are correct.
             </InfoBox>
+            <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                <i><div><u>Disclaimer</u>:  Data for designated heritage assets has been accessed from <a href="https://historicengland.org.uk/listing/the-list/">the National Heritage List for England</a>. Source information for Conservation Area data can be accessed <a href="http://www.bedfordpark.net/leo/planning/">here</a>. Please note all data should be double checked against official sources where used for planning purposes'.</div></i>
+            </div>
             {
                 props.mapColourScale != "planning_combined" ?
                     <button className={`map-switcher-inline no-applicable-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToBuildingProtectionMapStyle}>
