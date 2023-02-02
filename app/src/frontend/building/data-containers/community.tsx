@@ -43,6 +43,24 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <InfoBox>
                 Can you share your opinion on how well the building works?
             </InfoBox>
+            <LogicalDataEntry
+              title={dataFields.is_domestic.title}
+              slug="is_domestic"
+              value={props.building.is_domestic}
+              mode={props.mode}
+              copy={props.copy}
+              onChange={props.onChange}
+              tooltip={dataFields.is_domestic.tooltip}
+            />
+            <Verification
+                slug="is_domestic"
+                allow_verify={props.user !== undefined && props.building.is_domestic !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("is_domestic")}
+                user_verified_as={props.user_verified.is_domestic}
+                verified_count={props.building.verified.is_domestic}
+            />
+            {props.building.is_domestic === false ?
             <UserOpinionEntry
                 slug='community_like'
                 title={buildingUserFields.community_like.title}
@@ -54,6 +72,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 copy={props.copy}
 
             />
+            : <></>}
             <button className={`map-switcher-inline ${props.mapColourScale == "likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLikesMapStyle}> 
                 {'Click here to switch map key to this info'}
             </button>

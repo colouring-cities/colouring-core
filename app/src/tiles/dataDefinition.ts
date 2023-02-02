@@ -116,6 +116,8 @@ const LAYER_QUERIES = {
         FROM
             buildings
         WHERE
+            is_domestic = FALSE
+            AND
             likes_total > 0`,
     community_local_significance_total: `
         SELECT

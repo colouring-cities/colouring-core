@@ -563,6 +563,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         //tooltip: ,
     },
 
+    is_domestic: {
+        category: Category.Team,
+        title: "Is the building a home/domestic building?",
+        tooltip: "",
+        example: false
+    },
     likes_total: {
         category: Category.Community,
         title: "Total number of likes",

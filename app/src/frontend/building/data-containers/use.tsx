@@ -5,6 +5,7 @@ import { dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
+import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
 import TextboxDataEntry from '../data-components/textbox-data-entry';
 import withCopyEdit from '../data-container';
 
@@ -21,6 +22,23 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
        ){
       return (
           <Fragment>
+              <LogicalDataEntry
+                  title={dataFields.is_domestic.title}
+                  slug="is_domestic"
+                  value={props.building.is_domestic}
+                  mode={props.mode}
+                  copy={props.copy}
+                  onChange={props.onChange}
+                  tooltip={dataFields.is_domestic.tooltip}
+              />
+              <Verification
+                  slug="is_domestic"
+                  allow_verify={props.user !== undefined && props.building.is_domestic !== null && !props.edited}
+                  onVerify={props.onVerify}
+                  user_verified={props.user_verified.hasOwnProperty("is_domestic")}
+                  user_verified_as={props.user_verified.is_domestic}
+                  verified_count={props.building.verified.is_domestic}
+              />
               <InfoBox msg="93% of properties in UK are dwellings so we have set this as the default colour. Can you help us colour-in all non-residential and mixed use buildings, and verify residential buildings too?"></InfoBox>
               <MultiDataEntry
                   title={dataFields.current_landuse_group.title}
