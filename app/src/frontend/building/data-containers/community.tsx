@@ -7,7 +7,7 @@ import { MultiSelectDataEntry } from '../data-components/multi-select-data-entry
 
 import { CategoryViewProps } from './category-view-props';
 import InfoBox from '../../components/info-box';
-import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
+import { LogicalDataEntry, LogicalDataEntryYesOnly } from '../data-components/logical-data-entry/logical-data-entry';
 import { buildingUserFields, dataFields } from '../../config/data-fields-config';
 
 import './community.css';
@@ -76,7 +76,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <button className={`map-switcher-inline ${props.mapColourScale == "likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLikesMapStyle}> 
                 {'Click here to switch map key to this info'}
             </button>
-            <LogicalDataEntry
+            <LogicalDataEntryYesOnly
                 slug='community_type_worth_keeping'
                 title={buildingUserFields.community_type_worth_keeping.title}
 
@@ -89,7 +89,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
             />
             {
-                props.building.community_type_worth_keeping !== false &&
+                props.building.community_type_worth_keeping === true &&
                 <MultiSelectDataEntry
                     slug='community_type_worth_keeping_reasons'
                     title={buildingUserFields.community_type_worth_keeping_reasons.title}
