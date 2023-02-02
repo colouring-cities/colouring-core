@@ -49,13 +49,7 @@ const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             mode='view'
         />
         <DataEntry
-            title="Land ownership parcel link"
-            slug=""
-            value=""
-            mode='view'
-        />
-        <DataEntry
-            title="Land ownership type"
+            title="Does the building have a garden?"
             slug=""
             value=""
             mode='view'
@@ -67,7 +61,25 @@ const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             mode='view'
         />
         <DataEntry
+            title="Pavement width"
+            slug=""
+            value=""
+            mode='view'
+        />
+        <DataEntry
             title="Street network geometry link"
+            slug=""
+            value=""
+            mode='view'
+        />
+        <DataEntry
+            title="Distance from Public Green Space"
+            slug=""
+            value=""
+            mode='view'
+        />
+        <DataEntry
+            title="Distance from front door to nearest tree"
             slug=""
             value=""
             mode='view'
