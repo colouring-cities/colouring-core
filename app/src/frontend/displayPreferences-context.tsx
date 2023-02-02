@@ -176,7 +176,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             e.preventDefault();
             const newVista = (vista === 'enabled')? 'disabled' : 'enabled';
             setVista(newVista);
-            setShowLayerSelection('enabled')
         },
         [vista],
     )
@@ -185,7 +184,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             e.preventDefault();
             const newVista = (vista === 'enabled')? 'disabled' : 'enabled';
             setVista(newVista);
-            setShowLayerSelection('enabled')
     }
 
     const floodSwitch = useCallback(
@@ -193,7 +191,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             e.preventDefault();
             const newFlood = (flood === 'enabled')? 'disabled' : 'enabled';
             setFlood(newFlood);
-            setShowLayerSelection('enabled')
         },
         [flood],
     )
@@ -202,7 +199,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         e.preventDefault();
         const newFlood = (flood === 'enabled')? 'disabled' : 'enabled';
         setFlood(newFlood);
-        setShowLayerSelection('enabled')
     }
 
     const housingSwitch = useCallback(
@@ -210,7 +206,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             e.preventDefault();
             const newHousing = (housing === 'enabled')? 'disabled' : 'enabled';
             setHousing(newHousing);
-            setShowLayerSelection('enabled')
         },
         [housing],
     )
@@ -219,7 +214,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         e.preventDefault();
         const newHousing = (housing === 'enabled')? 'disabled' : 'enabled';
         setHousing(newHousing);
-        setShowLayerSelection('enabled')
     }
 
     const creativeSwitch = useCallback(
@@ -227,7 +221,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             e.preventDefault();
             const newCreative = (creative === 'enabled')? 'disabled' : 'enabled';
             setCreative(newCreative);
-            setShowLayerSelection('enabled')
         },
         [creative],
     )
@@ -236,7 +229,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         e.preventDefault();
         const newCreative = (creative === 'enabled')? 'disabled' : 'enabled';
         setCreative(newCreative);
-        setShowLayerSelection('enabled')
     }
 
     const boroughSwitch = useCallback(
@@ -252,9 +244,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         e.preventDefault();
         const newBorough = (borough === 'enabled')? 'disabled' : 'enabled';
         setBorough(newBorough);
-        if(newBorough === 'enabled') {
-            setShowLayerSelection('enabled')
-        }
     }
 
     const parcelSwitch = useCallback(
@@ -270,9 +259,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         e.preventDefault();
         const newParcel = (parcel === 'enabled')? 'disabled' : 'enabled';
         setParcel(newParcel);
-        if(newParcel === 'enabled') {
-            setShowLayerSelection('enabled')
-        }
     }
 
     const conservationSwitch = useCallback(
@@ -288,9 +274,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         e.preventDefault();
         const newConservation = (conservation === 'enabled')? 'disabled' : 'enabled';
         setConservation(newConservation);
-        if(newConservation === 'enabled') {
-            setShowLayerSelection('enabled')
-        }
     }
 
     const historicDataSwitch = useCallback(
@@ -306,9 +289,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         e.preventDefault();
         const newHistoric = (historicData === 'enabled')? 'disabled' : 'enabled';
         setHistoricData(newHistoric);
-        if(newHistoric === 'enabled') {
-            setShowLayerSelection('enabled')
-        }
     }
 
     const darkLightThemeSwitch = useCallback(

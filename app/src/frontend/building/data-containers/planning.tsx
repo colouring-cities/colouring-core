@@ -68,7 +68,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         <DataEntryGroup name="Planning application information" collapsed={true} >
             <DataEntryGroup name="Current/active applications (official data)" collapsed={false} >
                 <InfoBox>
-                    This section lists active applications. Active applications are defined here as ones with a decision date less than year ago <i>and</i> time with a registration date less than year ago.
+                    This section provides data on active applications. We define these as applications with any activity in the last year.
                     <br />
                     To comment on an application follow the application link if provided, or visit the relevant local authority's planning page.
                 </InfoBox>

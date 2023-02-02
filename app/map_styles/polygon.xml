@@ -389,13 +389,8 @@
         </Rule>
         <Rule>
             <Filter>[status] = "Withdrawn"</Filter>
-            <PolygonSymbolizer fill="#999999"/>
-            <LineSymbolizer stroke="#999999" stroke-width="1.75" />
-        </Rule>
-        <Rule>
-            <Filter>[status] = "Withdrawn"</Filter>
-            <PolygonSymbolizer fill="#262626"/>
-            <LineSymbolizer stroke="#262626" stroke-width="1.75" />
+            <PolygonSymbolizer fill="#7a84a0"/>
+            <LineSymbolizer stroke="#7a84a0" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn"</Filter>
@@ -426,8 +421,8 @@
         </Rule>
         <Rule>
             <Filter>[status] = "Withdrawn" and [days_since_registered_with_local_authority_date] &lt; 366</Filter>
-            <PolygonSymbolizer fill="#999999"/>
-            <LineSymbolizer stroke="#999999" stroke-width="1.75" />
+            <PolygonSymbolizer fill="#7a84a0"/>
+            <LineSymbolizer stroke="#7a84a0" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn" and [days_since_registered_with_local_authority_date] &lt; 366</Filter>
@@ -458,8 +453,8 @@
         </Rule>
         <Rule>
             <Filter>[status] = "Withdrawn" and [days_since_registered_with_local_authority_date] &lt;= 30</Filter>
-            <PolygonSymbolizer fill="#999999"/>
-            <LineSymbolizer stroke="#999999" stroke-width="1.75" />
+            <PolygonSymbolizer fill="#7a84a0"/>
+            <LineSymbolizer stroke="#7a84a0" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn" and [days_since_registered_with_local_authority_date] &lt;= 30</Filter>

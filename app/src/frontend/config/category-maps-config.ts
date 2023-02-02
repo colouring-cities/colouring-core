@@ -181,7 +181,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#fff200', text: 'Appeal In Progress' },
                     { color: '#16cf15', text: 'Approved' },
                     { color: '#e31d23', text: 'Rejected' },
-                    { color: '#999999', text: 'Withdrawn' },
+                    { color: '#7a84a0', text: 'Withdrawn' },
                     { color: '#eacad0', text: 'Other' },
                 ]
             }
@@ -196,7 +196,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#fff200', text: 'Appeal In Progress' },
                     { color: '#16cf15', text: 'Approved' },
                     { color: '#e31d23', text: 'Rejected' },
-                    { color: '#999999', text: 'Withdrawn' },
+                    { color: '#7a84a0', text: 'Withdrawn' },
                     { color: '#eacad0', text: 'Other' },
                 ]
             }
@@ -211,7 +211,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#fff200', text: 'Appeal In Progress' },
                     { color: '#16cf15', text: 'Approved' },
                     { color: '#e31d23', text: 'Rejected' },
-                    { color: '#999999', text: 'Withdrawn' },
+                    { color: '#7a84a0', text: 'Withdrawn' },
                     { color: '#eacad0', text: 'Other' },
                 ]
             }
@@ -236,7 +236,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'planning_combined',
             legend: {
                 title: 'Designation/protection (official and crowdsourced data)',
-                disclaimer: 'All data relating to designated buildings should be checked against the National Heritage List for England and local authority websites. Designation data is currently incomplete. We are aiming for 100% coverage by April 2023.',
+                disclaimer: 'All data relating to designated buildings should be checked against the National Heritage List for England and local authority websites. Designation data is currently incomplete. We are aiming for 100% coverage by December 2023.',
                 elements: [
                     { color: '#95beba', text: 'In Conservation Area'},
                     { color: '#c72e08', text: 'Grade I Listed'},
