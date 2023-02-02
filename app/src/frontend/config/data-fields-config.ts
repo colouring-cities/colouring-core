@@ -82,13 +82,19 @@ export const buildingUserFields = {
         title: 'Why is this type of building worth keeping?',
         fields: {
             external_design: {
-                title: "because the external design contributes to the streetscape"
+                title: "Because the external design contributes to the streetscape"
             },
             internal_design: {
-                title: 'because the internal design works well'
+                title: 'Because the internal layout works well'
             },
             adaptable: {
-                title: 'because the building is adaptable / can be reused to make the city more sustainable'
+                title: 'Because the building can be easily adapted and reused'
+            },
+            using_outside_space: {
+                title: 'Because the building incorporates outside space'
+            },
+            durable: {
+                title: 'Because the construction method and materials are likely to be long-lasting'
             },
             other: {
                 title: 'other'
@@ -98,6 +104,8 @@ export const buildingUserFields = {
             external_design: true,
             internal_design: true,
             adaptable: false,
+            using_outside_space: true,
+            durable: true,
             other: false
         }
     },
