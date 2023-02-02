@@ -39,9 +39,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const { darkLightTheme } = useDisplayPreferences();
     const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
     return <>
-        <InfoBox type='warning'>
-            We are testing a new feature in this section! Switch between different colour maps by using the dropdown in the legend pane.
-        </InfoBox>
         <div className='community-opinion-pane'>
             <InfoBox>
                 Can you share your opinion on how well the building works?
