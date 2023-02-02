@@ -330,12 +330,12 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 placeholder="Please add Conservation Area identifier"
                 />
             <Verification
-                slug="planning_in_conservation_area_url"
-                allow_verify={props.user !== undefined && props.building.planning_in_conservation_area_url !== null && !props.edited}
+                slug="planning_in_conservation_area_id"
+                allow_verify={props.user !== undefined && props.building.planning_in_conservation_area_id !== null && !props.edited}
                 onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area_url")}
-                user_verified_as={props.user_verified.planning_in_conservation_area_url}
-                verified_count={props.building.verified.planning_in_conservation_area_url}
+                user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area_id")}
+                user_verified_as={props.user_verified.planning_in_conservation_area_id}
+                verified_count={props.building.verified.planning_in_conservation_area_id}
                 />
             */}
             <DataEntry
@@ -347,6 +347,16 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 onChange={props.onChange}
                 isUrl={true}
                 placeholder="Please add CA appraisal link here"
+                />
+            {props.building.planning_in_conservation_area_url === "" ? "Our CA map records this building as not being within a CA. To help us verify this, please click ‘verify’ or, if info is incorrect, please add the local authority’s CA appraisal link." : "" }
+            {props.building.planning_in_conservation_area_url === "identified as listed: please replace with links" ? "Our CA map records this building as being within a CA. To help us verify this information please add the local authority’s CA appraisal link and then click ‘verify’." : "" }
+            <Verification
+                slug="planning_in_conservation_area_url"
+                allow_verify={props.user !== undefined && props.building.planning_in_conservation_area_url !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area_url")}
+                user_verified_as={props.user_verified.planning_in_conservation_area_url}
+                verified_count={props.building.verified.planning_in_conservation_area_url}
                 />
             {/*
             <DataEntry
