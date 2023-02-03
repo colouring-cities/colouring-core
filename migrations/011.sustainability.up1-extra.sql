@@ -1,10 +1,10 @@
--- Remove sustainability fields, update in paralell with adding new fields
+-- Remove sustainability fields, update in parallel with adding new fields
 -- Last significant retrofit date YYYY
 -- Need to add a constraint to sust_retrofit_date
 ALTER TABLE buildings
     ADD CONSTRAINT sust_retrofit_date_end CHECK (sust_retrofit_date <= DATE_PART('year', CURRENT_DATE));
 
---Has a building had a major renovation without extenstion (captured in form)
+--Has a building had a major renovation without extension (captured in form)
 --Boolean yes/no - links to the the DATE
 ALTER TABLE buildings
     ADD COLUMN IF NOT EXISTS sust_retrofitted boolean DEFAULT 'n';

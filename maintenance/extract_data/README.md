@@ -70,6 +70,9 @@ This is the main table, containing almost all data collected by Colouring London
 - `sust_dec`: DEC rating
 - `sust_retrofit_date`: year of last significant retrofit
 - `planning_portal_link`: link to an entry on https://www.planningportal.co.uk/
+- `planning_crowdsourced_site_completion_status`: status of completion of costruction at given location
+- `planning_crowdsourced_site_completion_year`: year of completion of costruction at given location
+- `planning_crowdsourced_planning_id`: id of planning application for a given location
 - `planning_list_id`: National Heritage List for England ID
 - `planning_in_conservation_area_id`: conservation area ID
 - `planning_in_conservation_area_url`: conservation area appraisal link

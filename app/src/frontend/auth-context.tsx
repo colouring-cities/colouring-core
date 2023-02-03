@@ -58,6 +58,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
     const [userError, setUserError] = useState<string>(undefined);
     const [isLoading, setIsLoading] = useState(false);
 
+
     const login = useCallback(async (data: UserLoginData, cb: (err) => void = noop) => {
         if(isAuthenticated) {
             return;
@@ -199,7 +200,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
             logout,
             signup,
             generateApiKey,
-            deleteAccount
+            deleteAccount,
         }}>
             {children}
         </AuthContext.Provider>

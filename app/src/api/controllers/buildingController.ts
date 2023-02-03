@@ -116,6 +116,23 @@ const getBuildingUPRNsById = asyncController(async (req: express.Request, res: e
     }
 });
 
+// GET building planning data
+const getBuildingPlanningDataById = asyncController(async (req: express.Request, res: express.Response) => {
+    const buildingId = processParam(req.params, 'building_id', parsePositiveIntParam, true);
+
+    try {
+        const result = await buildingService.getBuildingPlanningDataById(buildingId);
+
+        if (typeof (result) === 'undefined') {
+            return res.send({ error: 'Database error' });
+        }
+        res.send({data: result, buildingId: buildingId});
+    } catch(error) {
+        console.error(error);
+        res.send({ error: 'Database error' });
+    }
+});
+
 const getBuildingUserAttributesById = asyncController(async (req: express.Request, res: express.Response) => {
     if(!req.session.user_id) {
         return res.send({ error: 'Must be logged in'});
@@ -202,6 +219,7 @@ export default {
     getBuildingById,
     updateBuildingById,
     getBuildingUPRNsById,
+    getBuildingPlanningDataById,
     getUserVerifiedAttributes,
     verifyBuildingAttributes,
     getBuildingEditHistoryById,

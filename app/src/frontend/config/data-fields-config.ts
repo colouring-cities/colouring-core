@@ -50,6 +50,8 @@ export interface DataFieldDefinition {
      * 
      * Making it semantically correct is useful but not necessary.
      * E.g. for building attachment form, you could use "Detached" as example
+     * 
+     * This field is later processed by AttributesBasedOnExample
      */
     example: any;
 
@@ -109,7 +111,7 @@ export const buildingUserFields = {
     community_expected_planning_application: {
         perUser: true,
         category: Category.Community,
-        title: "Select any building that you think may be subject to a planning application over the next six months and tick the box below to colour it.",
+        title: "Do you think that this building may be subject to a planning application, involving demolition, over the next six months?",
         example: true
     }
 };
@@ -118,7 +120,7 @@ export const buildingUserFields = {
 export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name: {
         category: Category.Location,
-        title: "Building information (link)",
+        title: "Building Name (Information link)",
         tooltip: "Link to a website with information on the building, not needed for most.",
         example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
     },
@@ -154,8 +156,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     ref_toid: {
         category: Category.Location,
-        title: "TOID",
-        tooltip: "Ordnance Survey Topography Layer ID (to be filled automatically)",
+        title: "Building Footprint ID",
+        tooltip: "Ordnance Survey Topography Layer ID (TOID) [<a href='https://www.ordnancesurvey.co.uk/business-government/products/open-toid'>link</a>]",
         example: "",
     },
     
@@ -165,10 +167,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
      */
     uprns: {
         category: Category.Location,
-        title: "UPRNs",
+        title: "Unique Property Reference Number(s) (UPRN)",
         tooltip: "Unique Property Reference Numbers (to be filled automatically)",
         example: [{uprn: "", parent_uprn: "" }, {uprn: "", parent_uprn: "" }],
     },
+
+    planning_data: {
+        category: Category.Location,
+        title: "PLANNING DATA",
+        tooltip: "PLANNING DATA",
+        example: [{uprn: "", building_id: 1, data_source: ""},
+                  {uprn: "", building_id: 1, data_source: "", status: "", status_before_aliasing: "", decision_date: "", description: "", planning_application_link: "", registered_with_local_authority_date: "", last_synced_date: "", data_source_link: "", address: ""},
+                ],
+    },
+
 
     ref_osm_id: {
         category: Category.Location,
@@ -280,7 +292,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     facade_year: {
         category: Category.Age,
-        title: "Facade year",
+        title: "Date of Front of Building",
         tooltip: "Best estimate",
         example: 1900,
     },
@@ -321,20 +333,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     size_storeys_core: {
         category: Category.Size,
-        title: "Core storeys",
-        tooltip: "How many storeys between the pavement and start of roof?",
+        title: "Core Number of Floors",
+        tooltip: "How many floors are there between the pavement and start of roof?",
         example: 10,
     },
     size_storeys_attic: {
         category: Category.Size,
-        title: "Attic storeys",
-        tooltip: "How many storeys above start of roof?",
+        title: "Number of Floors within Roof Space",
+        tooltip: "How many floors above start of roof?",
         example: 1,
     },
     size_storeys_basement: {
         category: Category.Size,
-        title: "Basement storeys",
-        tooltip: "How many storeys below pavement level?",
+        title: "Number of Floors beneath Ground Level",
+        tooltip: "How many floors below pavement level?",
         example: 1,
     },
     size_height_apex: {
@@ -411,20 +423,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     sust_breeam_rating: {
         category: Category.Sustainability,
-        title: "BREEAM Rating",
-        tooltip: "(Building Research Establishment Environmental Assessment Method) May not be present for many buildings",
+        title: "Official Environmental Quality Rating",
+        tooltip: "Building Research Establishment Environmental Assessment Method (BREEAM) May not be present for many buildings",
         example: "",
     },
     sust_dec: {
         category: Category.Sustainability,
-        title: "DEC Rating",
-        tooltip: "(Display Energy Certificate) Any public building should have (and display) a DEC. Showing how the energy use for that building compares to other buildings with same use",
+        title: "Non-domestic Building Energy Rating",
+        tooltip: "Display Energy Certificate (DEC) Any public building should have (and display) a DEC. Showing how the energy use for that building compares to other buildings with same use",
         example: "G",
     },
     sust_aggregate_estimate_epc: {
         category: Category.Sustainability,
-        title: "EPC Rating",
-        tooltip: "(Energy Performance Certificate) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher maybe rented",
+        title: "Domestic Building Energy Rating",
+        tooltip: "Energy Performance Certificate (EPC) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher maybe rented",
         example: "",
     },
     sust_retrofit_date: {
@@ -440,16 +452,48 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         //tooltip: ,
     },
 
+    historical_status: {
+        category: Category.Age,
+        title: "Historical Status",
+        tooltip: "Survival and Loss tracked using Historical Maps",
+    },
+
+    edit_history: {
+        category: Category.Planning,
+        title: "PLANNING DATA",
+        tooltip: "PLANNING DATA",
+        example: [{}],
+    },
+
+
     planning_portal_link: {
         category: Category.Planning,
-        title: "Planning portal link",
+        title: "Local authority planning application link",
         example: "",
         //tooltip: ,
     },
     planning_in_conservation_area_url: {
         category: Category.Planning,
-        title: "Is the building in a <a href=\"https://historicengland.org.uk/listing/what-is-designation/local/conservation-areas/\" target=\"_blank\">Conservation Area</a>?",
+        title: "Is the building in a conservation area?",
         example: "",
+        //tooltip: ,
+    },
+    planning_crowdsourced_site_completion_status: {
+        category: Category.Planning,
+        title: "Has the work on this site been completed?",
+        example: true,
+        //tooltip: ,
+    },
+    planning_crowdsourced_site_completion_year: {
+        category: Category.Planning,
+        title: "Year of completion if known",
+        example: 2022,
+        //tooltip: ,
+    },
+    planning_crowdsourced_planning_id: {
+        category: Category.Planning,
+        title: "If you know of a planning application that has been recently submitted for this site, and is not listed in the blue box above, please enter its planning application ID below:",
+        example: "1112/QWERTY",
         //tooltip: ,
     },
     planning_in_conservation_area_id: {
@@ -466,49 +510,49 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_list_id: {
         category: Category.Planning,
-        title: "Is the building on the <a href=\"https://historicengland.org.uk/advice/hpg/heritage-assets/nhle/\" target=\"_blank\">National Heritage List for England</a>?",
+        title: "If the building is on a national heritage register, please add the ID:",
         example: "121436",
-        //tooltip: ,
+        tooltip: "e.g. National Heritage List for England (NHLE)",
     },
     planning_list_grade: {
         category: Category.Planning,
-        title: "What is its grade?",
+        title: "What is its rating?",
         example: "II",
         //tooltip: ,
     },
     planning_heritage_at_risk_url: {
         category: Category.Planning,
-        title: "Is it on the <a href=\"https://historicengland.org.uk/advice/heritage-at-risk/search-register/\" target=\"_blank\">Heritage at Risk</a> register?",
+        title: "If the building is on a heritage at risk register, please add the ID:",
         example: "",
         //tooltip: ,
     },
     planning_world_list_id: {
         category: Category.Planning,
-        title: "Is it within a <a href=\"https://historicengland.org.uk/advice/hpg/has/whs/\" target=\"_blank\">World Heritage Site</a>?",
+        title: "If the building is on a <a href=\"https://historicengland.org.uk/advice/hpg/has/whs/\" target=\"_blank\">World Heritage Site</a> please add the ID:",
         example: "488",
         //tooltip: ,
     },
     planning_glher_url: {
         category: Category.Planning,
-        title: "Is it recorded on the <a href=\"https://historicengland.org.uk/advice/technical-advice/information-management/hers/\" target=\"_blank\">Historic Environment Record</a>?",
+        title: "Is it recorded on any historic environment records?",
         example: "",
         //tooltip: ,
     },
     planning_in_apa_url: {
         category: Category.Planning,
-        title: "Is it in an <a href=\"https://historicengland.org.uk/services-skills/our-planning-services/greater-london-archaeology-advisory-service/greater-london-archaeological-priority-areas/\" target=\"_blank\">Archaeological Priority Area</a>?",
+        title: "Is it in an area if archaeological priority?",
         example: "",
         //tooltip: ,
     },
     planning_local_list_url: {
         category: Category.Planning,
-        title: "Is it a <a href=\"https://historicengland.org.uk/advice/hpg/has/locallylistedhas/\" target=\"_blank\">Locally Listed Heritage Asset</a>?",
+        title: "Is it a locally listed heritage asset?",
         example: "",
         //tooltip: ,
     },
     planning_historic_area_assessment_url: {
         category: Category.Planning,
-        title: "Does it have an <a href=\"https://historicengland.org.uk/images-books/publications/understanding-place-historic-area-assessments/\" target=\"_blank\">Historic Area Assessment</a>?",
+        title: "Does it have any other kind of historic area assessment?",
         example: "",
         //tooltip: ,
     },
@@ -575,13 +619,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
 
     dynamics_has_demolished_buildings: {
-        category: Category.Dynamics,
+        category: Category.Resilience,
         title: 'Were any other buildings ever built on this site?',
         example: true,
     },
 
     demolished_buildings: {
-        category: Category.Dynamics,
+        category: Category.Resilience,
         title: 'Past (demolished) buildings on this site',
         items: {
             year_constructed: {

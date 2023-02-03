@@ -1,0 +1,147 @@
+.night-theme {
+    filter: grayscale(100%) invert(1);
+}
+
+.light-theme {
+    filter: none;
+}
+
+.map-button {
+    z-index: 1000;
+    position: absolute;
+    right: 10px;
+    float: right;
+    background: white;
+    border-radius: 4px;
+}
+.map-button .btn {
+    margin: 0;
+    min-width: 310px;
+    color: #191b1d;
+}
+.map-button .btn:hover {
+    color: #fff;
+}
+.map-button.night .btn {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+.map-button.night .btn:hover {
+    color: #d4d7da;
+    background-color: transparent;
+    background-image: none;
+    border-color: #343a40;
+}
+.map-switcher-inline.night.no-applicable-state {
+    color: #191b1d;
+}
+.map-switcher-inline.disabled-state,
+.map-button.disabled-state,
+.map-button.disabled-state .btn{
+    background-color: #df7474;
+}
+.map-switcher-inline.night.disabled-state,
+.map-button.night.disabled-state,
+.map-button.night.disabled-state .btn{
+    background-color: #b03f3f;
+}
+.map-button.enabled-state {
+    color: #75e775;
+    background-color: #75e775;
+}
+.map-switcher-inline.enabled-state,
+.map-button.enabled-state .btn{
+    background-color: #75e775;
+}
+.map-button.night.enabled-state {
+    color: #448844;
+    background-color: #448844;
+}
+.map-switcher-inline.night.enabled-state,
+.map-button.night.enabled-state .btn{
+    background-color: #448844;
+}
+
+.map-switcher-inline.night.no-applicable-state,
+.map-button.enabled .btn:hover,
+.map-button.night.enabled .btn:hover {
+    background-color: transparent;
+    background-image: none;
+}
+@media (max-width: 990px){
+    .map-button {
+        visibility: hidden;
+    }
+}
+
+.theme-switcher {
+    top: 77px;
+}
+.theme-switcher .btn {
+    min-width: 340px;
+}
+
+.data-switcher {
+    top: 117px;
+}
+.data-switcher .btn {
+    min-width: 340px;
+}
+
+.borough-switcher {
+    top: 157px;
+}
+
+.housing-switcher {
+    top: 197px;
+}
+
+.creative-switcher {
+    top: 237px;
+}
+
+.flood-switcher {
+    top: 277px;
+}
+
+.vista-switcher {
+    top: 317px;
+}
+
+.conservation-switcher {
+    top: 357px;
+}
+
+.historic-data-switcher {
+    top: 397px;
+}
+
+.parcel-switcher {
+    top: 437px;
+}
+
+.map-switcher-inline {
+    border-radius: 4px;
+    /*background: #FFC0CB;*/
+    margin: 12px;
+    min-width: 400px;
+    color: #343a40;
+}
+.map-switcher-inline.night {
+    color: #d4d7da;
+}
+/*
+.map-switcher-inline.night {
+    background: #FFC0CB;
+    color: #fff;
+    background-color: #343a40;
+    border-color: #ff6065;
+}
+.map-switcher-inline.night .btn:hover {
+    color: #343a40;
+    background-color: transparent;
+    background-image: none;
+    border-color: #ff6065;
+}
+*/

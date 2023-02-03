@@ -11,6 +11,6 @@ export function BuildingHighlightLayer({selectedBuildingId, baseTileset}: {selec
                 url={getTileLayerUrl('highlight', {highlight: `${selectedBuildingId}`, base: baseTileset})}
                 minZoom={13}
                 maxZoom={19}
-                detectRetina={true}
+                detectRetina={false}
             />;
 }

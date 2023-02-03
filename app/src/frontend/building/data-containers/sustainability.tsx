@@ -6,6 +6,7 @@ import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
+import InfoBox from '../../components/info-box';
 
 import { CategoryViewProps } from './category-view-props';
 
@@ -94,26 +95,31 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 user_verified_as={props.user_verified.sust_retrofit_date}
                 verified_count={props.building.verified.sust_retrofit_date}
                 />
-
-            <NumericDataEntry
-                title={dataFields.sust_life_expectancy.title}
-                slug="sust_life_expectancy"
-                value={props.building.sust_life_expectancy}
-                step={1}
-                min={1}
-                disabled={true}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-            />
+            <InfoBox>
+                This section is under development.
+            </InfoBox>
             <DataEntry
-                title="Repairability rating for type"
+                title="Date of Significant Retrofits"
+                slug=""
+                value=""
+                mode='view'
+            />
+            <Verification
+                slug="date_link"
+                allow_verify={props.user !== undefined && props.building.date_link !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("date_link")}
+                user_verified_as={props.user_verified.date_link}
+                verified_count={props.building.verified.date_link}
+                />
+            <DataEntry
+                title="Source"
                 slug=""
                 value=""
                 mode='view'
             />
             <DataEntry
-                title="Adaptability within plot rating"
+                title="Green Walls / Green Roof / Shading"
                 slug=""
                 value=""
                 mode='view'

@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { CCConfig } from '../../cc-config';
 let config: CCConfig = require('../../cc-config.json')
 
+import Categories from '../building/categories';
 import './welcome.css';
 
 const Welcome = () => (
     <div className="section-body welcome">
+        <Categories mode="view"/>
         <h1 className="h2">Welcome to Colouring {config.cityName}!</h1>
         <p>
 

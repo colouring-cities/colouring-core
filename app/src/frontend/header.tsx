@@ -56,15 +56,25 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 text: "Download data"
             },
             {
+                to: "https://github.com/colouring-cities/manual/wiki",
+                text: "Open Manual - Wiki",
+                external: true
+            },
+            {
                 to: config.githubURL,
-                text: "Access open code",
+                text: "Open code",
+                external: true
+            },
+            {
+                to: "https://github.com/colouring-cities/manual/wiki",
+                text: "Colouring Cities Open Manual/Wiki",
+                disabled: false,
                 external: true
             },
             {
                 to: "/showcase.html",
-                text: "View Data Showcase",
+                text: "Case Study Showcase",
                 disabled: true,
-                note: "Coming soon"
             },
         ],
         [

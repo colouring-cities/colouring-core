@@ -90,7 +90,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 mode='view'
             />
             <DataEntry
-                title="Dynamic tissue type classificaiton"
+                title="Dynamic tissue type classification"
                 slug=""
                 value=""
                 mode='view'

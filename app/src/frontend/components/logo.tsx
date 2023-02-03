@@ -43,7 +43,7 @@ const LogoGrid: React.FunctionComponent = () => (
         <div className="row">
             <div className="cell background-sustainability"></div>
             <div className="cell background-planning"></div>
-            <div className="cell background-dynamics"></div>
+            <div className="cell background-resilience"></div>
             <div className="cell background-community"></div>
         </div>
     </div>

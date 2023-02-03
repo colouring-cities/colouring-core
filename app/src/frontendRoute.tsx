@@ -7,6 +7,7 @@ import serialize from 'serialize-javascript';
 import {
     getBuildingById,
     getBuildingUPRNsById,
+    getBuildingPlanningDataById,
     getLatestRevisionId,
     getUserVerifiedAttributes
 } from './api/services/building/base';
@@ -36,13 +37,14 @@ const frontendRoute = asyncController(async (req: express.Request, res: express.
     }
 
     try {
-        let [user, building, uprns, userVerified, latestRevisionId] = await Promise.all([
+        let [user, building, uprns, planningData, userVerified, latestRevisionId] = await Promise.all([
             userId ? getUserById(userId) : undefined,
             isBuilding ? getBuildingById(
                 buildingId,
                 { userDataOptions: userId ? { userId, userAttributes: true } : null }
             ) : undefined,
             isBuilding ? getBuildingUPRNsById(buildingId) : undefined,
+            isBuilding ? getBuildingPlanningDataById(buildingId) : undefined,
             (isBuilding && userId) ? getUserVerifiedAttributes(buildingId, userId) : {},
             getLatestRevisionId()
         ]);
@@ -55,6 +57,9 @@ const frontendRoute = asyncController(async (req: express.Request, res: express.
         data.user_verified = userVerified;
         if (data.building != null) {
             data.building.uprns = uprns;
+        }
+        if (data.building != null) {
+            data.building.planning_data = planningData;
         }
         data.latestRevisionId = latestRevisionId;
         renderHTML(context, data, req, res);

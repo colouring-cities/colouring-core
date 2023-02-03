@@ -17,7 +17,7 @@
 
 .section-header .h2 {
     display: inline-block;
-    flex-basis: 150px;
+    flex-basis: 200px;
     flex-shrink: 0;
     flex-grow: 1;
     margin: 0.75rem 0 0.5em 0.1em;
@@ -33,7 +33,8 @@
 
 .section-header .section-header-actions {
     display: inline-block;
-    flex-basis: 400px;
+    flex-basis: 220px;
+    flex-shrink: 0;
     display: flex;
     flex-flow: row wrap;
     align-items: center;

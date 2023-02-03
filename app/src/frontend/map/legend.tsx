@@ -57,7 +57,7 @@ export const Legend : FC<LegendProps> = ({
             <Logo variant="default" />
             {
                 mapColourScaleDefinitions.length > 1 ?
-                    <select className='style-select' onChange={e => onMapColourScale(e.target.value as BuildingMapTileset)}>
+                    <select className='style-select' onChange={e => onMapColourScale(e.target.value as BuildingMapTileset)} value={mapColourScale}>
                         {
                             mapColourScaleDefinitions.map(def => 
                                 <option key={def.mapStyle} value={def.mapStyle}>{def.legend.title}</option>    
@@ -81,7 +81,7 @@ export const Legend : FC<LegendProps> = ({
             }
             {
                 elements.length === 0 ?
-                    <p className="data-intro">Coming soon…</p> :
+                    ( disclaimer ? <ul className={collapseList ? 'collapse data-legend' : 'data-legend'} ><p className='legend-disclaimer'>{disclaimer}</p></ul> : <p className="data-intro">Coming soon…</p>) :
                     <ul className={collapseList ? 'collapse data-legend' : 'data-legend'} >
                         {
                             disclaimer && <p className='legend-disclaimer'>{disclaimer}</p>

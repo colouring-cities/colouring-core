@@ -103,10 +103,7 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
         apiGet(`/api/search?q=${this.state.q}`)
         .then((data) => {
             if (data && data.results){
-                this.setState({
-                    results: data.results,
-                    fetching: false
-                });
+                this.props.onLocate(data.results[0].geometry.coordinates[1], data.results[0].geometry.coordinates[0], data.results[0].attributes.zoom)
             } else {
                 console.error(data);
 
@@ -157,31 +154,7 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
             );
         }
 
-        const resultsList = this.state.results.length?
-            <ul className="search-box-results">
-                {
-                    this.state.results.map((result) => {
-                        const label = result.attributes.label;
-                        const lng = result.geometry.coordinates[0];
-                        const lat = result.geometry.coordinates[1];
-                        const zoom = result.attributes.zoom;
-                        const href = `?lng=${lng}&lat=${lat}&zoom=${zoom}`;
-                        return (
-                            <li key={result.attributes.label}>
-                                <a
-                                    className="search-box-result"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        this.props.onLocate(lat, lng, zoom);
-                                    }}
-                                    href={href}
-                                >{`${label.substring(0, 4)} ${label.substring(4, 7)}`}</a>
-                            </li>
-                        );
-                    })
-                }
-            </ul>
-            : null;
+        const resultsList = null;
         return (
             <div className="search-box" onKeyDown={this.handleKeyPress}>
                 <div className="search-box-pane">

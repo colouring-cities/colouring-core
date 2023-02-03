@@ -1,5 +1,5 @@
 -- Create land use and fields
---Landuse is hierachical. Highest level is Order (Residential) then Group (Residential-Dwelling) then Class (Residential-Dwelling-Detached house)
+--Landuse is hierarchical. Highest level is Order (Residential) then Group (Residential-Dwelling) then Class (Residential-Dwelling-Detached house)
 --Some ETL work required to get this together refer to analysis repo
 --Prerequesite is to have first run bulk_data_sources migrations
  --Then create table landuse_order for the app, this is used as foreign key for current and original landuse_order
@@ -36,11 +36,11 @@ FROM reference_tables.landuse_classifications a
 WHERE a.level = 'class'
   AND a.is_used;
 
---Landuse is hierachical. Highest level is Order (Residential) then Group (Residential-Dwelling) then Class (Residential-Dwelling-Detached house)
+--Landuse is hierarchical. Highest level is Order (Residential) then Group (Residential-Dwelling) then Class (Residential-Dwelling-Detached house)
 --Interface will collected most detailed (class) but visualise highest level (order)
 --Landuse is a table as #358
 --Prerequisite run bulk_sources migration first
- -- Land use is table with 3 levels of hierachy (highest to lowest). order > group > class
+ -- Land use is table with 3 levels of hierarchy (highest to lowest). order > group > class
 
 
 -- Land use order, singular. Client and db constrained with foreign key

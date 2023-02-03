@@ -137,6 +137,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
             />
         <UPRNsDataEntry
             title={dataFields.uprns.title}
+            slug="ref_uprns"
             value={props.building.uprns}
             tooltip={dataFields.uprns.tooltip}
             />

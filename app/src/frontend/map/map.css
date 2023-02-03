@@ -28,19 +28,6 @@
 .leaflet-grab {
     cursor: crosshair;
 }
-.map-notice {
-    position: absolute;
-    top: 3.5rem;
-    left: 0.5rem;
-    z-index: 1000;
-    padding: 0.5rem 0.75rem;
-    width: 250px;
-    background: #fff;
-    border: 1px solid #fff;
-    border-radius: 4px;
-    box-shadow: 0px 0px 1px 1px #222;
-    display: none;
-}
 @media (min-width: 990px){
     /* Only show the "Click a building ..." notice for larger screens */
     .map-notice {

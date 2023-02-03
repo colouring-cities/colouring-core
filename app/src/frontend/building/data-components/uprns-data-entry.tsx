@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 
-import DataTitle from './data-title';
+import { BaseDataEntryProps } from './data-entry';
+import { DataTitleCopyable } from './data-title';
 
 
-interface UPRNsDataEntryProps {
+interface UPRNsDataEntryProps extends BaseDataEntryProps {
     title: string;
     tooltip: string;
     value: {
@@ -19,7 +20,8 @@ const UPRNsDataEntry: React.FC<UPRNsDataEntryProps> = (props) => {
 
     return (
         <Fragment>
-            <DataTitle
+            <DataTitleCopyable
+                slug={props.slug}
                 title={props.title}
                 tooltip={props.tooltip}
             />

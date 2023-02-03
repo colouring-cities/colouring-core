@@ -5,8 +5,6 @@
         </Rule>
         <Rule>
             <LineSymbolizer stroke="#222222aa" stroke-width="0.5" />
-            <MaxScaleDenominator>17000</MaxScaleDenominator>
-            <MinScaleDenominator>0</MinScaleDenominator>
         </Rule>
     </Style>
     <Style name="base_night">
@@ -17,6 +15,61 @@
             <LineSymbolizer stroke="#ccccccaa" stroke-width="0.5" />
             <MaxScaleDenominator>17000</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
+        </Rule>
+    </Style>
+    <Style name="base_night_outlines">
+        <Rule>
+            <LineSymbolizer stroke="#ff0000ff" stroke-width="1" />
+        </Rule>
+    </Style>
+    <Style name="base_boroughs">
+        <Rule>
+            <TextSymbolizer
+                face-name="DejaVu Sans Condensed Bold"
+                fill="#eee"
+                size="24"
+                halo-radius="2"
+                halo-fill="#333"
+                wrap-width="40"
+                clip="false"
+                margin="20"
+            >
+                [name]
+            </TextSymbolizer>
+            <MinScaleDenominator>10000</MinScaleDenominator>
+            <MaxScaleDenominator>20000</MaxScaleDenominator>
+        </Rule>
+        <Rule>
+            <TextSymbolizer
+                face-name="DejaVu Sans Condensed Bold"
+                fill="#eee"
+                size="21"
+                halo-radius="2"
+                halo-fill="#333"
+                wrap-width="35"
+                clip="false"
+                margin="20"
+            >
+                [name]
+            </TextSymbolizer>
+            <MinScaleDenominator>20000</MinScaleDenominator>
+            <MaxScaleDenominator>80000</MaxScaleDenominator>
+        </Rule>
+        <Rule>
+            <TextSymbolizer
+                face-name="DejaVu Sans Condensed Bold"
+                fill="#eee"
+                size="15"
+                halo-radius="2"
+                halo-fill="#333"
+                wrap-width="35"
+                clip="false"
+                margin="20"
+            >
+                [name]
+            </TextSymbolizer>
+            <MinScaleDenominator>80000</MinScaleDenominator>
+            <MaxScaleDenominator>400000</MaxScaleDenominator>
         </Rule>
     </Style>
     <Style name="number_labels">
@@ -313,6 +366,102 @@
             <PolygonSymbolizer fill="#73ebaf" />
         </Rule>
     </Style>
+    <Style name="planning_applications_status_all">
+        <Rule>
+            <Filter>[status] = "Submitted"</Filter>
+            <PolygonSymbolizer fill="#a040a0"/>
+            <LineSymbolizer stroke="#a040a0" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Approved"</Filter>
+            <PolygonSymbolizer fill="#16cf15"/>
+            <LineSymbolizer stroke="#16cf15" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Appeal In Progress"</Filter>
+            <PolygonSymbolizer fill="#fff200"/>
+            <LineSymbolizer stroke="#fff200" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Rejected"</Filter>
+            <PolygonSymbolizer fill="#e31d23"/>
+            <LineSymbolizer stroke="#e31d23" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Withdrawn"</Filter>
+            <PolygonSymbolizer fill="#7a84a0"/>
+            <LineSymbolizer stroke="#7a84a0" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn"</Filter>
+            <PolygonSymbolizer fill="#eacad0"/>
+            <LineSymbolizer stroke="#eacad0" stroke-width="1.75" />
+        </Rule>
+    </Style>
+    <Style name="planning_applications_status_recent">
+        <Rule>
+            <Filter>[status] = "Submitted" and [days_since_registered_with_local_authority_date] &lt; 366</Filter>
+            <PolygonSymbolizer fill="#a040a0"/>
+            <LineSymbolizer stroke="#a040a0" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Approved" and [days_since_decision_date] &lt; 366</Filter>
+            <PolygonSymbolizer fill="#16cf15"/>
+            <LineSymbolizer stroke="#16cf15" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Appeal In Progress" and [days_since_decision_date] &lt; 366</Filter>
+            <PolygonSymbolizer fill="#fff200"/>
+            <LineSymbolizer stroke="#fff200" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Rejected" and [days_since_decision_date] &lt; 366</Filter>
+            <PolygonSymbolizer fill="#e31d23"/>
+            <LineSymbolizer stroke="#e31d23" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Withdrawn" and [days_since_registered_with_local_authority_date] &lt; 366</Filter>
+            <PolygonSymbolizer fill="#7a84a0"/>
+            <LineSymbolizer stroke="#7a84a0" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn" and [days_since_registered_with_local_authority_date] &lt; 366</Filter>
+            <PolygonSymbolizer fill="#eacad0"/>
+            <LineSymbolizer stroke="#eacad0" stroke-width="1.75" />
+        </Rule>
+    </Style>
+    <Style name="planning_applications_status_very_recent">
+        <Rule>
+            <Filter>[status] = "Submitted" and [days_since_registered_with_local_authority_date] &lt;= 30</Filter>
+            <PolygonSymbolizer fill="#a040a0"/>
+            <LineSymbolizer stroke="#a040a0" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Approved" and [days_since_decision_date] &lt;= 30</Filter>
+            <PolygonSymbolizer fill="#16cf15"/>
+            <LineSymbolizer stroke="#16cf15" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Appeal In Progress" and [days_since_decision_date] &lt;= 30</Filter>
+            <PolygonSymbolizer fill="#fff200"/>
+            <LineSymbolizer stroke="#fff200" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Rejected" and [days_since_decision_date] &lt;= 30</Filter>
+            <PolygonSymbolizer fill="#e31d23"/>
+            <LineSymbolizer stroke="#e31d23" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] = "Withdrawn" and [days_since_registered_with_local_authority_date] &lt;= 30</Filter>
+            <PolygonSymbolizer fill="#7a84a0"/>
+            <LineSymbolizer stroke="#7a84a0" stroke-width="1.75" />
+        </Rule>
+        <Rule>
+            <Filter>[status] != "Submitted" and [status] != "Approved" and [status] != "Appeal In Progress" and [status] != "Rejected" and [status] != "Withdrawn" and [days_since_registered_with_local_authority_date] &lt;= 30</Filter>
+            <PolygonSymbolizer fill="#eacad0"/>
+            <LineSymbolizer stroke="#eacad0" stroke-width="1.75" />
+        </Rule>
+    </Style>
     <Style name="planning_combined">
         <Rule>
             <Filter>[planning_in_conservation_area] = true</Filter>
@@ -597,7 +746,7 @@
     <Style name="landuse">
         <Rule>
             <Filter>[current_landuse_order] = "Agriculture And Fisheries"</Filter>
-            <PolygonSymbolizer fill="#fa667d" />
+            <PolygonSymbolizer fill="#73ccd1" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Minerals"</Filter>
@@ -637,7 +786,7 @@
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Community Services"</Filter>
-            <PolygonSymbolizer fill="#73ccd1" />
+            <PolygonSymbolizer fill="#fa667d" />
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Retail"</Filter>

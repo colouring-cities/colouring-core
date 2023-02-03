@@ -1,15 +1,15 @@
--- Remove sustainability fields, update in paralell with adding new fields
+-- Remove sustainability fields, update in parallel with adding new fields
 -- BREEAM rating
 ALTER TABLE buildings DROP COLUMN IF EXISTS sust_breeam_rating;
 -- BREEAM date
 ALTER TABLE buildings DROP COLUMN IF EXISTS sust_breeam_date;
 
--- DEC (display energy certifcate, only applies to non domestic buildings)
+-- DEC (display energy certificate, only applies to non domestic buildings)
 ALTER TABLE buildings DROP COLUMN IF EXISTS sust_dec;
 -- DEC date
 ALTER TABLE buildings DROP COLUMN IF EXISTS sust_dec_date;
 
---DEC certifcate lmk key, this would be lmkkey, no online lookup but can scrape through API. Numeric (25)
+--DEC certificate lmk key, this would be lmkkey, no online lookup but can scrape through API. Numeric (25)
 ALTER TABLE buildings DROP COLUMN IF EXISTS sust_dec_lmkey;
 
 -- Aggregate EPC rating (Estimated) for a building, derived from inidividual certificates

@@ -3,7 +3,7 @@
 -- -- Ownership type, enumerate type from:
 -- ALTER TABLE buildings DROP COLUMN IF EXISTS ownership_type;
 
--- -- Ownerhsip perception, would you describe this as a community asset?
+-- -- Ownership perception, would you describe this as a community asset?
 -- -- Boolean yes / no
 -- ALTER TABLE buildings DROP COLUMN IF EXISTS ownership_perception;
 

@@ -32,14 +32,10 @@ let shouldCacheFn: (t: TileParams) => boolean;
 if(!allLayersCacheSwitch) {
     shouldCacheFn = t => false;
 } else if(dataLayersCacheSwitch) {
-    // cache age data and base building outlines for more zoom levels than other layers
-    shouldCacheFn = ({ tileset, z }: TileParams) =>
-        (tileset === 'date_year' && z <= 16) ||
-        (['base_light', 'base_night'].includes(tileset) && z <= 17) ||
-        z <= 13;
+    shouldCacheFn = ({ tileset, z }: TileParams) => z <= 18;
 } else {
     shouldCacheFn = ({ tileset, z }: TileParams) =>
-        ['base_light', 'base_night'].includes(tileset) && z <= 17;
+        ['base_light', 'base_night', 'base_night_outlines', 'base_boroughs'].includes(tileset) && z <= 18;
 }
 
 const tileCache = new TileCache(
@@ -52,8 +48,8 @@ const tileCache = new TileCache(
     },
     shouldCacheFn,
     
-    // don't clear base_light and base_night on bounding box cache clear
-    (tileset: string) => tileset !== 'base_light' && tileset !== 'base_night'
+    // don't clear on bounding box cache clear tilesets not affected by user-editable data
+    (tileset: string) => tileset !== 'base_light' && tileset !== 'base_night' && tileset !== 'base_night_outlines' && tileset !== 'base_borough' && tileset !== "planning_applications_status_recent" && tileset !== "planning_applications_status_very_recent" && tileset !== "planning_applications_status_all"
 );
 
 const renderBuildingTile = (t: TileParams, d: any) => renderDataSourceTile(t, d, getDataConfig, getLayerVariables);
@@ -63,7 +59,7 @@ function cacheOrCreateBuildingTile(tileParams: TileParams, dataParams: any): Pro
 }
 
 function stitchOrRenderBuildingTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
-    if (tileParams.z <= STITCH_THRESHOLD) {
+    if (tileParams.z <= STITCH_THRESHOLD && tileParams.tileset != "base_boroughs") {
         // stitch tile, using cache recursively
         return stitchTile(tileParams, dataParams, cacheOrCreateBuildingTile);
     } else {

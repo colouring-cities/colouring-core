@@ -4,6 +4,7 @@ import { useAuth } from '../auth-context';
 import { categoriesConfig, Category } from '../config/categories-config';
 import { categoryUiConfig } from '../config/category-ui-config';
 import { Building, UserVerified } from '../models/building';
+import { BuildingMapTileset } from '../config/tileserver-config';
 
 import BuildingNotFound from './building-not-found';
 
@@ -14,6 +15,8 @@ interface BuildingViewProps {
     user_verified?: any;
     onBuildingUpdate: (buildingId: number, updatedData: Building) => void;
     onUserVerifiedUpdate: (buildingId: number, updatedData: UserVerified) => void;
+    mapColourScale: BuildingMapTileset;
+    onMapColourScale: (x: BuildingMapTileset) => void;
 }
 
 /**
@@ -45,6 +48,8 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
         intro={intro}
         inactive={inactive}
         user={user}
+        mapColourScale={props.mapColourScale}
+        onMapColourScale={props.onMapColourScale}
     />; 
 };
 
