@@ -184,7 +184,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     ref_osm_id: {
         category: Category.Location,
-        title: "OSM ID",
+        title: "OpenStreetMap ID",
         tooltip: "OpenStreetMap feature ID",
         example: "",
     },
