@@ -118,6 +118,12 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 value=""
                 mode='view'
             />
+            <DataEntry
+                title="Green Walls / Green Roof / Shading"
+                slug=""
+                value=""
+                mode='view'
+            />
         </Fragment>
     );
     };

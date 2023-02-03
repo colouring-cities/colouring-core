@@ -15,7 +15,7 @@ import { CategoryViewProps } from './category-view-props';
 */
 const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        <DataEntryGroup name="Storeys">
+        <DataEntryGroup name="Floors">
             <NumericDataEntry
                 title={dataFields.size_storeys_core.title}
                 slug="size_storeys_core"

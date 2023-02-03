@@ -269,7 +269,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
     [Category.Type]: [{
         mapStyle: 'building_attachment_form',
         legend: {
-            title: 'Type',
+            title: 'Adjacency/Configuration',
             elements: [
                 { color: "#f2a2b9", text: "Detached" },
                 { color: "#ab8fb0", text: "Semi-Detached" },
