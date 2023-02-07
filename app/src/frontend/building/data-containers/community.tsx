@@ -70,7 +70,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.is_domestic}
             />
             Work from home does not count as office and does not make building non-domestic.
-            <button className={`map-switcher-inline ${props.mapColourScale == "is_domestic" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToIsDomesticMapStyle}> 
+            <button className={`map-switcher-inline ${props.mapColourScale == "is_domestic" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToIsDomesticMapStyle}>
                     {(props.mapColourScale == "is_domestic")? 'Showing domestic status for specific buildings' : 'Click to see domestic status for specific buildings mapped'}
                 </button>
             {(props.building.is_domestic === "no" || props.building.is_domestic === "mixed") ?
@@ -85,7 +85,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                 />
-                <button className={`map-switcher-inline ${props.mapColourScale == "likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLikesMapStyle}> 
+                <button className={`map-switcher-inline ${props.mapColourScale == "likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLikesMapStyle}>
                     {(props.mapColourScale == "likes")? 'Showing likes for specific buildings' : 'Click to see likes for specific buildings mapped'}
                 </button>
                 </>
@@ -121,7 +121,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                 />
             }
-            <button className={`map-switcher-inline ${props.mapColourScale == "likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToTypologyMapStyle}> 
+            <button className={`map-switcher-inline ${props.mapColourScale == "likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToTypologyMapStyle}>
                 {(props.mapColourScale == "likes")? 'Showing likes for typologies (not about specific buildings)' : 'Click to see likes for typologies (not about specific buildings) mapped'}
             </button>
             
@@ -136,7 +136,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 mode={props.mode}
                 copy={props.copy}
             />
-            <button className={`map-switcher-inline ${props.mapColourScale == "community_local_significance_total" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLocalSignificanceMapStyle}> 
+            <button className={`map-switcher-inline ${props.mapColourScale == "community_local_significance_total" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLocalSignificanceMapStyle}>
                 {'Click here to switch map key to this info'}
             </button>
             <UserOpinionEntry
@@ -149,7 +149,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 mode={props.mode}
                 copy={props.copy}
             />
-            <button className={`map-switcher-inline ${props.mapColourScale == "community_expected_planning_application_total" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToExpectedApplicationMapStyle}> 
+            <button className={`map-switcher-inline ${props.mapColourScale == "community_expected_planning_application_total" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToExpectedApplicationMapStyle}>
                 {'Click here to switch map key to this info'}
             </button>
             <InfoBox>You can click and colour any other building on the map as well.</InfoBox>
@@ -210,7 +210,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             mode={props.mode}
             copy={props.copy}
         />
-        <button className={`map-switcher-inline ${props.mapColourScale == "community_in_public_ownership" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToPublicOwnershipMapStyle}> 
+        <button className={`map-switcher-inline ${props.mapColourScale == "community_in_public_ownership" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToPublicOwnershipMapStyle}>
             {'Click here to switch map key to this info'}
         </button>
         <Verification
