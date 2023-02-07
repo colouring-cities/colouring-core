@@ -605,7 +605,7 @@
             <PolygonSymbolizer fill="#f7ec25" />
         </Rule>
         <Rule>
-            <Filter>[is_domestic] = "mixed"</Filter>
+            <Filter>[is_domestic] = "mixed domestic/non-domestic"</Filter>
             <PolygonSymbolizer fill="#fc9b2a" />
         </Rule>
         <Rule>

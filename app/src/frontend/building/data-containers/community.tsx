@@ -55,7 +55,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
               title={dataFields.is_domestic.title}
               slug="is_domestic"
               value={props.building.is_domestic}
-              options={["yes", "no", "mixed"]}
+              options={["yes", "no", "mixed domestic/non-domestic"]}
               mode={props.mode}
               copy={props.copy}
               onChange={props.onChange}
@@ -73,7 +73,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <button className={`map-switcher-inline ${props.mapColourScale == "is_domestic" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToIsDomesticMapStyle}>
                     {(props.mapColourScale == "is_domestic")? 'Showing domestic status for specific buildings' : 'Click to see domestic status for specific buildings mapped'}
                 </button>
-            {(props.building.is_domestic === "no" || props.building.is_domestic === "mixed") ?
+            {(props.building.is_domestic === "no" || props.building.is_domestic === "mixed domestic/non-domestic") ?
             <>
                 <UserOpinionEntry
                     slug='community_like'
