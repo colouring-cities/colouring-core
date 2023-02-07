@@ -575,7 +575,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Team,
         title: "Is the building a home/domestic building?",
         tooltip: "",
-        example: false
+        example: "mixed"
     },
     likes_total: {
         category: Category.Community,

@@ -43,10 +43,11 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <InfoBox>
                 Can you share your opinion on how well the building works?
             </InfoBox>
-            <LogicalDataEntry
+            <SelectDataEntry
               title={dataFields.is_domestic.title}
               slug="is_domestic"
               value={props.building.is_domestic}
+              options={["yes", "no", "mixed"]}
               mode={props.mode}
               copy={props.copy}
               onChange={props.onChange}
@@ -60,7 +61,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 user_verified_as={props.user_verified.is_domestic}
                 verified_count={props.building.verified.is_domestic}
             />
-            {props.building.is_domestic === false ?
+            {(props.building.is_domestic === "no" || props.building.is_domestic === "mixed") ?
             <UserOpinionEntry
                 slug='community_like'
                 title={buildingUserFields.community_like.title}

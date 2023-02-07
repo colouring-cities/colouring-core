@@ -22,10 +22,11 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
        ){
       return (
           <Fragment>
-              <LogicalDataEntry
+              <SelectDataEntry
                   title={dataFields.is_domestic.title}
                   slug="is_domestic"
                   value={props.building.is_domestic}
+                  options={["yes", "no", "mixed"]}
                   mode={props.mode}
                   copy={props.copy}
                   onChange={props.onChange}
