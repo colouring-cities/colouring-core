@@ -20,6 +20,10 @@ import { useDisplayPreferences } from '../../displayPreferences-context';
 * Community view/edit section
 */
 const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
+    const switchToIsDomesticMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('is_domestic')
+    }
     const switchToLikesMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('likes')
@@ -62,22 +66,26 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.is_domestic}
             />
             Work from home does not count as office and does not make building non-domestic.
+            <button className={`map-switcher-inline ${props.mapColourScale == "is_domestic" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToIsDomesticMapStyle}> 
+                    {(props.mapColourScale == "is_domestic")? 'Showing domestic status for specific buildings' : 'Click to see domestic status for specific buildings mapped'}
+                </button>
             {(props.building.is_domestic === "no" || props.building.is_domestic === "mixed") ?
-            <UserOpinionEntry
-                slug='community_like'
-                title={buildingUserFields.community_like.title}
+            <>
+                <UserOpinionEntry
+                    slug='community_like'
+                    title={buildingUserFields.community_like.title}
 
-                userValue={props.building.community_like}
+                    userValue={props.building.community_like}
 
-                onChange={props.onSaveChange}
-                mode={props.mode}
-                copy={props.copy}
-
-            />
+                    onChange={props.onSaveChange}
+                    mode={props.mode}
+                    copy={props.copy}
+                />
+                <button className={`map-switcher-inline ${props.mapColourScale == "likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLikesMapStyle}> 
+                    {(props.mapColourScale == "likes")? 'Showing likes for specific buildings' : 'Click to see likes for specific buildings mapped'}
+                </button>
+                </>
             : <></>}
-            <button className={`map-switcher-inline ${props.mapColourScale == "likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLikesMapStyle}> 
-                {'Click here to switch map key to this info'}
-            </button>
             <LogicalDataEntryYesOnly
                 slug='community_type_worth_keeping'
                 title={buildingUserFields.community_type_worth_keeping.title}
