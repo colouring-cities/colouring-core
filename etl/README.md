@@ -8,6 +8,7 @@ The scripts in this directory are used to extract, transform and load (ETL) the 
 - :penguin: [Making data available to Ubuntu](#penguin-making-data-available-to-ubuntu)
 - :new_moon: [Creating a Colouring London database from scratch](#new_moon-creating-a-colouring-london-database-from-scratch)
 - :full_moon: [Updating the Colouring London database with new OS data](#full_moon-updating-the-colouring-london-database-with-new-os-data)
+- ⚡ [Adding EPC data](#-adding-epc-data)
 
 # :arrow_down: Downloading Ordnance Survey data
 
@@ -176,3 +177,31 @@ Mark buildings with geometries not present in the update as demolished.
 **TODO:** Update this after PR [#794](https://github.com/colouring-cities/colouring-london/pull/794)
 
 Run the Colouring London [deployment scripts](https://github.com/colouring-cities/colouring-london-config#deployment).
+
+# ⚡ Adding EPC data
+
+Download the EPC data.
+
+```
+git clone https://github.com/iagw/colouring-cities
+```
+
+Copy `gla-epc-subset.zstd.parquet` into `colouring-london/etl`.
+
+```
+cp /path/to/gla-epc-subset.zstd.parquet /path/to/colouring-london/etl
+```
+
+Run a conversion to csv (make sure you have an up to date Python 3 environment and pip installation and run `pip install -r requirements.txt` first if you haven't already).
+
+```
+python clean_epc_data.py
+```
+
+This should have created a csv in the `/etl` dir called `'gla-epc-subset.csv'`.
+
+Create a new table for the EPC data and load the csv data into it (if you didn't already, don't forget to change the permissions so this file can be run `chmod +x *.sh`)
+
+```
+./load_epc.sh
+```
