@@ -61,6 +61,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 user_verified_as={props.user_verified.is_domestic}
                 verified_count={props.building.verified.is_domestic}
             />
+            Work from home does not count as office and does not make building non-domestic.
             {(props.building.is_domestic === "no" || props.building.is_domestic === "mixed") ?
             <UserOpinionEntry
                 slug='community_like'

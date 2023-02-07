@@ -40,6 +40,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                   user_verified_as={props.user_verified.is_domestic}
                   verified_count={props.building.verified.is_domestic}
               />
+              Work from home does not count as office and does not make building non-domestic.
               <InfoBox msg="93% of properties in UK are dwellings so we have set this as the default colour. Can you help us colour-in all non-residential and mixed use buildings, and verify residential buildings too?"></InfoBox>
               <MultiDataEntry
                   title={dataFields.current_landuse_group.title}
