@@ -121,8 +121,8 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                 />
             }
-            <button className={`map-switcher-inline ${props.mapColourScale == "likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToTypologyMapStyle}>
-                {(props.mapColourScale == "likes")? 'Showing likes for typologies (not about specific buildings)' : 'Click to see likes for typologies (not about specific buildings) mapped'}
+            <button className={`map-switcher-inline ${props.mapColourScale == "typology_likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToTypologyMapStyle}>
+                {(props.mapColourScale == "typology_likes")? 'Showing likes for typologies (not about specific buildings)' : 'Click to see likes for typologies (not about specific buildings) mapped'}
             </button>
             
 
