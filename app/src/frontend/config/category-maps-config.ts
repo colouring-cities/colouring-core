@@ -109,6 +109,17 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
     }],
     [Category.Community]: [
         {
+            mapStyle: 'is_domestic',
+            legend: {
+                title: 'Is domestic building?',
+                elements: [
+                    { color: '#f7ec25', text: 'Domestic' },
+                    { color: '#fc9b2a', text: 'Mixed' },
+                    { color: '#ff2121', text: 'Non-domestic' },
+                ]
+            }
+        },
+        {
             mapStyle: 'likes',
             legend: {
                 title: 'Like Me',
@@ -278,29 +289,42 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             ]
         },
     }],
-    [Category.LandUse]: [{
-        mapStyle: 'landuse',
-        legend: {
-            title: 'Land Use',
-            elements: [
-                { color: '#e5050d', text: 'Mixed Use' },
-                { subtitle: 'Single use:'},
-                { color: '#252aa6', text: 'Residential (unverified)' },
-                { color: '#7025a6', text: 'Residential (verified)' },
-                { color: '#ff8c00', text: 'Retail' },
-                { color: '#f5f58f', text: 'Industry & Business' },
-                { color: '#fa667d', text: 'Community Services' },
-                { color: '#ffbfbf', text: 'Recreation & Leisure' },
-                { color: '#b3de69', text: 'Transport' },
-                { color: '#cccccc', text: 'Utilities & Infrastructure' },
-                { color: '#898944', text: 'Defence' },
-                { color: '#73ccd1', text: 'Agriculture' },
-                { color: '#45cce3', text: 'Minerals' },
-                { color: '#ffffff', text: 'Vacant & Derelict' },
-                { color: '#6c6f8e', text: 'Unclassified, presumed non-residential' }
-            ]
-        },
-    }],
+    [Category.LandUse]: [
+        {
+            mapStyle: 'is_domestic',
+            legend: {
+                title: 'Is domestic building?',
+                elements: [
+                    { color: '#f7ec25', text: 'Domestic' },
+                    { color: '#fc9b2a', text: 'Mixed' },
+                    { color: '#ff2121', text: 'Non-domestic' },
+                ]
+            }
+        }, 
+        {
+            mapStyle: 'landuse',
+            legend: {
+                title: 'Land Use',
+                elements: [
+                    { color: '#e5050d', text: 'Mixed Use' },
+                    { subtitle: 'Single use:'},
+                    { color: '#252aa6', text: 'Residential (unverified)' },
+                    { color: '#7025a6', text: 'Residential (verified)' },
+                    { color: '#ff8c00', text: 'Retail' },
+                    { color: '#f5f58f', text: 'Industry & Business' },
+                    { color: '#fa667d', text: 'Community Services' },
+                    { color: '#ffbfbf', text: 'Recreation & Leisure' },
+                    { color: '#b3de69', text: 'Transport' },
+                    { color: '#cccccc', text: 'Utilities & Infrastructure' },
+                    { color: '#898944', text: 'Defence' },
+                    { color: '#73ccd1', text: 'Agriculture' },
+                    { color: '#45cce3', text: 'Minerals' },
+                    { color: '#ffffff', text: 'Vacant & Derelict' },
+                    { color: '#6c6f8e', text: 'Unclassified, presumed non-residential' }
+                ]
+            },
+        }
+    ],
     [Category.Streetscape]: [{
         mapStyle: undefined,
         legend: {

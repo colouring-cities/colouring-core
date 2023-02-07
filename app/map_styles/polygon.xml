@@ -599,6 +599,30 @@
             <LineSymbolizer stroke="#888" stroke-width="2.0"/>
         </Rule>
     </Style>
+    <Style name="is_domestic">
+        <Rule>
+            <Filter>[is_domestic] = "yes"</Filter>
+            <PolygonSymbolizer fill="#f7ec25" />
+        </Rule>
+        <Rule>
+            <Filter>[is_domestic] = "mixed"</Filter>
+            <PolygonSymbolizer fill="#fc9b2a" />
+        </Rule>
+        <Rule>
+            <Filter>[is_domestic] = "no"</Filter>
+            <PolygonSymbolizer fill="#ff2121" />
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="likes">
         <Rule>
             <Filter>[likes] &gt;= 100</Filter>

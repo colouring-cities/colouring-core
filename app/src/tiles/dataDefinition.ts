@@ -109,6 +109,14 @@ const LAYER_QUERIES = {
             ) AS team_info_count
         FROM
             buildings`,
+    is_domestic: `
+        SELECT
+            geometry_id,
+            is_domestic
+        FROM
+            buildings
+        WHERE
+            is_domestic IS NOT NULL`,
     likes: `
         SELECT
             geometry_id,
