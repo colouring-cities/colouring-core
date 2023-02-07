@@ -28,6 +28,10 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('likes')
     }
+    const switchToTypologyMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('typology_likes')
+    }
     const switchToLocalSignificanceMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('community_local_significance_total')
@@ -117,6 +121,9 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                 />
             }
+            <button className={`map-switcher-inline ${props.mapColourScale == "likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToTypologyMapStyle}> 
+                {(props.mapColourScale == "likes")? 'Showing likes for typologies (not about specific buildings)' : 'Click to see likes for typologies (not about specific buildings) mapped'}
+            </button>
             
 
             <UserOpinionEntry

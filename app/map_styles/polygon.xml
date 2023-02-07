@@ -664,6 +664,47 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="typology_likes">
+        <Rule>
+            <Filter>[likes] &gt;= 100</Filter>
+            <PolygonSymbolizer fill="#bd0026" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] &gt;= 50 and [likes] &lt; 100</Filter>
+            <PolygonSymbolizer fill="#e31a1c" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] &gt;= 20 and [likes] &lt; 50</Filter>
+            <PolygonSymbolizer fill="#fc4e2a" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] &gt;= 10 and [likes] &lt; 20</Filter>
+            <PolygonSymbolizer fill="#fd8d3c" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] &gt;= 3 and [likes] &lt; 10</Filter>
+            <PolygonSymbolizer fill="#feb24c" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] = 2</Filter>
+            <PolygonSymbolizer fill="#fed976" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] = 1</Filter>
+            <PolygonSymbolizer fill="#ffe8a9" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="community_local_significance_total">
         <Rule>
             <Filter>[community_local_significance_total] &gt;= 100</Filter>

@@ -583,7 +583,11 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: 100,
         tooltip: "People who like the building and think it contributes to the city.",
     },
-
+    community_type_worth_keeping_total: {
+        category: Category.Community,
+        title: "People who think this type of building is contributes to the city.",
+        example: 100,
+    },
     community_local_significance_total: {
         category: Category.Community,
         title: "People who think the building should be recorded as one of local significance",

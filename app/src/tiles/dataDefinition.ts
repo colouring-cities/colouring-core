@@ -127,6 +127,14 @@ const LAYER_QUERIES = {
             is_domestic <> 'yes'
             AND
             likes_total > 0`,
+    typology_likes: `
+        SELECT
+            geometry_id,
+            community_type_worth_keeping_total AS likes
+        FROM
+            buildings
+        WHERE
+            community_type_worth_keeping_total > 0`,
     community_local_significance_total: `
         SELECT
             geometry_id,
