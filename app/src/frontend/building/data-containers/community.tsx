@@ -4,6 +4,7 @@ import '../../map/map-button.css';
 import withCopyEdit from '../data-container';
 import UserOpinionEntry from '../data-components/user-opinion-data-entry';
 import { MultiSelectDataEntry } from '../data-components/multi-select-data-entry';
+import { DataEntryGroup } from '../data-components/data-entry-group';
 
 import { CategoryViewProps } from './category-view-props';
 import InfoBox from '../../components/info-box';
@@ -43,9 +44,10 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const { darkLightTheme } = useDisplayPreferences();
     const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
     return <>
+        <DataEntryGroup name="How well do you think different types of building work?" collapsed={false} >
         <div className='community-opinion-pane'>
             <InfoBox>
-                Can you share your opinion on how well the building works?
+                Here we are collecting data on how well you think specific types of building work (rather than individual buildings), to help ensure we save and reuse all useful buildings and to help improve urban design quality in future.
             </InfoBox>
             {
             /*
@@ -130,10 +132,12 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <button className={`map-switcher-inline ${props.mapColourScale == "community_expected_planning_application_total" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToExpectedApplicationMapStyle}>
                 {'Click here to switch map key to this info'}
             </button>
-            <InfoBox>You can click and colour any other building on the map as well.</InfoBox>
         </div>
-
-        <InfoBox>Can you help add information on community use of buildings?</InfoBox>
+        </DataEntryGroup>
+        <DataEntryGroup name=" Where are buildings used for community activities located?" collapsed={false} >
+        <InfoBox>
+                Here we are collecting information on the location of buildings used for community activities so we can track loss of/additions to community space over time
+        </InfoBox>
         <LogicalDataEntry
             slug='community_activities_current'
             title={dataFields.community_activities_current.title}
@@ -218,6 +222,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 user_verified_as={props.user_verified.community_public_ownership_sources}
                 verified_count={props.building.verified.community_public_ownership_sources}
                 />
+        </DataEntryGroup>
     </>
 };
 const CommunityContainer = withCopyEdit(CommunityView);
