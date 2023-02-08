@@ -41,7 +41,7 @@ const PrivacyPolicyPage: React.SFC<any> = () => (
 
             <h2 className='h2'>How do we store your data?</h2>
             <p>
-                Colouring {config.cityName} stores your data at The Alan Turing Institute in London behind the organisation’s firewall in a secure database using industry standard practices.
+                {config.privacyStatement}
             </p>
 
             <h2 className='h2'>How do we use cookies?</h2>
