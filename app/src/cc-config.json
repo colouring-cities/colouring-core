@@ -1,7 +1,7 @@
 {
     "cityName": "London",
     "projectBlurb": "Colouring London is also the prototype for the Colouring Cities Research Programme (CCRP)",
-    "githubURL": "https://github.com/colouring-london/colouring-london",
+    "githubURL": "https://github.com/colouring-cities/colouring-london",
 
     "initialMapPosition": [ 51.5245255, -0.1338422 ],
     "initialZoomLevel": 16
