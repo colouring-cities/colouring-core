@@ -79,7 +79,7 @@ export const buildingUserFields = {
     community_type_worth_keeping_reasons: {
         perUser: true,
         category: Category.Community,
-        title: 'Why is this type of building worth keeping?',
+        title: 'Please tick if you like this **type** of building and think it works well',
         fields: {
             external_design: {
                 title: "Because the external design contributes to the streetscape"
