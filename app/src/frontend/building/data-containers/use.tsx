@@ -11,11 +11,21 @@ import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
 import Verification from '../data-components/verification';
+import { useDisplayPreferences } from '../../displayPreferences-context';
 
 /**
  * Use view/edit section
  */
 const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
+    const switchToIsDomesticMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('is_domestic')
+    }
+    const switchToIsLanduseMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('use')
+    }
+    const { darkLightTheme } = useDisplayPreferences();
       return (
           <Fragment>
               <SelectDataEntry
