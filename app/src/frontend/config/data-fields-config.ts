@@ -113,7 +113,7 @@ export const buildingUserFields = {
     community_local_significance: {
         perUser: true,
         category: Category.Community,
-        title: "Do you think this building should be recorded as a local heritage asset?",
+        title: "Do you think this building should be recorded as being of special local interest?",
         example: true
     },
     community_expected_planning_application: {
