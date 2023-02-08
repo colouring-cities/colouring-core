@@ -108,17 +108,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         },
     }],
     [Category.Community]: [
-        {
-            mapStyle: 'is_domestic',
-            legend: {
-                title: 'Is domestic building?',
-                elements: [
-                    { color: '#f7ec25', text: 'Domestic' },
-                    { color: '#fc9b2a', text: 'Mixed' },
-                    { color: '#ff2121', text: 'Non-domestic' },
-                ]
-            }
-        },
+        /*
         {
             mapStyle: 'likes',
             legend: {
@@ -134,6 +124,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 ]
             }
         },
+        */
         {
             mapStyle: 'typology_likes',
             legend: {

@@ -20,10 +20,6 @@ import { useDisplayPreferences } from '../../displayPreferences-context';
 * Community view/edit section
 */
 const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
-    const switchToIsDomesticMapStyle = (e) => {
-        e.preventDefault();
-        props.onMapColourScale('is_domestic')
-    }
     const switchToLikesMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('likes')
@@ -51,28 +47,8 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <InfoBox>
                 Can you share your opinion on how well the building works?
             </InfoBox>
-            <SelectDataEntry
-              title={dataFields.is_domestic.title}
-              slug="is_domestic"
-              value={props.building.is_domestic}
-              options={["yes", "no", "mixed domestic/non-domestic"]}
-              mode={props.mode}
-              copy={props.copy}
-              onChange={props.onChange}
-              tooltip={dataFields.is_domestic.tooltip}
-            />
-            <Verification
-                slug="is_domestic"
-                allow_verify={props.user !== undefined && props.building.is_domestic !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("is_domestic")}
-                user_verified_as={props.user_verified.is_domestic}
-                verified_count={props.building.verified.is_domestic}
-            />
-            Work from home does not count as office and does not make building non-domestic.
-            <button className={`map-switcher-inline ${props.mapColourScale == "is_domestic" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToIsDomesticMapStyle}>
-                    {(props.mapColourScale == "is_domestic")? 'Showing domestic status for specific buildings' : 'Click to see domestic status for specific buildings mapped'}
-                </button>
+            {
+            /*
             {(props.building.is_domestic === "no" || props.building.is_domestic === "mixed domestic/non-domestic") ?
             <>
                 <UserOpinionEntry
@@ -90,6 +66,8 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 </button>
                 </>
             : <></>}
+            */
+            }
             <LogicalDataEntryYesOnly
                 slug='community_type_worth_keeping'
                 title={buildingUserFields.community_type_worth_keeping.title}
