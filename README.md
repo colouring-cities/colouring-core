@@ -1,13 +1,13 @@
-# Colouring London
+# Colouring Cities Core Platform
 [![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors)
 ![Build status](https://github.com/colouring-london/colouring-london/workflows/Node.js%20CI/badge.svg)
 
-How many buildings are there in London? What are their characteristics? Where
+How many buildings are there in a city? What are their characteristics? Where
 are they located and how do they contribute to the city? How adaptable are
 they? How long will they last, and what are the environmental and
 socio-economic implications of demolition?
 
-[Colouring London](http://colouring.london/) is a web-based citizen social
+Colouring Cities is a web-based citizen social
 science project designed to help address these questions by crowdsourcing and
 visualising twelve categories of information on London’s buildings.
 
