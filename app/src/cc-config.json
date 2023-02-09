@@ -1,8 +1,8 @@
 {
-    "cityName": "London",
-    "projectBlurb": "Colouring London is also the prototype for the Colouring Cities Research Programme (CCRP)",
+    "cityName": "Cities",
+    "projectBlurb": "Colouring Cities is also the prototype for the Colouring Cities Research Programme (CCRP)",
     "githubURL": "https://github.com/colouring-cities/colouring-london",
-    "privacyStatement": "Colouring London stores your data at The Alan Turing Institute in London behind the organisation’s firewall in a secure database using industry standard practices.",
+    "privacyStatement": "Colouring Cities stores your data... [PRIVACY DATA GOES HERE].",
 
     "initialMapPosition": [ 51.5245255, -0.1338422 ],
     "initialZoomLevel": 16
