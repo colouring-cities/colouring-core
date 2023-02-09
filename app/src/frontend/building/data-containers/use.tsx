@@ -21,10 +21,6 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('is_domestic')
     }
-    const switchToIsLanduseMapStyle = (e) => {
-        e.preventDefault();
-        props.onMapColourScale('use')
-    }
     const { darkLightTheme } = useDisplayPreferences();
       return (
           <Fragment>
