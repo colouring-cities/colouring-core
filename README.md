@@ -9,7 +9,7 @@ socio-economic implications of demolition?
 
 Colouring Cities is a web-based citizen social
 science project designed to help address these questions by crowdsourcing and
-visualising twelve categories of information on London’s buildings.
+visualising twelve categories of information on the buildings in our cities.
 
 ## Structure
 
