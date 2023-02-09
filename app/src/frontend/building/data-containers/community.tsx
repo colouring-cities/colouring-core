@@ -44,7 +44,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const { darkLightTheme } = useDisplayPreferences();
     const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
     return <>
-        <DataEntryGroup name="How well do you think different types of building work?" collapsed={false} >
+        <DataEntryGroup name="Community views on building types" collapsed={false} >
         <div className='community-opinion-pane'>
             <InfoBox>
                 Here we are collecting data on how well you think specific types of building work (rather than individual buildings), to help ensure we save and reuse all useful buildings and to help improve urban design quality in future.
@@ -134,7 +134,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </button>
         </div>
         </DataEntryGroup>
-        <DataEntryGroup name=" Where are buildings used for community activities located?" collapsed={false} >
+        <DataEntryGroup name="Building use for community activities" collapsed={false} >
         <InfoBox>
                 Here we are collecting information on the location of buildings used for community activities so we can track loss of/additions to community space over time
         </InfoBox>
