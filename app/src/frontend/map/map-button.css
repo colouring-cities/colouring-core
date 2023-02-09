@@ -125,7 +125,7 @@
     border-radius: 4px;
     /*background: #FFC0CB;*/
     margin: 12px;
-    min-width: 400px;
+    width: 400px;
     color: #343a40;
 }
 .map-switcher-inline.night {
