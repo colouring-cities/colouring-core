@@ -6,6 +6,9 @@ import ConfirmationModal from '../components/confirmation-modal';
 import ErrorBox from '../components/error-box';
 import { SpinnerIcon } from '../components/icons';
 
+import { CCConfig } from '../../cc-config';
+let config: CCConfig = require('../../cc-config.json')
+
 export const MyAccountPage: React.FC = () => {
     const { isLoading, user, userError, logout, generateApiKey, deleteAccount } = useAuth();
 
@@ -39,6 +42,8 @@ export const MyAccountPage: React.FC = () => {
         );
     }
 
+    const issuesURL = config.githubURL + "/issues"
+
     return (
         <article>
             <section className="main-col">
@@ -46,9 +51,9 @@ export const MyAccountPage: React.FC = () => {
                 {!userError && (<>
                     <h1 className="h1">Welcome, {user.username}!</h1>
                     <p>
-                        Colouring London is under active development. Please{' '}
+                        Colouring {config.cityName} is under active development. Please{' '}
                         <a href="https://discuss.colouring.london/">discuss suggestions for improvements</a> and{' '}
-                        <a href="https://github.com/colouring-london/colouring-london/issues"> report issues or problems</a>.
+                        <a href={issuesURL}> report issues or problems</a>.
                     </p>
                     <p>
                         For reference, here are the{' '}
@@ -84,7 +89,7 @@ export const MyAccountPage: React.FC = () => {
                     </form>
 
                     <h3 className="h3">Open Source Code</h3>
-                    Colouring London site code is developed at <a href="http://github.com/colouring-london/colouring-london/">colouring-london</a> on Github
+                    Colouring {config.cityName} site code is developed at <a href={config.githubURL}>colouring-cities</a> on Github
 
                     <hr />
 

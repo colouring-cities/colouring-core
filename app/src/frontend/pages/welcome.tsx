@@ -1,18 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import { CCConfig } from '../../cc-config';
+let config: CCConfig = require('../../cc-config.json')
+
 import Categories from '../building/categories';
 import './welcome.css';
 
 const Welcome = () => (
     <div className="section-body welcome">
         <Categories mode="view"/>
-        <h1 className="h2">Welcome to Colouring London!</h1>
+        <h1 className="h2">Welcome to Colouring {config.cityName}!</h1>
         <p>
-            Colouring London is a free knowledge exchange platform designed to provide over fifty types
-            of open data on London buildings, to help make the city more sustainable.
+
+            Colouring {config.cityName} is a free knowledge exchange platform designed to provide over fifty types
+            of open data on buildings in the city, to help make the city more sustainable.
+
         </p>
         <p>
-            Colouring London is also the prototype for the Colouring Cities Research Programme (CCRP)
+            {config.projectBlurb}&nbsp;
             based at the Alan Turing Institute (the UK's national Institute for data science and artificial intelligence).
             The programme works with local, regional, national and international partners to develop
             open platform code also of relevance to other cities.
@@ -22,7 +28,7 @@ const Welcome = () => (
             and enriching and verifying our open datasets is very much appreciated.
         </p>
         <p>
-            All our <Link to="/data-extracts.html">data</Link> and <a href="https://github.com/colouring-london/colouring-london">code</a> are 
+            All our <Link to="/data-extracts.html">data</Link> and <a href="https://github.com/colouring-cities/colouring-core">code</a> are 
             free to download, use and share under our open licence terms. 
             Our <a href="https://github.com/colouring-cities/manual/wiki">open manual</a> provides detailed
             non-technical information on the CCRP, and our international collaborators, 
@@ -37,11 +43,11 @@ const Welcome = () => (
             <img className="turing-logo" src="images/logo-turing.jpg" alt="Alan Turing Institute"></img>
         </div>
         <div className="image-row">
-            <img src="images/supporter-logos.png" alt="Colouring London collaborating organisations: The Bartlett UCL, Ordnance Survey, Historic England, Greater London Authority" />
+            <img src="images/supporter-logos.png" alt="Colouring Cities collaborating organisations: The Bartlett UCL, Ordnance Survey, Historic England, Greater London Authority" />
         </div>
         <div className="image-row">
-            <img src="images/logo-loughborough.png" alt="Colouring London collaborating organisations: Loughborough University" />
-            <img src="images/logo-newcastle.png" alt="Colouring London collaborating organisations: Newcastle University" />
+            <img src="images/logo-loughborough.png" alt="Colouring Cities collaborating organisations: Loughborough University" />
+            <img src="images/logo-newcastle.png" alt="Colouring Cities collaborating organisations: Newcastle University" />
         </div>
     </div>
 );

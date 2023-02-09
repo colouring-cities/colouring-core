@@ -5,15 +5,18 @@ import './about.css';
 import Categories from '../building/categories';
 import SupporterLogos from '../components/supporter-logos';
 
+import { CCConfig } from '../../cc-config';
+let config: CCConfig = require('../../cc-config.json')
+
 const AboutPage = () => (
     <article>
         <section className="main-col">
             <h1 className="h2">
-        Can you help us capture information on every building in London?
+        Can you help us capture information on every building in the city?
             </h1>
             <p>
 
-        How many buildings are there in London? What are their characteristics? Where
+        How many buildings are there? What are their characteristics? Where
         are they located and how do they contribute to the city? How adaptable are
         they? How long will they last, and what are the environmental and
         socio-economic implications of demolition?
@@ -21,7 +24,7 @@ const AboutPage = () => (
             </p>
             <p>
 
-        Colouring London is being designed to address these questions by crowdsourcing
+        Colouring {config.cityName} is being designed to address these questions by crowdsourcing
         and visualising information on London’s buildings. We’re releasing the
         prototype for testing in the late summer. See the slideshow below for what it
         will look like.
@@ -53,7 +56,7 @@ const AboutPage = () => (
         <section className="main-col">
             <p>
 
-        Colouring London is being designed and built by the Centre for Advanced Spatial
+        Colouring Cities is being designed and built by the Centre for Advanced Spatial
         Analysis (CASA), University College London and funded by Historic England.
         Ordnance Survey is providing building footprints required to collect the data,
         facilitated by the GLA, and giving access to its API and technical support. It
@@ -126,7 +129,7 @@ const AboutPage = () => (
 
             Access bulk downloads of data created through the project to use and reuse
             under a liberal open data license. Let us know and we’ll feature showcase
-            projects on the Colouring London site.
+            projects on the Colouring Cities site.
 
                 </p>
                 <img className="border-image" src="images/slide-5-download.png"

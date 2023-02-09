@@ -7,6 +7,9 @@ import { SpinnerIcon } from '../components/icons';
 import InfoBox from '../components/info-box';
 import SupporterLogos from '../components/supporter-logos';
 
+import { CCConfig } from '../../cc-config';
+let config: CCConfig = require('../../cc-config.json')
+
 export const Login: React.FC = () => {
     const {isLoading, login } = useAuth();
 
@@ -23,11 +26,13 @@ export const Login: React.FC = () => {
         login({ username, password }, setError);
     }, [username, password]);
 
+    const msgText = `Welcome to Colouring ${config.cityName}. You're one of the first people to use the site!`;
+
     return (
         <article>
             <section className="main-col">
                 <h1 className="h2">Log in</h1>
-                <InfoBox msg="Welcome to Colouring London. You're one of the first people to use the site!  ">
+                <InfoBox msg={msgText}>
                     <br/>Please <a href="https://discuss.colouring.london/">discuss
                     suggestions for improvements</a> and <a
                         href="https://github.com/colouring-london/colouring-london/issues">

@@ -1,6 +1,8 @@
 import React from 'react';
-
 import './logo.css';
+
+import { CCConfig } from '../../cc-config';
+let config: CCConfig = require('../../cc-config.json')
 
 interface LogoProps {
     variant: 'default' | 'animated' | 'gray';
@@ -18,7 +20,7 @@ const Logo: React.FunctionComponent<LogoProps> = (props) => {
             <LogoGrid />
             <h1 className="logotype">
                 <span>Colouring</span>
-                <span>London</span>
+                <span>{config.cityName}</span>
             </h1>
         </div>
     );

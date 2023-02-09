@@ -8,6 +8,9 @@ import { validatePassword } from '../validation';
 import { transporter } from './email';
 import * as userService from './user';
 
+import { CCConfig } from '../../cc-config';
+let config: CCConfig = require('../../cc-config.json')
+
 
 /**
  * Generate a password reset token for the specified account and send the password reset link by email
@@ -52,7 +55,7 @@ function getPasswordResetEmail(email: string, token: string, siteOrigin: string)
 
     const messageBody = `Hi there,
 
-    Someone has requested a password reset for the Colouring London account associated with this email address.
+    Someone has requested a password reset for the Colouring ${config.cityName} account associated with this email address.
     Click on the following link within the next 24 hours to reset your password:
 
     ${linkString}
@@ -60,7 +63,7 @@ function getPasswordResetEmail(email: string, token: string, siteOrigin: string)
 
     return {
         text: messageBody,
-        subject: 'Reset your Colouring London password',
+        subject: `Reset your Colouring ${config.cityName} password`,
         to: email,
         from: 'no-reply@colouring.london'
     };

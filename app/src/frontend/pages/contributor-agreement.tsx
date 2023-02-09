@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { CCConfig } from '../../cc-config';
+let config: CCConfig = require('../../cc-config.json')
+
 const ContributorAgreementPage : React.SFC<any> = () => (
     <article>
         <section className='main-col'>
@@ -34,7 +37,7 @@ const ContributorAgreementPage : React.SFC<any> = () => (
                 provide us with as little personal data as possible
                 </li>
                 <li>
-                take full responsibility for assessing the reliability of Colouring London data and its suitability for any intended use (see also our 'Data Accuracy Agreement')
+                take full responsibility for assessing the reliability of Colouring {config.cityName} data and its suitability for any intended use (see also our 'Data Accuracy Agreement')
                 </li>
                 <li>
                 provide feedback on actual or potential privacy and security concerns
@@ -45,13 +48,13 @@ const ContributorAgreementPage : React.SFC<any> = () => (
 
             <h3 className='h3'>Open data</h3>
             <p>
-                Colouring London is an open data project. Open data are licensed under the Open Data Commons Open Database License (<a href="https://opendatacommons.org/licenses/odbl/">https://opendatacommons.org/licenses/odbl/</a>) by Colouring London contributors. Under this licence you are free to copy, distribute, transmit and adapt our data, as long as you credit Colouring London and our contributors. If you alter or build upon our data, you may distribute the result only under the same licence. Our open platform code are available under a GNU, General Public Licence (<a href="https://www.gnu.org/licenses/gpl-3.0.en.html">https://www.gnu.org/licenses/gpl-3.0.en.html</a>).
+                Colouring {config.cityName} is an open data project. Open data are licensed under the Open Data Commons Open Database License (<a href="https://opendatacommons.org/licenses/odbl/">https://opendatacommons.org/licenses/odbl/</a>) by Colouring {config.cityName} contributors. Under this licence you are free to copy, distribute, transmit and adapt our data, as long as you credit Colouring {config.cityName} and our contributors. If you alter or build upon our data, you may distribute the result only under the same licence. Our open platform code are available under a GNU, General Public Licence (<a href="https://www.gnu.org/licenses/gpl-3.0.en.html">https://www.gnu.org/licenses/gpl-3.0.en.html</a>).
             </p>
 
             <h3 className='h3'>What you are contributing to</h3>
             
             <p>
-                Colouring London is a free knowledge exchange platform and open database designed for public use. It has been set up to support a whole-of-society approach to improving the sustainability, resilience and inclusivity of cities. Colouring London is also the prototype platform for the international Colouring Cities Research Programme (CCRP) run at the Alan Turing Institute. Its design is guided by principles set out in the United Nations New Urban Agenda, the Open Data Charter, the General Data Protection Regulation (GDPR), The Gemini Principles, the Open Data Institute's recommendations on personal data and data infrastructure, and specific Articles within the Declaration of Human rights. These are discussed on our <a href="https://github.com/colouring-london/colouring-london/issues/687">'Data ethics'</a> page, where we also use the Open Data Institute's data ethics canvas to answer questions on how we use and manage our data. We capture spatial statistics and do not collect text or images, though images may be integrated in the future. The type of spatial data we collect can be viewed by clicking on each data category, on 'Info' buttons and on the 'Building data categories' page. We are also planning a 'Showcase section' to enable platform users to share, and view, ways in which Colouring London data are used.
+                Colouring {config.cityName} is a free knowledge exchange platform and open database designed for public use. It has been set up to support a whole-of-society approach to improving the sustainability, resilience and inclusivity of cities. Colouring {config.cityName} is also part of the international Colouring Cities Research Programme (CCRP) run at the Alan Turing Institute. Its design is guided by principles set out in the United Nations New Urban Agenda, the Open Data Charter, the General Data Protection Regulation (GDPR), The Gemini Principles, the Open Data Institute's recommendations on personal data and data infrastructure, and specific Articles within the Declaration of Human rights. These are discussed on our <a href="https://github.com/colouring-london/colouring-london/issues/687">'Data ethics'</a> page, where we also use the Open Data Institute's data ethics canvas to answer questions on how we use and manage our data. We capture spatial statistics and do not collect text or images, though images may be integrated in the future. The type of spatial data we collect can be viewed by clicking on each data category, on 'Info' buttons and on the 'Building data categories' page. We are also planning a 'Showcase section' to enable platform users to share, and view, ways in which Colouring {config.cityName} data are used.
             </p>
 
             <h3 className='h3'>Diversity and inclusivity</h3>
