@@ -280,7 +280,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_lower : {
         category: Category.Age,
-        title: "Earliest possible start date",
+        title: "Earliest possible start year",
         tooltip: "This should be the earliest year in which building could have started.",
         example: 1900,
     },
