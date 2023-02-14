@@ -1,6 +1,6 @@
 # Colouring London
 [![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors)
-![Build status](https://github.com/colouring-london/colouring-london/workflows/Node.js%20CI/badge.svg)
+![Build status](https://github.com/colouring-cities/colouring-core/workflows/Node.js%20CI/badge.svg)
 
 How many buildings are there in London? What are their characteristics? Where
 are they located and how do they contribute to the city? How adaptable are
