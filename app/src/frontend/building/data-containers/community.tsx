@@ -119,11 +119,11 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             />
             {(props.mapColourScale == "community_local_significance_total") ? 
             <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToTypologyMapStyle}>
-            {'Displaying view of a community on a local building significance, click here to see community views on typologies'}
+            {'Click to return to liked typologies mapped.'}
         </button>
             :
             <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLocalSignificanceMapStyle}>
-            {"Click here to see view of a community on a local building significance mapped"}
+            {"Click here to see view of a community on a local building interest mapped."}
             </button>
             }
 
@@ -140,11 +140,11 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             />
             {(props.mapColourScale == "community_expected_planning_application_total") ? 
             <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToTypologyMapStyle}>
-            {'Displaying planning applications expected by community, click here to see community views on typologies'}
+            {'Click to return to liked typologies mapped.'}
         </button>
             :
             <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToExpectedApplicationMapStyle}>
-            {"Click here to see planning applications expected by community"}
+            {"Click here to see planning applications expected by community."}
             </button>
             }
 
@@ -238,11 +238,11 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
         {(props.mapColourScale == "community_in_public_ownership") ? 
         <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToTypologyMapStyle}>
-        {'Mapped ownership type is displayed, click here to see community views on typologies'}
+        {'Click to return to liked typologies mapped.'}
     </button>
         :
         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToPublicOwnershipMapStyle}>
-        {"Click here to see ownership type mapped"}
+        {"Click here to see ownership type mapped."}
         </button>
         }
         </DataEntryGroup>
