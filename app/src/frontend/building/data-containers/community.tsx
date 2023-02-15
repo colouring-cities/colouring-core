@@ -8,7 +8,7 @@ import { DataEntryGroup } from '../data-components/data-entry-group';
 
 import { CategoryViewProps } from './category-view-props';
 import InfoBox from '../../components/info-box';
-import { LogicalDataEntry, LogicalDataEntryYesOnly } from '../data-components/logical-data-entry/logical-data-entry';
+import { LogicalDataEntry, LogicalDataEntryYesOnlyWithExplanation } from '../data-components/logical-data-entry/logical-data-entry';
 import { buildingUserFields, dataFields } from '../../config/data-fields-config';
 
 import './community.css';
@@ -66,7 +66,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             : <></>}
             */
             }
-            <LogicalDataEntryYesOnly
+            <LogicalDataEntryYesOnlyWithExplanation
                 slug='community_type_worth_keeping'
                 title={buildingUserFields.community_type_worth_keeping.title}
 
