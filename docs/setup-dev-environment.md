@@ -2,7 +2,10 @@
 
 ### WARNING: Setup document suitable for development environment, not production server
 
-This document is intended to guide you through setting up a local development environment for the Colouring London application. This guide assumes you already have either already have access to an machine with Ubuntu 18.04 installed, or can use VirtualBox to set up an Ubuntu virtual machine as below.
+This document is intended to guide you through setting up a local development environment for the Colouring Cities application. This guide assumes you already have either already have access to an machine with Ubuntu 18.04 installed, or can use VirtualBox to set up an Ubuntu virtual machine as below.
+
+#### Note
+This guide assumes you are working with the ['colouring-core'](https://github.com/colouring-cities/colouring-core) repository. If you are creating your own fork, or want to use a custom city name, then you may wish to change `'colouring-core'` to `'colouring-[your city name]'`.
 
 <details>
 <summary>
@@ -46,7 +49,7 @@ ssh <linuxusername>@localhost -p 4022
 
 - [:tulip: Installing the tools and components](#tulip-installing-the-tools-and-components)
   - [:red_circle: Installing PostgreSQL](#red_circle-installing-postgresql)
-  - [:rainbow: Installing Colouring London](#rainbow-installing-colouring-london)
+  - [:rainbow: Installing Colouring Cities Core Platform](#rainbow-installing-colouring-cities-core-platform)
   - [:arrow_down: Installing Node.js](#arrow_down-installing-nodejs)
   - [:large_blue_circle: Configuring PostgreSQL](#large_blue_circle-configuring-postgresql)
   - [:space_invader: Create an empty database](#space_invader-create-an-empty-database)
@@ -99,15 +102,15 @@ and additional geo-spatial tools
 sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 ```
 
-### :rainbow: Installing Colouring London
+### :rainbow: Installing Colouring Cities Core Platform
 
-Now clone the `colouring-london` codebase. 
+Now clone the `colouring-core` codebase. 
 
 ```bash
-cd ~ && git clone https://github.com/colouring-cities/colouring-london.git
+cd ~ && git clone https://github.com/colouring-cities/colouring-core.git
 ```
 
-**Note:** We assume here that you will clone the repo into the home directory of your Ubuntu installation. Watch out for later commands in this guide that assume the repo is located at `~/colouring-london` and modify the path if appropriate.
+**Note:** We assume here that you will clone the repo into the home directory of your Ubuntu installation. Watch out for later commands in this guide that assume the repo is located at `~/colouring-core` and modify the path if appropriate.
 
 ### :arrow_down: Installing Node.js
 
@@ -185,7 +188,7 @@ sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<username>';" |
 ```
 
 <details>
-<summary>Note for "Colouring London" devs</summary><p></p>
+<summary>Note for "Colouring Cities" devs</summary><p></p>
 
 If you intend to load the full CL database from a dump file into your dev environment, run the above `psql` command with `<username>` as "cldbadmin" and use that username in subsequent steps, but also run the above a second time with `<username>` as "clwebapp" (see section [:house: Loading the building data](#house-loading-the-building-data) for more details).
 
@@ -193,7 +196,7 @@ If you intend to load the full CL database from a dump file into your dev enviro
 
 ### :space_invader: Create an empty database
 
-Now create an empty database configured with geo-spatial tools. The database name (`<colouringlondondb>`) is arbitrary.
+Now create an empty database configured with geo-spatial tools. The database name (`<colouringcitiesdb>`) is arbitrary.
 
 Set environment variables, which will simplify running subsequent `psql` commands.
 
@@ -201,13 +204,13 @@ Set environment variables, which will simplify running subsequent `psql` command
 export PGPASSWORD=<pgpassword>
 export PGUSER=<username>
 export PGHOST=localhost
-export PGDATABASE=<colouringlondondb>
+export PGDATABASE=<colouringcitiesdb>
 ```
 
 Create the database.
 
 ```bash
-sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>
+sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringcitiesdb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringcitiesdb>
 ```
 
 ```bash
@@ -230,7 +233,7 @@ Now install the required Node packages. This needs to done from the `app` direct
 local repository, so that it can read from the `package.json` file.
 
 ```bash
-cd ~/colouring-london/app
+cd ~/colouring-core/app
 npm install
 ```
 
@@ -244,7 +247,7 @@ sudo apt-get install -y python3 python3-pip python3-dev python3-venv
 
 ## :house: Loading the building data
 
-There are several ways to create the Colouring London database in your environment. The simplest way if you are just trying out the application would be to use test data from OSM, but otherwise you should follow one of the instructions below to create the full database either from scratch, or from a previously made db (via a dump file).
+There are several ways to create the Colouring Cities database in your environment. The simplest way if you are just trying out the application would be to use test data from OSM, but otherwise you should follow one of the instructions below to create the full database either from scratch, or from a previously made db (via a dump file).
 
 To create the full database from scratch, follow [these instructions](../etl/README.md), otherwise choose one of the following:
 
@@ -256,7 +259,7 @@ If you are a developer on the Colouring London project (or another Colouring Cit
 Log into the environment where your production database is kept and create a dump file from the db.
 
 ```bash
-pg_dump <colouringlondondb> > <dumpfile>
+pg_dump <colouringcitiesdb> > <dumpfile>
 ```
 
 You should then download the file to the machine where you are setting up your development environment. If you are using Virtualbox, you could host share the dump file with the VM via a shared folder (e.g. [see these instructions for Mac](https://medium.com/macoclock/share-folder-between-macos-and-ubuntu-4ce84fb5c1ad)).
@@ -269,7 +272,7 @@ psql < <dumpfile>
   
 Alternatively, if you get errors using the above command, use pg_restore:  
   ```bash
-pg_restore -d <colouringlondondb> <dumpfile>
+pg_restore -d <colouringcitiesdb> <dumpfile>
 ```
 
 #### Run migrations
@@ -278,13 +281,13 @@ Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql
 do this are located in the `migrations` folder of your local repository.
 
 ```bash
-ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
+ls ~/colouring-core/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
 ```
                                                                                                       
 Again, if you get errors, you may need to manually specify the database name                                                                                           
                                                                                                       
 ```bash
-ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
+ls ~/colouring-core/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringcitiesdb> < $migration; done;
 ```
 </details>
 
@@ -295,17 +298,17 @@ This section shows how to load test buildings into the application from OpenStre
 
 #### Load OpenStreetMap test polygons
 
-Create a virtual environment for python in the `etl` folder of your repository. In the following example we have name the virtual environment *colouringlondon* but it can have any name.
+Create a virtual environment for python in the `etl` folder of your repository. In the following example we have name the virtual environment *colouringcities* but it can have any name.
 
 ```bash
-cd ~/colouring-london/etl
-pyvenv colouringlondon
+cd ~/colouring-core/etl
+pyvenv colouringcities
 ```
 
 Activate the virtual environment so we can install python packages into it.
 
 ```bash
-source colouringlondon/bin/activate
+source colouringcities/bin/activate
 ```
 
 Install python pip package manager and related tools.
@@ -321,7 +324,7 @@ Install the required python packages.
 pip install -r requirements.txt
 ```
 
-To help test the Colouring London application, `get_test_polygons.py` will attempt to save a small (1.5km²) extract from OpenStreetMap to a format suitable for loading to the database.
+To help test the Colouring Cities application, `get_test_polygons.py` will attempt to save a small (1.5km²) extract from OpenStreetMap to a format suitable for loading to the database.
 
 Download the test data.
 
@@ -341,7 +344,7 @@ Now run all 'up' migrations to create tables, data types, indexes etc. The `.sql
 do this are located in the `migrations` folder of your local repository.
 
 ```bash
-ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
+ls ~/colouring-core/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql < $migration; done;
 ```
 
 #### Load buildings
@@ -366,7 +369,7 @@ Now we are ready to run the application.
 First enter the app directory.
 
 ```bash
-cd ~/colouring-london/app
+cd ~/colouring-core/app
 ```
 
 Then create a folder for the tilecache.
@@ -380,7 +383,7 @@ Create some additional variables for running the application (the `APP_COOKIE_SE
 ```bash
 export PGPORT=5432
 export APP_COOKIE_SECRET=123456
-export TILECACHE_PATH=~/colouring-london/app/tilecache
+export TILECACHE_PATH=~/colouring-core/app/tilecache
 ```
 
 Finally, simply run the application with npm.
@@ -396,7 +399,7 @@ Specify variables
 </summary>
 
 ```bash
-PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=~/colouring-london/app/tilecache npm start
+PGPASSWORD=<pgpassword> PGDATABASE=<colouringcitiesdb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=~/colouring-core/app/tilecache npm start
 ```
 
 </details><p></p>

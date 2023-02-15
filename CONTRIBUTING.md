@@ -6,8 +6,8 @@ The format is `fix/123-short-description`, `feature/description` or `feature/123
 
 
 For example
-* [PR 648](https://github.com/colouring-london/colouring-london/pull/684) used branch `fix/681-land-use-edit` referencing [#681](https://github.com/colouring-london/colouring-london/issues/681)
-* [PR 625](https://github.com/colouring-london/colouring-london/pull/625) used branch `feature/verification`
+* [PR 648](https://github.com/colouring-cities/colouring-core/pull/684) used branch `fix/681-land-use-edit` referencing [#681](https://github.com/colouring-cities/colouring-core/issues/681)
+* [PR 625](https://github.com/colouring-cities/colouring-core/pull/625) used branch `feature/verification`
 
 ## Commits
 

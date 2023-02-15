@@ -1,6 +1,6 @@
 # Colouring Cities Core Platform
 [![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors)
-![Build status](https://github.com/colouring-london/colouring-london/workflows/Node.js%20CI/badge.svg)
+![Build status](https://github.com/colouring-cities/colouring-core/workflows/Node.js%20CI/badge.svg)
 
 How many buildings are there in a city? What are their characteristics? Where
 are they located and how do they contribute to the city? How adaptable are
@@ -26,9 +26,17 @@ for download under a liberal open data license
 
 ## Setup and run
 
+#### Customise the Application:
+
+You can customise the Colouring Cities application by changing the values in the following file:
+
+`app/src/cc-config.json`
+
+For more information on the config system, see [docs/configuring-colouring-cities](docs/configuring-colouring-cities.md).
+
 #### Test the application:
 
-You can try out the Colouring London application by setting up your own development environment, which includes the option to load test data from OpenStreetMaps (OSM). See [docs/setup-dev-environment](docs/setup-dev-environment.md).
+You can try out the Colouring Cities application by setting up your own development environment, which includes the option to load test data from OpenStreetMaps (OSM). See [docs/setup-dev-environment](docs/setup-dev-environment.md).
   
 _Last updated March 2022_
 
@@ -50,8 +58,8 @@ and technical support.
 
 ## License
 
-    Colouring London
-    Copyright (C) 2018-2022 Tom Russell and Colouring London contributors
+    Colouring London/Colouring Cities
+    Copyright (C) 2018-2022 Tom Russell and Colouring Cities contributors
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -107,6 +115,6 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/all-contri
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-Even more thanks go to Colouring London contributors, funders, project partners, consultees,
+Even more thanks go to Colouring Cities contributors, funders, project partners, consultees,
 advisers, supporters and friends - [everyone involved in the
 project](https://www.pages.colouring.london/whoisinvolved).
