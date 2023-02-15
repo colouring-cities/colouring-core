@@ -33,9 +33,6 @@
     background-image: none;
     border-color: #343a40;
 }
-.map-switcher-inline.night.no-applicable-state {
-    color: #191b1d;
-}
 .map-switcher-inline.disabled-state,
 .map-button.disabled-state,
 .map-button.disabled-state .btn{
@@ -63,7 +60,6 @@
     background-color: #448844;
 }
 
-.map-switcher-inline.night.no-applicable-state,
 .map-button.enabled .btn:hover,
 .map-button.night.enabled .btn:hover {
     background-color: transparent;

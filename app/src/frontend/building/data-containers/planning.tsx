@@ -106,11 +106,11 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox type='info'>Click and colour buildings here if you think they may be subject to a future planning application involving demolition. To add your opinion on how well this building works, please also visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
                 {
                 props.mapColourScale != "community_expected_planning_application_total" ?
-                    <button className={`map-switcher-inline no-applicable-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToExpectedApplicationMapStyle}>
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToExpectedApplicationMapStyle}>
                     {'Click here to view possible locations of future applications'}
                     </button>
                 :
-                    <button className={`map-switcher-inline no-applicable-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAllPlanningApplicationsMapStyle}>
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAllPlanningApplicationsMapStyle}>
                     {'Click to see planning applications'}
                     </button>
                 }
@@ -210,11 +210,11 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </div>
             {
                 props.mapColourScale != "planning_combined" ?
-                    <button className={`map-switcher-inline no-applicable-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToBuildingProtectionMapStyle}>
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToBuildingProtectionMapStyle}>
                     {'Click to see individual protected buildings mapped'}
                     </button>
                 :
-                    <button className={`map-switcher-inline no-applicable-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAllPlanningApplicationsMapStyle}>
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAllPlanningApplicationsMapStyle}>
                     {'Click to see planning applications'}
                     </button>
             }
