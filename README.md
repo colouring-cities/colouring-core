@@ -26,6 +26,14 @@ for download under a liberal open data license
 
 ## Setup and run
 
+#### Customise the Application:
+
+You can customise the Colouring Cities application by changing the values in the following file:
+
+`app/src/cc-config.json`
+
+For more information on the config system, see [docs/configuring-colouring-cities](docs/configuring-colouring-cities.md).
+
 #### Test the application:
 
 You can try out the Colouring London application by setting up your own development environment, which includes the option to load test data from OpenStreetMaps (OSM). See [docs/setup-dev-environment](docs/setup-dev-environment.md).
