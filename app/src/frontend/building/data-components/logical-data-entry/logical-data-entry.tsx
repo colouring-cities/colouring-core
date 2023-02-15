@@ -145,3 +145,31 @@ export const LogicalDataEntryYesOnly: React.FC<LogicalDataEntryProps> = (props) 
         </>
     );
 };
+
+export const LogicalDataEntryYesOnlyWithExplanation: React.FC<LogicalDataEntryProps> = (props) => {
+    function handleValueChange(e: React.ChangeEvent<HTMLInputElement>) {
+        props.onChange?.(props.slug, e.target.checked);
+    }
+
+    const isDisabled = props.mode === 'view' || props.disabled;
+
+    return (
+        <>
+            <DataTitleCopyable
+                slug={props.slug}
+                title={props.title}
+                tooltip={props.tooltip}
+                disabled={props.disabled || props.value == undefined}
+                copy={props.copy}
+            />
+            <label className="form-check-label">
+                <input className="form-check-input" type="checkbox"
+                    name={props.slug}
+                    checked={props.value === true}
+                    disabled={isDisabled || props.disallowTrue}
+                    onChange={handleValueChange}
+                /> Yes (tick to add or remove your edit)
+            </label>
+        </>
+    );
+};
