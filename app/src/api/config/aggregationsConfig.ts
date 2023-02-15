@@ -19,6 +19,12 @@ export const aggregationsConfig: { [key in keyof typeof buildingUserAttributesCo
             aggregationMethod: 'countTrue'
         }
     ],
+    community_type_worth_keeping: [
+        {
+            aggregateFieldName: 'community_type_worth_keeping_total',
+            aggregationMethod: 'countTrue'
+        }
+    ],
     community_local_significance: [
         {
             aggregateFieldName: 'community_local_significance_total',

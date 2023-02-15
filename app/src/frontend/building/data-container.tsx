@@ -97,6 +97,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                      'current_landuse_verified',
                                      'planning_list_grade',
                                      'likes_total',
+                                     'community_type_worth_keeping_total',
                                      'community_local_significance_total',
                                      'community_expected_planning_application_total'
                                     ]

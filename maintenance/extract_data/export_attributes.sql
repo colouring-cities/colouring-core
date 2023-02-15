@@ -54,6 +54,8 @@ COPY (SELECT
     planning_in_apa_url,
     planning_local_list_url,
     planning_historic_area_assessment_url,
+    is_domestic,
+    community_type_worth_keeping_total,
     likes_total
 FROM buildings)
 TO '/tmp/building_attributes.csv'

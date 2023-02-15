@@ -7,7 +7,9 @@ export type BuildingMapTileset = 'date_year' |
     'size_height' |
     'construction_core_material' |
     'location' |
+    'is_domestic' |
     'likes' |
+    'typology_likes' |
     'community_local_significance_total' |
     'community_expected_planning_application_total' |
     'community_in_public_ownership' |

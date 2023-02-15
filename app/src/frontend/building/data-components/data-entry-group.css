@@ -5,8 +5,7 @@
     font-weight: 410;
 }
 .data-entry-group-header .data-entry-group-title {
-    position: absolute;
-    left: 1rem;
+    padding-left: 0.6rem;
 }
 
 .data-entry-group-count {

@@ -292,7 +292,16 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         sqlCast: 'jsonb',
     },
 
+    is_domestic: {
+        edit: true,
+        verify: true
+    },
     likes_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_type_worth_keeping_total: {
         edit: false,
         derivedEdit: true,
         verify: false
