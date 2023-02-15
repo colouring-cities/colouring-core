@@ -590,7 +590,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     community_local_significance_total: {
         category: Category.Community,
-        title: "People who think the building should be recorded as one of local significance",
+        title: "People who think the building should be recorded as one of local interest",
         example: 100,
     },
 

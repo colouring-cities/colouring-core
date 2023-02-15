@@ -143,8 +143,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'community_local_significance_total',
             legend: {
-                title: 'Local Significance',
-                description: 'People who think the building should be locally listed',
+                title: 'Local Interest',
+                description: 'People who think the building is of a local interest',
                 elements: [
                     { color: '#bd0026', text: '100+' },
                     { color: '#e31a1c', text: '50–99' },
