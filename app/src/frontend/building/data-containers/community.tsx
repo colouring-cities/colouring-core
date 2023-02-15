@@ -21,10 +21,6 @@ import { useDisplayPreferences } from '../../displayPreferences-context';
 * Community view/edit section
 */
 const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
-    const switchToLikesMapStyle = (e) => {
-        e.preventDefault();
-        props.onMapColourScale('likes')
-    }
     const switchToTypologyMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('typology_likes')
