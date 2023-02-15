@@ -36,7 +36,7 @@ For more information on the config system, see [docs/configuring-colouring-citie
 
 #### Test the application:
 
-You can try out the Colouring London application by setting up your own development environment, which includes the option to load test data from OpenStreetMaps (OSM). See [docs/setup-dev-environment](docs/setup-dev-environment.md).
+You can try out the Colouring Cities application by setting up your own development environment, which includes the option to load test data from OpenStreetMaps (OSM). See [docs/setup-dev-environment](docs/setup-dev-environment.md).
   
 _Last updated March 2022_
 
@@ -58,8 +58,8 @@ and technical support.
 
 ## License
 
-    Colouring London
-    Copyright (C) 2018-2022 Tom Russell and Colouring London contributors
+    Colouring London/Colouring Cities
+    Copyright (C) 2018-2022 Tom Russell and Colouring Cities contributors
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -115,6 +115,6 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/all-contri
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-Even more thanks go to Colouring London contributors, funders, project partners, consultees,
+Even more thanks go to Colouring Cities contributors, funders, project partners, consultees,
 advisers, supporters and friends - [everyone involved in the
 project](https://www.pages.colouring.london/whoisinvolved).
