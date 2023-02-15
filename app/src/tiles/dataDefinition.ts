@@ -109,6 +109,14 @@ const LAYER_QUERIES = {
             ) AS team_info_count
         FROM
             buildings`,
+    is_domestic: `
+        SELECT
+            geometry_id,
+            is_domestic
+        FROM
+            buildings
+        WHERE
+            is_domestic IS NOT NULL`,
     likes: `
         SELECT
             geometry_id,
@@ -116,7 +124,17 @@ const LAYER_QUERIES = {
         FROM
             buildings
         WHERE
+            is_domestic <> 'yes'
+            AND
             likes_total > 0`,
+    typology_likes: `
+        SELECT
+            geometry_id,
+            community_type_worth_keeping_total AS likes
+        FROM
+            buildings
+        WHERE
+            community_type_worth_keeping_total > 0`,
     community_local_significance_total: `
         SELECT
             geometry_id,

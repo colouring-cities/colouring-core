@@ -73,22 +73,28 @@ export const buildingUserFields = {
     community_type_worth_keeping: {
         perUser: true,
         category: Category.Community,
-        title: "Do you think this **type** of building is generally worth keeping?",
+        title: "Do you think this **type** of building is contributes to the city?",
         example: true,
     },
     community_type_worth_keeping_reasons: {
         perUser: true,
         category: Category.Community,
-        title: 'Why is this type of building worth keeping?',
+        title: 'Please tick one or more boxes below',
         fields: {
             external_design: {
-                title: "because the external design contributes to the streetscape"
+                title: "Because the external design contributes to the streetscape"
             },
             internal_design: {
-                title: 'because the internal design works well'
+                title: 'Because the internal layout works well'
             },
             adaptable: {
-                title: 'because the building is adaptable / can be reused to make the city more sustainable'
+                title: 'Because the building can be easily adapted and reused'
+            },
+            using_outside_space: {
+                title: 'Because the building incorporates outside space'
+            },
+            durable: {
+                title: 'Because the construction method and materials are likely to be long-lasting'
             },
             other: {
                 title: 'other'
@@ -98,6 +104,8 @@ export const buildingUserFields = {
             external_design: true,
             internal_design: true,
             adaptable: false,
+            using_outside_space: true,
+            durable: true,
             other: false
         }
     },
@@ -105,7 +113,7 @@ export const buildingUserFields = {
     community_local_significance: {
         perUser: true,
         category: Category.Community,
-        title: "Do you think this building should be recorded as a local heritage asset?",
+        title: "Do you think this building should be recorded as being of special local interest?",
         example: true
     },
     community_expected_planning_application: {
@@ -563,16 +571,26 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         //tooltip: ,
     },
 
+    is_domestic: {
+        category: Category.Team,
+        title: "Is the building a home/domestic building?",
+        tooltip: "",
+        example: "mixed domestic/non-domestic"
+    },
     likes_total: {
         category: Category.Community,
         title: "Total number of likes",
         example: 100,
         tooltip: "People who like the building and think it contributes to the city.",
     },
-
+    community_type_worth_keeping_total: {
+        category: Category.Community,
+        title: "People who think this type of building is contributes to the city.",
+        example: 100,
+    },
     community_local_significance_total: {
         category: Category.Community,
-        title: "People who think the building should be recorded as one of local significance",
+        title: "People who think the building should be recorded as one of local interest",
         example: 100,
     },
 
