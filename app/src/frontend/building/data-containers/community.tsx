@@ -123,7 +123,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </button>
             :
             <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLocalSignificanceMapStyle}>
-            {"Click here to see view of a community on a local building interest mapped."}
+            {"Click here to change map to buildings of local interest."}
             </button>
             }
 
@@ -144,7 +144,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </button>
             :
             <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToExpectedApplicationMapStyle}>
-            {"Click here to see planning applications expected by community."}
+            {"Click here to change map to planning applications expected by community."}
             </button>
             }
 
