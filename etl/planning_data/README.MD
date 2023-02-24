@@ -1,4 +1,8 @@
-Following instructions assume that code is placed within `~/colouring-london/etl/planning_data/`
+Planning data was written to be extendable to other locations but currently is setup only for London and relies on GLA data.
+
+Extending it to other locations will require some custom work. At least connecting to other external API and parsing their data. Some additional custom data processing will be likely needed like it was needed for London data.
+
+Following instructions assume that code is placed within `~/colouring-core/etl/planning_data/` and tiles are within `/srv/colouring-london/tilecache/` Note that this is affected by location specified in ecosystem config file which may be for example at `/var/www/colouring-london/ecosystem.config.js`
 
 To install necessary dependencies use `cd ~/colouring-london/etl/planning_data/ && pip3 install -r requirements.txt`
 
