@@ -71,44 +71,52 @@ const LAYER_QUERIES = {
         WHERE
             construction_core_material IS NOT NULL`,
     location: `
-        SELECT
-            geometry_id,
-            (
-                case when location_name IS NULL then 0 else 1 end +
-                case when location_number IS NULL then 0 else 1 end +
-                case when location_street IS NULL then 0 else 1 end +
-                case when location_line_two IS NULL then 0 else 1 end +
-                case when location_town IS NULL then 0 else 1 end +
-                case when location_postcode IS NULL then 0 else 1 end +
-                case when location_latitude IS NULL then 0 else 1 end +
-                case when location_longitude IS NULL then 0 else 1 end +
-                case when ref_toid IS NULL then 0 else 1 end +
-                case when ref_osm_id IS NULL then 0 else 1 end
-            ) AS location_info_count
-        FROM
-            buildings`,
+        SELECT blds_with_data.* 
+        FROM (
+            SELECT
+                    geometry_id,
+                    (
+                        case when location_name IS NULL then 0 else 1 end +
+                        case when location_number IS NULL then 0 else 1 end +
+                        case when location_street IS NULL then 0 else 1 end +
+                        case when location_line_two IS NULL then 0 else 1 end +
+                        case when location_town IS NULL then 0 else 1 end +
+                        case when location_postcode IS NULL then 0 else 1 end +
+                        case when location_latitude IS NULL then 0 else 1 end +
+                        case when location_longitude IS NULL then 0 else 1 end +
+                        case when ref_toid IS NULL then 0 else 1 end +
+                        case when ref_osm_id IS NULL then 0 else 1 end
+                    ) AS location_info_count
+                FROM
+                    buildings
+            ) AS blds_with_data
+        WHERE blds_with_data.location_info_count > 0`,
     team: `
-        SELECT
-            geometry_id,
-            (
-                case when has_extension IS NULL then 0 else 1 end +
-                case when extension_year IS NULL then 0 else 1 end +
-                case when developer_type IS NULL then 0 else 1 end +
-                case when developer_name IS NULL then 0 else 1 end +
-                case when developer_source_link IS NULL then 0 else 1 end +
-                case when designers IS NULL then 0 else 1 end +
-                case when designers_source_link IS NULL then 0 else 1 end +
-                case when lead_designer_type IS NULL then 0 else 1 end +
-                case when designer_awards IS NULL then 0 else 1 end +
-                case when awards_source_link IS NULL then 0 else 1 end +
-                case when builder IS NULL then 0 else 1 end +
-                case when builder_source_link IS NULL then 0 else 1 end +
-                case when other_team IS NULL then 0 else 1 end +
-                case when other_team_source_link IS NULL then 0 else 1 end +
-                case when date_year IS NULL then 0 else 1 end
-            ) AS team_info_count
-        FROM
-            buildings`,
+        SELECT blds_with_data.* 
+        FROM (
+            SELECT
+                    geometry_id,
+                    (
+                        case when has_extension IS NULL then 0 else 1 end +
+                        case when extension_year IS NULL then 0 else 1 end +
+                        case when developer_type IS NULL then 0 else 1 end +
+                        case when developer_name IS NULL then 0 else 1 end +
+                        case when developer_source_link IS NULL then 0 else 1 end +
+                        case when designers IS NULL then 0 else 1 end +
+                        case when designers_source_link IS NULL then 0 else 1 end +
+                        case when lead_designer_type IS NULL then 0 else 1 end +
+                        case when designer_awards IS NULL then 0 else 1 end +
+                        case when awards_source_link IS NULL then 0 else 1 end +
+                        case when builder IS NULL then 0 else 1 end +
+                        case when builder_source_link IS NULL then 0 else 1 end +
+                        case when other_team IS NULL then 0 else 1 end +
+                        case when other_team_source_link IS NULL then 0 else 1 end +
+                        case when date_year IS NULL then 0 else 1 end
+                    ) AS team_info_count
+                FROM
+                    buildings
+            ) AS blds_with_data
+        WHERE blds_with_data.team_info_count > 0`,
     is_domestic: `
         SELECT
             geometry_id,
