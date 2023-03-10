@@ -26,6 +26,9 @@ for download under a liberal open data license
 
 ## Setup and run
 
+#### Forking the Core Repository
+If you are working with us as part of this GitHub organisation, then a repository and team may already have been set up for you. If you are already usign the repository and want to add a new project, perhaps because you are expanding to additional cities, then please following these instructions to create a Fork of the core repository: [docs/configuring-colouring-cities](docs/working-with-colouring-core.md).
+
 #### Customise the Application:
 
 You can customise the Colouring Cities application by changing the values in the following file:
