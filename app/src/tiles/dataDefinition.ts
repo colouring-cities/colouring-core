@@ -125,6 +125,14 @@ const LAYER_QUERIES = {
             buildings
         WHERE
             is_domestic IS NOT NULL`,
+    survival_status: `
+        SELECT
+            geometry_id,
+            survival_status
+        FROM
+            buildings
+        WHERE
+        survival_status IS NOT NULL`,
     likes: `
         SELECT
             geometry_id,

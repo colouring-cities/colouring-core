@@ -56,7 +56,8 @@ COPY (SELECT
     planning_historic_area_assessment_url,
     is_domestic,
     community_type_worth_keeping_total,
-    likes_total
+    likes_total,
+    survival_status
 FROM buildings)
 TO '/tmp/building_attributes.csv'
 WITH CSV HEADER

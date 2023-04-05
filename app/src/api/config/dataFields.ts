@@ -296,6 +296,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
+    survival_status: {
+        edit: true,
+        verify: true
+    },
     likes_total: {
         edit: false,
         derivedEdit: true,

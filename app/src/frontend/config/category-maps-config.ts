@@ -24,45 +24,61 @@ export interface CategoryMapDefinition {
 export const defaultMapCategory = Category.Age;
 
 export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = {
-    [Category.Age]: [{
-        mapStyle: 'date_year',
-        legend: {
-            title: 'Age',
-            elements: [
-                { color: '#fff9b8', text: '>2020' },
-                { color: '#fae269', text: '2000-2019' },
-                { color: '#fbaf27', text: '1980-1999' },
-                { color: '#e6711d', text: '1960-1979' },
-                { color: '#cc1212', text: '1940-1959' },
-                { color: '#8f0303', text: '1920-1939' },
-                { color: '#8f5385', text: '1900-1919' },
-                { color: '#c3e1eb', text: '1880-1899' },
-                { color: '#6a9dba', text: '1860-1879' },
-                { color: '#3b74a3', text: '1840-1859' },
-                { color: '#95ded8', text: '1820-1839' },
-                { color: '#68aba5', text: '1800-1819' },
-                { color: '#acc98f', text: '1750-1799' },
-                { color: '#6d8a51', text: '1700-1749' },
-                { color: '#d0c291', text: '<1700' },
-            ]
+    [Category.Age]: [
+        {
+            mapStyle: 'date_year',
+            legend: {
+                title: 'Age',
+                elements: [
+                    { color: '#fff9b8', text: '>2020' },
+                    { color: '#fae269', text: '2000-2019' },
+                    { color: '#fbaf27', text: '1980-1999' },
+                    { color: '#e6711d', text: '1960-1979' },
+                    { color: '#cc1212', text: '1940-1959' },
+                    { color: '#8f0303', text: '1920-1939' },
+                    { color: '#8f5385', text: '1900-1919' },
+                    { color: '#c3e1eb', text: '1880-1899' },
+                    { color: '#6a9dba', text: '1860-1879' },
+                    { color: '#3b74a3', text: '1840-1859' },
+                    { color: '#95ded8', text: '1820-1839' },
+                    { color: '#68aba5', text: '1800-1819' },
+                    { color: '#acc98f', text: '1750-1799' },
+                    { color: '#6d8a51', text: '1700-1749' },
+                    { color: '#d0c291', text: '<1700' },
+                ]
+            },
         },
-    }],
-    [Category.Size]: [{
-        mapStyle: 'size_height',
-        legend: {
-            title: 'Height to apex',
-            elements: [
-                { color: '#f7f4f9', text: '0-5.55'},
-                { color: '#e7e1ef', text: '5.55-7.73'},
-                { color: '#d4b9da', text: '7.73-11.38'},
-                { color: '#c994c7', text: '11.38-18.45'},
-                { color: '#df65b0', text: '18.45-35.05'},
-                { color: '#e7298a', text: '35.05-89.30'},
-                { color: '#ce1256', text: '89.30-152'},
-                { color: '#980043', text: '≥152'}
-            ]
+        {
+            mapStyle: 'survival_status',
+            legend: {
+                title: 'Survival status',
+                elements: [
+                    { color: '#6ded45', text: 'Same as Historical Map (Unchanged)' },
+                    { color: '#f7c725', text: 'Similar to Historical Map (Some Changes)' },
+                    { color: '#ff2121', text: 'Historical Building Demolished' },
+                    { color: '#CF26DF', text: 'Current Building on Previous Green Space' },
+                ]
+            }
         },
-    }],
+    ],
+    [Category.Size]: [
+        {
+            mapStyle: 'size_height',
+            legend: {
+                title: 'Height to apex',
+                elements: [
+                    { color: '#f7f4f9', text: '0-5.55'},
+                    { color: '#e7e1ef', text: '5.55-7.73'},
+                    { color: '#d4b9da', text: '7.73-11.38'},
+                    { color: '#c994c7', text: '11.38-18.45'},
+                    { color: '#df65b0', text: '18.45-35.05'},
+                    { color: '#e7298a', text: '35.05-89.30'},
+                    { color: '#ce1256', text: '89.30-152'},
+                    { color: '#980043', text: '≥152'}
+                ]
+            },
+        }
+    ],
     [Category.Team]: [{
         mapStyle: 'team',
         legend: {
