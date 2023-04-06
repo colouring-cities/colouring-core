@@ -512,7 +512,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <SelectDataEntry
                     title={dataFields.survival_status.title}
                     slug="survival_status"
-                    value={""}
+                    value={props.building.survival_status}
                     tooltip={dataFields.survival_status.tooltip}
                     options={SurvivalStatusOptions}
                     mode={props.mode}
