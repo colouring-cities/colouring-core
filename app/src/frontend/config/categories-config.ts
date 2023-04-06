@@ -54,7 +54,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
     },
     [Category.Size]: {
         slug: 'size',
-        name: 'Size & Form',
+        name: 'Size',
         aboutUrl: 'https://pages.colouring.london/shapeandsize',
         intro: 'How big are buildings?',
     },

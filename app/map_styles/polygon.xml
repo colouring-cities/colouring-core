@@ -623,6 +623,34 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="survival_status">
+        <Rule>
+            <Filter>[survival_status] = "Same as Historical Map (Unchanged)"</Filter>
+            <PolygonSymbolizer fill="#6ded45" />
+        </Rule>
+        <Rule>
+            <Filter>[survival_status] = "Similar to Historical Map (Some Changes)"</Filter>
+            <PolygonSymbolizer fill="#f7c725" />
+        </Rule>
+        <Rule>
+            <Filter>[survival_status] = "Historical Building Demolished"</Filter>
+            <PolygonSymbolizer fill="#ff2121" />
+        </Rule>
+        <Rule>
+            <Filter>[survival_status] = "Current Building on Previous Green Space"</Filter>
+            <PolygonSymbolizer fill="#CF26DF" />
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="likes">
         <Rule>
             <Filter>[likes] &gt;= 100</Filter>

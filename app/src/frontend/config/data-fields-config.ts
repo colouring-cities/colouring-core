@@ -444,7 +444,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     sust_aggregate_estimate_epc: {
         category: Category.Sustainability,
         title: "Domestic Building Energy Rating",
-        tooltip: "Energy Performance Certificate (EPC) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher maybe rented",
+        tooltip: "Energy Performance Certificate (EPC) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher may be rented",
         example: "",
     },
     sust_retrofit_date: {
@@ -460,10 +460,37 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         //tooltip: ,
     },
 
-    historical_status: {
+    survival_status: {
         category: Category.Age,
-        title: "Historical Status",
+        title: "Survival status",
         tooltip: "Survival and Loss tracked using Historical Maps",
+        items: [
+            "Same as Historical Map (Unchanged)",
+            "Similar to Historical Map (Some Changes)",
+            "Historical Building Demolished",
+            "Current Building on Previous Green Space"
+        ],
+        example: "",
+    },
+
+    survival_source: {
+        category: Category.Age,
+        title: "Source of survival information",
+        tooltip: "Source for the survival status",
+        items: [
+            "Matched by comparing maps",
+            "Checked using streetview images",
+            "Historical publication or archive document",
+            "Other"
+        ],
+        example: "",
+    },
+
+    survival_link: {
+        category: Category.Age,
+        title: "Please add any additional text or image links providing historical information on this building",
+        tooltip: "URL for age and date reference",
+        example: ["", "", ""],
     },
 
     edit_history: {
