@@ -21,7 +21,8 @@ export type BuildingMapTileset = 'date_year' |
     'building_attachment_form' |
     'landuse' |
     'dynamics_demolished_count' |
-    'team';
+    'team' |
+    'survival_status';
 
 export type SpecialMapTileset = 'base_light' | 'base_night' | 'base_night_outlines' | 'highlight' | 'number_labels' | 'base_boroughs';
 

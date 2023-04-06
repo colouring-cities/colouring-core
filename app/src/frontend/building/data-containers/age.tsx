@@ -20,10 +20,11 @@ import { CategoryViewProps } from './category-view-props';
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 
-const HistoricalStatusOptions = [
-    'The current footprint matches/almost exactly matches the historical map beneath, and/or is known to have been built before the map was made',
-    'The building core is the same as the historical map but has had multiple additions/changes',
-    'The building no longer exists',
+const SurvivalStatusOptions = [
+    'Same as Historical Map (Unchanged)',
+    'Similar to Historical Map (Some Changes)',
+    'Historical Building Demolished',
+    'Current Building on Previous Green Space'
 ];
 
 /**
@@ -227,27 +228,33 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </DataEntryGroup>
             <DataEntryGroup name="Survival and Loss tracked using Historical Maps" collapsed={true} >
                 <InfoBox>
-                    This section is under development.
+                    Can you help us create a map that shows how many buildings in London have survived since the 1890s? 
+                    Choose a colour to indicate whether the building has survived.
                 </InfoBox>
                 <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                     {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <SelectDataEntry
-                    title={dataFields.historical_status.title}
-                    slug="historical_status"
-                    value={""}
-                    tooltip={dataFields.historical_status.tooltip}
-                    options={HistoricalStatusOptions}
+                    title={dataFields.survival_status.title}
+                    slug="survival_status"
+                    value={props.building.survival_status}
+                    tooltip={dataFields.survival_status.tooltip}
+                    options={SurvivalStatusOptions}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
                 />
-                <DataEntry
-                    title="Historical land use change"
-                    slug=""
-                    value=""
-                    mode='view'
-                />
+                <SelectDataEntry
+                    title={dataFields.survival_source.title}
+                    slug="survival_source"
+                    value={props.building.survival_source}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.survival_source.tooltip}
+                    placeholder={dataFields.survival_source.example}
+                    options={dataFields.survival_source.items}
+                    />
             </DataEntryGroup>
           </Fragment>
         );
@@ -496,27 +503,33 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </DataEntryGroup>
             <DataEntryGroup name="Survival and Loss tracked using Historical Maps" collapsed={true} >
                 <InfoBox>
-                    This section is under development.
+                    Can you help us create a map that shows how many buildings in London have survived since the 1890s? 
+                    Choose a colour to indicate whether the building has survived.
                 </InfoBox>
-                <button className={`map-switcher-inline ${historicData} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
+                <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                     {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <SelectDataEntry
-                    title={dataFields.historical_status.title}
-                    slug="historical_status"
-                    value={""}
-                    tooltip={dataFields.historical_status.tooltip}
-                    options={HistoricalStatusOptions}
+                    title={dataFields.survival_status.title}
+                    slug="survival_status"
+                    value={props.building.survival_status}
+                    tooltip={dataFields.survival_status.tooltip}
+                    options={SurvivalStatusOptions}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
                 />
-                <DataEntry
-                    title="Historical land use change"
-                    slug=""
-                    value=""
-                    mode='view'
-                />
+                <SelectDataEntry
+                    title={dataFields.survival_source.title}
+                    slug="survival_source"
+                    value={props.building.survival_source}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.survival_source.tooltip}
+                    placeholder={dataFields.survival_source.example}
+                    options={dataFields.survival_source.items}
+                    />
             </DataEntryGroup>
         </Fragment>
     );
