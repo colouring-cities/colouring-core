@@ -19,20 +19,20 @@ const Welcome = () => (
         </p>
         <p>
             {config.projectBlurb}&nbsp;
-            based at the Alan Turing Institute (the UK's national Institute for data science and artificial intelligence).
-            The programme works with local, regional, national and international partners to develop
-            open platform code also of relevance to other cities.
+            The Colouring Cities Research Programme (CCRP), led by the Alan Turing Institute,
+            involves <a href="https://github.com/colouring-cities/colouring-cities.github.io">an international consortium of academic institutions</a> involved
+            in building research. Our aim is to maximise accessibility to building-level data across countries, 
+            to help improve stock quality, efficiency, sustainability and resilience and meet net-zero goals.
         </p>
         <p>
-            New datasets and features are added all the time. Any help you can give, colouring-in our building maps,
-            and enriching and verifying our open datasets is very much appreciated.
+            New data and features are added all the time. We are keen to engage as many people as possible in platform development. Whether you are a resident, 
+            or a stakeholder in academia, government, industry or the third sector, any help you can give colouring in our Colouring Cities maps, 
+            and enriching and verifying our open databases with your knowledge, is greatly appreciated.
         </p>
         <p>
             All our <Link to="/data-extracts.html">data</Link> and <a href="https://github.com/colouring-cities/colouring-core">code</a> are 
             free to download, use and share under our open licence terms. 
-            Our <a href="https://github.com/colouring-cities/manual/wiki">open manual</a> provides detailed
-            non-technical information on the CCRP, and our international collaborators, 
-            for anyone interested in our research.
+            Our <a href="https://github.com/colouring-cities/manual/wiki">open manual</a> also provides non-technical information on the CCRP for anyone interested in our research.
         </p>
         <Link to="/view/categories"
             className="btn btn-outline-dark btn-lg btn-block">
