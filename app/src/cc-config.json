@@ -1,6 +1,6 @@
 {
     "cityName": "Cities",
-    "projectBlurb": "Colouring Cities is part of the Colouring Cities Research Programme (CCRP)",
+    "projectBlurb": "Colouring {City Name} is part of the Colouring Cities Research Programme.",
     "githubURL": "https://github.com/colouring-cities/colouring-core",
     "privacyStatement": "Colouring Cities stores your data... [PRIVACY DATA GOES HERE].",
 
