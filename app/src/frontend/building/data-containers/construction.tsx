@@ -2,11 +2,13 @@ import React, { Fragment } from 'react';
 
 import { dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
+import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import withCopyEdit from '../data-container';
 import Verification from '../data-components/verification';
 
 import { CategoryViewProps } from './category-view-props';
+import Verification from '../data-components/verification';
 
 const ConstructionMaterialsOptions = [
     'Wood',
@@ -54,17 +56,28 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                 user_verified_as={props.user_verified.construction_core_material}
                 verified_count={props.building.verified.construction_core_material}
                 />
-            <SelectDataEntry
+            <MultiDataEntry
                 title={dataFields.construction_secondary_materials.title}
-                disabled={true}
                 slug="construction_secondary_materials"
                 value={props.building.construction_secondary_materials}
-                tooltip={dataFields.construction_secondary_materials.tooltip}
-                options={ConstructionMaterialsOptions}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
+                confirmOnEnter={true}
+                tooltip={dataFields.construction_secondary_materials.tooltip}
+                placeholder="Type new land use group here"
+                copyable={true}
+                autofill={true}
+                showAllOptionsOnEmpty={true}
             />
+            <Verification
+                slug="construction_secondary_materials"
+                allow_verify={props.user !== undefined && props.building.construction_secondary_materials !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("construction_secondary_materials")}
+                user_verified_as={props.user_verified.construction_secondary_materials && props.user_verified.construction_secondary_materials.join(", ")}
+                verified_count={props.building.verified.construction_secondary_materials}
+                />
             <SelectDataEntry
                 title={dataFields.construction_roof_covering.title}
                 slug="construction_roof_covering"

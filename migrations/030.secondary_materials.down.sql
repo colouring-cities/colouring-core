@@ -1,0 +1,2 @@
+ALTER TABLE buildings
+ALTER construction_secondary_materials SET DATA TYPE construction_materials USING construction_secondary_materials[1]::construction_materials;

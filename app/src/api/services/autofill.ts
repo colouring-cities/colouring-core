@@ -10,7 +10,15 @@ type GetAutofillOptionsFn = (value: string, all?: boolean) => Promise<AutofillOp
 
 const autofillFunctionMap : { [fieldName: string] : GetAutofillOptionsFn } = {
     current_landuse_group: getLanduseGroupOptions,
+    construction_secondary_materials: getConstructionMaterialOptions,
 };
+
+function getConstructionMaterialOptions(value: string, all: boolean = false) {
+    return db.manyOrNone(`SELECT * FROM (
+        SELECT unnest(enum_range(NULL::construction_materials)) AS value) AS materials_from_enum 
+        CROSS JOIN (SELECT '' AS id) AS dummy
+    `)
+}
 
 
 function getLanduseGroupOptions(value: string, all: boolean = false) {

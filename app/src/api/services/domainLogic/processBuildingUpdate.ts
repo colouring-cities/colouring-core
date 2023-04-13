@@ -7,6 +7,7 @@ import { getBuildingData } from '../../dataAccess/building';
 import { ArgumentError } from '../../errors/general';
 
 import { updateLandUse } from './landUse';
+import { updateSecondaryMaterials } from './secondaryMaterial';
 
 /**
  * Process land use classifications - derive land use order from land use groups
@@ -75,6 +76,35 @@ async function processDynamicsDemolishedBuildings(
 
 
 /**
+ * Process secondary material - validate input data
+ */
+ async function processSecondaryMaterial(
+    buildingId: number,
+    buildingUpdate: Partial<BuildingAttributes>,
+    t?: ITask<any>
+): Promise<any> {
+    const currentBuildingData = await getBuildingData(buildingId);
+
+    try {
+        const currentLandUseUpdate = await updateSecondaryMaterials(
+            {
+                materials: buildingUpdate.construction_secondary_materials,
+            }
+        );
+
+        return Object.assign({}, buildingUpdate, {
+            construction_secondary_materials: currentLandUseUpdate.materials,
+        });
+    } catch (error) {
+        if(error instanceof ArgumentError && error.argumentName === 'secondaryMaterialsUpdate') {
+            error.argumentName = 'buildingUpdate';
+        }
+        throw error;
+    }
+}
+
+
+/**
  * Define any custom processing logic for specific building attributes
  */
 export async function processBuildingUpdate(buildingId: number, {attributes, userAttributes}: BuildingUpdate, t?: ITask<any>): Promise<BuildingUpdate> {
@@ -83,6 +113,9 @@ export async function processBuildingUpdate(buildingId: number, {attributes, use
     }
     if(hasAnyOwnProperty(attributes, ['demolished_buildings', 'dynamics_has_demolished_buildings'])) {
         attributes = await processDynamicsDemolishedBuildings(buildingId, attributes, t);
+    }
+    if(hasAnyOwnProperty(attributes, ['construction_secondary_materials'])) {
+        attributes = await processSecondaryMaterial(buildingId, attributes, t);
     }
 
     return {
