@@ -1,8 +1,8 @@
 {
     "cityName": "Cities",
-    "projectBlurb": "Colouring Cities is also the prototype for the Colouring Cities Research Programme (CCRP)",
-    "githubURL": "https://github.com/colouring-cities/colouring-london",
-    "privacyStatement": "Colouring Cities stores your data... [PRIVACY DATA GOES HERE].",
+    "projectBlurb": "Colouring {City Name} is part Colouring Cities.",
+    "githubURL": "https://github.com/colouring-cities/colouring-core",
+    "privacyStatement": "{Privacy statement goes here}",
 
     "initialMapPosition": [ 51.5245255, -0.1338422 ],
     "initialZoomLevel": 16
