@@ -51,6 +51,10 @@ _Last updated December 2021_
 
 **Note:** There are additional useful documentation within the `/docs` folder.
 
+#### Troubleshooting
+If you are having problems with the application, first look here: [docs/troubleshooting](docs/troubleshooting.md) to see if there is a solution for your problem.
+(Also, please consider updating this document if you encounter and problems and manage to solve them!)
+
 ## Acknowledgements
 
 Colouring London was set up at the Centre for Advanced Spatial

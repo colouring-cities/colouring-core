@@ -313,17 +313,6 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
     }],
     [Category.LandUse]: [
         {
-            mapStyle: 'is_domestic',
-            legend: {
-                title: 'Is domestic building?',
-                elements: [
-                    { color: '#f7ec25', text: 'Domestic' },
-                    { color: '#fc9b2a', text: 'Mixed' },
-                    { color: '#ff2121', text: 'Non-domestic' },
-                ]
-            }
-        }, 
-        {
             mapStyle: 'landuse',
             legend: {
                 title: 'Land Use',
@@ -345,6 +334,17 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#6c6f8e', text: 'Unclassified, presumed non-residential' }
                 ]
             },
+        },
+        {
+            mapStyle: 'is_domestic',
+            legend: {
+                title: 'Domestic building',
+                elements: [
+                    { color: '#f7ec25', text: 'Domestic' },
+                    { color: '#fc9b2a', text: 'Mixed' },
+                    { color: '#ff2121', text: 'Non-domestic' },
+                ]
+            }
         }
     ],
     [Category.Streetscape]: [{
