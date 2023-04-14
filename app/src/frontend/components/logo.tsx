@@ -15,12 +15,13 @@ interface LogoProps {
  */
 const Logo: React.FunctionComponent<LogoProps> = (props) => {
     const variantClass = props.variant === 'default' ? '' : props.variant;
+    const spacing = 3.2 / config.cityName.length;
     return (
         <div className={`logo ${variantClass}`} >
             <LogoGrid />
             <h1 className="logotype">
                 <span>Colouring</span>
-                <span>{config.cityName}</span>
+                <span style={{letterSpacing: spacing.toString()+"em"}}>{config.cityName}</span>
             </h1>
         </div>
     );
