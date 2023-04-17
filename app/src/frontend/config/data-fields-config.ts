@@ -811,6 +811,27 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Source other significant team members",
         example: ["", "", ""],
     },
+    disaster_type: {
+        category: Category.Resilience,
+        title: "What type of disaster management do you wish to collect data for?",
+        example: "Flood"
+    },
+    disaster_severity: {
+        category: Category.Resilience,
+        title: "How severe do you assess the damage to be?",
+        example: "Building destroyed"
+    },
+    disaster_assessment_method: {
+        category: Category.Resilience,
+        title: "Please add a method of assessment",
+        example: "Citizen/Passerby by eye"
+    },
+    disaster_source_link: {
+        category: Category.Resilience,
+        title: "Please add a source link to official documentation where applicable",
+        tooltip: "URL for data sources(s)",
+        example: ["", "", ""],
+    },
 };
 
 export const allFieldsConfig = {...dataFields, ...buildingUserFields};
