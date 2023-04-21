@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InfoBox from '../../components/info-box';
 import { dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
@@ -9,6 +9,9 @@ import Verification from '../data-components/verification';
 import { CategoryViewProps } from './category-view-props';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 /**
 * Dynamics view/edit section
@@ -16,16 +19,47 @@ import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-e
 const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
     
     const { historicData, historicDataSwitchOnClick, darkLightTheme } = useDisplayPreferences();
+    const [ startDate, setStartDate ] = useState(null);
+    const [ endDate, setEndDate ] = useState(null);
 
     return (<>
         <DataEntryGroup name="Disaster Management" collapsed={true} >
             <InfoBox>
-            This feature is designed to help communities capture data on the state of buildings
-            during major disasters, to support emergency services and to record damage to aid reconstruction programmes.
+                This feature is designed to help communities capture data on the state of buildings
+                during major disasters, to support emergency services and to record damage to aid reconstruction programmes.
             </InfoBox>
             <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                 {(historicData === 'enabled')?'Click here to hide disaster maps':'Click here to show disaster maps'}
             </button>
+            <p>Date of Disaster</p>
+            <div>
+                <DatePicker 
+                    showIcon
+                    dateFormat="dd/MM/yyyy"
+                    slug="disaster_start_date"
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)} 
+                    title={dataFields.disaster_start_date.title}
+                    //value={props.building.disaster_start_date}
+                    isClearable
+                    placeholderText="Select Start Date"
+                    maxDate={new Date()}
+                />
+            </div>
+            <div>
+                <DatePicker 
+                    showIcon
+                    dateFormat="dd/MM/yyyy"
+                    slug="disaster_end_date"
+                    selected={endDate}
+                    onChange={(date) => setEndDate(date)} 
+                    title={dataFields.disaster_end_date.title}
+                    //value={props.building.disaster_end_date}
+                    isClearable
+                    placeholderText="Select End Date"
+                    maxDate={new Date()}
+                />
+            </div>
             <SelectDataEntry
                 slug='disaster_type'
                 title={dataFields.disaster_type.title}

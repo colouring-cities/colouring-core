@@ -832,6 +832,16 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "URL for data sources(s)",
         example: ["", "", ""],
     },
+    disaster_start_date: {
+        category: Category.Resilience,
+        title: "What was the start date of the disaster?",
+        example: "01/04/2023"
+    },
+    disaster_end_date: {
+        category: Category.Resilience,
+        title: "What was the end date of the disaster? (if applicable)",
+        example: "03/04/2023"
+    },
 };
 
 export const allFieldsConfig = {...dataFields, ...buildingUserFields};

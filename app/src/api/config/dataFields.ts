@@ -424,6 +424,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
+    disaster_start_date : {
+        edit: true,
+        verify: true
+    },
+    disaster_end_date : {
+        edit: true,
+        verify: true
+    }
 });
 
 
