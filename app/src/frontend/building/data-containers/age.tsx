@@ -23,7 +23,7 @@ import { useDisplayPreferences } from '../../displayPreferences-context';
 const SurvivalStatusOptions = [
     'Same as Historical Map (Unchanged)',
     'Similar to Historical Map (Some Changes)',
-    'Historical Building Demolished',
+    'Historical Building(s) Demolished',
     'Current Building on Previous Green Space'
 ];
 
