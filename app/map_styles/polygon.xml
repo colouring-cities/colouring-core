@@ -633,7 +633,7 @@
             <PolygonSymbolizer fill="#f7c725" />
         </Rule>
         <Rule>
-            <Filter>[survival_status] = "Historical Building Demolished"</Filter>
+            <Filter>[survival_status] = "Historical Building(s) Demolished"</Filter>
             <PolygonSymbolizer fill="#ff2121" />
         </Rule>
         <Rule>
