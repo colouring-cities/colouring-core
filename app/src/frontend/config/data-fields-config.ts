@@ -828,7 +828,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     disaster_source_link: {
         category: Category.Resilience,
-        title: "Please add a source link to official documentation where applicable",
+        title: "Please add a source link to official documentation/photographic evidence where applicable",
         tooltip: "URL for data sources(s)",
         example: ["", "", ""],
     },

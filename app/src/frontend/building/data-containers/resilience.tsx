@@ -23,10 +23,10 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const [ endDate, setEndDate ] = useState(null);
 
     return (<>
-        <DataEntryGroup name="Disaster Management" collapsed={true} >
+        <DataEntryGroup name="Building Damage Assessment Tool" collapsed={true} >
             <InfoBox>
-                This feature is designed to help communities capture data on the state of buildings
-                during major disasters, to support emergency services and to record damage to aid reconstruction programmes.
+            This feature is designed as an assessment tool to help communities capture data on the state of buildings following major disasters. 
+            It is intended to help support emergency services, to record damage, and to aid reconstruction programmes.
             </InfoBox>
             <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                 {(historicData === 'enabled')?'Click here to hide disaster maps':'Click here to show disaster maps'}
@@ -140,7 +140,7 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
               isUrl={true}
             />
         </DataEntryGroup>
-        <DataEntryGroup name="Resilience indicators" collapsed={true} >
+        <DataEntryGroup name="Resilience indicators and risk assessment" collapsed={true} >
             <InfoBox>
                 This section is under development.
             </InfoBox>
