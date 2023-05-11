@@ -58,7 +58,13 @@ COPY (SELECT
     community_type_worth_keeping_total,
     likes_total,
     survival_status,
-    survival_source
+    survival_source,
+    disaster_type,
+    disaster_severity,
+    disaster_assessment_method,
+    disaster_source_link,
+    disaster_start_date,
+    disaster_end_date
 FROM buildings)
 TO '/tmp/building_attributes.csv'
 WITH CSV HEADER

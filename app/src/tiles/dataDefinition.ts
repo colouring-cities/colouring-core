@@ -266,6 +266,13 @@ const LAYER_QUERIES = {
             buildings
         WHERE
             current_landuse_order IS NOT NULL`,
+    disaster_severity: `
+        SELECT
+            geometry_id,
+            disaster_severity
+        FROM
+            buildings
+        WHERE disaster_severity IS NOT NULL`,
     dynamics_demolished_count: `
         SELECT
             geometry_id,

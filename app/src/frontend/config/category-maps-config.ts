@@ -354,39 +354,69 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             elements: []
         },
     }],
-    [Category.Resilience]: [{
-        mapStyle: 'dynamics_demolished_count',
-        legend: {
-            title: 'Resilience',
-            description: 'Demolished buildings on the same site',
-            elements: [
-                {
-                    text: '7+',
-                    color: '#bd0026',
-                }, {
-                    text: '6',
-                    color: '#e31a1c',
-                }, {
-                    text: '5',
-                    color: '#fc4e2a',
-                }, {
-                    text: '4',
-                    color: '#fd8d3c',
-                }, {
-                    text: '3',
-                    color: '#feb24c',
-                }, {
-                    text: '2',
-                    color: '#fed976',
-                }, {
-                    text: '1',
-                    color: '#ffe8a9',
-                }, {
-                    text: 'None',
-                    color: '#0C7BDC'
-                }
-            ],
+    [Category.Resilience]: [
+        {
+            mapStyle: 'disaster_severity',
+            legend: {
+                title: 'Severity of damage',
+                description: 'Severity of damage to building',
+                elements: [
+                    {
+                        text: 'Building destroyed',
+                        color: '#bd0026',
+                    }, {
+                        text: 'Very severe',
+                        color: '#e31a1c',
+                    }, {
+                        text: 'Severe',
+                        color: '#fc4e2a',
+                    }, {
+                        text: 'Moderate',
+                        color: '#fd8d3c',
+                    }, {
+                        text: 'Minimal ',
+                        color: '#feb24c',
+                    }, {
+                        text: 'No damage visible',
+                        color: '#fed976',
+                    },
+                ],
+            },
         },
-    }]
+        {
+            mapStyle: 'dynamics_demolished_count',
+            legend: {
+                title: 'Resilience',
+                description: 'Demolished buildings on the same site',
+                elements: [
+                    {
+                        text: '7+',
+                        color: '#bd0026',
+                    }, {
+                        text: '6',
+                        color: '#e31a1c',
+                    }, {
+                        text: '5',
+                        color: '#fc4e2a',
+                    }, {
+                        text: '4',
+                        color: '#fd8d3c',
+                    }, {
+                        text: '3',
+                        color: '#feb24c',
+                    }, {
+                        text: '2',
+                        color: '#fed976',
+                    }, {
+                        text: '1',
+                        color: '#ffe8a9',
+                    }, {
+                        text: 'None',
+                        color: '#0C7BDC'
+                    }
+                ],
+            },
+        }
+    ]
     
 };

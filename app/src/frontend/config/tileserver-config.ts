@@ -21,6 +21,7 @@ export type BuildingMapTileset = 'date_year' |
     'building_attachment_form' |
     'landuse' |
     'dynamics_demolished_count' |
+    'disaster_severity' |
     'team' |
     'survival_status';
 
