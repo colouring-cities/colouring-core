@@ -47,7 +47,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
        ){
       return (
           <Fragment>
-            <DataEntryGroup name="Building Age" collapsed={true} >
+            <DataEntryGroup name="Building Age" collapsed={false} >
                 <YearDataEntry
                     year={props.building.date_year}
                     upper={props.building.date_upper}

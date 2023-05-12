@@ -9,12 +9,41 @@ import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
+import InfoBox from '../../components/info-box';
 
 /**
 * Size view/edit section
 */
 const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
+        <DataEntryGroup name="Plot Size">
+            <NumericDataEntry
+                title={dataFields.size_plot_area_total.title}
+                slug="size_plot_area_total"
+                mode='view'
+                step={0.1}
+                min={0}
+            />
+            <NumericDataEntry
+                title={dataFields.size_far_ratio.title}
+                slug="size_far_ratio"
+                mode='view'
+                step={0.1}
+                min={0}
+            />
+            <DataEntry
+                title="Plot dimensions"
+                slug=""
+                value=""
+                mode='view'
+            />
+            <DataEntry
+                title="Plot geometry link"
+                slug=""
+                value=""
+                mode='view'
+            />
+        </DataEntryGroup>
         <DataEntryGroup name="Floors">
             <NumericDataEntry
                 title={dataFields.size_storeys_core.title}

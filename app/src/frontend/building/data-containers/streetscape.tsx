@@ -13,43 +13,14 @@ import { CategoryViewProps } from './category-view-props';
 */
 const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        <InfoBox type='warning' msg="This is what we're planning to collect on the building's context" />
-        <ul className="data-list">
-            <li>Gardens</li>
-            <li>Trees</li>
-            <li>Green walls</li>
-            <li>Green roof</li>
-            <li>Proximity to parks and open greenspace</li>
-            <li>Building shading</li>
-        </ul>
-        <NumericDataEntry
-            title={dataFields.size_plot_area_total.title}
-            slug="size_plot_area_total"
-            mode='view'
-            step={0.1}
-            min={0}
-        />
-        <NumericDataEntry
-            title={dataFields.size_far_ratio.title}
-            slug="size_far_ratio"
-            mode='view'
-            step={0.1}
-            min={0}
-        />
         <DataEntry
-            title="Plot dimensions"
+            title="Does the building have a front garden?"
             slug=""
             value=""
             mode='view'
         />
         <DataEntry
-            title="Plot geometry link"
-            slug=""
-            value=""
-            mode='view'
-        />
-        <DataEntry
-            title="Does the building have a garden?"
+            title="Does the building have a back garden?"
             slug=""
             value=""
             mode='view'

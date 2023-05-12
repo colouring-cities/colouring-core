@@ -41,13 +41,13 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
     return <>
         <DataEntryGroup name="Community views on building types" collapsed={false} >
+        <InfoBox>
+            Note: We are not currently collecting data on domestic/privately owned properties, only on public buildings.
+        </InfoBox>
         <div className='community-opinion-pane'>
-            <InfoBox>
-                Here we are collecting data on how well you think specific types of building work (rather than individual buildings), to help ensure we save and reuse all useful buildings and to help improve urban design quality in future.
-            </InfoBox>
             {
-            /*
-            {(props.building.is_domestic === "no" || props.building.is_domestic === "mixed domestic/non-domestic") ?
+            
+            (props.building.is_domestic === "no" || props.building.is_domestic === "mixed domestic/non-domestic") ?
             <>
                 <UserOpinionEntry
                     slug='community_like'
@@ -59,13 +59,13 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                 />
-                <button className={`map-switcher-inline ${props.mapColourScale == "likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLikesMapStyle}>
+                <button className={`map-switcher-inline ${props.mapColourScale == "likes" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`}>
                     {(props.mapColourScale == "likes")? 'Showing likes for specific buildings' : 'Click to see likes for specific buildings mapped'}
                 </button>
                 </>
             : <></>}
-            */
-            }
+            
+            
             <LogicalDataEntryYesOnlyWithExplanation
                 slug='community_type_worth_keeping'
                 title={buildingUserFields.community_type_worth_keeping.title}

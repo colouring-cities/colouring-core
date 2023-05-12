@@ -95,9 +95,6 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 user_verified_as={props.user_verified.sust_retrofit_date}
                 verified_count={props.building.verified.sust_retrofit_date}
                 />
-            <InfoBox>
-                This section is under development.
-            </InfoBox>
             <DataEntry
                 title="Date of Significant Retrofits"
                 slug=""
@@ -119,7 +116,7 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 mode='view'
             />
             <DataEntry
-                title="Green Walls / Green Roof / Shading"
+                title="Green Walls / Green Roof"
                 slug=""
                 value=""
                 mode='view'

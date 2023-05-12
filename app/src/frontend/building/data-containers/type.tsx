@@ -8,6 +8,7 @@ import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
+import InfoBox from '../../components/info-box';
 
 const AttachmentFormOptions = [
     "Detached",
@@ -22,42 +23,6 @@ const AttachmentFormOptions = [
 const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
-            <DataEntry
-                title="Base type classification"
-                slug=""
-                value=""
-                mode='view'
-            />
-            <DataEntry
-                title="Local typology/architectural style"
-                slug=""
-                value=""
-                mode='view'
-            />
-            <DataEntry
-                title={dataFields.original_building_use.title}
-                slug="original_building_use" // doesn't exist in database yet
-                tooltip={dataFields.original_building_use.tooltip}
-                value={undefined}
-                copy={props.copy}
-                mode={props.mode}
-                onChange={props.onChange}
-                disabled={true}
-            />
-            <SelectDataEntry
-                title={dataFields.size_roof_shape.title}
-                slug="size_roof_shape"
-                value={props.building.size_roof_shape}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                disabled={true}
-                options={[
-                    "Flat",
-                    "Pitched",
-                    "Other"
-                ]}
-            />
             <SelectDataEntry
                 title={dataFields.building_attachment_form.title}
                 slug="building_attachment_form"
@@ -76,7 +41,50 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 user_verified_as={props.user_verified.building_attachment_form}
                 verified_count={props.building.verified.building_attachment_form}
                 />
-
+            <DataEntry
+                title={dataFields.original_building_use.title}
+                slug="original_building_use" // doesn't exist in database yet
+                tooltip={dataFields.original_building_use.tooltip}
+                value={undefined}
+                copy={props.copy}
+                mode={props.mode}
+                onChange={props.onChange}
+                disabled={true}
+            />
+            <Verification
+                slug="building_attachment_form"
+                allow_verify={props.user !== undefined && props.building.building_attachment_form !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("building_attachment_form")}
+                user_verified_as={props.user_verified.building_attachment_form}
+                verified_count={props.building.verified.building_attachment_form}
+                />
+            <DataEntry
+                title="Local typology/architectural style"
+                slug=""
+                value=""
+                mode='view'
+            />
+            <DataEntry
+                title="Base type classification"
+                slug=""
+                value=""
+                mode='view'
+            />
+            <SelectDataEntry
+                title={dataFields.size_roof_shape.title}
+                slug="size_roof_shape"
+                value={props.building.size_roof_shape}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                disabled={true}
+                options={[
+                    "Flat",
+                    "Pitched",
+                    "Other"
+                ]}
+            />
             <DataEntry
                 title="Local typology mutations"
                 slug=""

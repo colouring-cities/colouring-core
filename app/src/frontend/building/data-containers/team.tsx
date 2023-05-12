@@ -21,7 +21,59 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const currentBuildingConstructionYear = building.date_year || undefined;
       return (
        <form>
-          <InfoBox msg="Can you help us capture information on who built the current building?"></InfoBox>
+            <NumericDataEntry
+                slug='date_year'
+                title={dataFields.date_year.title}
+                value={currentBuildingConstructionYear}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                step={1}
+                min={1}
+                max={currentYear}
+                tooltip={dataFields.extension_year.tooltip}
+                />
+            <Verification
+                slug="date_year"
+                allow_verify={props.user !== undefined && props.building.date_year !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("date_year")}
+                user_verified_as={props.user_verified.date_year}
+                verified_count={props.building.verified.date_year}
+                />
+            <LogicalDataEntry
+                title={dataFields.has_extension.title}
+                slug="has_extension"
+                value={props.building.has_extension}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.has_extension.tooltip}
+                />
+            {props.building.has_extension ? (
+            <>
+                <NumericDataEntry
+                    slug='extension_year'
+                    title={dataFields.extension_year.title}
+                    value={props.building.extension_year}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={1}
+                    max={currentYear}
+                    tooltip={dataFields.extension_year.tooltip_extension}
+                />
+                <Verification
+                    slug="extension_year"
+                    allow_verify={props.user !== undefined && props.building.extension_year !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("extension_year")}
+                    user_verified_as={props.user_verified.extension_year}
+                    verified_count={props.building.verified.extension_year}
+                    />
+            </>
+            ) : (null)}
           <MultiDataEntry
               title={dataFields.landowner.title}
               slug="landowner"
@@ -53,67 +105,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               editableEntries={true}
               isUrl={true}
               />
-          <Verification
-              slug="landowner_source_link"
-              allow_verify={props.user !== undefined && props.building.landowner_source_link !== null && !props.edited}
-              onVerify={props.onVerify}
-              user_verified={props.user_verified.hasOwnProperty("landowner_source_link")}
-              user_verified_as={props.user_verified.landowner_source_link}
-              verified_count={props.building.verified.landowner_source_link}
-              />
-          <NumericDataEntry
-              slug='date_year'
-              title={dataFields.date_year.title}
-              value={currentBuildingConstructionYear}
-              mode={props.mode}
-              copy={props.copy}
-              onChange={props.onChange}
-              step={1}
-              min={1}
-              max={currentYear}
-              tooltip={dataFields.extension_year.tooltip}
-          />
-          <Verification
-              slug="date_year"
-              allow_verify={props.user !== undefined && props.building.date_year !== null && !props.edited}
-              onVerify={props.onVerify}
-              user_verified={props.user_verified.hasOwnProperty("date_year")}
-              user_verified_as={props.user_verified.date_year}
-              verified_count={props.building.verified.date_year}
-              />
-          <LogicalDataEntry
-              title={dataFields.has_extension.title}
-              slug="has_extension"
-              value={props.building.has_extension}
-              mode={props.mode}
-              copy={props.copy}
-              onChange={props.onChange}
-              tooltip={dataFields.has_extension.tooltip}
-              />
-         {props.building.has_extension ? (
-          <>
-            <NumericDataEntry
-                slug='extension_year'
-                title={dataFields.extension_year.title}
-                value={props.building.extension_year}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                step={1}
-                min={1}
-                max={currentYear}
-                tooltip={dataFields.extension_year.tooltip_extension}
-            />
-            <Verification
-                slug="extension_year"
-                allow_verify={props.user !== undefined && props.building.extension_year !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("extension_year")}
-                user_verified_as={props.user_verified.extension_year}
-                verified_count={props.building.verified.extension_year}
-                />
-          </>
-        ) : (null)}
           <SelectDataEntry
               slug='developer_type'
               title={dataFields.developer_type.title}
@@ -162,14 +153,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               editableEntries={true}
               isUrl={true}
               />
-          <Verification
-              slug="developer_source_link"
-              allow_verify={props.user !== undefined && props.building.developer_source_link !== null && !props.edited}
-              onVerify={props.onVerify}
-              user_verified={props.user_verified.hasOwnProperty("developer_source_link")}
-              user_verified_as={props.user_verified.developer_source_link}
-              verified_count={props.building.verified.developer_source_link}
-              />
           <MultiDataEntry
               title={dataFields.designers.title}
               slug="designers"
@@ -200,14 +183,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
               placeholder="https://..."
               editableEntries={true}
               isUrl={true}
-              />
-          <Verification
-              slug="designers_source_link"
-              allow_verify={props.user !== undefined && props.building.designers_source_link !== null && !props.edited}
-              onVerify={props.onVerify}
-              user_verified={props.user_verified.hasOwnProperty("designers_source_link")}
-              user_verified_as={props.user_verified.designers_source_link}
-              verified_count={props.building.verified.designers_source_link}
               />
           <SelectDataEntry
               slug='lead_designer_type'
@@ -296,51 +271,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
            placeholder="https://..."
            editableEntries={true}
            isUrl={true}
-           />
-       <Verification
-           slug="builder_source_link"
-           allow_verify={props.user !== undefined && props.building.builder_source_link !== null && !props.edited}
-           onVerify={props.onVerify}
-           user_verified={props.user_verified.hasOwnProperty("builder_source_link")}
-           user_verified_as={props.user_verified.builder_source_link}
-           verified_count={props.building.verified.builder_source_link}
-           />
-       <MultiDataEntry
-           title={dataFields.other_team.title}
-           slug="other_team"
-           value={props.building.other_team}
-           mode={props.mode}
-           copy={props.copy}
-           onChange={props.onChange}
-           placeholder=""
-           editableEntries={true}
-           />
-       <Verification
-           slug="other_team"
-           allow_verify={props.user !== undefined && props.building.other_team !== null && !props.edited}
-           onVerify={props.onVerify}
-           user_verified={props.user_verified.hasOwnProperty("other_team")}
-           user_verified_as={props.user_verified.other_team}
-           verified_count={props.building.verified.other_team}
-           />
-       <MultiDataEntry
-           title={dataFields.other_team_source_link.title}
-           slug="other_team_source_link"
-           value={props.building.other_team_source_link}
-           mode={props.mode}
-           copy={props.copy}
-           onChange={props.onChange}
-           placeholder="https://..."
-           editableEntries={true}
-           isUrl={true}
-           />
-       <Verification
-           slug="other_team_source_link"
-           allow_verify={props.user !== undefined && props.building.other_team_source_link !== null && !props.edited}
-           onVerify={props.onVerify}
-           user_verified={props.user_verified.hasOwnProperty("other_team_source_link")}
-           user_verified_as={props.user_verified.other_team_source_link}
-           verified_count={props.building.verified.other_team_source_link}
            />
      </form>
     );
