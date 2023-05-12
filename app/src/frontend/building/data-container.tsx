@@ -355,6 +355,10 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                 }
                 </ContainerHeader>
                 <div className="section-body">
+                <InfoBox>
+                    {this.props.intro}&nbsp;
+                    Can you help us capture and verify this information?
+                </InfoBox>
                 <EditHistoryLatest
                     building={this.props.building}
                 />
