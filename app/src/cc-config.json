@@ -5,5 +5,8 @@
     "privacyStatement": "{Privacy statement goes here}",
 
     "initialMapPosition": [ 51.5245255, -0.1338422 ],
-    "initialZoomLevel": 16
+    "initialZoomLevel": 16,
+
+    "postcode": "Postcode",
+    "energy_rating": "Building Research Establishment Environmental Assessment Method (BREEAM) rating"
 }
