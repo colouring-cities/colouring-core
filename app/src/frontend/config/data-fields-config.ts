@@ -1,5 +1,6 @@
 import { Category } from './categories-config';
-
+import { CCConfig } from '../../cc-config';
+let ccconfig: CCConfig = require('../../cc-config.json')
 
 /**
  * This interface is used only in code which uses dataFields, not in the dataFields definition itself
@@ -73,7 +74,7 @@ export const buildingUserFields = {
     community_type_worth_keeping: {
         perUser: true,
         category: Category.Community,
-        title: "Do you think this **type** of building is contributes to the city?",
+        title: "Do you think this **type** of building contributes to the city?",
         example: true,
     },
     community_type_worth_keeping_reasons: {
@@ -128,8 +129,8 @@ export const buildingUserFields = {
 export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name: {
         category: Category.Location,
-        title: "Building Name (Information link)",
-        tooltip: "Link to a website with information on the building, not needed for most.",
+        title: "Building Name (Non-domestic)",
+        tooltip: "Link to a website with the name of the building.<br/><br/>(For security reasons, we currently only collect the names of well-known public buildings.)",
         example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
     },
     location_number: {
@@ -152,13 +153,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_town: {
         category: Category.Location,
-        title: "Town",
+        title: "Town/City",
         example: "London",
         //tooltip: ,
     },
     location_postcode: {
         category: Category.Location,
-        title: "Postcode",
+        title: ccconfig.postcode,
         example: "W1W 6TR",
         //tooltip: ,
     },
@@ -198,18 +199,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_latitude: {
         category: Category.Location,
-        title: "Latitude",
+        title: "Centroid Latitude",
+        tooltip: "Latitude of Building Centroid",
         example: 12.4564,
     },
     location_longitude: {
         category: Category.Location,
-        title: "Longitude",
+        title: "Centroid Longitude",
+        tooltip: "Longitude of Building Centroid",
         example: 0.12124,
     },
-
     current_landuse_group: {
         category: Category.LandUse,
-        title: "Current Land Use (Group)",
+        title: "Current Land Use",
         tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
         example: ["", ""],
     },
@@ -253,7 +255,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     building_attachment_form: {
         category: Category.Type,
-        title: "Adjacency/configuration",
+        title: "Attachment type/Adjacency",
         tooltip: "We have prepopulated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
         example: "",
     },
@@ -273,17 +275,16 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "What was the building originally used for when it was built? I.e. If it was Victorian warehouse which is now an office this would be warehouse",
         example: "",
     },
-
     size_roof_shape: {
         category: Category.Type,
         title: "Roof type",
         example: "",
         //tooltip: ,
     },
-
     date_year: {
         category: Category.Age,
-        title: "Year built (best estimate)",
+        title: "Year of construction (best estimate)",
+        tooltip: "Best estimate for construction of main body of the building.",
         example: 1924,
     },
     date_lower : {
@@ -432,7 +433,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     sust_breeam_rating: {
         category: Category.Sustainability,
         title: "Official Environmental Quality Rating",
-        tooltip: "Building Research Establishment Environmental Assessment Method (BREEAM) May not be present for many buildings",
+        tooltip: ccconfig.energy_rating,
         example: "",
     },
     sust_dec: {
@@ -597,12 +598,17 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: true,
         //tooltip: ,
     },
-
     is_domestic: {
         category: Category.Team,
         title: "Is the building a home/domestic building?",
         tooltip: "",
         example: "mixed domestic/non-domestic"
+    },
+    is_domestic_source: {
+        category: Category.Team,
+        title: "Domestic/non-domestic data source?",
+        tooltip: "",
+        example: ""
     },
     likes_total: {
         category: Category.Community,
@@ -612,7 +618,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     community_type_worth_keeping_total: {
         category: Category.Community,
-        title: "People who think this type of building is contributes to the city.",
+        title: "People who think this type of building contributes to the city.",
         example: 100,
     },
     community_local_significance_total: {
@@ -704,7 +710,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     has_extension: {
         category: Category.Team,
-        title: "Is there an extension?",
+        title: "Was a later extension added?",
         tooltip: "",
         example: false
     },
@@ -787,18 +793,18 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     awards_source_link: {
         category: Category.Team,
-        title: "Source links for designer award(s)",
+        title: "Source link(s) for designer award(s)",
         tooltip: "URL for source for designer award(s)",
         example: ["", "", ""],
     },
     builder: {
         category: Category.Team,
-        title: "Name of builder/ construction team",
+        title: "Name of builder/construction team",
         example: ["", "", ""],
     },
     builder_source_link: {
         category: Category.Team,
-        title: "Source builder/ construction team",
+        title: "Source for builder/construction team",
         example: ["", "", ""],
     },
     other_team: {
