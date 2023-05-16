@@ -254,13 +254,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: true,
     },
     building_attachment_form: {
-        category: Category.Type,
+        category: Category.Typology,
         title: "Attachment type/Adjacency",
         tooltip: "We have prepopulated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
         example: "",
     },
     date_change_building_use: {
-        category: Category.Type,
+        category: Category.Typology,
         title:"When did use change?",
         tooltip: "This is the date the building stopped being used for for the function it was built for. I.e. if it was Victorian warehouse which is now an office this would be when it became an office or if it was something before that, maybe a garage then the date that happened",
         example: 1920,
@@ -270,13 +270,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
      * Slug needs to be adjusted if the db column will be named differently 
      */
     original_building_use: {
-        category: Category.Type,
+        category: Category.Typology,
         title: "Original building use",
         tooltip: "What was the building <u><i>originally</i></u> used for when it was built?",
         example: "",
     },
     size_roof_shape: {
-        category: Category.Type,
+        category: Category.Typology,
         title: "Roof type",
         example: "",
         //tooltip: ,
@@ -397,13 +397,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
 
     size_plot_area_total: {
-        category: Category.Streetscape,
+        category: Category.StreetContext,
         title: "Total area of plot (m²)",
         example: 123.02,
         //tooltip: ,
     },
     size_far_ratio: {
-        category: Category.Streetscape,
+        category: Category.StreetContext,
         title: "FAR ratio (percentage of plot covered by building)",
         example: 0.1,
         //tooltip: ,
@@ -431,31 +431,31 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
 
     sust_breeam_rating: {
-        category: Category.Sustainability,
+        category: Category.EnergyPerformance,
         title: "Official Environmental Quality Rating",
         tooltip: ccconfig.energy_rating,
         example: "",
     },
     sust_dec: {
-        category: Category.Sustainability,
+        category: Category.EnergyPerformance,
         title: "Non-domestic Building Energy Rating",
         tooltip: "Display Energy Certificate (DEC) Any public building should have (and display) a DEC. Showing how the energy use for that building compares to other buildings with same use",
         example: "G",
     },
     sust_aggregate_estimate_epc: {
-        category: Category.Sustainability,
+        category: Category.EnergyPerformance,
         title: "Domestic Building Energy Rating",
         tooltip: "Energy Performance Certificate (EPC) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher may be rented",
         example: "",
     },
     sust_retrofit_date: {
-        category: Category.Sustainability,
+        category: Category.EnergyPerformance,
         title: "Last significant retrofit",
         tooltip: "Date of last major building refurbishment",
         example: 1920,
     },
     sust_life_expectancy: {
-        category: Category.Sustainability,
+        category: Category.EnergyPerformance,
         title: "Expected lifespan for typology",
         example: 123,
         //tooltip: ,

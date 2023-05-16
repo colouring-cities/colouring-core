@@ -18,14 +18,14 @@ import { DataContainerType } from '../building/data-container';
 export const categoryUiConfig: {[key in Category]: DataContainerType} = {
     [Category.Location]: LocationContainer,
     [Category.LandUse]: UseContainer,
-    [Category.Type]: TypeContainer,
+    [Category.Typology]: TypeContainer,
     [Category.Age]: AgeContainer,
     [Category.Size]: SizeContainer,
     [Category.Construction]: ConstructionContainer,
-    [Category.Streetscape]: StreetscapeContainer,
+    [Category.StreetContext]: StreetscapeContainer,
     [Category.Team]: TeamContainer,
     [Category.Planning]: PlanningContainer,
-    [Category.Sustainability]: SustainabilityContainer,
+    [Category.EnergyPerformance]: SustainabilityContainer,
     [Category.Resilience]: ResilienceContainer,
     [Category.Community]: CommunityContainer,
 };

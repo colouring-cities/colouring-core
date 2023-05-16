@@ -4,15 +4,15 @@
  */
 export enum Category {
     Location = 'location',
-    LandUse = 'use',
-    Type = 'type',
-    Age = 'age',
+    LandUse = 'land-use',
+    Typology = 'typology',
     Size = 'size',
     Construction = 'construction',
-    Streetscape = 'streetscape',
+    Age = 'age',
+    StreetContext = 'street-context',
     Team = 'team',
     Planning = 'planning',
-    Sustainability = 'sustainability',
+    EnergyPerformance = 'energy-performance',
     Resilience = 'resilience',
     Community = 'community',
 }
@@ -25,14 +25,14 @@ export enum Category {
 export const categoriesOrder: Category[] = [
     Category.Location,
     Category.LandUse,
-    Category.Type,
+    Category.Typology,
     Category.Size,
     Category.Construction,
     Category.Age,
-    Category.Streetscape,
+    Category.StreetContext,
     Category.Team,
     Category.Planning,
-    Category.Sustainability,
+    Category.EnergyPerformance,
     Category.Resilience,
     Category.Community,
 ];
@@ -88,27 +88,27 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         aboutUrl: 'https://pages.colouring.london/planning',
         intro: 'This section provides open data on current and anticipated planning applications for buildings, planning zones and whether the building is protected.',
     },
-    [Category.Sustainability]: {
-        slug: 'sustainability',
+    [Category.EnergyPerformance]: {
+        slug: 'energy-performance',
         name: 'Energy Performance',
         aboutUrl: 'https://pages.colouring.london/sustainability',
         intro: 'This section provides open data on the energy performance of buildings, and on retrofit.',
     },
-    [Category.Type]: {
-        slug: 'type',
+    [Category.Typology]: {
+        slug: 'typology',
         name: 'Typology',
         aboutUrl: 'https://pages.colouring.london/buildingtypology',
         intro: 'Note: This section is currently under development, we are working to activate it as soon as possible. This section provides open data on the typology of the building.',
     },
     [Category.LandUse]: {
-        slug: 'use',
+        slug: 'land-use',
         name: 'Land Use',
         aboutUrl: 'https://pages.colouring.london/use',
         intro: 'How are buildings used, and how does use change over time?',
     },
-    [Category.Streetscape]: {
+    [Category.StreetContext]: {
         inactive: true,
-        slug: 'streetscape',
+        slug: 'street-context',
         name: 'Street Context',
         aboutUrl: 'https://pages.colouring.london/greenery',
         intro: "This section provides open data, and links to open data on streets, pavements, street blocks, land parcels and greenery/green spaces.",

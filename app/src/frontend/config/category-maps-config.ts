@@ -283,7 +283,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         }
     ],
-    [Category.Sustainability]: [{
+    [Category.EnergyPerformance]: [{
         mapStyle: 'sust_dec',
         legend: {
             title: 'Sustainability',
@@ -299,7 +299,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             ]
         },
     }],
-    [Category.Type]: [{
+    [Category.Typology]: [{
         mapStyle: 'building_attachment_form',
         legend: {
             title: 'Adjacency/Configuration',
@@ -347,7 +347,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         }
     ],
-    [Category.Streetscape]: [{
+    [Category.StreetContext]: [{
         mapStyle: undefined,
         legend: {
             title: 'Street Context',
