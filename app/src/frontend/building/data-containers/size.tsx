@@ -16,35 +16,7 @@ import InfoBox from '../../components/info-box';
 */
 const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        <DataEntryGroup name="Plot Size">
-            <NumericDataEntry
-                title={dataFields.size_plot_area_total.title}
-                slug="size_plot_area_total"
-                mode='view'
-                step={0.1}
-                min={0}
-            />
-            <NumericDataEntry
-                title={dataFields.size_far_ratio.title}
-                slug="size_far_ratio"
-                mode='view'
-                step={0.1}
-                min={0}
-            />
-            <DataEntry
-                title="Plot dimensions"
-                slug=""
-                value=""
-                mode='view'
-            />
-            <DataEntry
-                title="Plot geometry link"
-                slug=""
-                value=""
-                mode='view'
-            />
-        </DataEntryGroup>
-        <DataEntryGroup name="Floors">
+        <DataEntryGroup name="Number of floors/storeys">
             <NumericDataEntry
                 title={dataFields.size_storeys_core.title}
                 slug="size_storeys_core"
@@ -64,7 +36,6 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.size_storeys_core}
                 verified_count={props.building.verified.size_storeys_core}
                 />
-
             <NumericDataEntry
                 title={dataFields.size_storeys_attic.title}
                 slug="size_storeys_attic"
@@ -84,7 +55,6 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.size_storeys_attic}
                 verified_count={props.building.verified.size_storeys_attic}
                 />
-
             <NumericDataEntry
                 title={dataFields.size_storeys_basement.title}
                 slug="size_storeys_basement"
@@ -104,9 +74,22 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.size_storeys_basement}
                 verified_count={props.building.verified.size_storeys_basement}
                 />
-
+            <DataEntry
+                title="Source type"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <DataEntry
+                title="Source link"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
         </DataEntryGroup>
-        <DataEntryGroup name="Height" collapsed={false}>
+        <DataEntryGroup name="Building height data">
             <NumericDataEntry
                 title={dataFields.size_height_apex.title}
                 slug="size_height_apex"
@@ -125,7 +108,21 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.size_height_apex}
                 verified_count={props.building.verified.size_height_apex}
                 />
-
+            <DataEntry
+                title="Source type"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <DataEntry
+                title="Source link"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <hr/>
             <NumericDataEntry
                 title={dataFields.size_height_eaves.title}
                 slug="size_height_eaves"
@@ -137,8 +134,22 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 step={0.1}
                 min={0}
                 />
+            <DataEntry
+                title="Source type"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <DataEntry
+                title="Source link"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
         </DataEntryGroup>
-        <DataEntryGroup name="Floor area">
+        <DataEntryGroup name="Floor area data">
             <NumericDataEntry
                 title={dataFields.size_floor_area_ground.title}
                 slug="size_floor_area_ground"
@@ -157,7 +168,6 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.size_floor_area_ground}
                 verified_count={props.building.verified.size_floor_area_ground}
                 />
-
             <NumericDataEntry
                 title={dataFields.size_floor_area_total.title}
                 slug="size_floor_area_total"
@@ -176,33 +186,135 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.size_floor_area_total}
                 verified_count={props.building.verified.size_floor_area_total}
                 />
-
+            <DataEntry
+                title="Source link"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+                />
         </DataEntryGroup>
-        <NumericDataEntry
-            title={dataFields.size_width_frontage.title}
-            slug="size_width_frontage"
-            value={props.building.size_width_frontage}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
-            step={0.1}
-            min={0}
+        <DataEntryGroup name="Plot size data">
+            <NumericDataEntry
+                title={dataFields.size_plot_area_total.title}
+                slug="size_plot_area_total"
+                mode='view'
+                step={0.1}
+                min={0}
             />
-        <Verification
-            slug="size_width_frontage"
-            allow_verify={props.user !== undefined && props.building.size_width_frontage !== null}
-            onVerify={props.onVerify}
-            user_verified={props.user_verified.hasOwnProperty("size_width_frontage")}
-            user_verified_as={props.user_verified.size_width_frontage}
-            verified_count={props.building.verified.size_width_frontage}
+            <DataEntry
+                title="Source type"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
             />
-
-        <DataEntry
-            title="Total opening area"
-            slug=""
-            value=""
-            mode='view'
-        />
+            <DataEntry
+                title="Source link"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <hr/>
+            <NumericDataEntry
+                title={dataFields.size_far_ratio.title}
+                slug="size_far_ratio"
+                mode='view'
+                step={0.1}
+                min={0}
+            />
+            <DataEntry
+                title="Source type"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <DataEntry
+                title="Source link"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <hr/>
+            <DataEntry
+                title="Plot dimensions"
+                slug=""
+                value=""
+                mode='view'
+            />
+            <DataEntry
+                title="Source type"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <DataEntry
+                title="Source link"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <hr/>
+            <DataEntry
+                title="Land parcel geometry link"
+                slug=""
+                value=""
+                mode='view'
+                tooltip='INSPIRE Polygons'
+            />
+            <DataEntry
+                title="Source type"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <DataEntry
+                title="Source link"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <hr/>
+            <NumericDataEntry
+                title={dataFields.size_width_frontage.title}
+                slug="size_width_frontage"
+                value={props.building.size_width_frontage}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                step={0.1}
+                min={0}
+                />
+            <Verification
+                slug="size_width_frontage"
+                allow_verify={props.user !== undefined && props.building.size_width_frontage !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("size_width_frontage")}
+                user_verified_as={props.user_verified.size_width_frontage}
+                verified_count={props.building.verified.size_width_frontage}
+                />
+            <DataEntry
+                title="Source type"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <DataEntry
+                title="Source link"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+        </DataEntryGroup>
     </Fragment>
 );
 const SizeContainer = withCopyEdit(SizeView);

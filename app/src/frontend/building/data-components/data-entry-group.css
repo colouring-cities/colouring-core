@@ -3,6 +3,8 @@
     position: relative;
     font-size: 1.1rem;
     font-weight: 410;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 .data-entry-group-header .data-entry-group-title {
     padding-left: 0.6rem;

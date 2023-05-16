@@ -177,7 +177,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     uprns: {
         category: Category.Location,
         title: "Unique Property Reference Number(s) (UPRN)",
-        tooltip: "Unique Property Reference Numbers (to be filled automatically)",
+        tooltip: "Unique Property Reference Numbers (to be filled automatically) [<a href='https://beta.ordnancesurvey.co.uk/products/os-open-uprn'>LINK</a>]",
         example: [{uprn: "", parent_uprn: "" }, {uprn: "", parent_uprn: "" }],
     },
 
@@ -211,13 +211,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     current_landuse_group: {
         category: Category.LandUse,
-        title: "Current Land Use",
+        title: "Current land use(s)",
         tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
         example: ["", ""],
     },
     current_landuse_order: {
         category: Category.LandUse,
-        title: "Current Land Use (Order)",
+        title: "Current land use (order)",
         tooltip: "Land use Order as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
         example: "",
     },
@@ -272,7 +272,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     original_building_use: {
         category: Category.Type,
         title: "Original building use",
-        tooltip: "What was the building originally used for when it was built? I.e. If it was Victorian warehouse which is now an office this would be warehouse",
+        tooltip: "What was the building <u><i>originally</i></u> used for when it was built?",
         example: "",
     },
     size_roof_shape: {
@@ -290,7 +290,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     date_lower : {
         category: Category.Age,
         title: "Earliest possible start year",
-        tooltip: "This should be the earliest year in which building could have started.",
+        tooltip: "This should be the earliest year in which construction could have started.",
         example: 1900,
     },
     date_upper: {
@@ -362,13 +362,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Size,
         title: "Height to apex (m)",
         example: 100.5,
-        //tooltip: ,
+        tooltip: "i.e. the highest part of the roof.",
     },
     size_height_eaves: {
         category: Category.Size,
         title: "Height to eaves (m)",
         example: 20.33,
-        //tooltip: ,
+        tooltip: "i.e. to where the top of the wall meets the roof",
     },
     size_floor_area_ground: {
         category: Category.Size,
@@ -601,12 +601,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     is_domestic: {
         category: Category.Team,
         title: "Is the building a home/domestic building?",
-        tooltip: "",
+        tooltip: "Note: Homes used as offices for working from home should be classified as domestic.",
         example: "mixed domestic/non-domestic"
     },
     is_domestic_source: {
         category: Category.Team,
-        title: "Domestic/non-domestic data source?",
+        title: "Source type",
         tooltip: "",
         example: ""
     },

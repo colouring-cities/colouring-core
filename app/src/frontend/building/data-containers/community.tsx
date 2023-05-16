@@ -40,7 +40,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const { darkLightTheme } = useDisplayPreferences();
     const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
     return <>
-        <DataEntryGroup name="Community views on building types" collapsed={false} >
+        <DataEntryGroup name="Community views on building types">
         <InfoBox>
             Note: We are not currently collecting data on domestic/privately owned properties, only on public buildings.
         </InfoBox>
@@ -151,7 +151,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
         </div>
         </DataEntryGroup>
-        <DataEntryGroup name="Building use for community activities" collapsed={false} >
+        <DataEntryGroup name="Building use for community activities">
         <InfoBox>
                 Here we are collecting information on the location of buildings used for community activities so we can track loss of/additions to community space over time
         </InfoBox>

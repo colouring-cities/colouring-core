@@ -25,10 +25,14 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const { darkLightTheme } = useDisplayPreferences();
       return (
           <Fragment>
-                <DataEntryGroup name="Domestic or non-domestic use" collapsed={false}>
-                    <InfoBox msg="93% of properties in UK are dwellings so we have set 'residential' as the default value. Can you help us identify non-residential and mixed use buildings (and verify residential buildings too)?"></InfoBox>
+                <DataEntryGroup name="Domestic/non-domestic use data">
+                    <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                        <i>
+                            93% of properties in UK are residential dwellings so we have set 'residential' as the default value. Can you help us identify non-residential and mixed use buildings (and verify residential buildings too)?
+                        </i>
+                    </div>
                     <button className={`map-switcher-inline ${props.mapColourScale == "is_domestic" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToIsDomesticMapStyle}>
-                        {(props.mapColourScale == "is_domestic")? 'Showing domestic status for specific buildings' : 'Click to see domestic, non-domestic and mixed-use buildings'}
+                        {(props.mapColourScale == "is_domestic")? 'Showing domestic, non-domestic and mixed-use buildings (click to hide)' : 'Click to see domestic, non-domestic and mixed-use buildings on the map.'}
                     </button>
                     <SelectDataEntry
                         title={dataFields.is_domestic.title}
@@ -48,17 +52,18 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         user_verified_as={props.user_verified.is_domestic}
                         verified_count={props.building.verified.is_domestic}
                     />
-                    <InfoBox type='warning'>Note: Work from home does not count as office and does not make building non-domestic.</InfoBox>
                     <SelectDataEntry
                         title={dataFields.is_domestic_source.title}
                         slug="is_domestic_source"
                         value={props.building.is_domestic}
                         options={
                             [
-                                "Citizen/passerby", 
+                                "Expert knowledge", 
+                                "Observed from the street",
                                 "Google or other photograph/satellite imagery", 
-                                "Government Record",
-                                "Other Record"
+                                "Government/public record/database",
+                                "Independently managed record/database",
+                                "Other type of record/database"
                             ]
                         }
                         mode={props.mode}
@@ -67,14 +72,14 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         tooltip={dataFields.is_domestic_source.tooltip}
                     />
                     <DataEntry
-                        title="Please provide a link to the data source"
+                        title="Source link"
                         slug=""
                         value=""
                         mode='view'
                         tooltip="Coming Soon"
                     />
                 </DataEntryGroup>
-                <DataEntryGroup name="Specific Land Use" collapsed={false}>
+                <DataEntryGroup name="Specific land use data">
                     <MultiDataEntry
                         title={dataFields.current_landuse_group.title}
                         slug="current_landuse_group"
@@ -127,7 +132,14 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     }
                     {
                         props.mode != 'view' &&
-                        <InfoBox msg="A more general classification for the land use of this building is automatically derived and shown below."></InfoBox>
+                        <div>
+                            <hr/>
+                            <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                                <i>
+                                    Below is a more general classification for the land use of this building, automatically derived from the information above.
+                                </i>
+                            </div>
+                        </div>
                     }
                     <DataEntry
                         title={dataFields.current_landuse_order.title}

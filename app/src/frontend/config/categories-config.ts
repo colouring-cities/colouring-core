@@ -80,7 +80,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         slug: 'community',
         name: 'Community',
         aboutUrl: 'https://pages.colouring.london/community',
-        intro: 'This section collects data on how well citizens think specific *types* of building work (rather than individual buildings). This will help us save and reuse as many useful buildings as possible, and to help improve urban design quality in future.',
+        intro: 'This section collects data on how well citizens think specific *types* of building work. This will help us save/reuse as many useful buildings as possible, and help improve urban design quality in future.',
     },
     [Category.Planning]: {
         slug: 'planning',
@@ -98,7 +98,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         slug: 'type',
         name: 'Typology',
         aboutUrl: 'https://pages.colouring.london/buildingtypology',
-        intro: 'This section provides open data on the type of activities being carried out within buildings.',
+        intro: 'Note: This section is currently under development, we are working to activate it as soon as possible. This section provides open data on the typology of the building.',
     },
     [Category.LandUse]: {
         slug: 'use',

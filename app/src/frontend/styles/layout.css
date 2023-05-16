@@ -50,9 +50,9 @@ article .color-block {
 hr {
     display: block;
     height: 1px;
-    border: 0;
-    background: #000;
+    border: none;
+    background-color: #ccc;
     width: 100%;
-    margin: 2em 0;
+    margin: 1.2em 0 1em 0;
     padding: 0;
 }

@@ -38,7 +38,7 @@ const RoofCoveringOptions = [
 const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
          <Fragment>
-            <DataEntryGroup name="Materials" collapsed={false}>
+            <DataEntryGroup name="Materials">
                 <SelectDataEntry
                     title={dataFields.construction_core_material.title}
                     slug="construction_core_material"
@@ -87,7 +87,7 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     verified_count={props.building.verified.construction_roof_covering}
                     />
             </DataEntryGroup>
-            <DataEntryGroup name="Construction Sectors" collapsed={false}>
+            <DataEntryGroup name="Construction Sectors">
                 <DataEntry
                     title="Construction system type"
                     slug=""

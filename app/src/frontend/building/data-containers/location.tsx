@@ -16,33 +16,50 @@ const locationNumberPattern = "[1-9]\\d*[a-z]?(-([1-9]\\d*))?"; ///[1-9]\d*[a-z]
 
 const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        <DataEntry
-            title={dataFields.location_name.title}
-            slug="location_name"
-            value={props.building.location_name}
-            mode={props.mode}
-            copy={props.copy}
-            onChange={props.onChange}
-            tooltip={dataFields.location_name.tooltip}
-            placeholder="https://..."
-            isUrl={true}
-        />
-        <Verification
-            slug="location_name"
-            allow_verify={props.user !== undefined && props.building.location_name !== null && !props.edited}
-            onVerify={props.onVerify}
-            user_verified={props.user_verified.hasOwnProperty("location_name")}
-            user_verified_as={props.user_verified.location_name}
-            verified_count={props.building.verified.location_name}
-        />
-        <DataEntry
-            title="Building Name (Domestic)"
-            slug=""
-            value=""
-            mode='view'
-            tooltip="Coming Soon"
-        />
-        <DataEntryGroup name="Address" collapsed={false}>
+        
+        <DataEntryGroup name="Address Data">
+            <DataEntry
+                title={dataFields.location_name.title}
+                slug="location_name"
+                value={props.building.location_name}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.location_name.tooltip}
+                placeholder="https://..."
+                isUrl={true}
+            />
+            <Verification
+                slug="location_name"
+                allow_verify={props.user !== undefined && props.building.location_name !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("location_name")}
+                user_verified_as={props.user_verified.location_name}
+                verified_count={props.building.verified.location_name}
+            />
+            <DataEntry
+                title="Building Name (Domestic)"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Not yet activated.<br><br>For security reasons, we do not allow the use of free text boxes and are currently looking into alternative ways to collect this data."
+            />
+            <Verification
+                slug="location_name"
+                allow_verify={props.user !== undefined && props.building.location_name !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("location_name")}
+                user_verified_as={props.user_verified.location_name}
+                verified_count={props.building.verified.location_name}
+            />
+            <DataEntry
+                title="Building Name Source"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
+            />
+            <hr/>
             <PatternDataEntry
                 title={dataFields.location_number.title}
                 slug="location_number"
@@ -138,7 +155,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 tooltip="Coming Soon"
             />
         </DataEntryGroup>
-        <DataEntryGroup name="Other Location Data" collapsed={false}>
+        <DataEntryGroup name="Property/Footprint IDs and Coordinate Data">
             <DataEntry
                 title={dataFields.ref_toid.title}
                 slug="ref_toid"
@@ -147,6 +164,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 copy={props.copy}
                 tooltip={dataFields.ref_toid.tooltip}
                 onChange={props.onChange}
+                disabled={true}
                 />
             <UPRNsDataEntry
                 title={dataFields.uprns.title}

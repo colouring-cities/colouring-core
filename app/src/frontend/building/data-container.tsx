@@ -413,7 +413,9 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                                                 </button> :
                                                                 null
                                                         }
+                                                        <hr/>
                                                     </div>
+                                                    
                                             }
                                         </div>
                                         : null

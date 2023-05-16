@@ -47,7 +47,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
        ){
       return (
           <Fragment>
-            <DataEntryGroup name="Building Age" collapsed={false} >
+            <DataEntryGroup name="Building Age">
                 <YearDataEntry
                     year={props.building.date_year}
                     upper={props.building.date_upper}
@@ -140,7 +140,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                     {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
-                <DataEntryGroup collapsed={false} name="Constructions and demolitions on this site" showCount={false}>
+                <DataEntryGroup name="Constructions and demolitions on this site" showCount={false}>
                     <DynamicsBuildingPane>
                         <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
                         <FieldRow>
@@ -261,7 +261,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
       };
     return (
         <Fragment>
-            <DataEntryGroup name="Building Age" collapsed={true} >
+            <DataEntryGroup name="Building Age">
                 <YearDataEntry
                     year={props.building.date_year}
                     upper={props.building.date_upper}
@@ -411,11 +411,11 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode='view'
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Lifespan and Site History" collapsed={true} >
+            <DataEntryGroup name="Lifespan and Site History">
                 <button className={`map-switcher-inline ${historicData} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                     {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
-                <DataEntryGroup collapsed={false} name="Constructions and demolitions on this site" showCount={false}>
+                <DataEntryGroup name="Constructions and demolitions on this site" showCount={false}>
                     <DynamicsBuildingPane>
                         <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
                         <FieldRow>
