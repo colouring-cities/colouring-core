@@ -87,7 +87,7 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     verified_count={props.building.verified.construction_roof_covering}
                     />
             </DataEntryGroup>
-            <DataEntryGroup name="Construction Sectors">
+            <DataEntryGroup name="Construction sectors">
                 <DataEntry
                     title="Construction system type"
                     slug=""

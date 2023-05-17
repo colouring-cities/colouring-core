@@ -129,7 +129,7 @@ export const buildingUserFields = {
 export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name: {
         category: Category.Location,
-        title: "Building Name (Non-domestic)",
+        title: "Building name (non-domestic)",
         tooltip: "Link to a website with the name of the building.<br/><br/>(For security reasons, we currently only collect the names of well-known public buildings.)",
         example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
     },
@@ -153,7 +153,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_town: {
         category: Category.Location,
-        title: "Town/City",
+        title: "Town/city",
         example: "London",
         //tooltip: ,
     },
@@ -165,7 +165,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     ref_toid: {
         category: Category.Location,
-        title: "Building Footprint ID",
+        title: "Building footprint ID",
         tooltip: "Ordnance Survey Topography Layer ID (TOID) [<a href='https://www.ordnancesurvey.co.uk/business-government/products/open-toid'>link</a>]",
         example: "",
     },
@@ -199,14 +199,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_latitude: {
         category: Category.Location,
-        title: "Centroid Latitude",
-        tooltip: "Latitude of Building Centroid",
+        title: "Centroid latitude",
+        tooltip: "Latitude of building centroid",
         example: 12.4564,
     },
     location_longitude: {
         category: Category.Location,
-        title: "Centroid Longitude",
-        tooltip: "Longitude of Building Centroid",
+        title: "Centroid longitude",
+        tooltip: "Longitude of building centroid",
         example: 0.12124,
     },
     current_landuse_group: {
@@ -244,7 +244,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     current_landuse_link: {
         category: Category.LandUse,
-        title: "Source Links",
+        title: "Source links",
         tooltip: "URL for current land use reference",
         example: ["", "", ""],
     },
@@ -255,7 +255,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     building_attachment_form: {
         category: Category.Typology,
-        title: "Attachment type/Adjacency",
+        title: "Attachment type/adjacency",
         tooltip: "We have prepopulated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
         example: "",
     },
@@ -301,7 +301,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     facade_year: {
         category: Category.Age,
-        title: "Date of Front of Building",
+        title: "Date of front of building",
         tooltip: "Best estimate",
         example: 1900,
     },
@@ -342,19 +342,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     size_storeys_core: {
         category: Category.Size,
-        title: "Core Number of Floors",
+        title: "Core number of floors",
         tooltip: "How many floors are there between the pavement and start of roof?",
         example: 10,
     },
     size_storeys_attic: {
         category: Category.Size,
-        title: "Number of Floors within Roof Space",
+        title: "Number of floors within roof space",
         tooltip: "How many floors above start of roof?",
         example: 1,
     },
     size_storeys_basement: {
         category: Category.Size,
-        title: "Number of Floors beneath Ground Level",
+        title: "Number of floors beneath ground Level",
         tooltip: "How many floors below pavement level?",
         example: 1,
     },
@@ -384,7 +384,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     size_width_frontage: {
         category: Category.Size,
-        title: "Frontage Width (m)",
+        title: "Frontage width (m)",
         example: 12.2,
         //tooltip: ,
     },
@@ -411,28 +411,28 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     construction_core_material: {
         category: Category.Construction,
-        title: "Core Material",
+        title: "Core material",
         tooltip:"The main structural material",
         example: "",
     },
 
     construction_secondary_materials: {
         category: Category.Construction,
-        title: "Main Secondary Construction Material/s",
+        title: "Main secondary construction material/s",
         tooltip:"Other construction materials",
         example: "",
     },
 
     construction_roof_covering: {
         category: Category.Construction,
-        title: "Main Roof Covering",
+        title: "Main roof covering",
         tooltip:'Main roof covering material',
         example: "",
     },
 
     sust_breeam_rating: {
         category: Category.EnergyPerformance,
-        title: "Official Environmental Quality Rating",
+        title: "Official environmental quality rating",
         tooltip: ccconfig.energy_rating,
         example: "",
     },

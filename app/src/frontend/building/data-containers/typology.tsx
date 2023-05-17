@@ -24,7 +24,7 @@ const AttachmentFormOptions = [
 const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
-            <DataEntryGroup name="Adjacency and Building Use Data">
+            <DataEntryGroup name="Adjacency and building use data">
                 <SelectDataEntry
                     title={dataFields.building_attachment_form.title}
                     slug="building_attachment_form"
@@ -91,7 +91,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip="Coming Soon"
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Building Typology and Classification Data">
+            <DataEntryGroup name="Building typology and classification data">
                 <DataEntry
                     title="Local typology/architectural style"
                     slug=""

@@ -17,7 +17,7 @@ const locationNumberPattern = "[1-9]\\d*[a-z]?(-([1-9]\\d*))?"; ///[1-9]\d*[a-z]
 const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         
-        <DataEntryGroup name="Address Data">
+        <DataEntryGroup name="Address data">
             <DataEntry
                 title={dataFields.location_name.title}
                 slug="location_name"
@@ -38,7 +38,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 verified_count={props.building.verified.location_name}
             />
             <DataEntry
-                title="Building Name (Domestic)"
+                title="Building name (domestic)"
                 slug=""
                 value=""
                 mode='view'
@@ -53,7 +53,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 verified_count={props.building.verified.location_name}
             />
             <DataEntry
-                title="Building Name Source"
+                title="Source"
                 slug=""
                 value=""
                 mode='view'
@@ -148,14 +148,14 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 verified_count={props.building.verified.location_postcode}
                 />
             <DataEntry
-                title="Address Source"
+                title="Source"
                 slug=""
                 value=""
                 mode='view'
                 tooltip="Coming Soon"
             />
         </DataEntryGroup>
-        <DataEntryGroup name="Property/Footprint IDs and Coordinate Data">
+        <DataEntryGroup name="Property/footprint IDs and coordinate data">
             <DataEntry
                 title={dataFields.ref_toid.title}
                 slug="ref_toid"

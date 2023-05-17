@@ -47,7 +47,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
        ){
       return (
           <Fragment>
-            <DataEntryGroup name="Building Age">
+            <DataEntryGroup name="Building age">
                 <YearDataEntry
                     year={props.building.date_year}
                     upper={props.building.date_upper}
@@ -118,25 +118,25 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     This section is under development.
                 </InfoBox>
                 <DataEntry
-                    title="Cladding Date"
+                    title="Cladding date"
                     slug=""
                     value=""
                     mode='view'
                 />
                 <DataEntry
-                    title="Date of Significant Extensions"
+                    title="Date of significant extensions"
                     slug=""
                     value=""
                     mode='view'
                 />
                 <DataEntry
-                    title="Date of Significant Retrofits"
+                    title="Date of significant retrofits"
                     slug=""
                     value=""
                     mode='view'
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Lifespan and Site History" collapsed={true} >
+            <DataEntryGroup name="Lifespan and site history">
                 <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                     {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
@@ -226,7 +226,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     Please let us know your suggestions on the <a href="https://discuss.colouring.london/t/dynamics-category-discussion/107">discussion forum</a>! (external link - save your edits first)
                 </InfoBox>
             </DataEntryGroup>
-            <DataEntryGroup name="Survival and Loss tracked using Historical Maps" collapsed={true} >
+            <DataEntryGroup name="Survival and loss tracked using historical maps" collapsed={true} >
                 <InfoBox>
                     Can you help us create a map that shows how many buildings in London have survived since the 1890s? 
                     Choose a colour to indicate whether the building has survived.

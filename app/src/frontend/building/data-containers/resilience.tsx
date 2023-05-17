@@ -23,7 +23,7 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const [ endDate, setEndDate ] = useState(null);
 
     return (<>
-        <DataEntryGroup name="Building Damage Assessment Tool" collapsed={true} >
+        <DataEntryGroup name="Building damage assessment tool" collapsed={true} >
             <InfoBox>
                 This feature is designed as an assessment tool to help communities capture data on the state of buildings following major disasters. 
                 It is intended to help support emergency services, to record damage, and to aid reconstruction programmes.
@@ -31,7 +31,7 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                 {(historicData === 'enabled')?'Click here to hide disaster maps':'Click here to show disaster maps'}
             </button>
-            <p>Date of Disaster</p>
+            <p>Date of disaster</p>
             <div>
                 <DatePicker 
                     showIcon
@@ -42,7 +42,7 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={dataFields.disaster_start_date.title}
                     //value={props.building.disaster_start_date}
                     isClearable
-                    placeholderText="Select Start Date"
+                    placeholderText="Select start date"
                     maxDate={new Date()}
                 />
             </div>
@@ -56,7 +56,7 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={dataFields.disaster_end_date.title}
                     //value={props.building.disaster_end_date}
                     isClearable
-                    placeholderText="Select End Date"
+                    placeholderText="Select end date"
                     maxDate={new Date()}
                 />
             </div>
