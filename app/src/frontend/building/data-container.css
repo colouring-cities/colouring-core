@@ -1,6 +1,6 @@
 .edit-bar {
     position: sticky;
-    top: 54px; /* match section-header height */
+    top: 53.5px; /* match section-header height */
     margin-top: 5px;
     padding: 0px 0 0 0; /* match info-container-inner margin-top*/
     width: 100%;
