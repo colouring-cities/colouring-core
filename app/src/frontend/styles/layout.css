@@ -49,9 +49,8 @@ article .color-block {
 }
 hr {
     display: block;
-    height: 1px;
-    border: none;
-    background-color: #ccc;
+    height: 0px;
+    border: 1px solid #ccc;
     width: 100%;
     margin: 1.0em 0 0.8em 0;
     padding: 0;

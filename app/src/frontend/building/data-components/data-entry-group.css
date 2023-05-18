@@ -22,4 +22,5 @@
 
 .data-entry-group-body hr {
     margin: 1.5em 0 1.5em 0;
+    border: 1px dashed #ccc;
 }
