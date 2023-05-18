@@ -19,3 +19,7 @@
     padding-left: 1rem;
     padding-bottom: 1rem;
 }
+
+.data-entry-group-body hr {
+    margin: 1.5em 0 1.5em 0;
+}
