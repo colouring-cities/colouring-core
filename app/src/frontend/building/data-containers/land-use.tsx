@@ -133,7 +133,6 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     {
                         props.mode != 'view' &&
                         <div>
-                            <hr/>
                             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                                 <i>
                                     Below is a more general classification for the land use of this building, automatically derived from the information above.

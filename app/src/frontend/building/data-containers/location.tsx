@@ -190,6 +190,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.ref_osm_id}
                 verified_count={props.building.verified.ref_osm_id}
                 />
+            <hr/>
             <NumericDataEntry
                 title={dataFields.location_latitude.title}
                 slug="location_latitude"
@@ -231,6 +232,13 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified={props.user_verified.hasOwnProperty("location_longitude")}
                 user_verified_as={props.user_verified.location_longitude}
                 verified_count={props.building.verified.location_longitude}
+                />
+            <DataEntry
+                title="Source"
+                slug=""
+                value=""
+                mode='view'
+                tooltip="Coming Soon"
                 />
         </DataEntryGroup>
     </Fragment>

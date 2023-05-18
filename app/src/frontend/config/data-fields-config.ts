@@ -307,8 +307,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_source: {
         category: Category.Age,
-        title: "Source of information",
-        tooltip: "Source for the main start date",
+        title: "Source type",
+        tooltip: "Source type for the building dates above",
         items: [
             "Expert knowledge of building",
             "Expert estimate from image",
@@ -774,7 +774,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     lead_designer_type: {
         category: Category.Team,
-        title: "Which best describes the lead designer?",
+        title: "Which title best describes the lead designer?",
         example: "",
         items: [
             "Landowner",

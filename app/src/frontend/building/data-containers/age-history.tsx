@@ -114,7 +114,8 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.date_source}
                     verified_count={props.building.verified.date_source}
                     />
-                <InfoBox>
+                <hr/>
+                <InfoBox type='warning'>
                     This section is under development.
                 </InfoBox>
                 <DataEntry
@@ -221,16 +222,18 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             </>
                     }
                 </DataEntryGroup>
-                <InfoBox>
+                <InfoBox type='warning'>
                     This section is under development in collaboration with the historic environment sector.
                     Please let us know your suggestions on the <a href="https://discuss.colouring.london/t/dynamics-category-discussion/107">discussion forum</a>! (external link - save your edits first)
                 </InfoBox>
             </DataEntryGroup>
             <DataEntryGroup name="Survival and loss tracked using historical maps" collapsed={true} >
-                <InfoBox>
-                    Can you help us create a map that shows how many buildings in London have survived since the 1890s? 
-                    Choose a colour to indicate whether the building has survived.
-                </InfoBox>
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                    <i>
+                        Can you help us create a map that shows how many buildings in London have survived since the 1890s? 
+                        Choose a colour to indicate whether the building has survived.
+                    </i>
+                </div>
                 <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                     {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
@@ -347,7 +350,8 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.date_link}
                     verified_count={props.building.verified.date_link}
                     />
-                <InfoBox>
+                <hr/>
+                <InfoBox type='warning'>
                     This section is under development.
                 </InfoBox>
                 <DataEntry
@@ -496,16 +500,18 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             </>
                     }
                 </DataEntryGroup>
-                <InfoBox>
+                <InfoBox type='warning'>
                     This section is under development in collaboration with the historic environment sector.
                     Please let us know your suggestions on the <a href="https://discuss.colouring.london/t/dynamics-category-discussion/107">discussion forum</a>! (external link - save your edits first)
                 </InfoBox>
             </DataEntryGroup>
-            <DataEntryGroup name="Survival and Loss tracked using Historical Maps" collapsed={true} >
-                <InfoBox>
-                    Can you help us create a map that shows how many buildings in London have survived since the 1890s? 
-                    Choose a colour to indicate whether the building has survived.
-                </InfoBox>
+            <DataEntryGroup name="Survival and loss tracked using historical maps" collapsed={true} >
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                    <i>
+                        Can you help us create a map that shows how many buildings in London have survived since the 1890s? 
+                        Choose a colour to indicate whether the building has survived.
+                    </i>
+                </div>
                 <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                     {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>

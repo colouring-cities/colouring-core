@@ -41,9 +41,11 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
     return <>
         <DataEntryGroup name="Community views on building types">
-        <InfoBox>
+        <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+            <i>
             Note: We are not currently collecting data on domestic/privately owned properties, only on public buildings.
-        </InfoBox>
+            </i>
+        </div>
         <div className='community-opinion-pane'>
             {
             
@@ -152,9 +154,11 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </div>
         </DataEntryGroup>
         <DataEntryGroup name="Building use for community activities">
-        <InfoBox>
-                Here we are collecting information on the location of buildings used for community activities so we can track loss of/additions to community space over time
-        </InfoBox>
+        <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+            <i>
+            Here we are collecting information on the location of buildings used for community activities so we can track loss of/additions to community space over time.
+            </i>
+        </div>
         <LogicalDataEntry
             slug='community_activities_current'
             title={dataFields.community_activities_current.title}
