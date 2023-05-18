@@ -121,7 +121,13 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
             </DataEntryGroup>
             <DataEntryGroup name="Other sustainability features">
                 <DataEntry
-                    title="Green Walls / Green Roof"
+                    title="Does the building have Solar Panels?"
+                    slug=""
+                    value=""
+                    mode='view'
+                />
+                <DataEntry
+                    title="Does the building have Green Walls / Green Roof"
                     slug=""
                     value=""
                     mode='view'
