@@ -38,7 +38,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         title={dataFields.is_domestic.title}
                         slug="is_domestic"
                         value={props.building.is_domestic}
-                        options={["yes", "no", "mixed domestic/non-domestic"]}
+                        options={dataFields.is_domestic.items}
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
@@ -55,29 +55,30 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <SelectDataEntry
                         title={dataFields.is_domestic_source.title}
                         slug="is_domestic_source"
-                        value={props.building.is_domestic}
-                        options={
-                            [
-                                "Expert knowledge", 
-                                "Observed from the street",
-                                "Google or other photograph/satellite imagery", 
-                                "Government/public record/database",
-                                "Independently managed record/database",
-                                "Other type of record/database"
-                            ]
-                        }
+                        value={props.building.is_domestic_source}
+                        options={dataFields.is_domestic_source.items}
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
                         tooltip={dataFields.is_domestic_source.tooltip}
                     />
-                    <DataEntry
-                        title="Source link"
-                        slug=""
-                        value=""
-                        mode='view'
-                        tooltip="Coming Soon"
-                    />
+                    {(props.building.is_domestic_source == "Expert knowledge" ||
+                        props.building.is_domestic_source == "Observed from the street" ||
+                        props.building.is_domestic_source == null) ? <></> :
+                        <><MultiDataEntry
+                            title={dataFields.is_domestic_links.title}
+                            slug="is_domestic_links"
+                            value={props.building.is_domestic_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.is_domestic_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                            />
+                        </>
+                    }
                 </DataEntryGroup>
                 <DataEntryGroup name="Specific land use data">
                     <MultiDataEntry

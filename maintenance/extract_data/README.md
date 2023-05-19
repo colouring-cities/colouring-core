@@ -39,8 +39,12 @@ This is the main table, containing almost all data collected by Colouring London
 - `location_line_two`: additional address line
 - `location_town`: town
 - `location_postcode`: postcode
+- `location_address_source`: type of source used for address data
+- `location_address_links`: link to source used for address data
 - `location_latitude`: latitude
 - `location_longitude`: longitude
+- `location_coordinates_source`: source type of coordinate data
+- `location_coordinates_links`: source links for coordinate data
 - `current_landuse_group`: current land use group
 - `current_landuse_order`: current land use order
 - `building_attachment_form`: building attachment form
@@ -85,6 +89,9 @@ This is the main table, containing almost all data collected by Colouring London
 - `planning_local_list_url`: local list reference link
 - `planning_historic_area_assessment_url`: historic area assessment reference link
 - `likes_total`: number of times the building has been liked by Colouring London users
+- `is_domestic`: is the building domestic/non-domestic/mixed
+- `is_domestic_source`: domestic data source type,
+ -`is_domestic_links`: domestic data source links,
 
 
 ## Building UPRNs

@@ -79,6 +79,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
+    location_address_source: {
+        edit: true,
+        verify: true
+    },
+    location_address_links: {
+        edit: true,
+        verify: true
+    },
     location_latitude: {
         edit: true,
         verify: true,
@@ -86,6 +94,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     location_longitude: {
         edit: true,
         verify: true,
+    },
+    location_coordinates_source: {
+        edit: true,
+        verify: true
+    },
+    location_coordinates_links: {
+        edit: true,
+        verify: true
     },
     date_year: {
         edit: true,
@@ -284,15 +300,21 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
-
     demolished_buildings: {
         edit: true,
         verify: false,
         asJson: true,
         sqlCast: 'jsonb',
     },
-
     is_domestic: {
+        edit: true,
+        verify: true
+    },
+    is_domestic_source: {
+        edit: true,
+        verify: true
+    },
+    is_domestic_links: {
         edit: true,
         verify: true
     },

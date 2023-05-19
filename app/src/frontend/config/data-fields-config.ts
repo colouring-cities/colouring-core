@@ -15,7 +15,7 @@ export interface DataFieldDefinition {
      * A field could be displayed in several categories, but this value will be used
      * when a single category needs to be shown in the context of a field, e.g.
      * in the case of edit history or the copy-paste tool (multi-edit)
-     *  */ 
+     *  */
     category: Category;
 
     /**
@@ -41,7 +41,7 @@ export interface DataFieldDefinition {
     /**
      * If the defined type is a dictionary, this describes the types of the dictionary's fields
      */
-    fields?: { [key: string]: Omit<DataFieldDefinition, 'category'>}
+    fields?: { [key: string]: Omit<DataFieldDefinition, 'category'> }
 
     /**
      * The example is used to determine the runtime type in which the attribute data is stored (e.g. number, string, object)
@@ -110,7 +110,7 @@ export const buildingUserFields = {
             other: false
         }
     },
-    
+
     community_local_significance: {
         perUser: true,
         category: Category.Community,
@@ -163,13 +163,34 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "W1W 6TR",
         //tooltip: ,
     },
+    location_address_source: {
+        category: Category.Location,
+        title: "Source",
+        example: "",
+        tooltip: "Source of address data.",
+        items: [
+            "Expert/personal knowledge of building",
+            "Online streetview image",
+            "Open planning authority dataset",
+            "Open property tax dataset",
+            "Open housing dataset",
+            "Open address dataset",
+            "Other"
+        ]
+    },
+    location_address_links: {
+        category: Category.Location,
+        title: "Source link(s)",
+        tooltip: "URL(s) for building address data source(s).",
+        example: ["", "", ""],
+    },
     ref_toid: {
         category: Category.Location,
         title: "Building footprint ID",
         tooltip: "Ordnance Survey Topography Layer ID (TOID) [<a href='https://www.ordnancesurvey.co.uk/business-government/products/open-toid'>link</a>]",
         example: "",
     },
-    
+
     /**
      * UPRNs is not part of the buildings table, but the string fields 
      * are included here for completeness
@@ -178,16 +199,16 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "Unique Property Reference Number(s) (UPRN)",
         tooltip: "Unique Property Reference Numbers (to be filled automatically) [<a href='https://beta.ordnancesurvey.co.uk/products/os-open-uprn'>LINK</a>]",
-        example: [{uprn: "", parent_uprn: "" }, {uprn: "", parent_uprn: "" }],
+        example: [{ uprn: "", parent_uprn: "" }, { uprn: "", parent_uprn: "" }],
     },
 
     planning_data: {
         category: Category.Location,
         title: "PLANNING DATA",
         tooltip: "PLANNING DATA",
-        example: [{uprn: "", building_id: 1, data_source: ""},
-                  {uprn: "", building_id: 1, data_source: "", status: "", status_before_aliasing: "", decision_date: "", description: "", planning_application_link: "", registered_with_local_authority_date: "", last_synced_date: "", data_source_link: "", address: ""},
-                ],
+        example: [{ uprn: "", building_id: 1, data_source: "" },
+        { uprn: "", building_id: 1, data_source: "", status: "", status_before_aliasing: "", decision_date: "", description: "", planning_application_link: "", registered_with_local_authority_date: "", last_synced_date: "", data_source_link: "", address: "" },
+        ],
     },
 
 
@@ -209,6 +230,27 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Longitude of building centroid",
         example: 0.12124,
     },
+    location_coordinates_source: {
+        category: Category.Location,
+        title: "Source",
+        example: "",
+        tooltip: "Source of lcoordinate data.",
+        items: [
+            "Expert/personal knowledge of building",
+            "Online streetview image",
+            "Open planning authority dataset",
+            "Open property tax dataset",
+            "Open housing dataset",
+            "Open address dataset",
+            "Other"
+        ]
+    },
+    location_coordinates_links: {
+        category: Category.Location,
+        title: "Source link(s)",
+        tooltip: "URL(s) for building coordinate data source(s).",
+        example: ["", "", ""],
+    },
     current_landuse_group: {
         category: Category.LandUse,
         title: "Current land use(s)",
@@ -223,7 +265,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     current_landuse_source: {
         category: Category.LandUse,
-        title: "Source of information",
+        title: "Source type",
         tooltip: "Source for the current land use",
         example: "",
         items: [
@@ -244,8 +286,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     current_landuse_link: {
         category: Category.LandUse,
-        title: "Source links",
-        tooltip: "URL for current land use reference",
+        title: "Source link(s)",
+        tooltip: "URL(s) for current land use reference",
         example: ["", "", ""],
     },
     current_landuse_verified: {
@@ -261,7 +303,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_change_building_use: {
         category: Category.Typology,
-        title:"When did use change?",
+        title: "When did use change?",
         tooltip: "This is the date the building stopped being used for for the function it was built for. I.e. if it was Victorian warehouse which is now an office this would be when it became an office or if it was something before that, maybe a garage then the date that happened",
         example: 1920,
     },
@@ -287,7 +329,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Best estimate for construction of main body of the building.",
         example: 1924,
     },
-    date_lower : {
+    date_lower: {
         category: Category.Age,
         title: "Earliest possible start year",
         tooltip: "This should be the earliest year in which construction could have started.",
@@ -412,21 +454,21 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_core_material: {
         category: Category.Construction,
         title: "Core material",
-        tooltip:"The main structural material",
+        tooltip: "The main structural material",
         example: "",
     },
 
     construction_secondary_materials: {
         category: Category.Construction,
         title: "Main secondary construction material/s",
-        tooltip:"Other construction materials",
+        tooltip: "Other construction materials",
         example: "",
     },
 
     construction_roof_covering: {
         category: Category.Construction,
         title: "Main roof covering",
-        tooltip:'Main roof covering material',
+        tooltip: 'Main roof covering material',
         example: "",
     },
 
@@ -602,13 +644,32 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Team,
         title: "Is the building a home/domestic building?",
         tooltip: "Note: Homes used as offices for working from home should be classified as domestic.",
-        example: "mixed domestic/non-domestic"
+        example: "mixed domestic/non-domestic",
+        items: [
+            "Yes",
+            "No",
+            "Mixed domestic/non-domestic"
+        ]
     },
     is_domestic_source: {
         category: Category.Team,
         title: "Source type",
-        tooltip: "",
-        example: ""
+        tooltip: "Source of domestic/non-domestic data",
+        example: "",
+        items: [
+            "Expert knowledge",
+            "Observed from the street",
+            "Google or other photograph/satellite imagery",
+            "Government/public record/database",
+            "Independently managed record/database",
+            "Other type of record/database"
+        ]
+    },
+    is_domestic_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for domestic/non-domestic data source(s)",
+        example: ["", "", ""],
     },
     likes_total: {
         category: Category.Community,
@@ -705,7 +766,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             {
                 year_constructed: { min: 1989, max: 1991 },
                 year_demolished: { min: 1993, max: 1994 },
-                lifespan: "2-5", overlap_present: "50%", links: ["", ""]}
+                lifespan: "2-5", overlap_present: "50%", links: ["", ""]
+            }
         ]
     },
     has_extension: {
@@ -850,4 +912,4 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
 };
 
-export const allFieldsConfig = {...dataFields, ...buildingUserFields};
+export const allFieldsConfig = { ...dataFields, ...buildingUserFields };

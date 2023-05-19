@@ -1,6 +1,4 @@
 import React, { Fragment } from 'react';
-
-import InfoBox from '../../components/info-box';
 import { dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
@@ -8,15 +6,15 @@ import UPRNsDataEntry from '../data-components/uprns-data-entry';
 import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
 import { PatternDataEntry } from '../data-components/pattern-data-entry';
-
 import { CategoryViewProps } from './category-view-props';
 import { DataEntryGroup } from '../data-components/data-entry-group';
+import SelectDataEntry from '../data-components/select-data-entry';
+import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 
 const locationNumberPattern = "[1-9]\\d*[a-z]?(-([1-9]\\d*))?"; ///[1-9]\d*[a-z]?(-([1-9]\d*))?/;
 
 const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        
         <DataEntryGroup name="Address data">
             <DataEntry
                 title={dataFields.location_name.title}
@@ -43,21 +41,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 value=""
                 mode='view'
                 tooltip="Not yet activated.<br><br>For security reasons, we do not allow the use of free text boxes and are currently looking into alternative ways to collect this data."
-            />
-            <Verification
-                slug="location_name"
-                allow_verify={props.user !== undefined && props.building.location_name !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("location_name")}
-                user_verified_as={props.user_verified.location_name}
-                verified_count={props.building.verified.location_name}
-            />
-            <DataEntry
-                title="Source"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
             />
             <hr/>
             <PatternDataEntry
@@ -137,7 +120,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 onChange={props.onChange}
                 maxLength={8}
                 valueTransform={x=>x.toUpperCase()}
-                
                 />
             <Verification
                 slug="location_postcode"
@@ -147,13 +129,35 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.location_postcode}
                 verified_count={props.building.verified.location_postcode}
                 />
-            <DataEntry
-                title="Source"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
+            <SelectDataEntry
+                title={dataFields.location_address_source.title}
+                slug="location_address_source"
+                value={props.building.location_address_source}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.location_address_source.tooltip}
+                placeholder={dataFields.location_address_source.example}
+                options={dataFields.location_address_source.items}
+                />
+            {(props.building.location_address_source == "Expert/personal knowledge of building" ||
+                props.building.location_address_source == "Online streetview image" ||
+                props.building.location_address_source == null) ? <></> :
+                <>
+                    <MultiDataEntry
+                        title={dataFields.location_address_links.title}
+                        slug="location_address_links"
+                        value={props.building.location_address_links}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.location_address_links.tooltip}
+                        placeholder="https://..."
+                        editableEntries={true}
+                        isUrl={true}
+                    />
+                </>
+            }
         </DataEntryGroup>
         <DataEntryGroup name="Property/footprint IDs and coordinate data">
             <DataEntry
@@ -233,13 +237,35 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.location_longitude}
                 verified_count={props.building.verified.location_longitude}
                 />
-            <DataEntry
-                title="Source"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
+            <SelectDataEntry
+                title={dataFields.location_coordinates_source.title}
+                slug="location_coordinates_source"
+                value={props.building.location_coordinates_source}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.location_coordinates_source.tooltip}
+                placeholder={dataFields.location_coordinates_source.example}
+                options={dataFields.location_coordinates_source.items}
                 />
+            {(props.building.location_coordinates_source == "Expert/personal knowledge of building" ||
+                props.building.location_coordinates_source == "Online streetview image" ||
+                props.building.location_coordinates_source == null) ? <></> :
+                <>
+                    <MultiDataEntry
+                        title={dataFields.location_coordinates_links.title}
+                        slug="location_coordinates_links"
+                        value={props.building.location_coordinates_links}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.location_coordinates_links.tooltip}
+                        placeholder="https://..."
+                        editableEntries={true}
+                        isUrl={true}
+                    />
+                </>
+            }
         </DataEntryGroup>
     </Fragment>
 );
