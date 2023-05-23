@@ -2,6 +2,18 @@ import { Category } from './categories-config';
 import { CCConfig } from '../../cc-config';
 let ccconfig: CCConfig = require('../../cc-config.json')
 
+/*
+ * Common list of Source Types, used in multiple menus
+*/
+export const commonSourceTypes = [
+    "Expert knowledge",
+    "Observed from the street",
+    "Google or other photograph/satellite imagery",
+    "Government/public record/database",
+    "Independently managed record/database",
+    "Other type of record/database"
+];
+
 /**
  * This interface is used only in code which uses dataFields, not in the dataFields definition itself
  * Cannot make dataFields an indexed type ({[key: string]: DataFieldDefinition}),
@@ -165,18 +177,10 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_address_source: {
         category: Category.Location,
-        title: "Source",
+        title: "Source type",
         example: "",
         tooltip: "Source of address data.",
-        items: [
-            "Expert/personal knowledge of building",
-            "Online streetview image",
-            "Open planning authority dataset",
-            "Open property tax dataset",
-            "Open housing dataset",
-            "Open address dataset",
-            "Other"
-        ]
+        items: commonSourceTypes
     },
     location_address_links: {
         category: Category.Location,
@@ -232,18 +236,10 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_coordinates_source: {
         category: Category.Location,
-        title: "Source",
+        title: "Source type",
         example: "",
         tooltip: "Source of lcoordinate data.",
-        items: [
-            "Expert/personal knowledge of building",
-            "Online streetview image",
-            "Open planning authority dataset",
-            "Open property tax dataset",
-            "Open housing dataset",
-            "Open address dataset",
-            "Other"
-        ]
+        items: commonSourceTypes
     },
     location_coordinates_links: {
         category: Category.Location,
@@ -656,14 +652,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Source type",
         tooltip: "Source of domestic/non-domestic data",
         example: "",
-        items: [
-            "Expert knowledge",
-            "Observed from the street",
-            "Google or other photograph/satellite imagery",
-            "Government/public record/database",
-            "Independently managed record/database",
-            "Other type of record/database"
-        ]
+        items: commonSourceTypes
     },
     is_domestic_links: {
         category: Category.Team,

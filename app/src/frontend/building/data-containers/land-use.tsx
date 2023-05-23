@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 import InfoBox from '../../components/info-box';
-import { dataFields } from '../../config/data-fields-config';
+import { commonSourceTypes, dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
@@ -62,8 +62,8 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         onChange={props.onChange}
                         tooltip={dataFields.is_domestic_source.tooltip}
                     />
-                    {(props.building.is_domestic_source == "Expert knowledge" ||
-                        props.building.is_domestic_source == "Observed from the street" ||
+                    {(props.building.is_domestic_source == commonSourceTypes[0] ||
+                        props.building.is_domestic_source == commonSourceTypes[1] ||
                         props.building.is_domestic_source == null) ? <></> :
                         <><MultiDataEntry
                             title={dataFields.is_domestic_links.title}

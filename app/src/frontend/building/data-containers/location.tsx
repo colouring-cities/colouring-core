@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { dataFields } from '../../config/data-fields-config';
+import { commonSourceTypes, dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import UPRNsDataEntry from '../data-components/uprns-data-entry';
@@ -140,8 +140,8 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 placeholder={dataFields.location_address_source.example}
                 options={dataFields.location_address_source.items}
                 />
-            {(props.building.location_address_source == "Expert/personal knowledge of building" ||
-                props.building.location_address_source == "Online streetview image" ||
+            {(props.building.location_address_source == commonSourceTypes[0] ||
+                props.building.location_address_source == commonSourceTypes[1] ||
                 props.building.location_address_source == null) ? <></> :
                 <>
                     <MultiDataEntry
@@ -248,8 +248,8 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 placeholder={dataFields.location_coordinates_source.example}
                 options={dataFields.location_coordinates_source.items}
                 />
-            {(props.building.location_coordinates_source == "Expert/personal knowledge of building" ||
-                props.building.location_coordinates_source == "Online streetview image" ||
+            {(props.building.location_coordinates_source == commonSourceTypes[0] ||
+                props.building.location_coordinates_source == commonSourceTypes[1] ||
                 props.building.location_coordinates_source == null) ? <></> :
                 <>
                     <MultiDataEntry
