@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import { dataFields } from '../../config/data-fields-config';
+import { commonSourceTypes, dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import NumericDataEntry from '../data-components/numeric-data-entry';
@@ -10,6 +10,7 @@ import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
 import InfoBox from '../../components/info-box';
+import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 
 /**
 * Size view/edit section
@@ -74,20 +75,33 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.size_storeys_basement}
                 verified_count={props.building.verified.size_storeys_basement}
                 />
-            <DataEntry
-                title="Source type"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
+            <SelectDataEntry
+                title={dataFields.size_storeys_source_type.title}
+                slug="size_storeys_source_type"
+                value={props.building.size_storeys_source_type}
+                options={dataFields.size_storeys_source_type.items}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.size_storeys_source_type.tooltip}
             />
-            <DataEntry
-                title="Source link"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
+            {(props.building.size_storeys_source_type == commonSourceTypes[0] ||
+                props.building.size_storeys_source_type == commonSourceTypes[1] ||
+                props.building.size_storeys_source_type == null) ? <></> :
+                <><MultiDataEntry
+                    title={dataFields.size_storeys_source_links.title}
+                    slug="size_storeys_source_links"
+                    value={props.building.size_storeys_source_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.size_storeys_source_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                    />
+                </>
+            }
         </DataEntryGroup>
         <DataEntryGroup name="Building height data">
             <NumericDataEntry
@@ -108,25 +122,37 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.size_height_apex}
                 verified_count={props.building.verified.size_height_apex}
                 />
-            <DataEntry
-                title="Source type"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
+            <SelectDataEntry
+                title={dataFields.size_height_apex_source_type.title}
+                slug="size_height_apex_source_type"
+                value={props.building.size_height_apex_source_type}
+                options={dataFields.size_height_apex_source_type.items}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.size_height_apex_source_type.tooltip}
             />
-            <DataEntry
-                title="Source link"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
+            {(props.building.size_height_apex_source_type == commonSourceTypes[0] ||
+                props.building.size_height_apex_source_type == commonSourceTypes[1] ||
+                props.building.size_height_apex_source_type == null) ? <></> :
+                <><MultiDataEntry
+                    title={dataFields.size_height_apex_source_links.title}
+                    slug="size_height_apex_source_links"
+                    value={props.building.size_height_apex_source_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.size_height_apex_source_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                    />
+                </>
+            }
             <hr/>
             <NumericDataEntry
                 title={dataFields.size_height_eaves.title}
                 slug="size_height_eaves"
-                disabled={true}
                 value={props.building.size_height_eaves}
                 mode={props.mode}
                 copy={props.copy}
@@ -134,20 +160,33 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 step={0.1}
                 min={0}
                 />
-            <DataEntry
-                title="Source type"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
+            <SelectDataEntry
+                title={dataFields.size_height_eaves_source_type.title}
+                slug="size_height_eaves_source_type"
+                value={props.building.size_height_eaves_source_type}
+                options={dataFields.size_height_eaves_source_type.items}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.size_height_eaves_source_type.tooltip}
             />
-            <DataEntry
-                title="Source link"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
+            {(props.building.size_height_eaves_source_type == commonSourceTypes[0] ||
+                props.building.size_height_eaves_source_type == commonSourceTypes[1] ||
+                props.building.size_height_eaves_source_type == null) ? <></> :
+                <><MultiDataEntry
+                    title={dataFields.size_height_eaves_source_links.title}
+                    slug="size_height_eaves_source_links"
+                    value={props.building.size_height_eaves_source_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.size_height_eaves_source_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                    />
+                </>
+            }
         </DataEntryGroup>
         <DataEntryGroup name="Floor area data">
             <NumericDataEntry
@@ -186,13 +225,33 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.size_floor_area_total}
                 verified_count={props.building.verified.size_floor_area_total}
                 />
-            <DataEntry
-                title="Source link"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-                />
+            <SelectDataEntry
+                title={dataFields.size_floor_area_source_type.title}
+                slug="size_floor_area_source_type"
+                value={props.building.size_floor_area_source_type}
+                options={dataFields.size_floor_area_source_type.items}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.size_floor_area_source_type.tooltip}
+            />
+            {(props.building.size_floor_area_source_type == commonSourceTypes[0] ||
+                props.building.size_floor_area_source_type == commonSourceTypes[1] ||
+                props.building.size_floor_area_source_type == null) ? <></> :
+                <><MultiDataEntry
+                    title={dataFields.size_floor_area_source_links.title}
+                    slug="size_floor_area_source_links"
+                    value={props.building.size_floor_area_source_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.size_floor_area_source_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                    />
+                </>
+            }
         </DataEntryGroup>
         <DataEntryGroup name="Plot size data">
             <NumericDataEntry
@@ -300,20 +359,33 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.size_width_frontage}
                 verified_count={props.building.verified.size_width_frontage}
                 />
-            <DataEntry
-                title="Source type"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
+            <SelectDataEntry
+                title={dataFields.size_width_frontage_source_type.title}
+                slug="size_width_frontage_source_type"
+                value={props.building.size_width_frontage_source_type}
+                options={dataFields.size_width_frontage_source_type.items}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.size_width_frontage_source_type.tooltip}
             />
-            <DataEntry
-                title="Source link"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
+            {(props.building.size_width_frontage_source_type == commonSourceTypes[0] ||
+                props.building.size_width_frontage_source_type == commonSourceTypes[1] ||
+                props.building.size_width_frontage_source_type == null) ? <></> :
+                <><MultiDataEntry
+                    title={dataFields.size_width_frontage_source_links.title}
+                    slug="size_width_frontage_source_links"
+                    value={props.building.size_width_frontage_source_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.size_width_frontage_source_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                    />
+                </>
+            }
         </DataEntryGroup>
     </Fragment>
 );

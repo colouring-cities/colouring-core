@@ -154,7 +154,35 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    size_storeys_source_type: {
+        edit: true,
+        verify: true,
+    },
+    size_storeys_source_links: {
+        edit: true,
+        verify: true,
+    },
     size_height_apex: {
+        edit: true,
+        verify: true,
+    },
+    size_height_apex_source_type: {
+        edit: true,
+        verify: true,
+    },
+    size_height_apex_source_links: {
+        edit: true,
+        verify: true,
+    },
+    size_height_eaves: {
+        edit: true,
+        verify: true,
+    },
+    size_height_eaves_source_type: {
+        edit: true,
+        verify: true,
+    },
+    size_height_eaves_source_links: {
         edit: true,
         verify: true,
     },
@@ -166,7 +194,23 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    size_floor_area_source_type: {
+        edit: true,
+        verify: true,
+    },
+    size_floor_area_source_links: {
+        edit: true,
+        verify: true,
+    },
     size_width_frontage: {
+        edit: true,
+        verify: true,
+    },
+    size_width_frontage_source_type: {
+        edit: true,
+        verify: true,
+    },
+    size_width_frontage_source_links: {
         edit: true,
         verify: true,
     },
@@ -323,6 +367,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true
     },
     survival_source: {
+        edit: true,
+        verify: true
+    },
+    survival_source_links: {
         edit: true,
         verify: true
     },

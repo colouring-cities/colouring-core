@@ -106,14 +106,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     placeholder={dataFields.date_source.example}
                     options={dataFields.date_source.items}
                     />
-                <Verification
-                    slug="date_source"
-                    allow_verify={props.user !== undefined && props.building.date_source !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("date_source")}
-                    user_verified_as={props.user_verified.date_source}
-                    verified_count={props.building.verified.date_source}
-                    />
                 <hr/>
                 <InfoBox type='warning'>
                     This section is under development.
@@ -258,6 +250,23 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     placeholder={dataFields.survival_source.example}
                     options={dataFields.survival_source.items}
                     />
+                {(props.building.survival_source == dataFields.survival_source_links[0] ||
+                    props.building.survival_source == dataFields.survival_source_links[1] ||
+                    props.building.survival_source == null) ? <></> :
+                    <><MultiDataEntry
+                        title={dataFields.survival_source_links.title}
+                        slug="survival_source_links"
+                        value={props.building.survival_source_links}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.survival_source_links.tooltip}
+                        placeholder="https://..."
+                        editableEntries={true}
+                        isUrl={true}
+                        />
+                    </>
+                }
             </DataEntryGroup>
           </Fragment>
         );
@@ -322,14 +331,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     options={dataFields.date_source.items}
                     placeholder={dataFields.date_source.example}
                     />
-                <Verification
-                    slug="date_source"
-                    allow_verify={props.user !== undefined && props.building.date_source !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("date_source")}
-                    user_verified_as={props.user_verified.date_source}
-                    verified_count={props.building.verified.date_source}
-                    />
                 <MultiDataEntry
                     title={dataFields.date_link.title}
                     slug="date_link"
@@ -341,14 +342,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     placeholder="https://..."
                     editableEntries={true}
                     isUrl={true}
-                    />
-                <Verification
-                    slug="date_link"
-                    allow_verify={props.user !== undefined && props.building.date_link !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("date_link")}
-                    user_verified_as={props.user_verified.date_link}
-                    verified_count={props.building.verified.date_link}
                     />
                 <hr/>
                 <InfoBox type='warning'>
@@ -535,7 +528,24 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={dataFields.survival_source.tooltip}
                     placeholder={dataFields.survival_source.example}
                     options={dataFields.survival_source.items}
-                    />
+                />
+                {(props.building.survival_source == dataFields.survival_source.items[0] ||
+                    props.building.survival_source == dataFields.survival_source.items[1] ||
+                    props.building.survival_source == null) ? <></> :
+                    <><MultiDataEntry
+                        title={dataFields.survival_source_links.title}
+                        slug="survival_source_links"
+                        value={props.building.survival_source_links}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.survival_source_links.tooltip}
+                        placeholder="https://..."
+                        editableEntries={true}
+                        isUrl={true}
+                        />
+                    </>
+                }
             </DataEntryGroup>
         </Fragment>
     );

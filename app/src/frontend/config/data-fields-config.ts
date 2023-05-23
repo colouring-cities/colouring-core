@@ -373,7 +373,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_link: {
         category: Category.Age,
-        title: "Text and Image Links",
+        title: "Source link(s)",
         tooltip: "URL for age and date reference",
         example: ["", "", ""],
     },
@@ -396,17 +396,56 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "How many floors below pavement level?",
         example: 1,
     },
+    size_storeys_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source of building floors data",
+        example: "",
+        items: commonSourceTypes
+    },
+    size_storeys_source_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for building floors data source(s)",
+        example: ["", "", ""],
+    },
     size_height_apex: {
         category: Category.Size,
         title: "Height to apex (m)",
         example: 100.5,
         tooltip: "i.e. the highest part of the roof.",
     },
+    size_height_apex_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source of building height (apex) data",
+        example: "",
+        items: commonSourceTypes
+    },
+    size_height_apex_source_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for building height (apex) source(s)",
+        example: ["", "", ""],
+    },
     size_height_eaves: {
         category: Category.Size,
         title: "Height to eaves (m)",
         example: 20.33,
         tooltip: "i.e. to where the top of the wall meets the roof",
+    },
+    size_height_eaves_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source of building height (eaves) data",
+        example: "",
+        items: commonSourceTypes
+    },
+    size_height_eaves_source_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for building height (eaves) source(s)",
+        example: ["", "", ""],
     },
     size_floor_area_ground: {
         category: Category.Size,
@@ -420,11 +459,37 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: 2001.7,
         //tooltip: ,
     },
+    size_floor_area_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source of floor area data",
+        example: "",
+        items: commonSourceTypes
+    },
+    size_floor_area_source_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for floor area data source(s)",
+        example: ["", "", ""],
+    },
     size_width_frontage: {
         category: Category.Size,
         title: "Frontage width (m)",
         example: 12.2,
         //tooltip: ,
+    },
+    size_width_frontage_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source of building frontage data",
+        example: "",
+        items: commonSourceTypes
+    },
+    size_width_frontage_source_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for building frontage source(s)",
+        example: ["", "", ""],
     },
 
     size_configuration: {
@@ -514,7 +579,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     survival_source: {
         category: Category.Age,
-        title: "Source of survival information",
+        title: "Source type",
         tooltip: "Source for the survival status",
         items: [
             "Matched by comparing maps",
@@ -525,10 +590,10 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "",
     },
 
-    survival_link: {
+    survival_source_links: {
         category: Category.Age,
-        title: "Please add any additional text or image links providing historical information on this building",
-        tooltip: "URL for age and date reference",
+        title: "Source link(s)",
+        tooltip: "Links to sources of survival/historical information on this building",
         example: ["", "", ""],
     },
 
