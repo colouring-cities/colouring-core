@@ -128,27 +128,27 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                         />
                     </>
                 }
-                <hr/>
+                {/* <hr/>
                 <DataEntry
                     title="Date of Significant Retrofits"
                     slug=""
                     value=""
                     mode='view'
                 />
-                {/* <Verification
+                <Verification
                     slug="date_link"
                     allow_verify={props.user !== undefined && props.building.date_link !== null && !props.edited}
                     onVerify={props.onVerify}
                     user_verified={props.user_verified.hasOwnProperty("date_link")}
                     user_verified_as={props.user_verified.date_link}
                     verified_count={props.building.verified.date_link}
-                    /> */}
+                    />
                 <DataEntry
                     title="Source"
                     slug=""
                     value=""
                     mode='view'
-                />
+                /> */}
             </DataEntryGroup>
             <DataEntryGroup name="Other sustainability features">
                 <DataEntry
