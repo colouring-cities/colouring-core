@@ -557,6 +557,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Date of last major building refurbishment",
         example: 1920,
     },
+    sust_retrofit_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source of last significant retrofit data",
+        example: "",
+        items: commonSourceTypes
+    },
+    sust_retrofit_source_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for last significant retrofit data source(s)",
+        example: ["", "", ""],
+    },
     sust_life_expectancy: {
         category: Category.EnergyPerformance,
         title: "Expected lifespan for typology",
@@ -837,6 +850,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip_extension: "This should be the year the extension was built, not the original building",
         example: 2020
     },
+    extension_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for extension data",
+        example: "",
+        items: commonSourceTypes
+    },
+    extension_source_links: {
+        category: Category.Team,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for extension data",
+        example: ["", "", ""],
+    },
     developer_type: {
         category: Category.Team,
         title: "What type of developer built the building?",
@@ -858,6 +884,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Free text. First name, space, then Last name",
         example: ["", "", ""],
     },
+    developer_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for developer data",
+        example: "",
+        items: commonSourceTypes
+    },
     developer_source_link: {
         category: Category.Team,
         title: "Source links for developer(s)",
@@ -870,10 +903,17 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Free text. First name, space, then Last name",
         example: ["", "", ""],
     },
+    landowner_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for landowner data",
+        example: "",
+        items: commonSourceTypes
+    },
     landowner_source_link: {
         category: Category.Team,
-        title: "Source links for landowner(s)",
-        tooltip: "URL for source for landowner(s)",
+        title: "Source link(s)",
+        tooltip: "URL(s) for source for landowner data",
         example: ["", "", ""],
     },
     designers: {
@@ -881,6 +921,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Who were the main designer(s)?",
         tooltip: "Free text. First name, space, then Last name",
         example: ["", "", ""],
+    },
+    designers_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for designer data",
+        example: "",
+        items: commonSourceTypes
     },
     designers_source_link: {
         category: Category.Team,
@@ -918,6 +965,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Name of builder/construction team",
         example: ["", "", ""],
     },
+    builder_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for builder data",
+        example: "",
+        items: commonSourceTypes
+    },
     builder_source_link: {
         category: Category.Team,
         title: "Source for builder/construction team",
@@ -935,23 +989,26 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     disaster_type: {
         category: Category.Resilience,
-        title: "What type of disaster management do you wish to collect data for?",
+        title: "Disaster type",
+        tooltip: "What type of disaster management do you wish to collect data for?",
         example: "Flood"
     },
     disaster_severity: {
         category: Category.Resilience,
         title: "How severe do you assess the damage to be?",
+        tooltip: "Best estimate for the severity of damage to the building",
         example: "Building destroyed"
     },
     disaster_assessment_method: {
         category: Category.Resilience,
-        title: "Please add a method of assessment",
+        title: "Method of assessment",
+        tooltip: "Please add a Best estimate for the severity of damage to the building",
         example: "Citizen/Passerby by eye"
     },
     disaster_source_link: {
         category: Category.Resilience,
-        title: "Please add a source link to official documentation/photographic evidence where applicable",
-        tooltip: "URL for data sources(s)",
+        title: "Source link(s)",
+        tooltip: "Please add a source link(s) to official documentation/photographic evidence where applicable",
         example: ["", "", ""],
     },
     disaster_start_date: {

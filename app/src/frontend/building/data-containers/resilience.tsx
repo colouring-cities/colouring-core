@@ -24,6 +24,9 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (<>
         <DataEntryGroup name="Building damage assessment tool" collapsed={true} >
+            <InfoBox type='warning'>
+                This section is under development.
+            </InfoBox>
             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                 <i>
                     This feature is designed as an assessment tool to help communities capture data on the state of buildings following major disasters. 
@@ -76,7 +79,7 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     'Other human (blast damage/spills etc.)',
                     'Other'
                 ]}
-
+                tooltip={dataFields.disaster_type.tooltip}
                 onChange={props.onChange}
                 mode={props.mode}
                 copy={props.copy}
@@ -93,7 +96,7 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     'Minimal',
                     'No damage visible',
                 ]}
-
+                tooltip={dataFields.disaster_severity.tooltip}
                 onChange={props.onChange}
                 mode={props.mode}
                 copy={props.copy}
@@ -116,7 +119,7 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     'Specialist emergency group/charity',
                     'Other',
                 ]}
-
+                tooltip={dataFields.disaster_assessment_method.tooltip}
                 onChange={props.onChange}
                 mode={props.mode}
                 copy={props.copy}

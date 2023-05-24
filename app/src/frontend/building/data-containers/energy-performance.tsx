@@ -10,6 +10,7 @@ import InfoBox from '../../components/info-box';
 
 import { CategoryViewProps } from './category-view-props';
 import { DataEntryGroup } from '../data-components/data-entry-group';
+import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 
 const EnergyCategoryOptions = ["A", "B", "C", "D", "E", "F", "G"];
 const BreeamRatingOptions = [
@@ -98,20 +99,50 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     user_verified_as={props.user_verified.sust_retrofit_date}
                     verified_count={props.building.verified.sust_retrofit_date}
                     />
+                <SelectDataEntry
+                    title={dataFields.sust_retrofit_source_type.title}
+                    slug="sust_retrofit_source_type"
+                    value={props.building.sust_retrofit_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.sust_retrofit_source_type.tooltip}
+                    options={dataFields.sust_retrofit_source_type.items}
+                    placeholder={dataFields.sust_retrofit_source_type.example}
+                    />
+                {(props.building.sust_retrofit_source_type == dataFields.sust_retrofit_source_type.items[0] ||
+                    props.building.sust_retrofit_source_type == dataFields.sust_retrofit_source_type.items[1] ||
+                    props.building.sust_retrofit_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.sust_retrofit_source_links.title}
+                            slug="sust_retrofit_source_links"
+                            value={props.building.sust_retrofit_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.sust_retrofit_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+                <hr/>
                 <DataEntry
                     title="Date of Significant Retrofits"
                     slug=""
                     value=""
                     mode='view'
                 />
-                <Verification
+                {/* <Verification
                     slug="date_link"
                     allow_verify={props.user !== undefined && props.building.date_link !== null && !props.edited}
                     onVerify={props.onVerify}
                     user_verified={props.user_verified.hasOwnProperty("date_link")}
                     user_verified_as={props.user_verified.date_link}
                     verified_count={props.building.verified.date_link}
-                    />
+                    /> */}
                 <DataEntry
                     title="Source"
                     slug=""

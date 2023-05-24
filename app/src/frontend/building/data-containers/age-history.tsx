@@ -106,6 +106,24 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     placeholder={dataFields.date_source.example}
                     options={dataFields.date_source.items}
                     />
+                {(props.building.date_source == dataFields.date_source.items[0] ||
+                props.building.date_source == dataFields.date_source.items[1] ||
+                props.building.date_source == null) ? <></> :
+                <>
+                    <MultiDataEntry
+                        title={dataFields.date_link.title}
+                        slug="date_link"
+                        value={props.building.date_link}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.date_link.tooltip}
+                        placeholder="https://..."
+                        editableEntries={true}
+                        isUrl={true}
+                    />
+                </>
+            }
                 <hr/>
                 <InfoBox type='warning'>
                     This section is under development.
@@ -331,18 +349,24 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     options={dataFields.date_source.items}
                     placeholder={dataFields.date_source.example}
                     />
-                <MultiDataEntry
-                    title={dataFields.date_link.title}
-                    slug="date_link"
-                    value={props.building.date_link}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    tooltip={dataFields.date_link.tooltip}
-                    placeholder="https://..."
-                    editableEntries={true}
-                    isUrl={true}
-                    />
+                {(props.building.date_source == dataFields.date_source.items[0] ||
+                    props.building.date_source == dataFields.date_source.items[1] ||
+                    props.building.date_source == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.date_link.title}
+                            slug="date_link"
+                            value={props.building.date_link}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.date_link.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
                 <hr/>
                 <InfoBox type='warning'>
                     This section is under development.
@@ -373,14 +397,14 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     value=""
                     mode='view'
                 />
-                <Verification
+                {/* <Verification
                     slug="date_link"
                     allow_verify={props.user !== undefined && props.building.date_link !== null && !props.edited}
                     onVerify={props.onVerify}
                     user_verified={props.user_verified.hasOwnProperty("date_link")}
                     user_verified_as={props.user_verified.date_link}
                     verified_count={props.building.verified.date_link}
-                    />
+                    /> */}
                 <DataEntry
                     title="Source"
                     slug=""
@@ -393,14 +417,14 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     value=""
                     mode='view'
                 />
-                <Verification
+                {/* <Verification
                     slug="date_link"
                     allow_verify={props.user !== undefined && props.building.date_link !== null && !props.edited}
                     onVerify={props.onVerify}
                     user_verified={props.user_verified.hasOwnProperty("date_link")}
                     user_verified_as={props.user_verified.date_link}
                     verified_count={props.building.verified.date_link}
-                    />
+                    /> */}
                 <DataEntry
                     title="Source"
                     slug=""

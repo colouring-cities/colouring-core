@@ -14,3 +14,8 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS size_height_eaves;
 ALTER TABLE buildings DROP COLUMN IF EXISTS size_width_frontage_source_type;
 ALTER TABLE buildings DROP COLUMN IF EXISTS size_width_frontage_source_links;
 ALTER TABLE buildings DROP COLUMN IF EXISTS survival_source_links;
+ALTER TABLE buildings DROP COLUMN IF EXISTS landowner_source_type;
+ALTER TABLE buildings DROP COLUMN IF EXISTS designers_source_type;
+ALTER TABLE buildings DROP COLUMN IF EXISTS builder_source_type;
+ALTER TABLE buildings DROP COLUMN IF EXISTS extension_source_type;
+ALTER TABLE buildings DROP COLUMN IF EXISTS extension_source_links;

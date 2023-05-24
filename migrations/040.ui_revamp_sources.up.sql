@@ -16,3 +16,8 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS size_floor_area_source_links text
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS size_width_frontage_source_type text;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS size_width_frontage_source_links text[];
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS survival_source_links text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS landowner_source_type text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS designers_source_type text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS builder_source_type text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS extension_source_type text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS extension_source_links text[];

@@ -160,6 +160,14 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 step={0.1}
                 min={0}
                 />
+            <Verification
+                slug="size_height_eaves"
+                allow_verify={props.user !== undefined && props.building.size_height_eaves !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("size_height_eaves")}
+                user_verified_as={props.user_verified.size_height_eaves}
+                verified_count={props.building.verified.size_height_eaves}
+                />
             <SelectDataEntry
                 title={dataFields.size_height_eaves_source_type.title}
                 slug="size_height_eaves_source_type"
