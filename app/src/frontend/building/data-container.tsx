@@ -362,6 +362,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                 <EditHistoryLatest
                     building={this.props.building}
                 />
+                <hr/>
                 {
                     this.props.inactive ?
                         <Fragment>
