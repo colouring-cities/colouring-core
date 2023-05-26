@@ -128,7 +128,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     style={{zIndex: 300}}
                 >
                     <CityBoundaryLayer/>
-                    <HistoricDataLayer/>
+                    <HistoricDataLayer revisionId={revisionId} />
                     <BoroughBoundaryLayer/>
                     <ParcelBoundaryLayer/>
                     <FloodBoundaryLayer/>
