@@ -123,29 +123,158 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         isUrl={true}
                     />
                 </>
-            }
+                }
+            </DataEntryGroup>
+            <DataEntryGroup name="Cladding, extensions and retrofits">
+                <NumericDataEntry
+                    slug='age_cladding_date'
+                    title={dataFields.age_cladding_date.title}
+                    value={props.building.age_cladding_date}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={1}
+                    max={currentYear}
+                    tooltip={dataFields.extension_year.tooltip}
+                    />
+                <Verification
+                    slug="age_cladding_date"
+                    allow_verify={props.user !== undefined && props.building.age_cladding_date !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("age_cladding_date")}
+                    user_verified_as={props.user_verified.age_cladding_date}
+                    verified_count={props.building.verified.age_cladding_date}
+                    />
+                <SelectDataEntry
+                    title={dataFields.age_cladding_date_source_type.title}
+                    slug="age_cladding_date_source_type"
+                    value={props.building.age_cladding_date_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.age_cladding_date_source_type.tooltip}
+                    options={dataFields.age_cladding_date_source_type.items}
+                    placeholder={dataFields.age_cladding_date_source_type.example}
+                    />
+                {(props.building.age_cladding_date_source_type == dataFields.age_cladding_date_source_type.items[0] ||
+                    props.building.age_cladding_date_source_type == dataFields.age_cladding_date_source_type.items[1] ||
+                    props.building.age_cladding_date_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.age_cladding_date_source_links.title}
+                            slug="age_cladding_date_source_links"
+                            value={props.building.age_cladding_date_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.age_cladding_date_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
                 <hr/>
-                <InfoBox type='warning'>
-                    This section is under development.
-                </InfoBox>
-                <DataEntry
-                    title="Cladding date"
-                    slug=""
-                    value=""
-                    mode='view'
-                />
-                <DataEntry
-                    title="Date of significant extensions"
-                    slug=""
-                    value=""
-                    mode='view'
-                />
-                <DataEntry
-                    title="Date of significant retrofits"
-                    slug=""
-                    value=""
-                    mode='view'
-                />
+                <NumericDataEntry
+                    slug='age_extension_date'
+                    title={dataFields.age_extension_date.title}
+                    value={props.building.age_extension_date}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={1}
+                    max={currentYear}
+                    tooltip={dataFields.extension_year.tooltip}
+                    />
+                <Verification
+                    slug="age_extension_date"
+                    allow_verify={props.user !== undefined && props.building.age_extension_date !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("age_extension_date")}
+                    user_verified_as={props.user_verified.age_extension_date}
+                    verified_count={props.building.verified.age_extension_date}
+                    />
+                <SelectDataEntry
+                    title={dataFields.age_extension_date_source_type.title}
+                    slug="age_extension_date_source_type"
+                    value={props.building.age_extension_date_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.age_extension_date_source_type.tooltip}
+                    options={dataFields.age_extension_date_source_type.items}
+                    placeholder={dataFields.age_extension_date_source_type.example}
+                    />
+                {(props.building.age_extension_date_source_type == dataFields.age_extension_date_source_type.items[0] ||
+                    props.building.age_extension_date_source_type == dataFields.age_extension_date_source_type.items[1] ||
+                    props.building.age_extension_date_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.age_extension_date_source_links.title}
+                            slug="age_extension_date_source_links"
+                            value={props.building.age_extension_date_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.age_extension_date_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+                <hr/>
+                <NumericDataEntry
+                    slug='age_retrofit_date'
+                    title={dataFields.age_retrofit_date.title}
+                    value={props.building.age_retrofit_date}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={1}
+                    max={currentYear}
+                    tooltip={dataFields.extension_year.tooltip}
+                    />
+                <Verification
+                    slug="age_retrofit_date"
+                    allow_verify={props.user !== undefined && props.building.age_retrofit_date !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("age_retrofit_date")}
+                    user_verified_as={props.user_verified.age_retrofit_date}
+                    verified_count={props.building.verified.age_retrofit_date}
+                    />
+                <SelectDataEntry
+                    title={dataFields.age_retrofit_date_source_type.title}
+                    slug="age_retrofit_date_source_type"
+                    value={props.building.age_retrofit_date_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.age_retrofit_date_source_type.tooltip}
+                    options={dataFields.age_retrofit_date_source_type.items}
+                    placeholder={dataFields.age_retrofit_date_source_type.example}
+                    />
+                {(props.building.age_retrofit_date_source_type == dataFields.age_retrofit_date_source_type.items[0] ||
+                    props.building.age_retrofit_date_source_type == dataFields.age_retrofit_date_source_type.items[1] ||
+                    props.building.age_retrofit_date_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.age_retrofit_date_source_links.title}
+                            slug="age_retrofit_date_source_links"
+                            value={props.building.age_retrofit_date_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.age_retrofit_date_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan and site history">
                 <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
@@ -291,7 +420,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
       };
     return (
         <Fragment>
-            <DataEntryGroup name="Building Age">
+            <DataEntryGroup name="Building age">
                 <YearDataEntry
                     year={props.building.date_year}
                     upper={props.building.date_upper}
@@ -367,72 +496,159 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                     </>
                 }
-                <hr/>
-                <InfoBox type='warning'>
-                    This section is under development.
-                </InfoBox>
-                <DataEntry
-                    title="Cladding Date"
-                    slug=""
-                    value=""
-                    mode='view'
-                />
-                <Verification
-                    slug="date_link"
-                    allow_verify={props.user !== undefined && props.building.date_link !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("date_link")}
-                    user_verified_as={props.user_verified.date_link}
-                    verified_count={props.building.verified.date_link}
-                    />
-                <DataEntry
-                    title="Source"
-                    slug=""
-                    value=""
-                    mode='view'
-                />
-                <DataEntry
-                    title="Date of Significant Extensions"
-                    slug=""
-                    value=""
-                    mode='view'
-                />
-                {/* <Verification
-                    slug="date_link"
-                    allow_verify={props.user !== undefined && props.building.date_link !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("date_link")}
-                    user_verified_as={props.user_verified.date_link}
-                    verified_count={props.building.verified.date_link}
-                    /> */}
-                <DataEntry
-                    title="Source"
-                    slug=""
-                    value=""
-                    mode='view'
-                />
-                <DataEntry
-                    title="Date of Significant Retrofits"
-                    slug=""
-                    value=""
-                    mode='view'
-                />
-                {/* <Verification
-                    slug="date_link"
-                    allow_verify={props.user !== undefined && props.building.date_link !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("date_link")}
-                    user_verified_as={props.user_verified.date_link}
-                    verified_count={props.building.verified.date_link}
-                    /> */}
-                <DataEntry
-                    title="Source"
-                    slug=""
-                    value=""
-                    mode='view'
-                />
             </DataEntryGroup>
-            <DataEntryGroup name="Lifespan and Site History">
+            <DataEntryGroup name="Cladding, extensions and retrofits">
+                <NumericDataEntry
+                    slug='age_cladding_date'
+                    title={dataFields.age_cladding_date.title}
+                    value={props.building.age_cladding_date}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={1}
+                    max={currentYear}
+                    tooltip={dataFields.extension_year.tooltip}
+                    />
+                <Verification
+                    slug="age_cladding_date"
+                    allow_verify={props.user !== undefined && props.building.age_cladding_date !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("age_cladding_date")}
+                    user_verified_as={props.user_verified.age_cladding_date}
+                    verified_count={props.building.verified.age_cladding_date}
+                    />
+                <SelectDataEntry
+                    title={dataFields.age_cladding_date_source_type.title}
+                    slug="age_cladding_date_source_type"
+                    value={props.building.age_cladding_date_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.age_cladding_date_source_type.tooltip}
+                    options={dataFields.age_cladding_date_source_type.items}
+                    placeholder={dataFields.age_cladding_date_source_type.example}
+                    />
+                {(props.building.age_cladding_date_source_type == dataFields.age_cladding_date_source_type.items[0] ||
+                    props.building.age_cladding_date_source_type == dataFields.age_cladding_date_source_type.items[1] ||
+                    props.building.age_cladding_date_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.age_cladding_date_source_links.title}
+                            slug="age_cladding_date_source_links"
+                            value={props.building.age_cladding_date_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.age_cladding_date_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+                <hr/>
+                <NumericDataEntry
+                    slug='age_extension_date'
+                    title={dataFields.age_extension_date.title}
+                    value={props.building.age_extension_date}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={1}
+                    max={currentYear}
+                    tooltip={dataFields.extension_year.tooltip}
+                    />
+                <Verification
+                    slug="age_extension_date"
+                    allow_verify={props.user !== undefined && props.building.age_extension_date !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("age_extension_date")}
+                    user_verified_as={props.user_verified.age_extension_date}
+                    verified_count={props.building.verified.age_extension_date}
+                    />
+                <SelectDataEntry
+                    title={dataFields.age_extension_date_source_type.title}
+                    slug="age_extension_date_source_type"
+                    value={props.building.age_extension_date_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.age_extension_date_source_type.tooltip}
+                    options={dataFields.age_extension_date_source_type.items}
+                    placeholder={dataFields.age_extension_date_source_type.example}
+                    />
+                {(props.building.age_extension_date_source_type == dataFields.age_extension_date_source_type.items[0] ||
+                    props.building.age_extension_date_source_type == dataFields.age_extension_date_source_type.items[1] ||
+                    props.building.age_extension_date_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.age_extension_date_source_links.title}
+                            slug="age_extension_date_source_links"
+                            value={props.building.age_extension_date_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.age_extension_date_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+                <hr/>
+                <NumericDataEntry
+                    slug='age_retrofit_date'
+                    title={dataFields.age_retrofit_date.title}
+                    value={props.building.age_retrofit_date}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={1}
+                    max={currentYear}
+                    tooltip={dataFields.extension_year.tooltip}
+                    />
+                <Verification
+                    slug="age_retrofit_date"
+                    allow_verify={props.user !== undefined && props.building.age_retrofit_date !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("age_retrofit_date")}
+                    user_verified_as={props.user_verified.age_retrofit_date}
+                    verified_count={props.building.verified.age_retrofit_date}
+                    />
+                <SelectDataEntry
+                    title={dataFields.age_retrofit_date_source_type.title}
+                    slug="age_retrofit_date_source_type"
+                    value={props.building.age_retrofit_date_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.age_retrofit_date_source_type.tooltip}
+                    options={dataFields.age_retrofit_date_source_type.items}
+                    placeholder={dataFields.age_retrofit_date_source_type.example}
+                    />
+                {(props.building.age_retrofit_date_source_type == dataFields.age_retrofit_date_source_type.items[0] ||
+                    props.building.age_retrofit_date_source_type == dataFields.age_retrofit_date_source_type.items[1] ||
+                    props.building.age_retrofit_date_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.age_retrofit_date_source_links.title}
+                            slug="age_retrofit_date_source_links"
+                            value={props.building.age_retrofit_date_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.age_retrofit_date_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+            </DataEntryGroup>
+            <DataEntryGroup name="Lifespan and site history">
                 <button className={`map-switcher-inline ${historicData} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
                     {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>

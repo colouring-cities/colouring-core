@@ -50,3 +50,12 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS context_tree_distance_source_link
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS context_street_geometry text;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS context_street_geometry_source_type text;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS context_street_geometry_source_links text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS age_cladding_date text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS age_cladding_date_source_type text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS age_cladding_date_source_links text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS age_extension_date text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS age_extension_date_source_type text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS age_extension_date_source_links text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS age_retrofit_date text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS age_retrofit_date_source_type text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS age_retrofit_date_source_links text[];

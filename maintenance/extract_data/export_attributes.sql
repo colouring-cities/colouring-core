@@ -107,7 +107,16 @@ COPY (SELECT
     context_green_space_distance_source_links,
     context_tree_distance,
     context_tree_distance_source_type,
-    ccontext_tree_distance_source_links
+    context_tree_distance_source_links,
+    age_cladding_date,
+    age_cladding_date_source_type,
+    age_cladding_date_source_links,
+    age_extension_date,
+    age_extension_date_source_type,
+    age_extension_date_source_links,
+    age_retrofit_date,
+    age_retrofit_date_source_type,
+    age_retrofit_date_source_links,
 FROM buildings)
 TO '/tmp/building_attributes.csv'
 WITH CSV HEADER

@@ -646,7 +646,43 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
-    ccontext_tree_distance_source_links : {
+    context_tree_distance_source_links : {
+        edit: true,
+        verify: true
+    },
+    age_cladding_date : {
+        edit: true,
+        verify: true
+    },
+    age_cladding_date_source_type : {
+        edit: true,
+        verify: true
+    },
+    age_cladding_date_source_links : {
+        edit: true,
+        verify: true
+    },
+    age_extension_date : {
+        edit: true,
+        verify: true
+    },
+    age_extension_date_source_type : {
+        edit: true,
+        verify: true
+    },
+    age_extension_date_source_links : {
+        edit: true,
+        verify: true
+    },
+    age_retrofit_date : {
+        edit: true,
+        verify: true
+    },
+    age_retrofit_date_source_type : {
+        edit: true,
+        verify: true
+    },
+    age_retrofit_date_source_links : {
         edit: true,
         verify: true
     }

@@ -1234,6 +1234,63 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Source link(s) for tree data",
         example: ["", "", ""],
     },
+    age_cladding_date: {
+        category: Category.Age,
+        title: "Cladding date",
+        tooltip: "Width of the street in metres.",
+        example: 1970
+    },
+    age_cladding_date_source_type: {
+        category: Category.Age,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    age_cladding_date_source_links: {
+        category: Category.Age,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+    age_extension_date: {
+        category: Category.Age,
+        title: "Date of significant extensions",
+        tooltip: "Width of the street in metres.",
+        example: 1970
+    },
+    age_extension_date_source_type: {
+        category: Category.Age,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    age_extension_date_source_links: {
+        category: Category.Age,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+    age_retrofit_date: {
+        category: Category.Age,
+        title: "Date of significant retrofits",
+        tooltip: "Width of the street in metres.",
+        example: 1970
+    },
+    age_retrofit_date_source_type: {
+        category: Category.Age,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    age_retrofit_date_source_links: {
+        category: Category.Age,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
 };
 
 export const allFieldsConfig = { ...dataFields, ...buildingUserFields };
