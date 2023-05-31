@@ -413,13 +413,13 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                                                 </button> :
                                                                 null
                                                         }
-                                                        <hr/>
                                                     </div>
                                                     
                                             }
                                         </div>
                                         : null
                                 }
+                                <hr/>
                                 <WrappedComponent
                                     intro={this.props.intro}
                                     building={currentBuilding}
