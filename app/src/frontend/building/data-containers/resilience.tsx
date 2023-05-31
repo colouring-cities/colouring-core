@@ -23,20 +23,14 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const [ endDate, setEndDate ] = useState(null);
 
     return (<>
-        <DataEntryGroup name="Building damage assessment tool" collapsed={true} >
-            <InfoBox type='warning'>
-                This section is under development.
-            </InfoBox>
+        <DataEntryGroup name="Building damage assessment tool" collapsed={true}>
             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                 <i>
                     This feature is designed as an assessment tool to help communities capture data on the state of buildings following major disasters. 
                     It is intended to help support emergency services, to record damage, and to aid reconstruction programmes.
                 </i>
             </div>
-            <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
-                {(historicData === 'enabled')?'Click here to hide disaster maps':'Click here to show disaster maps'}
-            </button>
-            <p>Date of disaster</p>
+            <label>Date of disaster</label>
             <div>
                 <DatePicker 
                     showIcon
@@ -65,37 +59,37 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     maxDate={new Date()}
                 />
             </div>
+            <Verification
+                slug="disaster_end_date"
+                allow_verify={props.user !== undefined && props.building.disaster_end_date !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("disaster_end_date")}
+                user_verified_as={props.user_verified.disaster_end_date}
+                verified_count={props.building.verified.disaster_end_date}
+            />
             <SelectDataEntry
                 slug='disaster_type'
                 title={dataFields.disaster_type.title}
                 value={props.building.disaster_type}
-                options={[
-                    'Flood',
-                    'Earthquake',
-                    'Hurricane',
-                    'Fire',
-                    'Extreme heat',
-                    'Political/war damage',
-                    'Other human (blast damage/spills etc.)',
-                    'Other'
-                ]}
+                options={dataFields.disaster_type.items}
                 tooltip={dataFields.disaster_type.tooltip}
                 onChange={props.onChange}
                 mode={props.mode}
                 copy={props.copy}
             />
+            <Verification
+                slug="disaster_type"
+                allow_verify={props.user !== undefined && props.building.disaster_type !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("disaster_type")}
+                user_verified_as={props.user_verified.disaster_type}
+                verified_count={props.building.verified.disaster_type}
+            />
             <SelectDataEntry
                 slug='disaster_severity'
                 title={dataFields.disaster_severity.title}
                 value={props.building.disaster_severity}
-                options={[
-                    'Building destroyed',
-                    'Very severe',
-                    'Severe',
-                    'Moderate',
-                    'Minimal',
-                    'No damage visible',
-                ]}
+                options={dataFields.disaster_severity.items}
                 tooltip={dataFields.disaster_severity.tooltip}
                 onChange={props.onChange}
                 mode={props.mode}
@@ -113,37 +107,30 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 slug='disaster_assessment_method'
                 title={dataFields.disaster_assessment_method.title}
                 value={props.building.disaster_assessment_method}
-                options={[
-                    'Citizen/Passerby by eye',
-                    'Government assessor',
-                    'Specialist emergency group/charity',
-                    'Other',
-                ]}
+                options={dataFields.disaster_assessment_method.items}
                 tooltip={dataFields.disaster_assessment_method.tooltip}
                 onChange={props.onChange}
                 mode={props.mode}
                 copy={props.copy}
             />
-            <Verification
-                slug="disaster_assessment_method"
-                allow_verify={props.user !== undefined && props.building.disaster_assessment_method !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("disaster_assessment_method")}
-                user_verified_as={props.user_verified.disaster_assessment_method}
-                verified_count={props.building.verified.disaster_assessment_method}
-            />
-            <MultiDataEntry
-              title={dataFields.disaster_source_link.title}
-              slug="disaster_source_link"
-              value={props.building.disaster_source_link}
-              mode={props.mode}
-              copy={props.copy}
-              onChange={props.onChange}
-              tooltip={dataFields.disaster_source_link.tooltip}
-              placeholder="https://..."
-              editableEntries={true}
-              isUrl={true}
-            />
+            {(props.building.disaster_assessment_method == dataFields.disaster_assessment_method.items[0] ||
+                    props.building.disaster_assessment_method == dataFields.disaster_assessment_method.items[1] ||
+                    props.building.disaster_assessment_method == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.disaster_source_link.title}
+                            slug="disaster_source_link"
+                            value={props.building.disaster_source_link}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.disaster_source_link.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                            />
+                    </>
+                }
         </DataEntryGroup>
         <DataEntryGroup name="Resilience indicators and risk assessment" collapsed={true} >
             <InfoBox type='warning'>

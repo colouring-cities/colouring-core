@@ -179,3 +179,8 @@
 .data-entry-list-button {
     width: 2.5em;
 }
+
+.source-url {
+    padding-top: 0px;
+    padding-bottom: 5px;
+}

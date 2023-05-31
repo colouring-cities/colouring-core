@@ -263,93 +263,6 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
         </DataEntryGroup>
         <DataEntryGroup name="Plot size data">
             <NumericDataEntry
-                title={dataFields.size_plot_area_total.title}
-                slug="size_plot_area_total"
-                mode='view'
-                step={0.1}
-                min={0}
-            />
-            <DataEntry
-                title="Source type"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
-            <DataEntry
-                title="Source link"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
-            <hr/>
-            <NumericDataEntry
-                title={dataFields.size_far_ratio.title}
-                slug="size_far_ratio"
-                mode='view'
-                step={0.1}
-                min={0}
-            />
-            <DataEntry
-                title="Source type"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
-            <DataEntry
-                title="Source link"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
-            <hr/>
-            <DataEntry
-                title="Plot dimensions"
-                slug=""
-                value=""
-                mode='view'
-            />
-            <DataEntry
-                title="Source type"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
-            <DataEntry
-                title="Source link"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
-            <hr/>
-            <DataEntry
-                title="Land parcel geometry link"
-                slug=""
-                value=""
-                mode='view'
-                tooltip='INSPIRE Polygons'
-            />
-            <DataEntry
-                title="Source type"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
-            <DataEntry
-                title="Source link"
-                slug=""
-                value=""
-                mode='view'
-                tooltip="Coming Soon"
-            />
-            <hr/>
-            <NumericDataEntry
                 title={dataFields.size_width_frontage.title}
                 slug="size_width_frontage"
                 value={props.building.size_width_frontage}
@@ -388,6 +301,146 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     copy={props.copy}
                     onChange={props.onChange}
                     tooltip={dataFields.size_width_frontage_source_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                    />
+                </>
+            }
+            <hr/>
+            <NumericDataEntry
+                title={dataFields.size_plot_area_total.title}
+                slug="size_plot_area_total"
+                tooltip={dataFields.size_plot_area_total.tooltip}
+                value={props.building.size_plot_area_total}
+                mode={props.mode}
+                onChange={props.onChange}
+                step={0.1}
+                min={0}
+            />
+            <Verification
+                slug="size_plot_area_total"
+                allow_verify={props.user !== undefined && props.building.size_plot_area_total !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("size_plot_area_total")}
+                user_verified_as={props.user_verified.size_plot_area_total}
+                verified_count={props.building.verified.size_plot_area_total}
+                />
+            <SelectDataEntry
+                title={dataFields.size_plot_area_total_source_type.title}
+                slug="size_plot_area_total_source_type"
+                value={props.building.size_plot_area_total_source_type}
+                options={dataFields.size_plot_area_total_source_type.items}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.size_plot_area_total_source_type.tooltip}
+            />
+            {(props.building.size_plot_area_total_source_type == commonSourceTypes[0] ||
+                props.building.size_plot_area_total_source_type == commonSourceTypes[1] ||
+                props.building.size_far_ratio_source_type == null) ? <></> :
+                <><MultiDataEntry
+                    title={dataFields.size_plot_area_total_source_links.title}
+                    slug="size_plot_area_total_source_links"
+                    value={props.building.size_plot_area_total_source_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.size_plot_area_total_source_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                    />
+                </>
+            }
+            <hr/>
+            <NumericDataEntry
+                title={dataFields.size_far_ratio.title}
+                value={props.building.size_far_ratio}
+                slug="size_far_ratio"
+                tooltip={dataFields.size_far_ratio.tooltip}
+                //placeholder={dataFields.size_far_ratio.example}
+                mode={props.mode}
+                onChange={props.onChange}
+                step={1}
+                min={0}
+            />
+            <Verification
+                slug="size_far_ratio"
+                allow_verify={props.user !== undefined && props.building.size_far_ratio !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("size_far_ratio")}
+                user_verified_as={props.user_verified.size_far_ratio}
+                verified_count={props.building.verified.size_far_ratio}
+                />
+            <SelectDataEntry
+                title={dataFields.size_far_ratio_source_type.title}
+                slug="size_far_ratio_source_type"
+                value={props.building.size_far_ratio_source_type}
+                options={dataFields.size_far_ratio_source_type.items}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.size_far_ratio_source_type.tooltip}
+            />
+            {(props.building.size_far_ratio_source_type == commonSourceTypes[0] ||
+                props.building.size_far_ratio_source_type == commonSourceTypes[1] ||
+                props.building.size_far_ratio_source_type == null) ? <></> :
+                <><MultiDataEntry
+                    title={dataFields.size_far_ratio_source_links.title}
+                    slug="size_far_ratio_source_links"
+                    value={props.building.size_far_ratio_source_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.size_far_ratio_source_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                    />
+                </>
+            }
+            <hr/>
+            <DataEntry
+                title={dataFields.size_parcel_geometry.title}
+                slug="size_parcel_geometry"
+                value={props.building.size_parcel_geometry}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.size_parcel_geometry.tooltip}
+                placeholder="https://..."
+                isUrl={true}
+                />
+            <Verification
+                slug="size_parcel_geometry"
+                allow_verify={props.user !== undefined && props.building.size_parcel_geometry !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("size_parcel_geometry")}
+                user_verified_as={props.user_verified.size_parcel_geometry}
+                verified_count={props.building.verified.size_parcel_geometry}
+                />
+            <SelectDataEntry
+                title={dataFields.size_parcel_geometry_source_type.title}
+                slug="size_parcel_geometry_source_type"
+                value={props.building.size_parcel_geometry_source_type}
+                options={dataFields.size_parcel_geometry_source_type.items}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.size_parcel_geometry_source_type.tooltip}
+            />
+            {(props.building.size_parcel_geometry_source_type == commonSourceTypes[0] ||
+                props.building.size_parcel_geometry_source_type == commonSourceTypes[1] ||
+                props.building.size_parcel_geometry_source_type == null) ? <></> :
+                <><MultiDataEntry
+                    title={dataFields.size_parcel_geometry_source_links.title}
+                    slug="size_parcel_geometry_source_links"
+                    value={props.building.size_parcel_geometry_source_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.size_parcel_geometry_source_links.tooltip}
                     placeholder="https://..."
                     editableEntries={true}
                     isUrl={true}

@@ -214,6 +214,42 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    size_far_ratio: {
+        edit: true,
+        verify: true,
+    },
+    size_far_ratio_source_type: {
+        edit: true,
+        verify: true,
+    },
+    size_far_ratio_source_links: {
+        edit: true,
+        verify: true,
+    },
+    size_plot_area_total: {
+        edit: true,
+        verify: true,
+    },
+    size_plot_area_total_source_type: {
+        edit: true,
+        verify: true,
+    },
+    size_plot_area_total_source_links: {
+        edit: true,
+        verify: true,
+    },
+    size_parcel_geometry: {
+        edit: true,
+        verify: true,
+    },
+    size_parcel_geometry_source_type: {
+        edit: true,
+        verify: true,
+    },
+    size_parcel_geometry_source_links: {
+        edit: true,
+        verify: true,
+    },
     construction_core_material: {
         edit: true,
         verify: true,
@@ -531,6 +567,86 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true
     },
     disaster_end_date : {
+        edit: true,
+        verify: true
+    },
+    context_front_garden : {
+        edit: true,
+        verify: true
+    },
+    context_back_garden : {
+        edit: true,
+        verify: true
+    },
+    context_flats_garden : {
+        edit: true,
+        verify: true
+    },
+    context_garden_source_type : {
+        edit: true,
+        verify: true
+    },
+    context_garden_source_links : {
+        edit: true,
+        verify: true
+    },
+    context_street_width : {
+        edit: true,
+        verify: true
+    },
+    context_street_width_source_type : {
+        edit: true,
+        verify: true
+    },
+    context_street_width_source_links : {
+        edit: true,
+        verify: true
+    },
+    context_pavement_width : {
+        edit: true,
+        verify: true
+    },
+    context_pavement_width_source_type : {
+        edit: true,
+        verify: true
+    },
+    context_pavement_width_source_links : {
+        edit: true,
+        verify: true
+    },
+    context_street_geometry : {
+        edit: true,
+        verify: true
+    },
+    context_street_geometry_source_type : {
+        edit: true,
+        verify: true
+    },
+    context_street_geometry_source_links : {
+        edit: true,
+        verify: true
+    },
+    context_green_space_distance : {
+        edit: true,
+        verify: true
+    },
+    context_green_space_distance_source_type : {
+        edit: true,
+        verify: true
+    },
+    context_green_space_distance_source_links : {
+        edit: true,
+        verify: true
+    },
+    context_tree_distance : {
+        edit: true,
+        verify: true
+    },
+    context_tree_distance_source_type : {
+        edit: true,
+        verify: true
+    },
+    ccontext_tree_distance_source_links : {
         edit: true,
         verify: true
     }

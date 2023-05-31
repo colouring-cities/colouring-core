@@ -25,10 +25,10 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const { darkLightTheme } = useDisplayPreferences();
       return (
           <Fragment>
-                <DataEntryGroup name="Domestic/non-domestic use data">
+                <DataEntryGroup name="Residential/non-residential land use data (general)">
                     <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                         <i>
-                            93% of properties in UK are residential dwellings so we have set 'residential' as the default value. Can you help us identify non-residential and mixed use buildings (and verify residential buildings too)?
+                            The vast majority of properties are residential (93% in the UK), so we have set 'residential' as the default value. Can you help us identify non-residential and mixed use buildings (and verify residential buildings too)?
                         </i>
                     </div>
                     <button className={`map-switcher-inline ${props.mapColourScale == "is_domestic" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToIsDomesticMapStyle}>

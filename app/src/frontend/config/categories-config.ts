@@ -107,7 +107,6 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         intro: 'How are buildings used, and how does use change over time?',
     },
     [Category.StreetContext]: {
-        inactive: true,
         slug: 'street-context',
         name: 'Street Context',
         aboutUrl: 'https://pages.colouring.london/greenery',

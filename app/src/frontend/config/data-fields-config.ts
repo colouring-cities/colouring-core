@@ -6,12 +6,15 @@ let ccconfig: CCConfig = require('../../cc-config.json')
  * Common list of Source Types, used in multiple menus
 */
 export const commonSourceTypes = [
-    "Expert knowledge",
-    "Observed from the street",
-    "Google or other photograph/satellite imagery",
-    "Government/public record/database",
-    "Independently managed record/database",
-    "Other type of record/database"
+    "Assessed by eye",
+    "Assessed using expert knowledge of building or building type",
+    "Assessed using streetview photographs or satellite imagery",
+    "Assessed by specialist emergency group",
+    "Live streamed from a government source",
+    "Current government record/dataset",
+    "Independently managed public database",
+    "Commercial database",
+    "Inferred computationally using existing open attribute data",
 ];
 
 /**
@@ -142,7 +145,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name: {
         category: Category.Location,
         title: "Building name (non-domestic)",
-        tooltip: "Link to a website with the name of the building.<br/><br/>(For security reasons, we currently only collect the names of well-known public buildings.)",
+        tooltip: "Link to a website with the name of the building.<br/><br/>(For security reasons, we currently only collect the names of non-residential buildings).",
         example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
     },
     location_number: {
@@ -165,13 +168,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_town: {
         category: Category.Location,
-        title: "Town/city",
+        title: "Town/City",
         example: "London",
         //tooltip: ,
     },
     location_postcode: {
         category: Category.Location,
-        title: ccconfig.postcode,
+        title: "Area code/"+ccconfig.postcode,
         example: "W1W 6TR",
         //tooltip: ,
     },
@@ -503,13 +506,58 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.StreetContext,
         title: "Total area of plot (m²)",
         example: 123.02,
-        //tooltip: ,
+        tooltip: "Total area of plot (m²)",
+    },
+    size_plot_area_total_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source of plot area data",
+        example: "",
+        items: commonSourceTypes
+    },
+    size_plot_area_total_source_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for plot area data source(s)",
+        example: ["", "", ""],
     },
     size_far_ratio: {
         category: Category.StreetContext,
         title: "FAR ratio (percentage of plot covered by building)",
-        example: 0.1,
-        //tooltip: ,
+        example: 1.0,
+        tooltip: "boobs",
+    },
+    size_far_ratio_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source of FAR ratio data",
+        example: "",
+        items: commonSourceTypes
+    },
+    size_far_ratio_source_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for FAR ratio data source(s)",
+        example: ["", "", ""],
+    },
+    size_parcel_geometry: {
+        category: Category.StreetContext,
+        title: "Land parcel geometry link",
+        example: "https://",
+        tooltip: "INSPIRE Polygons",
+    },
+    size_parcel_geometry_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source of parcel geometry data",
+        example: "",
+        items: commonSourceTypes
+    },
+    size_parcel_geometry_source_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for parcel geometry data source(s)",
+        example: ["", "", ""],
     },
 
     construction_core_material: {
@@ -784,13 +832,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     //     title: "When was this building used for community activities?"
     // },
 
-
     community_public_ownership: {
         category: Category.Community,
         title: "Is the building in public/community ownership?",
-        example: "Not in public/community ownership"
+        example: "Privately owned (non-corporate)",
+        items: [
+            'State-owned',
+            'Charity-owned',
+            'Community-owned',
+            'Owned by other non-profit body',
+            'Privately owned (non-corporate)',
+            'Privately owned (corporate)',
+            'Other'
+        ]
     },
-
     community_public_ownership_sources: {
         category: Category.Community,
         title: "Community ownership source link",
@@ -991,19 +1046,38 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Resilience,
         title: "Disaster type",
         tooltip: "What type of disaster management do you wish to collect data for?",
-        example: "Flood"
+        example: "Flood",
+        items: [
+            'Flood',
+            'Earthquake',
+            'Hurricane',
+            'Fire',
+            'Extreme heat',
+            'Political/war damage',
+            'Other human (blast damage/spills etc.)',
+            'Other'
+        ]
     },
     disaster_severity: {
         category: Category.Resilience,
         title: "How severe do you assess the damage to be?",
         tooltip: "Best estimate for the severity of damage to the building",
-        example: "Building destroyed"
+        example: "Building destroyed",
+        items: [
+            'Building destroyed',
+            'Very severe',
+            'Severe',
+            'Moderate',
+            'Minimal',
+            'No damage visible',
+        ]
     },
     disaster_assessment_method: {
         category: Category.Resilience,
-        title: "Method of assessment",
+        title: "Source Type",
         tooltip: "Please add a Best estimate for the severity of damage to the building",
-        example: "Citizen/Passerby by eye"
+        example: "Citizen/Passerby by eye",
+        items: commonSourceTypes
     },
     disaster_source_link: {
         category: Category.Resilience,
@@ -1020,6 +1094,145 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Resilience,
         title: "What was the end date of the disaster? (if applicable)",
         example: "03/04/2023"
+    },
+
+    context_front_garden: {
+        category: Category.StreetContext,
+        title: "Does the building have a front garden?",
+        tooltip: "Is the front garden mainly green/planted?",
+        example: "",
+        items: [
+            "Yes",
+            "No"
+        ]
+    },
+    context_back_garden: {
+        category: Category.StreetContext,
+        title: "Does the building have a back garden?",
+        tooltip: "Is the back garden mainly green/planted?",
+        example: "",
+        items: [
+            "Yes",
+            "No"
+        ]
+    },
+    context_flats_garden: {
+        category: Category.StreetContext,
+        title: "Is the building flats with a dedicated green space?",
+        tooltip: "If the building is a block of flats, does it have a dedicated garden area/green space?",
+        example: "",
+        items: [
+            "Yes",
+            "No"
+        ]
+    },
+    context_garden_source_type: {
+        category: Category.StreetContext,
+        title: "Source type",
+        tooltip: "Source type for garden data",
+        example: "",
+        items: commonSourceTypes
+    },
+    context_garden_source_links: {
+        category: Category.StreetContext,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for garden data source(s)",
+        example: ["", "", ""],
+    },
+    context_street_width: {
+        category: Category.Team,
+        title: "Street width (m)",
+        tooltip: "Width of the street in metres.",
+        example: 10
+    },
+    context_street_width_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    context_street_width_source_links: {
+        category: Category.Team,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+    context_pavement_width: {
+        category: Category.Team,
+        title: "Pavement width (m)",
+        tooltip: "Width of the pavement in metres.",
+        example: 10
+    },
+    context_pavement_width_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for pavement width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    context_pavement_width_source_links: {
+        category: Category.Team,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for pavement width data",
+        example: ["", "", ""],
+    },
+    context_green_space_distance: {
+        category: Category.Team,
+        title: "Distance to nearest green space (m)",
+        tooltip: "Approximate distance from the front door of the building to the nearest public green space.",
+        example: 10
+    },
+    context_green_space_distance_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for green space data",
+        example: "",
+        items: commonSourceTypes
+    },
+    context_green_space_distance_source_links: {
+        category: Category.Team,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for green space data",
+        example: ["", "", ""],
+    },
+    context_tree_distance: {
+        category: Category.Team,
+        title: "Distance to nearest tree (m)",
+        tooltip: "Approximate distance from the front door of the building to the nearest tree.",
+        example: 10
+    },
+    context_tree_distance_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for tree data",
+        example: "",
+        items: commonSourceTypes
+    },
+    context_tree_distance_source_links: {
+        category: Category.Team,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for tree data",
+        example: ["", "", ""],
+    },
+    context_street_geometry: {
+        category: Category.Team,
+        title: "Street network geometry link",
+        tooltip: "Link to a website with the name of the building..",
+        example: "https://en.wikipedia.org/",
+    },
+    context_street_geometry_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for tree data",
+        example: "",
+        items: commonSourceTypes
+    },
+    context_street_geometry_source_links: {
+        category: Category.Team,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for tree data",
+        example: ["", "", ""],
     },
 };
 

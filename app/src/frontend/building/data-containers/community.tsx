@@ -43,7 +43,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
         <DataEntryGroup name="Community views on building types">
         <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
             <i>
-            Note: We are not currently collecting data on domestic/privately owned properties, only on public buildings.
+                Note: We are currently only collecting data on non-residential buildings.
             </i>
         </div>
         <div className='community-opinion-pane'>
@@ -201,14 +201,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             slug='community_public_ownership'
             title={dataFields.community_public_ownership.title}
             value={props.building.community_public_ownership}
-            options={[
-                'Government-owned',
-                'Charity-owned',
-                'Community-owned/cooperative',
-                'Owned by other non-profit body',
-                'Not in public/community ownership',
-            ]}
-
+            options={dataFields.community_public_ownership.items}
             onChange={props.onChange}
             mode={props.mode}
             copy={props.copy}
