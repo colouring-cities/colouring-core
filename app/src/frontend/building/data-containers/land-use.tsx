@@ -20,8 +20,15 @@ import { DataEntryGroup } from '../data-components/data-entry-group';
 const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const switchToIsDomesticMapStyle = (e) => {
         e.preventDefault();
-        props.onMapColourScale('is_domestic')
+
+        if (props.mapColourScale == "is_domestic") {
+            props.onMapColourScale('landuse');
+        }
+        else {
+            props.onMapColourScale('is_domestic');
+        }
     }
+
     const { darkLightTheme } = useDisplayPreferences();
       return (
           <Fragment>
