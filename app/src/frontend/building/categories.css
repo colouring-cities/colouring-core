@@ -1,8 +1,12 @@
 .data-category-list {
   margin: 0;
-  margin-bottom: 10px;
-  padding: 2px;
+  margin-bottom: 25px;
+  padding-top: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 12px;
   width: 100%;
+  min-height: 340px;
   height: 340px;
   max-height: 340px;
   max-width: 470px;
@@ -12,6 +16,10 @@
   flex-wrap: wrap; 
 
   list-style: none;
+}
+
+.welcome .data-category-list {
+  padding: 0px;
 }
 
 .data-category-list li {
