@@ -21,7 +21,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const currentBuildingConstructionYear = building.date_year || undefined;
       return (
        <form>
-            <DataEntryGroup name="Dates of construction and extension(s)">
+            <DataEntryGroup name="Data relating to original building or extension?">
                 <NumericDataEntry
                     slug='date_year'
                     title={dataFields.date_year.title}
