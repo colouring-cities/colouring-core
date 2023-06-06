@@ -41,6 +41,19 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     const { historicData, historicDataSwitchOnClick, darkLightTheme } = useDisplayPreferences();
 
+    const switchToSurvivalMapStyle = (e) => {
+        e.preventDefault();
+
+        if (props.mapColourScale == "survival_status") {
+            props.onMapColourScale('date_year');
+            historicDataSwitchOnClick(e);
+        }
+        else {
+            props.onMapColourScale('survival_status');
+            historicDataSwitchOnClick(e);
+        }
+    }
+
     if (props.building.date_source == "Expert knowledge of building" ||
         props.building.date_source == "Expert estimate from image" ||
         props.building.date_source == null
@@ -277,8 +290,8 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan and site history">
-                <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
-                    {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
+                <button className={`map-switcher-inline ${props.mapColourScale == "survival_status" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
+                    {(props.mapColourScale == "is_domestic")? 'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <DataEntryGroup name="Constructions and demolitions on this site" showCount={false}>
                     <DynamicsBuildingPane>
@@ -373,8 +386,8 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         Choose a colour to indicate whether the building has survived.
                     </i>
                 </div>
-                <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
-                    {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
+                <button className={`map-switcher-inline ${props.mapColourScale == "survival_status" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
+                    {(props.mapColourScale == "is_domestic")? 'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <SelectDataEntry
                     title={dataFields.survival_status.title}
@@ -649,8 +662,8 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan and site history">
-                <button className={`map-switcher-inline ${historicData} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
-                    {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
+                <button className={`map-switcher-inline ${props.mapColourScale == "survival_status" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
+                    {(props.mapColourScale == "is_domestic")? 'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <DataEntryGroup name="Constructions and demolitions on this site" showCount={false}>
                     <DynamicsBuildingPane>
@@ -745,8 +758,8 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         Choose a colour to indicate whether the building has survived.
                     </i>
                 </div>
-                <button className={`map-switcher-inline ${historicData}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={historicDataSwitchOnClick}> 
-                    {(historicData === 'enabled')?'Click here to hide historical maps':'Click here to show historical maps'}
+                <button className={`map-switcher-inline ${props.mapColourScale == "survival_status" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
+                    {(props.mapColourScale == "is_domestic")? 'Click here to hide historical maps':'Click here to show historical maps'}
                 </button>
                 <SelectDataEntry
                     title={dataFields.survival_status.title}
