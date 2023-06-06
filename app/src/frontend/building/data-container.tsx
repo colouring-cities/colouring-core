@@ -97,6 +97,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                      'current_landuse_verified',
                                      'planning_list_grade',
                                      'likes_total',
+                                     'community_type_worth_keeping_total',
                                      'community_local_significance_total',
                                      'community_expected_planning_application_total'
                                     ]
@@ -354,6 +355,10 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                 }
                 </ContainerHeader>
                 <div className="section-body">
+                <InfoBox>
+                    {this.props.intro}&nbsp;
+                    Can you help us capture and verify this information?
+                </InfoBox>
                 <EditHistoryLatest
                     building={this.props.building}
                 />
@@ -409,10 +414,12 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                                                 null
                                                         }
                                                     </div>
+                                                    
                                             }
                                         </div>
                                         : null
                                 }
+                                <hr/>
                                 <WrappedComponent
                                     intro={this.props.intro}
                                     building={currentBuilding}
@@ -431,7 +438,9 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                             </form> :
                             <InfoBox msg="Select a building to view data"></InfoBox>
                 }
+                <hr/>
                 </div>
+                
                 </section>
             );
         }

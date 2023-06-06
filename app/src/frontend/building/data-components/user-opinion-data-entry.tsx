@@ -29,7 +29,7 @@ const UserOpinionEntry: React.FunctionComponent<UserOpinionEntryProps> = (props)
                     checked={!!props.userValue}
                     disabled={props.mode === 'view'}
                     onChange={e => props.onChange(props.slug, e.target.checked)}
-                /> Yes (tick here to add (or remove) your opinion, to this you need to be in the edit mode)
+                /> Yes (tick to add or remove your edit)
             </label>
         </>
     );

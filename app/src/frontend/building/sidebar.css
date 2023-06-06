@@ -100,8 +100,8 @@
  */
 .section-body {
     margin-top: 0.75em;
-    padding: 0 0.75em 5em 0.75em;
-    min-height: 80vh;
+    padding: 0 0.75em 1em 0.75em;
+    /*min-height: 80vh;*/
 }
 .data-section .h3 {
     margin: 0;
@@ -178,4 +178,9 @@
 
 .data-entry-list-button {
     width: 2.5em;
+}
+
+.source-url {
+    padding-top: 0px;
+    padding-bottom: 5px;
 }

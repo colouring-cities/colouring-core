@@ -59,10 +59,10 @@
 .background-location {
     background-color: #f7c625;
 }
-.background-use {
+.background-land-use {
     background-color: #f7ec25;
 }
-.background-type {
+.background-typology {
     background-color: #f77d11;
 }
 .background-age {
@@ -74,7 +74,7 @@
 .background-construction {
     background-color: #f2a2b9;
 }
-.background-streetscape {
+.background-street-context {
     background-color: #718899;
 }
 .background-team {
@@ -83,7 +83,7 @@
 .background-planning {
     background-color: #57c28e;
 }
-.background-sustainability {
+.background-energy-performance {
     background-color: #6bb1e3;
 }
 .background-resilience {

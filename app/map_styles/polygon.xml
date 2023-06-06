@@ -599,7 +599,100 @@
             <LineSymbolizer stroke="#888" stroke-width="2.0"/>
         </Rule>
     </Style>
+    <Style name="is_domestic">
+        <Rule>
+            <Filter>[is_domestic] = "yes"</Filter>
+            <PolygonSymbolizer fill="#f7ec25" />
+        </Rule>
+        <Rule>
+            <Filter>[is_domestic] = "mixed domestic/non-domestic"</Filter>
+            <PolygonSymbolizer fill="#fc9b2a" />
+        </Rule>
+        <Rule>
+            <Filter>[is_domestic] = "no"</Filter>
+            <PolygonSymbolizer fill="#ff2121" />
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="survival_status">
+        <Rule>
+            <Filter>[survival_status] = "Same as Historical Map (Unchanged)"</Filter>
+            <PolygonSymbolizer fill="#6ded45" />
+        </Rule>
+        <Rule>
+            <Filter>[survival_status] = "Similar to Historical Map (Some Changes)"</Filter>
+            <PolygonSymbolizer fill="#f7c725" />
+        </Rule>
+        <Rule>
+            <Filter>[survival_status] = "Historical Building(s) Demolished"</Filter>
+            <PolygonSymbolizer fill="#ff2121" />
+        </Rule>
+        <Rule>
+            <Filter>[survival_status] = "Current Building on Previous Green Space"</Filter>
+            <PolygonSymbolizer fill="#CF26DF" />
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="likes">
+        <Rule>
+            <Filter>[likes] &gt;= 100</Filter>
+            <PolygonSymbolizer fill="#bd0026" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] &gt;= 50 and [likes] &lt; 100</Filter>
+            <PolygonSymbolizer fill="#e31a1c" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] &gt;= 20 and [likes] &lt; 50</Filter>
+            <PolygonSymbolizer fill="#fc4e2a" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] &gt;= 10 and [likes] &lt; 20</Filter>
+            <PolygonSymbolizer fill="#fd8d3c" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] &gt;= 3 and [likes] &lt; 10</Filter>
+            <PolygonSymbolizer fill="#feb24c" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] = 2</Filter>
+            <PolygonSymbolizer fill="#fed976" />
+        </Rule>
+        <Rule>
+            <Filter>[likes] = 1</Filter>
+            <PolygonSymbolizer fill="#ffe8a9" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="typology_likes">
         <Rule>
             <Filter>[likes] &gt;= 100</Filter>
             <PolygonSymbolizer fill="#bd0026" />
@@ -818,6 +911,32 @@
             <MaxScaleDenominator>4264</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="disaster_severity">
+        <Rule>
+            <Filter>[disaster_severity] = "Building destroyed"</Filter>
+            <PolygonSymbolizer fill="#bd0026" />
+        </Rule>
+        <Rule>
+            <Filter>[disaster_severity] = "Very severe"</Filter>
+            <PolygonSymbolizer fill="#e31a1c" />
+        </Rule>
+        <Rule>
+            <Filter>[disaster_severity] = "Severe"</Filter>
+            <PolygonSymbolizer fill="#fc4e2a" />
+        </Rule>
+        <Rule>
+            <Filter>[disaster_severity] = "Moderate"</Filter>
+            <PolygonSymbolizer fill="#fd8d3c" />
+        </Rule>
+        <Rule>
+            <Filter>[disaster_severity] = "Minimal"</Filter>
+            <PolygonSymbolizer fill="#feb24c" />
+        </Rule>
+        <Rule>
+            <Filter>[disaster_severity] = "No damage visible"</Filter>
+            <PolygonSymbolizer fill="#fed976" />
         </Rule>
     </Style>
     <Style name="dynamics_demolished_count">

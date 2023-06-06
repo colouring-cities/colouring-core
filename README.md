@@ -2,14 +2,14 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors)
 ![Build status](https://github.com/colouring-cities/colouring-core/workflows/Node.js%20CI/badge.svg)
 
-How many buildings are there in London? What are their characteristics? Where
+How many buildings are there in a city? What are their characteristics? Where
 are they located and how do they contribute to the city? How adaptable are
 they? How long will they last, and what are the environmental and
 socio-economic implications of demolition?
 
-[Colouring London](http://colouring.london/) is a web-based citizen social
+Colouring Cities is a web-based citizen social
 science project designed to help address these questions by crowdsourcing and
-visualising twelve categories of information on London’s buildings.
+visualising twelve categories of information on the buildings in our cities.
 
 ## Structure
 
@@ -26,9 +26,20 @@ for download under a liberal open data license
 
 ## Setup and run
 
+#### Forking the Core Repository
+If you are working with us as part of this GitHub organisation, then a repository and team may already have been set up for you. If you are already usign the repository and want to add a new project, perhaps because you are expanding to additional cities, then please following these instructions to create a Fork of the core repository: [docs/working-with-colouring-core](docs/working-with-colouring-core.md).
+
+#### Customise the Application:
+
+You can customise the Colouring Cities application by changing the values in the following file:
+
+`app/src/cc-config.json`
+
+For more information on the config system, see [docs/configuring-colouring-cities](docs/configuring-colouring-cities.md).
+
 #### Test the application:
 
-You can try out the Colouring London application by setting up your own development environment, which includes the option to load test data from OpenStreetMaps (OSM). See [docs/setup-dev-environment](docs/setup-dev-environment.md).
+You can try out the Colouring Cities application by setting up your own development environment, which includes the option to load test data from OpenStreetMaps (OSM). See [docs/setup-dev-environment](docs/setup-dev-environment.md).
   
 _Last updated March 2022_
 
@@ -40,6 +51,10 @@ _Last updated December 2021_
 
 **Note:** There are additional useful documentation within the `/docs` folder.
 
+#### Troubleshooting
+If you are having problems with the application, first look here: [docs/troubleshooting](docs/troubleshooting.md) to see if there is a solution for your problem.
+(Also, please consider updating this document if you encounter and problems and manage to solve them!)
+
 ## Acknowledgements
 
 Colouring London was set up at the Centre for Advanced Spatial
@@ -50,8 +65,8 @@ and technical support.
 
 ## License
 
-    Colouring London
-    Copyright (C) 2018-2022 Tom Russell and Colouring London contributors
+    Colouring London/Colouring Cities
+    Copyright (C) 2018-2022 Tom Russell and Colouring Cities contributors
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -107,6 +122,6 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/all-contri
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-Even more thanks go to Colouring London contributors, funders, project partners, consultees,
+Even more thanks go to Colouring Cities contributors, funders, project partners, consultees,
 advisers, supporters and friends - [everyone involved in the
 project](https://www.pages.colouring.london/whoisinvolved).

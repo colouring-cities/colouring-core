@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Describe a problem to help us improve Colouring London
+about: Describe a problem to help us improve Colouring Cities
 title: ''
 labels: ''
 assignees: ''
