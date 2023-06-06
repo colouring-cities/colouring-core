@@ -837,13 +837,11 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Is the building in public/community ownership?",
         example: "Privately owned (non-corporate)",
         items: [
-            'State-owned',
+            'Government-owned',
             'Charity-owned',
-            'Community-owned',
+            'Community-owned/cooperative',
             'Owned by other non-profit body',
-            'Privately owned (non-corporate)',
-            'Privately owned (corporate)',
-            'Other'
+            'Not in public/community ownership'
         ]
     },
     community_public_ownership_sources: {
