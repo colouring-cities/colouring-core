@@ -144,7 +144,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'typology_likes',
             legend: {
-                title: 'Liked typologies',
+                title: 'Liked non-residential buildings',
                 elements: [
                     { color: '#bd0026', text: '👍👍👍👍 100+' },
                     { color: '#e31a1c', text: '👍👍👍 50–99' },
