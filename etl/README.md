@@ -173,6 +173,6 @@ Mark buildings with geometries not present in the update as demolished.
 
 #### On a production server
 
-**TODO:** Update this after PR [#794](https://github.com/colouring-cities/colouring-london/pull/794)
+**TODO:** Update this after PR [#794](https://github.com/colouring-cities/colouring-core/pull/794)
 
-Run the Colouring London [deployment scripts](https://github.com/colouring-cities/colouring-london-config#deployment).
+Run the Colouring London [deployment scripts](https://github.com/colouring-cities/colouring-core-config#deployment).

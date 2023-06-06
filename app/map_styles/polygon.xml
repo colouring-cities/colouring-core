@@ -913,6 +913,32 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="disaster_severity">
+        <Rule>
+            <Filter>[disaster_severity] = "Building destroyed"</Filter>
+            <PolygonSymbolizer fill="#bd0026" />
+        </Rule>
+        <Rule>
+            <Filter>[disaster_severity] = "Very severe"</Filter>
+            <PolygonSymbolizer fill="#e31a1c" />
+        </Rule>
+        <Rule>
+            <Filter>[disaster_severity] = "Severe"</Filter>
+            <PolygonSymbolizer fill="#fc4e2a" />
+        </Rule>
+        <Rule>
+            <Filter>[disaster_severity] = "Moderate"</Filter>
+            <PolygonSymbolizer fill="#fd8d3c" />
+        </Rule>
+        <Rule>
+            <Filter>[disaster_severity] = "Minimal"</Filter>
+            <PolygonSymbolizer fill="#feb24c" />
+        </Rule>
+        <Rule>
+            <Filter>[disaster_severity] = "No damage visible"</Filter>
+            <PolygonSymbolizer fill="#fed976" />
+        </Rule>
+    </Style>
     <Style name="dynamics_demolished_count">
         <Rule>
             <Filter>[dynamics_has_demolished_buildings] = false</Filter>

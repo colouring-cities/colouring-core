@@ -66,7 +66,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
     <Fragment>
         <DataEntryGroup name="Planning application information" collapsed={true} >
-            <DataEntryGroup name="Current/active applications (official data)" collapsed={false} >
+            <DataEntryGroup name="Current/active applications (official data)">
                 <InfoBox>
                     This section provides data on active applications. We define these as applications with any activity in the last year.
                     <br />

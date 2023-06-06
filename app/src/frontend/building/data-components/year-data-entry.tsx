@@ -63,6 +63,7 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     onChange={props.onChange}
                     min={1}
                     max={currentYear}
+                    tooltip={dataFields.date_year.tooltip}
                     // "type": "year_estimator"
                     />
                 <Verification

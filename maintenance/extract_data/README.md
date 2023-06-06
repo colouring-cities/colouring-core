@@ -39,8 +39,12 @@ This is the main table, containing almost all data collected by Colouring London
 - `location_line_two`: additional address line
 - `location_town`: town
 - `location_postcode`: postcode
+- `location_address_source`: type of source used for address data
+- `location_address_links`: link to source used for address data
 - `location_latitude`: latitude
 - `location_longitude`: longitude
+- `location_coordinates_source`: source type of coordinate data
+- `location_coordinates_links`: source links for coordinate data
 - `current_landuse_group`: current land use group
 - `current_landuse_order`: current land use order
 - `building_attachment_form`: building attachment form
@@ -59,9 +63,18 @@ This is the main table, containing almost all data collected by Colouring London
 - `size_storeys_attic`: number of attic storeys
 - `size_storeys_core`: number of core storeys
 - `size_storeys_basement`: number of basement storeys
+- `size_storeys_source_type`: source type for number of storeys
+- `size_storeys_source_links`: source links for number of storeys
 - `size_height_apex`: height in metres to the building apex
+- `size_height_apex_source_type`: source of apex height data
+- `size_height_apex_source_links`: links to apex height data
+- `size_height_eaves`: height in metres to the building eaves
+- `size_height_eaves_source_type`: source of eaves height data
+- `size_height_eaves_source_links`: links to eaves height data
 - `size_floor_area_ground`: ground floor floor area in square metres
 - `size_floor_area_total`: total floor area in square metres
+- `size_floor_area_source_type`: source of floor area data
+- `size_floor_area_source_links`: link(s) to floor area data
 - `size_width_frontage`: width of frontage in metres
 - `construction_core_material`: main structural material
 - `construction_secondary_materials`: other structural materials
@@ -85,6 +98,12 @@ This is the main table, containing almost all data collected by Colouring London
 - `planning_local_list_url`: local list reference link
 - `planning_historic_area_assessment_url`: historic area assessment reference link
 - `likes_total`: number of times the building has been liked by Colouring London users
+- `is_domestic`: is the building domestic/non-domestic/mixed
+- `is_domestic_source`: domestic data source type,
+- `is_domestic_links`: domestic data source links,
+- `survival_status`: survival status compared to historical maps,
+- `survival_source`: source of survival data,
+- `survival_links`: link(s) to survival data source,
 
 
 ## Building UPRNs

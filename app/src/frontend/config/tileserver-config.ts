@@ -3,7 +3,8 @@
  * Adjust the values here if modifying the list of styles in the tileserver.
  */
 
-export type BuildingMapTileset = 'date_year' | 
+export type BuildingMapTileset = 
+    'date_year' | 
     'size_height' |
     'construction_core_material' |
     'location' |
@@ -21,6 +22,7 @@ export type BuildingMapTileset = 'date_year' |
     'building_attachment_form' |
     'landuse' |
     'dynamics_demolished_count' |
+    'disaster_severity' |
     'team' |
     'survival_status';
 

@@ -37,12 +37,12 @@
 .map-switcher-inline.disabled-state,
 .map-button.disabled-state,
 .map-button.disabled-state .btn{
-    background-color: #df7474;
+    background-color: #8c8fd9;
 }
 .map-switcher-inline.night.disabled-state,
 .map-button.night.disabled-state,
 .map-button.night.disabled-state .btn{
-    background-color: #b03f3f;
+    background-color: #333699;
 }
 .map-button.enabled-state {
     color: #75e775;
