@@ -18,7 +18,6 @@ import "react-datepicker/dist/react-datepicker.css";
 */
 const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
     
-    const { historicData, historicDataSwitchOnClick, darkLightTheme } = useDisplayPreferences();
     const [ startDate, setStartDate ] = useState(null);
     const [ endDate, setEndDate ] = useState(null);
 
