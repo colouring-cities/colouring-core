@@ -3,17 +3,14 @@
 ![Build status](https://github.com/colouring-cities/colouring-core/workflows/Node.js%20CI/badge.svg)
 
 How many buildings are there in a city? What are their characteristics? Where
-are they located and how do they contribute to the city? How adaptable are
-they? How long will they last, and what are the environmental and
-socio-economic implications of demolition?
+are they located and how well do they work? How many are we reusing and how long are they likely to last? 
 
-Colouring Cities is a web-based citizen social
-science project designed to help address these questions by crowdsourcing and
-visualising twelve categories of information on the buildings in our cities.
+The Colouring Cities Research Programme (CCRP) is an international research initiative that designs and tests open-source tools to facilitate knowledge and data sharing on national building stocks. The project, is managed by The Alan Turing Institute (the UK's national institute for datascience and AI) in collaboration with academic partners and openly releases code, data and methods http://colouringcities.org/.  
+
 
 ## Structure
 
-This repository will contain open-source code for the project which:
+This repository contain open-source code for the project which:
 
 - stores building footprint polygons and source metadata
 - allows site users to record building attribute data
@@ -57,11 +54,8 @@ If you are having problems with the application, first look here: [docs/troubles
 
 ## Acknowledgements
 
-Colouring London was set up at the Centre for Advanced Spatial
-Analysis (CASA), University College London and is now based at The Alan Turing Institute.
-Ordnance Survey is providing building footprints required to collect the data,
-facilitated by the Greater London Authority (GLA), and giving access to its API
-and technical support.
+Colouring London was set up at the Centre for Advanced Spatial Analysis, University College London in 2016 as part of EPSRC funded doctoral research undertaken by Polly Hudson. Tom Russell was responsible for technical design and open licences strategy and selection.  Ordnance Survey and the Greater London Authority provided access to high quality building footprints essential for set up. In 2020 the Colouring Cities Research Programme relocated to The Alan Turing Institute's Urban Anaytics Programme which has funded development and enrichment. Exceptional techncial contributions to Colouring London made by Maciej Ziakowski, Dominic Humphrey, Mateusz Konieczny, Ed Chalstrey and Dr Mike Simpson. Exceptional contributions to the CCRP international programme have been made by Dr Falli Palaiologou, Will Taylor, and by CCRP academic colleagues managing platforms in Australia, Bahrain, Lebanon, Greece, Germany, Colombia, Sweden and Indonesia. Many other individuals and organisations have also contributed to the research programme in many ways and we make every effort to thank all contributors on relevant individual CCRP platforms. 
+
 
 ## License
 
