@@ -31,7 +31,7 @@ There are also some other values to customise the behaviour of the application:
 - **'initialMapPosition'** (string) - The default latitude and longitude of the map when the page loads. 
 - **'initialZoomLevel'** (string) - The default zoom level when the map loads. 
 
-For example, the JSON file for Colouring London looks like this:
+For example, the [JSON file for Colouring London](https://github.com/colouring-cities/colouring-london/blob/master/app/src/cc-config.json) looks like this:
 
 ![alt text](images/cc-config-json.jpg "Title")
 
