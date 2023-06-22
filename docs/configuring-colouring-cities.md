@@ -31,9 +31,22 @@ There are also some other values to customise the behaviour of the application:
 - **'initialMapPosition'** (string) - The default latitude and longitude of the map when the page loads. 
 - **'initialZoomLevel'** (string) - The default zoom level when the map loads. 
 
-For example, the JSON file for Colouring London looks like this:
+For example, the [JSON file for Colouring London](https://github.com/colouring-cities/colouring-london/blob/master/app/src/cc-config.json) looks like this:
 
-![alt text](images/cc-config-json.jpg "Title")
+```json
+{
+    "cityName": "London",
+    "projectBlurb": "Colouring London is also the prototype for the Colouring Cities Research Programme (CCRP)",
+    "githubURL": "https://github.com/colouring-cities/colouring-london",
+    "privacyStatement": "Colouring London stores your data at The Alan Turing Institute in London behind the organisation’s firewall in a secure database using industry standard practices",
+
+    "initialMapPosition": [ 51.5245255, -0.1338422 ],
+    "initialZoomLevel": 16,
+
+    "postcode": "Postcode",
+    "energy_rating": "Building Research Establishment Environmental Assessment Method (BREEAM) rating"
+}
+```
 
 ### > cc-config.ts
 This file contains the declaration of the variables that can be configured. 
