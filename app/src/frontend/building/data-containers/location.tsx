@@ -17,7 +17,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const osm_url = "https://www.openstreetmap.org/way/"+props.building.ref_osm_id;
     return (
         <Fragment>
-            <DataEntryGroup name="Address data">
+            <DataEntryGroup name="Addresses">
                 <DataEntry
                     title={dataFields.location_name.title}
                     slug="location_name"
@@ -161,7 +161,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Property/footprint IDs and coordinate data">
+            <DataEntryGroup name="Property/footprint IDs and coordinates">
                 <DataEntry
                     title={dataFields.ref_toid.title}
                     slug="ref_toid"

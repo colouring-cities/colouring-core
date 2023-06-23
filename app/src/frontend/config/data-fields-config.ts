@@ -6,9 +6,9 @@ let ccconfig: CCConfig = require('../../cc-config.json')
  * Common list of Source Types, used in multiple menus
 */
 export const commonSourceTypes = [
-    "Assessed by eye",
+    "Assessed by eye/personal knowledge of the building",
     "Assessed using expert knowledge of building or building type",
-    "Assessed using streetview photographs or satellite imagery",
+    "Assessed using streetview photographs, satellite imagery or maps",
     "Assessed by specialist emergency group",
     "Live streamed from a government source",
     "Current government record/dataset",
@@ -156,7 +156,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_street: {
         category: Category.Location,
-        title: "Street",
+        title: "Street name",
         example: "Gower Street",
         //tooltip: ,
     },
@@ -342,7 +342,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     facade_year: {
         category: Category.Age,
-        title: "Date of front of building",
+        title: "Date of front of building (best estimate)",
         tooltip: "Best estimate",
         example: 1900,
     },
@@ -416,7 +416,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Size,
         title: "Height to apex (m)",
         example: 100.5,
-        tooltip: "i.e. the highest part of the roof.",
+        tooltip: "i.e. the highest part of the roof (in meters).",
     },
     size_height_apex_source_type: {
         category: Category.Team,
@@ -435,7 +435,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Size,
         title: "Height to eaves (m)",
         example: 20.33,
-        tooltip: "i.e. to where the top of the wall meets the roof",
+        tooltip: "i.e. to where the top of the wall meets the roof (in meters)",
     },
     size_height_eaves_source_type: {
         category: Category.Team,
@@ -479,7 +479,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Size,
         title: "Frontage width (m)",
         example: 12.2,
-        //tooltip: ,
+        tooltip: "Size of the frontage of the building (in meters)",
     },
     size_width_frontage_source_type: {
         category: Category.Team,
@@ -583,7 +583,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     sust_breeam_rating: {
         category: Category.EnergyPerformance,
-        title: "Official environmental quality rating",
+        title: "Residential energy rating",
         tooltip: ccconfig.energy_rating,
         example: "",
     },
@@ -716,7 +716,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_list_grade: {
         category: Category.Planning,
-        title: "What is its rating?",
+        title: "What is its protection rating?",
         example: "II",
         //tooltip: ,
     },
@@ -740,19 +740,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_in_apa_url: {
         category: Category.Planning,
-        title: "Is it in an area if archaeological priority?",
+        title: "Is the building in an area of archaeological priority?",
         example: "",
         //tooltip: ,
     },
     planning_local_list_url: {
         category: Category.Planning,
-        title: "Is it a locally listed heritage asset?",
+        title: "Is the building a locally listed heritage asset?",
         example: "",
         //tooltip: ,
     },
     planning_historic_area_assessment_url: {
         category: Category.Planning,
-        title: "Does it have any other kind of historic area assessment?",
+        title: "Does it have any other type of designation?",
         example: "",
         //tooltip: ,
     },
@@ -811,19 +811,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     community_activities_current: {
         category: Category.Community,
-        title: "Are activities open to the community currently taking place in the building?",
+        title: "Is this building currently used for community activities?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
     community_activities: {
         category: Category.Community,
-        title: "Has this ever been used for community activities in the past?",
+        title: "If not been used for community activities in the past?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
     community_activities_always: {
         category: Category.Community,
-        title: "Has the building always been used for community activities?",
+        title: "If in community use now, has it always been used for community activities?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
@@ -837,11 +837,15 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Is the building in public/community ownership?",
         example: "Privately owned (non-corporate)",
         items: [
-            'Government-owned',
-            'Charity-owned',
-            'Community-owned/cooperative',
-            'Owned by other non-profit body',
-            'Not in public/community ownership'
+            "Public/State body",
+            "Public body with Private company",
+            "Charity",
+            "Community group/Cooperative",
+            "Other non-profit body",
+            "Privately owned company",
+            "Privately owned offshore company",
+            "Private individual",
+            "Other",
         ]
     },
     community_public_ownership_sources: {
@@ -953,7 +957,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     landowner: {
         category: Category.Team,
         title: "Landowner(s) at time of construction",
-        tooltip: "Free text. First name, space, then Last name",
+        tooltip: "Land owner when the building was constructed.<br/>For info on current land ownership, see 'Planning Controls'.",
         example: ["", "", ""],
     },
     landowner_source_type: {
@@ -1003,14 +1007,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     designer_awards: {
         category: Category.Team,
-        title: "Did the design team win any awards for this building?",
+        title: "Has the building won any?",
         tooltip: "",
         example: false
     },
     awards_source_link: {
         category: Category.Team,
-        title: "Source link(s) for designer award(s)",
-        tooltip: "URL for source for designer award(s)",
+        title: "Source link(s) for building award(s)",
+        tooltip: "URL for source for building award(s)",
         example: ["", "", ""],
     },
     builder: {
@@ -1116,7 +1120,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     context_flats_garden: {
         category: Category.StreetContext,
-        title: "Is the building flats with a dedicated green space?",
+        title: "Are flats with a dedicated green space?",
         tooltip: "If the building is a block of flats, does it have a dedicated garden area/green space?",
         example: "",
         items: [
@@ -1139,8 +1143,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     context_street_width: {
         category: Category.Team,
-        title: "Street width (m)",
-        tooltip: "Width of the street in metres.",
+        title: "Average street width (m)",
+        tooltip: "Average width of the street in metres.",
         example: 10
     },
     context_street_width_source_type: {
@@ -1158,8 +1162,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     context_pavement_width: {
         category: Category.Team,
-        title: "Pavement width (m)",
-        tooltip: "Width of the pavement in metres.",
+        title: "Average pavement width (m)",
+        tooltip: "Average width of the pavement in metres.",
         example: 10
     },
     context_pavement_width_source_type: {
@@ -1178,7 +1182,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     context_green_space_distance: {
         category: Category.Team,
         title: "Distance to nearest green space (m)",
-        tooltip: "Approximate distance from the front door of the building to the nearest public green space.",
+        tooltip: "Approximate distance from the front door of the building to the nearest public green space (in meters).",
         example: 10
     },
     context_green_space_distance_source_type: {
@@ -1197,7 +1201,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     context_tree_distance: {
         category: Category.Team,
         title: "Distance to nearest tree (m)",
-        tooltip: "Approximate distance from the front door of the building to the nearest tree.",
+        tooltip: "Approximate distance from the front door of the building to the nearest tree in meters.",
         example: 10
     },
     context_tree_distance_source_type: {
@@ -1234,7 +1238,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     age_cladding_date: {
         category: Category.Age,
-        title: "Cladding date",
+        title: "Cladding date (best estimate)",
         tooltip: "Width of the street in metres.",
         example: 1970
     },
@@ -1253,7 +1257,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     age_extension_date: {
         category: Category.Age,
-        title: "Date of significant extensions",
+        title: "Date of significant extensions (best estimate)",
         tooltip: "Width of the street in metres.",
         example: 1970
     },
@@ -1272,7 +1276,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     age_retrofit_date: {
         category: Category.Age,
-        title: "Date of significant retrofits",
+        title: "Date of last significant retrofit (best estimate)",
         tooltip: "Width of the street in metres.",
         example: 1970
     },

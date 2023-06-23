@@ -17,7 +17,7 @@ import Verification from '../data-components/verification';
 */
 const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
-        <DataEntryGroup name="Does the building have a garden?">
+        <DataEntryGroup name="Green Space">
             <SelectDataEntry
                 title={dataFields.context_front_garden.title}
                 slug="context_front_garden"
@@ -104,8 +104,102 @@ const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                     />
                 </>
             }
+            <hr/>
+            <NumericDataEntry
+                title={dataFields.context_green_space_distance.title}
+                value={props.building.context_green_space_distance}
+                slug="context_green_space_distance"
+                tooltip={dataFields.context_green_space_distance.tooltip}
+                //placeholder={dataFields.context_green_space_distance.example}
+                mode={props.mode}
+                onChange={props.onChange}
+                step={1}
+                min={0}
+            />
+            <Verification
+                slug="context_green_space_distance"
+                allow_verify={props.user !== undefined && props.building.context_green_space_distance !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("context_green_space_distance")}
+                user_verified_as={props.user_verified.context_green_space_distance}
+                verified_count={props.building.verified.context_green_space_distance}
+                />
+            <SelectDataEntry
+                title={dataFields.context_green_space_distance_source_type.title}
+                slug="context_green_space_distance_source_type"
+                value={props.building.context_green_space_distance_source_type}
+                options={dataFields.context_green_space_distance_source_type.items}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.context_green_space_distance_source_type.tooltip}
+            />
+            {(props.building.context_green_space_distance_source_type == commonSourceTypes[0] ||
+                props.building.context_green_space_distance_source_type == commonSourceTypes[1] ||
+                props.building.context_green_space_distance_source_type == null) ? <></> :
+                <><MultiDataEntry
+                    title={dataFields.context_green_space_distance_source_links.title}
+                    slug="context_green_space_distance_source_links"
+                    value={props.building.context_green_space_distance_source_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.context_green_space_distance_source_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                    />
+                </>
+            }
+            <hr/>
+            <NumericDataEntry
+                title={dataFields.context_tree_distance.title}
+                value={props.building.context_tree_distance}
+                slug="context_tree_distance"
+                tooltip={dataFields.context_tree_distance.tooltip}
+                //placeholder={dataFields.context_tree_distance.example}
+                mode={props.mode}
+                onChange={props.onChange}
+                step={1}
+                min={0}
+            />
+            <Verification
+                slug="context_tree_distance"
+                allow_verify={props.user !== undefined && props.building.context_tree_distance !== null}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("context_tree_distance")}
+                user_verified_as={props.user_verified.context_tree_distance}
+                verified_count={props.building.verified.context_tree_distance}
+                />
+            <SelectDataEntry
+                title={dataFields.context_tree_distance_source_type.title}
+                slug="context_tree_distance_source_type"
+                value={props.building.context_tree_distance_source_type}
+                options={dataFields.context_tree_distance_source_type.items}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.context_tree_distance_source_type.tooltip}
+            />
+            {(props.building.context_tree_distance_source_type == commonSourceTypes[0] ||
+                props.building.context_tree_distance_source_type == commonSourceTypes[1] ||
+                props.building.context_tree_distance_source_type == null) ? <></> :
+                <><MultiDataEntry
+                    title={dataFields.context_tree_distance_source_links.title}
+                    slug="context_tree_distance_source_links"
+                    value={props.building.context_tree_distance_source_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.context_tree_distance_source_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                    />
+                </>
+            }
         </DataEntryGroup>
-        <DataEntryGroup name="Street/pavement properties">
+        <DataEntryGroup name="Street/pavement">
             <NumericDataEntry
                 title={dataFields.context_street_width.title}
                 value={props.building.context_street_width}
@@ -247,100 +341,13 @@ const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 </>
             }
         </DataEntryGroup>
-        <DataEntryGroup name="Access to green space">
-            <NumericDataEntry
-                title={dataFields.context_green_space_distance.title}
-                value={props.building.context_green_space_distance}
-                slug="context_green_space_distance"
-                tooltip={dataFields.context_green_space_distance.tooltip}
-                //placeholder={dataFields.context_green_space_distance.example}
-                mode={props.mode}
-                onChange={props.onChange}
-                step={1}
-                min={0}
+        <DataEntryGroup name="Number of entrances facing street">
+            <DataEntry
+                title="Number of entrances facing street"
+                slug=""
+                value=""
+                mode='view'
             />
-            <Verification
-                slug="context_green_space_distance"
-                allow_verify={props.user !== undefined && props.building.context_green_space_distance !== null}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("context_green_space_distance")}
-                user_verified_as={props.user_verified.context_green_space_distance}
-                verified_count={props.building.verified.context_green_space_distance}
-                />
-            <SelectDataEntry
-                title={dataFields.context_green_space_distance_source_type.title}
-                slug="context_green_space_distance_source_type"
-                value={props.building.context_green_space_distance_source_type}
-                options={dataFields.context_green_space_distance_source_type.items}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                tooltip={dataFields.context_green_space_distance_source_type.tooltip}
-            />
-            {(props.building.context_green_space_distance_source_type == commonSourceTypes[0] ||
-                props.building.context_green_space_distance_source_type == commonSourceTypes[1] ||
-                props.building.context_green_space_distance_source_type == null) ? <></> :
-                <><MultiDataEntry
-                    title={dataFields.context_green_space_distance_source_links.title}
-                    slug="context_green_space_distance_source_links"
-                    value={props.building.context_green_space_distance_source_links}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    tooltip={dataFields.context_green_space_distance_source_links.tooltip}
-                    placeholder="https://..."
-                    editableEntries={true}
-                    isUrl={true}
-                    />
-                </>
-            }
-            <hr/>
-            <NumericDataEntry
-                title={dataFields.context_tree_distance.title}
-                value={props.building.context_tree_distance}
-                slug="context_tree_distance"
-                tooltip={dataFields.context_tree_distance.tooltip}
-                //placeholder={dataFields.context_tree_distance.example}
-                mode={props.mode}
-                onChange={props.onChange}
-                step={1}
-                min={0}
-            />
-            <Verification
-                slug="context_tree_distance"
-                allow_verify={props.user !== undefined && props.building.context_tree_distance !== null}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("context_tree_distance")}
-                user_verified_as={props.user_verified.context_tree_distance}
-                verified_count={props.building.verified.context_tree_distance}
-                />
-            <SelectDataEntry
-                title={dataFields.context_tree_distance_source_type.title}
-                slug="context_tree_distance_source_type"
-                value={props.building.context_tree_distance_source_type}
-                options={dataFields.context_tree_distance_source_type.items}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                tooltip={dataFields.context_tree_distance_source_type.tooltip}
-            />
-            {(props.building.context_tree_distance_source_type == commonSourceTypes[0] ||
-                props.building.context_tree_distance_source_type == commonSourceTypes[1] ||
-                props.building.context_tree_distance_source_type == null) ? <></> :
-                <><MultiDataEntry
-                    title={dataFields.context_tree_distance_source_links.title}
-                    slug="context_tree_distance_source_links"
-                    value={props.building.context_tree_distance_source_links}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    tooltip={dataFields.context_tree_distance_source_links.tooltip}
-                    placeholder="https://..."
-                    editableEntries={true}
-                    isUrl={true}
-                    />
-                </>
-            }
         </DataEntryGroup>
     </Fragment>
 );

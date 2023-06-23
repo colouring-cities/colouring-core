@@ -25,9 +25,20 @@ const BreeamRatingOptions = [
 * Sustainability view/edit section
 */
 const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) => {
+    
+    const currentYear = new Date().getFullYear();
+
     return (
         <Fragment>
-            <DataEntryGroup name="Energy rating data">
+            <DataEntryGroup name="Environmental quality rating">
+                <DataEntry
+                    title="Official environmental quality rating"
+                    slug=""
+                    value=""
+                    mode='view'
+                />
+            </DataEntryGroup>
+            <DataEntryGroup name="Energy rating">
                 <SelectDataEntry
                     title={dataFields.sust_breeam_rating.title}
                     slug="sust_breeam_rating"
@@ -46,7 +57,6 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     user_verified_as={props.user_verified.sust_breeam_rating}
                     verified_count={props.building.verified.sust_breeam_rating}
                     />
-
                 <SelectDataEntry
                     title={dataFields.sust_dec.title}
                     slug="sust_dec"
@@ -65,7 +75,6 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     user_verified_as={props.user_verified.sust_dec}
                     verified_count={props.building.verified.sust_dec}
                     />
-
                 <SelectDataEntry
                     title={dataFields.sust_aggregate_estimate_epc.title}
                     slug="sust_aggregate_estimate_epc"
@@ -78,85 +87,66 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     onChange={props.onChange}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Retrofit Data">
-                <NumericDataEntry
-                    title={dataFields.sust_retrofit_date.title}
-                    slug="sust_retrofit_date"
-                    value={props.building.sust_retrofit_date}
-                    tooltip={dataFields.sust_retrofit_date.tooltip}
-                    step={1}
-                    min={1086}
-                    max={new Date().getFullYear()}
+            <DataEntryGroup name="Retrofit history">
+            <NumericDataEntry
+                    slug='age_retrofit_date'
+                    title={dataFields.age_retrofit_date.title}
+                    value={props.building.age_retrofit_date}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                />
+                    step={1}
+                    min={1}
+                    max={currentYear}
+                    tooltip={dataFields.extension_year.tooltip}
+                    />
                 <Verification
-                    slug="sust_retrofit_date"
-                    allow_verify={props.user !== undefined && props.building.sust_retrofit_date !== null && !props.edited}
+                    slug="age_retrofit_date"
+                    allow_verify={props.user !== undefined && props.building.age_retrofit_date !== null && !props.edited}
                     onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("sust_retrofit_date")}
-                    user_verified_as={props.user_verified.sust_retrofit_date}
-                    verified_count={props.building.verified.sust_retrofit_date}
+                    user_verified={props.user_verified.hasOwnProperty("age_retrofit_date")}
+                    user_verified_as={props.user_verified.age_retrofit_date}
+                    verified_count={props.building.verified.age_retrofit_date}
                     />
                 <SelectDataEntry
-                    title={dataFields.sust_retrofit_source_type.title}
-                    slug="sust_retrofit_source_type"
-                    value={props.building.sust_retrofit_source_type}
+                    title={dataFields.age_retrofit_date_source_type.title}
+                    slug="age_retrofit_date_source_type"
+                    value={props.building.age_retrofit_date_source_type}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.sust_retrofit_source_type.tooltip}
-                    options={dataFields.sust_retrofit_source_type.items}
-                    placeholder={dataFields.sust_retrofit_source_type.example}
+                    tooltip={dataFields.age_retrofit_date_source_type.tooltip}
+                    options={dataFields.age_retrofit_date_source_type.items}
+                    placeholder={dataFields.age_retrofit_date_source_type.example}
                     />
-                {(props.building.sust_retrofit_source_type == dataFields.sust_retrofit_source_type.items[0] ||
-                    props.building.sust_retrofit_source_type == dataFields.sust_retrofit_source_type.items[1] ||
-                    props.building.sust_retrofit_source_type == null) ? <></> :
+                {(props.building.age_retrofit_date_source_type == dataFields.age_retrofit_date_source_type.items[0] ||
+                    props.building.age_retrofit_date_source_type == dataFields.age_retrofit_date_source_type.items[1] ||
+                    props.building.age_retrofit_date_source_type == null) ? <></> :
                     <>
                         <MultiDataEntry
-                            title={dataFields.sust_retrofit_source_links.title}
-                            slug="sust_retrofit_source_links"
-                            value={props.building.sust_retrofit_source_links}
+                            title={dataFields.age_retrofit_date_source_links.title}
+                            slug="age_retrofit_date_source_links"
+                            value={props.building.age_retrofit_date_source_links}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.sust_retrofit_source_links.tooltip}
+                            tooltip={dataFields.age_retrofit_date_source_links.tooltip}
                             placeholder="https://..."
                             editableEntries={true}
                             isUrl={true}
                         />
                     </>
                 }
-                {/* <hr/>
-                <DataEntry
-                    title="Date of Significant Retrofits"
-                    slug=""
-                    value=""
-                    mode='view'
-                />
-                <Verification
-                    slug="date_link"
-                    allow_verify={props.user !== undefined && props.building.date_link !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("date_link")}
-                    user_verified_as={props.user_verified.date_link}
-                    verified_count={props.building.verified.date_link}
-                    />
-                <DataEntry
-                    title="Source"
-                    slug=""
-                    value=""
-                    mode='view'
-                /> */}
             </DataEntryGroup>
-            <DataEntryGroup name="Other sustainability features">
+            <DataEntryGroup name="Solar panels">
                 <DataEntry
                     title="Does the building have Solar Panels?"
                     slug=""
                     value=""
                     mode='view'
                 />
+            </DataEntryGroup>
+            <DataEntryGroup name="Green walls/roof">
                 <DataEntry
                     title="Does the building have Green Walls / Green Roof"
                     slug=""

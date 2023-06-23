@@ -103,7 +103,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 </>
             }
         </DataEntryGroup>
-        <DataEntryGroup name="Building height data">
+        <DataEntryGroup name="Height">
             <NumericDataEntry
                 title={dataFields.size_height_apex.title}
                 slug="size_height_apex"
@@ -196,7 +196,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 </>
             }
         </DataEntryGroup>
-        <DataEntryGroup name="Floor area data">
+        <DataEntryGroup name="Floor area">
             <NumericDataEntry
                 title={dataFields.size_floor_area_ground.title}
                 slug="size_floor_area_ground"
@@ -261,7 +261,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 </>
             }
         </DataEntryGroup>
-        <DataEntryGroup name="Plot size data">
+        <DataEntryGroup name="Plot size">
             <NumericDataEntry
                 title={dataFields.size_width_frontage.title}
                 slug="size_width_frontage"
