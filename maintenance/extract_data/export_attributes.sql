@@ -14,6 +14,7 @@ COPY (SELECT
     location_address_links,
     location_latitude,
     location_longitude,
+    location_alternative_footprint_links
     current_landuse_group,
     current_landuse_order,
     building_attachment_form,

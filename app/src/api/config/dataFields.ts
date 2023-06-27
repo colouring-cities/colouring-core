@@ -107,6 +107,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
+    location_alternative_footprint_links: {
+        edit: true,
+        verify: true
+    },
     date_year: {
         edit: true,
         verify: true,

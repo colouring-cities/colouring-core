@@ -315,12 +315,17 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
                 <hr/>
-                <DataEntry
-                    title="Alternative open building footprint ID(s)"
-                    slug=""
-                    value=""
-                    mode='view'
-                    tooltip="Under Development.<br><br>Please enter links to any additional data sources for open building footprint IDs."
+                <MultiDataEntry
+                    title={dataFields.location_alternative_footprint_links.title}
+                    slug="location_alternative_footprint_links"
+                    value={props.building.location_alternative_footprint_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.location_alternative_footprint_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
                 />
             </DataEntryGroup>
         </Fragment>

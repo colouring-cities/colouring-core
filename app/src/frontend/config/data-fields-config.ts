@@ -203,6 +203,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Ordnance Survey Topography Layer ID (TOID)",
         example: "",
     },
+    location_alternative_footprint_links: {
+        category: Category.Location,
+        title: "Alternative open building footprint links",
+        tooltip: "Links to alternative building footprint datasets (include the direct link to the footprint of this building where possible).",
+        example: ["", "", ""],
+    },
 
     /**
      * UPRNs is not part of the buildings table, but the string fields 
