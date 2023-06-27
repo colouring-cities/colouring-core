@@ -12,11 +12,20 @@ interface PatternDataEntryProps extends BaseDataEntryProps {
      */
     pattern: string;
     maxLength?: number;
+    valueTransform?: (val: string) => string;
 }
 
 export const PatternDataEntry: React.FC<PatternDataEntryProps> = props => {
     const handleChange = (value: string) => {
-        props.onChange?.(props.slug, value);
+        props.onChange?.(props.slug, transformValue(value));
+    };
+
+    const transformValue = (value: string) => {
+        const transform = props.valueTransform || (x => x);
+        const transformedValue = value === '' ?
+                        null :
+                        transform(value);
+        return transformedValue;
     };
 
     return (

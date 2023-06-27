@@ -194,7 +194,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     ref_toid: {
         category: Category.Location,
         title: "Building footprint ID",
-        tooltip: "Ordnance Survey Topography Layer ID (TOID) [<a href='https://www.ordnancesurvey.co.uk/business-government/products/open-toid'>link</a>]",
+        tooltip: "Ordnance Survey Topography Layer ID (TOID)",
         example: "",
     },
 
@@ -205,7 +205,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     uprns: {
         category: Category.Location,
         title: "Unique Property Reference Number(s) (UPRN)",
-        tooltip: "Unique Property Reference Numbers (to be filled automatically) [<a href='https://beta.ordnancesurvey.co.uk/products/os-open-uprn'>LINK</a>]",
+        tooltip: "Unique Property Reference Number(s) (UPRN) (derived automatically)",
         example: [{ uprn: "", parent_uprn: "" }, { uprn: "", parent_uprn: "" }],
     },
 
@@ -218,11 +218,10 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         ],
     },
 
-
     ref_osm_id: {
         category: Category.Location,
         title: "OpenStreetMap ID",
-        tooltip: "OpenStreetMap feature ID",
+        tooltip: "OpenStreetMap building ('way') ID - Numerical string of up to 9 characters",
         example: "",
     },
     location_latitude: {

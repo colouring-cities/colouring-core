@@ -12,9 +12,11 @@ import SelectDataEntry from '../data-components/select-data-entry';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 
 const locationNumberPattern = "[1-9]\\d*[a-z]?(-([1-9]\\d*))?"; ///[1-9]\d*[a-z]?(-([1-9]\d*))?/;
+const postcodeCharacterPattern = "^[A-Z]{1,2}[0-9]{1,2}[A-Z]?(\\s*[0-9][A-Z]{1,2})?$";
+const osmIdentifierPattern = "[0-9]{1,9}";
 
 const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
-    const osm_url = "https://www.openstreetmap.org/way/"+props.building.ref_osm_id;
+    const osm_url = "www.openstreetmap.org/way/"+props.building.ref_osm_id;
     return (
         <Fragment>
             <DataEntryGroup name="Addresses">
@@ -26,8 +28,9 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     onChange={props.onChange}
                     tooltip={dataFields.location_name.tooltip}
-                    placeholder="https://..."
-                    isUrl={true}
+                    placeholder=""
+                    isUrl={false}
+                    disabled={true}
                 />
                 <Verification
                     slug="location_name"
@@ -44,6 +47,13 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode='view'
                     tooltip="Not yet activated.<br><br>For security reasons, we do not allow the use of free text boxes and are currently looking into alternative ways to collect this data."
                 />
+                <DataEntry
+                    title="Building name link"
+                    slug=""
+                    value=""
+                    mode='view'
+                    tooltip="Under Development.<br><br>Please enter a link to a webpage that confirms the name of this building."
+                />
                 <hr/>
                 <PatternDataEntry
                     title={dataFields.location_number.title}
@@ -54,6 +64,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     onChange={props.onChange}
                     tooltip={dataFields.location_number.tooltip}
+                    maxLength={5}
                     />
                 <Verification
                     slug="location_number"
@@ -71,6 +82,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     onChange={props.onChange}
                     maxLength={30}
+                    disabled={true}
                     />
                 <Verification
                     slug="location_street"
@@ -88,6 +100,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     onChange={props.onChange}
                     maxLength={30}
+                    disabled={true}
                     />
                 <Verification
                     slug="location_line_two"
@@ -104,6 +117,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                    disabled={true}
                     />
                 <Verification
                     slug="location_town"
@@ -113,10 +127,11 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.location_town}
                     verified_count={props.building.verified.location_town}
                     />
-                <DataEntry
+                <PatternDataEntry
                     title={dataFields.location_postcode.title}
                     slug="location_postcode"
                     value={props.building.location_postcode}
+                    pattern={postcodeCharacterPattern}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
@@ -172,13 +187,27 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     disabled={true}
                     />
+                {
+                    (props.building.ref_toid == null) ? <></> :
+                    <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                        <i className="source-url">Source: <a href="https://www.ordnancesurvey.co.uk/products/os-open-toid" target={"_blank"}>{"www.ordnancesurvey.co.uk/products/os-open-toid"}</a></i>
+                    </div>
+                }
+                <hr/>
                 <UPRNsDataEntry
                     title={dataFields.uprns.title}
                     slug="ref_uprns"
                     value={props.building.uprns}
                     tooltip={dataFields.uprns.tooltip}
                     />
-                <DataEntry
+                {
+                    (props.building.uprns == null) ? <></> :
+                    <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                        <i className="source-url">Source: <a href="https://beta.ordnancesurvey.co.uk/products/os-open-uprn" target={"_blank"}>{"beta.ordnancesurvey.co.uk/products/os-open-uprn"}</a></i>
+                    </div>
+                }
+                <hr/>
+                <PatternDataEntry
                     title={dataFields.ref_osm_id.title}
                     slug="ref_osm_id"
                     value={props.building.ref_osm_id}
@@ -187,13 +216,8 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={dataFields.ref_osm_id.tooltip}
                     maxLength={20}
                     onChange={props.onChange}
+                    pattern={osmIdentifierPattern}
                     />
-                {
-                    (props.building.ref_osm_id == null) ? <></> :
-                    <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
-                        <i className="source-url">Source: <a href={osm_url} target={"_blank"}>{osm_url}</a></i>
-                    </div>
-                }
                 <Verification
                     slug="ref_osm_id"
                     allow_verify={props.user !== undefined && props.building.ref_osm_id !== null && !props.edited}
@@ -202,6 +226,12 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.ref_osm_id}
                     verified_count={props.building.verified.ref_osm_id}
                     />
+                {
+                    (props.building.ref_osm_id == null) ? <></> :
+                    <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                        <i className="source-url">Source: <a href={"https://"+osm_url} target={"_blank"}>{osm_url}</a></i>
+                    </div>
+                }
                 <hr/>
                 <NumericDataEntry
                     title={dataFields.location_latitude.title}
@@ -274,6 +304,14 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                     </>
                 }
+                <hr/>
+                <DataEntry
+                    title="Alternative open building footprint ID(s)"
+                    slug=""
+                    value=""
+                    mode='view'
+                    tooltip="Under Development.<br><br>Please enter links to any additional data sources for open building footprint IDs."
+                />
             </DataEntryGroup>
         </Fragment>
     );
