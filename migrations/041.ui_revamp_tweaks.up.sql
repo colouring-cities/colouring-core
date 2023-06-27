@@ -1,0 +1,1 @@
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS location_name_link text;

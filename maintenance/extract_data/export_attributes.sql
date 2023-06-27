@@ -4,6 +4,7 @@ COPY (SELECT
     ref_osm_id,
     revision_id,
     location_name,
+    location_name_link,
     location_number,
     location_street,
     location_line_two,

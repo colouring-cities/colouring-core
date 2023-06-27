@@ -48,12 +48,22 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip="Not yet activated.<br><br>For security reasons, we do not allow the use of free text boxes and are currently looking into alternative ways to collect this data."
                 />
                 <DataEntry
-                    title="Building name link"
-                    slug=""
-                    value=""
-                    mode='view'
-                    tooltip="Under Development.<br><br>Please enter a link to a webpage that confirms the name of this building."
+                    title={dataFields.location_name_link.title}
+                    slug="location_name_link"
+                    value={props.building.location_name_link}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.location_name_link.tooltip}
+                    placeholder={dataFields.location_name_link.example}
+                    isUrl={true}
                 />
+                {
+                    (props.building.location_name_link == null) ? <></> :
+                    <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                        <i className="source-url">Source: <a href={props.building.location_name_link} target={"_blank"}>{props.building.location_name_link}</a></i>
+                    </div>
+                }
                 <hr/>
                 <PatternDataEntry
                     title={dataFields.location_number.title}

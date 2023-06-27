@@ -145,7 +145,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name: {
         category: Category.Location,
         title: "Building name (non-domestic)",
-        tooltip: "Link to a website with the name of the building.<br/><br/>(For security reasons, we currently only collect the names of non-residential buildings).",
+        tooltip: "The name of the building.<br/><br/>(For security reasons, we currently only collect the names of non-residential buildings).",
+        example: "Broadcasting House",
+    },
+    location_name_link: {
+        category: Category.Location,
+        title: "Building name link",
+        tooltip: "Link to a website with the name of the building.",
         example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
     },
     location_number: {
