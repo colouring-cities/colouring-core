@@ -266,15 +266,16 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Source type",
         tooltip: "Source for the current land use",
         example: "",
-        items: [
-            "Expert/personal knowledge of building",
-            "Online streetview image",
-            "Open planning authority dataset",
-            "Open property tax dataset",
-            "Open housing dataset",
-            "Open address dataset",
-            "Other"
-        ],
+        items: commonSourceTypes
+        // items: [
+        //     "Expert/personal knowledge of building",
+        //     "Online streetview image",
+        //     "Open planning authority dataset",
+        //     "Open property tax dataset",
+        //     "Open housing dataset",
+        //     "Open address dataset",
+        //     "Other"
+        // ],
     },
     current_landuse_source_detail: {
         category: Category.LandUse,
