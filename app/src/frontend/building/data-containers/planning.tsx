@@ -87,7 +87,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 : <></>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Year of completion (crowdsourced)" collapsed={true} >
+            <DataEntryGroup name="Year of completion" collapsed={true} >
+                <DataEntry
+                    title="Was the building completed?"
+                    slug=""
+                    value=""
+                    mode='view'
+                    tooltip='Coming Soon'
+                />
                 <DataEntry
                     title="Year of completion"
                     slug=""
@@ -97,6 +104,20 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Incomplete/missing data" collapsed={true} >
+                <DataEntry
+                    title="Is information on a planning application relating to this building missing?"
+                    slug=""
+                    value=""
+                    mode='view'
+                    tooltip='Coming Soon'
+                />
+                <DataEntry
+                    title="Link (to correct data)"
+                    slug=""
+                    value=""
+                    mode='view'
+                    tooltip='Coming Soon'
+                />
                 <InfoBox>
                     If you feel there are incorrect or missing data relating to this building please contact:  
                     planningdata@London.gov.uk
