@@ -132,6 +132,13 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                     </>
                 }
+                <DataEntry
+                    title="Year of completion (best estimate)"
+                    slug=""
+                    value=""
+                    mode='view'
+                    tooltip='Coming Soon'
+                />
             </DataEntryGroup>
             <DataEntryGroup name="Cladding, extensions and retrofits">
                 <NumericDataEntry
