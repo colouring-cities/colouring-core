@@ -200,6 +200,14 @@ const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
             }
         </DataEntryGroup>
         <DataEntryGroup name="Street/pavement">
+            <DataEntry
+                title="Walkability Index"
+                slug=""
+                value=""
+                mode='view'
+                tooltip='Under development'
+            />
+            <hr/>
             <NumericDataEntry
                 title={dataFields.context_street_width.title}
                 value={props.building.context_street_width}
@@ -347,6 +355,7 @@ const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 slug=""
                 value=""
                 mode='view'
+                tooltip='Under development'
             />
         </DataEntryGroup>
     </Fragment>
