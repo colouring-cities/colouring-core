@@ -953,6 +953,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Free text. First name, space, then Last name",
         example: ["", "", ""],
     },
+    developer_links: {
+        category: Category.Team,
+        title: "Developer link(s)",
+        tooltip: "A link to a webpage explaining who the developer of the building was.",
+        example: ["", "", ""],
+    },
     developer_source_type: {
         category: Category.Team,
         title: "Source type",
@@ -972,6 +978,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Land owner when the building was constructed.<br/><br/>Free-text entry disabled for security reasons.<br/><br/>For info on current land ownership, see 'Planning Controls'.",
         example: ["", "", ""],
     },
+    landowner_links: {
+        category: Category.Team,
+        title: "Landowner link(s)",
+        tooltip: "A link to a webpage explaining who the land owner was when the building was built.",
+        example: ["", "", ""],
+    },
     landowner_source_type: {
         category: Category.Team,
         title: "Source type",
@@ -989,6 +1001,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Team,
         title: "Who were the main designer(s)?",
         tooltip: "First name, space, then Last name.<br/><br/>Free-text entry disabled for security reasons.",
+        example: ["", "", ""],
+    },
+    designers_links: {
+        category: Category.Team,
+        title: "Designer link(s)",
+        tooltip: "A link to webpage(s) explaining who the designer of the building was.",
         example: ["", "", ""],
     },
     designers_source_type: {
@@ -1032,6 +1050,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     builder: {
         category: Category.Team,
         title: "Name of builder/construction team.<br/><br/>Free-text entry disabled for security reasons.",
+        example: ["", "", ""],
+    },
+    builder_links: {
+        category: Category.Team,
+        title: "Builder link(s)",
+        tooltip: "A link to webpage(s) explaining who built the building was.",
         example: ["", "", ""],
     },
     builder_source_type: {
