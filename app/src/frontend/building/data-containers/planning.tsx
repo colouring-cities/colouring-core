@@ -468,7 +468,19 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 onChange={props.onChange}
                 mode={props.mode}
                 copy={props.copy}
-            />            
+            />
+            <hr/>
+            <DataEntry
+                title={dataFields.size_parcel_geometry.title}
+                slug="size_parcel_geometry"
+                value={props.building.size_parcel_geometry}
+                mode={props.mode}
+                copy={props.copy}
+                onChange={props.onChange}
+                tooltip={dataFields.size_parcel_geometry.tooltip}
+                placeholder="https://..."
+                isUrl={true}
+            />
             <button className={`map-switcher-inline ${parcel}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={parcelSwitchOnClick}>
                 {(parcel === 'enabled')? 'Click to hide sample land parcel data' : 'Click to show sample land parcel data'}
             </button>
