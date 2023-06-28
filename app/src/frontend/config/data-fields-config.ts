@@ -1305,6 +1305,18 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Source link(s) for street width data",
         example: ["", "", ""],
     },
+    age_historical_raster_map_links: {
+        category: Category.Age,
+        title: "Historical maps links",
+        tooltip: "Links to rasterised historical maps",
+        example: ["", "", ""],
+    },
+    age_historical_vectorised_footprint_links: {
+        category: Category.Age,
+        title: "Extracted vectorised historical footprints links",
+        tooltip: "Extracted vectorised historical footprints links",
+        example: ["", "", ""],
+    }
 };
 
 export const allFieldsConfig = { ...dataFields, ...buildingUserFields };

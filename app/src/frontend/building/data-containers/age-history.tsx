@@ -432,6 +432,30 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         This section provides links to open digitised historical maps/mapping data that we are using in the Colouring Cities platform.
                     </i>
                 </div>
+                <MultiDataEntry
+                    title={dataFields.age_historical_raster_map_links.title}
+                    slug="age_historical_raster_map_links"
+                    value={props.building.age_historical_raster_map_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.age_historical_raster_map_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                />
+                <MultiDataEntry
+                    title={dataFields.age_historical_vectorised_footprint_links.title}
+                    slug="age_historical_vectorised_footprint_links"
+                    value={props.building.age_historical_vectorised_footprint_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.age_historical_vectorised_footprint_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                />
             </DataEntryGroup>
         </Fragment>
     );

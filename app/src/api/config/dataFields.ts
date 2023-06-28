@@ -693,6 +693,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     age_retrofit_date_source_links : {
         edit: true,
         verify: true
+    },
+    age_historical_raster_map_links : {
+        edit: true,
+        verify: true
+    },
+    age_historical_vectorised_footprint_links : {
+        edit: true,
+        verify: true
     }
 });
 
