@@ -144,7 +144,7 @@ export const buildingUserFields = {
 export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name: {
         category: Category.Location,
-        title: "Building name (non-domestic)",
+        title: "Building name (non-residential)",
         tooltip: "The name of the building.<br/><br/>(For security reasons, we currently only collect the names of non-residential buildings).",
         example: "Broadcasting House",
     },
@@ -776,8 +776,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     is_domestic: {
         category: Category.Team,
-        title: "Is the building a home/domestic building?",
-        tooltip: "Note: Homes used as offices for working from home should be classified as domestic.",
+        title: "Is the building a home/residential building?",
+        tooltip: "Note: Homes used as offices for working from home should be classified as residential.",
         example: "mixed domestic/non-domestic",
         items: [
             "Yes",
@@ -788,14 +788,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     is_domestic_source: {
         category: Category.Team,
         title: "Source type",
-        tooltip: "Source of domestic/non-domestic data",
+        tooltip: "Source of residential/non-residential data",
         example: "",
         items: commonSourceTypes
     },
     is_domestic_links: {
         category: Category.Team,
         title: "Source links",
-        tooltip: "URL(s) for domestic/non-domestic data source(s)",
+        tooltip: "URL(s) for residential/non-residential data source(s)",
         example: ["", "", ""],
     },
     likes_total: {

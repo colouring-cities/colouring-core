@@ -39,7 +39,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         </i>
                     </div>
                     <button className={`map-switcher-inline ${props.mapColourScale == "is_domestic" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToIsDomesticMapStyle}>
-                        {(props.mapColourScale == "is_domestic")? 'Showing domestic, non-domestic and mixed-use buildings (click to hide)' : 'Click to see domestic, non-domestic and mixed-use buildings on the map.'}
+                        {(props.mapColourScale == "is_domestic")? 'Showing residential, non-residential and mixed-use buildings (click to hide)' : 'Click to see residential, non-residential and mixed-use buildings on the map.'}
                     </button>
                     <SelectDataEntry
                         title={dataFields.is_domestic.title}

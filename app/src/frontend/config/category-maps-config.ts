@@ -338,11 +338,11 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'is_domestic',
             legend: {
-                title: 'Domestic building',
+                title: 'Residential building',
                 elements: [
-                    { color: '#f7ec25', text: 'Domestic' },
+                    { color: '#f7ec25', text: 'Residential' },
                     { color: '#fc9b2a', text: 'Mixed' },
-                    { color: '#ff2121', text: 'Non-domestic' },
+                    { color: '#ff2121', text: 'Non-residential' },
                 ]
             }
         }
