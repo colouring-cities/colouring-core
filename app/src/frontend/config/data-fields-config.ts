@@ -182,7 +182,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "Area code/"+ccconfig.postcode,
         example: "W1W 6TR",
-        //tooltip: ,
+        tooltip: "Correctly formatted UK postcode, i.e. NW1 2FB",
     },
     location_address_source: {
         category: Category.Location,

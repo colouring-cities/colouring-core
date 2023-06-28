@@ -147,6 +147,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     maxLength={8}
                     valueTransform={x=>x.toUpperCase()}
+                    tooltip={dataFields.location_postcode.tooltip}
                     />
                 <Verification
                     slug="location_postcode"
