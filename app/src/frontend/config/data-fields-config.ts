@@ -969,7 +969,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     landowner: {
         category: Category.Team,
         title: "Landowner(s) at time of construction",
-        tooltip: "Land owner when the building was constructed.<br/>For info on current land ownership, see 'Planning Controls'.",
+        tooltip: "Land owner when the building was constructed.<br/><br/>Free-text entry disabled for security reasons.<br/><br/>For info on current land ownership, see 'Planning Controls'.",
         example: ["", "", ""],
     },
     landowner_source_type: {
@@ -988,7 +988,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     designers: {
         category: Category.Team,
         title: "Who were the main designer(s)?",
-        tooltip: "Free text. First name, space, then Last name",
+        tooltip: "First name, space, then Last name.<br/><br/>Free-text entry disabled for security reasons.",
         example: ["", "", ""],
     },
     designers_source_type: {
@@ -1031,7 +1031,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     builder: {
         category: Category.Team,
-        title: "Name of builder/construction team",
+        title: "Name of builder/construction team.<br/><br/>Free-text entry disabled for security reasons.",
         example: ["", "", ""],
     },
     builder_source_type: {

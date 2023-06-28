@@ -146,6 +146,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={dataFields.landowner.tooltip}
                     placeholder=""
                     editableEntries={true}
+                    disabled={true}
                     />
                 <Verification
                     slug="landowner"
@@ -213,6 +214,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={dataFields.developer_name.tooltip}
                     placeholder=""
                     editableEntries={true}
+                    disabled={true}
                     />
                 <Verification
                     slug="developer_name"
@@ -263,6 +265,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={dataFields.designers.tooltip}
                     placeholder=""
                     editableEntries={true}
+                    disabled={true}
                     />
                 <Verification
                     slug="designers"
@@ -272,7 +275,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.designers}
                     verified_count={props.building.verified.designers}
                     />
-
                 <SelectDataEntry
                     slug='lead_designer_type'
                     title={dataFields.lead_designer_type.title}
@@ -330,6 +332,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     placeholder=""
                     editableEntries={true}
+                    disabled={true}
                     />
                 <Verification
                     slug="builder"
