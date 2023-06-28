@@ -432,7 +432,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </DataEntryGroup>      
         <DataEntryGroup name="Land ownership" collapsed={true} >
             <InfoBox>
-                This section is designed to provide information on land parcels and their ownership type. Can you help us to crowdsource this information?
+                This section is designed to provide information on land parcels and their ownership type. Can you help us collect this information?
             </InfoBox>
             <SelectDataEntry
                 slug='community_public_ownership'
