@@ -1330,7 +1330,46 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Extracted vectorised historical footprints links",
         tooltip: "Extracted vectorised historical footprints links",
         example: ["", "", ""],
-    }
+    },
+
+    energy_solar: {
+        category: Category.EnergyPerformance,
+        title: "Does the building have solar panels?",
+        tooltip: "Are there any kinds of solar panels on the roof of the building?",
+        example: true
+    },
+    energy_solar_source_type: {
+        category: Category.EnergyPerformance,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    energy_solar_source_links: {
+        category: Category.EnergyPerformance,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+    energy_green_roof: {
+        category: Category.EnergyPerformance,
+        title: "Does the building have green walls/green roof?",
+        tooltip: "Are there any green walls, or a green roof, on the building?",
+        example: true
+    },
+    energy_green_roof_source_type: {
+        category: Category.EnergyPerformance,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    energy_green_roof_source_links: {
+        category: Category.EnergyPerformance,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
 };
 
 export const allFieldsConfig = { ...dataFields, ...buildingUserFields };

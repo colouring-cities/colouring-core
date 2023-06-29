@@ -6,3 +6,10 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS landowner_links text[];
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS designers_links text[];
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS builder_links text[];
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS developer_links text[];
+
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS energy_solar boolean;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS energy_solar_source_type text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS energy_solar_source_links text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS energy_green_roof boolean;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS energy_green_roof_source_type text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS energy_green_roof_source_links text[];

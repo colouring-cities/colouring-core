@@ -11,6 +11,7 @@ import InfoBox from '../../components/info-box';
 import { CategoryViewProps } from './category-view-props';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
+import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
 
 const EnergyCategoryOptions = ["A", "B", "C", "D", "E", "F", "G"];
 const BreeamRatingOptions = [
@@ -88,7 +89,7 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 />
             </DataEntryGroup>
             <DataEntryGroup name="Retrofit history">
-            <NumericDataEntry
+                <NumericDataEntry
                     slug='age_retrofit_date'
                     title={dataFields.age_retrofit_date.title}
                     value={props.building.age_retrofit_date}
@@ -139,20 +140,108 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Solar panels">
-                <DataEntry
-                    title="Does the building have Solar Panels?"
-                    slug=""
-                    value=""
-                    mode='view'
+                <LogicalDataEntry
+                    title={dataFields.energy_solar.title}
+                    slug="energy_solar"
+                    value={props.building.energy_solar}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.energy_solar.tooltip}
                 />
+                <Verification
+                    slug="energy_solar"
+                    allow_verify={props.user !== undefined && props.building.energy_solar !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("energy_solar")}
+                    user_verified_as={props.user_verified.energy_solar}
+                    verified_count={props.building.verified.energy_solar}
+                    />
+                {props.building.energy_solar == null ? <></> :
+                    <>
+                        <SelectDataEntry
+                            title={dataFields.energy_solar_source_type.title}
+                            slug="energy_solar_source_type"
+                            value={props.building.energy_solar_source_type}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.energy_solar_source_type.tooltip}
+                            options={dataFields.energy_solar_source_type.items}
+                            placeholder={dataFields.energy_solar_source_type.example}
+                        />
+                        {(props.building.energy_solar_source_type == dataFields.energy_solar_source_type.items[0] ||
+                            props.building.energy_solar_source_type == dataFields.energy_solar_source_type.items[1] ||
+                            props.building.energy_solar_source_type == null) ? <></> :
+                            <>
+                                <MultiDataEntry
+                                    title={dataFields.energy_solar_source_links.title}
+                                    slug="energy_solar_source_links"
+                                    value={props.building.energy_solar_source_links}
+                                    mode={props.mode}
+                                    copy={props.copy}
+                                    onChange={props.onChange}
+                                    tooltip={dataFields.energy_solar_source_links.tooltip}
+                                    placeholder="https://..."
+                                    editableEntries={true}
+                                    isUrl={true}
+                                />
+                            </>
+                        }
+                    </>
+                }
             </DataEntryGroup>
             <DataEntryGroup name="Green walls/roof">
-                <DataEntry
-                    title="Does the building have Green Walls / Green Roof"
-                    slug=""
-                    value=""
-                    mode='view'
+            <LogicalDataEntry
+                    title={dataFields.energy_green_roof.title}
+                    slug="energy_green_roof"
+                    value={props.building.energy_green_roof}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.energy_green_roof.tooltip}
                 />
+                <Verification
+                    slug="energy_green_roof"
+                    allow_verify={props.user !== undefined && props.building.energy_green_roof !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("energy_green_roof")}
+                    user_verified_as={props.user_verified.energy_green_roof}
+                    verified_count={props.building.verified.energy_green_roof}
+                    />
+                {props.building.energy_green_roof == null ? <></> :
+                    <>
+                        <SelectDataEntry
+                            title={dataFields.energy_green_roof_source_type.title}
+                            slug="energy_green_roof_source_type"
+                            value={props.building.energy_green_roof_source_type}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.energy_green_roof_source_type.tooltip}
+                            options={dataFields.energy_green_roof_source_type.items}
+                            placeholder={dataFields.energy_green_roof_source_type.example}
+                        />
+                        {(props.building.energy_green_roof_source_type == dataFields.energy_green_roof_source_type.items[0] ||
+                            props.building.energy_green_roof_source_type == dataFields.energy_green_roof_source_type.items[1] ||
+                            props.building.energy_green_roof_source_type == null) ? <></> :
+                            <>
+                                <MultiDataEntry
+                                    title={dataFields.energy_green_roof_source_links.title}
+                                    slug="energy_green_roof_source_links"
+                                    value={props.building.energy_green_roof_source_links}
+                                    mode={props.mode}
+                                    copy={props.copy}
+                                    onChange={props.onChange}
+                                    tooltip={dataFields.energy_green_roof_source_links.tooltip}
+                                    placeholder="https://..."
+                                    editableEntries={true}
+                                    isUrl={true}
+                                />
+                            </>
+                        }
+                    </>
+                }
             </DataEntryGroup>
         </Fragment>
     );

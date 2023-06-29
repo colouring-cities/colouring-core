@@ -717,6 +717,30 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     age_historical_vectorised_footprint_links : {
         edit: true,
         verify: true
+    },
+    energy_solar : {
+        edit: true,
+        verify: true
+    },
+    energy_solar_source_type : {
+        edit: true,
+        verify: true
+    },
+    energy_solar_source_links : {
+        edit: true,
+        verify: true
+    },
+    energy_green_roof : {
+        edit: true,
+        verify: true
+    },
+    energy_green_roof_source_type : {
+        edit: true,
+        verify: true
+    },
+    energy_green_roof_source_links : {
+        edit: true,
+        verify: true
     }
 });
 
