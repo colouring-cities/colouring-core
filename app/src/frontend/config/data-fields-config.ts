@@ -6,13 +6,14 @@ let ccconfig: CCConfig = require('../../cc-config.json')
  * Common list of Source Types, used in multiple menus
 */
 export const commonSourceTypes = [
-    "Assessed by eye",
-    "Assessed using expert knowledge of building or building type",
-    "Assessed using streetview photographs or satellite imagery",
+    "Assessed by eye/personal knowledge of the building",
+    "Assessed using professional knowledge of building or building type",
+    "Assessed using streetview photographs, satellite imagery or maps",
     "Assessed by specialist emergency group",
+    "Current government record/database",
     "Live streamed from a government source",
-    "Current government record/dataset",
-    "Independently managed public database",
+    "Open database",
+    "Other independently managed public database",
     "Commercial database",
     "Inferred computationally using existing open attribute data",
 ];
@@ -144,8 +145,14 @@ export const buildingUserFields = {
 export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name: {
         category: Category.Location,
-        title: "Building name (non-domestic)",
-        tooltip: "Link to a website with the name of the building.<br/><br/>(For security reasons, we currently only collect the names of non-residential buildings).",
+        title: "Building name (non-residential)",
+        tooltip: "The name of the building.<br/><br/>(For security reasons, we currently only collect the names of non-residential buildings).",
+        example: "Broadcasting House",
+    },
+    location_name_link: {
+        category: Category.Location,
+        title: "Building name link",
+        tooltip: "Link to a website with the name of the building.",
         example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
     },
     location_number: {
@@ -156,7 +163,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_street: {
         category: Category.Location,
-        title: "Street",
+        title: "Street name",
         example: "Gower Street",
         //tooltip: ,
     },
@@ -176,7 +183,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "Area code/"+ccconfig.postcode,
         example: "W1W 6TR",
-        //tooltip: ,
+        tooltip: "Correctly formatted UK postcode, i.e. NW1 2FB",
     },
     location_address_source: {
         category: Category.Location,
@@ -194,8 +201,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     ref_toid: {
         category: Category.Location,
         title: "Building footprint ID",
-        tooltip: "Ordnance Survey Topography Layer ID (TOID) [<a href='https://www.ordnancesurvey.co.uk/business-government/products/open-toid'>link</a>]",
+        tooltip: "Ordnance Survey Topography Layer ID (TOID)",
         example: "",
+    },
+    location_alternative_footprint_links: {
+        category: Category.Location,
+        title: "Alternative open building footprint links",
+        tooltip: "Links to alternative building footprint datasets (include the direct link to the footprint of this building where possible).",
+        example: ["", "", ""],
     },
 
     /**
@@ -205,7 +218,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     uprns: {
         category: Category.Location,
         title: "Unique Property Reference Number(s) (UPRN)",
-        tooltip: "Unique Property Reference Numbers (to be filled automatically) [<a href='https://beta.ordnancesurvey.co.uk/products/os-open-uprn'>LINK</a>]",
+        tooltip: "Unique Property Reference Number(s) (UPRN) (derived automatically)",
         example: [{ uprn: "", parent_uprn: "" }, { uprn: "", parent_uprn: "" }],
     },
 
@@ -218,11 +231,10 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         ],
     },
 
-
     ref_osm_id: {
         category: Category.Location,
         title: "OpenStreetMap ID",
-        tooltip: "OpenStreetMap feature ID",
+        tooltip: "OpenStreetMap building ('way') ID - Numerical string of up to 9 characters",
         example: "",
     },
     location_latitude: {
@@ -267,15 +279,16 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Source type",
         tooltip: "Source for the current land use",
         example: "",
-        items: [
-            "Expert/personal knowledge of building",
-            "Online streetview image",
-            "Open planning authority dataset",
-            "Open property tax dataset",
-            "Open housing dataset",
-            "Open address dataset",
-            "Other"
-        ],
+        items: commonSourceTypes
+        // items: [
+        //     "Expert/personal knowledge of building",
+        //     "Online streetview image",
+        //     "Open planning authority dataset",
+        //     "Open property tax dataset",
+        //     "Open housing dataset",
+        //     "Open address dataset",
+        //     "Other"
+        // ],
     },
     current_landuse_source_detail: {
         category: Category.LandUse,
@@ -342,7 +355,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     facade_year: {
         category: Category.Age,
-        title: "Date of front of building",
+        title: "Date of front of building (best estimate)",
         tooltip: "Best estimate",
         example: 1900,
     },
@@ -416,7 +429,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Size,
         title: "Height to apex (m)",
         example: 100.5,
-        tooltip: "i.e. the highest part of the roof.",
+        tooltip: "i.e. the highest part of the roof (in meters).",
     },
     size_height_apex_source_type: {
         category: Category.Team,
@@ -435,7 +448,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Size,
         title: "Height to eaves (m)",
         example: 20.33,
-        tooltip: "i.e. to where the top of the wall meets the roof",
+        tooltip: "i.e. to where the top of the wall meets the roof (in meters)",
     },
     size_height_eaves_source_type: {
         category: Category.Team,
@@ -479,7 +492,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Size,
         title: "Frontage width (m)",
         example: 12.2,
-        //tooltip: ,
+        tooltip: "Size of the frontage of the building (in meters)",
     },
     size_width_frontage_source_type: {
         category: Category.Team,
@@ -583,19 +596,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     sust_breeam_rating: {
         category: Category.EnergyPerformance,
-        title: "Official environmental quality rating",
+        title: "Residential energy rating",
         tooltip: ccconfig.energy_rating,
         example: "",
     },
     sust_dec: {
         category: Category.EnergyPerformance,
-        title: "Non-domestic Building Energy Rating",
+        title: "Non-residential Building Energy Rating",
         tooltip: "Display Energy Certificate (DEC) Any public building should have (and display) a DEC. Showing how the energy use for that building compares to other buildings with same use",
         example: "G",
     },
     sust_aggregate_estimate_epc: {
         category: Category.EnergyPerformance,
-        title: "Domestic Building Energy Rating",
+        title: "Residential Building Energy Rating",
         tooltip: "Energy Performance Certificate (EPC) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher may be rented",
         example: "",
     },
@@ -716,7 +729,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_list_grade: {
         category: Category.Planning,
-        title: "What is its rating?",
+        title: "What is its protection rating?",
         example: "II",
         //tooltip: ,
     },
@@ -740,19 +753,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_in_apa_url: {
         category: Category.Planning,
-        title: "Is it in an area if archaeological priority?",
+        title: "Is the building in an area of archaeological priority?",
         example: "",
         //tooltip: ,
     },
     planning_local_list_url: {
         category: Category.Planning,
-        title: "Is it a locally listed heritage asset?",
+        title: "Is the building a locally listed heritage asset?",
         example: "",
         //tooltip: ,
     },
     planning_historic_area_assessment_url: {
         category: Category.Planning,
-        title: "Does it have any other kind of historic area assessment?",
+        title: "Does it have any other type of designation?",
         example: "",
         //tooltip: ,
     },
@@ -764,8 +777,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     is_domestic: {
         category: Category.Team,
-        title: "Is the building a home/domestic building?",
-        tooltip: "Note: Homes used as offices for working from home should be classified as domestic.",
+        title: "Is the building a home/residential building?",
+        tooltip: "Note: Homes used as offices for working from home should be classified as residential.",
         example: "mixed domestic/non-domestic",
         items: [
             "Yes",
@@ -776,14 +789,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     is_domestic_source: {
         category: Category.Team,
         title: "Source type",
-        tooltip: "Source of domestic/non-domestic data",
+        tooltip: "Source of residential/non-residential data",
         example: "",
         items: commonSourceTypes
     },
     is_domestic_links: {
         category: Category.Team,
         title: "Source links",
-        tooltip: "URL(s) for domestic/non-domestic data source(s)",
+        tooltip: "URL(s) for residential/non-residential data source(s)",
         example: ["", "", ""],
     },
     likes_total: {
@@ -811,19 +824,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     community_activities_current: {
         category: Category.Community,
-        title: "Are activities open to the community currently taking place in the building?",
+        title: "Is this building currently used for community activities?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
     community_activities: {
         category: Category.Community,
-        title: "Has this ever been used for community activities in the past?",
+        title: "If not been used for community activities in the past?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
     community_activities_always: {
         category: Category.Community,
-        title: "Has the building always been used for community activities?",
+        title: "If in community use now, has it always been used for community activities?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
@@ -837,11 +850,15 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Is the building in public/community ownership?",
         example: "Privately owned (non-corporate)",
         items: [
-            'Government-owned',
-            'Charity-owned',
-            'Community-owned/cooperative',
-            'Owned by other non-profit body',
-            'Not in public/community ownership'
+            "Public/State body",
+            "Public body with Private company",
+            "Charity",
+            "Community group/Cooperative",
+            "Other non-profit body",
+            "Privately owned company",
+            "Privately owned offshore company",
+            "Private individual",
+            "Other",
         ]
     },
     community_public_ownership_sources: {
@@ -892,8 +909,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     has_extension: {
         category: Category.Team,
-        title: "Was a later extension added?",
-        tooltip: "",
+        title: "Does this information relate to the original main building?",
+        tooltip: "If the data in this section relates to the original main building, select \"yes\". If the data relates to a later extension/ redevelopment, select \"no\".",
         example: false
     },
     extension_year: {
@@ -934,7 +951,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     developer_name: {
         category: Category.Team,
         title: "Who were the developer(s)?",
-        tooltip: "Free text. First name, space, then Last name",
+        tooltip: "Name(s) of the building's developers.<br/><br/>Free-text entry disabled for security reasons.",
+        example: ["", "", ""],
+    },
+    developer_links: {
+        category: Category.Team,
+        title: "Developer link(s)",
+        tooltip: "Link(s) to webpage(s) explaining who developed the building.",
         example: ["", "", ""],
     },
     developer_source_type: {
@@ -953,7 +976,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     landowner: {
         category: Category.Team,
         title: "Landowner(s) at time of construction",
-        tooltip: "Free text. First name, space, then Last name",
+        tooltip: "Land owner when the building was constructed.<br/><br/>Free-text entry disabled for security reasons.<br/><br/>For info on current land ownership, see 'Planning Controls'.",
+        example: ["", "", ""],
+    },
+    landowner_links: {
+        category: Category.Team,
+        title: "Landowner link(s)",
+        tooltip: "Link(s) to webpage(s) explaining who owned the land when when the building was built.",
         example: ["", "", ""],
     },
     landowner_source_type: {
@@ -972,7 +1001,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     designers: {
         category: Category.Team,
         title: "Who were the main designer(s)?",
-        tooltip: "Free text. First name, space, then Last name",
+        tooltip: "Free-text entry disabled for security reasons.",
+        example: ["", "", ""],
+    },
+    designers_links: {
+        category: Category.Team,
+        title: "Designer link(s)",
+        tooltip: "Link(s) to webpage(s) explaining who designed the building.",
         example: ["", "", ""],
     },
     designers_source_type: {
@@ -1003,19 +1038,26 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     designer_awards: {
         category: Category.Team,
-        title: "Did the design team win any awards for this building?",
+        title: "Has the building won any awards?",
         tooltip: "",
         example: false
     },
     awards_source_link: {
         category: Category.Team,
-        title: "Source link(s) for designer award(s)",
-        tooltip: "URL for source for designer award(s)",
+        title: "Source link(s) for building award(s)",
+        tooltip: "URL for source for building award(s)",
         example: ["", "", ""],
     },
     builder: {
         category: Category.Team,
-        title: "Name of builder/construction team",
+        title: "Name of builder/construction team.",
+        tooltip: "Free-text entry disabled for security reasons.",
+        example: ["", "", ""],
+    },
+    builder_links: {
+        category: Category.Team,
+        title: "Builder link(s)",
+        tooltip: "Link(s) to webpage(s) explaining who built the building.",
         example: ["", "", ""],
     },
     builder_source_type: {
@@ -1098,31 +1140,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.StreetContext,
         title: "Does the building have a front garden?",
         tooltip: "Is the front garden mainly green/planted?",
-        example: "",
-        items: [
-            "Yes",
-            "No"
-        ]
+        example: true,
     },
     context_back_garden: {
         category: Category.StreetContext,
         title: "Does the building have a back garden?",
         tooltip: "Is the back garden mainly green/planted?",
-        example: "",
-        items: [
-            "Yes",
-            "No"
-        ]
+        example: true
     },
     context_flats_garden: {
         category: Category.StreetContext,
-        title: "Is the building flats with a dedicated green space?",
+        title: "Are flats with a dedicated green space?",
         tooltip: "If the building is a block of flats, does it have a dedicated garden area/green space?",
-        example: "",
-        items: [
-            "Yes",
-            "No"
-        ]
+        example: true
     },
     context_garden_source_type: {
         category: Category.StreetContext,
@@ -1139,8 +1169,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     context_street_width: {
         category: Category.Team,
-        title: "Street width (m)",
-        tooltip: "Width of the street in metres.",
+        title: "Average street width (m)",
+        tooltip: "Average width of the street in metres.",
         example: 10
     },
     context_street_width_source_type: {
@@ -1158,8 +1188,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     context_pavement_width: {
         category: Category.Team,
-        title: "Pavement width (m)",
-        tooltip: "Width of the pavement in metres.",
+        title: "Average pavement width (m)",
+        tooltip: "Average width of the pavement in metres.",
         example: 10
     },
     context_pavement_width_source_type: {
@@ -1178,7 +1208,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     context_green_space_distance: {
         category: Category.Team,
         title: "Distance to nearest green space (m)",
-        tooltip: "Approximate distance from the front door of the building to the nearest public green space.",
+        tooltip: "Approximate distance from the front door of the building to the nearest public green space (in meters).",
         example: 10
     },
     context_green_space_distance_source_type: {
@@ -1197,7 +1227,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     context_tree_distance: {
         category: Category.Team,
         title: "Distance to nearest tree (m)",
-        tooltip: "Approximate distance from the front door of the building to the nearest tree.",
+        tooltip: "Approximate distance from the front door of the building to the nearest tree in meters.",
         example: 10
     },
     context_tree_distance_source_type: {
@@ -1234,7 +1264,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     age_cladding_date: {
         category: Category.Age,
-        title: "Cladding date",
+        title: "Cladding date (best estimate)",
         tooltip: "Width of the street in metres.",
         example: 1970
     },
@@ -1253,7 +1283,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     age_extension_date: {
         category: Category.Age,
-        title: "Date of significant extensions",
+        title: "Date of significant extensions (best estimate)",
         tooltip: "Width of the street in metres.",
         example: 1970
     },
@@ -1272,7 +1302,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     age_retrofit_date: {
         category: Category.Age,
-        title: "Date of significant retrofits",
+        title: "Date of last significant retrofit (best estimate)",
         tooltip: "Width of the street in metres.",
         example: 1970
     },
@@ -1285,6 +1315,57 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     age_retrofit_date_source_links: {
         category: Category.Age,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+    age_historical_raster_map_links: {
+        category: Category.Age,
+        title: "Historical maps links",
+        tooltip: "Links to rasterised historical maps",
+        example: ["", "", ""],
+    },
+    age_historical_vectorised_footprint_links: {
+        category: Category.Age,
+        title: "Extracted vectorised historical footprints links",
+        tooltip: "Extracted vectorised historical footprints links",
+        example: ["", "", ""],
+    },
+
+    energy_solar: {
+        category: Category.EnergyPerformance,
+        title: "Does the building have solar panels?",
+        tooltip: "Are there any kinds of solar panels on the roof of the building?",
+        example: true
+    },
+    energy_solar_source_type: {
+        category: Category.EnergyPerformance,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    energy_solar_source_links: {
+        category: Category.EnergyPerformance,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+    energy_green_roof: {
+        category: Category.EnergyPerformance,
+        title: "Does the building have green walls/green roof?",
+        tooltip: "Are there any green walls, or a green roof, on the building?",
+        example: true
+    },
+    energy_green_roof_source_type: {
+        category: Category.EnergyPerformance,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    energy_green_roof_source_links: {
+        category: Category.EnergyPerformance,
         title: "Source link(s)",
         tooltip: "Source link(s) for street width data",
         example: ["", "", ""],

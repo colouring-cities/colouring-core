@@ -4,6 +4,7 @@ COPY (SELECT
     ref_osm_id,
     revision_id,
     location_name,
+    location_name_link,
     location_number,
     location_street,
     location_line_two,
@@ -13,6 +14,7 @@ COPY (SELECT
     location_address_links,
     location_latitude,
     location_longitude,
+    location_alternative_footprint_links
     current_landuse_group,
     current_landuse_order,
     building_attachment_form,
