@@ -602,13 +602,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     sust_dec: {
         category: Category.EnergyPerformance,
-        title: "Non-domestic Building Energy Rating",
+        title: "Non-residential Building Energy Rating",
         tooltip: "Display Energy Certificate (DEC) Any public building should have (and display) a DEC. Showing how the energy use for that building compares to other buildings with same use",
         example: "G",
     },
     sust_aggregate_estimate_epc: {
         category: Category.EnergyPerformance,
-        title: "Domestic Building Energy Rating",
+        title: "Residential Building Energy Rating",
         tooltip: "Energy Performance Certificate (EPC) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher may be rented",
         example: "",
     },
