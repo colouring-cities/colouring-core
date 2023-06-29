@@ -909,8 +909,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     has_extension: {
         category: Category.Team,
-        title: "Was a later extension added?",
-        tooltip: "",
+        title: "Does this information relate to the original main building?",
+        tooltip: "If the data in this section relates to the original main building, select \"yes\". If the data relates to a later extension/ redevelopment, select \"no\".",
         example: false
     },
     extension_year: {
@@ -951,13 +951,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     developer_name: {
         category: Category.Team,
         title: "Who were the developer(s)?",
-        tooltip: "Free text. First name, space, then Last name",
+        tooltip: "Name(s) of the building's developers.<br/><br/>Free-text entry disabled for security reasons.",
         example: ["", "", ""],
     },
     developer_links: {
         category: Category.Team,
         title: "Developer link(s)",
-        tooltip: "A link to a webpage explaining who the developer of the building was.",
+        tooltip: "Link(s) to webpage(s) explaining who developed the building.",
         example: ["", "", ""],
     },
     developer_source_type: {
@@ -982,7 +982,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     landowner_links: {
         category: Category.Team,
         title: "Landowner link(s)",
-        tooltip: "A link to a webpage explaining who the land owner was when the building was built.",
+        tooltip: "Link(s) to webpage(s) explaining who owned the land when when the building was built.",
         example: ["", "", ""],
     },
     landowner_source_type: {
@@ -1001,13 +1001,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     designers: {
         category: Category.Team,
         title: "Who were the main designer(s)?",
-        tooltip: "First name, space, then Last name.<br/><br/>Free-text entry disabled for security reasons.",
+        tooltip: "Free-text entry disabled for security reasons.",
         example: ["", "", ""],
     },
     designers_links: {
         category: Category.Team,
         title: "Designer link(s)",
-        tooltip: "A link to webpage(s) explaining who the designer of the building was.",
+        tooltip: "Link(s) to webpage(s) explaining who designed the building.",
         example: ["", "", ""],
     },
     designers_source_type: {
@@ -1050,13 +1050,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     builder: {
         category: Category.Team,
-        title: "Name of builder/construction team.<br/><br/>Free-text entry disabled for security reasons.",
+        title: "Name of builder/construction team.",
+        tooltip: "Free-text entry disabled for security reasons.",
         example: ["", "", ""],
     },
     builder_links: {
         category: Category.Team,
         title: "Builder link(s)",
-        tooltip: "A link to webpage(s) explaining who built the building was.",
+        tooltip: "Link(s) to webpage(s) explaining who built the building.",
         example: ["", "", ""],
     },
     builder_source_type: {
