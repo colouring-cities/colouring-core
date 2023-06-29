@@ -285,6 +285,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    planning_crowdsourced_site_completion_source_type: {
+        edit: true,
+        verify: true,
+    },
+    planning_crowdsourced_site_completion_source_links: {
+        edit: true,
+        verify: true,
+    },
     planning_crowdsourced_planning_id: {
         edit: true,
         verify: true,
@@ -330,6 +338,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true,
     },
     planning_list_id: {
+        edit: true,
+        verify: true,
+    },
+    planning_missing_data: {
+        edit: true,
+        verify: true,
+    },
+    planning_missing_data_links: {
         edit: true,
         verify: true,
     },

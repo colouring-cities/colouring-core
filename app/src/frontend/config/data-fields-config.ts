@@ -695,13 +695,26 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Planning,
         title: "Has the work on this site been completed?",
         example: true,
-        //tooltip: ,
+        tooltip: "Has the work on this site been completed?",
     },
     planning_crowdsourced_site_completion_year: {
         category: Category.Planning,
-        title: "Year of completion if known",
+        title: "Year of completion (best estimate)",
         example: 2022,
-        //tooltip: ,
+        tooltip: "Year of completion, if known",
+    },
+    planning_crowdsourced_site_completion_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for work complete data",
+        example: "",
+        items: commonSourceTypes
+    },
+    planning_crowdsourced_site_completion_source_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for work complete  data",
+        example: ["", "", ""],
     },
     planning_crowdsourced_planning_id: {
         category: Category.Planning,
@@ -775,6 +788,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: true,
         //tooltip: ,
     },
+    planning_missing_data: {
+        category: Category.Planning,
+        title: "Is information on a planning application relating to this building missing?",
+        tooltip: "Is information on a planning application relating to this building missing?",
+        example: true,
+    },
+    planning_missing_data_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for missing planning information",
+        example: ["", "", ""],
+    },
+    
+
     is_domestic: {
         category: Category.Team,
         title: "Is the building a home/residential building?",

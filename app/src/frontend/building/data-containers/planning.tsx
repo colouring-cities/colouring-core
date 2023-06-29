@@ -65,6 +65,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     }
     const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, parcel, parcelSwitchOnClick, conservation, conservationSwitchOnClick, darkLightTheme } = useDisplayPreferences();
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
+    const currentYear = new Date().getFullYear();
+
     return (
     <Fragment>
         <DataEntryGroup name="Current planning applications" collapsed={true} >
@@ -88,36 +90,111 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Year of completion" collapsed={true} >
-                <DataEntry
-                    title="Was the building completed?"
-                    slug=""
-                    value=""
-                    mode='view'
-                    tooltip='Coming Soon'
+                <LogicalDataEntry
+                    slug='planning_crowdsourced_site_completion_status'
+                    title={dataFields.planning_crowdsourced_site_completion_status.title}
+                    tooltip={dataFields.planning_crowdsourced_site_completion_status.tooltip}
+                    value={props.building.planning_crowdsourced_site_completion_status}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    mode={props.mode}
                 />
-                <DataEntry
-                    title="Year of completion"
-                    slug=""
-                    value=""
-                    mode='view'
-                    tooltip='Coming Soon'
+                <Verification
+                    slug="planning_crowdsourced_site_completion_status"
+                    allow_verify={props.user !== undefined && props.building.planning_crowdsourced_site_completion_status !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("planning_crowdsourced_site_completion_status")}
+                    user_verified_as={props.user_verified.planning_crowdsourced_site_completion_status}
+                    verified_count={props.building.verified.planning_crowdsourced_site_completion_status}
                 />
+                {props.building.planning_crowdsourced_site_completion_status == null ? <></> :
+                    <>
+                        <NumericDataEntry
+                            title={dataFields.planning_crowdsourced_site_completion_year.title}
+                            slug="planning_crowdsourced_site_completion_year"
+                            value={props.building.planning_crowdsourced_site_completion_year}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            step={1}
+                            min={1}
+                            max={currentYear}
+                            tooltip={dataFields.planning_crowdsourced_site_completion_year.tooltip}
+                            />
+                        <Verification
+                            slug="planning_crowdsourced_site_completion_year"
+                            allow_verify={props.user !== undefined && props.building.planning_crowdsourced_site_completion_year !== null && !props.edited}
+                            onVerify={props.onVerify}
+                            user_verified={props.user_verified.hasOwnProperty("planning_crowdsourced_site_completion_year")}
+                            user_verified_as={props.user_verified.planning_crowdsourced_site_completion_year}
+                            verified_count={props.building.verified.planning_crowdsourced_site_completion_year}
+                            />
+                        <SelectDataEntry
+                            title={dataFields.planning_crowdsourced_site_completion_source_type.title}
+                            slug="planning_crowdsourced_site_completion_source_type"
+                            value={props.building.planning_crowdsourced_site_completion_source_type}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.planning_crowdsourced_site_completion_source_type.tooltip}
+                            options={dataFields.planning_crowdsourced_site_completion_source_type.items}
+                            placeholder={dataFields.planning_crowdsourced_site_completion_source_type.example}
+                        />
+                        {(props.building.planning_crowdsourced_site_completion_source_type == dataFields.planning_crowdsourced_site_completion_source_type.items[0] ||
+                            props.building.planning_crowdsourced_site_completion_source_type == dataFields.planning_crowdsourced_site_completion_source_type.items[1] ||
+                            props.building.planning_crowdsourced_site_completion_source_type == null) ? <></> :
+                            <>
+                                <MultiDataEntry
+                                    title={dataFields.planning_crowdsourced_site_completion_source_links.title}
+                                    slug="planning_crowdsourced_site_completion_source_links"
+                                    value={props.building.planning_crowdsourced_site_completion_source_links}
+                                    mode={props.mode}
+                                    copy={props.copy}
+                                    onChange={props.onChange}
+                                    tooltip={dataFields.planning_crowdsourced_site_completion_source_links.tooltip}
+                                    placeholder="https://..."
+                                    editableEntries={true}
+                                    isUrl={true}
+                                />
+                            </>
+                        }
+                    </>
+                }   
             </DataEntryGroup>
             <DataEntryGroup name="Incomplete/missing data" collapsed={true} >
-                <DataEntry
-                    title="Is information on a planning application relating to this building missing?"
-                    slug=""
-                    value=""
-                    mode='view'
-                    tooltip='Coming Soon'
+                <LogicalDataEntry
+                    slug='planning_missing_data'
+                    title={dataFields.planning_missing_data.title}
+                    tooltip={dataFields.planning_missing_data.tooltip}
+                    value={props.building.planning_missing_data}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    mode={props.mode}
                 />
-                <DataEntry
-                    title="Link (to correct data)"
-                    slug=""
-                    value=""
-                    mode='view'
-                    tooltip='Coming Soon'
+                <Verification
+                    slug="planning_missing_data"
+                    allow_verify={props.user !== undefined && props.building.planning_missing_data !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("planning_missing_data")}
+                    user_verified_as={props.user_verified.planning_missing_data}
+                    verified_count={props.building.verified.planning_missing_data}
                 />
+                {props.building.planning_missing_data == null ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.planning_missing_data_links.title}
+                            slug="planning_missing_data_links"
+                            value={props.building.planning_missing_data_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.planning_missing_data_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
                 <InfoBox>
                     If you feel there are incorrect or missing data relating to this building please contact:  
                     planningdata@London.gov.uk
@@ -179,41 +256,41 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 </i>
             </div>
             <LogicalDataEntry
-            title="Is the building inside a Flood Zone?"
-            slug="planning_live_application"
-            value={null}
-            disabled={true}
-            tooltip={"the GLA official description: \"All areas with more than a 1 in 1,000 annual probability of either river or sea flooding.\""}
+                title="Is the building inside a Flood Zone?"
+                slug="planning_live_application"
+                value={null}
+                disabled={true}
+                tooltip={"the GLA official description: \"All areas with more than a 1 in 1,000 annual probability of either river or sea flooding.\""}
             />
             <button className={`map-switcher-inline ${flood}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={floodSwitchOnClick}>
                 {(flood === 'enabled')? 'Click to hide Flood Zones' : 'Click to see Flood Zones mapped'}
             </button>
             <LogicalDataEntry
-            title="Is the building in a Housing Zone?"
-            slug="planning_live_application"
-            value={null}
-            disabled={true}
-            tooltip={"the GLA official description: \"Housing zones are areas funded by the Mayor and government to attract developers and relevant partners to build new homes.\""}
+                title="Is the building in a Housing Zone?"
+                slug="planning_live_application"
+                value={null}
+                disabled={true}
+                tooltip={"the GLA official description: \"Housing zones are areas funded by the Mayor and government to attract developers and relevant partners to build new homes.\""}
             />
             <button className={`map-switcher-inline ${housing}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={housingSwitchOnClick}>
                 {(housing === 'enabled')? 'Click to hide Housing Zones' : 'Click to see Housing Zones mapped'}
             </button>
             <LogicalDataEntry
-            title="Is the building in a Creative Enterprise Zone?"
-            slug="planning_live_application"
-            value={null}
-            disabled={true}
-            tooltip={"GLA official description: \"Creative Enterprise Zones are a new Mayoral initiative to designate areas of London where artists and creative businesses can find permanent affordable space to work; are supported to start-up and grow; and where local people are helped to learn creative sector skills and find new jobs.\""}
+                title="Is the building in a Creative Enterprise Zone?"
+                slug="planning_live_application"
+                value={null}
+                disabled={true}
+                tooltip={"GLA official description: \"Creative Enterprise Zones are a new Mayoral initiative to designate areas of London where artists and creative businesses can find permanent affordable space to work; are supported to start-up and grow; and where local people are helped to learn creative sector skills and find new jobs.\""}
             />
             <button className={`map-switcher-inline ${creative}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={creativeSwitchOnClick}>
                 {(creative === 'enabled')? 'Click to hide Creative Enterprise Zones' : 'Click to see Creative Enterprise Zones'}
             </button>
             <LogicalDataEntry
-            title="Is the building within a Protected Vista?"
-            slug="planning_live_application"
-            value={null}
-            disabled={true}
-            tooltip={"GLA official description: \"The Protected Vistas are established in the London Plan with more detailed guidance provided in the London View Management Framework (LVMF). The London Plan seeks to protect the significant views which help to define London, including the panoramas, linear views and townscape views in this layer.\""}
+                title="Is the building within a Protected Vista?"
+                slug="planning_live_application"
+                value={null}
+                disabled={true}
+                tooltip={"GLA official description: \"The Protected Vistas are established in the London Plan with more detailed guidance provided in the London View Management Framework (LVMF). The London Plan seeks to protect the significant views which help to define London, including the panoramas, linear views and townscape views in this layer.\""}
             />
             <button className={`map-switcher-inline ${vista}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={vistaSwitchOnClick}>
                 {(vista === 'enabled')? 'Click to hide Protected Vistas' : 'Click to see Protected Vistas'}

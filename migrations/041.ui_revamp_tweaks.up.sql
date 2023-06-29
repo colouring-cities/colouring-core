@@ -13,3 +13,8 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS energy_solar_source_links text[];
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS energy_green_roof boolean;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS energy_green_roof_source_type text;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS energy_green_roof_source_links text[];
+
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_crowdsourced_site_completion_source_type text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_crowdsourced_site_completion_source_links text[];
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_missing_data boolean;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_missing_data_links text[];
