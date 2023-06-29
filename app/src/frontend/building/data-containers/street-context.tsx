@@ -8,6 +8,7 @@ import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
+import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
 
 /**
 * Street Context view/edit section
@@ -15,11 +16,10 @@ import Verification from '../data-components/verification';
 const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <DataEntryGroup name="Green Space">
-            <SelectDataEntry
+            <LogicalDataEntry
                 title={dataFields.context_front_garden.title}
                 slug="context_front_garden"
                 value={props.building.context_front_garden}
-                options={dataFields.context_front_garden.items}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
@@ -33,7 +33,7 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
                 user_verified_as={props.user_verified.context_front_garden}
                 verified_count={props.building.verified.context_front_garden}
                 />
-            <SelectDataEntry
+            <LogicalDataEntry
                 title={dataFields.context_back_garden.title}
                 slug="context_back_garden"
                 value={props.building.context_back_garden}
@@ -41,8 +41,6 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
                 copy={props.copy}
                 onChange={props.onChange}
                 tooltip={dataFields.context_back_garden.tooltip}
-                //placeholder={dataFields.context_back_garden.example}
-                options={dataFields.context_back_garden.items}
                 />
             <Verification
                 slug="context_back_garden"
@@ -52,7 +50,7 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
                 user_verified_as={props.user_verified.context_back_garden}
                 verified_count={props.building.verified.context_back_garden}
                 />
-            <SelectDataEntry
+            <LogicalDataEntry
                 title={dataFields.context_flats_garden.title}
                 slug="context_flats_garden"
                 value={props.building.context_flats_garden}
@@ -60,8 +58,6 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
                 copy={props.copy}
                 onChange={props.onChange}
                 tooltip={dataFields.context_flats_garden.tooltip}
-                //placeholder={dataFields.context_flats_garden.example}
-                options={dataFields.context_flats_garden.items}
                 />
             <Verification
                 slug="context_flats_garden"

@@ -1140,31 +1140,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.StreetContext,
         title: "Does the building have a front garden?",
         tooltip: "Is the front garden mainly green/planted?",
-        example: "",
-        items: [
-            "Yes",
-            "No"
-        ]
+        example: true,
     },
     context_back_garden: {
         category: Category.StreetContext,
         title: "Does the building have a back garden?",
         tooltip: "Is the back garden mainly green/planted?",
-        example: "",
-        items: [
-            "Yes",
-            "No"
-        ]
+        example: true
     },
     context_flats_garden: {
         category: Category.StreetContext,
         title: "Are flats with a dedicated green space?",
         tooltip: "If the building is a block of flats, does it have a dedicated garden area/green space?",
-        example: "",
-        items: [
-            "Yes",
-            "No"
-        ]
+        example: true
     },
     context_garden_source_type: {
         category: Category.StreetContext,
