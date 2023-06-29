@@ -74,7 +74,6 @@ const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
                 user_verified_as={props.user_verified.context_flats_garden}
                 verified_count={props.building.verified.context_flats_garden}
                 />
-            <hr/>
             <SelectDataEntry
                 title={dataFields.context_garden_source_type.title}
                 slug="context_garden_source_type"
