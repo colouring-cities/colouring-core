@@ -1,11 +1,8 @@
 import React, { Fragment } from 'react';
-import InfoBox from '../../components/info-box';
 import { commonSourceTypes, dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
-
 import withCopyEdit from '../data-container';
-
 import { CategoryViewProps } from './category-view-props';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
@@ -13,9 +10,9 @@ import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
 
 /**
-* Streetscape view/edit section
+* Street Context view/edit section
 */
-const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
+const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) => (
     <Fragment>
         <DataEntryGroup name="Green Space">
             <SelectDataEntry
@@ -359,6 +356,6 @@ const StreetscapeView: React.FunctionComponent<CategoryViewProps> = (props) => (
         </DataEntryGroup>
     </Fragment>
 );
-const StreetscapeContainer = withCopyEdit(StreetscapeView);
+const StreetContextContainer = withCopyEdit(StreetContextView);
 
-export default StreetscapeContainer;
+export default StreetContextContainer;
