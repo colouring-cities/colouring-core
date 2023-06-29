@@ -48,13 +48,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 </i>
             </div>
             <div className='community-opinion-pane'>
-                <DataEntry
-                    title="Do you like this building and think it contributes to the city?"
-                    slug=""
-                    value=""
-                    mode='view'
-                    tooltip='Coming Soon'
-                />
                 {(props.building.is_domestic === "no" || props.building.is_domestic === "mixed domestic/non-domestic") ?
                 <>
                     <UserOpinionEntry
