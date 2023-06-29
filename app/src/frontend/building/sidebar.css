@@ -184,3 +184,16 @@
     padding-top: 0px;
     padding-bottom: 5px;
 }
+
+dd {
+    margin-bottom: 15px;
+}
+
+.uprn-list {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.uprn-list li {
+    margin-bottom: 10px;
+}

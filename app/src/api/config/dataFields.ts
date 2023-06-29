@@ -59,6 +59,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    location_name_link: {
+        edit: true,
+        verify: true,
+    },
     location_number: {
         edit: true,
         verify: true,
@@ -100,6 +104,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true
     },
     location_coordinates_links: {
+        edit: true,
+        verify: true
+    },
+    location_alternative_footprint_links: {
         edit: true,
         verify: true
     },
@@ -482,6 +490,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
+    developer_links: {
+        edit: true,
+        verify: true
+    },
     developer_source_type: {
         edit: true,
         verify: true
@@ -494,6 +506,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
+    landowner_links: {
+        edit: true,
+        verify: true
+    },
     landowner_source_type: {
         edit: true,
         verify: true
@@ -503,6 +519,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true
     },
     designers: {
+        edit: true,
+        verify: true
+    },
+    designers_links: {
         edit: true,
         verify: true
     },
@@ -527,6 +547,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true
     },
     builder: {
+        edit: true,
+        verify: true
+    },
+    builder_links: {
         edit: true,
         verify: true
     },
@@ -683,6 +707,38 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true
     },
     age_retrofit_date_source_links : {
+        edit: true,
+        verify: true
+    },
+    age_historical_raster_map_links : {
+        edit: true,
+        verify: true
+    },
+    age_historical_vectorised_footprint_links : {
+        edit: true,
+        verify: true
+    },
+    energy_solar : {
+        edit: true,
+        verify: true
+    },
+    energy_solar_source_type : {
+        edit: true,
+        verify: true
+    },
+    energy_solar_source_links : {
+        edit: true,
+        verify: true
+    },
+    energy_green_roof : {
+        edit: true,
+        verify: true
+    },
+    energy_green_roof_source_type : {
+        edit: true,
+        verify: true
+    },
+    energy_green_roof_source_links : {
         edit: true,
         verify: true
     }

@@ -57,18 +57,13 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
             },
             {
                 to: "https://github.com/colouring-cities/manual/wiki",
-                text: "Open Manual - Wiki",
+                text: "Colouring Cities Open Manual/Wiki",
+                disabled: false,
                 external: true
             },
             {
                 to: config.githubURL,
                 text: "Open code",
-                external: true
-            },
-            {
-                to: "https://github.com/colouring-cities/manual/wiki",
-                text: "Colouring Cities Open Manual/Wiki",
-                disabled: false,
                 external: true
             },
             {
@@ -79,12 +74,17 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
         ],
         [
             {
-                to: "https://pages.colouring.london",
-                text: "About",
+                to: "https://github.com/colouring-cities/manual/wiki/A.-What-is-the-CCRP%3F",
+                text: "About the Colouring Cities Research Programme",
                 external: true
             },
             {
-                to: "https://pages.colouring.london/buildingcategories",
+                to: "https://github.com/colouring-cities/manual/wiki/A2.-How-to%3F-Guides",
+                text: "How to Use",
+                external: true
+            },
+            {
+                to: "https://github.com/colouring-cities/manual/wiki/I.--DATA",
                 text: "Data Categories",
                 external: true
             },
@@ -94,15 +94,10 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "https://pages.colouring.london/data-ethics",
-                text: "Data Ethics",
+                to: "https://github.com/colouring-cities/manual/wiki/C.-Ethical-framework-and-ethics-policies",
+                text: "Ethical Framework",
                 external: true
-            },
-            {
-                to: "https://pages.colouring.london/colouring-cities",
-                text: "Colouring Cities Research Programme",
-                external: true
-            },
+            }
         ],
         [
             {
@@ -110,32 +105,45 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 text: "Top Contributors"
             },
             {
-                to: "https://discuss.colouring.london",
+                to: config.githubURL+"/discussions",
                 text: "Discussion Forum",
                 external: true
             },
-            {
-                to: "https://discuss.colouring.london/c/blog/9",
-                text: "Blog",
-                external: true
-            },
+            // {
+            //     to: "https://discuss.colouring.london/c/blog/9",
+            //     text: "Blog",
+            //     external: true
+            // },
         ],
         [
             {
-                to: "/privacy-policy.html",
-                text: "Privacy Policy"
+                to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-contributor-privacy-statement",
+                text: "Privacy Policy",
+                external: true
             },
             {
-                to: "/contributor-agreement.html",
-                text: "Contributor Agreement"
+                to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement",
+                text: "Contributor Agreement",
+                external: true
             },
             {
                 to: "/code-of-conduct.html",
                 text: "Code of Conduct"
             },
             {
-                to: "/data-accuracy.html",
-                text: "Data Accuracy Agreement"
+                to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement",
+                text: "Data Accuracy and Use Agreement",
+                external: true
+            },
+            {
+                to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-equality-diversity-and-inclusion-policy",
+                text: "Equality, Diversity and Inclusion",
+                external: true
+            },
+            {
+                to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-protocols-for-international-academic-partners",
+                text: "CCRP Academic Partner Protocols",
+                external: true
             },
             {
                 to: "/ordnance-survey-uprn.html",
@@ -183,7 +191,7 @@ const InternalNavLink: React.FC<{to: string; onClick: () => void}> = ({ to, onCl
 );
 
 const ExternalNavLink: React.FC<{to: string}> = ({ to, children }) => (
-    <a className="nav-link" href={to}>
+    <a className="nav-link" href={to} target="_blank">
         {children}
     </a>
 );
