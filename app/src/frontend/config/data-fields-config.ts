@@ -7,12 +7,13 @@ let ccconfig: CCConfig = require('../../cc-config.json')
 */
 export const commonSourceTypes = [
     "Assessed by eye/personal knowledge of the building",
-    "Assessed using expert knowledge of building or building type",
+    "Assessed using professional knowledge of building or building type",
     "Assessed using streetview photographs, satellite imagery or maps",
     "Assessed by specialist emergency group",
+    "Current government record/database",
     "Live streamed from a government source",
-    "Current government record/dataset",
-    "Independently managed public database",
+    "Open database",
+    "Other independently managed public database",
     "Commercial database",
     "Inferred computationally using existing open attribute data",
 ];
