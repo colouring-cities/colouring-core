@@ -105,24 +105,26 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 text: "Top Contributors"
             },
             {
-                to: "https://discuss.colouring.london",
+                to: config.githubURL+"/discussions",
                 text: "Discussion Forum",
                 external: true
             },
-            {
-                to: "https://discuss.colouring.london/c/blog/9",
-                text: "Blog",
-                external: true
-            },
+            // {
+            //     to: "https://discuss.colouring.london/c/blog/9",
+            //     text: "Blog",
+            //     external: true
+            // },
         ],
         [
             {
                 to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-contributor-privacy-statement",
-                text: "Privacy Policy"
+                text: "Privacy Policy",
+                external: true
             },
             {
                 to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement",
-                text: "Contributor Agreement"
+                text: "Contributor Agreement",
+                external: true
             },
             {
                 to: "/code-of-conduct.html",
@@ -130,15 +132,18 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
             },
             {
                 to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement",
-                text: "Data Accuracy and Use Agreement"
+                text: "Data Accuracy and Use Agreement",
+                external: true
             },
             {
                 to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-equality-diversity-and-inclusion-policy",
-                text: "Equality, Diversity and Inclusion"
+                text: "Equality, Diversity and Inclusion",
+                external: true
             },
             {
                 to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-protocols-for-international-academic-partners",
-                text: "CCRP Academic Partner Protocols"
+                text: "CCRP Academic Partner Protocols",
+                external: true
             },
             {
                 to: "/ordnance-survey-uprn.html",
@@ -186,7 +191,7 @@ const InternalNavLink: React.FC<{to: string; onClick: () => void}> = ({ to, onCl
 );
 
 const ExternalNavLink: React.FC<{to: string}> = ({ to, children }) => (
-    <a className="nav-link" href={to}>
+    <a className="nav-link" href={to} target="_blank">
         {children}
     </a>
 );
