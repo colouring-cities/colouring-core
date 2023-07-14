@@ -1,7 +1,9 @@
 {
     "cityName": "Cities",
     "projectBlurb": "Colouring {City Name} is part Colouring Cities.",
+    
     "githubURL": "https://github.com/colouring-cities/colouring-core",
+    "manualURL": "https://github.com/colouring-cities/manual/wiki/M3.-COLOURING-BRITAIN",
     "privacyStatement": "{Privacy statement goes here}",
 
     "initialMapPosition": [ 51.5245255, -0.1338422 ],
