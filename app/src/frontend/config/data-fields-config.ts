@@ -362,7 +362,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_source: {
         category: Category.Age,
-        title: "Source type",
+        title: "Historical source type",
         tooltip: "Source type for the building dates above",
         items: [
             "Expert knowledge of building",
@@ -389,6 +389,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "",
     },
     date_link: {
+        category: Category.Age,
+        title: "Historical source link(s)",
+        tooltip: "URL for age and date reference",
+        example: ["", "", ""],
+    },
+    date_source_type: {
+        category: Category.Age,
+        title: "Source type",
+        tooltip: "Source type for the building dates above",
+        items: commonSourceTypes,
+        example: "",
+    },
+    date_source_links: {
         category: Category.Age,
         title: "Source link(s)",
         tooltip: "URL for age and date reference",

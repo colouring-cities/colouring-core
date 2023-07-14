@@ -18,3 +18,6 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_crowdsourced_site_comple
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_crowdsourced_site_completion_source_links text[];
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_missing_data boolean;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS planning_missing_data_links text[];
+
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS date_source_type text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS date_source_links text[];

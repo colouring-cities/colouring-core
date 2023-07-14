@@ -103,6 +103,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.facade_year}
                     verified_count={props.building.verified.facade_year}
                     />
+                <hr/>
                 <SelectDataEntry
                     title={dataFields.date_source.title}
                     slug="date_source"
@@ -132,13 +133,43 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                     </>
                 }
-                <DataEntry
+                <hr/>
+                <SelectDataEntry
+                    title={dataFields.date_source_type.title}
+                    slug="date_source_type"
+                    value={props.building.date_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.date_source_type.tooltip}
+                    options={dataFields.date_source_type.items}
+                    placeholder={dataFields.date_source_type.example}
+                    />
+                {(props.building.date_source_type == dataFields.date_source_type.items[0] ||
+                    props.building.date_source_type == dataFields.date_source_type.items[1] ||
+                    props.building.date_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.date_source_links.title}
+                            slug="date_source_links"
+                            value={props.building.date_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.date_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+                {/*<DataEntry
                     title="Year of completion (best estimate)"
                     slug=""
                     value=""
                     mode='view'
                     tooltip='Coming Soon'
-                />
+                />*/}
             </DataEntryGroup>
             <DataEntryGroup name="Cladding, extensions and retrofits">
                 <NumericDataEntry
