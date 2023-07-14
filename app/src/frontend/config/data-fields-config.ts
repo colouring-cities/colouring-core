@@ -736,6 +736,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "1112/QWERTY",
         //tooltip: ,
     },
+    planning_in_conservation_area: {
+        category: Category.Planning,
+        title: "Is the building in a conservation area?",
+        tooltip: "Is the building in a conservation area?",
+        example: true,
+    },
     planning_in_conservation_area_id: {
         category: Category.Planning,
         title: "Conservation Area identifier",
@@ -766,9 +772,15 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "",
         //tooltip: ,
     },
+    planning_world_heritage_site: {
+        category: Category.Planning,
+        title: "Is the building on a World Heritage Site?",
+        tooltip: "Is the building on a <a href=\"https://historicengland.org.uk/advice/hpg/has/whs/\" target=\"_blank\">World Heritage Site</a>",
+        example: true,
+    },
     planning_world_list_id: {
         category: Category.Planning,
-        title: "If the building is on a <a href=\"https://historicengland.org.uk/advice/hpg/has/whs/\" target=\"_blank\">World Heritage Site</a> please add the ID:",
+        title: "If the building is on a World Heritage Site please add the ID:",
         example: "488",
         //tooltip: ,
     },
@@ -778,17 +790,35 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "",
         //tooltip: ,
     },
+    planning_in_apa: {
+        category: Category.Planning,
+        title: "Is the building in an area of archaeological priority?",
+        tooltip: "Is the building in an area of archaeological priority?",
+        example: true,
+    },
     planning_in_apa_url: {
         category: Category.Planning,
         title: "Is the building in an area of archaeological priority?",
         example: "",
         //tooltip: ,
     },
+    planning_local_list: {
+        category: Category.Planning,
+        title: "Is the building a locally listed heritage asset?",
+        tooltip: "Is the building a locally listed heritage asset?",
+        example: true,
+    },
     planning_local_list_url: {
         category: Category.Planning,
         title: "Is the building a locally listed heritage asset?",
         example: "",
         //tooltip: ,
+    },
+    planning_historic_area_assessment: {
+        category: Category.Planning,
+        title: "Does the building have any other type of designation?",
+        tooltip: "Does the building have any other type of designation?",
+        example: true,
     },
     planning_historic_area_assessment_url: {
         category: Category.Planning,
@@ -812,6 +842,31 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Team,
         title: "Source links",
         tooltip: "URL(s) for missing planning information",
+        example: ["", "", ""],
+    },
+    planning_heritage_at_risk: {
+        category: Category.Planning,
+        title: "Is the building on a heritage at risk register?",
+        tooltip: "Is the building on a heritage at risk register?",
+        example: true,
+    },
+    planning_scientific_interest: {
+        category: Category.Planning,
+        title: "Is the building on a site of special scientific interest?",
+        tooltip: "Is the building on a site of special scientific interest?",
+        example: true,
+    },
+    planning_scientific_interest_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for site of special scientific interest data",
+        example: "",
+        items: commonSourceTypes
+    },
+    planning_scientific_interest_source_links: {
+        category: Category.Team,
+        title: "Source links",
+        tooltip: "URL(s) for site of special scientific interest data",
         example: ["", "", ""],
     },
     

@@ -335,198 +335,301 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             }
             <button className={`map-switcher-inline ${conservation}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={conservationSwitchOnClick}>
                 {(conservation === 'enabled')? 'Click to hide Conservation Areas' : 'Click to see Conservation Areas'}
-                </button>
-            <NumericDataEntryWithFormattedLink
-                title={dataFields.planning_list_id.title}
-                slug="planning_list_id"
-                value={props.building.planning_list_id}
-                mode={props.mode}
+            </button>
+            <hr/>
+            <LogicalDataEntry
+                slug='planning_heritage_at_risk'
+                title={dataFields.planning_heritage_at_risk.title}
+                tooltip={dataFields.planning_heritage_at_risk.tooltip}
+                value={props.building.planning_heritage_at_risk}
                 copy={props.copy}
                 onChange={props.onChange}
-                placeholder="add ID here"
-                linkTargetFunction={(id: String) => { return "https://historicengland.org.uk/listing/the-list/list-entry/" + id + "?section=official-list-entry" } }
-                linkDescriptionFunction={(id: String) => { return "ID Link" } }
+                mode={props.mode}
             />
             <Verification
-                slug="planning_list_id"
-                allow_verify={props.user !== undefined && props.building.planning_list_id !== null && !props.edited}
+                slug="planning_heritage_at_risk"
+                allow_verify={props.user !== undefined && props.building.planning_heritage_at_risk !== null && !props.edited}
                 onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("planning_list_id")}
-                user_verified_as={props.user_verified.planning_list_id}
-                verified_count={props.building.verified.planning_list_id}
-                />
-            <SelectDataEntry
-                title={dataFields.planning_list_grade.title}
-                slug="planning_list_grade"
-                value={props.building.planning_list_grade}
-                mode={props.mode}
-                disabled={false}
+                user_verified={props.user_verified.hasOwnProperty("planning_heritage_at_risk")}
+                user_verified_as={props.user_verified.planning_heritage_at_risk}
+                verified_count={props.building.verified.planning_heritage_at_risk}
+            />
+            {(props.building.planning_heritage_at_risk == null || props.building.planning_heritage_at_risk == false) ? <></> :
+                <>
+                    <DataEntry
+                        title={dataFields.planning_heritage_at_risk_url.title}
+                        slug="planning_heritage_at_risk_url"
+                        value={props.building.planning_heritage_at_risk_url}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        placeholder="Please add relevant link here"
+                        isUrl={true}
+                        />
+                    <Verification
+                        slug="planning_heritage_at_risk_url"
+                        allow_verify={props.user !== undefined && props.building.planning_heritage_at_risk_url !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("planning_heritage_at_risk_url")}
+                        user_verified_as={props.user_verified.planning_heritage_at_risk_url}
+                        verified_count={props.building.verified.planning_heritage_at_risk_url}
+                        />
+                </>
+            }
+            <hr/>
+            <LogicalDataEntry
+                slug='planning_world_heritage_site'
+                title={dataFields.planning_world_heritage_site.title}
+                tooltip={dataFields.planning_world_heritage_site.tooltip}
+                value={props.building.planning_world_heritage_site}
                 copy={props.copy}
                 onChange={props.onChange}
-                options={[
-                    "I",
-                    "II*",
-                    "II",
-                    "None"
-                ]}
-                />
-            <Verification
-                slug="planning_list_grade"
-                allow_verify={props.user !== undefined && props.building.planning_list_grade !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("planning_list_grade")}
-                user_verified_as={props.user_verified.planning_list_grade}
-                verified_count={props.building.verified.planning_list_grade}
-                />
-            <DataEntry
-                title={dataFields.planning_heritage_at_risk_url.title}
-                slug="planning_heritage_at_risk_url"
-                value={props.building.planning_heritage_at_risk_url}
                 mode={props.mode}
+            />
+            <Verification
+                slug="planning_world_heritage_site"
+                allow_verify={props.user !== undefined && props.building.planning_world_heritage_site !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("planning_world_heritage_site")}
+                user_verified_as={props.user_verified.planning_world_heritage_site}
+                verified_count={props.building.verified.planning_world_heritage_site}
+            />
+            {(props.building.planning_world_heritage_site == null || props.building.planning_world_heritage_site == false) ? <></> :
+                <>
+                    <NumericDataEntryWithFormattedLink
+                        title={dataFields.planning_world_list_id.title}
+                        slug="planning_world_list_id"
+                        value={props.building.planning_world_list_id}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        placeholder="add ID here"
+                        linkTargetFunction={(id: String) => { return "https://whc.unesco.org/en/list/" + id } }
+                        linkDescriptionFunction={(id: String) => { return "ID Link" } }
+                        />
+                    <Verification
+                        slug="planning_world_list_id"
+                        allow_verify={props.user !== undefined && props.building.planning_world_list_id !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("planning_world_list_id")}
+                        user_verified_as={props.user_verified.planning_world_list_id}
+                        verified_count={props.building.verified.planning_world_list_id}
+                        />
+                </>
+            }
+            <hr/>
+            <LogicalDataEntry
+                slug='planning_local_list'
+                title={dataFields.planning_local_list.title}
+                tooltip={dataFields.planning_local_list.tooltip}
+                value={props.building.planning_local_list}
                 copy={props.copy}
                 onChange={props.onChange}
-                placeholder="Please add relevant link here"
-                isUrl={true}
-                />
-            <Verification
-                slug="planning_heritage_at_risk_url"
-                allow_verify={props.user !== undefined && props.building.planning_heritage_at_risk_url !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("planning_heritage_at_risk_url")}
-                user_verified_as={props.user_verified.planning_heritage_at_risk_url}
-                verified_count={props.building.verified.planning_heritage_at_risk_url}
-                />
-            <NumericDataEntryWithFormattedLink
-                title={dataFields.planning_world_list_id.title}
-                slug="planning_world_list_id"
-                value={props.building.planning_world_list_id}
                 mode={props.mode}
+            />
+            <Verification
+                slug="planning_local_list"
+                allow_verify={props.user !== undefined && props.building.planning_local_list !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("planning_local_list")}
+                user_verified_as={props.user_verified.planning_local_list}
+                verified_count={props.building.verified.planning_local_list}
+            />
+            {(props.building.planning_local_list == null || props.building.planning_local_list == false) ? <></> :
+                <>
+                    <DataEntry
+                        title={dataFields.planning_local_list_url.title}
+                        slug="planning_local_list_url"
+                        value={props.building.planning_local_list_url}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        isUrl={true}
+                        placeholder="Please add relevant link here"
+                        />
+                    <Verification
+                        slug="planning_local_list_url"
+                        allow_verify={props.user !== undefined && props.building.planning_local_list_url !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("planning_local_list_url")}
+                        user_verified_as={props.user_verified.planning_local_list_url}
+                        verified_count={props.building.verified.planning_local_list_url}
+                        />
+                </>
+            }
+            <hr/>
+            <LogicalDataEntry
+                slug='planning_in_conservation_area'
+                title={dataFields.planning_in_conservation_area.title}
+                tooltip={dataFields.planning_in_conservation_area.tooltip}
+                value={props.building.planning_in_conservation_area}
                 copy={props.copy}
                 onChange={props.onChange}
-                placeholder="add ID here"
-                linkTargetFunction={(id: String) => { return "https://whc.unesco.org/en/list/" + id } }
-                linkDescriptionFunction={(id: String) => { return "ID Link" } }
-                />
-            <Verification
-                slug="planning_world_list_id"
-                allow_verify={props.user !== undefined && props.building.planning_world_list_id !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("planning_world_list_id")}
-                user_verified_as={props.user_verified.planning_world_list_id}
-                verified_count={props.building.verified.planning_world_list_id}
-                />
-            <DataEntry
-                title={dataFields.planning_local_list_url.title}
-                slug="planning_local_list_url"
-                value={props.building.planning_local_list_url}
                 mode={props.mode}
+            />
+            <Verification
+                slug="planning_in_conservation_area"
+                allow_verify={props.user !== undefined && props.building.planning_in_conservation_area !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area")}
+                user_verified_as={props.user_verified.planning_in_conservation_area}
+                verified_count={props.building.verified.planning_in_conservation_area}
+            />
+            {(props.building.planning_in_conservation_area == null || props.building.planning_in_conservation_area == false) ? <></> :
+                <>
+                    <DataEntry
+                        title={dataFields.planning_in_conservation_area_url.title}
+                        slug="planning_in_conservation_area_url"
+                        value={props.building.planning_in_conservation_area_url}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        isUrl={true}
+                        placeholder="Please add CA appraisal link here"
+                        />
+                    {props.building.planning_in_conservation_area_url === "" ? "Our CA map records this building as not being within a CA. To help us verify this, please click ‘verify’ or, if info is incorrect, please add the local authority’s CA appraisal link." : "" }
+                    {props.building.planning_in_conservation_area_url === "identified as listed: please replace with links" ? "Our CA map records this building as being within a CA. To help us verify this information please add the local authority’s CA appraisal link and then click ‘verify’." : "" }
+                    <Verification
+                        slug="planning_in_conservation_area_url"
+                        allow_verify={props.user !== undefined && props.building.planning_in_conservation_area_url !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area_url")}
+                        user_verified_as={props.user_verified.planning_in_conservation_area_url}
+                        verified_count={props.building.verified.planning_in_conservation_area_url}
+                        />
+                </>
+            }
+            <hr/>
+            <LogicalDataEntry
+                slug='planning_in_apa'
+                title={dataFields.planning_in_apa.title}
+                tooltip={dataFields.planning_in_apa.tooltip}
+                value={props.building.planning_in_apa}
                 copy={props.copy}
                 onChange={props.onChange}
-                isUrl={true}
-                placeholder="Please add relevant link here"
-                />
-            <Verification
-                slug="planning_local_list_url"
-                allow_verify={props.user !== undefined && props.building.planning_local_list_url !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("planning_local_list_url")}
-                user_verified_as={props.user_verified.planning_local_list_url}
-                verified_count={props.building.verified.planning_local_list_url}
-                />
-
-            {/*
-            <DataEntry
-                title={dataFields.planning_in_conservation_area_id.title}
-                slug="planning_in_conservation_area_id"
-                value={props.building.planning_in_conservation_area_id}
                 mode={props.mode}
+            />
+            <Verification
+                slug="planning_in_apa"
+                allow_verify={props.user !== undefined && props.building.planning_in_apa !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("planning_in_apa")}
+                user_verified_as={props.user_verified.planning_in_apa}
+                verified_count={props.building.verified.planning_in_apa}
+            />
+            {(props.building.planning_in_apa == null || props.building.planning_in_apa == false) ? <></> :
+                <>
+                    <DataEntry
+                        title={dataFields.planning_in_apa_url.title}
+                        slug="planning_in_apa_url"
+                        value={props.building.planning_in_apa_url}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        isUrl={true}
+                        placeholder="Please add relevant link here"
+                        />
+                    <Verification
+                        slug="planning_in_apa_url"
+                        allow_verify={props.user !== undefined && props.building.planning_in_apa_url !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("planning_in_apa_url")}
+                        user_verified_as={props.user_verified.planning_in_apa_url}
+                        verified_count={props.building.verified.planning_in_apa_url}
+                        />
+                </>
+            }
+            <hr/>
+            <LogicalDataEntry
+                slug='planning_scientific_interest'
+                title={dataFields.planning_scientific_interest.title}
+                tooltip={dataFields.planning_scientific_interest.tooltip}
+                value={props.building.planning_scientific_interest}
                 copy={props.copy}
                 onChange={props.onChange}
-                placeholder="Please add Conservation Area identifier"
-                />
-            <Verification
-                slug="planning_in_conservation_area_id"
-                allow_verify={props.user !== undefined && props.building.planning_in_conservation_area_id !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area_id")}
-                user_verified_as={props.user_verified.planning_in_conservation_area_id}
-                verified_count={props.building.verified.planning_in_conservation_area_id}
-                />
-            */}
-            <DataEntry
-                title={dataFields.planning_in_conservation_area_url.title}
-                slug="planning_in_conservation_area_url"
-                value={props.building.planning_in_conservation_area_url}
                 mode={props.mode}
+            />
+            <Verification
+                slug="planning_scientific_interest"
+                allow_verify={props.user !== undefined && props.building.planning_scientific_interest !== null && !props.edited}
+                onVerify={props.onVerify}
+                user_verified={props.user_verified.hasOwnProperty("planning_scientific_interest")}
+                user_verified_as={props.user_verified.planning_scientific_interest}
+                verified_count={props.building.verified.planning_scientific_interest}
+            />
+            {(props.building.planning_scientific_interest == null || props.building.planning_scientific_interest == false) ? <></> :
+                <>
+                    <SelectDataEntry
+                        title={dataFields.planning_scientific_interest_source_type.title}
+                        slug="planning_scientific_interest_source_type"
+                        value={props.building.planning_scientific_interest_source_type}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.planning_scientific_interest_source_type.tooltip}
+                        options={dataFields.planning_scientific_interest_source_type.items}
+                        placeholder={dataFields.planning_scientific_interest_source_type.example}
+                    />
+                    {(props.building.planning_scientific_interest_source_type == dataFields.planning_scientific_interest_source_type.items[0] ||
+                        props.building.planning_scientific_interest_source_type == dataFields.planning_scientific_interest_source_type.items[1] ||
+                        props.building.planning_scientific_interest_source_type == null) ? <></> :
+                        <>
+                            <MultiDataEntry
+                                title={dataFields.planning_scientific_interest_source_links.title}
+                                slug="planning_scientific_interest_source_links"
+                                value={props.building.planning_scientific_interest_source_links}
+                                mode={props.mode}
+                                copy={props.copy}
+                                onChange={props.onChange}
+                                tooltip={dataFields.planning_scientific_interest_source_links.tooltip}
+                                placeholder="https://..."
+                                editableEntries={true}
+                                isUrl={true}
+                            />
+                        </>
+                    }
+                </>
+            }
+            <hr/>
+            <LogicalDataEntry
+                slug='planning_historic_area_assessment'
+                title={dataFields.planning_historic_area_assessment.title}
+                tooltip={dataFields.planning_historic_area_assessment.tooltip}
+                value={props.building.planning_historic_area_assessment}
                 copy={props.copy}
                 onChange={props.onChange}
-                isUrl={true}
-                placeholder="Please add CA appraisal link here"
-                />
-            {props.building.planning_in_conservation_area_url === "" ? "Our CA map records this building as not being within a CA. To help us verify this, please click ‘verify’ or, if info is incorrect, please add the local authority’s CA appraisal link." : "" }
-            {props.building.planning_in_conservation_area_url === "identified as listed: please replace with links" ? "Our CA map records this building as being within a CA. To help us verify this information please add the local authority’s CA appraisal link and then click ‘verify’." : "" }
-            <Verification
-                slug="planning_in_conservation_area_url"
-                allow_verify={props.user !== undefined && props.building.planning_in_conservation_area_url !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area_url")}
-                user_verified_as={props.user_verified.planning_in_conservation_area_url}
-                verified_count={props.building.verified.planning_in_conservation_area_url}
-                />
-            <DataEntry
-                title={dataFields.planning_in_apa_url.title}
-                slug="planning_in_apa_url"
-                value={props.building.planning_in_apa_url}
                 mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                isUrl={true}
-                placeholder="Please add relevant link here"
-                />
+            />
             <Verification
-                slug="planning_in_apa_url"
-                allow_verify={props.user !== undefined && props.building.planning_in_apa_url !== null && !props.edited}
+                slug="planning_historic_area_assessment"
+                allow_verify={props.user !== undefined && props.building.planning_historic_area_assessment !== null && !props.edited}
                 onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("planning_in_apa_url")}
-                user_verified_as={props.user_verified.planning_in_apa_url}
-                verified_count={props.building.verified.planning_in_apa_url}
-                />
-            {/*
-            <DataEntry
-                title={dataFields.planning_conservation_area_name.title}
-                slug="planning_conservation_area_name"
-                value={props.building.planning_conservation_area_name}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                />
-            <Verification
-                slug="planning_conservation_area_name"
-                allow_verify={props.user !== undefined && props.building.planning_conservation_area_name !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("planning_conservation_area_name")}
-                user_verified_as={props.user_verified.planning_conservation_area_name}
-                verified_count={props.building.verified.planning_conservation_area_name}
-                />
-            */}
-            <DataEntry
-                title={dataFields.planning_historic_area_assessment_url.title}
-                slug="planning_historic_area_assessment_url"
-                value={props.building.planning_historic_area_assessment_url}
-                mode={props.mode}
-                copy={props.copy}
-                onChange={props.onChange}
-                isUrl={true}
-                placeholder="Please add relevant link here"
-                />
-            <Verification
-                slug="planning_historic_area_assessment_url"
-                allow_verify={props.user !== undefined && props.building.planning_historic_area_assessment_url !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("planning_historic_area_assessment_url")}
-                user_verified_as={props.user_verified.planning_historic_area_assessment_url}
-                verified_count={props.building.verified.planning_historic_area_assessment_url}
-                />
+                user_verified={props.user_verified.hasOwnProperty("planning_historic_area_assessment")}
+                user_verified_as={props.user_verified.planning_historic_area_assessment}
+                verified_count={props.building.verified.planning_historic_area_assessment}
+            />
+            {(props.building.planning_historic_area_assessment == null || props.building.planning_historic_area_assessment == false) ? <></> :
+                <>
+                    <DataEntry
+                        title={dataFields.planning_historic_area_assessment_url.title}
+                        slug="planning_historic_area_assessment_url"
+                        value={props.building.planning_historic_area_assessment_url}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        isUrl={true}
+                        placeholder="Please add relevant link here"
+                        />
+                    <Verification
+                        slug="planning_historic_area_assessment_url"
+                        allow_verify={props.user !== undefined && props.building.planning_historic_area_assessment_url !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("planning_historic_area_assessment_url")}
+                        user_verified_as={props.user_verified.planning_historic_area_assessment_url}
+                        verified_count={props.building.verified.planning_historic_area_assessment_url}
+                        />
+                </>
+            }
         </DataEntryGroup>      
         <DataEntryGroup name="Land ownership" collapsed={true} >
             <InfoBox>

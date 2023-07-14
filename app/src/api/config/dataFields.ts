@@ -305,6 +305,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    planning_in_conservation_area: {
+        edit: true,
+        verify: true,
+    },
     planning_in_conservation_area_id: {
         edit: true,
         verify: true,
@@ -325,6 +329,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    planning_world_heritage_site: {
+        edit: true,
+        verify: true,
+    },
     planning_world_list_id: {
         edit: true,
         verify: true,
@@ -333,11 +341,23 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    planning_in_apa: {
+        edit: true,
+        verify: true,
+    },
     planning_in_apa_url: {
         edit: true,
         verify: true,
     },
+    planning_local_list: {
+        edit: true,
+        verify: true,
+    },
     planning_local_list_url: {
+        edit: true,
+        verify: true,
+    },
+    planning_historic_area_assessment: {
         edit: true,
         verify: true,
     },
@@ -354,6 +374,22 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true,
     },
     planning_missing_data_links: {
+        edit: true,
+        verify: true,
+    },
+    planning_heritage_at_risk: {
+        edit: true,
+        verify: true,
+    },
+    planning_scientific_interest: {
+        edit: true,
+        verify: true,
+    },
+    planning_scientific_interest_source_type: {
+        edit: true,
+        verify: true,
+    },
+    planning_scientific_interest_source_links: {
         edit: true,
         verify: true,
     },
