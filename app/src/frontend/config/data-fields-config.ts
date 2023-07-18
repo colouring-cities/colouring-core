@@ -310,25 +310,22 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     building_attachment_form: {
         category: Category.Typology,
-        title: "Attachment type/adjacency",
+        title: "Which description best explains the way the building is attached to others?",
         tooltip: "We have prepopulated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
         example: "",
     },
-    date_change_building_use: {
-        category: Category.Typology,
-        title: "When did use change?",
-        tooltip: "This is the date the building stopped being used for for the function it was built for. I.e. if it was Victorian warehouse which is now an office this would be when it became an office or if it was something before that, maybe a garage then the date that happened",
-        example: 1920,
-    },
-    /**
-     * original_building_use does not exist in database yet.
-     * Slug needs to be adjusted if the db column will be named differently 
-     */
-    original_building_use: {
-        category: Category.Typology,
-        title: "Original building use",
-        tooltip: "What was the building <u><i>originally</i></u> used for when it was built?",
+    building_attachment_source_type: {
+        category: Category.Age,
+        title: "Source type",
+        tooltip: "Source type for the building data above",
+        items: commonSourceTypes,
         example: "",
+    },
+    building_attachment_source_links: {
+        category: Category.Age,
+        title: "Source link(s)",
+        tooltip: "URL for data reference",
+        example: ["", "", ""],
     },
     size_roof_shape: {
         category: Category.Typology,
@@ -1462,6 +1459,117 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     energy_green_roof_source_links: {
         category: Category.EnergyPerformance,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+
+    typology_classification: {
+        category: Category.Typology,
+        title: "Which description best suits the building and its context?",
+        tooltip: "HINT: Adapted from building type classifications developed in urban morphology. See <a href=\"https://www.smog.chalmers.se/\">https://www.smog.chalmers.se/</a> 'Space Matrix' for further information.",
+        example: "High rise: Not part of a group/cluster",
+        items: [
+            'Low-rise: Not part of a group/cluster (1-3 core floors- excluding extensions)',
+            'Low-rise: Part of dense block/row/terrace',
+            'Low-rise: Part of group of widely spaced blocks (includes semi-detached houses)',
+            'Mid-rise: Not part of a group/cluster (4-7 core floors)',
+            'Mid-rise: Part of group of densely spaced blocks',
+            'Mid-rise: Part of group of widely spaced blocks',
+            'High rise: Not part of a group/cluster',
+            'High-rise: Part of group of densely spaced blocks (8 + core floors)',
+            'High-rise: Part of group of widely spaced blocks',
+        ]
+    },
+    typology_classification_source_type: {
+        category: Category.Typology,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    typology_classification_source_links: {
+        category: Category.Typology,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+    typology_style_period: {
+        category: Category.Typology,
+        title: "Which description best suits the building's architectural style/historical period?",
+        tooltip: "",
+        example: "High rise: Not part of a group/cluster",
+        items: [
+            'Roman (43AD-410)',
+            'Early Medieval (410-1066)',
+            'Mid- Late Medieval (1066-1485)',
+            'Tudor (1485-1603)',
+            'Stuart (1603 -1714)',
+            'Georgian/William IV (1714-1837)',
+            'Victorian (1837-1901)',
+            'Edwardian (1901-1914)',
+            'World War I (1914-18)',
+            'Interwar (1918-39)',
+            'World War II (1939-45)',
+            'Post war (1945-1975)',
+            'Postmodern (1975-1990)',
+            '1990s',
+            '2000s/2010s',
+            '2020s',
+        ]
+    },
+    typology_style_period_source_type: {
+        category: Category.Typology,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    typology_style_period_source_links: {
+        category: Category.Typology,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+    typology_dynamic_classification: {
+        category: Category.Typology,
+        title: "Which description best suits the building's plot?",
+        tooltip: "HINT: Based on a dynamic classification system for urban tissue developed by Brenda Case Scheer. For further information see: <a href=\"https://www.researchgate.net/publication/242150847_The_Anatomy_of_Sprawl\">https://www.researchgate.net/publication/242150847_The_Anatomy_of_Sprawl</a>.",
+        example: "High rise: Not part of a group/cluster",
+        items: [
+            'Small fairly regular plot part of repetitive domestic streets',
+            'Irregular shaped plots built along the edge of long established routes (e.g high streets)',
+            'Large plot with internal access roads (e.g. infrastructure hubs/large institution such as hospitals/universities/airports)',
+        ]
+    },
+    typology_dynamic_classification_source_type: {
+        category: Category.Typology,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    typology_dynamic_classification_source_links: {
+        category: Category.Typology,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+    typology_original_use: {
+        category: Category.Typology,
+        title: "Which land use best describes the purpose for which the building was built?",
+        tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
+        example: ["", ""],
+    },
+    typology_original_use_source_type: {
+        category: Category.Typology,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    typology_original_use_source_links: {
+        category: Category.Typology,
         title: "Source link(s)",
         tooltip: "Source link(s) for street width data",
         example: ["", "", ""],
