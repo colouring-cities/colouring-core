@@ -3,70 +3,66 @@
 #### Nota
 Esta guía asume que estás trabajando con el repositorio ['colouring-colombia'](https://github.com/osgeolabUD-org/colouring-colombia/). Si deseas usar un nombre personalizado entonces crea tu propio fork y cambia `'colouring-colombia'` a `'colouring-[nombre de tu ciudad]'`.
 
-#### Preliminares
+## Preliminares
 
 Esta guía asume un entorno ejecutando Ubuntu 22.04.
 
-Instala actualizaciones de paquetes:
+### Instalar actualizaciones de paquetes
 
 `sudo apt-get update`
 
 `sudo apt-get dist-upgrade`
 
 
-Instala openSSH (si es necesario)
+### Instala openSSH (si es necesario)
 
 `sudo apt install openssh-server`
 
+## Instalar Componentes Esenciales
 
-***
-
-
-#### Instalar Componentes Esenciales
-
-Instalar algunas herramientas útiles de desarrollo
+### Instalar algunas herramientas útiles de desarrollo
 
 `sudo apt-get install -y build-essential git vim-nox wget curl`
 
-Instalar Postgres y herramientas asociadas
+### Instalar Postgres y herramientas asociadas
 
 `sudo apt-get install -y postgresql postgresql-contrib`
 
 `sudo apt-get install -y libpq-dev postgresql-14-postgis-3 gdal-bin libspatialindex-dev libgeos-dev libproj-dev`
 
-Instalar Python 3 y pip
+### Instalar Python 3 y pip
 
 La versión 22.04 viene con Python 3 preinstalado, sin embargo es necesario instalar el gestor de paquetes pip:
 
 `sudo apt-get install python3-pip`
 
-
-Instalar Nginx
+### Instalar Nginx
 
 `sudo apt install nginx`
 
+## Instalar Colouring
 
-Clona el repositorio remoto de Colouring Cities GitHub en `/var/www`
+### Clona el repositorio de colouring-colombia
 
 `cd /var/www`
 
-`sudo git clone https://github.com/colouring-cities/colouring-core.git`
+`sudo git clone https://github.com/osgeolabUD-org/colouring-colombia.git`
 
-Crea un usuario del sistema (`nodeapp`) para `chown` el directorio `colouring-core`
+Crea un usuario del sistema (`nodeapp`) para que sea propietario de la carpeta colouring-colombia
 
-`useradd -r -s /bin/nologin nodeapp`
+`useradd -r -s /usr/sbin/nologin nodeapp`
 
 Añade el usuario actual al grupo `nodeapp`
 
 `sudo usermod -a -G nodeapp <tu_nombre_de_usuario_de_ubuntu>`
 
-Haz que el usuario/grupo `nodeapp` sea `chown` del directorio `colouring-core` y sus subdirectorios
+Hacer que el usuario/grupo `nodeapp` sea propietario (`chown`) del directorio `colouring-colombia` y sus subdirectorios
 
-`sudo chown -R nodeapp:nodeapp /var/www/colouring-core`
+`sudo chown -R nodeapp:nodeapp /var/www/colouring-colombia`
 
-Ahora establece los permisos apropiados en el directorio `colouring-core`
+Ahora establece los permisos apropiados en el directorio `colouring-colombia`
 
-`sudo chmod -R 775 /var/www/colouring-core`
+`sudo chmod -R 775 /var/www/colouring-colombia`
 
 
 ***
@@ -74,7 +70,7 @@ Ahora establece los permisos apropiados en el directorio `colouring-core`
 
 #### Instalar Node. 
 
-Primero define un par de variables de conveniencia:
+Primero define un par de variables de entorno:
 
 `NODE_VERSION=v12.14.1`
 
@@ -96,6 +92,7 @@ Obtén la distribución de Node e instálala
 Exporta la variable `NODE_JS_HOME` a tu perfil de bash
 
 	cat >> ~/.profile <<EOF
+ 	export NODE_VERSION=v12.14.1
 	export NODEJS_HOME=/usr/local/lib/node/node-$NODE_VERSION/bin
 	export PATH=$NODEJS_HOME:$PATH
 	EOF
@@ -104,7 +101,6 @@ Exporta la variable `NODE_JS_HOME` a tu perfil de bash
 Recarga tu perfil para asegurar que los cambios surtan efecto
 
 `source ~/.profile`
-
 
 ***
 
@@ -125,7 +121,7 @@ Ahora actualiza el gestor de paquetes `npm` a la versión más reciente con priv
 
 Ahora instala los paquetes Node requeridos como se designa en `package.json`
 
-`cd /var/www/colouring-core/app && npm install`
+`cd /var/www/colouring-colombia/app && npm install`
 
 
 ***
@@ -137,9 +133,9 @@ Ahora instala los paquetes Node requeridos como se designa en `package.json`
 
 `sudo locale-gen en_US.UTF-8`
 
-`sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/10/main/postgresql.conf`
+`sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/14/main/postgresql.conf`
 
-`echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/10/main/pg_hba.conf > /dev/null`
+`echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/14/main/pg_hba.conf > /dev/null`
 
 
 Para producción no queremos usar nuestro nombre de usuario de Ubuntu como el nombre de usuario de Postgres. Por lo tanto, necesitamos reemplazar la autenticación de pares con la autenticación de contraseña para las conexiones locales. 
@@ -151,14 +147,14 @@ Reinicia Postgres para que los cambios de configuración surtan efecto
 
 `sudo service postgresql restart`
 
-Crea un usuario de Postgres distinto
+Crea un usuario de Postgres
 
 `sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<nombre_de_usuario_postgres>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <nombre_de_usuario_postgres> SUPERUSER LOGIN PASSWORD '<contraseña_postgres>';"`
 
 
 Crea la base de datos predeterminada de colouring cities
 
-`sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringcitiesdb';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <nombre_de_usuario_postgres> colouringcitiesdb`
+`sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringcitiesdb';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O colouring colouringcitiesdb`
 
 `psql -d colouringcitiesdb -U <nombre_de_usuario_postgres> -c "create extension postgis;"`
 
