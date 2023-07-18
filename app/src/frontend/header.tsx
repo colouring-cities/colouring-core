@@ -79,6 +79,11 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
+                to: config.manualURL,
+                text: "About the Colouring " + config.cityName + " Project",
+                external: true
+            },
+            {
                 to: "https://github.com/colouring-cities/manual/wiki/A2.-How-to%3F-Guides",
                 text: "How to Use",
                 external: true
