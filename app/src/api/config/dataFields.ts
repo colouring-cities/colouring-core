@@ -423,6 +423,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    building_attachment_source_type: {
+        edit: true,
+        verify: true,
+    },
+    building_attachment_source_links: {
+        edit: true,
+        verify: true,
+    },
     date_change_building_use: {
         edit: true,
     },
@@ -801,7 +809,55 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     energy_green_roof_source_links : {
         edit: true,
         verify: true
-    }
+    },
+    typology_classification : {
+        edit: true,
+        verify: true
+    },
+    typology_classification_source_type : {
+        edit: true,
+        verify: true
+    },
+    typology_classification_source_links: {
+        edit: true,
+        verify: true
+    },
+    typology_style_period : {
+        edit: true,
+        verify: true
+    },
+    typology_style_period_source_type : {
+        edit: true,
+        verify: true
+    },
+    typology_style_period_source_links: {
+        edit: true,
+        verify: true
+    },
+    typology_dynamic_classification : {
+        edit: true,
+        verify: true
+    },
+    typology_dynamic_classification_source_type : {
+        edit: true,
+        verify: true
+    },
+    typology_dynamic_classification_source_links: {
+        edit: true,
+        verify: true
+    },
+    typology_original_use : {
+        edit: true,
+        verify: true
+    },
+    typology_original_use_source_type : {
+        edit: true,
+        verify: true
+    },
+    typology_original_use_source_links: {
+        edit: true,
+        verify: true
+    },
 });
 
 
