@@ -1,20 +1,20 @@
-# Setting Up A Production Environment
+# Configuración de un entorno de producción
 
-#### Note
-This guide assumes you are working with the ['colouring-core'](https://github.com/colouring-cities/colouring-core) repository. If you are creating your own fork, or want to use a custom city name, then you may wish to change `'colouring-core'` to `'colouring-[your city name]'`.
+#### Nota
+Esta guía asume que estás trabajando con el repositorio ['colouring-core'](https://github.com/colouring-cities/colouring-core). Si estás creando tu propio fork, o deseas usar un nombre de ciudad personalizado, entonces puedes desear cambiar `'colouring-core'` a `'colouring-[nombre de tu ciudad]'`.
 
-#### Preliminaries
+#### Preliminares
 
-This guide assumes a virtual environment (VM) running Ubuntu 20_04.
+Esta guía asume un entorno virtual (VM) ejecutando Ubuntu 20_04.
 
-Install updates to packages:
+Instala actualizaciones de paquetes:
 
 `sudo apt-get update`
 
 `sudo apt-get dist-upgrade`
 
 
-Install openSSH (if necessary)
+Instala openSSH (si es necesario)
 
 `sudo apt install openssh-server`
 
@@ -22,47 +22,47 @@ Install openSSH (if necessary)
 ***
 
 
-#### Install Essential Components
+#### Instalar Componentes Esenciales
 
-Install some useful development tools
+Instala algunas herramientas útiles de desarrollo
 
 `sudo apt-get install -y build-essential git vim-nox wget curl`
 
-Install Postgres and associated tools
+Instala Postgres y herramientas asociadas
 
 `sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3`
 
 `sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev`
 
-Install Python 3 and pip
+Instala Python 3 y pip
 
 `sudo apt-get install python3 python3-pip`
 
 
-Install Nginx
+Instala Nginx
 
 `sudo apt install nginx`
 
 
-Clone the remote Colouring Cities GitHub repository into `/var/www`
+Clona el repositorio remoto de Colouring Cities GitHub en `/var/www`
 
 `cd /var/www`
 
 `sudo git clone https://github.com/colouring-cities/colouring-core.git`
 
-Create a system user (`nodeapp`) to `chown` the `colouring-core` directory
+Crea un usuario del sistema (`nodeapp`) para `chown` el directorio `colouring-core`
 
 `useradd -r -s /bin/nologin nodeapp`
 
-Add the current user to the `nodeapp` group
+Añade el usuario actual al grupo `nodeapp`
 
-`sudo usermod -a -G nodeapp <your_ubuntu_username>`
+`sudo usermod -a -G nodeapp <tu_nombre_de_usuario_de_ubuntu>`
 
-Make the `nodeapp` user/group `chown` the `colouring-core` directory and its subdirectories
+Haz que el usuario/grupo `nodeapp` sea `chown` del directorio `colouring-core` y sus subdirectorios
 
 `sudo chown -R nodeapp:nodeapp /var/www/colouring-core`
 
-Now set appropriate permissions on the `colouring-core` directory
+Ahora establece los permisos apropiados en el directorio `colouring-core`
 
 `sudo chmod -R 775 /var/www/colouring-core`
 
@@ -70,15 +70,15 @@ Now set appropriate permissions on the `colouring-core` directory
 ***
 
 
-#### Install Node. 
+#### Instalar Node. 
 
-First define a couple of convenience variables:
+Primero define un par de variables de conveniencia:
 
 `NODE_VERSION=v12.14.1`
 
 `DISTRO=linux-x64`
 
-Get the Node distribution and install it
+Obtén la distribución de Node e instálala
 
 `wget -nc https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-$DISTRO.tar.xz`
 
@@ -91,7 +91,7 @@ Get the Node distribution and install it
 `rm node-$NODE_VERSION-$DISTRO.tar.xz`
 
 
-Export the `NODE_JS_HOME` variable to your bash profile
+Exporta la variable `NODE_JS_HOME` a tu perfil de bash
 
 	cat >> ~/.profile <<EOF
 	export NODEJS_HOME=/usr/local/lib/node/node-$NODE_VERSION/bin
@@ -99,7 +99,7 @@ Export the `NODE_JS_HOME` variable to your bash profile
 	EOF
 
 
-Reload your profile to ensure changes take effect
+Recarga tu perfil para asegurar que los cambios surtan efecto
 
 `source ~/.profile`
 
@@ -107,9 +107,9 @@ Reload your profile to ensure changes take effect
 ***
 
 
-#### Configure Node
+#### Configurar Node
 
-Now upgrade the `npm` package manager to the most recent release with global privileges. This needs to be performed as root user, so it is necessary to export the node variables to the root user profile. 
+Ahora actualiza el gestor de paquetes `npm` a la versión más reciente con privilegios globales. Esto necesita ser realizado como usuario root, por lo que es necesario exportar las variables de node al perfil de usuario root.
 
 `sudo su root`
 
@@ -121,7 +121,7 @@ Now upgrade the `npm` package manager to the most recent release with global pri
 
 `exit`
 
-Now install the required Node packages as designated in `package.json`
+Ahora instala los paquetes Node requeridos como se designa en `package.json`
 
 `cd /var/www/colouring-core/app && npm install`
 
@@ -129,7 +129,7 @@ Now install the required Node packages as designated in `package.json`
 ***
 
 
-#### Configure Postgres
+#### Configurar Postgres
 
 `sudo service postgresql start`
 
@@ -140,42 +140,42 @@ Now install the required Node packages as designated in `package.json`
 `echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/10/main/pg_hba.conf > /dev/null`
 
 
-For production we do not want to use our Ubuntu username as the Postgres username. So we need to replace peer authentication with password authentication for local connections. 
+Para producción no queremos usar nuestro nombre de usuario de Ubuntu como el nombre de usuario de Postgres. Por lo tanto, necesitamos reemplazar la autenticación de pares con la autenticación de contraseña para las conexiones locales. 
 
 `sudo sed -i 's/^local.*all.*all.*peer$/local   all             all                                     md5/' /etc/postgresql/10/main/pg_hba.conf`
 
 
-Restart Postgres for the configuration changes to take effect
+Reinicia Postgres para que los cambios de configuración surtan efecto
 
 `sudo service postgresql restart`
 
-Create a distinct Postgres user
+Crea un usuario de Postgres distinto
 
-`sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<postgres_username>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <postgres_username> SUPERUSER LOGIN PASSWORD '<postgres_password>';"`
-
-
-Create default colouring cities database
-
-`sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringcitiesdb';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <postgres_username> colouringcitiesdb`
-
-`psql -d colouringcitiesdb -U <postgres_username> -c "create extension postgis;"`
-
-`psql -d colouringcitiesdb -U <postgres_username> -c "create extension pgcrypto;"`
-
-`psql -d colouringcitiesdb -U <postgres_username> -c "create extension pg_trgm;"`
+`sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<nombre_de_usuario_postgres>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <nombre_de_usuario_postgres> SUPERUSER LOGIN PASSWORD '<contraseña_postgres>';"`
 
 
-Import data from the most recent colouring cities database dump
+Crea la base de datos predeterminada de colouring cities
 
-`pg_restore --no-privileges --no-owner --username "<postgres_username>" --dbname "colouringcitiesdb" --clean "<path/to/database/dump/file>"`
+`sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringcitiesdb';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <nombre_de_usuario_postgres> colouringcitiesdb`
+
+`psql -d colouringcitiesdb -U <nombre_de_usuario_postgres> -c "create extension postgis;"`
+
+`psql -d colouringcitiesdb -U <nombre_de_usuario_postgres> -c "create extension pgcrypto;"`
+
+`psql -d colouringcitiesdb -U <nombre_de_usuario_postgres> -c "create extension pg_trgm;"`
+
+
+Importa datos del volcado de base de datos más reciente de colouring cities
+
+`pg_restore --no-privileges --no-owner --username "<nombre_de_usuario_postgres>" --dbname "colouringcitiesdb" --clean "<ruta/a/archivo/volcado/base_de_datos>"`
 
 
 ***
 
 
-#### Configure NGINX
+#### Configurar NGINX
 
-Configure linux firewall
+Configura el firewall de linux
 
 `sudo ufw allow 'Nginx HTTP'`
 
@@ -183,18 +183,18 @@ Configure linux firewall
 
 `sudo ufw enable`
 
-We can check the status of the firewall with
+Podemos verificar el estado del firewall con
 
 `sudo ufw status`
 
 
-Now edit `sites-available/default` to create a minimal Nginx configuration to test the installation
+Ahora edita `sites-available/default` para crear una configuración mínima de Nginx para probar la instalación
 
 `sudo nano /etc/nginx/sites-available/default`
 
 
 
-	# Handle HTTP connections with redirect
+	# Manejar conexiones HTTP con redirección
 	server {
 	    listen 80 default_server;
 	    listen [::]:80 default_server;
@@ -209,124 +209,76 @@ Now edit `sites-available/default` to create a minimal Nginx configuration to te
 	
 
 
-Make sure you didn't introduce any syntax errors by typing:
+Asegúrate de que no introdujiste ningún error de sintaxis escribiendo
+
+
 
 `sudo nginx -t`
 
-
-If all is well, restart Nginx
+Reinicia Nginx para aplicar los cambios
 
 `sudo systemctl restart nginx`
 
 
+***
 
-Test out the configuration
+#### Configurar SSL con Let's Encrypt
+
+Let’s Encrypt es una Autoridad de Certificación (AC) que proporciona certificados gratuitos para el cifrado de la Capa de Transporte Seguro (TLS). Ellos simplifican el proceso al proporcionar software que puede interactuar con sus servicios. El software que vamos a usar se llama Certbot.
+
+Primero, añade el PPA de Certbot a tu lista de repositorios:
+
+```
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo add-apt-repository universe
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+```
+
+A continuación, instala Certbot:
+
+```
+sudo apt-get install certbot python3-certbot-nginx
+```
+
+Ahora, puedes usar Certbot para solicitar un certificado para tu dominio:
+
+```
+sudo certbot --nginx -d tu-dominio.com
+```
+
+Sigue las instrucciones en pantalla para completar la configuración. Certbot modificará la configuración de Nginx para servir tu sitio a través de HTTPS y luego reiniciará el servicio.
+
+Por último, puedes configurar la renovación automática del certificado. Certbot incluye un cronjob que renueva automáticamente los certificados antes de que caduquen. Asegúrate de que este cronjob esté habilitado y configurado correctamente:
+
+```
+sudo certbot renew --dry-run
+```
+
+Si el comando se ejecuta sin errores, entonces la renovación automática está configurada correctamente.
+
+***
+
+#### Arranca tu aplicación
+
+Copia los archivos de configuración de muestra y edítalos como sea necesario
+
+`cp .env.example .env`
+
+`cp config.js.example config.js`
+
+
+Finalmente, para lanzar la aplicación
+
+`sudo su nodeapp`
+
+`source ~/.profile`
 
 `cd /var/www/colouring-core/app`
 
-
-`npm run build`
-
-
-`PGPASSWORD=<postgres_password> PGDATABASE=colouringcitiesdb PGUSER=<postgres_username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=<secret> npm run start:prod`
-
-Now open a browser window on a client machine and navigate to the IP Address of your VM
-
-`http://<ip_address_of_vm>`
-
-You should see the Colouring Cities homepage.
+`node app.js`
 
 
-***
-
-
-#### Set up PM2
-
-Perform a global install of PM2
-
-`sudo su root`
-
-`export NODEJS_HOME=/usr/local/lib/node/node-v12.14.1/bin/`
-
-`export PATH=$NODEJS_HOME:$PATH`
-
-`npm install -g pm2`
-
-`exit`
-
-
-Create an `ecosystem.config.js` file from the template file
-
-`cd /var/www/colouring-core`
-
-`nano ecosystem.config.template.js`
-
-
-	// Template for production ecosystem file
-	
-	// Copy this file and edit to set up pm2 config
-	// DO NOT COMMIT details to this file (publicly visible)
-	// See https://pm2.io/doc/en/runtime/guide/ecosystem-file/ for docs
-	module.exports = {
-	    apps: [
-	        {
-	            name: "colouringcities",
-	            script: "./app/build/server.js",
-	            instances: 6,
-	            env: {
-	                NODE_ENV: "production",
-	                PGHOST: "localhost",
-	                PGPORT: 5432,
-	                PGDATABASE: "colouringcitiesdb",
-	                PGUSER: "<postgres_username>",
-	                PGPASSWORD: "<postgres_password>",
-	                APP_COOKIE_SECRET: "<longrandomsecret>",
-	                TILECACHE_PATH: "/var/www/colouring-core/app/tilecache"
-	            }
-	        }
-	    ]
-	}
-
-Edit the above file as appropriate and save as `ecosystem.config.js`
-
-
-Start the colouring-core app
-
-`cd /var/www/colouring-core`
-
-`pm2 start ecosystem.config.js`
-
-Open a browser window on a client machine and navigate to the IP Address of your VM
-
-`http://<ip_address_of_vm>`
-
-You should see the Colouring Cities homepage.
-
-To stop the colouring-core app type:
-
-`pm2 stop ecosystem.config.js`
-
-
-***
-
-#### Set up data extracts
-
-Install requirements for the maintenance Python scripts
-
-`cd /var/www/colouring-core/maintenance`
-
-`sudo pip3 install -r requirements.txt`
-
-The maintenance scripts might need environment variables present at the time of execution, notably the database connection details.
-If running the scripts manually, the variables can be provided just before execution, for example
-
-`PGHOST=localhost PGPORT=5432 PGDATABASE=dbname PGUSER=username PGPASSWORD=secretpassword EXTRACTS_DIRECTORY=/var/www/colouring-core/downloads python3 maintenance/extract_data/extract_data.py`
-
-If the maintenance script is to be run on a schedule, the variables should be loaded before running the script, for example from a `.env` file.
-
-
-#### Set up SSL - TO DO
-
-DON'T FORGET to open the Ubuntu firewall to HTTPS
-
+Tu aplicación debería estar en funcionamiento y estar disponible en tu dominio.
 
