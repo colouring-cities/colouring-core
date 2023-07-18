@@ -1,11 +1,11 @@
 # Configuración de un entorno de producción
 
 #### Nota
-Esta guía asume que estás trabajando con el repositorio ['colouring-core'](https://github.com/colouring-cities/colouring-core). Si estás creando tu propio fork, o deseas usar un nombre de ciudad personalizado, entonces puedes desear cambiar `'colouring-core'` a `'colouring-[nombre de tu ciudad]'`.
+Esta guía asume que estás trabajando con el repositorio ['colouring-colombia'](https://github.com/osgeolabUD-org/colouring-colombia/). Si deseas usar un nombre personalizado entonces crea tu propio fork y cambia `'colouring-colombia'` a `'colouring-[nombre de tu ciudad]'`.
 
 #### Preliminares
 
-Esta guía asume un entorno virtual (VM) ejecutando Ubuntu 20_04.
+Esta guía asume un entorno ejecutando Ubuntu 22.04.
 
 Instala actualizaciones de paquetes:
 
@@ -24,22 +24,24 @@ Instala openSSH (si es necesario)
 
 #### Instalar Componentes Esenciales
 
-Instala algunas herramientas útiles de desarrollo
+Instalar algunas herramientas útiles de desarrollo
 
 `sudo apt-get install -y build-essential git vim-nox wget curl`
 
-Instala Postgres y herramientas asociadas
+Instalar Postgres y herramientas asociadas
 
-`sudo apt-get install -y postgresql postgresql-contrib libpq-dev postgis postgresql-12-postgis-3`
+`sudo apt-get install -y postgresql postgresql-contrib`
 
-`sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev`
+`sudo apt-get install -y libpq-dev postgresql-14-postgis-3 gdal-bin libspatialindex-dev libgeos-dev libproj-dev`
 
-Instala Python 3 y pip
+Instalar Python 3 y pip
 
-`sudo apt-get install python3 python3-pip`
+La versión 22.04 viene con Python 3 preinstalado, sin embargo es necesario instalar el gestor de paquetes pip:
+
+`sudo apt-get install python3-pip`
 
 
-Instala Nginx
+Instalar Nginx
 
 `sudo apt install nginx`
 
