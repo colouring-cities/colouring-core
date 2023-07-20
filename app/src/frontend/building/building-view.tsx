@@ -8,6 +8,8 @@ import { BuildingMapTileset } from '../config/tileserver-config';
 
 import BuildingNotFound from './building-not-found';
 
+import { t } from 'i18next';
+
 interface BuildingViewProps {
     cat: Category;
     mode: 'view' | 'edit';
@@ -43,7 +45,7 @@ const BuildingView: React.FunctionComponent<BuildingViewProps> = (props) => {
 
     return <DataContainer
         {...props}
-        title={name}
+        title={t(name)}
         help={aboutUrl}
         intro={intro}
         inactive={inactive}

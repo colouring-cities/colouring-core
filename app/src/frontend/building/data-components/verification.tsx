@@ -3,6 +3,8 @@ import { VerifyIcon } from '../../components/icons';
 
 import './verification.css';
 
+import { t } from 'i18next';
+
 interface VerificationProps {
     slug: string;
     onVerify: (slug: string, verify: boolean, x: number, y: number) => void;
@@ -60,7 +62,7 @@ class Verification extends Component<VerificationProps, any> {
                     <Fragment>
                         <button
                             className="btn btn-success"
-                            title="Confirm that the current value is correct"
+                            title={t("Confirm that the current value is correct")}
                             disabled={!props.allow_verify}
                             onClick={this.handleClick(true)}>
                             Verify

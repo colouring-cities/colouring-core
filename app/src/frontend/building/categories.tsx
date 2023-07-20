@@ -6,6 +6,8 @@ import { ListWrapper } from '../components/list-wrapper';
 import './categories.css';
 import { categoriesOrder, categoriesConfig } from '../config/categories-config';
 
+import { t } from 'i18next';
+
 interface CategoriesProps {
     mode: 'view' | 'edit' | 'multi-edit';
     building_id?: number;
@@ -21,9 +23,10 @@ const Categories: React.FC<CategoriesProps> = (props) => (
                 inactive = false
             } = categoriesConfig[category];
 
+      
             return <CategoryLink
                 key={category}
-                title={name}
+                title={t(name)}
                 slug={slug}
                 help={aboutUrl}
                 inactive={inactive}

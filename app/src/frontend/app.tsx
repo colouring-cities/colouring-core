@@ -29,6 +29,8 @@ import PasswordReset from './user/password-reset';
 import { SignUp } from './user/signup';
 import { NotFound } from './pages/not-found';
 
+import './i18n/i18n';
+
 
 interface AppProps {
     user?: User;
