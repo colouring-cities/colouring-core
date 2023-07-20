@@ -22,7 +22,7 @@ const resources = {
   },
   es: {
     translation: {
-      "Welcome to Colouring London!": "Bienvenido a Colouring Cities!",
+      "Welcome to Colouring": "Bienvenido a Colouring",
       "Welcome First Paragraph":
         "Colouring Cities es una plataforma gratuita de intercambio de conocimientos diseñada para ofrecer más de cincuenta tipos de datos abiertos sobre los edificios alrededor del mundo, con el fin de contribuir a que las ciudades sean más sostenibles.",
       "Welcome Second Paragraph":

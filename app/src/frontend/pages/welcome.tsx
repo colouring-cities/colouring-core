@@ -7,10 +7,12 @@ let config: CCConfig = require('../../cc-config.json')
 import Categories from '../building/categories';
 import './welcome.css';
 
+import { t } from 'i18next';
+
 const Welcome = () => (
     <div className="section-body welcome">
         <Categories mode="view"/>
-        <h1 className="h2">Welcome to Colouring {config.cityName}!</h1>
+        <h1 className="h2">{t(Welcome to Colouring)} {config.cityName}!</h1>
         <p>
 
             Colouring {config.cityName} is a free knowledge exchange platform designed to provide over fifty types
