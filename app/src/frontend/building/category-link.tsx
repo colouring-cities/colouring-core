@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 import './category-link.css';
 
+import {t} from'i18next';
+
 interface CategoryLinkProps {
     mode: 'view' | 'edit' | 'multi-edit';
     building_id?: number;
@@ -25,7 +27,7 @@ const CategoryLink: React.FC<CategoryLinkProps> = (props) => {
                     'Coming soon… Click more info for details.'
                     : 'View/Edit Map'
             }>
-                <h3 className="category-title">{props.title}</h3>
+                <h3 className="category-title">{t(props.title)}</h3>
         </NavLink>
     );
 };

@@ -4,6 +4,7 @@ import { CopyProps } from '../data-containers/category-view-props';
 
 import { DataEntryInput, TextDataEntryInputProps } from './data-entry-input';
 import { DataTitleCopyable } from './data-title';
+import { t } from 'i18next';
 
 interface BaseDataEntryProps {
     slug: string;
@@ -28,7 +29,7 @@ const DataEntry: React.FC<DataEntryProps> = (props) => {
             <DataTitleCopyable
                 slug={props.slug}
                 slugModifier={props.slugModifier}
-                title={props.title}
+                title={t(props.title)}
                 tooltip={props.tooltip}
                 disabled={props.disabled || props.value == undefined || props.value == ''}
                 copy={props.copy}

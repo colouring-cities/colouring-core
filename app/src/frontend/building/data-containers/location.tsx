@@ -15,19 +15,21 @@ const locationNumberPattern = "[1-9]\\d*[a-z]?(-([1-9]\\d*))?"; ///[1-9]\d*[a-z]
 const postcodeCharacterPattern = "^[A-Z]{1,2}[0-9]{1,2}[A-Z]?(\\s*[0-9][A-Z]{1,2})?$";
 const osmIdentifierPattern = "[0-9]{1,9}";
 
+import { t } from 'i18next';
+
 const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const osm_url = "www.openstreetmap.org/way/"+props.building.ref_osm_id;
     return (
         <Fragment>
-            <DataEntryGroup name="Addresses">
+            <DataEntryGroup name={t("Addresses")}>
                 <DataEntry
-                    title={dataFields.location_name.title}
+                    title={t(dataFields.location_name.title)}
                     slug="location_name"
                     value={props.building.location_name}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.location_name.tooltip}
+                    tooltip={t(dataFields.location_name.tooltip)}
                     placeholder=""
                     isUrl={false}
                     disabled={true}
@@ -48,13 +50,13 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip="Not yet activated.<br><br>For security reasons, we do not allow the use of free text boxes and are currently looking into alternative ways to collect this data."
                 />
                 <DataEntry
-                    title={dataFields.location_name_link.title}
+                    title={t(dataFields.location_name_link.title)}
                     slug="location_name_link"
                     value={props.building.location_name_link}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.location_name_link.tooltip}
+                    tooltip={t(dataFields.location_name_link.tooltip)}
                     placeholder={dataFields.location_name_link.example}
                     isUrl={true}
                 />
@@ -66,14 +68,14 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
                 <hr/>
                 <PatternDataEntry
-                    title={dataFields.location_number.title}
+                    title={t(dataFields.location_number.title)}
                     slug="location_number"
                     value={props.building.location_number}
                     pattern={locationNumberPattern}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.location_number.tooltip}
+                    tooltip={t(dataFields.location_number.tooltip)}
                     maxLength={5}
                     />
                 <Verification
@@ -85,7 +87,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.location_number}
                     />
                 <DataEntry
-                    title={dataFields.location_street.title}
+                    title={t(dataFields.location_street.title)}
                     slug="location_street"
                     value={props.building.location_street}
                     mode={props.mode}
@@ -103,7 +105,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.location_street}
                     />
                 <DataEntry
-                    title={dataFields.location_line_two.title}
+                    title={t(dataFields.location_line_two.title)}
                     slug="location_line_two"
                     value={props.building.location_line_two}
                     mode={props.mode}
@@ -121,7 +123,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.location_line_two}
                     />
                 <DataEntry
-                    title={dataFields.location_town.title}
+                    title={t(dataFields.location_town.title)}
                     slug="location_town"
                     value={props.building.location_town}
                     mode={props.mode}
@@ -147,7 +149,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     maxLength={8}
                     valueTransform={x=>x.toUpperCase()}
-                    tooltip={dataFields.location_postcode.tooltip}
+                    tooltip={t(dataFields.location_postcode.tooltip)}
                     />
                 <Verification
                     slug="location_postcode"
@@ -158,13 +160,13 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.location_postcode}
                     />
                 <SelectDataEntry
-                    title={dataFields.location_address_source.title}
+                    title={t(dataFields.location_address_source.title)}
                     slug="location_address_source"
                     value={props.building.location_address_source}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.location_address_source.tooltip}
+                    tooltip={t(dataFields.location_address_source.tooltip)}
                     placeholder={dataFields.location_address_source.example}
                     options={dataFields.location_address_source.items}
                     />
@@ -179,7 +181,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.location_address_links.tooltip}
+                            tooltip={t(dataFields.location_address_links.tooltip)}
                             placeholder="https://..."
                             editableEntries={true}
                             isUrl={true}
@@ -187,14 +189,14 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Property/footprint IDs and coordinates">
+            <DataEntryGroup name={t("Property/footprint IDs and coordinates")}>
                 <DataEntry
-                    title={dataFields.ref_toid.title}
+                    title={t(dataFields.ref_toid.title)}
                     slug="ref_toid"
                     value={props.building.ref_toid}
                     mode={props.mode}
                     copy={props.copy}
-                    tooltip={dataFields.ref_toid.tooltip}
+                    tooltip={t(dataFields.ref_toid.tooltip)}
                     onChange={props.onChange}
                     disabled={true}
                     />
@@ -206,10 +208,10 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
                 <hr/>
                 <UPRNsDataEntry
-                    title={dataFields.uprns.title}
+                    title={t(dataFields.uprns.title)}
                     slug="ref_uprns"
                     value={props.building.uprns}
-                    tooltip={dataFields.uprns.tooltip}
+                    tooltip={t(dataFields.uprns.tooltip)}
                     />
                 {
                     (props.building.uprns == null) ? <></> :
@@ -219,12 +221,12 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
                 <hr/>
                 <PatternDataEntry
-                    title={dataFields.ref_osm_id.title}
+                    title={t(dataFields.ref_osm_id.title)}
                     slug="ref_osm_id"
                     value={props.building.ref_osm_id}
                     mode={props.mode}
                     copy={props.copy}
-                    tooltip={dataFields.ref_osm_id.tooltip}
+                    tooltip={t(dataFields.ref_osm_id.tooltip)}
                     maxLength={20}
                     onChange={props.onChange}
                     pattern={osmIdentifierPattern}
@@ -245,10 +247,10 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
                 <hr/>
                 <NumericDataEntry
-                    title={dataFields.location_latitude.title}
+                    title={t(dataFields.location_latitude.title)}
                     slug="location_latitude"
                     value={props.building.location_latitude}
-                    tooltip={dataFields.location_latitude.tooltip}
+                    tooltip={t(dataFields.location_latitude.tooltip)}
                     mode={props.mode}
                     copy={props.copy}
                     step={0.00001}
@@ -266,10 +268,10 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.location_latitude}
                     />
                 <NumericDataEntry
-                    title={dataFields.location_longitude.title}
+                    title={t(dataFields.location_longitude.title)}
                     slug="location_longitude"
                     value={props.building.location_longitude}
-                    tooltip={dataFields.location_latitude.tooltip}
+                    tooltip={t(dataFields.location_latitude.tooltip)}
                     mode={props.mode}
                     copy={props.copy}
                     step={0.00001}
@@ -287,13 +289,13 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.location_longitude}
                     />
                 <SelectDataEntry
-                    title={dataFields.location_coordinates_source.title}
+                    title={t(dataFields.location_coordinates_source.title)}
                     slug="location_coordinates_source"
                     value={props.building.location_coordinates_source}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.location_coordinates_source.tooltip}
+                    tooltip={t(dataFields.location_coordinates_source.tooltip)}
                     placeholder={dataFields.location_coordinates_source.example}
                     options={dataFields.location_coordinates_source.items}
                     />
@@ -302,13 +304,13 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     props.building.location_coordinates_source == null) ? <></> :
                     <>
                         <MultiDataEntry
-                            title={dataFields.location_coordinates_links.title}
+                            title={t(dataFields.location_coordinates_links.title)}
                             slug="location_coordinates_links"
                             value={props.building.location_coordinates_links}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.location_coordinates_links.tooltip}
+                            tooltip={t(dataFields.location_coordinates_links.tooltip)}
                             placeholder="https://..."
                             editableEntries={true}
                             isUrl={true}
@@ -317,13 +319,13 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
                 <hr/>
                 <MultiDataEntry
-                    title={dataFields.location_alternative_footprint_links.title}
+                    title={t(dataFields.location_alternative_footprint_links.title)}
                     slug="location_alternative_footprint_links"
                     value={props.building.location_alternative_footprint_links}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.location_alternative_footprint_links.tooltip}
+                    tooltip={t(dataFields.location_alternative_footprint_links.tooltip)}
                     placeholder="https://..."
                     editableEntries={true}
                     isUrl={true}

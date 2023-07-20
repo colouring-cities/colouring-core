@@ -4,6 +4,7 @@ import './tooltip.css';
 
 import { InfoIcon } from './icons';
 import Markdown from 'markdown-to-jsx';
+import { t } from 'i18next';
 
 interface TooltipProps {
     text: string;
@@ -71,7 +72,7 @@ class Tooltip extends Component<TooltipProps, TooltipState> {
             <div className="tooltip-wrap" tabIndex={0} onBlur={this.handleBlur}>
                 <button type="button" className={(this.state.active? 'active ': '') + 'tooltip-hint icon-button'}
                     onClick={this.toggleVisible}>
-                    Hint
+                    {t("Hint")}
                     <InfoIcon />
                 </button>
                 {

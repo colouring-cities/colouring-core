@@ -32,9 +32,17 @@ const resources = {
       welcome_fourth_paragraph:
         "Todos nuestros <1>datos</1> y <3>código</3> pueden descargarse, utilizarse y compartirse libremente con arreglo a las condiciones de nuestra licencia abierta.",
       "Start Colouring Here!": "¡Empieza a colorear tu ciudad!",
-      Age: "Edad",
-      Location: "Localización",
+
+      "Age": "Edad",
+      "Location": "Localización",
+      "Energy Performance": "Eficiencia energética",
+      "Typology": "Tipología",
+      "Age & History": "Edad e historia",
+      "Planning Controls": "Controles de planificación",
+      "Resilience": "Resiliencia",
       "Land Use": "Uso",
+      
+      
       Type: "Tipo",
       Size: "Tamaño",
       Construction: "Construcción",
@@ -44,8 +52,7 @@ const resources = {
       Sustainability: "Sustentabilidad",
       Dynamics: "Mutaciones",
       Community: "Comunidad",
-      "Select a building to view data":
-        "Seleccione un edificio para ver los datos",
+      "Select a building to view data":"Seleccione un edificio para ver los datos",
       "Click a building to edit": "Haga clic en un edificio para editar",
       "Can you share your opinion on how well the building works?":
         "¿Puede compartir su opinión sobre el funcionamiento del edificio?",
@@ -122,17 +129,16 @@ const resources = {
       "Contributor Agreement": "Acuerdo de Colaboración",
       "Code of Conduct": "Código de conducta",
       "Data Accuracy Agreement": "Acuerdo sobre la precisión de los datos",
-      "Ordnance Survey terms of UPRN usage":
-        "Términos de uso de UPRN de Ordnance Survey",
+      "Ordnance Survey terms of UPRN usage": "Términos de uso de UPRN de Ordnance Survey",
       "Building information (link)": "Informacion de Construccion (link)",
       "Building number": "Número del Edificio",
-      Street: "Calle",
+      "Street": "Calle",
       "Address line 2": "Segunda Direccion",
       Town: "Ciudad",
       Postcode: "Codigo Postal",
       Latitude: "Latitud",
       Longitude: "Longitud",
-      "Core Material": "Material Principal",
+      "Core material": "Material Principal",
       "Main Secondary Construction Material/s":
         "Material/s de construcción principal/es secundario/s",
       "Main Roof Covering": "Cubierta principal del techo",
@@ -290,7 +296,8 @@ const resources = {
       "Semi-Detached": "Semi-adosada",
       "End-Terrace": "Terraza-final",
       "Mid-Terrace": "Terraza-media",
-      Wood: "Madera",
+      "Materials": "Materiales",
+      'Wood': "Madera",
       Stone: "Piedra",
       Brick: "Ladrillo",
       Steel: "Acero",
@@ -321,6 +328,58 @@ const resources = {
       "Is the building in some form of public/community ownership":
         "El edificio es de propiedad pública/comunitaria",
       Yes: "Si",
+
+
+      "This section provides open data on building locations and building IDs.": "Esta sección proporciona datos abiertos sobre la ubicación de los edificios y sus identificadores.",
+      "Can you help us capture and verify this information?": "¿Puedes ayudarnos a capturar y verificar esta información?",
+      "How are buildings used, and how does use change over time?": "¿Cómo se utilizan los edificios y cómo cambia su uso con el tiempo?",
+      "This section provides open data on the age of buildings and the history of buildings and sites.": "Esta sección proporciona datos abiertos sobre la edad de los edificios y la historia de los edificios y los sitios.",
+      "This section provides open data on the dimensions of buildings.": "Esta sección proporciona datos abiertos sobre las dimensiones de los edificios.",
+      "This section provides open data on the teams designing and constructing the buildings.": "Esta sección proporciona datos abiertos sobre los equipos que diseñan y construyen los edificios.",
+      "This section provides open data on building materials and construction systems.": "Esta sección proporciona datos abiertos sobre los materiales de construcción y los sistemas de construcción.",
+      "This section collects data on how well citizens think specific *types* of building work. This will help us save/reuse as many useful buildings as possible, and help improve urban design quality in future.": "Esta sección recoge datos sobre el funcionamiento de los edificios. Esto nos ayudará a salvar/reutilizar tantos edificios útiles como sea posible, y a mejorar la calidad del diseño urbano en el futuro.",
+      "This section provides open data on current and anticipated planning applications for buildings, planning zones and whether the building is protected.": "Esta sección proporciona datos abiertos sobre las solicitudes de planificación actuales y previstas para los edificios, las zonas de planificación y si el edificio está protegido.",
+      "This section provides open data on the energy performance of buildings, and on retrofit.": "Esta sección proporciona datos abiertos sobre el rendimiento energético de los edificios y sobre la renovación.",
+      "Note: This section is currently under development, we are working to activate it as soon as possible. This section provides open data on the typology of the building.": "Nota: Esta sección está actualmente en desarrollo, estamos trabajando para activarla lo antes posible. Esta sección proporciona datos abiertos sobre la tipología del edificio.",
+      "This section provides open data, and links to open data on streets, pavements, street blocks, land parcels and greenery/green spaces.": "Esta sección proporciona datos abiertos y enlaces a datos abiertos sobre calles, aceras, manzanas de calles, parcelas de tierra y espacios verdes.",
+      "This section provides a tool that allows for live collection of data in disaster situations and collates data relating to building resilience.": "Esta sección proporciona una herramienta que permite la recopilación en directo de datos en situaciones de desastre y recopila datos relacionados con la resiliencia de los edificios.",   
+
+      "Edit History": "Historia",
+      "Save edits": "Guardar ediciones",
+      "Discard edits": "Descartar ediciones",
+
+      "Copy": "Copiar",
+      "Copy selected": "Copiar seleccionado",
+      "Cancel": "Cancelar",
+      "Edit": "Editar",
+      "View": "Ver",
+      "View data": "Ver datos",
+
+      "Property/footprint IDs and coordinates": "Identificadores y coordenadas de la propiedad",
+      "Addresses": "Direcciones",
+      
+      "Building name (non-residential)": "Nombre del edificio (no residencial)",
+      "Building name (domestic)": "Nombre del edificio (residencial)",
+      "Building name link": "Enlace al nombre del edificio",
+      "Street name": "Nombre de la calle",
+      "Town/City": "Ciudad",
+      "Area code/Postcode": "Código de área",
+      "Source type": "Fuente",
+
+      "Building footprint ID": "Identificador de la huella del edificio",
+      "Unique Property Reference Number(s) (UPRN)": "Número(s) de referencia de la propiedad (UPRN)",
+      "OpenStreetMap ID": "Identificador de OpenStreetMap",
+      "Centroid latitude": "Latitud del centroide",
+      "Centroid longitude": "Longitud del centroide",
+      "Alternative open building footprint links":  "Enlaces alternativos a datos del edificio",
+
+      "Hint": "",
+      "Ordnance Survey Topography Layer ID (TOID)": "Identificador de la capa topográfica de Ordnance Survey (TOID)",
+      "The name of the building.<br/><br/>(For security reasons, we currently only collect the names of non-residential buildings).": "El nombre del edificio.<br/><br/>(Por razones de seguridad, actualmente sólo recogemos los nombres de los edificios no residenciales).",
+      "Not yet activated.<br><br>For security reasons, we do not allow the use of free text boxes and are currently looking into alternative ways to collect this data.": "Aún no activado.<br><br>Por razones de seguridad, no permitimos el uso de cuadros de texto libre y actualmente estamos buscando formas alternativas de recoger estos datos.",
+      
+
+
     },
   },
 };

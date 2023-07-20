@@ -18,6 +18,17 @@ Todos los cambios realizados por el equipo de Colouring Colombia se documentan e
     - Se reemplazan los textos por la constante t
         - {t('text')}
     - Ver cualquiera de los archivos en i18files.txt como ejemplo
+    - Se modifica el componente select-data-entry.tsx
+    - Se modifica el componente data-container.tsx que toma los datos desde categories-config.ts. Las cadenas de texto en este archivo se pasan a la función t() y la traducción se realiza en el archivo de traducciones i18n.ts
+    - Se modifica el componente copy-controls.tsx
+    - Se modifica el archivo category-links.tsx
+    - Se modifica el archivo container-header.tsx
+    - Se modifica el archivo tooltip.tsx
+
+
+
+
+
 
 
 

@@ -5,6 +5,8 @@ import { BackIcon } from '../components/icons';
 
 import './container-header.css';
 
+import {t} from'i18next';
+
 interface ContainerHeaderProps {
     cat?: string;
     backLink?: string;
@@ -19,7 +21,7 @@ const ContainerHeader: React.FunctionComponent<ContainerHeaderProps> = (props) =
                     <BackIcon />
                 </Link>
             }
-            {props.title}
+            {t(props.title)}
         </h2>
         <nav className="section-header-actions">
             {props.children}

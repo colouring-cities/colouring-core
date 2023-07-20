@@ -22,6 +22,10 @@ import { dataFields } from '../config/data-fields-config'
 
 import { EditHistoryLatest } from './edit-history/edit-history-latest';
 
+import {t} from'i18next';
+
+
+
 interface DataContainerProps {
     title: string;
     cat: string;
@@ -313,7 +317,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                     className="data-section">
                 <ContainerHeader
                     cat={this.props.cat}
-                    title={this.props.title}
+                    title={t(this.props.title)}
                 >
                 {
                     this.props.help && !copy.copying?
@@ -340,7 +344,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                     <NavLink
                                         className="icon-button history"
                                         to={`/${this.props.mode}/${this.props.cat}/${this.props.building.building_id}/history`}
-                                    >Edit History</NavLink>
+                                    >{t('Edit History')}</NavLink>
                                     <ViewEditControl
                                         cat={this.props.cat}
                                         mode={this.props.mode}
@@ -356,8 +360,8 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                 </ContainerHeader>
                 <div className="section-body">
                 <InfoBox>
-                    {this.props.intro}&nbsp;
-                    Can you help us capture and verify this information?
+                    {t(this.props.intro)}&nbsp;
+                    {t('Can you help us capture and verify this information?')}
                 </InfoBox>
                 <EditHistoryLatest
                     building={this.props.building}
@@ -400,7 +404,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                                             disabled={!edited}
                                                             aria-disabled={!edited}
                                                         >
-                                                            Save edits
+                                                            {t("Save edits")}
                                                         </button>
                                                         {
                                                             edited ?
@@ -409,7 +413,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                                                     className="btn btn-warning"
                                                                     onClick={this.handleReset}
                                                                     >
-                                                                    Discard edits
+                                                                    {t("Discard edits")}
                                                                 </button> :
                                                                 null
                                                         }
@@ -436,7 +440,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                     onMapColourScale={this.props.onMapColourScale}
                                 />
                             </form> :
-                            <InfoBox msg="Select a building to view data"></InfoBox>
+                            <InfoBox msg={t("Select a building to view data")}></InfoBox>
                 }
                 <hr/>
                 </div>

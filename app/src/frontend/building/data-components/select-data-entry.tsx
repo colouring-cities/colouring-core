@@ -3,6 +3,8 @@ import React, { Fragment } from 'react';
 import { BaseDataEntryProps } from './data-entry';
 import { DataTitleCopyable } from './data-title';
 
+import {t} from'i18next';
+
 interface SelectOption {
     value: string;
     label: string;
@@ -54,7 +56,7 @@ const SelectDataEntry: React.FunctionComponent<SelectDataEntryProps> = (props) =
                 <option value="">{props.placeholder}</option>
                 {
                     options.map(option => (
-                        <option key={option.value} value={option.value}>{option.label}</option>
+                        <option key={option.value} value={option.value}>{t(option.label)}</option>
                     ))
                 }
             </select>

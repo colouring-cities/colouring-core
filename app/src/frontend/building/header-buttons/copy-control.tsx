@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import {t} from'i18next';
+
 interface CopyControlProps {
     cat: string;
     data_string: string;
@@ -14,19 +16,19 @@ const CopyControl: React.FC<CopyControlProps> = props => (
             <NavLink
                 to={`/multi-edit/${props.cat}?data=${props.data_string}`}
                 className="icon-button copy">
-                Copy selected
+                {t("Copy selected")}
             </NavLink>
             <a
                 className="icon-button copy"
                 onClick={props.toggleCopying}>
-                Cancel
+                {t("Cancel")}
             </a>
         </>
         :
         <a
             className="icon-button copy"
             onClick={props.toggleCopying}>
-            Copy
+            {t("Copy")}
         </a>
 );
 
