@@ -218,9 +218,33 @@ Reiniciar Nginx para aplicar los cambios
 En este punto se puede verificar la instalación compilando y arrancando el servidor:
 
 ```bash
+cd /var/www/colouring-colombia/app
+npm run build
 npm run start:prod
 ```
 Desde un navegador ir a la ulr http://<reemplazarPorlaIpDelServidor>, debe aparecer la página de inicio del proyecto colouring.
+
+En caso de necesitar asesoría colocar un issue en este repositorio o comunicarse con:
+- osgeolabud@gmail.com
+- paulocoronado@udistrital.edu.co
+
+### Ejecutar la app como un proceso del sistema (daemon)
+Dado que es un servidor de producción es necesario que la aplicación se ejecute como un proceso del sistema.
+
+pm2 es un gestor de procesos que permite ejecutar las aplicaciones de Node como procesos de sistema
+
+`sudo npm install pm2 -g`
+
+Registrar y ejecutar la aplicación con pm2
+`pm2 start npm --name "colouring-app" -- run start:prod`
+
+Para asegurar que la aplicación se reinicie cuando existe un reinicio del servidor
+```bash
+pm2 save
+pm2 startup
+```
+Si se desea deshabilitar dicho comportamiento (no recomendado)
+`pm2 unstartup systemd`
 
 ### Configurar SSL con Let's Encrypt
 
