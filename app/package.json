@@ -27,6 +27,7 @@
     "express": "^4.18.2",
     "express-session": "^1.17.1",
     "geojson": "^0.5.0",
+    "i18next": "^23.2.11",
     "leaflet": "^1.7.1",
     "lodash": "^4.17.21",
     "mapnik": "^4.5.9",
@@ -39,10 +40,12 @@
     "react": "^17.0.2",
     "react-datepicker": "^4.11.0",
     "react-dom": "^17.0.2",
+    "react-i18next": "^13.0.2",
     "react-leaflet": "^3.1.0",
     "react-router-dom": "^5.2.0",
     "serialize-javascript": "^5.0.1",
     "sharp": "^0.30.5",
+    "translation-check": "^1.0.3",
     "use-throttle": "0.0.3"
   },
   "devDependencies": {
