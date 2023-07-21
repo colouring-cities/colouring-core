@@ -2,6 +2,7 @@ import React from 'react';
 
 import { BaseDataEntryProps } from '../data-entry';
 import { DataTitleCopyable } from '../data-title';
+import { t } from 'i18next';
 
 interface ToggleButtonProps {
     value: string;
@@ -90,7 +91,7 @@ export const LogicalDataEntry: React.FC<LogicalDataEntryProps> = (props) => {
                     checkedClassName='btn-outline-dark active'
                     uncheckedClassName='btn-outline-dark'
                     onChange={handleValueChange}
-                >Yes</ToggleButton>
+                >{t("Yes")}</ToggleButton>
                 <ToggleButton
                     value="false"
                     checked={props.value === false}
@@ -136,7 +137,7 @@ export const LogicalDataEntryYesOnly: React.FC<LogicalDataEntryProps> = (props) 
                     checkedClassName='btn-outline-dark active'
                     uncheckedClassName='btn-outline-dark'
                     onChange={handleValueChange}
-                >Yes</ToggleButton>
+                >{t("Yes")}</ToggleButton>
             </div>
                 {
                     !isDisabled && props.value != null &&
@@ -168,7 +169,7 @@ export const LogicalDataEntryYesOnlyWithExplanation: React.FC<LogicalDataEntryPr
                     checked={props.value === true}
                     disabled={isDisabled || props.disallowTrue}
                     onChange={handleValueChange}
-                /> Yes (tick to add or remove your edit)
+                /> {t("Yes")}({t("tick to add or remove your edit")})
             </label>
         </>
     );

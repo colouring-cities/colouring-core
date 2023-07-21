@@ -12,6 +12,7 @@ import { NumberRangeDataEntry } from '../../data-components/number-range-data-en
 import './dynamics-data-entry.css';
 import { CloseIcon } from '../../../components/icons';
 import DataTitle, { DataTitleCopyable } from '../../data-components/data-title';
+import { t } from 'i18next';
 
 type DemolishedBuilding = (BuildingAttributes['demolished_buildings'][number]);
 
@@ -76,7 +77,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                     <NumberRangeDataEntry
                         slug='year_constructed'
                         slugModifier={index}
-                        title={dataFields.demolished_buildings.items.year_constructed.title}
+                        title={t(dataFields.demolished_buildings.items.year_constructed.title)}
                         onChange={onFieldChange}
                         value={value.year_constructed}
                         disabled={disabled}
@@ -93,7 +94,7 @@ const DynamicsDataRow: React.FC<DynamicsDataRowProps> = ({
                     <NumberRangeDataEntry
                         slug='year_demolished'
                         slugModifier={index}
-                        title={dataFields.demolished_buildings.items.year_demolished.title}
+                        title={t(dataFields.demolished_buildings.items.year_demolished.title)}
                         onChange={onFieldChange}
                         value={value.year_demolished}
                         disabled={disabled}

@@ -1271,7 +1271,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     age_cladding_date_source_type: {
         category: Category.Age,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type for age cladding data",
         example: "",
         items: commonSourceTypes
     },
@@ -1290,7 +1290,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     age_extension_date_source_type: {
         category: Category.Age,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type for age extension data",
         example: "",
         items: commonSourceTypes
     },
@@ -1309,7 +1309,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     age_retrofit_date_source_type: {
         category: Category.Age,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type for age retrofit data",
         example: "",
         items: commonSourceTypes
     },
@@ -1341,7 +1341,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     energy_solar_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type for energy solar source data",
         example: "",
         items: commonSourceTypes
     },
@@ -1360,7 +1360,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     energy_green_roof_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type for energy green roof data",
         example: "",
         items: commonSourceTypes
     },

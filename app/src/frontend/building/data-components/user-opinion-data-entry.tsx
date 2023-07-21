@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import { CopyProps } from '../data-containers/category-view-props';
 import { DataTitleCopyable } from './data-title';
+import { t } from 'i18next';
 
 
 interface UserOpinionEntryProps {
@@ -29,7 +30,7 @@ const UserOpinionEntry: React.FunctionComponent<UserOpinionEntryProps> = (props)
                     checked={!!props.userValue}
                     disabled={props.mode === 'view'}
                     onChange={e => props.onChange(props.slug, e.target.checked)}
-                /> Yes (tick to add or remove your edit)
+                /> {t("Yes")} ({t("tick to add or remove your edit")})
             </label>
         </>
     );

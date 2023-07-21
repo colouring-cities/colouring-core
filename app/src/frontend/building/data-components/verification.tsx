@@ -34,7 +34,7 @@ class Verification extends Component<VerificationProps, any> {
         const props = this.props;
         let user_verified_as = props.user_verified_as;
         if (typeof user_verified_as === 'boolean') {
-            user_verified_as = user_verified_as? 'Yes': 'No';
+            user_verified_as = user_verified_as? t('Yes'): 'No';
         }
         return (
         <div className="verification-container">
@@ -48,14 +48,14 @@ class Verification extends Component<VerificationProps, any> {
             {
                 props.user_verified?
                     <Fragment>
-                        Verified as
+                        {t("Verified as")}
                         "<span>{user_verified_as}</span>"
                         <button
                             className="btn btn-danger"
                             title="Remove my verification"
                             disabled={!props.allow_verify}
                             onClick={this.handleClick(false)}>
-                            Remove
+                            {t("Remove")}
                         </button>
                     </Fragment>
                 :
@@ -65,7 +65,7 @@ class Verification extends Component<VerificationProps, any> {
                             title={t("Confirm that the current value is correct")}
                             disabled={!props.allow_verify}
                             onClick={this.handleClick(true)}>
-                            Verify
+                            {t("Verify")}
                         </button>
                     </Fragment>
             }

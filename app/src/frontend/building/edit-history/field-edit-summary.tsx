@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import React from 'react';
 
 interface FieldEditSummaryProps {
@@ -8,7 +9,7 @@ interface FieldEditSummaryProps {
 
 function formatValue(value: any) {
     if(typeof value === 'boolean') {
-        return value ? 'Yes' : 'No';
+        return value ? t("Yes") : 'No';
     }
     if(Array.isArray(value)) {
         return value.map(v => `"${v}"`).join(', ');

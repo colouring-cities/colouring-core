@@ -10,6 +10,7 @@ import withCopyEdit from '../data-container';
 import { CategoryViewProps } from './category-view-props';
 import InfoBox from '../../components/info-box';
 import { DataEntryGroup } from '../data-components/data-entry-group';
+import { t } from 'i18next';
 
 const AttachmentFormOptions = [
     "Detached",
@@ -24,12 +25,12 @@ const AttachmentFormOptions = [
 const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
-            <DataEntryGroup name="Adjacency and building use data">
+            <DataEntryGroup name={t("Adjacency and building use data")}>
                 <SelectDataEntry
-                    title={dataFields.building_attachment_form.title}
+                    title={t(dataFields.building_attachment_form.title)}
                     slug="building_attachment_form"
                     value={props.building.building_attachment_form}
-                    tooltip={dataFields.building_attachment_form.tooltip}
+                    tooltip={t(dataFields.building_attachment_form.tooltip)}
                     options={AttachmentFormOptions}
                     mode={props.mode}
                     copy={props.copy}
@@ -59,9 +60,9 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
                 <hr/>
                 <DataEntry
-                    title={dataFields.original_building_use.title}
+                    title={t(dataFields.original_building_use.title)}
                     slug="original_building_use" // doesn't exist in database yet
-                    tooltip={dataFields.original_building_use.tooltip}
+                    tooltip={t(dataFields.original_building_use.tooltip)}
                     value={undefined}
                     copy={props.copy}
                     mode={props.mode}
@@ -91,21 +92,21 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip="Coming Soon"
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Building typology and classification data">
+            <DataEntryGroup name={t("Building typology and classification data")}>
                 <DataEntry
-                    title="Local typology/architectural style"
+                    title={t("Local typology/architectural style")}
                     slug=""
                     value=""
                     mode='view'
                 />
                 <DataEntry
-                    title="Base type classification"
+                    title={t("Base type classification")}
                     slug=""
                     value=""
                     mode='view'
                 />
                 <SelectDataEntry
-                    title={dataFields.size_roof_shape.title}
+                    title={t(dataFields.size_roof_shape.title)}
                     slug="size_roof_shape"
                     value={props.building.size_roof_shape}
                     mode={props.mode}
@@ -119,19 +120,19 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     ]}
                 />
                 <DataEntry
-                    title="Local typology mutations"
+                    title={t("Local typology mutations")}
                     slug=""
                     value=""
                     mode='view'
                 />
                 <DataEntry
-                    title="3D procedural model classifications"
+                    title={t("3D procedural model classifications")}
                     slug=""
                     value=""
                     mode='view'
                 />
                 <DataEntry
-                    title="Dynamic tissue type classification"
+                    title={t("Dynamic tissue type classification")}
                     slug=""
                     value=""
                     mode='view'

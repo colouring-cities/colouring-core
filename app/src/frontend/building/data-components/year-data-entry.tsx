@@ -5,6 +5,7 @@ import { dataFields } from '../../config/data-fields-config';
 import { CopyProps } from '../data-containers/category-view-props';
 
 import NumericDataEntry from './numeric-data-entry';
+import { t } from 'i18next';
 
 interface YearDataEntryProps {
     year: number;
@@ -55,7 +56,7 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
         return (
             <Fragment>
                 <NumericDataEntry
-                    title={dataFields.date_year.title}
+                    title={t(dataFields.date_year.title)}
                     slug="date_year"
                     value={props.year}
                     mode={props.mode}
@@ -63,7 +64,7 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     onChange={props.onChange}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.date_year.tooltip}
+                    tooltip={t(dataFields.date_year.tooltip)}
                     // "type": "year_estimator"
                     />
                 <Verification
@@ -76,7 +77,7 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     />
 
                 <NumericDataEntry
-                    title={dataFields.date_lower.title}
+                    title={t(dataFields.date_lower.title)}
                     slug="date_lower"
                     value={props.lower}
                     mode={props.mode}
@@ -85,7 +86,7 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.date_lower.tooltip}
+                    tooltip={t(dataFields.date_lower.tooltip)}
                     />
                 <Verification
                     slug="date_lower"
@@ -97,7 +98,7 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     />
 
                 <NumericDataEntry
-                    title={dataFields.date_upper.title}
+                    title={t(dataFields.date_upper.title)}
                     slug="date_upper"
                     value={props.upper}
                     mode={props.mode}
@@ -106,7 +107,7 @@ class YearDataEntry extends Component<YearDataEntryProps, any> {
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.date_upper.tooltip}
+                    tooltip={t(dataFields.date_upper.tooltip)}
                     />  
                 <Verification
                     slug="date_upper"

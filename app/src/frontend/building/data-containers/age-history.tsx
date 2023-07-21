@@ -19,6 +19,7 @@ import InfoBox from '../../components/info-box';
 import { CategoryViewProps } from './category-view-props';
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
 import { useDisplayPreferences } from '../../displayPreferences-context';
+import { t } from 'i18next';
 
 const SurvivalStatusOptions = [
     'Same as Historical Map (Unchanged)',
@@ -56,7 +57,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
-            <DataEntryGroup name="Building age">
+            <DataEntryGroup name={t("Building age")}>
                 <YearDataEntry
                     year={props.building.date_year}
                     upper={props.building.date_upper}
@@ -84,7 +85,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count_lower={props.building.verified.date_lower}
                     />
                 <NumericDataEntry
-                    title={dataFields.facade_year.title}
+                    title={t(dataFields.facade_year.title)}
                     slug="facade_year"
                     value={props.building.facade_year}
                     mode={props.mode}
@@ -93,7 +94,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.facade_year.tooltip}
+                    tooltip={t(dataFields.facade_year.tooltip)}
                     />
                 <Verification
                     slug="facade_year"
@@ -104,28 +105,28 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.facade_year}
                     />
                 <SelectDataEntry
-                    title={dataFields.date_source.title}
+                    title={t(dataFields.date_source.title)}
                     slug="date_source"
                     value={props.building.date_source}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.date_source.tooltip}
+                    tooltip={t(dataFields.date_source.tooltip)}
                     options={dataFields.date_source.items}
-                    placeholder={dataFields.date_source.example}
+                    placeholder={t(dataFields.date_source.example)}
                     />
                 {(props.building.date_source == dataFields.date_source.items[0] ||
                     props.building.date_source == dataFields.date_source.items[1] ||
                     props.building.date_source == null) ? <></> :
                     <>
                         <MultiDataEntry
-                            title={dataFields.date_link.title}
+                            title={t(dataFields.date_link.title)}
                             slug="date_link"
                             value={props.building.date_link}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.date_link.tooltip}
+                            tooltip={t(dataFields.date_link.tooltip)}
                             placeholder="https://..."
                             editableEntries={true}
                             isUrl={true}
@@ -133,17 +134,17 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
                 <DataEntry
-                    title="Year of completion (best estimate)"
+                    title={t("Year of completion (best estimate)")}
                     slug=""
                     value=""
                     mode='view'
                     tooltip='Coming Soon'
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Cladding, extensions and retrofits">
+            <DataEntryGroup name={t("Cladding, extensions and retrofits")}>
                 <NumericDataEntry
                     slug='age_cladding_date'
-                    title={dataFields.age_cladding_date.title}
+                    title={t(dataFields.age_cladding_date.title)}
                     value={props.building.age_cladding_date}
                     mode={props.mode}
                     copy={props.copy}
@@ -151,7 +152,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.extension_year.tooltip}
+                    tooltip={t(dataFields.extension_year.tooltip)}
                     />
                 <Verification
                     slug="age_cladding_date"
@@ -162,28 +163,28 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.age_cladding_date}
                     />
                 <SelectDataEntry
-                    title={dataFields.age_cladding_date_source_type.title}
+                    title={t(dataFields.age_cladding_date_source_type.title)}
                     slug="age_cladding_date_source_type"
                     value={props.building.age_cladding_date_source_type}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.age_cladding_date_source_type.tooltip}
+                    tooltip={t(dataFields.age_cladding_date_source_type.tooltip)}
                     options={dataFields.age_cladding_date_source_type.items}
-                    placeholder={dataFields.age_cladding_date_source_type.example}
+                    placeholder={t(dataFields.age_cladding_date_source_type.example)}
                     />
                 {(props.building.age_cladding_date_source_type == dataFields.age_cladding_date_source_type.items[0] ||
                     props.building.age_cladding_date_source_type == dataFields.age_cladding_date_source_type.items[1] ||
                     props.building.age_cladding_date_source_type == null) ? <></> :
                     <>
                         <MultiDataEntry
-                            title={dataFields.age_cladding_date_source_links.title}
+                            title={t(dataFields.age_cladding_date_source_links.title)}
                             slug="age_cladding_date_source_links"
                             value={props.building.age_cladding_date_source_links}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.age_cladding_date_source_links.tooltip}
+                            tooltip={t(dataFields.age_cladding_date_source_links.tooltip)}
                             placeholder="https://..."
                             editableEntries={true}
                             isUrl={true}
@@ -193,7 +194,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <hr/>
                 <NumericDataEntry
                     slug='age_extension_date'
-                    title={dataFields.age_extension_date.title}
+                    title={t(dataFields.age_extension_date.title)}
                     value={props.building.age_extension_date}
                     mode={props.mode}
                     copy={props.copy}
@@ -201,7 +202,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.extension_year.tooltip}
+                    tooltip={t(dataFields.extension_year.tooltip)}
                     />
                 <Verification
                     slug="age_extension_date"
@@ -212,28 +213,28 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.age_extension_date}
                     />
                 <SelectDataEntry
-                    title={dataFields.age_extension_date_source_type.title}
+                    title={t(dataFields.age_extension_date_source_type.title)}
                     slug="age_extension_date_source_type"
                     value={props.building.age_extension_date_source_type}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.age_extension_date_source_type.tooltip}
+                    tooltip={t(dataFields.age_extension_date_source_type.tooltip)}
                     options={dataFields.age_extension_date_source_type.items}
-                    placeholder={dataFields.age_extension_date_source_type.example}
+                    placeholder={t(dataFields.age_extension_date_source_type.example)}
                     />
                 {(props.building.age_extension_date_source_type == dataFields.age_extension_date_source_type.items[0] ||
                     props.building.age_extension_date_source_type == dataFields.age_extension_date_source_type.items[1] ||
                     props.building.age_extension_date_source_type == null) ? <></> :
                     <>
                         <MultiDataEntry
-                            title={dataFields.age_extension_date_source_links.title}
+                            title={t(dataFields.age_extension_date_source_links.title)}
                             slug="age_extension_date_source_links"
                             value={props.building.age_extension_date_source_links}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.age_extension_date_source_links.tooltip}
+                            tooltip={t(dataFields.age_extension_date_source_links.tooltip)}
                             placeholder="https://..."
                             editableEntries={true}
                             isUrl={true}
@@ -243,7 +244,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <hr/>
                 <NumericDataEntry
                     slug='age_retrofit_date'
-                    title={dataFields.age_retrofit_date.title}
+                    title={t(dataFields.age_retrofit_date.title)}
                     value={props.building.age_retrofit_date}
                     mode={props.mode}
                     copy={props.copy}
@@ -251,7 +252,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.extension_year.tooltip}
+                    tooltip={t(dataFields.extension_year.tooltip)}
                     />
                 <Verification
                     slug="age_retrofit_date"
@@ -262,28 +263,28 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.age_retrofit_date}
                     />
                 <SelectDataEntry
-                    title={dataFields.age_retrofit_date_source_type.title}
+                    title={t(dataFields.age_retrofit_date_source_type.title)}
                     slug="age_retrofit_date_source_type"
                     value={props.building.age_retrofit_date_source_type}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.age_retrofit_date_source_type.tooltip}
+                    tooltip={t(dataFields.age_retrofit_date_source_type.tooltip)}
                     options={dataFields.age_retrofit_date_source_type.items}
-                    placeholder={dataFields.age_retrofit_date_source_type.example}
+                    placeholder={t(dataFields.age_retrofit_date_source_type.example)}
                     />
                 {(props.building.age_retrofit_date_source_type == dataFields.age_retrofit_date_source_type.items[0] ||
                     props.building.age_retrofit_date_source_type == dataFields.age_retrofit_date_source_type.items[1] ||
                     props.building.age_retrofit_date_source_type == null) ? <></> :
                     <>
                         <MultiDataEntry
-                            title={dataFields.age_retrofit_date_source_links.title}
+                            title={t(dataFields.age_retrofit_date_source_links.title)}
                             slug="age_retrofit_date_source_links"
                             value={props.building.age_retrofit_date_source_links}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.age_retrofit_date_source_links.tooltip}
+                            tooltip={t(dataFields.age_retrofit_date_source_links.tooltip)}
                             placeholder="https://..."
                             editableEntries={true}
                             isUrl={true}
@@ -291,18 +292,18 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Lifespan and site history">
+            <DataEntryGroup name={t("Lifespan and site history")}>
                 <button className={`map-switcher-inline ${props.mapColourScale == "survival_status" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
-                    {(props.mapColourScale == "is_domestic")? 'Click here to hide historical maps':'Click here to show historical maps'}
+                    {(props.mapColourScale == "is_domestic")? t('Click here to hide historical maps'):t('Click here to show historical maps')}
                 </button>
-                <DataEntryGroup name="Constructions and demolitions on this site" showCount={false}>
+                <DataEntryGroup name={t("Constructions and demolitions on this site")} showCount={false}>
                     <DynamicsBuildingPane>
-                        <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
+                        <label>{t("Current building (age data")} (<Link to={ageLinkUrl}>{t("editable here")}</Link>)</label>
                         <FieldRow>
                             <div>
                                 <NumericDataEntry
                                     slug=''
-                                    title={dataFields.demolished_buildings.items.year_constructed.title}
+                                    title={t(dataFields.demolished_buildings.items.year_constructed.title)}
                                     value={currentBuildingConstructionYear}
                                     disabled={true}
                                     mode='view'
@@ -311,7 +312,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             <div>
                                 <NumericDataEntry
                                     slug=''
-                                    title={dataFields.demolished_buildings.items.year_demolished.title}
+                                    title={t(dataFields.demolished_buildings.items.year_demolished.title)}
                                     value={undefined}
                                     placeholder='---'
                                     disabled={true}
@@ -331,12 +332,12 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </DynamicsBuildingPane>
                     {
                         currentBuildingConstructionYear == undefined ?
-                            <InfoBox>To add historical records, fill in the <Link to={ageLinkUrl}>Age</Link> data first.</InfoBox> :
+                            <InfoBox>{t("To add historical records, fill in the age data first.")} <Link to={ageLinkUrl}>{t("Editar")}</Link> </InfoBox> :
                             
                             <>
                                 <LogicalDataEntry
                                     slug='dynamics_has_demolished_buildings'
-                                    title={dataFields.dynamics_has_demolished_buildings.title}
+                                    title={t(dataFields.dynamics_has_demolished_buildings.title)}
                                     value={building.dynamics_has_demolished_buildings}
                                     disallowFalse={(building.demolished_buildings?.length ?? 0) > 0}
                                     disallowNull={(building.demolished_buildings?.length ?? 0) > 0}
@@ -359,7 +360,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                                             value={building.demolished_buildings}
                                             editableEntries={true}
                                             slug='demolished_buildings'
-                                            title={dataFields.demolished_buildings.title}
+                                            title={t(dataFields.demolished_buildings.title)}
                                             mode={props.mode}
                                             onChange={props.onChange}
                                             onSaveAdd={props.onSaveAdd}
@@ -375,54 +376,49 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                                 }
                             </>
                     }
-                </DataEntryGroup>
-                <InfoBox type='warning'>
-                    This section is under development in collaboration with the historic environment sector.
-                    Please let us know your suggestions on the <a href="https://discuss.colouring.london/t/dynamics-category-discussion/107">discussion forum</a>! (external link - save your edits first)
-                </InfoBox>
+                </DataEntryGroup>                
             </DataEntryGroup>
-            <DataEntryGroup name="Survival tracking" collapsed={true} >
+            <DataEntryGroup name={t("Survival tracking")} collapsed={true} >
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
-                        Can you help us create a map that shows how many buildings in London have survived since the 1890s? 
-                        Choose a colour to indicate whether the building has survived.
+                        {t("Can you help us create a map that shows how many buildings in London have survived since the 1890s?. Choose a colour to indicate whether the building has survived.")}
                     </i>
                 </div>
                 <button className={`map-switcher-inline ${props.mapColourScale == "survival_status" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
-                    {(props.mapColourScale == "is_domestic")? 'Click here to hide historical maps':'Click here to show historical maps'}
+                    {(props.mapColourScale == "is_domestic")? t('Click here to hide historical maps'):t('Click here to show historical maps')}
                 </button>
                 <SelectDataEntry
-                    title={dataFields.survival_status.title}
+                    title={t(dataFields.survival_status.title)}
                     slug="survival_status"
                     value={props.building.survival_status}
-                    tooltip={dataFields.survival_status.tooltip}
+                    tooltip={t(dataFields.survival_status.tooltip)}
                     options={SurvivalStatusOptions}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
                 />
                 <SelectDataEntry
-                    title={dataFields.survival_source.title}
+                    title={t(dataFields.survival_source.title)}
                     slug="survival_source"
                     value={props.building.survival_source}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.survival_source.tooltip}
-                    placeholder={dataFields.survival_source.example}
+                    tooltip={t(dataFields.survival_source.tooltip)}
+                    placeholder={t(dataFields.survival_source.example)}
                     options={dataFields.survival_source.items}
                 />
                 {(props.building.survival_source == dataFields.survival_source.items[0] ||
                     props.building.survival_source == dataFields.survival_source.items[1] ||
                     props.building.survival_source == null) ? <></> :
                     <><MultiDataEntry
-                        title={dataFields.survival_source_links.title}
+                        title={t(dataFields.survival_source_links.title)}
                         slug="survival_source_links"
                         value={props.building.survival_source_links}
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
-                        tooltip={dataFields.survival_source_links.tooltip}
+                        tooltip={t(dataFields.survival_source_links.tooltip)}
                         placeholder="https://..."
                         editableEntries={true}
                         isUrl={true}
@@ -430,35 +426,35 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Historical map data options" collapsed={true} >
+            <DataEntryGroup name={t("Historical map data options")} collapsed={true} >
                 <InfoBox type='warning'>
-                    This section is under development
+                    {t("This section is under development")}
                 </InfoBox>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
-                        This section provides links to open digitised historical maps/mapping data that we are using in the Colouring Cities platform.
+                        {t("This section provides links to open digitised historical maps/mapping data that we are using in the Colouring Cities platform.")}
                     </i>
                 </div>
                 <MultiDataEntry
-                    title={dataFields.age_historical_raster_map_links.title}
+                    title={t(dataFields.age_historical_raster_map_links.title)}
                     slug="age_historical_raster_map_links"
                     value={props.building.age_historical_raster_map_links}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.age_historical_raster_map_links.tooltip}
+                    tooltip={t(dataFields.age_historical_raster_map_links.tooltip)}
                     placeholder="https://..."
                     editableEntries={true}
                     isUrl={true}
                 />
                 <MultiDataEntry
-                    title={dataFields.age_historical_vectorised_footprint_links.title}
+                    title={t(dataFields.age_historical_vectorised_footprint_links.title)}
                     slug="age_historical_vectorised_footprint_links"
                     value={props.building.age_historical_vectorised_footprint_links}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.age_historical_vectorised_footprint_links.tooltip}
+                    tooltip={t(dataFields.age_historical_vectorised_footprint_links.tooltip)}
                     placeholder="https://..."
                     editableEntries={true}
                     isUrl={true}

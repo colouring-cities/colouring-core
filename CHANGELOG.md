@@ -24,6 +24,20 @@ Todos los cambios realizados por el equipo de Colouring Colombia se documentan e
     - Se modifica el archivo tooltip.tsx
     - Se modifica el archivo location.tsx
     - Se modifica el archivo land-use.tsx
+    - Se modifica el archivo typology.tsx
+    - Se modifica el archivo size.tsx
+    - Se modifica el archivo year-data-entry.tsx
+    - Se modifica el archivo dynamics-data-entry.tsx
+    - Se modifica el archivo street-context.tsx
+    - Se modifica el archvio verification.tsx
+    - Se modifica el archivo checkbox-data-entry.tsx
+    - Se modifica el archivo user-opinion-data-entry.tsx
+    - Se modifica el archivo logical-data-entry.tsx
+    - se modifica el archivo field-edit-summary.tsx
+
+
+
+
 
 
 

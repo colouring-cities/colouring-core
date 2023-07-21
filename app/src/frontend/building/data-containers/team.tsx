@@ -11,6 +11,7 @@ import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-e
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
+import { t } from 'i18next';
 
 /**
 * Team view/edit section
@@ -21,21 +22,21 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const currentBuildingConstructionYear = building.date_year || undefined;
       return (
        <form>
-            <DataEntryGroup name="General info">
+            <DataEntryGroup name={t("General info")}>
                 <LogicalDataEntry
-                    title={dataFields.has_extension.title}
+                    title={t(dataFields.has_extension.title)}
                     slug="has_extension"
                     value={props.building.has_extension}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.has_extension.tooltip}
+                    tooltip={t(dataFields.has_extension.tooltip)}
                     />
                 {props.building.has_extension!=null && !props.building.has_extension ? (
                 <>
                     <NumericDataEntry
                         slug='extension_year'
-                        title={dataFields.extension_year.title}
+                        title={t(dataFields.extension_year.title)}
                         value={props.building.extension_year}
                         mode={props.mode}
                         copy={props.copy}
@@ -43,7 +44,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         step={1}
                         min={1}
                         max={currentYear}
-                        tooltip={dataFields.extension_year.tooltip_extension}
+                        tooltip={t(dataFields.extension_year.tooltip_extension)}
                     />
                     <Verification
                         slug="extension_year"
@@ -54,28 +55,28 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         verified_count={props.building.verified.extension_year}
                         />
                     <SelectDataEntry
-                        title={dataFields.extension_source_type.title}
+                        title={t(dataFields.extension_source_type.title)}
                         slug="extension_source_type"
                         value={props.building.extension_source_type}
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
-                        tooltip={dataFields.extension_source_type.tooltip}
+                        tooltip={t(dataFields.extension_source_type.tooltip)}
                         options={dataFields.extension_source_type.items}
-                        placeholder={dataFields.extension_source_type.example}
+                        placeholder={t(dataFields.extension_source_type.example)}
                         />
                     {(props.building.extension_source_type == dataFields.extension_source_type.items[0] ||
                         props.building.extension_source_type == dataFields.extension_source_type.items[1] ||
                         props.building.extension_source_type == null) ? <></> :
                         <>
                             <MultiDataEntry
-                                title={dataFields.extension_source_links.title}
+                                title={t(dataFields.extension_source_links.title)}
                                 slug="extension_source_links"
                                 value={props.building.extension_source_links}
                                 mode={props.mode}
                                 copy={props.copy}
                                 onChange={props.onChange}
-                                tooltip={dataFields.extension_source_links.tooltip}
+                                tooltip={t(dataFields.extension_source_links.tooltip)}
                                 placeholder="https://..."
                                 editableEntries={true}
                                 isUrl={true}
@@ -85,15 +86,15 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 </>
                 ) : (null)}
             </DataEntryGroup>
-            <DataEntryGroup name="Land ownership">
+            <DataEntryGroup name={t("Land ownership")}>
                 <MultiDataEntry
-                    title={dataFields.landowner.title}
+                    title={t(dataFields.landowner.title)}
                     slug="landowner"
                     value={props.building.landowner}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.landowner.tooltip}
+                    tooltip={t(dataFields.landowner.tooltip)}
                     placeholder=""
                     editableEntries={true}
                     disabled={true}
@@ -107,40 +108,40 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.landowner}
                     />
                 <MultiDataEntry
-                    title={dataFields.landowner_links.title}
+                    title={t(dataFields.landowner_links.title)}
                     slug="landowner_links"
                     value={props.building.landowner_links}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.landowner_links.tooltip}
+                    tooltip={t(dataFields.landowner_links.tooltip)}
                     placeholder="https://..."
                     editableEntries={true}
                     isUrl={true}
                 />
                 <SelectDataEntry
-                    title={dataFields.landowner_source_type.title}
+                    title={t(dataFields.landowner_source_type.title)}
                     slug="landowner_source_type"
                     value={props.building.landowner_source_type}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.landowner_source_type.tooltip}
+                    tooltip={t(dataFields.landowner_source_type.tooltip)}
                     options={dataFields.landowner_source_type.items}
-                    placeholder={dataFields.landowner_source_type.example}
+                    placeholder={t(dataFields.landowner_source_type.example)}
                     />
                 {(props.building.landowner_source_type == commonSourceTypes[0] ||
                     props.building.landowner_source_type == commonSourceTypes[1] ||
                     props.building.landowner_source_type == null) ? <></> :
                     <>
                         <MultiDataEntry
-                            title={dataFields.landowner_source_link.title}
+                            title={t(dataFields.landowner_source_link.title)}
                             slug="landowner_source_link"
                             value={props.building.landowner_source_link}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.landowner_source_link.tooltip}
+                            tooltip={t(dataFields.landowner_source_link.tooltip)}
                             placeholder="https://..."
                             editableEntries={true}
                             isUrl={true}
@@ -148,10 +149,10 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Developer">
+            <DataEntryGroup name={t("Developer")}>
                 <SelectDataEntry
                     slug='developer_type'
-                    title={dataFields.developer_type.title}
+                    title={t(dataFields.developer_type.title)}
                     value={props.building.developer_type}
                     options={dataFields.developer_type.items}
                     onChange={props.onChange}
@@ -167,13 +168,13 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.developer_type}
                     />
                 <MultiDataEntry
-                    title={dataFields.developer_name.title}
+                    title={t(dataFields.developer_name.title)}
                     slug="developer_name"
                     value={props.building.developer_name}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.developer_name.tooltip}
+                    tooltip={t(dataFields.developer_name.tooltip)}
                     placeholder=""
                     editableEntries={true}
                     disabled={true}
@@ -187,40 +188,40 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.developer_name}
                     />
                 <MultiDataEntry
-                    title={dataFields.developer_links.title}
+                    title={t(dataFields.developer_links.title)}
                     slug="developer_links"
                     value={props.building.developer_links}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.developer_links.tooltip}
+                    tooltip={t(dataFields.developer_links.tooltip)}
                     placeholder="https://..."
                     editableEntries={true}
                     isUrl={true}
                 />
                 <SelectDataEntry
-                    title={dataFields.developer_source_type.title}
+                    title={t(dataFields.developer_source_type.title)}
                     slug="developer_source_type"
                     value={props.building.developer_source_type}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.developer_source_type.tooltip}
+                    tooltip={t(dataFields.developer_source_type.tooltip)}
                     options={dataFields.developer_source_type.items}
-                    placeholder={dataFields.developer_source_type.example}
+                    placeholder={t(dataFields.developer_source_type.example)}
                     />
                 {(props.building.developer_source_type == commonSourceTypes[0] ||
                     props.building.developer_source_type == commonSourceTypes[1] ||
                     props.building.developer_source_type == null) ? <></> :
                     <>
                         <MultiDataEntry
-                            title={dataFields.developer_source_link.title}
+                            title={t(dataFields.developer_source_link.title)}
                             slug="developer_source_link"
                             value={props.building.developer_source_link}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.developer_source_link.tooltip}
+                            tooltip={t(dataFields.developer_source_link.tooltip)}
                             placeholder="https://..."
                             editableEntries={true}
                             isUrl={true}
@@ -228,15 +229,15 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Designer">
+            <DataEntryGroup name={t("Designer")}>
                 <MultiDataEntry
-                    title={dataFields.designers.title}
+                    title={t(dataFields.designers.title)}
                     slug="designers"
                     value={props.building.designers}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.designers.tooltip}
+                    tooltip={t(dataFields.designers.tooltip)}
                     placeholder=""
                     editableEntries={true}
                     disabled={true}
@@ -250,20 +251,20 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.designers}
                     />
                 <MultiDataEntry
-                    title={dataFields.designers_links.title}
+                    title={t(dataFields.designers_links.title)}
                     slug="designers_links"
                     value={props.building.designers_links}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.designers_links.tooltip}
+                    tooltip={t(dataFields.designers_links.tooltip)}
                     placeholder="https://..."
                     editableEntries={true}
                     isUrl={true}
                 />
                 <SelectDataEntry
                     slug='lead_designer_type'
-                    title={dataFields.lead_designer_type.title}
+                    title={t(dataFields.lead_designer_type.title)}
                     value={props.building.lead_designer_type}
                     options={dataFields.lead_designer_type.items}
                     onChange={props.onChange}
@@ -279,28 +280,28 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.lead_designer_type}
                     />
                 <SelectDataEntry
-                    title={dataFields.designers_source_type.title}
+                    title={t(dataFields.designers_source_type.title)}
                     slug="designers_source_type"
                     value={props.building.designers_source_type}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.designers_source_type.tooltip}
+                    tooltip={t(dataFields.designers_source_type.tooltip)}
                     options={dataFields.designers_source_type.items}
-                    placeholder={dataFields.designers_source_type.example}
+                    placeholder={t(dataFields.designers_source_type.example)}
                     />
                 {(props.building.designers_source_type == commonSourceTypes[0] ||
                     props.building.designers_source_type == commonSourceTypes[1] ||
                     props.building.designers_source_type == null) ? <></> :
                     <>
                         <MultiDataEntry
-                            title={dataFields.designers_source_link.title}
+                            title={t(dataFields.designers_source_link.title)}
                             slug="designers_source_link"
                             value={props.building.designers_source_link}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.designers_source_link.tooltip}
+                            tooltip={t(dataFields.designers_source_link.tooltip)}
                             placeholder="https://..."
                             editableEntries={true}
                             isUrl={true}
@@ -308,15 +309,15 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Builder">
+            <DataEntryGroup name={t("Builder")}>
                 <MultiDataEntry
-                    title={dataFields.builder.title}
+                    title={t(dataFields.builder.title)}
                     slug="builder"
                     value={props.building.builder}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.builder.tooltip}
+                    tooltip={t(dataFields.builder.tooltip)}
                     placeholder=""
                     editableEntries={true}
                     disabled={true}
@@ -330,34 +331,34 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.builder}
                     />
                 <MultiDataEntry
-                    title={dataFields.builder_links.title}
+                    title={t(dataFields.builder_links.title)}
                     slug="builder_links"
                     value={props.building.builder_links}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.builder_links.tooltip}
+                    tooltip={t(dataFields.builder_links.tooltip)}
                     placeholder="https://..."
                     editableEntries={true}
                     isUrl={true}
                 />
                 <SelectDataEntry
-                    title={dataFields.builder_source_type.title}
+                    title={t(dataFields.builder_source_type.title)}
                     slug="builder_source_type"
                     value={props.building.builder_source_type}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.builder_source_type.tooltip}
+                    tooltip={t(dataFields.builder_source_type.tooltip)}
                     options={dataFields.builder_source_type.items}
-                    placeholder={dataFields.builder_source_type.example}
+                    placeholder={t(dataFields.builder_source_type.example)}
                     />
                 {(props.building.builder_source_type == commonSourceTypes[0] ||
                     props.building.builder_source_type == commonSourceTypes[1] ||
                     props.building.builder_source_type == null) ? <></> :
                     <>
                         <MultiDataEntry
-                            title={dataFields.builder_source_link.title}
+                            title={t(dataFields.builder_source_link.title)}
                             slug="builder_source_link"
                             value={props.building.builder_source_link}
                             mode={props.mode}
@@ -370,11 +371,11 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Awards">
+            <DataEntryGroup name={t("Awards")}>
                 <LogicalDataEntryYesOnly
                         slug='designer_awards'
-                        title={dataFields.designer_awards.title}
-                        tooltip={dataFields.designer_awards.tooltip}
+                        title={t(dataFields.designer_awards.title)}
+                        tooltip={t(dataFields.designer_awards.tooltip)}
                         value={props.building.designer_awards}
                         copy={props.copy}
                         onChange={props.onChange}
@@ -391,13 +392,13 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     {props.building.designer_awards ? (
                     <>
                     <MultiDataEntry
-                        title={dataFields.awards_source_link.title}
+                        title={t(dataFields.awards_source_link.title)}
                         slug="awards_source_link"
                         value={props.building.awards_source_link}
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
-                        tooltip={dataFields.awards_source_link.tooltip}
+                        tooltip={t(dataFields.awards_source_link.tooltip)}
                         placeholder="https://..."
                         editableEntries={true}
                         isUrl={true}

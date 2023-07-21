@@ -33,7 +33,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const { darkLightTheme } = useDisplayPreferences();
       return (
           <Fragment>
-                <DataEntryGroup name="General Land Use">
+                <DataEntryGroup name={t("General Land Use")}>
                     <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                         <i>
                             {t("The vast majority of properties are residential (93% in the UK), so we have set 'residential' as the default value. Can you help us identify non-residential and mixed use buildings (and verify residential buildings too)?")}
@@ -88,7 +88,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Specific land use(s)">
+                <DataEntryGroup name={t("Specific land use(s)")}>
                     <MultiDataEntry
                         title={t(dataFields.current_landuse_group.title)}
                         slug="current_landuse_group"

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 
 import { BaseDataEntryProps } from './data-entry';
 import { DataTitleCopyable } from './data-title';
+import { t } from 'i18next';
 
 interface CheckboxDataEntryProps extends BaseDataEntryProps {
     value: boolean;
@@ -30,9 +31,9 @@ const CheckboxDataEntry: React.FunctionComponent<CheckboxDataEntryProps> = (prop
                         />
                     {
                         props.value?
-                            <span><strong>Yes</strong>/No</span>
+                            <span><strong>{t("Yes")}</strong>/{t("No")}</span>
                         :
-                            <span>Yes/<strong>No</strong></span>
+                            <span>{t("Yes")}/<strong>{t("No")}</strong></span>
                     }
                 </label>
             </div>
