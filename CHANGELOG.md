@@ -12,9 +12,7 @@ Todos los cambios realizados por el equipo de Colouring Colombia se documentan e
     - import './i18n/i18n'
 - Se agrega el archivo de traducciones en app/src/frontend/i18n/locales/es/translation.json (TO DO)
 - Se actualizan los archivos que usan i18n. En cada uno se importa la biblioteca 
-    - import { Trans, useTranslation } from 'react-i18next';
-    - Se crea una constante para usar la traducción
-        - const { t } = useTranslation();
+    - import { t } from 'i18next';
     - Se reemplazan los textos por la constante t
         - {t('text')}
     - Ver cualquiera de los archivos en i18files.txt como ejemplo
@@ -24,6 +22,9 @@ Todos los cambios realizados por el equipo de Colouring Colombia se documentan e
     - Se modifica el archivo category-links.tsx
     - Se modifica el archivo container-header.tsx
     - Se modifica el archivo tooltip.tsx
+    - Se modifica el archivo location.tsx
+    - Se modifica el archivo land-use.tsx
+
 
 
 

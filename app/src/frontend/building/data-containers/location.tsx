@@ -47,7 +47,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     slug=""
                     value=""
                     mode='view'
-                    tooltip="Not yet activated.<br><br>For security reasons, we do not allow the use of free text boxes and are currently looking into alternative ways to collect this data."
+                    tooltip={t("Not yet activated.<br><br>For security reasons, we do not allow the use of free text boxes and are currently looking into alternative ways to collect this data.")}
                 />
                 <DataEntry
                     title={t(dataFields.location_name_link.title)}

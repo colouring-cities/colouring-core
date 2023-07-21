@@ -377,8 +377,15 @@ const resources = {
       "Ordnance Survey Topography Layer ID (TOID)": "Identificador de la capa topográfica de Ordnance Survey (TOID)",
       "The name of the building.<br/><br/>(For security reasons, we currently only collect the names of non-residential buildings).": "El nombre del edificio.<br/><br/>(Por razones de seguridad, actualmente sólo recogemos los nombres de los edificios no residenciales).",
       "Not yet activated.<br><br>For security reasons, we do not allow the use of free text boxes and are currently looking into alternative ways to collect this data.": "Aún no activado.<br><br>Por razones de seguridad, no permitimos el uso de cuadros de texto libre y actualmente estamos buscando formas alternativas de recoger estos datos.",
-      
-
+      'Numbers with an optional lowercase letter are accepted, e.g. 141 or 12b': 'Se aceptan números con una letra minúscula opcional, por ejemplo, 141 o 12b',
+      'Main secondary construction material/s': 'Material/es de construcción secundario/s principal/es',
+      'Main roof covering': 'Cubierta principal del techo',
+      'Construction sectors': 'Sectores de la construcción',
+      "The vast majority of properties are residential (93% in the UK), so we have set 'residential' as the default value. Can you help us identify non-residential and mixed use buildings (and verify residential buildings too)?": 'La gran mayoría de las propiedades son residenciales (93% en el Reino Unido), por lo que hemos establecido "residencial" como valor predeterminado. ¿Puede ayudarnos a identificar los edificios no residenciales y de uso mixto (y verificar también los edificios residenciales)?',
+      'Click to see residential, non-residential and mixed-use buildings on the map.': 'Haga clic para ver los edificios residenciales, no residenciales y de uso mixto en el mapa.',
+      "Is the building a home/residential building?": '¿Es el edificio una casa/edificio residencial?',
+      "Current land use(s)": 'Uso(s) actual(es) del suelo',
+      "Current land use (order)": 'Uso actual del suelo (orden)',
 
     },
   },
