@@ -6,6 +6,7 @@ import { DownIcon, UpIcon } from '../components/icons';
 import { Logo } from '../components/logo';
 import { CategoryMapDefinition, LegendConfig } from '../config/category-maps-config';
 import { BuildingMapTileset } from '../config/tileserver-config';
+import { t } from 'i18next';
 
 interface LegendProps {
     mapColourScaleDefinitions: CategoryMapDefinition[];
@@ -60,11 +61,11 @@ export const Legend : FC<LegendProps> = ({
                     <select className='style-select' onChange={e => onMapColourScale(e.target.value as BuildingMapTileset)} value={mapColourScale}>
                         {
                             mapColourScaleDefinitions.map(def => 
-                                <option key={def.mapStyle} value={def.mapStyle}>{def.legend.title}</option>    
+                                <option key={def.mapStyle} value={def.mapStyle}>{t(def.legend.title)}</option>    
                             )
                         }
                     </select> :
-                    title && <h4 className="h4">{title}</h4>
+                    title && <h4 className="h4">{t(title)}</h4>
             }
             {
                 elements.length > 0 &&
@@ -77,14 +78,14 @@ export const Legend : FC<LegendProps> = ({
                     </button>
             }
             {
-                description && <p>{description}</p>
+                description && <p>{t(description)}</p>
             }
             {
                 elements.length === 0 ?
                     ( disclaimer ? <ul className={collapseList ? 'collapse data-legend' : 'data-legend'} ><p className='legend-disclaimer'>{disclaimer}</p></ul> : <p className="data-intro">Coming soon…</p>) :
                     <ul className={collapseList ? 'collapse data-legend' : 'data-legend'} >
                         {
-                            disclaimer && <p className='legend-disclaimer'>{disclaimer}</p>
+                            disclaimer && <p className='legend-disclaimer'>{t(disclaimer)}</p>
                         }
                         {
                             elements.map((item) => {
@@ -93,12 +94,12 @@ export const Legend : FC<LegendProps> = ({
                                     
                                 if('subtitle' in item) {
                                     key = item.subtitle;
-                                    content = <h6>{item.subtitle}</h6>;
+                                    content = <h6>{t(item.subtitle)}</h6>;
                                 } else {
                                     key = `${item.text}-${item.color}`;
                                     content = <>
                                         <div className="key" style={ { background: item.color, border: item.border } } />
-                                        { item.text }
+                                        { t(item.text) }
                                     </>;
                                 }
                                 return (

@@ -513,6 +513,42 @@ const resources = {
       "Source type for builder data": 'Fuente de los datos del constructor',
       "Awards": 'Premios',
       "Has the building won any awards?": '¿El edificio ha ganado algún premio?',
+
+      "Residential building": 'Edificio residencial',
+      "Residential": 'Residencial',
+      "Mixed": 'Mixto',
+      "Non-residential": 'No residencial',
+
+      "Adjacency/Configuration": 'Adyacencia/Configuración',
+
+      "All planning applications available from GLA (official data)": 'Todas las solicitudes de planificación disponibles en Catastro Distrital(datos oficiales)',
+      "The last 12 months - planning applications submissions/decisions (official data)": 'Los últimos 12 meses - presentación de solicitudes de planificación/decisiones (datos oficiales)',
+      "Last 30 days - planning applications submissions/decisions (official data)": 'Últimos 30 días - presentación de solicitudes de planificación/decisiones (datos oficiales)',
+      "Expected planning applications (crowdsourced data)": 'Solicitudes de planificación previstas (datos colaborativos)',
+      "Designation/protection (official and crowdsourced data)": 'Designación/protección (datos oficiales y colaborativos)',
+      "The map shows official data available from the GLA Planning London Datahub. What you are looking at is mainly applications from 2019 onwards.": 'El mapa muestra datos oficiales abiertos disponibles en el IDECA.',
+      "Submitted, awaiting decision": 'Presentado, a la espera de decisión',
+      "Appeal In Progress": 'Apelación en curso',
+      "Approved": 'Aprobado',
+      "Rejected": 'Rechazado',
+      "Withdrawn": 'Retirado',
+      "Other": 'Otro',
+      "DEC Rating": 'Clasificación DEC',
+
+      "Severity of damage": 'Gravedad de los daños',
+      "Severity of damage to building": 'Gravedad de los daños al edificio',
+      "Building destroyed": 'Edificio destruido',
+      "Very severe": 'Muy grave',
+      "Severe": 'Grave',
+      "Moderate": 'Moderado',
+      "Minimal": 'Mínimo',
+      "No damage visible": 'Sin daños visibles',
+
+      "Liked non-residential buildings": 'Me gusta a edificios no residenciales',
+      "Local Interest": 'Interés local',
+      "Expected planning applications": 'Solicitudes de planificación previstas',
+      
+
     },
   },
 };
