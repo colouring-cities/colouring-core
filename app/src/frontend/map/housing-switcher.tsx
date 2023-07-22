@@ -2,6 +2,7 @@ import React from 'react';
 
 import './map-button.css';
 import { useDisplayPreferences } from '../displayPreferences-context';
+import { t } from 'i18next';
 
 export const HousingSwitcher: React.FC<{}> = () => {
     const { housing, housingSwitch, darkLightTheme } = useDisplayPreferences();
@@ -9,7 +10,7 @@ export const HousingSwitcher: React.FC<{}> = () => {
     <form className={`housing-switcher map-button ${housing}-state ${darkLightTheme}`} onSubmit={housingSwitch}>
         <button className="btn btn-outline btn-outline-dark"
             type="submit">
-            {(housing === 'enabled')? 'Housing Zones on' : 'Housing Zones off'}
+            {(housing === 'enabled')? t('Housing Zones on') : t('Housing Zones off')}
         </button>
     </form>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './map-button.css';
+import { t } from 'i18next';
 
 interface ThemeSwitcherProps {
     currentTheme: string;
@@ -11,7 +12,7 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = (props) => (
     <form className={`theme-switcher map-button ${props.currentTheme}`} onSubmit={props.onSubmit}>
         <button className="btn btn-outline btn-outline-dark"
             type="submit">
-            Switch theme ({(props.currentTheme === 'light')? 'Light' : 'Night'})
+            {t("Switch theme")} ({(props.currentTheme === 'light')? t('Light') : t('Night')})
         </button>
     </form>
 );

@@ -21,6 +21,7 @@ import { useDisplayPreferences } from '../../displayPreferences-context';
 import { processParam } from '../../../api/parameters';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import YearDataEntry from '../data-components/year-data-entry';
+import { t } from 'i18next';
 
 const currentTimestamp = new Date().valueOf();
 const milisecondsInYear = 1000 * 60 * 60 * 24 * 365;
@@ -67,95 +68,94 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     return (
     <Fragment>
-        <DataEntryGroup name="Current planning applications" collapsed={true} >
-            <DataEntryGroup name="Official data">
+        <DataEntryGroup name={t("Current planning applications")} collapsed={true} >
+            <DataEntryGroup name={t("Official data")}>
                 <InfoBox>
-                    This section provides data on active applications. We define these as applications with any activity in the last year.
+                    {t("This section provides data on active applications. We define these as applications with any activity in the last year.")}
                     <br />
-                    To comment on an application follow the application link if provided, or visit the relevant local authority's planning page.
+                    {t("To comment on an application follow the application link if provided, or visit the relevant local authority's planning page.")}
                 </InfoBox>
                 {props.building.planning_data ?
                     <PlanningDataOfficialDataEntry  
                         shownData={props.building.planning_data.filter(item => isArchived(item) == false)}
                         messageOnMissingData={
                             props.building.planning_data.length > 0 ?
-                                "Only past application data is currently available for this site"
+                                t("Only past application data is currently available for this site")
                                 :
-                                "No live planning data are currently available for this building from the Planning London Datahub."
+                                t("No live planning data are currently available for this building from the Planning London Datahub.")
                         }
                     />
                 : <></>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Year of completion" collapsed={true} >
+            <DataEntryGroup name={t("Year of completion")} collapsed={true} >
                 <DataEntry
-                    title="Was the building completed?"
+                    title={t("Was the building completed?")}
                     slug=""
                     value=""
                     mode='view'
-                    tooltip='Coming Soon'
+                    tooltip={t('Coming Soon')}
                 />
                 <DataEntry
-                    title="Year of completion"
+                    title={t("Year of completion")}
                     slug=""
                     value=""
                     mode='view'
-                    tooltip='Coming Soon'
+                    tooltip={t('Coming Soon')}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Incomplete/missing data" collapsed={true} >
+            <DataEntryGroup name={t("Incomplete/missing data")} collapsed={true} >
                 <DataEntry
-                    title="Is information on a planning application relating to this building missing?"
+                    title={t("Is information on a planning application relating to this building missing?")}
                     slug=""
                     value=""
                     mode='view'
-                    tooltip='Coming Soon'
+                    tooltip={t('Coming Soon')}
                 />
                 <DataEntry
-                    title="Link (to correct data)"
+                    title={t("Link (to correct data)")}
                     slug=""
                     value=""
                     mode='view'
-                    tooltip='Coming Soon'
+                    tooltip={t('Coming Soon')}
                 />
                 <InfoBox>
-                    If you feel there are incorrect or missing data relating to this building please contact:  
-                    planningdata@London.gov.uk
+                    {t("If you feel there are incorrect or missing data relating to this building please contact: planningdata@London.gov.uk")}
                 </InfoBox>
             </DataEntryGroup>
         </DataEntryGroup>
-        <DataEntryGroup name="Past applications" collapsed={true} >
+        <DataEntryGroup name={t("Past applications")} collapsed={true} >
             <InfoBox>
-                This section provides data on past applications where available from the GLA, including those with no decision in over a year
+                {t("This section provides data on past applications where available from the GLA, including those with no decision in over a year")}
             </InfoBox>
             {props.building.planning_data ?
                 <PlanningDataOfficialDataEntry  
                     shownData={props.building.planning_data.filter(item => isArchived(item))}
                     messageOnMissingData={
                         props.building.planning_data.length > 0 ?
-                            "Only current application data is currently available for this site"
+                           t("Only current application data is currently available for this site")
                             :
-                            "No live planning data are currently available for this building from the Planning London Datahub."
+                            t("No live planning data are currently available for this building from the Planning London Datahub.")
                     }
                 />
             : <></>
             }
         </DataEntryGroup>
-        <DataEntryGroup name="Possible future applications" collapsed={true} >
-            <InfoBox type='info'>Click and colour buildings here if you think they may be subject to a future planning application involving demolition. To add your opinion on how well this building works, please also visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
+        <DataEntryGroup name={t("Possible future applications")} collapsed={true} >
+            <InfoBox type='info'>{t("Click and colour buildings here if you think they may be subject to a future planning application involving demolition. To add your opinion on how well this building works, please also visit the")} <Link to={communityLinkUrl}>{t("Community")}</Link></InfoBox>
             {
             props.mapColourScale != "community_expected_planning_application_total" ?
                 <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToExpectedApplicationMapStyle}>
-                {'Click here to view possible locations of future applications'}
+                {t('Click here to view possible locations of future applications')}
                 </button>
             :
                 <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAllPlanningApplicationsMapStyle}>
-                {'Click to see planning applications'}
+                {t('Click to see planning applications')}
                 </button>
             }
             <UserOpinionEntry
                 slug='community_expected_planning_application'
-                title={buildingUserFields.community_expected_planning_application.title}
+                title={t(buildingUserFields.community_expected_planning_application.title)}
                 userValue={props.building.community_expected_planning_application}
 
                 onChange={props.onSaveChange}
@@ -163,71 +163,63 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 copy={props.copy}
             />
             <InfoBox type='warning'>
-                Further improvements to this feature are currently being made.
+                {t("Further improvements to this feature are currently being made.")}
             </InfoBox>
         </DataEntryGroup>
-        <DataEntryGroup name="Planning zones" collapsed={true} >
+        <DataEntryGroup name={t("Planning zones")} collapsed={true} >
             <InfoBox>
-                To view planning zone data for London click the buttons below. You may need to <u>zoom out</u>.
-                Information on whether a specific building is in a zone will be added automatically in future.
+                {t("To view planning zone data for London click the buttons below. You may need to zoom out Information on whether a specific building is in a zone will be added automatically in future.")}   
             </InfoBox>
-            <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
-                <i>
-                    Data in this section comes from <a href="https://www.london.gov.uk/programmes-strategies/planning/digital-planning/planning-london-datahub">the Greater London Authority's Planning London Datahub</a>. Please check the original GLA source when using for planning purposes.
-                    <br />
-                    Specific sources are mentioned in the footer of map for currently enabled layers.
-                </i>
-            </div>
             <LogicalDataEntry
-            title="Is the building inside a Flood Zone?"
+            title={t("Is the building inside a Flood Zone?")}
             slug="planning_live_application"
             value={null}
             disabled={true}
-            tooltip={"the GLA official description: \"All areas with more than a 1 in 1,000 annual probability of either river or sea flooding.\""}
+            tooltip={t("the GLA official description: \"All areas with more than a 1 in 1,000 annual probability of either river or sea flooding.\"")}
             />
             <button className={`map-switcher-inline ${flood}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={floodSwitchOnClick}>
-                {(flood === 'enabled')? 'Click to hide Flood Zones' : 'Click to see Flood Zones mapped'}
+                {(flood === 'enabled')? t('Click to hide Flood Zones') : t('Click to see Flood Zones mapped')}
             </button>
             <LogicalDataEntry
-            title="Is the building in a Housing Zone?"
+            title={t("Is the building in a Housing Zone?")}
             slug="planning_live_application"
             value={null}
             disabled={true}
-            tooltip={"the GLA official description: \"Housing zones are areas funded by the Mayor and government to attract developers and relevant partners to build new homes.\""}
+            tooltip={t("the GLA official description: \"Housing zones are areas funded by the Mayor and government to attract developers and relevant partners to build new homes.\"")}
             />
             <button className={`map-switcher-inline ${housing}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={housingSwitchOnClick}>
-                {(housing === 'enabled')? 'Click to hide Housing Zones' : 'Click to see Housing Zones mapped'}
+                {(housing === 'enabled')? t('Click to hide Housing Zones') : t('Click to see Housing Zones mapped')}
             </button>
             <LogicalDataEntry
-            title="Is the building in a Creative Enterprise Zone?"
+            title={t("Is the building in a Creative Enterprise Zone?")}
             slug="planning_live_application"
             value={null}
             disabled={true}
-            tooltip={"GLA official description: \"Creative Enterprise Zones are a new Mayoral initiative to designate areas of London where artists and creative businesses can find permanent affordable space to work; are supported to start-up and grow; and where local people are helped to learn creative sector skills and find new jobs.\""}
+            tooltip={t("GLA official description: \"Creative Enterprise Zones are a new Mayoral initiative to designate areas of London where artists and creative businesses can find permanent affordable space to work; are supported to start-up and grow; and where local people are helped to learn creative sector skills and find new jobs.\"")}
             />
             <button className={`map-switcher-inline ${creative}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={creativeSwitchOnClick}>
-                {(creative === 'enabled')? 'Click to hide Creative Enterprise Zones' : 'Click to see Creative Enterprise Zones'}
+                {(creative === 'enabled')? t('Click to hide Creative Enterprise Zones') : t('Click to see Creative Enterprise Zones')}
             </button>
             <LogicalDataEntry
-            title="Is the building within a Protected Vista?"
+            title={t("Is the building within a Protected Vista?")}
             slug="planning_live_application"
             value={null}
             disabled={true}
-            tooltip={"GLA official description: \"The Protected Vistas are established in the London Plan with more detailed guidance provided in the London View Management Framework (LVMF). The London Plan seeks to protect the significant views which help to define London, including the panoramas, linear views and townscape views in this layer.\""}
+            tooltip={t("GLA official description: \"The Protected Vistas are established in the London Plan with more detailed guidance provided in the London View Management Framework (LVMF). The London Plan seeks to protect the significant views which help to define London, including the panoramas, linear views and townscape views in this layer.\"")}
             />
             <button className={`map-switcher-inline ${vista}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={vistaSwitchOnClick}>
-                {(vista === 'enabled')? 'Click to hide Protected Vistas' : 'Click to see Protected Vistas'}
+                {(vista === 'enabled')? t('Click to hide Protected Vistas') : t('Click to see Protected Vistas')}
             </button>
             {/*
                 <DataEntry
-                title={dataFields.planning_glher_url.title}
+                title={t(dataFields.planning_glher_url.title)}
                 slug="planning_glher_url"
                 value={props.building.planning_glher_url}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
                 isUrl={true}
-                placeholder="Please add relevant link here"
+                placeholder={t("Please add relevant link here"
                 />
             <Verification
                 slug="planning_glher_url"
@@ -239,34 +231,31 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             */}
         </DataEntryGroup>
-        <DataEntryGroup name="Heritage assets and building protection" collapsed={true} >
+        <DataEntryGroup name={t("Heritage assets and building protection")} collapsed={true} >
             <InfoBox>
-            Help us produce the most accurate map possible for London's designated/protected buildings. Please add data if missing or click "Verify" where entries are correct.
+            {t('Help us produce the most accurate map possible for London\'s designated/protected buildings. Please add data if missing or click "Verify" where entries are correct.')}
             </InfoBox>
-            <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
-                <i><div><u>Disclaimer</u>:  Data for designated heritage assets has been accessed from the <a href="https://historicengland.org.uk/listing/the-list/">National Heritage List for England</a>. Source information for Conservation Area data can be accessed <a href="http://www.bedfordpark.net/leo/planning/">here</a>. Please note all data should be double checked against official sources where used for planning purposes'.</div></i>
-            </div>
             {
                 props.mapColourScale != "planning_combined" ?
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToBuildingProtectionMapStyle}>
-                    {'Click to see individual protected buildings mapped'}
+                    {t('Click to see individual protected buildings mapped')}
                     </button>
                 :
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAllPlanningApplicationsMapStyle}>
-                    {'Click to see planning applications'}
+                    {t('Click to see planning applications')}
                     </button>
             }
             <button className={`map-switcher-inline ${conservation}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={conservationSwitchOnClick}>
-                {(conservation === 'enabled')? 'Click to hide Conservation Areas' : 'Click to see Conservation Areas'}
+                {(conservation === 'enabled')? t('Click to hide Conservation Areas') : t('Click to see Conservation Areas')}
                 </button>
             <NumericDataEntryWithFormattedLink
-                title={dataFields.planning_list_id.title}
+                title={t(dataFields.planning_list_id.title)}
                 slug="planning_list_id"
                 value={props.building.planning_list_id}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
-                placeholder="add ID here"
+                placeholder={t("add ID here")}
                 linkTargetFunction={(id: String) => { return "https://historicengland.org.uk/listing/the-list/list-entry/" + id + "?section=official-list-entry" } }
                 linkDescriptionFunction={(id: String) => { return "ID Link" } }
             />
@@ -279,7 +268,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.planning_list_id}
                 />
             <SelectDataEntry
-                title={dataFields.planning_list_grade.title}
+                title={t(dataFields.planning_list_grade.title)}
                 slug="planning_list_grade"
                 value={props.building.planning_list_grade}
                 mode={props.mode}
@@ -302,13 +291,13 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.planning_list_grade}
                 />
             <DataEntry
-                title={dataFields.planning_heritage_at_risk_url.title}
+                title={t(dataFields.planning_heritage_at_risk_url.title)}
                 slug="planning_heritage_at_risk_url"
                 value={props.building.planning_heritage_at_risk_url}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
-                placeholder="Please add relevant link here"
+                placeholder={t("Please add relevant link here")}
                 isUrl={true}
                 />
             <Verification
@@ -320,13 +309,13 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.planning_heritage_at_risk_url}
                 />
             <NumericDataEntryWithFormattedLink
-                title={dataFields.planning_world_list_id.title}
+                title={t(dataFields.planning_world_list_id.title)}
                 slug="planning_world_list_id"
                 value={props.building.planning_world_list_id}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
-                placeholder="add ID here"
+                placeholder={t("add ID here")}
                 linkTargetFunction={(id: String) => { return "https://whc.unesco.org/en/list/" + id } }
                 linkDescriptionFunction={(id: String) => { return "ID Link" } }
                 />
@@ -339,14 +328,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.planning_world_list_id}
                 />
             <DataEntry
-                title={dataFields.planning_local_list_url.title}
+                title={t(dataFields.planning_local_list_url.title)}
                 slug="planning_local_list_url"
                 value={props.building.planning_local_list_url}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
                 isUrl={true}
-                placeholder="Please add relevant link here"
+                placeholder={t("Please add relevant link here")}
                 />
             <Verification
                 slug="planning_local_list_url"
@@ -359,13 +348,13 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
             {/*
             <DataEntry
-                title={dataFields.planning_in_conservation_area_id.title}
+                title={t(dataFields.planning_in_conservation_area_id.title)}
                 slug="planning_in_conservation_area_id"
                 value={props.building.planning_in_conservation_area_id}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
-                placeholder="Please add Conservation Area identifier"
+                placeholder={t("Please add Conservation Area identifier"
                 />
             <Verification
                 slug="planning_in_conservation_area_id"
@@ -377,17 +366,17 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             */}
             <DataEntry
-                title={dataFields.planning_in_conservation_area_url.title}
+                title={t(dataFields.planning_in_conservation_area_url.title)}
                 slug="planning_in_conservation_area_url"
                 value={props.building.planning_in_conservation_area_url}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
                 isUrl={true}
-                placeholder="Please add CA appraisal link here"
+                placeholder={t("Please add CA appraisal link here")}
                 />
-            {props.building.planning_in_conservation_area_url === "" ? "Our CA map records this building as not being within a CA. To help us verify this, please click ‘verify’ or, if info is incorrect, please add the local authority’s CA appraisal link." : "" }
-            {props.building.planning_in_conservation_area_url === "identified as listed: please replace with links" ? "Our CA map records this building as being within a CA. To help us verify this information please add the local authority’s CA appraisal link and then click ‘verify’." : "" }
+            {props.building.planning_in_conservation_area_url === "" ? t("Our CA map records this building as not being within a CA. To help us verify this, please click ‘verify’ or, if info is incorrect, please add the local authority’s CA appraisal link.") : "" }
+            {props.building.planning_in_conservation_area_url === t("identified as listed: please replace with links") ? t("Our CA map records this building as being within a CA. To help us verify this information please add the local authority’s CA appraisal link and then click ‘verify’.") : "" }
             <Verification
                 slug="planning_in_conservation_area_url"
                 allow_verify={props.user !== undefined && props.building.planning_in_conservation_area_url !== null && !props.edited}
@@ -397,14 +386,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.planning_in_conservation_area_url}
                 />
             <DataEntry
-                title={dataFields.planning_in_apa_url.title}
+                title={t(dataFields.planning_in_apa_url.title)}
                 slug="planning_in_apa_url"
                 value={props.building.planning_in_apa_url}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
                 isUrl={true}
-                placeholder="Please add relevant link here"
+                placeholder={t("Please add relevant link here")}
                 />
             <Verification
                 slug="planning_in_apa_url"
@@ -416,7 +405,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             {/*
             <DataEntry
-                title={dataFields.planning_conservation_area_name.title}
+                title={t(dataFields.planning_conservation_area_name.title)}
                 slug="planning_conservation_area_name"
                 value={props.building.planning_conservation_area_name}
                 mode={props.mode}
@@ -433,14 +422,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             */}
             <DataEntry
-                title={dataFields.planning_historic_area_assessment_url.title}
+                title={t(dataFields.planning_historic_area_assessment_url.title)}
                 slug="planning_historic_area_assessment_url"
                 value={props.building.planning_historic_area_assessment_url}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
                 isUrl={true}
-                placeholder="Please add relevant link here"
+                placeholder={t("Please add relevant link here")}
                 />
             <Verification
                 slug="planning_historic_area_assessment_url"
@@ -451,13 +440,13 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.planning_historic_area_assessment_url}
                 />
         </DataEntryGroup>      
-        <DataEntryGroup name="Land ownership" collapsed={true} >
+        <DataEntryGroup name={t("Land ownership")} collapsed={true} >
             <InfoBox>
-                This section is designed to provide information on land parcels and their ownership type. Can you help us collect this information?
+                {t("This section is designed to provide information on land parcels and their ownership type. Can you help us collect this information?")}
             </InfoBox>
             <SelectDataEntry
                 slug='community_public_ownership'
-                title={dataFields.community_public_ownership.title}
+                title={t(dataFields.community_public_ownership.title)}
                 value={props.building.community_public_ownership}
                 options={dataFields.community_public_ownership.items}
                 onChange={props.onChange}
@@ -473,15 +462,15 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 verified_count={props.building.verified.community_public_ownership}
                 />
             <DataEntry
-                title="Source Type"
+                title={t("Source Type")}
                 slug=""
                 value=""
                 mode='view'
-                tooltip='Coming Soon'
+                tooltip={t('Coming Soon')}
             />
             <MultiDataEntry
                 slug='community_public_ownership_sources'
-                title={dataFields.community_public_ownership_sources.title}
+                title={t(dataFields.community_public_ownership_sources.title)}
                 isUrl={true}
                 placeholder={'https://...'}
                 editableEntries={true}
@@ -492,18 +481,18 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             />
             <hr/>
             <DataEntry
-                title={dataFields.size_parcel_geometry.title}
+                title={t(dataFields.size_parcel_geometry.title)}
                 slug="size_parcel_geometry"
                 value={props.building.size_parcel_geometry}
                 mode={props.mode}
                 copy={props.copy}
                 onChange={props.onChange}
-                tooltip={dataFields.size_parcel_geometry.tooltip}
-                placeholder="https://..."
+                tooltip={t(dataFields.size_parcel_geometry.tooltip)}
+                placeholder={"https://..."}
                 isUrl={true}
             />
             <button className={`map-switcher-inline ${parcel}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={parcelSwitchOnClick}>
-                {(parcel === 'enabled')? 'Click to hide sample land parcel data' : 'Click to show sample land parcel data'}
+                {(parcel === 'enabled')? t('Click to hide sample land parcel data') : t('Click to show sample land parcel data')}
             </button>
         </DataEntryGroup>
     </Fragment>

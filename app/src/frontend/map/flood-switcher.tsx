@@ -2,6 +2,7 @@ import React from 'react';
 
 import './map-button.css';
 import { useDisplayPreferences } from '../displayPreferences-context';
+import { t } from 'i18next';
 
 export const FloodSwitcher: React.FC<{}> = () => {
     const { flood, floodSwitch, darkLightTheme } = useDisplayPreferences();
@@ -9,7 +10,7 @@ export const FloodSwitcher: React.FC<{}> = () => {
         <form className={`flood-switcher map-button ${flood}-state ${darkLightTheme}`} onSubmit={floodSwitch}>
             <button className="btn btn-outline btn-outline-dark"
                 type="submit">
-                {(flood === 'enabled')? 'Flood Zones on' : 'Flood Zones of'}
+                {(flood === 'enabled')? t('Flood Zones on') : t('Flood Zones of')}
             </button>
         </form>
     );

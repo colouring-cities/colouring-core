@@ -2,13 +2,20 @@
 
 Todos los cambios realizados por el equipo de Colouring Colombia se documentan en este archivo. El objetivo es tener un registro completo de los cambios que deben realizarse a partir de un fork para obtener las adaptaciones en idioma, formato y funcionalidad específica de Colouring Colombia
 
-## [0.0.1] - 2023-07-20
+## [0.0.8] - 2023-07-21
+### Changed
+Se realizan los cambios de la configuración general del aplicativo en el archivo cc-config.json
+
+
+## [0.0.7] - 2023-07-20
 ### Added
 - Se emplea git diff other/master > target_file_filter.txt para crear un archivo con los cambios realizados en el fork
 - Se crea el archivo find_changes.sh para filtrar los archivos que usan i18n. Este script crea un archivo con los archivos que usan i18n
 - Se instalan las dependencias de internacionalización i18next, react-i18next, translation-check;
 - Se agrega el archivo de configuración de i18n en app/src/frontend/i18n/i18n.ts
-- Se agrega el archivo de traducciones i18n en app/src/frontend/app.tsx
+
+### Changed
+- Se importa el archivo de traducciones i18n en app/src/frontend/app.tsx
     - import './i18n/i18n'
 - Se agrega el archivo de traducciones en app/src/frontend/i18n/locales/es/translation.json (TO DO)
 - Se actualizan los archivos que usan i18n. En cada uno se importa la biblioteca 
@@ -36,27 +43,20 @@ Todos los cambios realizados por el equipo de Colouring Colombia se documentan e
     - Se modifica el archivo field-edit-summary.tsx
     - Se modifica el archivo team.tsx
     - Se modifica el archivo legend.tsx. Este es el archivo que define el componente de la leyenda del mapa
-    
+    - Se modifica la página planning.tsx
+    - Se modifica el archivo energy-performance.tsx
+    - Se modifica el archivo community.tsx
+    - Se modifica el archivo data-switcher.tsx
+    - Se modifica el archivo theme-switcher.tsx
+    - Se modifica el archivo borough-switcher.tsx
+    - Se modifica el archivo housing-switcher.tsx
+    - Se modifica el archivo conservation-switcher.tsx
+    - Se modifica el archivo creative-switcher.tsx
+    - Se modifica el archivo flood-switcher.tsx
+    - Se modifica el archivo historic-map-switcher.tsx
+    - Se modifica el archivo vista-switcher.tsx
+    - Se modifica el archivo parcel-switcher.tsx
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-### Changed
 
 
 ### Fixed

@@ -12,6 +12,7 @@ import { CategoryViewProps } from './category-view-props';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
+import { t } from 'i18next';
 
 const EnergyCategoryOptions = ["A", "B", "C", "D", "E", "F", "G"];
 const BreeamRatingOptions = [
@@ -22,7 +23,7 @@ const BreeamRatingOptions = [
     'Pass',
     'Unclassified'
 ];
-/**
+/**placeholder={t("
 * Sustainability view/edit section
 */
 const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) => {
@@ -31,7 +32,7 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
 
     return (
         <Fragment>
-            <DataEntryGroup name="Environmental quality rating">
+            <DataEntryGroup name={t("Environmental quality rating")}>
                 <DataEntry
                     title="Official environmental quality rating"
                     slug=""
@@ -39,12 +40,12 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     mode='view'
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Energy rating">
+            <DataEntryGroup name={t("Energy rating")}>
                 <SelectDataEntry
-                    title={dataFields.sust_breeam_rating.title}
+                    title={t(dataFields.sust_breeam_rating.title)}
                     slug="sust_breeam_rating"
                     value={props.building.sust_breeam_rating}
-                    tooltip={dataFields.sust_breeam_rating.tooltip}
+                    tooltip={t(dataFields.sust_breeam_rating.tooltip)}
                     options={BreeamRatingOptions}
                     mode={props.mode}
                     copy={props.copy}
@@ -59,10 +60,10 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     verified_count={props.building.verified.sust_breeam_rating}
                     />
                 <SelectDataEntry
-                    title={dataFields.sust_dec.title}
+                    title={t(dataFields.sust_dec.title)}
                     slug="sust_dec"
                     value={props.building.sust_dec}
-                    tooltip={dataFields.sust_dec.tooltip}
+                    tooltip={t(dataFields.sust_dec.tooltip)}
                     options={EnergyCategoryOptions}
                     mode={props.mode}
                     copy={props.copy}
@@ -77,10 +78,10 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     verified_count={props.building.verified.sust_dec}
                     />
                 <SelectDataEntry
-                    title={dataFields.sust_aggregate_estimate_epc.title}
+                    title={t(dataFields.sust_aggregate_estimate_epc.title)}
                     slug="sust_aggregate_estimate_epc"
                     value={props.building.sust_aggregate_estimate_epc}
-                    tooltip={dataFields.sust_aggregate_estimate_epc.tooltip}
+                    tooltip={t(dataFields.sust_aggregate_estimate_epc.tooltip)}
                     options={EnergyCategoryOptions}
                     disabled={true}
                     mode={props.mode}
@@ -88,10 +89,10 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     onChange={props.onChange}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Retrofit history">
+            <DataEntryGroup name={t("Retrofit history")}>
                 <NumericDataEntry
                     slug='age_retrofit_date'
-                    title={dataFields.age_retrofit_date.title}
+                    title={t(dataFields.age_retrofit_date.title)}
                     value={props.building.age_retrofit_date}
                     mode={props.mode}
                     copy={props.copy}
@@ -99,7 +100,7 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.extension_year.tooltip}
+                    tooltip={t(dataFields.extension_year.tooltip)}
                     />
                 <Verification
                     slug="age_retrofit_date"
@@ -110,28 +111,28 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     verified_count={props.building.verified.age_retrofit_date}
                     />
                 <SelectDataEntry
-                    title={dataFields.age_retrofit_date_source_type.title}
+                    title={t(dataFields.age_retrofit_date_source_type.title)}
                     slug="age_retrofit_date_source_type"
                     value={props.building.age_retrofit_date_source_type}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.age_retrofit_date_source_type.tooltip}
+                    tooltip={t(dataFields.age_retrofit_date_source_type.tooltip)}
                     options={dataFields.age_retrofit_date_source_type.items}
-                    placeholder={dataFields.age_retrofit_date_source_type.example}
+                    placeholder={t(dataFields.age_retrofit_date_source_type.example)}
                     />
                 {(props.building.age_retrofit_date_source_type == dataFields.age_retrofit_date_source_type.items[0] ||
                     props.building.age_retrofit_date_source_type == dataFields.age_retrofit_date_source_type.items[1] ||
                     props.building.age_retrofit_date_source_type == null) ? <></> :
                     <>
                         <MultiDataEntry
-                            title={dataFields.age_retrofit_date_source_links.title}
+                            title={t(dataFields.age_retrofit_date_source_links.title)}
                             slug="age_retrofit_date_source_links"
                             value={props.building.age_retrofit_date_source_links}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.age_retrofit_date_source_links.tooltip}
+                            tooltip={t(dataFields.age_retrofit_date_source_links.tooltip)}
                             placeholder="https://..."
                             editableEntries={true}
                             isUrl={true}
@@ -139,15 +140,15 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Solar panels">
+            <DataEntryGroup name={t("Solar panels")}>
                 <LogicalDataEntry
-                    title={dataFields.energy_solar.title}
+                    title={t(dataFields.energy_solar.title)}
                     slug="energy_solar"
                     value={props.building.energy_solar}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.energy_solar.tooltip}
+                    tooltip={t(dataFields.energy_solar.tooltip)}
                 />
                 <Verification
                     slug="energy_solar"
@@ -160,28 +161,28 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 {props.building.energy_solar == null ? <></> :
                     <>
                         <SelectDataEntry
-                            title={dataFields.energy_solar_source_type.title}
+                            title={t(dataFields.energy_solar_source_type.title)}
                             slug="energy_solar_source_type"
                             value={props.building.energy_solar_source_type}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.energy_solar_source_type.tooltip}
+                            tooltip={t(dataFields.energy_solar_source_type.tooltip)}
                             options={dataFields.energy_solar_source_type.items}
-                            placeholder={dataFields.energy_solar_source_type.example}
+                            placeholder={t(dataFields.energy_solar_source_type.example)}
                         />
                         {(props.building.energy_solar_source_type == dataFields.energy_solar_source_type.items[0] ||
                             props.building.energy_solar_source_type == dataFields.energy_solar_source_type.items[1] ||
                             props.building.energy_solar_source_type == null) ? <></> :
                             <>
                                 <MultiDataEntry
-                                    title={dataFields.energy_solar_source_links.title}
+                                    title={t(dataFields.energy_solar_source_links.title)}
                                     slug="energy_solar_source_links"
                                     value={props.building.energy_solar_source_links}
                                     mode={props.mode}
                                     copy={props.copy}
                                     onChange={props.onChange}
-                                    tooltip={dataFields.energy_solar_source_links.tooltip}
+                                    tooltip={t(dataFields.energy_solar_source_links.tooltip)}
                                     placeholder="https://..."
                                     editableEntries={true}
                                     isUrl={true}
@@ -191,15 +192,15 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Green walls/roof">
+            <DataEntryGroup name={t("Green walls/roof")}>
             <LogicalDataEntry
-                    title={dataFields.energy_green_roof.title}
+                    title={t(dataFields.energy_green_roof.title)}
                     slug="energy_green_roof"
                     value={props.building.energy_green_roof}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.energy_green_roof.tooltip}
+                    tooltip={t(dataFields.energy_green_roof.tooltip)}
                 />
                 <Verification
                     slug="energy_green_roof"
@@ -212,28 +213,28 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                 {props.building.energy_green_roof == null ? <></> :
                     <>
                         <SelectDataEntry
-                            title={dataFields.energy_green_roof_source_type.title}
+                            title={t(dataFields.energy_green_roof_source_type.title)}
                             slug="energy_green_roof_source_type"
                             value={props.building.energy_green_roof_source_type}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
-                            tooltip={dataFields.energy_green_roof_source_type.tooltip}
+                            tooltip={t(dataFields.energy_green_roof_source_type.tooltip)}
                             options={dataFields.energy_green_roof_source_type.items}
-                            placeholder={dataFields.energy_green_roof_source_type.example}
+                            placeholder={t(dataFields.energy_green_roof_source_type.example)}
                         />
                         {(props.building.energy_green_roof_source_type == dataFields.energy_green_roof_source_type.items[0] ||
                             props.building.energy_green_roof_source_type == dataFields.energy_green_roof_source_type.items[1] ||
                             props.building.energy_green_roof_source_type == null) ? <></> :
                             <>
                                 <MultiDataEntry
-                                    title={dataFields.energy_green_roof_source_links.title}
+                                    title={t(dataFields.energy_green_roof_source_links.title)}
                                     slug="energy_green_roof_source_links"
                                     value={props.building.energy_green_roof_source_links}
                                     mode={props.mode}
                                     copy={props.copy}
                                     onChange={props.onChange}
-                                    tooltip={dataFields.energy_green_roof_source_links.tooltip}
+                                    tooltip={t(dataFields.energy_green_roof_source_links.tooltip)}
                                     placeholder="https://..."
                                     editableEntries={true}
                                     isUrl={true}

@@ -2,6 +2,7 @@ import React from 'react';
 
 import './map-button.css';
 import { useDisplayPreferences } from '../displayPreferences-context';
+import { t } from 'i18next';
 
 interface DataLayerSwitcherProps {
 }
@@ -20,7 +21,7 @@ const DataLayerSwitcher: React.FC<DataLayerSwitcherProps> = (props) => {
         <form className={`data-switcher map-button ${darkLightTheme}`} onSubmit={handleSubmit}>
             <button className="btn btn-outline btn-outline-dark"
                 type="submit">
-                {(showLayerSelection === 'enabled')? 'Clear layer options' : 'Show layer options'}
+                {(showLayerSelection === 'enabled')? t('Clear layer options') : t('Show layer options')}
             </button>
         </form>
     );

@@ -1,12 +1,12 @@
 {
-    "cityName": "Cities",
-    "projectBlurb": "Colouring {City Name} is part Colouring Cities.",
-    "githubURL": "https://github.com/colouring-cities/colouring-core",
-    "privacyStatement": "{Privacy statement goes here}",
+    "cityName": "Bogotá",
+    "projectBlurb": "Colouring Bogotá es parte del proyecto Colouring Cities.",
+    "githubURL": "https://github.com/osgeolabUD-org/colouring-colombia",
+    "privacyStatement": "",
 
     "initialMapPosition": [ 51.5245255, -0.1338422 ],
     "initialZoomLevel": 16,
 
     "postcode": "Postcode",
-    "energy_rating": "Building Research Establishment Environmental Assessment Method (BREEAM) rating"
+    "energy_rating": ""
 }
