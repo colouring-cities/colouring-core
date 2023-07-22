@@ -5,6 +5,7 @@ import './search-box.css';
 
 import { apiGet } from '../apiHelpers';
 import { SearchIcon } from '../components/icons';
+import { t } from 'i18next';
 
 interface SearchResult {
     type: string;
@@ -168,12 +169,12 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
                             id="search-box-q"
                             name="q"
                             value={this.state.q}
-                            placeholder="Type a postcode..."
-                            aria-label="Type a postcode..."
+                            placeholder={t("Type a postcode...")}
+                            aria-label={t("Type a postcode...")}
                             onChange={this.handleChange}
                             maxLength={8}
                         />
-                        <button className="search-btn btn btn-outline-dark" type="submit">Search</button>
+                        <button className="search-btn btn btn-outline-dark" type="submit">{t("Search")}</button>
                     </form>
                 </div>
                 { resultsList }

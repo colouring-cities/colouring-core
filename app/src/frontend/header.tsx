@@ -8,6 +8,7 @@ import { WithSeparator } from './components/with-separator';
 import { useAuth } from './auth-context';
 
 import { CCConfig } from '../cc-config';
+import { t } from 'i18next';
 let config: CCConfig = require('../cc-config.json')
 
 interface MenuLink {
@@ -27,7 +28,7 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                     [
                         {
                             to: "/my-account.html",
-                            text: `Account (${username})`
+                            text: `${username}`
                         }
                     ] :
                     [
@@ -171,10 +172,10 @@ const Menu: React.FC<{ onNavigate: () => void }> = ({ onNavigate }) => {
                         <li className='nav-item' key={`${item.to}-${item.text}`}>
                             {
                                 item.disabled ?
-                                    <LinkStub note={item.note}>{item.text}</LinkStub> :
+                                    <LinkStub note={item.note}>{t(item.text)}</LinkStub> :
                                     item.external ?
-                                        <ExternalNavLink to={item.to}>{item.text}</ExternalNavLink> :
-                                        <InternalNavLink to={item.to} onClick={onNavigate}>{item.text}</InternalNavLink>
+                                        <ExternalNavLink to={item.to}>{t(item.text)}</ExternalNavLink> :
+                                        <InternalNavLink to={item.to} onClick={onNavigate}>{t(item.text)}</InternalNavLink>
                             }
                         </li>
                     ))}

@@ -32,7 +32,22 @@ const resources = {
       "Planning Controls": "Controles de planificación",
       "Resilience": "Resiliencia",
       "Land Use": "Uso",
-      
+
+      "Type a postcode...": "Código postal...",
+      "Search": "Buscar",
+
+      "About the Colouring Cities Research Programme": "Programa de investigación Colouring Cities",
+      "Colouring Cities Open Manual/Wiki": "Manual abierto de Colouring Cities",
+      "Open code": "Código abierto",
+      "Case Study Showcase": "Estudios de caso",
+      "How to Use": "Cómo usar la plataforma",
+      "Ethical Framework": "Marco ético",
+      "Data Accuracy and Use Agreement": "Precisión y uso de los datos",
+      "Equality, Diversity and Inclusion": "Igualdad, diversidad e inclusión",
+      "CCRP Academic Partner Protocols": "Protocolos de los socios académicos de CCRP",
+
+
+
       
       Type: "Tipo",
       Size: "Tamaño",
@@ -654,29 +669,29 @@ const resources = {
       "Light": 'claro',
       "Night": 'nocturno',
 
-      "Borough Boundaries on": 'Ver límites de la ciudad',
-      "Borough Boundaries off": 'Ocultar límites de la ciudad',
+      "Borough Boundaries on": 'Ocultar límites de la ciudad',
+      "Borough Boundaries off": 'Ver límites de la ciudad',
 
-      'Housing Zones off': 'Ocultar zonas de vivienda',
-      'Housing Zones on': 'Ver zonas de vivienda',
+      'Housing Zones off': 'Ver zonas de vivienda',
+      'Housing Zones on': 'Ocultar zonas de vivienda',
 
-      "Creative Enterprise Zones off": 'Ocultar zonas de empresas creativas',
-      "Creative Enterprise Zones on": 'Ver zonas de empresas creativas',
+      "Creative Enterprise Zones off": 'Ver zonas de empresas creativas',
+      "Creative Enterprise Zones on": 'Ocultar zonas de empresas creativas',
 
-      "Flood Zones off": 'Ocultar zonas de inundación',
-      "Flood Zones on": 'Ver zonas de inundación',
+      "Flood Zones off": 'Ver zonas de inundación',
+      "Flood Zones on": 'Ocultar zonas de inundación',
 
-      "Protected Vistas off": 'Ocultar vistas protegidas',
-      "Protected Vistas on": 'Ver vistas protegidas',
+      "Protected Vistas off": 'Ver vistas protegidas',
+      "Protected Vistas on": 'Ocultar vistas protegidas',
 
-      "Conservation Areas off": 'Ocultar zonas de conservación',
-      "Conservation Areas on": 'Ver zonas de conservación',
+      "Conservation Areas off": 'Ver zonas de conservación',
+      "Conservation Areas on": 'Ocultar zonas de conservación',
 
-      "The OS 1890s Historical Map on": 'Ver el mapa histórico',
-      "The OS 1890s Historical Map off": 'Ocultar el mapa histórico',
+      "The OS 1890s Historical Map on": 'Ocultar el mapa histórico',
+      "The OS 1890s Historical Map off": 'Ver el mapa histórico',
 
-      "Parcel overlay (sample) off": 'Ocultar superposición (muestra)',
-      "Parcel overlay (sample) on": 'Ver superposición (muestra)',
+      "Parcel overlay (sample) off": 'Ver superposición (muestra)',
+      "Parcel overlay (sample) on": 'Ocultar superposición (muestra)',
 
 
     },

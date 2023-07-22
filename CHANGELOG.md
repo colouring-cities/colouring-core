@@ -56,6 +56,9 @@ Se realizan los cambios de la configuración general del aplicativo en el archiv
     - Se modifica el archivo historic-map-switcher.tsx
     - Se modifica el archivo vista-switcher.tsx
     - Se modifica el archivo parcel-switcher.tsx
+    - Se modifica el archivo search-box.tsx
+    - Se modifica el archivo header.tsx
+    - Se modifica el archivo welcome.tsx
 
 
 
