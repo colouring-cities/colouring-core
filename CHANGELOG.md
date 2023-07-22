@@ -36,6 +36,7 @@ Todos los cambios realizados por el equipo de Colouring Colombia se documentan e
     - Se modifica el archivo field-edit-summary.tsx
     - Se modifica el archivo team.tsx
     - Se modifica el archivo legend.tsx. Este es el archivo que define el componente de la leyenda del mapa
+    - Se carga el mapa base de OSM y se centra en la plaza de Bolivar, Bogotá.
     
 
 
