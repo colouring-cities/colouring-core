@@ -21,16 +21,21 @@ export function CityBaseMapLayer({ theme }: { theme: MapTheme }) {
     const layer = 'Light_3857';
 
     // In either theme case, we will use OS's light theme, but add our own filter
-    const theme_class = theme === 'light' ? "light-theme" : "night-theme";
 
-    const baseUrl = `https://api.os.uk/maps/raster/v1/zxy/${layer}/{z}/{x}/{y}.png?key=${apiKey}`;
+    const theme_class = theme === 'light' ? "light-theme" : "night-theme";    
+
+    // osm: Open Street Map
+    // const baseUrl = `https://openstreetmap.org/{z}/{x}/{y}.png`;
+
+    const baseUrl = `https://serviciosgis.catastrobogota.gov.co/arcgis/rest/services/Mapa_Referencia/mapa_base_3857/MapServer/tile/{z}/{y}/{x}`;
+    
     const attribution = `Building attribute data is © Colouring Cities contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>`;
 
     return <TileLayer
         url={baseUrl}
         attribution={attribution}
-        maxNativeZoom={18}
-        maxZoom={19}
+        maxNativeZoom={14}
+        maxZoom={18}
         detectRetina={false}
         className={theme_class}
     />;
