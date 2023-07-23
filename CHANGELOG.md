@@ -2,6 +2,12 @@
 
 Todos los cambios realizados por el equipo de Colouring Colombia se documentan en este archivo. El objetivo es tener un registro completo de los cambios que deben realizarse a partir de un fork para obtener las adaptaciones en idioma, formato y funcionalidad específica de Colouring Colombia
 
+## [0.0.10] - 2023-07-22
+
+### Changed
+
+    - Se modifica el archivo city-base-map-layer.tsx para incluir la URL del servicio REST del IDECA
+
 ## [0.0.8] - 2023-07-21
 ### Changed
 Se realizan los cambios de la configuración general del aplicativo en el archivo cc-config.json
