@@ -86,7 +86,6 @@ with engine.connect() as connection:
 
             stmt = text("""INSERT INTO demo_polygons_ideca (objectid, lotcodigo, lotdispers, lotildispe, lotupredia, manzcodigo,shape_area, shape_len, lotdistrit, geom) 
             VALUES (:objectid, :lotcodigo, :lotdispers, :lotildispe, :lotupredia, :manzcodigo, :shape_area, :shape_len, :lotdistrit, ST_SetSRID(ST_GeomFromGeoJSON(:geom), 3857))""")
-            print(f"SQL statement: {stmt}")
             parameters = {
                 'objectid': feature['attributes']['OBJECTID'],
                 'lotcodigo': feature['attributes']['LOTCODIGO'],
@@ -99,12 +98,9 @@ with engine.connect() as connection:
                 'lotdistrit': feature['attributes']['LOTDISTRIT'],
                 'geom': json.dumps(geom)
             }
-            print(f"Parameters: {parameters}")
-
             # Execute the SQL statement
             connection.execute(stmt, parameters)
-            connection.commit()  # commit the transaction
-            print("SQL statement executed successfully")
+            connection.commit()  # commit the transaction            
             
     except Exception as e:
         print("An error occurred:", str(e)) 

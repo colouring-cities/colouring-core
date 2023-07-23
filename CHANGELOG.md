@@ -2,6 +2,12 @@
 
 Todos los cambios realizados por el equipo de Colouring Colombia se documentan en este archivo. El objetivo es tener un registro completo de los cambios que deben realizarse a partir de un fork para obtener las adaptaciones en idioma, formato y funcionalidad específica de Colouring Colombia
 
+## [0.0.13] - 2023-07-23
+
+### Added
+
+    - Se agrega el archivo load-geometries_IDECA.py para cargar las geometrías de las localidades de Bogotá en la base de datos de PostGIS
+
 ## [0.0.10] - 2023-07-22
 
 ### Changed
