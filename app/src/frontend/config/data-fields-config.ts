@@ -1502,7 +1502,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         items: [
             'Roman (43AD-410)',
             'Early Medieval (410-1066)',
-            'Mid- Late Medieval (1066-1485)',
+            'Mid-Late Medieval (1066-1485)',
             'Tudor (1485-1603)',
             'Stuart (1603 -1714)',
             'Georgian/William IV (1714-1837)',

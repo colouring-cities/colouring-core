@@ -299,18 +299,72 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             ]
         },
     }],
-    [Category.Typology]: [{
-        mapStyle: 'building_attachment_form',
-        legend: {
-            title: 'Adjacency/Configuration',
-            elements: [
-                { color: "#f2a2b9", text: "Detached" },
-                { color: "#ab8fb0", text: "Semi-Detached" },
-                { color: "#3891d1", text: "End-Terrace" },
-                { color: "#226291", text: "Mid-Terrace" }
-            ]
+    [Category.Typology]: [
+        {
+            mapStyle: 'typology_classification',
+            legend: {
+                title: 'Typology classification',
+                elements: [
+                    { color: '#F2E5FF', text: 'Low-rise: Not part of a group/cluster (1-3 core floors- excluding extensions)' },
+                    { color: '#CBABEA', text: 'Low-rise: Part of dense block/row/terrace' },
+                    { color: '#A272D4', text: 'Low-rise: Part of group of widely spaced blocks (includes semi-detached houses)' },
+                    { color: '#7939BE', text: 'Mid-rise: Not part of a group/cluster (4-7 core floors)' },
+                    { color: '#5000A8', text: 'Mid-rise: Part of group of densely spaced blocks' },
+                    { color: '#3F0086', text: 'Mid-rise: Part of group of widely spaced blocks' },
+                    { color: '#2E0062', text: 'High rise: Not part of a group/cluster' },
+                    { color: '#1D003E', text: 'High-rise: Part of group of densely spaced blocks (8 + core floors)' },
+                    { color: '#0C001A', text: 'High-rise: Part of group of widely spaced blocks' },
+                ]
+            }
         },
-    }],
+        {
+            mapStyle: 'typology_style_period',
+            legend: {
+                title: 'Architectural style',
+                elements: [
+                    { color: '#00B2CB', text: 'Roman (43AD-410)' },
+                    { color: '#00A9C6', text: 'Early Medieval (410-1066)' },
+                    { color: '#00A0C1', text: 'Mid-Late Medieval (1066-1485)' },
+                    { color: '#0097BC', text: 'Tudor (1485-1603)' },
+                    { color: '#008EB7', text: 'Stuart (1603 -1714)' },
+                    { color: '#0085B2', text: 'Georgian/William IV (1714-1837)' },
+                    { color: '#007CAD', text: 'Victorian (1837-1901)' },
+                    { color: '#0073A8', text: 'Edwardian (1901-1914)' },
+                    { color: '#006AA3', text: 'World War I (1914-18)' },
+                    { color: '#00619E', text: 'Interwar (1918-39)' },
+                    { color: '#005899', text: 'World War II (1939-45)' },
+                    { color: '#004F94', text: 'Post war (1945-1975)' },
+                    { color: '#00468F', text: 'Postmodern (1975-1990)' },
+                    { color: '#003D8A', text: '1990s' },
+                    { color: '#003485', text: '2000s/2010s' },
+                    { color: '#002C7C', text: '2020s' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'typology_dynamic_classification',
+            legend: {
+                title: 'Dynamic classification',
+                elements: [
+                    { color: '#F2E5FF', text: 'Small fairly regular plot part of repetitive domestic streets' },
+                    { color: '#CBABEA', text: 'Irregular shaped plots built along the edge of long established routes (e.g high streets)' },
+                    { color: '#A272D4', text: 'Large plot with internal access roads (e.g. infrastructure hubs/large institution such as hospitals/universities/airports)' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'building_attachment_form',
+            legend: {
+                title: 'Attachment/Adjacency',
+                elements: [
+                    { color: "#f2a2b9", text: "Detached" },
+                    { color: "#ab8fb0", text: "Semi-Detached" },
+                    { color: "#3891d1", text: "End-Terrace" },
+                    { color: "#226291", text: "Mid-Terrace" }
+                ]
+            },
+        },
+    ],
     [Category.LandUse]: [
         {
             mapStyle: 'landuse',
