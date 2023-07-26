@@ -975,40 +975,40 @@
     </Style>
     <Style name="typology_classification">
         <Rule>
-            <Filter>[typology_classification] = "Low-rise: Not part of a group/cluster (1-3 core floors- excluding extensions)"</Filter>
-            <PolygonSymbolizer fill="#F2E5FF" />
+            <Filter>[typology_classification] = "1-3 storeys: Detached"</Filter>
+            <PolygonSymbolizer fill="#002C7C" />
         </Rule>
         <Rule>
-            <Filter>[typology_classification] = "Low-rise: Part of dense block/row/terrace"</Filter>
-            <PolygonSymbolizer fill="#CBABEA" />
+            <Filter>[typology_classification] = "1-3 storeys: Tightly grouped"</Filter>
+            <PolygonSymbolizer fill="#006FA4" />
         </Rule>
         <Rule>
-            <Filter>[typology_classification] = "Low-rise: Part of group of widely spaced blocks (includes semi-detached houses)"</Filter>
-            <PolygonSymbolizer fill="#A272D4" />
+            <Filter>[typology_classification] = "1-3 storeys: Loosely grouped"</Filter>
+            <PolygonSymbolizer fill="#00B2CB" />
         </Rule>
         <Rule>
-            <Filter>[typology_classification] = "Mid-rise: Not part of a group/cluster (4-7 core floors)"</Filter>
-            <PolygonSymbolizer fill="#7939BE" />
+            <Filter>[typology_classification] = "4-7 storeys: Detached"</Filter>
+            <PolygonSymbolizer fill="#FF5D00" />
         </Rule>
         <Rule>
-            <Filter>[typology_classification] = "Mid-rise: Part of group of densely spaced blocks"</Filter>
-            <PolygonSymbolizer fill="#5000A8" />
+            <Filter>[typology_classification] = "4-7 storeys: Tightly grouped"</Filter>
+            <PolygonSymbolizer fill="#FF8000" />
         </Rule>
         <Rule>
-            <Filter>[typology_classification] = "Mid-rise: Part of group of widely spaced blocks"</Filter>
-            <PolygonSymbolizer fill="#3F0086" />
+            <Filter>[typology_classification] = "4-7 storeys: Loosely grouped"</Filter>
+            <PolygonSymbolizer fill="#FFA200" />
         </Rule>
         <Rule>
-            <Filter>[typology_classification] = "High rise: Not part of a group/cluster"</Filter>
-            <PolygonSymbolizer fill="#2E0062" />
+            <Filter>[typology_classification] = "8+ storeys: Detached"</Filter>
+            <PolygonSymbolizer fill="#580C04" />
         </Rule>
         <Rule>
-            <Filter>[typology_classification] = "High-rise: Part of group of densely spaced blocks (8 + core floors)"</Filter>
-            <PolygonSymbolizer fill="#1D003E" />
+            <Filter>[typology_classification] = "8+ storeys: Tightly grouped"</Filter>
+            <PolygonSymbolizer fill="#AA1E0E" />
         </Rule>
         <Rule>
-            <Filter>[typology_classification] = "High-rise: Part of group of widely spaced blocks"</Filter>
-            <PolygonSymbolizer fill="#0C001A" />
+            <Filter>[typology_classification] = "8+ storeys: Loosely grouped"</Filter>
+            <PolygonSymbolizer fill="#FB2F18" />
         </Rule>
 
         <Rule>
