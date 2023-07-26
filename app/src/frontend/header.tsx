@@ -111,7 +111,7 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
             },
             {
                 to: config.githubURL+"/discussions",
-                text: "Discussion Forum",
+                text: "Discussion Forum (GitHub)",
                 external: true
             },
             // {
