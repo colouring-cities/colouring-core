@@ -342,9 +342,9 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Dynamic classification',
                 elements: [
-                    { color: '#F2E5FF', text: 'Small fairly regular plot part of repetitive domestic streets' },
-                    { color: '#CBABEA', text: 'Irregular shaped plots built along the edge of long established routes (e.g high streets)' },
-                    { color: '#A272D4', text: 'Large plot with internal access roads (e.g. infrastructure hubs/large institution such as hospitals/universities/airports)' },
+                    { color: '#F2E5FF', text: 'Repetitive small, domestic plots' },
+                    { color: '#CBABEA', text: 'High streets/linear non-domestic' },
+                    { color: '#A272D4', text: 'Large plots with internal roads' },
                 ]
             }
         },

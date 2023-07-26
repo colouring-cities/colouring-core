@@ -1533,9 +1533,9 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "HINT: Based on a dynamic classification system for urban tissue developed by Brenda Case Scheer. For further information see: <a href=\"https://www.researchgate.net/publication/242150847_The_Anatomy_of_Sprawl\">https://www.researchgate.net/publication/242150847_The_Anatomy_of_Sprawl</a>.",
         example: "High rise: Not part of a group/cluster",
         items: [
-            'Small fairly regular plot part of repetitive domestic streets',
-            'Irregular shaped plots built along the edge of long established routes (e.g high streets)',
-            'Large plot with internal access roads (e.g. infrastructure hubs/large institution such as hospitals/universities/airports)',
+            'Repetitive small, domestic plots',
+            'High streets/linear non-domestic',
+            'Large plots with internal roads',
         ]
     },
     typology_dynamic_classification_source_type: {

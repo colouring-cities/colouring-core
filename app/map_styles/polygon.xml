@@ -1085,15 +1085,15 @@
     </Style>
     <Style name="typology_dynamic_classification">
         <Rule>
-            <Filter>[typology_dynamic_classification] = "Small fairly regular plot part of repetitive domestic streets"</Filter>
+            <Filter>[typology_dynamic_classification] = "Repetitive small, domestic plots"</Filter>
             <PolygonSymbolizer fill="#F2E5FF" />
         </Rule>
         <Rule>
-            <Filter>[typology_dynamic_classification] = "Irregular shaped plots built along the edge of long established routes (e.g high streets)"</Filter>
+            <Filter>[typology_dynamic_classification] = "High streets/linear non-domestic"</Filter>
             <PolygonSymbolizer fill="#CBABEA" />
         </Rule>
         <Rule>
-            <Filter>[typology_dynamic_classification] = "Large plot with internal access roads (e.g. infrastructure hubs/large institution such as hospitals/universities/airports)"</Filter>
+            <Filter>[typology_dynamic_classification] = "Large plots with internal roads"</Filter>
             <PolygonSymbolizer fill="#A272D4" />
         </Rule>
 
