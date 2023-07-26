@@ -1468,7 +1468,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Typology,
         title: "Which description best suits the building and its context?",
         tooltip: "HINT: Adapted from building type classifications developed in urban morphology. See <a href=\"https://www.smog.chalmers.se/\">https://www.smog.chalmers.se/</a> 'Space Matrix' for further information.",
-        example: "High rise: Not part of a group/cluster",
+        example: "8+ storeys: Detached",
         items: [
             'Low-rise: Not part of a group/cluster (1-3 core floors- excluding extensions)',
             'Low-rise: Part of dense block/row/terrace',
@@ -1498,24 +1498,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Typology,
         title: "Which description best suits the building's architectural style/historical period?",
         tooltip: "",
-        example: "High rise: Not part of a group/cluster",
+        example: "Georgian (1714-1837)",
         items: [
             'Roman (43AD-410)',
-            'Early Medieval (410-1066)',
-            'Mid- Late Medieval (1066-1485)',
+            'Medieval (410-1485)',
             'Tudor (1485-1603)',
             'Stuart (1603 -1714)',
-            'Georgian/William IV (1714-1837)',
+            'Georgian (1714-1837)',
             'Victorian (1837-1901)',
             'Edwardian (1901-1914)',
-            'World War I (1914-18)',
-            'Interwar (1918-39)',
-            'World War II (1939-45)',
+            'WWI - WWII (1914-45)',,
             'Post war (1945-1975)',
             'Postmodern (1975-1990)',
             '1990s',
-            '2000s/2010s',
-            '2020s',
+            '2000s',
         ]
     },
     typology_style_period_source_type: {
@@ -1535,11 +1531,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Typology,
         title: "Which description best suits the building's plot?",
         tooltip: "HINT: Based on a dynamic classification system for urban tissue developed by Brenda Case Scheer. For further information see: <a href=\"https://www.researchgate.net/publication/242150847_The_Anatomy_of_Sprawl\">https://www.researchgate.net/publication/242150847_The_Anatomy_of_Sprawl</a>.",
-        example: "High rise: Not part of a group/cluster",
+        example: "Large plots with internal roads",
         items: [
-            'Small fairly regular plot part of repetitive domestic streets',
-            'Irregular shaped plots built along the edge of long established routes (e.g high streets)',
-            'Large plot with internal access roads (e.g. infrastructure hubs/large institution such as hospitals/universities/airports)',
+            'Repetitive small, domestic plots',
+            'Linear non-domestic, i.e. high streets',
+            'Large plots with internal roads',
+            'Other'
         ]
     },
     typology_dynamic_classification_source_type: {

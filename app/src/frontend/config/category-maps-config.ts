@@ -299,18 +299,69 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             ]
         },
     }],
-    [Category.Typology]: [{
-        mapStyle: 'building_attachment_form',
-        legend: {
-            title: 'Adjacency/Configuration',
-            elements: [
-                { color: "#f2a2b9", text: "Detached" },
-                { color: "#ab8fb0", text: "Semi-Detached" },
-                { color: "#3891d1", text: "End-Terrace" },
-                { color: "#226291", text: "Mid-Terrace" }
-            ]
+    [Category.Typology]: [
+        {
+            mapStyle: 'typology_classification',
+            legend: {
+                title: 'Typology classification',
+                elements: [
+                    { color: '#0311AB', text: '1-3 storeys: Detached' },
+                    { color: '#3845D4', text: '1-3 storeys: Tightly grouped' },
+                    { color: '#6D79FD', text: '1-3 storeys: Loosely grouped' },
+                    { color: '#FF5D00', text: '4-7 storeys: Detached' },
+                    { color: '#FF8000', text: '4-7 storeys: Tightly grouped' },
+                    { color: '#FFA200', text: '4-7 storeys: Loosely grouped' },
+                    { color: '#AB1303', text: '8+ storeys: Detached' },
+                    { color: '#D43A29', text: '8+ storeys: Tightly grouped' },
+                    { color: '#FC604F', text: '8+ storeys: Loosely grouped' },
+                ]
+            }
         },
-    }],
+        {
+            mapStyle: 'typology_style_period',
+            legend: {
+                title: 'Architectural style',
+                elements: [
+                    { color: '#00B2CB', text: 'Roman (43AD-410)' },
+                    { color: '#00A9C6', text: 'Medieval (410-1485)' },
+                    { color: '#0097BC', text: 'Tudor (1485-1603)' },
+                    { color: '#008EB7', text: 'Stuart (1603 -1714)' },
+                    { color: '#0085B2', text: 'Georgian (1714-1837)' },
+                    { color: '#007CAD', text: 'Victorian (1837-1901)' },
+                    { color: '#0073A8', text: 'Edwardian (1901-1914)' },
+                    { color: '#006AA3', text: 'WWI - WWII (1914-45)' },
+                    { color: '#004F94', text: 'Post war (1945-1975)' },
+                    { color: '#00468F', text: 'Postmodern (1975-1990)' },
+                    { color: '#003D8A', text: '1990s' },
+                    { color: '#003485', text: '2000s' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'typology_dynamic_classification',
+            legend: {
+                title: 'Dynamic classification',
+                elements: [
+                    { color: '#F2E5FF', text: 'Repetitive small, domestic plots' },
+                    { color: '#CBABEA', text: 'Linear non-domestic, i.e. high streets' },
+                    { color: '#A272D4', text: 'Large plots with internal roads' },
+                    { color: '#EEEEEE', text: 'Other' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'building_attachment_form',
+            legend: {
+                title: 'Attachment/Adjacency',
+                elements: [
+                    { color: "#f2a2b9", text: "Detached" },
+                    { color: "#ab8fb0", text: "Semi-Detached" },
+                    { color: "#3891d1", text: "End-Terrace" },
+                    { color: "#226291", text: "Mid-Terrace" }
+                ]
+            },
+        },
+    ],
     [Category.LandUse]: [
         {
             mapStyle: 'landuse',

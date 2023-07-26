@@ -973,4 +973,143 @@
             <PolygonSymbolizer fill="#ffe8a9" />
         </Rule>
     </Style>
+    <Style name="typology_classification">
+        <Rule>
+            <Filter>[typology_classification] = "Low-rise: Not part of a group/cluster (1-3 core floors- excluding extensions)"</Filter>
+            <PolygonSymbolizer fill="#0311AB" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_classification] = "Low-rise: Part of dense block/row/terrace"</Filter>
+            <PolygonSymbolizer fill="#3845D4" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_classification] = "Low-rise: Part of group of widely spaced blocks (includes semi-detached houses)"</Filter>
+            <PolygonSymbolizer fill="#6D79FD" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_classification] = "Mid-rise: Not part of a group/cluster (4-7 core floors)"</Filter>
+            <PolygonSymbolizer fill="#FF5D00" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_classification] = "Mid-rise: Part of group of densely spaced blocks"</Filter>
+            <PolygonSymbolizer fill="#FF8000" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_classification] = "Mid-rise: Part of group of widely spaced blocks"</Filter>
+            <PolygonSymbolizer fill="#FFA200" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_classification] = "High rise: Not part of a group/cluster"</Filter>
+            <PolygonSymbolizer fill="#AB1303" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_classification] = "High-rise: Part of group of densely spaced blocks (8 + core floors)"</Filter>
+            <PolygonSymbolizer fill="#D43A29" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_classification] = "High-rise: Part of group of widely spaced blocks"</Filter>
+            <PolygonSymbolizer fill="#FC604F" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="0.8"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="2.0"/>
+        </Rule>
+    </Style>
+    <Style name="typology_style_period">
+        <Rule>
+            <Filter>[typology_style_period] = "Roman (43AD-410)"</Filter>
+            <PolygonSymbolizer fill="#00B2CB" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_style_period] = "Medieval (410-1485)"</Filter>
+            <PolygonSymbolizer fill="#00A9C6" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_style_period] = "Tudor (1485-1603)"</Filter>
+            <PolygonSymbolizer fill="#0097BC" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_style_period] = "Stuart (1603 -1714)"</Filter>
+            <PolygonSymbolizer fill="#008EB7" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_style_period] = "Georgian (1714-1837)"</Filter>
+            <PolygonSymbolizer fill="#0085B2" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_style_period] = "Victorian (1837-1901)"</Filter>
+            <PolygonSymbolizer fill="#007CAD" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_style_period] = "Edwardian (1901-1914)"</Filter>
+            <PolygonSymbolizer fill="#0073A8" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_style_period] = "WWI - WWII (1914-45)"</Filter>
+            <PolygonSymbolizer fill="#006AA3" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_style_period] = "Post war (1945-1975)"</Filter>
+            <PolygonSymbolizer fill="#004F94" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_style_period] = "Postmodern (1975-1990)"</Filter>
+            <PolygonSymbolizer fill="#00468F" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_style_period] = "1990s"</Filter>
+            <PolygonSymbolizer fill="#003D8A" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_style_period] = "2000s"</Filter>
+            <PolygonSymbolizer fill="#003485" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="0.8"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="2.0"/>
+        </Rule>
+    </Style>
+    <Style name="typology_dynamic_classification">
+        <Rule>
+            <Filter>[typology_dynamic_classification] = "Repetitive small, domestic plots"</Filter>
+            <PolygonSymbolizer fill="#F2E5FF" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_dynamic_classification] = "Linear non-domestic, i.e. high streets"</Filter>
+            <PolygonSymbolizer fill="#CBABEA" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_dynamic_classification] = "Large plots with internal roads"</Filter>
+            <PolygonSymbolizer fill="#A272D4" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_dynamic_classification] = "Other"</Filter>
+            <PolygonSymbolizer fill="#EEEEEE" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="0.8"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="2.0"/>
+        </Rule>
+    </Style>
 </Map>

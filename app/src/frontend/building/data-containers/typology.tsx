@@ -11,6 +11,7 @@ import { CategoryViewProps } from './category-view-props';
 import InfoBox from '../../components/info-box';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
+import { useDisplayPreferences } from '../../displayPreferences-context';
 
 const AttachmentFormOptions = [
     "Detached",
@@ -23,9 +24,37 @@ const AttachmentFormOptions = [
 * Type view/edit section
 */
 const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
+    const { darkLightTheme } = useDisplayPreferences();
+
+    const switchToClassificationMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('typology_classification')
+    }
+    const switchToStylePeriodMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('typology_style_period')
+    }
+    const switchToDynamicClassificationMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('typology_dynamic_classification')
+    }
+    const switchToAttachmentMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('building_attachment_form')
+    }
+
     return (
         <Fragment>
             <DataEntryGroup name="Basic typology classification">
+                {(props.mapColourScale == "typology_classification") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToStylePeriodMapStyle}>
+                        {'Click here to change map to show architectural style/historical period.'}
+                    </button>
+                :
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
+                        {"Click to change map to show typology classification."}
+                    </button>
+                }
                 <SelectDataEntry
                     title={dataFields.typology_classification.title}
                     slug="typology_classification"
@@ -75,6 +104,15 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Architectural style/Historical period">
+                {(props.mapColourScale == "typology_style_period") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
+                        {'Click to change map to show typology classification.'}
+                    </button>
+                :
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToStylePeriodMapStyle}>
+                        {"Click here to change map to show architectural style/historical period."}
+                    </button>
+                }
                 <SelectDataEntry
                     title={dataFields.typology_style_period.title}
                     slug="typology_style_period"
@@ -93,6 +131,9 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.typology_style_period}
                     verified_count={props.building.verified.typology_style_period}
                 />
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                    <i className="source-url">For building age by year see <a href={"http://localhost:8080/edit/age/"+props.building.building_id}>Age & History</a>.</i>
+                </div>
                 <SelectDataEntry
                     title={dataFields.typology_style_period_source_type.title}
                     slug="typology_style_period_source_type"
@@ -123,7 +164,16 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Dynamic classification">
+            <DataEntryGroup name="Dynamic tissue classification">
+                {(props.mapColourScale == "typology_dynamic_classification") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
+                        {'Click to change map to show typology classification.'}
+                    </button>
+                :
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToDynamicClassificationMapStyle}>
+                        {"Click here to change map to show dynamic classification."}
+                    </button>
+                }
                 <SelectDataEntry
                     title={dataFields.typology_dynamic_classification.title}
                     slug="typology_dynamic_classification"
@@ -226,6 +276,15 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Attachment/Adjacency">
+                {(props.mapColourScale == "building_attachment_form") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
+                        {'Click to change map to show typology classification.'}
+                    </button>
+                :
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAttachmentMapStyle}>
+                        {"Click here to change map to show attachment/adjacency."}
+                    </button>
+                }
                 <SelectDataEntry
                     title={dataFields.building_attachment_form.title}
                     slug="building_attachment_form"

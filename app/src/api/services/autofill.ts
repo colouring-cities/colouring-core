@@ -21,6 +21,7 @@ function getLanduseGroupOptions(value: string, all: boolean = false) {
                 landuse_id AS id,
                 description AS value
             FROM reference_tables.buildings_landuse_group
+            ORDER BY description
             `
         );
     }
