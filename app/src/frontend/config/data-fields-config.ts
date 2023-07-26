@@ -1534,8 +1534,9 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "Large plots with internal roads",
         items: [
             'Repetitive small, domestic plots',
-            'High streets/linear non-domestic',
+            'Linear non-domestic, i.e. high streets',
             'Large plots with internal roads',
+            'Other'
         ]
     },
     typology_dynamic_classification_source_type: {
