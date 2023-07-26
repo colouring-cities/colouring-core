@@ -98,7 +98,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         slug: 'typology',
         name: 'Typology',
         aboutUrl: 'https://pages.colouring.london/buildingtypology',
-        intro: 'Note: This section is currently under development, we are working to activate it as soon as possible. This section provides open data on the typology of the building.',
+        intro: 'This section provides open data on the typology of the building.',
     },
     [Category.LandUse]: {
         slug: 'land-use',
