@@ -131,6 +131,9 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.typology_style_period}
                     verified_count={props.building.verified.typology_style_period}
                 />
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                    <i className="source-url">For building age by year see <a href={"http://localhost:8080/edit/age/"+props.building.building_id}>Age & History</a>.</i>
+                </div>
                 <SelectDataEntry
                     title={dataFields.typology_style_period_source_type.title}
                     slug="typology_style_period_source_type"
