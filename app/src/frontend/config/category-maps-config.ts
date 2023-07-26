@@ -305,15 +305,15 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Typology classification',
                 elements: [
-                    { color: '#002C7C', text: '1-3 storeys: Detached' },
-                    { color: '#006FA4', text: '1-3 storeys: Tightly grouped' },
-                    { color: '#00B2CB', text: '1-3 storeys: Loosely grouped' },
-                    { color: '#FF5D00', text: '4-7 storeys: Detached' },
-                    { color: '#FF8000', text: '4-7 storeys: Tightly grouped' },
-                    { color: '#FFA200', text: '4-7 storeys: Loosely grouped' },
-                    { color: '#580C04', text: '8+ storeys: Detached' },
-                    { color: '#AA1E0E', text: '8+ storeys: Tightly grouped' },
-                    { color: '#FB2F18', text: '8+ storeys: Loosely grouped' },
+                    { color: '#002C7C', text: 'Low-rise: Not part of a group/cluster (1-3 core floors- excluding extensions)' },
+                    { color: '#006FA4', text: 'Low-rise: Part of dense block/row/terrace' },
+                    { color: '#00B2CB', text: 'Low-rise: Part of group of widely spaced blocks (includes semi-detached houses)' },
+                    { color: '#FF5D00', text: 'Mid-rise: Not part of a group/cluster (4-7 core floors)' },
+                    { color: '#FF8000', text: 'Mid-rise: Part of group of densely spaced blocks' },
+                    { color: '#FFA200', text: 'Mid-rise: Part of group of widely spaced blocks' },
+                    { color: '#580C04', text: 'High rise: Not part of a group/cluster' },
+                    { color: '#AA1E0E', text: 'High-rise: Part of group of densely spaced blocks (8 + core floors)' },
+                    { color: '#FB2F18', text: 'High-rise: Part of group of widely spaced blocks' },
                 ]
             }
         },
