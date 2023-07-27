@@ -84,6 +84,11 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
+                to: "https://github.com/colouring-cities/manual/wiki/M3.1-News",
+                text: "Colouring London News",
+                external: true
+            },
+            {
                 to: "https://github.com/colouring-cities/manual/wiki/A2.-How-to%3F-Guides",
                 text: "How to Use",
                 external: true
@@ -94,7 +99,7 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "https://pages.colouring.london/whoisinvolved",
+                to: "https://github.com/colouring-cities/manual/wiki/M3.2-Colouring-Britain:-Who's-Involved%3F",
                 text: "Who's Involved?",
                 external: true
             },
@@ -110,15 +115,15 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 text: "Top Contributors"
             },
             {
-                to: config.githubURL+"/discussions",
-                text: "Discussion Forum",
+                to: "https://discuss.colouring.london/",
+                text: "Colouring London Discussions Forum",
                 external: true
             },
-            // {
-            //     to: "https://discuss.colouring.london/c/blog/9",
-            //     text: "Blog",
-            //     external: true
-            // },
+            {
+                to: config.githubURL+"/discussions",
+                text: "Discussion Forum (GitHub)",
+                external: true
+            },
         ],
         [
             {
