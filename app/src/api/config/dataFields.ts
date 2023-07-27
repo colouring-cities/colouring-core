@@ -277,6 +277,54 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    construction_structural_system: {
+        edit: true,
+        verify: true,
+    },
+    construction_structural_system_source_type: {
+        edit: true,
+        verify: true,
+    },
+    construction_structural_system_source_links: {
+        edit: true,
+        verify: true,
+    },
+    construction_foundation: {
+        edit: true,
+        verify: true,
+    },
+    construction_foundation_source_type: {
+        edit: true,
+        verify: true,
+    },
+    construction_foundation_source_links: {
+        edit: true,
+        verify: true,
+    },
+    construction_roof_shape: {
+        edit: true,
+        verify: true,
+    },
+    construction_roof_shape_source_type: {
+        edit: true,
+        verify: true,
+    },
+    construction_roof_shape_source_links: {
+        edit: true,
+        verify: true,
+    },
+    construction_irregularities: {
+        edit: true,
+        verify: true,
+    },
+    construction_irregularities_source_type: {
+        edit: true,
+        verify: true,
+    },
+    construction_irregularities_source_links: {
+        edit: true,
+        verify: true,
+    },
     planning_portal_link: {
         edit: true,
         verify: true,

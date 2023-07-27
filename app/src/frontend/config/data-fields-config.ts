@@ -605,6 +605,111 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: 'Main roof covering material',
         example: "",
     },
+    construction_structural_system: {
+        category: Category.Construction,
+        title: "What type of structural system does the building appear to have?",
+        tooltip: "",
+        example: "Solid masonry walls supporting the roof",
+        items: [
+            "Solid masonry walls supporting the roof",
+            "A lateral load resisting structure (e.g. concrete or wooden frame)",
+            "Other"
+        ]
+    },
+    construction_structural_system_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of structural system data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_structural_system_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for structural system data source(s)",
+        example: ["", "", ""],
+    },
+    construction_foundation: {
+        category: Category.Construction,
+        title: "What is the foundation system thought to be",
+        tooltip: "",
+        example: "Deep Foundations with lateral support",
+        items: [
+            "Shallow foundations with no lateral support",
+            "Shallow foundations with lateral support",
+            "Deep foundations with no lateral support",
+            "Deep Foundations with lateral support",
+            "Other"
+        ]
+    },
+    construction_foundation_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of foundation system data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_foundation_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for foundation system data source(s)",
+        example: ["", "", ""],
+    },
+    construction_roof_shape: {
+        category: Category.Construction,
+        title: "What kind of roof shape does the building have?",
+        tooltip: "",
+        example: "Pitched with gable ends",
+        items: [
+            "What kind of roof shape does the building have?",
+            "Pitched with gable ends",
+            "Pitched and hipped",
+            "Pitched with dormers",
+            "Monopitch",
+            "Sawtooth",
+            "Curved",
+            "Complex regular",
+            "Complex irregular",
+            "Other"
+        ]
+    },
+    construction_roof_shape_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of roof shape data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_roof_shape_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for roof shape data source(s)",
+        example: ["", "", ""],
+    },
+    construction_irregularities: {
+        category: Category.Construction,
+        title: "Are there any structural irregularities in the shape of the building?",
+        tooltip: "i.e. Is one side higher than other?",
+        example: "No irregularities",
+        items: [
+            "Vertical irregularities",
+            "Horizontal irregularities",
+            "No irregularities"
+        ]
+    },
+    construction_irregularities_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of irregularity data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_irregularities_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for irregularity data source(s)",
+        example: ["", "", ""],
+    },
 
     sust_breeam_rating: {
         category: Category.EnergyPerformance,
