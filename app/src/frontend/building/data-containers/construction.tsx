@@ -243,6 +243,150 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                 />
                 <hr/>
                 <SelectDataEntry
+                    title={dataFields.construction_external_wall.title}
+                    slug="construction_external_wall"
+                    value={props.building.construction_external_wall}
+                    tooltip={dataFields.construction_external_wall.tooltip}
+                    options={dataFields.construction_external_wall.items}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                />
+                <Verification
+                    slug="construction_external_wall"
+                    allow_verify={props.user !== undefined && props.building.construction_external_wall !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("construction_external_wall")}
+                    user_verified_as={props.user_verified.construction_external_wall}
+                    verified_count={props.building.verified.construction_external_wall}
+                />
+                <SelectDataEntry
+                    title={dataFields.construction_external_wall_source_type.title}
+                    slug="construction_external_wall_source_type"
+                    value={props.building.construction_external_wall_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.construction_external_wall_source_type.tooltip}
+                    placeholder={dataFields.construction_external_wall_source_type.example}
+                    options={dataFields.construction_external_wall_source_type.items}
+                    />
+                {(props.building.construction_external_wall_source_type == commonSourceTypes[0] ||
+                    props.building.construction_external_wall_source_type == commonSourceTypes[1] ||
+                    props.building.construction_external_wall_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.construction_external_wall_source_links.title}
+                            slug="construction_external_wall_source_links"
+                            value={props.building.construction_external_wall_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.construction_external_wall_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+                <hr/>
+                <SelectDataEntry
+                    title={dataFields.construction_internal_wall.title}
+                    slug="construction_internal_wall"
+                    value={props.building.construction_internal_wall}
+                    tooltip={dataFields.construction_internal_wall.tooltip}
+                    options={dataFields.construction_internal_wall.items}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                />
+                <Verification
+                    slug="construction_internal_wall"
+                    allow_verify={props.user !== undefined && props.building.construction_internal_wall !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("construction_internal_wall")}
+                    user_verified_as={props.user_verified.construction_internal_wall}
+                    verified_count={props.building.verified.construction_internal_wall}
+                />
+                <SelectDataEntry
+                    title={dataFields.construction_internal_wall_source_type.title}
+                    slug="construction_internal_wall_source_type"
+                    value={props.building.construction_internal_wall_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.construction_internal_wall_source_type.tooltip}
+                    placeholder={dataFields.construction_internal_wall_source_type.example}
+                    options={dataFields.construction_internal_wall_source_type.items}
+                    />
+                {(props.building.construction_internal_wall_source_type == commonSourceTypes[0] ||
+                    props.building.construction_internal_wall_source_type == commonSourceTypes[1] ||
+                    props.building.construction_internal_wall_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.construction_internal_wall_source_links.title}
+                            slug="construction_internal_wall_source_links"
+                            value={props.building.construction_internal_wall_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.construction_internal_wall_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+                <hr/>
+                <SelectDataEntry
+                    title={dataFields.construction_ground_floor.title}
+                    slug="construction_ground_floor"
+                    value={props.building.construction_ground_floor}
+                    tooltip={dataFields.construction_ground_floor.tooltip}
+                    options={dataFields.construction_ground_floor.items}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                />
+                <Verification
+                    slug="construction_ground_floor"
+                    allow_verify={props.user !== undefined && props.building.construction_ground_floor !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("construction_ground_floor")}
+                    user_verified_as={props.user_verified.construction_ground_floor}
+                    verified_count={props.building.verified.construction_ground_floor}
+                />
+                <SelectDataEntry
+                    title={dataFields.construction_ground_floor_source_type.title}
+                    slug="construction_ground_floor_source_type"
+                    value={props.building.construction_ground_floor_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.construction_ground_floor_source_type.tooltip}
+                    placeholder={dataFields.construction_ground_floor_source_type.example}
+                    options={dataFields.construction_ground_floor_source_type.items}
+                    />
+                {(props.building.construction_ground_floor_source_type == commonSourceTypes[0] ||
+                    props.building.construction_ground_floor_source_type == commonSourceTypes[1] ||
+                    props.building.construction_ground_floor_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.construction_ground_floor_source_links.title}
+                            slug="construction_ground_floor_source_links"
+                            value={props.building.construction_ground_floor_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.construction_ground_floor_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+                <hr/>
+                <SelectDataEntry
                     title={dataFields.construction_roof_covering.title}
                     slug="construction_roof_covering"
                     value={props.building.construction_roof_covering}

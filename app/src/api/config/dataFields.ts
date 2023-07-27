@@ -349,6 +349,44 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    construction_external_wall: {
+        edit: true,
+        verify: true,
+    },
+    construction_external_wall_source_type: {
+        edit: true,
+        verify: true,
+    },
+    construction_external_wall_source_links: {
+        edit: true,
+        verify: true,
+    },
+    construction_internal_wall: {
+        edit: true,
+        verify: true,
+    },
+    construction_internal_wall_source_type: {
+        edit: true,
+        verify: true,
+    },
+    construction_internal_wall_source_links: {
+        edit: true,
+        verify: true,
+    },
+    construction_ground_floor: {
+        edit: true,
+        verify: true,
+    },
+    construction_ground_floor_source_type: {
+        edit: true,
+        verify: true,
+    },
+    construction_ground_floor_source_links: {
+        edit: true,
+        verify: true,
+    },
+
+
     planning_portal_link: {
         edit: true,
         verify: true,

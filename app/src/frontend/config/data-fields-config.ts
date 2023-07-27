@@ -766,6 +766,99 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "URL(s) for roof shape data source(s)",
         example: ["", "", ""],
     },
+    construction_internal_wall: {
+        category: Category.Construction,
+        title: "What is the main internal wall material thought to be?",
+        tooltip: '',
+        example: "",
+        items: [
+            'Brick',
+            'Stone',
+            'Concrete blocks',
+            'Concrete slabs/panels',
+            'Wood',
+            'Metal',
+            'Adobe/Earth',
+            'Glass',
+            'Plastic',
+            'Stucco on light framing',
+            'Vegetative (straw, matting etc)',
+            'Cement based boards',
+        ]
+    },
+    construction_internal_wall_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of internal wall data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_internal_wall_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for internal wall data source(s)",
+        example: ["", "", ""],
+    },
+    construction_external_wall: {
+        category: Category.Construction,
+        title: "What is the main external wall material thought to be?",
+        tooltip: '',
+        example: "",
+        items: [
+            'Brick',
+            'Stone',
+            'Concrete blocks',
+            'Concrete slabs/panels',
+            'Wood',
+            'Metal',
+            'Adobe/Earth',
+            'Glass',
+            'Plastic',
+            'Stucco on light framing',
+            'Vegetative (straw, matting etc)',
+            'Cement based boards',
+        ]
+    },
+    construction_external_wall_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of external wall data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_external_wall_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for external wall data source(s)",
+        example: ["", "", ""],
+    },
+    construction_ground_floor: {
+        category: Category.Construction,
+        title: "What is the main ground floor material thought to be?",
+        tooltip: '',
+        example: "",
+        items: [
+            'Masonry',
+            'Earthen',
+            'Concrete',
+            'Wood',
+            'Metal',
+            'Other',
+        ]
+    },
+    construction_ground_floor_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of ground floor material data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_ground_floor_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for ground floor material data source(s)",
+        example: ["", "", ""],
+    },
 
     sust_breeam_rating: {
         category: Category.EnergyPerformance,
