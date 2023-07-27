@@ -33,3 +33,6 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS construction_external_wall_source_li
 ALTER TABLE buildings DROP COLUMN IF EXISTS construction_ground_floor;
 ALTER TABLE buildings DROP COLUMN IF EXISTS construction_ground_floor_source_type;
 ALTER TABLE buildings DROP COLUMN IF EXISTS construction_ground_floor_source_links;
+
+ALTER TABLE buildings DROP COLUMN IF EXISTS construction_core_material_source_type;
+ALTER TABLE buildings DROP COLUMN IF EXISTS construction_core_material_source_links;

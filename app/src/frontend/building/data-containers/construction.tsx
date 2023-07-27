@@ -241,6 +241,35 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     user_verified_as={props.user_verified.construction_core_material}
                     verified_count={props.building.verified.construction_core_material}
                 />
+                <SelectDataEntry
+                    title={dataFields.construction_core_material_source_type.title}
+                    slug="construction_core_material_source_type"
+                    value={props.building.construction_core_material_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.construction_core_material_source_type.tooltip}
+                    placeholder={dataFields.construction_core_material_source_type.example}
+                    options={dataFields.construction_core_material_source_type.items}
+                    />
+                {(props.building.construction_core_material_source_type == commonSourceTypes[0] ||
+                    props.building.construction_core_material_source_type == commonSourceTypes[1] ||
+                    props.building.construction_core_material_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.construction_core_material_source_links.title}
+                            slug="construction_core_material_source_links"
+                            value={props.building.construction_core_material_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.construction_core_material_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
                 <hr/>
                 <SelectDataEntry
                     title={dataFields.construction_external_wall.title}

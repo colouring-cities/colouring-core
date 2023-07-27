@@ -33,3 +33,6 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS construction_external_wall_source
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS construction_ground_floor text;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS construction_ground_floor_source_type text;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS construction_ground_floor_source_links text[];
+
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS construction_core_material_source_type text;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS construction_core_material_source_links text[];
