@@ -587,21 +587,21 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     construction_core_material: {
         category: Category.Construction,
-        title: "Core material",
+        title: "What is the main structural material thought to be?",
         tooltip: "The main structural material",
         example: "",
     },
     construction_core_material_source_type: {
         category: Category.Construction,
         title: "Source type",
-        tooltip: "Source of roof covering data",
+        tooltip: "Source of main structural material data",
         example: "",
         items: commonSourceTypes
     },
     construction_core_material_source_links: {
         category: Category.Construction,
         title: "Source links",
-        tooltip: "URL(s) for roof covering data source(s)",
+        tooltip: "URL(s) for main structural material data source(s)",
         example: ["", "", ""],
     },
 
