@@ -94,7 +94,7 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "https://pages.colouring.london/whoisinvolved",
+                to: "https://github.com/colouring-cities/manual/wiki/M3.2-Colouring-Britain:-Who's-Involved%3F",
                 text: "Who's Involved?",
                 external: true
             },
