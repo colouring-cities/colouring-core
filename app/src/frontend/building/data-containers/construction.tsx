@@ -10,6 +10,7 @@ import { CategoryViewProps } from './category-view-props';
 import InfoBox from '../../components/info-box';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
+import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
 
 const ConstructionMaterialsOptions = [
     'Wood',
@@ -17,17 +18,6 @@ const ConstructionMaterialsOptions = [
     'Brick',
     'Steel',
     'Reinforced Concrete',
-    'Other Metal',
-    'Other Natural Material',
-    'Other Man-Made Material'
-];
-
-const RoofCoveringOptions = [
-    'Slate',
-    'Clay Tile',
-    'Wood',
-    'Asphalt',
-    'Iron or Steel',
     'Other Metal',
     'Other Natural Material',
     'Other Man-Made Material'
@@ -251,23 +241,13 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     user_verified_as={props.user_verified.construction_core_material}
                     verified_count={props.building.verified.construction_core_material}
                 />
-                <SelectDataEntry
-                    title={dataFields.construction_secondary_materials.title}
-                    disabled={true}
-                    slug="construction_secondary_materials"
-                    value={props.building.construction_secondary_materials}
-                    tooltip={dataFields.construction_secondary_materials.tooltip}
-                    options={ConstructionMaterialsOptions}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                />
+                <hr/>
                 <SelectDataEntry
                     title={dataFields.construction_roof_covering.title}
                     slug="construction_roof_covering"
                     value={props.building.construction_roof_covering}
                     tooltip={dataFields.construction_roof_covering.tooltip}
-                    options={RoofCoveringOptions}
+                    options={dataFields.construction_roof_covering.items}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
@@ -279,15 +259,106 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     user_verified={props.user_verified.hasOwnProperty("construction_roof_covering")}
                     user_verified_as={props.user_verified.construction_roof_covering}
                     verified_count={props.building.verified.construction_roof_covering}
-                    />
-            </DataEntryGroup>
-            <DataEntryGroup name="Construction sectors">
-                <DataEntry
-                    title="Construction system type"
-                    slug=""
-                    value=""
-                    mode='view'
                 />
+                <SelectDataEntry
+                    title={dataFields.construction_roof_covering_source_type.title}
+                    slug="construction_roof_covering_source_type"
+                    value={props.building.construction_roof_covering_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.construction_roof_covering_source_type.tooltip}
+                    placeholder={dataFields.construction_roof_covering_source_type.example}
+                    options={dataFields.construction_roof_covering_source_type.items}
+                    />
+                {(props.building.construction_roof_covering_source_type == commonSourceTypes[0] ||
+                    props.building.construction_roof_covering_source_type == commonSourceTypes[1] ||
+                    props.building.construction_roof_covering_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.construction_roof_covering_source_links.title}
+                            slug="construction_roof_covering_source_links"
+                            value={props.building.construction_roof_covering_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.construction_roof_covering_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+            </DataEntryGroup>
+            <DataEntryGroup name="Decorative features">
+                <LogicalDataEntry
+                    slug='construction_decorative_features'
+                    title={dataFields.construction_decorative_features.title}
+                    value={props.building.construction_decorative_features}
+                    onChange={props.onSaveChange}
+                    mode={props.mode}
+                    copy={props.copy}
+                />
+                <Verification
+                    slug="construction_decorative_features"
+                    allow_verify={props.user !== undefined && props.building.construction_decorative_features !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("construction_decorative_features")}
+                    user_verified_as={props.user_verified.construction_decorative_features}
+                    verified_count={props.building.verified.construction_decorative_features}
+                />
+                {
+                    props.building.construction_decorative_features &&
+                    <>
+                        <SelectDataEntry
+                            title={dataFields.construction_decorative_feature_materials.title}
+                            slug="construction_decorative_feature_materials"
+                            value={props.building.construction_decorative_feature_materials}
+                            tooltip={dataFields.construction_decorative_feature_materials.tooltip}
+                            options={dataFields.construction_decorative_feature_materials.items}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                        />
+                        <Verification
+                            slug="construction_decorative_feature_materials"
+                            allow_verify={props.user !== undefined && props.building.construction_decorative_feature_materials !== null && !props.edited}
+                            onVerify={props.onVerify}
+                            user_verified={props.user_verified.hasOwnProperty("construction_decorative_feature_materials")}
+                            user_verified_as={props.user_verified.construction_decorative_feature_materials}
+                            verified_count={props.building.verified.construction_decorative_feature_materials}
+                        />
+                        <SelectDataEntry
+                            title={dataFields.construction_decorative_feature_source_type.title}
+                            slug="construction_decorative_feature_source_type"
+                            value={props.building.construction_decorative_feature_source_type}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.construction_decorative_feature_source_type.tooltip}
+                            placeholder={dataFields.construction_decorative_feature_source_type.example}
+                            options={dataFields.construction_decorative_feature_source_type.items}
+                            />
+                        {(props.building.construction_decorative_feature_source_type == commonSourceTypes[0] ||
+                            props.building.construction_decorative_feature_source_type == commonSourceTypes[1] ||
+                            props.building.construction_decorative_feature_source_type == null) ? <></> :
+                            <>
+                                <MultiDataEntry
+                                    title={dataFields.construction_decorative_feature_source_links.title}
+                                    slug="construction_decorative_feature_source_links"
+                                    value={props.building.construction_decorative_feature_source_links}
+                                    mode={props.mode}
+                                    copy={props.copy}
+                                    onChange={props.onChange}
+                                    tooltip={dataFields.construction_decorative_feature_source_links.tooltip}
+                                    placeholder="https://..."
+                                    editableEntries={true}
+                                    isUrl={true}
+                                />
+                            </>
+                        }
+                    </>
+                }
             </DataEntryGroup>
         </Fragment>
     );

@@ -277,6 +277,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    construction_roof_covering_source_type: {
+        edit: true,
+        verify: true,
+    },
+    construction_roof_covering_source_links: {
+        edit: true,
+        verify: true,
+    },
     construction_structural_system: {
         edit: true,
         verify: true,
@@ -322,6 +330,22 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true,
     },
     construction_irregularities_source_links: {
+        edit: true,
+        verify: true,
+    },
+    construction_decorative_features: {
+        edit: true,
+        verify: true,
+    },
+    construction_decorative_feature_materials: {
+        edit: true,
+        verify: true,
+    },
+    construction_decorative_feature_source_type: {
+        edit: true,
+        verify: true,
+    },
+    construction_decorative_feature_source_links: {
         edit: true,
         verify: true,
     },

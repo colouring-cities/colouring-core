@@ -601,14 +601,37 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     construction_roof_covering: {
         category: Category.Construction,
-        title: "Main roof covering",
-        tooltip: 'Main roof covering material',
+        title: "What is the main roof covering?",
+        tooltip: '',
         example: "",
+        items: [
+            'Slate',
+            'Clay Tile',
+            'Wood',
+            'Asphalt',
+            'Iron or Steel',
+            'Other Metal',
+            'Other Natural Material',
+            'Other Man-Made Material'
+        ]
+    },
+    construction_roof_covering_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of roof covering data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_roof_covering_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for roof covering data source(s)",
+        example: ["", "", ""],
     },
     construction_structural_system: {
         category: Category.Construction,
         title: "What type of structural system does the building appear to have?",
-        tooltip: "",
+        tooltip: "Refer to GEM Taxonomy [<a href='https://github.com/gem/gem_taxonomy'>LINK</a>]",
         example: "Solid masonry walls supporting the roof",
         items: [
             "Solid masonry walls supporting the roof",
@@ -632,7 +655,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_foundation: {
         category: Category.Construction,
         title: "What is the foundation system thought to be",
-        tooltip: "",
+        tooltip: "Refer to GEM Taxonomy [<a href='https://taxonomy.openquake.org/terms/foundation-system'>LINK</a>]",
         example: "Deep Foundations with lateral support",
         items: [
             "Shallow foundations with no lateral support",
@@ -658,7 +681,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_roof_shape: {
         category: Category.Construction,
         title: "What kind of roof shape does the building have?",
-        tooltip: "",
+        tooltip: "Refer to GEM Taxonomy [<a href='https://taxonomy.openquake.org/terms/roof-shape'>LINK</a>]",
         example: "Pitched with gable ends",
         items: [
             "What kind of roof shape does the building have?",
@@ -689,7 +712,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_irregularities: {
         category: Category.Construction,
         title: "Are there any structural irregularities in the shape of the building?",
-        tooltip: "i.e. Is one side higher than other?",
+        tooltip: "i.e. Is one side higher than other? - Refer to GEM Taxonomy [<a href='https://github.com/gem/gem_taxonomy'>LINK</a>]",
         example: "No irregularities",
         items: [
             "Vertical irregularities",
@@ -708,6 +731,39 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Construction,
         title: "Source links",
         tooltip: "URL(s) for irregularity data source(s)",
+        example: ["", "", ""],
+    },
+    construction_decorative_features: {
+        category: Category.Construction,
+        title: "Are there decorative features/mouldings integrated into the facade ?",
+        example: true,
+        tooltip: "",
+    },
+    construction_decorative_feature_materials: {
+        category: Category.Construction,
+        title: "What are these decorative features mainly made of?",
+        tooltip: "",
+        example: "Concrete",
+        items: [
+            "Wood",
+            "Clay",
+            "Concrete",
+            "Glass",
+            "Metal",
+            "Other"
+        ]
+    },
+    construction_decorative_feature_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of roof shape data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_decorative_feature_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for roof shape data source(s)",
         example: ["", "", ""],
     },
 
