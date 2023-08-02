@@ -697,7 +697,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Refer to GEM Taxonomy [<a href='https://taxonomy.openquake.org/terms/roof-shape'>LINK</a>]",
         example: "Pitched with gable ends",
         items: [
-            "What kind of roof shape does the building have?",
+            "Flat",
             "Pitched with gable ends",
             "Pitched and hipped",
             "Pitched with dormers",
@@ -797,6 +797,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             'Stucco on light framing',
             'Vegetative (straw, matting etc)',
             'Cement based boards',
+            'Other'
         ]
     },
     construction_internal_wall_source_type: {
@@ -830,6 +831,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             'Stucco on light framing',
             'Vegetative (straw, matting etc)',
             'Cement based boards',
+            'Other'
         ]
     },
     construction_external_wall_source_type: {
@@ -1777,9 +1779,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             'Edwardian (1901-1914)',
             'WWI - WWII (1914-45)',,
             'Post war (1945-1975)',
-            'Postmodern (1975-1990)',
-            '1990s',
-            '2000s',
+            'Late 20th Century (1975-2000)',
+            'Early 21st Century (2000-Present)',
         ]
     },
     typology_style_period_source_type: {
