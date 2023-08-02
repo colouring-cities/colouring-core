@@ -697,7 +697,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Refer to GEM Taxonomy [<a href='https://taxonomy.openquake.org/terms/roof-shape'>LINK</a>]",
         example: "Pitched with gable ends",
         items: [
-            "What kind of roof shape does the building have?",
+            "Flat",
             "Pitched with gable ends",
             "Pitched and hipped",
             "Pitched with dormers",
