@@ -587,9 +587,22 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     construction_core_material: {
         category: Category.Construction,
-        title: "Core material",
+        title: "What is the main structural material thought to be?",
         tooltip: "The main structural material",
         example: "",
+    },
+    construction_core_material_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of main structural material data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_core_material_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for main structural material data source(s)",
+        example: ["", "", ""],
     },
 
     construction_secondary_materials: {
@@ -601,9 +614,263 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     construction_roof_covering: {
         category: Category.Construction,
-        title: "Main roof covering",
-        tooltip: 'Main roof covering material',
+        title: "What is the main roof covering?",
+        tooltip: '',
         example: "",
+        items: [
+            'Slate',
+            'Clay Tile',
+            'Wood',
+            'Asphalt',
+            'Iron or Steel',
+            'Other Metal',
+            'Other Natural Material',
+            'Other Man-Made Material'
+        ]
+    },
+    construction_roof_covering_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of roof covering data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_roof_covering_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for roof covering data source(s)",
+        example: ["", "", ""],
+    },
+    construction_structural_system: {
+        category: Category.Construction,
+        title: "What type of structural system does the building appear to have?",
+        tooltip: "Refer to GEM Taxonomy [<a href='https://github.com/gem/gem_taxonomy'>LINK</a>]",
+        example: "Solid masonry walls supporting the roof",
+        items: [
+            "Solid masonry walls supporting the roof",
+            "A lateral load resisting structure (e.g. concrete or wooden frame)",
+            "Other"
+        ]
+    },
+    construction_structural_system_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of structural system data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_structural_system_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for structural system data source(s)",
+        example: ["", "", ""],
+    },
+    construction_foundation: {
+        category: Category.Construction,
+        title: "What is the foundation system thought to be",
+        tooltip: "Refer to GEM Taxonomy [<a href='https://taxonomy.openquake.org/terms/foundation-system'>LINK</a>]",
+        example: "Deep Foundations with lateral support",
+        items: [
+            "Shallow foundations with no lateral support",
+            "Shallow foundations with lateral support",
+            "Deep foundations with no lateral support",
+            "Deep Foundations with lateral support",
+            "Other"
+        ]
+    },
+    construction_foundation_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of foundation system data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_foundation_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for foundation system data source(s)",
+        example: ["", "", ""],
+    },
+    construction_roof_shape: {
+        category: Category.Construction,
+        title: "What kind of roof shape does the building have?",
+        tooltip: "Refer to GEM Taxonomy [<a href='https://taxonomy.openquake.org/terms/roof-shape'>LINK</a>]",
+        example: "Pitched with gable ends",
+        items: [
+            "What kind of roof shape does the building have?",
+            "Pitched with gable ends",
+            "Pitched and hipped",
+            "Pitched with dormers",
+            "Monopitch",
+            "Sawtooth",
+            "Curved",
+            "Complex regular",
+            "Complex irregular",
+            "Other"
+        ]
+    },
+    construction_roof_shape_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of roof shape data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_roof_shape_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for roof shape data source(s)",
+        example: ["", "", ""],
+    },
+    construction_irregularities: {
+        category: Category.Construction,
+        title: "Are there any structural irregularities in the shape of the building?",
+        tooltip: "i.e. Is one side higher than other? - Refer to GEM Taxonomy [<a href='https://github.com/gem/gem_taxonomy'>LINK</a>]",
+        example: "No irregularities",
+        items: [
+            "Vertical irregularities",
+            "Horizontal irregularities",
+            "No irregularities"
+        ]
+    },
+    construction_irregularities_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of irregularity data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_irregularities_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for irregularity data source(s)",
+        example: ["", "", ""],
+    },
+    construction_decorative_features: {
+        category: Category.Construction,
+        title: "Are there decorative features/mouldings integrated into the facade ?",
+        example: true,
+        tooltip: "",
+    },
+    construction_decorative_feature_materials: {
+        category: Category.Construction,
+        title: "What are these decorative features mainly made of?",
+        tooltip: "",
+        example: "Concrete",
+        items: [
+            "Wood",
+            "Clay",
+            "Concrete",
+            "Glass",
+            "Metal",
+            "Other"
+        ]
+    },
+    construction_decorative_feature_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of roof shape data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_decorative_feature_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for roof shape data source(s)",
+        example: ["", "", ""],
+    },
+    construction_internal_wall: {
+        category: Category.Construction,
+        title: "What is the main internal wall material thought to be?",
+        tooltip: '',
+        example: "",
+        items: [
+            'Brick',
+            'Stone',
+            'Concrete blocks',
+            'Concrete slabs/panels',
+            'Wood',
+            'Metal',
+            'Adobe/Earth',
+            'Glass',
+            'Plastic',
+            'Stucco on light framing',
+            'Vegetative (straw, matting etc)',
+            'Cement based boards',
+        ]
+    },
+    construction_internal_wall_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of internal wall data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_internal_wall_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for internal wall data source(s)",
+        example: ["", "", ""],
+    },
+    construction_external_wall: {
+        category: Category.Construction,
+        title: "What is the main external wall material thought to be?",
+        tooltip: '',
+        example: "",
+        items: [
+            'Brick',
+            'Stone',
+            'Concrete blocks',
+            'Concrete slabs/panels',
+            'Wood',
+            'Metal',
+            'Adobe/Earth',
+            'Glass',
+            'Plastic',
+            'Stucco on light framing',
+            'Vegetative (straw, matting etc)',
+            'Cement based boards',
+        ]
+    },
+    construction_external_wall_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of external wall data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_external_wall_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for external wall data source(s)",
+        example: ["", "", ""],
+    },
+    construction_ground_floor: {
+        category: Category.Construction,
+        title: "What is the main ground floor material thought to be?",
+        tooltip: '',
+        example: "",
+        items: [
+            'Masonry',
+            'Earthen',
+            'Concrete',
+            'Wood',
+            'Metal',
+            'Other',
+        ]
+    },
+    construction_ground_floor_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of ground floor material data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_ground_floor_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for ground floor material data source(s)",
+        example: ["", "", ""],
     },
 
     sust_breeam_rating: {
