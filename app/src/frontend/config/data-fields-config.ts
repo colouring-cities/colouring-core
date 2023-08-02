@@ -797,6 +797,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             'Stucco on light framing',
             'Vegetative (straw, matting etc)',
             'Cement based boards',
+            'Other'
         ]
     },
     construction_internal_wall_source_type: {
@@ -830,6 +831,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             'Stucco on light framing',
             'Vegetative (straw, matting etc)',
             'Cement based boards',
+            'Other'
         ]
     },
     construction_external_wall_source_type: {
