@@ -1777,9 +1777,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             'Edwardian (1901-1914)',
             'WWI - WWII (1914-45)',,
             'Post war (1945-1975)',
-            'Postmodern (1975-1990)',
-            '1990s',
-            '2000s',
+            'Late 20th Century (1975-2000)',
+            'Early 21st Century (2000-Present)',
         ]
     },
     typology_style_period_source_type: {

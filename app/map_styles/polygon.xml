@@ -1025,51 +1025,47 @@
     <Style name="typology_style_period">
         <Rule>
             <Filter>[typology_style_period] = "Roman (43AD-410)"</Filter>
-            <PolygonSymbolizer fill="#a35" />
+            <PolygonSymbolizer fill="#FFF739" />
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "Medieval (410-1485)"</Filter>
-            <PolygonSymbolizer fill="#c66" />
+            <PolygonSymbolizer fill="#C5BD00" />
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "Tudor (1485-1603)"</Filter>
-            <PolygonSymbolizer fill="#e94" />
+            <PolygonSymbolizer fill="#FF9A39" />
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "Stuart (1603 -1714)"</Filter>
-            <PolygonSymbolizer fill="#ed0" />
+            <PolygonSymbolizer fill="#C56000" />
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "Georgian (1714-1837)"</Filter>
-            <PolygonSymbolizer fill="#9d5" />
+            <PolygonSymbolizer fill="#EA8072" />
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "Victorian (1837-1901)"</Filter>
-            <PolygonSymbolizer fill="#4d8" />
+            <PolygonSymbolizer fill="#A71200" />
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "Edwardian (1901-1914)"</Filter>
-            <PolygonSymbolizer fill="#2cb" />
+            <PolygonSymbolizer fill="#A272D4" />
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "WWI - WWII (1914-45)"</Filter>
-            <PolygonSymbolizer fill="#0bc" />
+            <PolygonSymbolizer fill="#3988C5" />
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "Post war (1945-1975)"</Filter>
-            <PolygonSymbolizer fill="#09c" />
+            <PolygonSymbolizer fill="#5ADFA2" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "Postmodern (1975-1990)"</Filter>
-            <PolygonSymbolizer fill="#36b" />
+            <Filter>[typology_style_period] = "Late 20th Century (1975-2000)"</Filter>
+            <PolygonSymbolizer fill="#C2F47A" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "1990s"</Filter>
-            <PolygonSymbolizer fill="#639" />
-        </Rule>
-        <Rule>
-            <Filter>[typology_style_period] = "2000s"</Filter>
-            <PolygonSymbolizer fill="#949" />
+            <Filter>[typology_style_period] = "Early 21st Century (2000-Present)"</Filter>
+            <PolygonSymbolizer fill="#6FB40A" />
         </Rule>
 
         <Rule>
