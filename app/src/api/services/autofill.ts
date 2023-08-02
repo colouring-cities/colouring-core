@@ -10,6 +10,7 @@ type GetAutofillOptionsFn = (value: string, all?: boolean) => Promise<AutofillOp
 
 const autofillFunctionMap : { [fieldName: string] : GetAutofillOptionsFn } = {
     current_landuse_group: getLanduseGroupOptions,
+    typology_original_use: getLanduseGroupOptions,
 };
 
 
@@ -20,6 +21,7 @@ function getLanduseGroupOptions(value: string, all: boolean = false) {
                 landuse_id AS id,
                 description AS value
             FROM reference_tables.buildings_landuse_group
+            ORDER BY description
             `
         );
     }

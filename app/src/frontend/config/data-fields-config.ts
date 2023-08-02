@@ -16,7 +16,8 @@ export const commonSourceTypes = [
     "Other independently managed public database",
     "Commercial database",
     "Inferred computationally using existing open attribute data",
-    "Synthetic data"
+    "Synthetic data",
+    "Other"
 ];
 
 /**
@@ -310,25 +311,22 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     building_attachment_form: {
         category: Category.Typology,
-        title: "Attachment type/adjacency",
+        title: "Which description best explains the way the building is attached to others?",
         tooltip: "We have prepopulated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
         example: "",
     },
-    date_change_building_use: {
-        category: Category.Typology,
-        title: "When did use change?",
-        tooltip: "This is the date the building stopped being used for for the function it was built for. I.e. if it was Victorian warehouse which is now an office this would be when it became an office or if it was something before that, maybe a garage then the date that happened",
-        example: 1920,
-    },
-    /**
-     * original_building_use does not exist in database yet.
-     * Slug needs to be adjusted if the db column will be named differently 
-     */
-    original_building_use: {
-        category: Category.Typology,
-        title: "Original building use",
-        tooltip: "What was the building <u><i>originally</i></u> used for when it was built?",
+    building_attachment_source_type: {
+        category: Category.Age,
+        title: "Source type",
+        tooltip: "Source type for the building data above",
+        items: commonSourceTypes,
         example: "",
+    },
+    building_attachment_source_links: {
+        category: Category.Age,
+        title: "Source link(s)",
+        tooltip: "URL for data reference",
+        example: ["", "", ""],
     },
     size_roof_shape: {
         category: Category.Typology,
@@ -589,9 +587,22 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     construction_core_material: {
         category: Category.Construction,
-        title: "Core material",
+        title: "What is the main structural material thought to be?",
         tooltip: "The main structural material",
         example: "",
+    },
+    construction_core_material_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of main structural material data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_core_material_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for main structural material data source(s)",
+        example: ["", "", ""],
     },
 
     construction_secondary_materials: {
@@ -603,9 +614,265 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     construction_roof_covering: {
         category: Category.Construction,
-        title: "Main roof covering",
-        tooltip: 'Main roof covering material',
+        title: "What is the main roof covering?",
+        tooltip: '',
         example: "",
+        items: [
+            'Slate',
+            'Clay Tile',
+            'Wood',
+            'Asphalt',
+            'Iron or Steel',
+            'Other Metal',
+            'Other Natural Material',
+            'Other Man-Made Material'
+        ]
+    },
+    construction_roof_covering_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of roof covering data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_roof_covering_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for roof covering data source(s)",
+        example: ["", "", ""],
+    },
+    construction_structural_system: {
+        category: Category.Construction,
+        title: "What type of structural system does the building appear to have?",
+        tooltip: "Refer to GEM Taxonomy [<a href='https://github.com/gem/gem_taxonomy'>LINK</a>]",
+        example: "Solid masonry walls supporting the roof",
+        items: [
+            "Solid masonry walls supporting the roof",
+            "A lateral load resisting structure (e.g. concrete or wooden frame)",
+            "Other"
+        ]
+    },
+    construction_structural_system_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of structural system data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_structural_system_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for structural system data source(s)",
+        example: ["", "", ""],
+    },
+    construction_foundation: {
+        category: Category.Construction,
+        title: "What is the foundation system thought to be",
+        tooltip: "Refer to GEM Taxonomy [<a href='https://taxonomy.openquake.org/terms/foundation-system'>LINK</a>]",
+        example: "Deep Foundations with lateral support",
+        items: [
+            "Shallow foundations with no lateral support",
+            "Shallow foundations with lateral support",
+            "Deep foundations with no lateral support",
+            "Deep Foundations with lateral support",
+            "Other"
+        ]
+    },
+    construction_foundation_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of foundation system data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_foundation_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for foundation system data source(s)",
+        example: ["", "", ""],
+    },
+    construction_roof_shape: {
+        category: Category.Construction,
+        title: "What kind of roof shape does the building have?",
+        tooltip: "Refer to GEM Taxonomy [<a href='https://taxonomy.openquake.org/terms/roof-shape'>LINK</a>]",
+        example: "Pitched with gable ends",
+        items: [
+            "Flat",
+            "Pitched with gable ends",
+            "Pitched and hipped",
+            "Pitched with dormers",
+            "Monopitch",
+            "Sawtooth",
+            "Curved",
+            "Complex regular",
+            "Complex irregular",
+            "Other"
+        ]
+    },
+    construction_roof_shape_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of roof shape data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_roof_shape_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for roof shape data source(s)",
+        example: ["", "", ""],
+    },
+    construction_irregularities: {
+        category: Category.Construction,
+        title: "Are there any structural irregularities in the shape of the building?",
+        tooltip: "i.e. Is one side higher than other? - Refer to GEM Taxonomy [<a href='https://github.com/gem/gem_taxonomy'>LINK</a>]",
+        example: "No irregularities",
+        items: [
+            "Vertical irregularities",
+            "Horizontal irregularities",
+            "No irregularities"
+        ]
+    },
+    construction_irregularities_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of irregularity data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_irregularities_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for irregularity data source(s)",
+        example: ["", "", ""],
+    },
+    construction_decorative_features: {
+        category: Category.Construction,
+        title: "Are there decorative features/mouldings integrated into the facade ?",
+        example: true,
+        tooltip: "",
+    },
+    construction_decorative_feature_materials: {
+        category: Category.Construction,
+        title: "What are these decorative features mainly made of?",
+        tooltip: "",
+        example: "Concrete",
+        items: [
+            "Wood",
+            "Clay",
+            "Concrete",
+            "Glass",
+            "Metal",
+            "Other"
+        ]
+    },
+    construction_decorative_feature_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of roof shape data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_decorative_feature_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for roof shape data source(s)",
+        example: ["", "", ""],
+    },
+    construction_internal_wall: {
+        category: Category.Construction,
+        title: "What is the main internal wall material thought to be?",
+        tooltip: '',
+        example: "",
+        items: [
+            'Brick',
+            'Stone',
+            'Concrete blocks',
+            'Concrete slabs/panels',
+            'Wood',
+            'Metal',
+            'Adobe/Earth',
+            'Glass',
+            'Plastic',
+            'Stucco on light framing',
+            'Vegetative (straw, matting etc)',
+            'Cement based boards',
+            'Other'
+        ]
+    },
+    construction_internal_wall_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of internal wall data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_internal_wall_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for internal wall data source(s)",
+        example: ["", "", ""],
+    },
+    construction_external_wall: {
+        category: Category.Construction,
+        title: "What is the main external wall material thought to be?",
+        tooltip: '',
+        example: "",
+        items: [
+            'Brick',
+            'Stone',
+            'Concrete blocks',
+            'Concrete slabs/panels',
+            'Wood',
+            'Metal',
+            'Adobe/Earth',
+            'Glass',
+            'Plastic',
+            'Stucco on light framing',
+            'Vegetative (straw, matting etc)',
+            'Cement based boards',
+            'Other'
+        ]
+    },
+    construction_external_wall_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of external wall data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_external_wall_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for external wall data source(s)",
+        example: ["", "", ""],
+    },
+    construction_ground_floor: {
+        category: Category.Construction,
+        title: "What is the main ground floor material thought to be?",
+        tooltip: '',
+        example: "",
+        items: [
+            'Masonry',
+            'Earthen',
+            'Concrete',
+            'Wood',
+            'Metal',
+            'Other',
+        ]
+    },
+    construction_ground_floor_source_type: {
+        category: Category.Construction,
+        title: "Source type",
+        tooltip: "Source of ground floor material data",
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_ground_floor_source_links: {
+        category: Category.Construction,
+        title: "Source links",
+        tooltip: "URL(s) for ground floor material data source(s)",
+        example: ["", "", ""],
     },
 
     sust_breeam_rating: {
@@ -1462,6 +1729,113 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     energy_green_roof_source_links: {
         category: Category.EnergyPerformance,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+
+    typology_classification: {
+        category: Category.Typology,
+        title: "Which description best suits the building and its context?",
+        tooltip: "HINT: Adapted from building type classifications developed in urban morphology. See <a href=\"https://www.smog.chalmers.se/\">https://www.smog.chalmers.se/</a> 'Space Matrix' for further information.",
+        example: "8+ storeys: Detached",
+        items: [
+            'Low-rise: Not part of a group/cluster (1-3 core floors- excluding extensions)',
+            'Low-rise: Part of dense block/row/terrace',
+            'Low-rise: Part of group of widely spaced blocks (includes semi-detached houses)',
+            'Mid-rise: Not part of a group/cluster (4-7 core floors)',
+            'Mid-rise: Part of group of densely spaced blocks',
+            'Mid-rise: Part of group of widely spaced blocks',
+            'High rise: Not part of a group/cluster',
+            'High-rise: Part of group of densely spaced blocks (8 + core floors)',
+            'High-rise: Part of group of widely spaced blocks',
+        ]
+    },
+    typology_classification_source_type: {
+        category: Category.Typology,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    typology_classification_source_links: {
+        category: Category.Typology,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+    typology_style_period: {
+        category: Category.Typology,
+        title: "Which description best suits the building's architectural style/historical period?",
+        tooltip: "",
+        example: "Georgian (1714-1837)",
+        items: [
+            'Roman (43AD-410)',
+            'Medieval (410-1485)',
+            'Tudor (1485-1603)',
+            'Stuart (1603 -1714)',
+            'Georgian (1714-1837)',
+            'Victorian (1837-1901)',
+            'Edwardian (1901-1914)',
+            'WWI - WWII (1914-45)',,
+            'Post war (1945-1975)',
+            'Late 20th Century (1975-2000)',
+            'Early 21st Century (2000-Present)',
+        ]
+    },
+    typology_style_period_source_type: {
+        category: Category.Typology,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    typology_style_period_source_links: {
+        category: Category.Typology,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+    typology_dynamic_classification: {
+        category: Category.Typology,
+        title: "Which description best suits the building's plot?",
+        tooltip: "HINT: Based on a dynamic classification system for urban tissue developed by Brenda Case Scheer. For further information see: <a href=\"https://www.researchgate.net/publication/242150847_The_Anatomy_of_Sprawl\">https://www.researchgate.net/publication/242150847_The_Anatomy_of_Sprawl</a>.",
+        example: "Large plots with internal roads",
+        items: [
+            'Repetitive small, domestic plots',
+            'Linear non-domestic, i.e. high streets',
+            'Large plots with internal roads',
+            'Other'
+        ]
+    },
+    typology_dynamic_classification_source_type: {
+        category: Category.Typology,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    typology_dynamic_classification_source_links: {
+        category: Category.Typology,
+        title: "Source link(s)",
+        tooltip: "Source link(s) for street width data",
+        example: ["", "", ""],
+    },
+    typology_original_use: {
+        category: Category.Typology,
+        title: "Which land use best describes the purpose for which the building was built?",
+        tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
+        example: ["", ""],
+    },
+    typology_original_use_source_type: {
+        category: Category.Typology,
+        title: "Source type",
+        tooltip: "Source type for street width data",
+        example: "",
+        items: commonSourceTypes
+    },
+    typology_original_use_source_links: {
+        category: Category.Typology,
         title: "Source link(s)",
         tooltip: "Source link(s) for street width data",
         example: ["", "", ""],
