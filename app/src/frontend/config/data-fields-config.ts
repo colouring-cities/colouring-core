@@ -314,6 +314,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Which description best explains the way the building is attached to others?",
         tooltip: "We have prepopulated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
         example: "",
+        items: [
+            "Detached",
+            "Semi-Detached",
+            "End-Terrace",
+            "Mid-Terrace"
+        ]
     },
     building_attachment_source_type: {
         category: Category.Age,

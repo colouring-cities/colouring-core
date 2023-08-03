@@ -13,13 +13,6 @@ import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 
-const AttachmentFormOptions = [
-    "Detached",
-    "Semi-Detached",
-    "End-Terrace",
-    "Mid-Terrace"
-];
-
 /**
 * Type view/edit section
 */
@@ -290,7 +283,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     slug="building_attachment_form"
                     value={props.building.building_attachment_form}
                     tooltip={dataFields.building_attachment_form.tooltip}
-                    options={AttachmentFormOptions}
+                    options={dataFields.building_attachment_form.items}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
