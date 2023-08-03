@@ -1833,6 +1833,17 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
         example: ["", ""],
     },
+    typology_original_use_verified: {
+        category: Category.LandUse,
+        title: 'Has this land use been manually verified?',
+        example: true,
+    },
+    typology_original_use_order: {
+        category: Category.Typology,
+        title: "Original land use (order)",
+        tooltip: "Land use Order as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
+        example: "",
+    },
     typology_original_use_source_type: {
         category: Category.Typology,
         title: "Source type",

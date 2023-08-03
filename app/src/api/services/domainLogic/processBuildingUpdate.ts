@@ -9,7 +9,7 @@ import { ArgumentError } from '../../errors/general';
 import { updateLandUse } from './landUse';
 
 /**
- * Process land use classifications - derive land use order from land use groups
+ * Process current land use classifications - derive land use order from land use groups
  */
 async function processCurrentLandUseClassifications(
     buildingId: number,
@@ -40,6 +40,37 @@ async function processCurrentLandUseClassifications(
     }
 }
 
+/**
+ * Process original land use classifications - derive land use order from land use groups
+ */
+async function processOriginalLandUseClassifications(
+    buildingId: number,
+    buildingUpdate: Partial<BuildingAttributes>,
+    t?: ITask<any>
+): Promise<any> {
+    const currentBuildingData = await getBuildingData(buildingId);
+
+    try {
+        const currentLandUseUpdate = await updateLandUse(
+            {
+                landUseGroup: currentBuildingData.typology_original_use,
+                landUseOrder: currentBuildingData.typology_original_use_order
+            }, {
+                landUseGroup: buildingUpdate.typology_original_use
+            }
+        );
+
+        return Object.assign({}, buildingUpdate, {
+            typology_original_use: currentLandUseUpdate.landUseGroup,
+            typology_original_use_order: currentLandUseUpdate.landUseOrder,
+        });
+    } catch (error) {
+        if(error instanceof ArgumentError && error.argumentName === 'landUseUpdate') {
+            error.argumentName = 'buildingUpdate';
+        }
+        throw error;
+    }
+}
 
 /**
  * Process Dynamics data - check field relationships and sort demolished buildings by construction date
@@ -80,6 +111,9 @@ async function processDynamicsDemolishedBuildings(
 export async function processBuildingUpdate(buildingId: number, {attributes, userAttributes}: BuildingUpdate, t?: ITask<any>): Promise<BuildingUpdate> {
     if(hasAnyOwnProperty(attributes, ['current_landuse_group'])) {
         attributes = await processCurrentLandUseClassifications(buildingId, attributes, t);
+    }
+    if(hasAnyOwnProperty(attributes, ['typology_original_use'])) {
+        attributes = await processOriginalLandUseClassifications(buildingId, attributes, t);
     }
     if(hasAnyOwnProperty(attributes, ['demolished_buildings', 'dynamics_has_demolished_buildings'])) {
         attributes = await processDynamicsDemolishedBuildings(buildingId, attributes, t);

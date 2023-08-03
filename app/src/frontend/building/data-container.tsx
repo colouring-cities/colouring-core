@@ -99,7 +99,9 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                      'likes_total',
                                      'community_type_worth_keeping_total',
                                      'community_local_significance_total',
-                                     'community_expected_planning_application_total'
+                                     'community_expected_planning_application_total',
+                                     'typology_original_use',
+                                     'typology_original_use_verified'
                                     ]
             for (let key in dataFields) {  
                 let fieldName = props.building == undefined ? undefined : props.building[key];    
@@ -282,6 +284,13 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             if (slug == 'current_landuse_group'){
                 const edits = {
                     'current_landuse_verified': true
+                };
+
+                this.doSubmit(edits);
+            }
+            if (slug == 'typology_original_use'){
+                const edits = {
+                    'typology_original_use_verified': true
                 };
 
                 this.doSubmit(edits);

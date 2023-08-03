@@ -266,6 +266,15 @@ const LAYER_QUERIES = {
             buildings
         WHERE
             current_landuse_order IS NOT NULL`,
+    original_landuse: `
+        SELECT
+            geometry_id,
+            typology_original_use_order,
+            typology_original_use[1] as typology_original_use,
+            typology_original_use_verified
+        FROM
+            buildings
+        WHERE typology_original_use IS NOT NULL`,
     disaster_severity: `
         SELECT
             geometry_id,

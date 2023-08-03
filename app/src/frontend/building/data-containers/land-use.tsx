@@ -138,6 +138,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             />
                         </>
                     }
+                    <hr/>
                     {
                         props.mode != 'view' &&
                         <div>

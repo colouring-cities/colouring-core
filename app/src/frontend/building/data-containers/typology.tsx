@@ -35,6 +35,10 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('building_attachment_form')
     }
+    const switchToLandUseMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('original_landuse')
+    }
 
     return (
         <Fragment>
@@ -216,6 +220,15 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Original Use">
+                {(props.mapColourScale == "original_landuse") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
+                        {'Click to change map to show typology classification.'}
+                    </button>
+                :
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLandUseMapStyle}>
+                        {"Click here to change map to original land use."}
+                    </button>
+                }
                 <MultiDataEntry
                     title={dataFields.typology_original_use.title}
                     slug="typology_original_use"
@@ -267,6 +280,27 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                     </>
                 }
+                <hr/>
+                {
+                    props.mode != 'view' &&
+                    <div>
+                        <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                            <i>
+                                Below is a more general classification for the original land use of this building, automatically derived from the information above.
+                            </i>
+                        </div>
+                    </div>
+                }
+                <DataEntry
+                    title={dataFields.typology_original_use_order.title}
+                    tooltip={dataFields.typology_original_use_order.tooltip}
+                    slug="typology_original_use_order"
+                    value={props.building.typology_original_use_order}
+                    mode={props.mode}
+                    disabled={true}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                />
             </DataEntryGroup>
             <DataEntryGroup name="Attachment/Adjacency">
                 {(props.mapColourScale == "building_attachment_form") ? 

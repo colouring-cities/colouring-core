@@ -913,6 +913,83 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="original_landuse">
+        <Rule>
+            <Filter>[typology_original_use_order] = "Agriculture And Fisheries"</Filter>
+            <PolygonSymbolizer fill="#73ccd1" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Minerals"</Filter>
+            <PolygonSymbolizer fill="#45cce3" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Unclassified, presumed non-residential"</Filter>
+            <PolygonSymbolizer fill="#6c6f8e" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Recreation And Leisure"</Filter>
+            <PolygonSymbolizer fill="#ffbfbf" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Transport"</Filter>
+            <PolygonSymbolizer fill="#b3de69" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Utilities And Infrastructure"</Filter>
+            <PolygonSymbolizer fill="#cccccc" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Residential" and not ([typology_original_use_order] = "Garden buildings") and not ([typology_original_use_order] = "Hotels, boarding and guest houses") and not ([typology_original_use_verified])</Filter>
+            <PolygonSymbolizer fill="#252aa6" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Residential" and not ([typology_original_use_order] = "Garden buildings") and not ([typology_original_use_order] = "Hotels, boarding and guest houses") and ([typology_original_use_verified])</Filter>
+            <PolygonSymbolizer fill="#7025a6" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Residential" and [typology_original_use_order] = "Hotels, boarding and guest houses"</Filter>
+            <PolygonSymbolizer fill="#3c4194" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Residential" and [typology_original_use_order] = "Garden buildings" </Filter>
+            <PolygonSymbolizer fill="#1157fa" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Community Services"</Filter>
+            <PolygonSymbolizer fill="#fa667d" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Retail"</Filter>
+            <PolygonSymbolizer fill="#ff8c00" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Industry And Business"</Filter>
+            <PolygonSymbolizer fill="#f5f58f" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Vacant And Derelict"</Filter>
+            <PolygonSymbolizer fill="#ffffff" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Defence"</Filter>
+            <PolygonSymbolizer fill="#898944" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Mixed Use"</Filter>
+            <PolygonSymbolizer fill="#e5050d" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>8530</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="0.8"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="disaster_severity">
         <Rule>
             <Filter>[disaster_severity] = "Building destroyed"</Filter>
