@@ -49,6 +49,25 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         },
         {
+            mapStyle: 'typology_style_period',
+            legend: {
+                title: 'Architectural style',
+                elements: [
+                    { color: '#FFF739', text: '43AD-410 (Roman)' },
+                    { color: '#C5BD00', text: '410-1485 (Medieval)' },
+                    { color: '#FF9A39', text: '1485-1603 (Tudor)' },
+                    { color: '#C56000', text: '1603-1714 (Stuart)' },
+                    { color: '#EA8072', text: '1714-1837 (Georgian)' },
+                    { color: '#A71200', text: '1837-1901 (Victorian)' },
+                    { color: '#A272D4', text: '1901-1914 (Edwardian)' },
+                    { color: '#3988C5', text: '1914-1945 (WWI-WWII)' },
+                    { color: '#5ADFA2', text: '1945-1979 (Post war)' },
+                    { color: '#C2F47A', text: '1980-1999 (Late C20)' },
+                    { color: '#6FB40A', text: '2000-2025 (Early C21)' },
+                ]
+            }
+        },
+        {
             mapStyle: 'survival_status',
             legend: {
                 title: 'Survival status',
@@ -322,17 +341,17 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Architectural style',
                 elements: [
-                    { color: '#FFF739', text: 'Roman (43AD-410)' },
-                    { color: '#C5BD00', text: 'Medieval (410-1485)' },
-                    { color: '#FF9A39', text: 'Tudor (1485-1603)' },
-                    { color: '#C56000', text: 'Stuart (1603 -1714)' },
-                    { color: '#EA8072', text: 'Georgian (1714-1837)' },
-                    { color: '#A71200', text: 'Victorian (1837-1901)' },
-                    { color: '#A272D4', text: 'Edwardian (1901-1914)' },
-                    { color: '#3988C5', text: 'WWI - WWII (1914-45)' },
-                    { color: '#5ADFA2', text: 'Post war (1945-1975)' },
-                    { color: '#C2F47A', text: 'Late C20th (1975-2000)' },
-                    { color: '#6FB40A', text: 'Early C21st (2000- )' },
+                    { color: '#FFF739', text: '43AD-410 (Roman)' },
+                    { color: '#C5BD00', text: '410-1485 (Medieval)' },
+                    { color: '#FF9A39', text: '1485-1603 (Tudor)' },
+                    { color: '#C56000', text: '1603-1714 (Stuart)' },
+                    { color: '#EA8072', text: '1714-1837 (Georgian)' },
+                    { color: '#A71200', text: '1837-1901 (Victorian)' },
+                    { color: '#A272D4', text: '1901-1914 (Edwardian)' },
+                    { color: '#3988C5', text: '1914-1945 (WWI-WWII)' },
+                    { color: '#5ADFA2', text: '1945-1979 (Post war)' },
+                    { color: '#C2F47A', text: '1980-1999 (Late C20)' },
+                    { color: '#6FB40A', text: '2000-2025 (Early C21)' },
                 ]
             }
         },

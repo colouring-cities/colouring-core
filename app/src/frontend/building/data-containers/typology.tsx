@@ -100,7 +100,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Architectural style/Historical period">
+            <DataEntryGroup name="Architectural style">
                 {(props.mapColourScale == "typology_style_period") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
                         {'Click to change map to show typology classification.'}
@@ -110,7 +110,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         {"Click here to change map to show architectural style/historical period."}
                     </button>
                 }
-                <SelectDataEntry
+                {/* <SelectDataEntry
                     title={dataFields.typology_style_period.title}
                     slug="typology_style_period"
                     value={props.building.typology_style_period}
@@ -127,11 +127,11 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified={props.user_verified.hasOwnProperty("typology_style_period")}
                     user_verified_as={props.user_verified.typology_style_period}
                     verified_count={props.building.verified.typology_style_period}
-                />
+                /> */}
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
-                    <i className="source-url">For building age by year see <a href={"http://localhost:8080/edit/age/"+props.building.building_id}>Age & History</a>.</i>
+                    <i className="source-url">For building age/architectural style data, see <a href={"/edit/age/"+props.building.building_id}>Age & History</a>.</i>
                 </div>
-                <SelectDataEntry
+                {/* <SelectDataEntry
                     title={dataFields.typology_style_period_source_type.title}
                     slug="typology_style_period_source_type"
                     value={props.building.typology_style_period_source_type}
@@ -159,7 +159,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             isUrl={true}
                         />
                     </>
-                }
+                } */}
             </DataEntryGroup>
             <DataEntryGroup name="Dynamic tissue classification">
                 {(props.mapColourScale == "typology_dynamic_classification") ? 

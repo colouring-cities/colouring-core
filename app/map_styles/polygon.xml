@@ -1113,7 +1113,7 @@
             <PolygonSymbolizer fill="#FF9A39" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "1603 -1714 (Stuart)"</Filter>
+            <Filter>[typology_style_period] = "1603-1714 (Stuart)"</Filter>
             <PolygonSymbolizer fill="#C56000" />
         </Rule>
         <Rule>
@@ -1129,7 +1129,7 @@
             <PolygonSymbolizer fill="#A272D4" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "1914-45 (WWI - WWII)"</Filter>
+            <Filter>[typology_style_period] = "1914-1945 (WWI-WWII)"</Filter>
             <PolygonSymbolizer fill="#3988C5" />
         </Rule>
         <Rule>
