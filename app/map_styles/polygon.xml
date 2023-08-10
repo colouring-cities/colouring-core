@@ -19,7 +19,19 @@
     </Style>
     <Style name="base_night_outlines">
         <Rule>
-            <LineSymbolizer stroke="#ff0000ff" stroke-width="1" />
+            <MaxScaleDenominator>20000</MaxScaleDenominator>
+            <MinScaleDenominator>1200</MinScaleDenominator>
+            <LineSymbolizer stroke="#0081AF" stroke-width="0.5"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>12000</MaxScaleDenominator>
+            <MinScaleDenominator>8000</MinScaleDenominator>
+            <LineSymbolizer stroke="#0081AF" stroke-width="1.5"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>8000</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#0081AF" stroke-width="2.5"/>
         </Rule>
     </Style>
     <Style name="base_boroughs">
