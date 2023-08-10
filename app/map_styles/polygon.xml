@@ -26,12 +26,12 @@
         <Rule>
             <MaxScaleDenominator>12000</MaxScaleDenominator>
             <MinScaleDenominator>8000</MinScaleDenominator>
-            <LineSymbolizer stroke="#0081AF" stroke-width="1.5"/>
+            <LineSymbolizer stroke="#0081AF" stroke-width="1.8"/>
         </Rule>
         <Rule>
             <MaxScaleDenominator>8000</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
-            <LineSymbolizer stroke="#0081AF" stroke-width="2.5"/>
+            <LineSymbolizer stroke="#0081AF" stroke-width="4.0"/>
         </Rule>
     </Style>
     <Style name="base_boroughs">
