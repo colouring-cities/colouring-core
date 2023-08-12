@@ -72,6 +72,10 @@ Se realizan los cambios de la configuración general del aplicativo en el archiv
     - Se modifica el archivo header.tsx
     - Se modifica el archivo welcome.tsx
     - Se carga el mapa base de OSM y se centra en la plaza de Bolivar, Bogotá.
+    - Se modifica la etl de geometrias de lotes para importar las geometrias de construcciones
+    - Se agrega un boundary de la ciudad de bogota
+    - Se modifican .sh de load_geometries y create_building_records para cargar poligonos de IDECA.
+    
 
 
 
