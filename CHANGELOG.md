@@ -71,6 +71,7 @@ Se realizan los cambios de la configuración general del aplicativo en el archiv
     - Se modifica el archivo search-box.tsx
     - Se modifica el archivo header.tsx
     - Se modifica el archivo welcome.tsx
+    - Se carga el mapa base de OSM y se centra en la plaza de Bolivar, Bogotá.
 
 
 
