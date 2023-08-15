@@ -17,7 +17,6 @@ Then with this script:
 
 
 """
-import json
 import csv
 import os
 import subprocess
@@ -28,50 +27,49 @@ from tqdm import tqdm
 
 
 def main(base_url, api_key, source_file):
-    """Read from file, update buildings
-    """
-    with open(source_file, 'r') as source_fh:
+    """Read from file, update buildings"""
+    with open(source_file, "r") as source_fh:
         source = csv.DictReader(source_fh)
         for feature in tqdm(source, total=line_count(source_file)):
             building_id, data = process_ca(feature)
-            if building_id and building_id != 'building_id':
+            if building_id and building_id != "building_id":
                 save_data(building_id, data, api_key, base_url)
 
 
 def line_count(fname):
-    """Count lines - relies on 'wc'
-    """
-    p = subprocess.run(['wc', '-l', fname], stdout=subprocess.PIPE)
+    """Count lines - relies on 'wc'"""
+    p = subprocess.run(["wc", "-l", fname], stdout=subprocess.PIPE)
     if p.returncode != 0:
-        raise IOError(err)
+        raise IOError(p.returncode)
     return int(p.stdout.strip().split()[0])
 
+
 def process_ca(props):
-    building_id = props['building_id']
+    building_id = props["building_id"]
     data = {
-        'planning_in_conservation_area': True,
-        'planning_conservation_area_name': props['conservation_area_name']
+        "planning_in_conservation_area": True,
+        "planning_conservation_area_name": props["conservation_area_name"],
     }
     return building_id, data
 
 
 def save_data(building_id, data, api_key, base_url):
-    """Save data to a building
-    """
-    r = requests.post(
+    """Save data to a building"""
+    requests.post(
         "{}/buildings/{}.json?api_key={}".format(base_url, building_id, api_key),
-        json=data
+        json=data,
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         url, api_key, filename = sys.argv[1], sys.argv[2], sys.argv[3]
     except IndexError:
         print(
             "Usage: {} <URL> <api_key> ./path/to/conservation_areas.csv".format(
-            os.path.basename(__file__)
-        ))
+                os.path.basename(__file__)
+            )
+        )
         exit()
 
     main(url, api_key, filename)
