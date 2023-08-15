@@ -326,6 +326,8 @@ pip install -r requirements.txt
 
 To help test the Colouring Cities application, `get_test_polygons.py` will attempt to save a small (1.5km²) extract from OpenStreetMap to a format suitable for loading to the database.
 
+**NOTE:** You can edit the file by [changing this line](https://github.com/colouring-cities/colouring-core/blob/df651521983665056d442603a329a37d966aede1/etl/get_test_polygons.py#L22) to specify the latitude and longitude used to define the centre of the sample data area, as well as the distance from that point, which are used to generate the sample data. (i.e. you could change it to match the cc-config.json file - as discussed in [configuring-colouring-cities.md](https://github.com/colouring-cities/colouring-core/blob/master/docs/configuring-colouring-cities.md). 
+
 Download the test data.
 
 ```bash
