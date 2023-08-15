@@ -46,11 +46,8 @@ test_data_geojson = str(os.path.join(test_dir, "test_buildings.geojson"))
 subprocess.run(["rm", test_data_geojson])
 gdf_to_save = gdf_proj.reset_index()[["osmid", "geometry"]]
 
-gdf_to_save.rename(
-    columns={"osmid": "fid"}
-).to_file(
-    test_data_geojson, 
-    driver="GeoJSON"
+gdf_to_save.rename(columns={"osmid": "fid"}).to_file(
+    test_data_geojson, driver="GeoJSON"
 )
 
 # convert to CSV
