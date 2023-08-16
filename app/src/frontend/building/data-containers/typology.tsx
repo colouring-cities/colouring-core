@@ -101,7 +101,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Architectural style">
-                {(props.mapColourScale == "typology_style_period") ? 
+                {/*(props.mapColourScale == "typology_style_period") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
                         {'Click to change map to show typology classification.'}
                     </button>
@@ -109,8 +109,8 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToStylePeriodMapStyle}>
                         {"Click here to change map to show architectural style/historical period."}
                     </button>
-                }
-                {/* <SelectDataEntry
+                */}
+                <SelectDataEntry
                     title={dataFields.typology_style_period.title}
                     slug="typology_style_period"
                     value={props.building.typology_style_period}
@@ -119,7 +119,9 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                    disabled={true}
                 />
+                {/*
                 <Verification
                     slug="typology_style_period"
                     allow_verify={props.user !== undefined && props.building.typology_style_period !== null && !props.edited}
@@ -129,7 +131,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.typology_style_period}
                 /> */}
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
-                    <i className="source-url">For building age/architectural style data, see <a href={"/edit/age/"+props.building.building_id}>Age & History</a>.</i>
+                    <i className="source-url">To edit the architectural style box, and to see the data mapped, please go to <a href={"/"+props.mode+"/age/"+props.building.building_id}>Age & History</a>.</i>
                 </div>
                 {/* <SelectDataEntry
                     title={dataFields.typology_style_period_source_type.title}

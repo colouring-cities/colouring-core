@@ -61,7 +61,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#A71200', text: '1837-1901 (Victorian)' },
                     { color: '#A272D4', text: '1901-1914 (Edwardian)' },
                     { color: '#3988C5', text: '1914-1945 (WWI-WWII)' },
-                    { color: '#5ADFA2', text: '1945-1979 (Post war)' },
+                    { color: '#5ADFA2', text: '1946-1979 (Post war)' },
                     { color: '#C2F47A', text: '1980-1999 (Late C20)' },
                     { color: '#6FB40A', text: '2000-2025 (Early C21)' },
                 ]
@@ -336,7 +336,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 ]
             }
         },
-        {
+        /*{
             mapStyle: 'typology_style_period',
             legend: {
                 title: 'Architectural style',
@@ -349,12 +349,12 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#A71200', text: '1837-1901 (Victorian)' },
                     { color: '#A272D4', text: '1901-1914 (Edwardian)' },
                     { color: '#3988C5', text: '1914-1945 (WWI-WWII)' },
-                    { color: '#5ADFA2', text: '1945-1979 (Post war)' },
+                    { color: '#5ADFA2', text: '1946-1979 (Post war)' },
                     { color: '#C2F47A', text: '1980-1999 (Late C20)' },
                     { color: '#6FB40A', text: '2000-2025 (Early C21)' },
                 ]
             }
-        },
+        },*/
         {
             mapStyle: 'typology_dynamic_classification',
             legend: {

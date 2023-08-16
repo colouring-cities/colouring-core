@@ -1145,7 +1145,7 @@
             <PolygonSymbolizer fill="#3988C5" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "1945-1979 (Post war)"</Filter>
+            <Filter>[typology_style_period] = "1946-1979 (Post war)"</Filter>
             <PolygonSymbolizer fill="#5ADFA2" />
         </Rule>
         <Rule>

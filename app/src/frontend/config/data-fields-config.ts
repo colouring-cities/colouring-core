@@ -1784,7 +1784,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             '1837-1901 (Victorian)',
             '1901-1914 (Edwardian)',
             '1914-1945 (WWI-WWII)',,
-            '1945-1979 (Post war)',
+            '1946-1979 (Post war)',
             '1980-1999 (Late 20th Century)',
             '2000-2025 (Early 21st Century)',
         ]

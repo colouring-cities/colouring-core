@@ -40,11 +40,26 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const ageLinkUrl = `/${props.mode}/${Category.Age}/${props.building.building_id}`;
 
     const { historicData, historicDataSwitchOnClick, darkLightTheme } = useDisplayPreferences();
+    const { historicMap, historicMapSwitchOnClick } = useDisplayPreferences();
 
     const switchToSurvivalMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('survival_status');
+        historicMapSwitchOnClick(e);
+        
+        if (historicData === 'enabled') {
+           historicDataSwitchOnClick(e);
+        }
+    }
+
+    const switchToSurvivalDataStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('survival_status');
         historicDataSwitchOnClick(e);
+
+        if (historicMap === 'enabled') {
+            historicMapSwitchOnClick(e);
+        }
     }
 
     const switchToAgeMapStyle = (e) => {
@@ -208,9 +223,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.typology_style_period}
                     verified_count={props.building.verified.typology_style_period}
                 />
-                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
-                    <i className="source-url">For building age by year see <a href={"/edit/age/"+props.building.building_id}>Age & History</a>.</i>
-                </div>
                 <SelectDataEntry
                     title={dataFields.typology_style_period_source_type.title}
                     slug="typology_style_period_source_type"
@@ -393,15 +405,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan and site history">
-                {(props.mapColourScale == "survival_status") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
-                        Click here to hide historical maps.
-                    </button>
-                :
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
-                        Click here to show historical maps
-                    </button>
-                }
                 <DataEntryGroup name="Constructions and demolitions on this site" showCount={false}>
                     <DynamicsBuildingPane>
                         <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
@@ -495,13 +498,22 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         Choose a colour to indicate whether the building has survived.
                     </i>
                 </div>
-                {(props.mapColourScale == "survival_status") ? 
+                {(historicMap == "enabled") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
-                        Click here to hide historical maps.
+                        Click here to hide the 1890s OS historical map.
                     </button>
                 :
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
-                        Click here to show historical maps
+                        Click here to show the 1890s OS historical map.
+                    </button>
+                }
+                {(historicData == "enabled") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
+                        Click here to hide the 1890s OS historical map with modern footprints.
+                    </button>
+                :
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalDataStyle}>
+                        Click here to show the 1890s OS historical map with modern footprints.
                     </button>
                 }
                 <SelectDataEntry
