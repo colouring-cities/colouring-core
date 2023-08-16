@@ -297,7 +297,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             }
             flipHistoricData(e);
         },
-        [historicData],
+        [historicData, historicMap],
     )
     const historicDataSwitchOnClick = (e) => {
         flipHistoricData(e)
@@ -315,7 +315,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             }
             fliphistoricMap(e);
         },
-        [historicMap],
+        [historicMap, historicData],
     )
     const historicMapSwitchOnClick = (e) => {
         fliphistoricMap(e)
