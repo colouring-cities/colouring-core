@@ -38,6 +38,10 @@ interface DisplayPreferencesContextState {
     historicDataSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     historicDataSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
+    historicMap: LayerEnablementState;
+    historicMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    historicMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
     darkLightTheme: MapTheme;
     darkLightThemeSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     darkLightThemeSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -87,6 +91,10 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     historicDataSwitch: stub,
     historicDataSwitchOnClick: undefined,
 
+    historicMap: undefined,
+    historicMapSwitch: stub,
+    historicMapSwitchOnClick: undefined,
+
     darkLightTheme: undefined,
     darkLightThemeSwitch: stub,
     darkLightThemeSwitchOnClick: undefined,
@@ -107,6 +115,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultParcel = 'disabled'
     const defaultConservation = 'disabled'
     const defaultHistoricData = 'disabled'
+    const defaultHistoricMap = 'disabled'
     const defaultShowLayerSelection = 'disabled'
     const [vista, setVista] = useState<LayerEnablementState>(defaultVista);
     const [flood, setFlood] = useState<LayerEnablementState>(defaultFlood);
@@ -116,6 +125,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [parcel, setParcel] = useState<LayerEnablementState>(defaultParcel);
     const [conservation, setConservation] = useState<LayerEnablementState>(defaultConservation);
     const [historicData, setHistoricData] = useState<LayerEnablementState>(defaultHistoricData);
+    const [historicMap, setHistoricMap] = useState<LayerEnablementState>(defaultHistoricMap);
     const [darkLightTheme, setDarkLightTheme] = useState<MapTheme>('night');
     const [showLayerSelection, setShowLayerSelection] = useState<LayerEnablementState>(defaultShowLayerSelection);
 
@@ -136,6 +146,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             setParcel(defaultParcel);
             setConservation(defaultConservation);
             setHistoricData(defaultHistoricData);
+            setHistoricMap(defaultHistoricMap);
             setShowLayerSelection(defaultShowLayerSelection); // reset layers + hiding this panel is integrated into one action
             //setDarkLightTheme('night'); // reset only layers
     },
@@ -165,6 +176,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             return true;
         }
         if(historicData != defaultHistoricData) {
+            return true;
+        }
+        if(historicMap != defaultHistoricMap) {
             return true;
         }
         //darkLightTheme not handled here
@@ -278,7 +292,10 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
 
     const historicDataSwitch = useCallback(
         (e) => {
-            flipHistoricData(e)
+            if (historicMap === 'enabled') {
+                fliphistoricMap(e);
+            }
+            flipHistoricData(e);
         },
         [historicData],
     )
@@ -289,6 +306,24 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         e.preventDefault();
         const newHistoric = (historicData === 'enabled')? 'disabled' : 'enabled';
         setHistoricData(newHistoric);
+    }
+
+    const historicMapSwitch = useCallback(
+        (e) => {
+            if (historicData === 'enabled') {
+                flipHistoricData(e);
+            }
+            fliphistoricMap(e);
+        },
+        [historicMap],
+    )
+    const historicMapSwitchOnClick = (e) => {
+        fliphistoricMap(e)
+    }
+    function fliphistoricMap(e) {
+        e.preventDefault();
+        const newHistoric = (historicMap === 'enabled')? 'disabled' : 'enabled';
+        setHistoricMap(newHistoric);
     }
 
     const darkLightThemeSwitch = useCallback(
@@ -353,6 +388,10 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             historicData,
             historicDataSwitch,
             historicDataSwitchOnClick,
+
+            historicMap,
+            historicMapSwitch,
+            historicMapSwitchOnClick,
 
             darkLightTheme,
             darkLightThemeSwitch,

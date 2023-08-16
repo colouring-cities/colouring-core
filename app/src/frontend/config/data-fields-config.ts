@@ -314,6 +314,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Which description best explains the way the building is attached to others?",
         tooltip: "We have prepopulated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
         example: "",
+        items: [
+            "Detached",
+            "Semi-Detached",
+            "End-Terrace",
+            "Mid-Terrace"
+        ]
     },
     building_attachment_source_type: {
         category: Category.Age,
@@ -1770,17 +1776,17 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "",
         example: "Georgian (1714-1837)",
         items: [
-            'Roman (43AD-410)',
-            'Medieval (410-1485)',
-            'Tudor (1485-1603)',
-            'Stuart (1603 -1714)',
-            'Georgian (1714-1837)',
-            'Victorian (1837-1901)',
-            'Edwardian (1901-1914)',
-            'WWI - WWII (1914-45)',,
-            'Post war (1945-1975)',
-            'Late 20th Century (1975-2000)',
-            'Early 21st Century (2000-Present)',
+            '43AD-410 (Roman)',
+            '410-1485 (Medieval)',
+            '1485-1603 (Tudor)',
+            '1603-1714 (Stuart)',
+            '1714-1837 (Georgian)',
+            '1837-1901 (Victorian)',
+            '1901-1914 (Edwardian)',
+            '1914-1945 (WWI-WWII)',,
+            '1946-1979 (Post war)',
+            '1980-1999 (Late 20th Century)',
+            '2000-2025 (Early 21st Century)',
         ]
     },
     typology_style_period_source_type: {
@@ -1826,6 +1832,17 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Which land use best describes the purpose for which the building was built?",
         tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
         example: ["", ""],
+    },
+    typology_original_use_verified: {
+        category: Category.LandUse,
+        title: 'Has this land use been manually verified?',
+        example: true,
+    },
+    typology_original_use_order: {
+        category: Category.Typology,
+        title: "Original land use (order)",
+        tooltip: "Land use Order as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
+        example: "",
     },
     typology_original_use_source_type: {
         category: Category.Typology,

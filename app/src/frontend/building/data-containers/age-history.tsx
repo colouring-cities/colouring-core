@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 import '../../map/map-button.css';
-import { dataFields } from '../../config/data-fields-config';
+import { commonSourceTypes, dataFields } from '../../config/data-fields-config';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import { DynamicsBuildingPane, DynamicsDataEntry } from './dynamics/dynamics-data-entry';
@@ -40,23 +40,47 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const ageLinkUrl = `/${props.mode}/${Category.Age}/${props.building.building_id}`;
 
     const { historicData, historicDataSwitchOnClick, darkLightTheme } = useDisplayPreferences();
+    const { historicMap, historicMapSwitchOnClick } = useDisplayPreferences();
 
     const switchToSurvivalMapStyle = (e) => {
         e.preventDefault();
+        props.onMapColourScale('survival_status');
+        historicMapSwitchOnClick(e);
+        
+        if (historicData === 'enabled') {
+           historicDataSwitchOnClick(e);
+        }
+    }
 
-        if (props.mapColourScale == "survival_status") {
-            props.onMapColourScale('date_year');
+    const switchToSurvivalDataStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('survival_status');
+        historicDataSwitchOnClick(e);
+
+        if (historicMap === 'enabled') {
+            historicMapSwitchOnClick(e);
+        }
+    }
+
+    const switchToAgeMapStyle = (e) => {
+        e.preventDefault();
+
+        if (props.mapColourScale == "survival_status")
+        {
             historicDataSwitchOnClick(e);
         }
-        else {
-            props.onMapColourScale('survival_status');
-            historicDataSwitchOnClick(e);
-        }
+
+        props.onMapColourScale('date_year')
+    }
+
+    const switchToStylePeriodMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('typology_style_period')
     }
 
     return (
         <Fragment>
-            <DataEntryGroup name="Building age">
+            <DataEntryGroup name="Building age/construction date">
                 <YearDataEntry
                     year={props.building.date_year}
                     upper={props.building.date_upper}
@@ -170,6 +194,64 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode='view'
                     tooltip='Coming Soon'
                 />*/}
+            </DataEntryGroup>
+            <DataEntryGroup name="Architectural style">
+                {(props.mapColourScale == "typology_style_period") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
+                        Click here to return to building age.
+                    </button>
+                :
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToStylePeriodMapStyle}>
+                        Click here to show architectural style.
+                    </button>
+                }
+                <SelectDataEntry
+                    title={dataFields.typology_style_period.title}
+                    slug="typology_style_period"
+                    value={props.building.typology_style_period}
+                    tooltip={dataFields.typology_style_period.tooltip}
+                    options={dataFields.typology_style_period.items}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                />
+                <Verification
+                    slug="typology_style_period"
+                    allow_verify={props.user !== undefined && props.building.typology_style_period !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("typology_style_period")}
+                    user_verified_as={props.user_verified.typology_style_period}
+                    verified_count={props.building.verified.typology_style_period}
+                />
+                <SelectDataEntry
+                    title={dataFields.typology_style_period_source_type.title}
+                    slug="typology_style_period_source_type"
+                    value={props.building.typology_style_period_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.typology_style_period_source_type.tooltip}
+                    placeholder={dataFields.typology_style_period_source_type.example}
+                    options={dataFields.typology_style_period_source_type.items}
+                    />
+                {(props.building.typology_style_period_source_type == commonSourceTypes[0] ||
+                    props.building.typology_style_period_source_type == commonSourceTypes[1] ||
+                    props.building.typology_style_period_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.typology_style_period_source_links.title}
+                            slug="typology_style_period_source_links"
+                            value={props.building.typology_style_period_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.typology_style_period_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
             </DataEntryGroup>
             <DataEntryGroup name="Cladding, extensions and retrofits">
                 <NumericDataEntry
@@ -323,9 +405,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan and site history">
-                <button className={`map-switcher-inline ${props.mapColourScale == "survival_status" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
-                    {(props.mapColourScale == "is_domestic")? 'Click here to hide historical maps':'Click here to show historical maps'}
-                </button>
                 <DataEntryGroup name="Constructions and demolitions on this site" showCount={false}>
                     <DynamicsBuildingPane>
                         <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
@@ -419,9 +498,24 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         Choose a colour to indicate whether the building has survived.
                     </i>
                 </div>
-                <button className={`map-switcher-inline ${props.mapColourScale == "survival_status" ? "enabled-state" : "disabled-state"} btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
-                    {(props.mapColourScale == "is_domestic")? 'Click here to hide historical maps':'Click here to show historical maps'}
-                </button>
+                {(historicMap == "enabled") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
+                        Click here to hide the 1890s OS historical map.
+                    </button>
+                :
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
+                        Click here to show the 1890s OS historical map.
+                    </button>
+                }
+                {(historicData == "enabled") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
+                        Click here to hide the 1890s OS historical map with modern footprints.
+                    </button>
+                :
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalDataStyle}>
+                        Click here to show the 1890s OS historical map with modern footprints.
+                    </button>
+                }
                 <SelectDataEntry
                     title={dataFields.survival_status.title}
                     slug="survival_status"

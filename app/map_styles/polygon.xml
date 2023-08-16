@@ -19,7 +19,19 @@
     </Style>
     <Style name="base_night_outlines">
         <Rule>
-            <LineSymbolizer stroke="#ff0000ff" stroke-width="1" />
+            <MaxScaleDenominator>20000</MaxScaleDenominator>
+            <MinScaleDenominator>1200</MinScaleDenominator>
+            <LineSymbolizer stroke="#0081AF" stroke-width="0.5"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>12000</MaxScaleDenominator>
+            <MinScaleDenominator>8000</MinScaleDenominator>
+            <LineSymbolizer stroke="#0081AF" stroke-width="1.8"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>8000</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#0081AF" stroke-width="4.0"/>
         </Rule>
     </Style>
     <Style name="base_boroughs">
@@ -913,6 +925,83 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="original_landuse">
+        <Rule>
+            <Filter>[typology_original_use_order] = "Agriculture And Fisheries"</Filter>
+            <PolygonSymbolizer fill="#73ccd1" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Minerals"</Filter>
+            <PolygonSymbolizer fill="#45cce3" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Unclassified, presumed non-residential"</Filter>
+            <PolygonSymbolizer fill="#6c6f8e" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Recreation And Leisure"</Filter>
+            <PolygonSymbolizer fill="#ffbfbf" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Transport"</Filter>
+            <PolygonSymbolizer fill="#b3de69" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Utilities And Infrastructure"</Filter>
+            <PolygonSymbolizer fill="#cccccc" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Residential" and not ([typology_original_use_order] = "Garden buildings") and not ([typology_original_use_order] = "Hotels, boarding and guest houses") and not ([typology_original_use_verified])</Filter>
+            <PolygonSymbolizer fill="#252aa6" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Residential" and not ([typology_original_use_order] = "Garden buildings") and not ([typology_original_use_order] = "Hotels, boarding and guest houses") and ([typology_original_use_verified])</Filter>
+            <PolygonSymbolizer fill="#7025a6" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Residential" and [typology_original_use_order] = "Hotels, boarding and guest houses"</Filter>
+            <PolygonSymbolizer fill="#3c4194" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Residential" and [typology_original_use_order] = "Garden buildings" </Filter>
+            <PolygonSymbolizer fill="#1157fa" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Community Services"</Filter>
+            <PolygonSymbolizer fill="#fa667d" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Retail"</Filter>
+            <PolygonSymbolizer fill="#ff8c00" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Industry And Business"</Filter>
+            <PolygonSymbolizer fill="#f5f58f" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Vacant And Derelict"</Filter>
+            <PolygonSymbolizer fill="#ffffff" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Defence"</Filter>
+            <PolygonSymbolizer fill="#898944" />
+        </Rule>
+        <Rule>
+            <Filter>[typology_original_use_order] = "Mixed Use"</Filter>
+            <PolygonSymbolizer fill="#e5050d" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>8530</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="0.8"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="disaster_severity">
         <Rule>
             <Filter>[disaster_severity] = "Building destroyed"</Filter>
@@ -1024,47 +1113,47 @@
     </Style>
     <Style name="typology_style_period">
         <Rule>
-            <Filter>[typology_style_period] = "Roman (43AD-410)"</Filter>
+            <Filter>[typology_style_period] = "43AD-410 (Roman)"</Filter>
             <PolygonSymbolizer fill="#FFF739" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "Medieval (410-1485)"</Filter>
+            <Filter>[typology_style_period] = "410-1485 (Medieval)"</Filter>
             <PolygonSymbolizer fill="#C5BD00" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "Tudor (1485-1603)"</Filter>
+            <Filter>[typology_style_period] = "1485-1603 (Tudor)"</Filter>
             <PolygonSymbolizer fill="#FF9A39" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "Stuart (1603 -1714)"</Filter>
+            <Filter>[typology_style_period] = "1603-1714 (Stuart)"</Filter>
             <PolygonSymbolizer fill="#C56000" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "Georgian (1714-1837)"</Filter>
+            <Filter>[typology_style_period] = "1714-1837 (Georgian)"</Filter>
             <PolygonSymbolizer fill="#EA8072" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "Victorian (1837-1901)"</Filter>
+            <Filter>[typology_style_period] = "1837-1901 (Victorian)"</Filter>
             <PolygonSymbolizer fill="#A71200" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "Edwardian (1901-1914)"</Filter>
+            <Filter>[typology_style_period] = "1901-1914 (Edwardian)"</Filter>
             <PolygonSymbolizer fill="#A272D4" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "WWI - WWII (1914-45)"</Filter>
+            <Filter>[typology_style_period] = "1914-1945 (WWI-WWII)"</Filter>
             <PolygonSymbolizer fill="#3988C5" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "Post war (1945-1975)"</Filter>
+            <Filter>[typology_style_period] = "1946-1979 (Post war)"</Filter>
             <PolygonSymbolizer fill="#5ADFA2" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "Late 20th Century (1975-2000)"</Filter>
+            <Filter>[typology_style_period] = "1980-1999 (Late 20th Century)"</Filter>
             <PolygonSymbolizer fill="#C2F47A" />
         </Rule>
         <Rule>
-            <Filter>[typology_style_period] = "Early 21st Century (2000-Present)"</Filter>
+            <Filter>[typology_style_period] = "2000-2025 (Early 21st Century)"</Filter>
             <PolygonSymbolizer fill="#6FB40A" />
         </Rule>
 

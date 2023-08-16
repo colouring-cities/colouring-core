@@ -13,13 +13,6 @@ import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 
-const AttachmentFormOptions = [
-    "Detached",
-    "Semi-Detached",
-    "End-Terrace",
-    "Mid-Terrace"
-];
-
 /**
 * Type view/edit section
 */
@@ -41,6 +34,10 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const switchToAttachmentMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('building_attachment_form')
+    }
+    const switchToLandUseMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('original_landuse')
     }
 
     return (
@@ -103,8 +100,8 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Architectural style/Historical period">
-                {(props.mapColourScale == "typology_style_period") ? 
+            <DataEntryGroup name="Architectural style">
+                {/*(props.mapColourScale == "typology_style_period") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
                         {'Click to change map to show typology classification.'}
                     </button>
@@ -112,7 +109,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToStylePeriodMapStyle}>
                         {"Click here to change map to show architectural style/historical period."}
                     </button>
-                }
+                */}
                 <SelectDataEntry
                     title={dataFields.typology_style_period.title}
                     slug="typology_style_period"
@@ -122,7 +119,9 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                    disabled={true}
                 />
+                {/*
                 <Verification
                     slug="typology_style_period"
                     allow_verify={props.user !== undefined && props.building.typology_style_period !== null && !props.edited}
@@ -130,11 +129,11 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified={props.user_verified.hasOwnProperty("typology_style_period")}
                     user_verified_as={props.user_verified.typology_style_period}
                     verified_count={props.building.verified.typology_style_period}
-                />
+                /> */}
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
-                    <i className="source-url">For building age by year see <a href={"http://localhost:8080/edit/age/"+props.building.building_id}>Age & History</a>.</i>
+                    <i className="source-url">To edit the architectural style box, and to see the data mapped, please go to <a href={"/"+props.mode+"/age/"+props.building.building_id}>Age & History</a>.</i>
                 </div>
-                <SelectDataEntry
+                {/* <SelectDataEntry
                     title={dataFields.typology_style_period_source_type.title}
                     slug="typology_style_period_source_type"
                     value={props.building.typology_style_period_source_type}
@@ -162,7 +161,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             isUrl={true}
                         />
                     </>
-                }
+                } */}
             </DataEntryGroup>
             <DataEntryGroup name="Dynamic tissue classification">
                 {(props.mapColourScale == "typology_dynamic_classification") ? 
@@ -223,6 +222,15 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Original Use">
+                {(props.mapColourScale == "original_landuse") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
+                        {'Click to change map to show typology classification.'}
+                    </button>
+                :
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLandUseMapStyle}>
+                        {"Click here to change map to original land use."}
+                    </button>
+                }
                 <MultiDataEntry
                     title={dataFields.typology_original_use.title}
                     slug="typology_original_use"
@@ -274,6 +282,27 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                     </>
                 }
+                <hr/>
+                {
+                    props.mode != 'view' &&
+                    <div>
+                        <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                            <i>
+                                Below is a more general classification for the original land use of this building, automatically derived from the information above.
+                            </i>
+                        </div>
+                    </div>
+                }
+                <DataEntry
+                    title={dataFields.typology_original_use_order.title}
+                    tooltip={dataFields.typology_original_use_order.tooltip}
+                    slug="typology_original_use_order"
+                    value={props.building.typology_original_use_order}
+                    mode={props.mode}
+                    disabled={true}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                />
             </DataEntryGroup>
             <DataEntryGroup name="Attachment/Adjacency">
                 {(props.mapColourScale == "building_attachment_form") ? 
@@ -290,7 +319,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     slug="building_attachment_form"
                     value={props.building.building_attachment_form}
                     tooltip={dataFields.building_attachment_form.tooltip}
-                    options={AttachmentFormOptions}
+                    options={dataFields.building_attachment_form.items}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}

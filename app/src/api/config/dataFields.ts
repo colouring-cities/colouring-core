@@ -966,6 +966,14 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     },
     typology_original_use : {
         edit: true,
+        derivedEdit: true,
+        verify: true
+    },
+    typology_original_use_verified: {
+        edit: true,
+    },
+    typology_original_use_order : {
+        edit: true,
         verify: true
     },
     typology_original_use_source_type : {
