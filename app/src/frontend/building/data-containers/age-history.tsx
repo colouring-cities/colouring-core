@@ -65,12 +65,14 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const switchToAgeMapStyle = (e) => {
         e.preventDefault();
 
-        if (props.mapColourScale == "survival_status")
-        {
+        if (historicData === 'enabled') {
             historicDataSwitchOnClick(e);
         }
+        if (historicMap === 'enabled') {
+            historicMapSwitchOnClick(e);
+        }
 
-        props.onMapColourScale('date_year')
+        props.onMapColourScale('date_year');
     }
 
     const switchToStylePeriodMapStyle = (e) => {
@@ -498,7 +500,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         Choose a colour to indicate whether the building has survived.
                     </i>
                 </div>
-                {(historicMap == "enabled") ? 
+                {(historicMap === "enabled") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
                         Click here to hide the 1890s OS historical map.
                     </button>
@@ -507,7 +509,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         Click here to show the 1890s OS historical map.
                     </button>
                 }
-                {(historicData == "enabled") ? 
+                {(historicData === "enabled") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
                         Click here to hide the 1890s OS historical map with modern footprints.
                     </button>
