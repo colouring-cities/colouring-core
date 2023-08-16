@@ -15,6 +15,7 @@ import { BoroughBoundaryLayer } from './layers/borough-boundary-layer';
 import { BoroughLabelLayer } from './layers/borough-label-layer';
 import { ParcelBoundaryLayer } from './layers/parcel-boundary-layer';
 import { HistoricDataLayer } from './layers/historic-data-layer';
+import { HistoricMapLayer } from './layers/historic-map-layer';
 import { FloodBoundaryLayer } from './layers/flood-boundary-layer';
 import { ConservationAreaBoundaryLayer } from './layers/conservation-boundary-layer';
 import { VistaBoundaryLayer } from './layers/vista-boundary-layer';
@@ -34,6 +35,7 @@ import { ParcelSwitcher } from './parcel-switcher';
 import { FloodSwitcher } from './flood-switcher';
 import { ConservationAreaSwitcher } from './conservation-switcher';
 import { HistoricDataSwitcher } from './historic-data-switcher';
+import { HistoricMapSwitcher } from './historic-map-switcher';
 import { VistaSwitcher } from './vista-switcher';
 import { CreativeSwitcher } from './creative-switcher';
 import { HousingSwitcher } from './housing-switcher';
@@ -129,6 +131,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                 >
                     <CityBoundaryLayer/>
                     <HistoricDataLayer revisionId={revisionId} />
+                    <HistoricMapLayer revisionId={revisionId} />
                     <BoroughBoundaryLayer/>
                     <ParcelBoundaryLayer/>
                     <FloodBoundaryLayer/>
@@ -167,10 +170,12 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                             <ParcelSwitcher/>
                             <FloodSwitcher/>
                             <ConservationAreaSwitcher/>
+                            <HistoricMapSwitcher/>
                             <HistoricDataSwitcher/>
                             <VistaSwitcher />
                             <HousingSwitcher />
                             <CreativeSwitcher />
+                            
                         </>
                         : <></>
                     }

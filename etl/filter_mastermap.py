@@ -20,24 +20,24 @@ def main(mastermap_path):
 def filter_mastermap(mm_path):
     output_path = str(mm_path).replace(".gml.csv", "")
     output_path = "{}.filtered.csv".format(output_path)
-    output_fieldnames = ('WKT', 'fid', 'descriptiveGroup')
+    output_fieldnames = ("WKT", "fid", "descriptiveGroup")
     # Open the input csv with all polygons, buildings and others
-    with open(mm_path, 'r') as fh:
+    with open(mm_path, "r") as fh:
         r = csv.DictReader(fh)
         # Open a new output csv that will contain just buildings
-        with open(output_path, 'w') as output_fh:
+        with open(output_path, "w") as output_fh:
             w = csv.DictWriter(output_fh, fieldnames=output_fieldnames)
             w.writeheader()
             for line in r:
                 try:
-                    if 'Building' in line['descriptiveGroup']:
+                    if "Building" in line["descriptiveGroup"]:
                         w.writerow(line)
                 # when descriptiveGroup is missing, ignore this Polygon
                 except TypeError:
                     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: filter_mastermap.py ./path/to/mastermap/dir")
         exit(-1)

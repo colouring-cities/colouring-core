@@ -111,11 +111,15 @@
 }
 
 .historic-data-switcher {
+    top: 437px;
+}
+
+.historic-map-switcher {
     top: 397px;
 }
 
 .parcel-switcher {
-    top: 437px;
+    top: 477px;
 }
 
 .map-switcher-inline {

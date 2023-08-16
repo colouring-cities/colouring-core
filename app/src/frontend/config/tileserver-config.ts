@@ -21,6 +21,7 @@ export type BuildingMapTileset =
     'sust_dec' |
     'building_attachment_form' |
     'landuse' |
+    'original_landuse' |
     'dynamics_demolished_count' |
     'disaster_severity' |
     'team' |
