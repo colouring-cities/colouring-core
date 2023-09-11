@@ -18,8 +18,21 @@ import "react-datepicker/dist/react-datepicker.css";
 */
 const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
     
-    const [ startDate, setStartDate ] = useState(null);
-    const [ endDate, setEndDate ] = useState(null);
+    let sDate = props.building.disaster_start_date;
+    let eDate = props.building.disaster_end_date;
+
+    let disasterStartDate = null;
+    let disasterEndDate = null;
+
+    if (sDate != null) {
+        disasterStartDate = new Date(sDate);
+    }
+    if (eDate != null) {
+        disasterEndDate = new Date(eDate);
+    }
+
+    const [ startDate, setStartDate ] = useState(disasterStartDate);
+    const [ endDate, setEndDate ] = useState(disasterEndDate);
 
     return (<>
         <DataEntryGroup name="Building damage assessment tool" collapsed={true}>
@@ -30,33 +43,44 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 </i>
             </div>
             <label>Date of disaster</label>
-            <div>
-                <DatePicker 
-                    showIcon
-                    dateFormat="dd/MM/yyyy"
-                    slug="disaster_start_date"
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)} 
-                    title={dataFields.disaster_start_date.title}
-                    //value={props.building.disaster_start_date}
-                    isClearable
-                    placeholderText="Select start date"
-                    maxDate={new Date()}
-                />
+            <div className="row date-picker">
+                <div className='column date-picker-label'>
+                    <label>{dataFields.disaster_start_date.title}</label>
+                </div>
+                <div className='column date-picker-dropdown'>
+                    <DatePicker 
+                        //showIcon
+                        dateFormat="dd/MM/yyyy"
+                        slug="disaster_start_date"
+                        //selected={startDate}
+                        value={startDate}
+                        onSelect={(date) => setStartDate(date)}
+                        onChange={props.onChange}
+                        title={dataFields.disaster_start_date.tooltip}
+                        isClearable
+                        placeholderText="Select start date"
+                        maxDate={new Date()}
+                    />
+                </div>
             </div>
-            <div>
-                <DatePicker 
-                    showIcon
-                    dateFormat="dd/MM/yyyy"
-                    slug="disaster_end_date"
-                    selected={endDate}
-                    onChange={(date) => setEndDate(date)} 
-                    title={dataFields.disaster_end_date.title}
-                    //value={props.building.disaster_end_date}
-                    isClearable
-                    placeholderText="Select end date"
-                    maxDate={new Date()}
-                />
+            <div className="row date-picker">
+                <div className='column date-picker-label'>
+                    <label>{dataFields.disaster_end_date.title}</label>
+                </div>
+                <div className='column date-picker-dropdown'>
+                    <DatePicker 
+                        //showIcon
+                        dateFormat="dd/MM/yyyy"
+                        slug="disaster_end_date"
+                        selected={endDate}
+                        onSelect={(date) => setEndDate(date)}
+                        onChange={props.onChange}
+                        title={dataFields.disaster_end_date.tooltip}
+                        isClearable
+                        placeholderText="Select end date"
+                        maxDate={new Date()}
+                    />
+                </div>
             </div>
             <Verification
                 slug="disaster_end_date"
