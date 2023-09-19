@@ -85,7 +85,7 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
             },
             {
                 to: "https://github.com/colouring-cities/manual/wiki/M3.1-News",
-                text: "Colouring London News",
+                text: "Colouring London/Prototype development news",
                 external: true
             },
             {
