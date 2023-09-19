@@ -23,10 +23,10 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('typology_classification')
     }
-    const switchToStylePeriodMapStyle = (e) => {
-        e.preventDefault();
-        props.onMapColourScale('typology_style_period')
-    }
+    // const switchToStylePeriodMapStyle = (e) => {
+    //     e.preventDefault();
+    //     props.onMapColourScale('typology_style_period')
+    // }
     const switchToDynamicClassificationMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('typology_dynamic_classification')
@@ -44,8 +44,8 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
         <Fragment>
             <DataEntryGroup name="Basic typology classification">
                 {(props.mapColourScale == "typology_classification") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToStylePeriodMapStyle}>
-                        {'Click here to change map to show architectural style/historical period.'}
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToDynamicClassificationMapStyle}>
+                        {'Click here to change map to show dynamic tissue classification.'}
                     </button>
                 :
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
