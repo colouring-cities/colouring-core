@@ -15,7 +15,8 @@ export const commonSourceTypes = [
     "Open database",
     "Other independently managed public database",
     "Commercial database",
-    "Inferred computationally using existing open attribute data",
+    "Inferred computationally from CCRP data",
+    "Inferred by eye from CCRP data",
     "Synthetic data",
     "Other"
 ];
