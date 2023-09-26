@@ -187,8 +187,8 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Property/footprint IDs and coordinates">
-                <DataEntry
+            <DataEntryGroup name="Property/footprint IDs">
+            <DataEntry
                     title={dataFields.ref_toid.title}
                     slug="ref_toid"
                     value={props.building.ref_toid}
@@ -244,6 +244,20 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </div>
                 }
                 <hr/>
+                <MultiDataEntry
+                    title={dataFields.location_alternative_footprint_links.title}
+                    slug="location_alternative_footprint_links"
+                    value={props.building.location_alternative_footprint_links}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.location_alternative_footprint_links.tooltip}
+                    placeholder="https://..."
+                    editableEntries={true}
+                    isUrl={true}
+                />
+            </DataEntryGroup>
+            <DataEntryGroup name="Property coordinates">
                 <NumericDataEntry
                     title={dataFields.location_latitude.title}
                     slug="location_latitude"
@@ -315,19 +329,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                     </>
                 }
-                <hr/>
-                <MultiDataEntry
-                    title={dataFields.location_alternative_footprint_links.title}
-                    slug="location_alternative_footprint_links"
-                    value={props.building.location_alternative_footprint_links}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    tooltip={dataFields.location_alternative_footprint_links.tooltip}
-                    placeholder="https://..."
-                    editableEntries={true}
-                    isUrl={true}
-                />
             </DataEntryGroup>
         </Fragment>
     );
