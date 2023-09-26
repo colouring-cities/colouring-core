@@ -360,10 +360,9 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Dynamic classification',
                 elements: [
-                    { color: '#96484A', text: 'Repetitive small, domestic plots' },
-                    { color: '#4B9889', text: 'Linear non-domestic, i.e. high streets' },
-                    { color: '#4F8DA8', text: 'Large plots with internal roads' },
-                    { color: '#897A5D', text: 'Other' },
+                    { color: '#FF7F11', text: 'Small, often repetitive plots, mainly residential' },
+                    { color: '#FF1B1C', text: 'Linear non-domestic, i.e. high streets' },
+                    { color: '#40E0D0', text: 'Large plots with internal roads' },
                 ]
             }
         },
