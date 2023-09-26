@@ -445,7 +445,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                     onMapColourScale={this.props.onMapColourScale}
                                 />
                             </form> :
-                            <InfoBox msg="Select a building to view data"></InfoBox>
+                            <InfoBox msg="Select any building to view data options"></InfoBox>
                 }
                 <hr/>
                 </div>
