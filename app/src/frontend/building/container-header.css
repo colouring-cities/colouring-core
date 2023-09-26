@@ -20,7 +20,7 @@
     flex-basis: 200px;
     flex-shrink: 0;
     flex-grow: 1;
-    margin: 0.75rem 0 0.5em 0.1em;
+    margin: 0.75rem 0 0.6em 0.4em;
     font-size: 1.5rem;
     padding: 0;
 }
@@ -51,4 +51,8 @@
 .section-header-actions .icon-button:hover svg,
 .section-header-actions .icon-button:active svg {
     color: rgb(11, 225, 225);
+}
+
+.help {
+    margin-right: 0.75em;
 }
