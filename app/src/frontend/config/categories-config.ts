@@ -23,18 +23,18 @@ export enum Category {
  * not affect the order of the grid.
  */
 export const categoriesOrder: Category[] = [
-    Category.Age,
-    Category.Community,
-    Category.Construction,
-    Category.EnergyPerformance,
-    Category.LandUse,
     Category.Location,
-    Category.Planning,
-    Category.Resilience,
+    Category.LandUse,
+    Category.Typology,
     Category.Size,
+    Category.Construction,
+    Category.Age,
     Category.StreetContext,
     Category.Team,
-    Category.Typology,
+    Category.Planning,
+    Category.EnergyPerformance,
+    Category.Resilience,
+    Category.Community,
 ];
 
 interface CategoryDefinition {
