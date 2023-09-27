@@ -3,18 +3,18 @@
  * The string value is also the category URL slug.
  */
 export enum Category {
-    Location = 'location',
-    LandUse = 'land-use',
-    Typology = 'typology',
-    Size = 'size',
-    Construction = 'construction',
     Age = 'age',
+    Community = 'community',
+    Construction = 'construction',
+    EnergyPerformance = 'energy-performance',
+    LandUse = 'land-use',
+    Location = 'location',
+    Planning = 'planning',
+    Resilience = 'resilience',
+    Size = 'size',
     StreetContext = 'street-context',
     Team = 'team',
-    Planning = 'planning',
-    EnergyPerformance = 'energy-performance',
-    Resilience = 'resilience',
-    Community = 'community',
+    Typology = 'typology',
 }
 
 /**
