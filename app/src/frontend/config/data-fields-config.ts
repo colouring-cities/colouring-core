@@ -213,6 +213,32 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Links to alternative building footprint datasets (include the direct link to the footprint of this building where possible).",
         example: ["", "", ""],
     },
+    location_subdivided: {
+        category: Category.Location,
+        title: 'Is this building subdivided',
+        tooltip: 'Does this building comprise multiple, smaller properties?',
+        example: true,
+    },
+    location_num_subdivisions: {
+        category: Category.Location,
+        title: "How many properties are within this building?",
+        tooltip: "For example, if a former house has been converted into three flats, put '3'",
+        example: 3,
+    },
+    location_subdivisions_source_type: {
+        category: Category.Age,
+        title: "Source type",
+        tooltip: "Source type for the building data above",
+        items: commonSourceTypes,
+        example: "",
+    },
+    location_subdivisions_source_links: {
+        category: Category.Age,
+        title: "Source link(s)",
+        tooltip: "URL for data reference",
+        example: ["", "", ""],
+    },
+    
 
     /**
      * UPRNs is not part of the buildings table, but the string fields 
