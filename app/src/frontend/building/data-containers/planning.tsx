@@ -18,9 +18,7 @@ import PlanningDataOfficialDataEntry from '../data-components/planning-data-entr
 import { CategoryViewProps } from './category-view-props';
 import { Category } from '../../config/categories-config';
 import { useDisplayPreferences } from '../../displayPreferences-context';
-import { processParam } from '../../../api/parameters';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
-import YearDataEntry from '../data-components/year-data-entry';
 
 const currentTimestamp = new Date().valueOf();
 const milisecondsInYear = 1000 * 60 * 60 * 24 * 365;
@@ -223,15 +221,12 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </DataEntryGroup>
             <DataEntryGroup name="Possible future applications" collapsed={subcat==null || subcat!="5"}>
                 <InfoBox type='info'>Click and colour buildings here if you think they may be subject to a future planning application involving demolition. To add your opinion on how well this building works, please also visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
-                {
-                props.mapColourScale != "community_expected_planning_application_total" ?
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToExpectedApplicationMapStyle}>
-                    {'Click here to view possible locations of future applications'}
+                {props.mapColourScale != "community_expected_planning_application_total" ?
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToExpectedApplicationMapStyle}>
+                        {'Click here to view possible locations of future applications'}
                     </button>
-                :
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAllPlanningApplicationsMapStyle}>
-                    {'Click to see planning applications'}
-                    </button>
+                    :
+                    <></>
                 }
                 <UserOpinionEntry
                     slug='community_expected_planning_application'
@@ -326,15 +321,12 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i><div><u>Disclaimer</u>:  Data for designated heritage assets has been accessed from the <a href="https://historicengland.org.uk/listing/the-list/">National Heritage List for England</a>. Source information for Conservation Area data can be accessed <a href="http://www.bedfordpark.net/leo/planning/">here</a>. Please note all data should be double checked against official sources where used for planning purposes'.</div></i>
                 </div>
-                {
-                    props.mapColourScale != "planning_combined" ?
-                        <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToBuildingProtectionMapStyle}>
+                {props.mapColourScale != "planning_combined" ?
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingProtectionMapStyle}>
                         {'Click to see individual protected buildings mapped'}
-                        </button>
+                    </button>
                     :
-                        <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAllPlanningApplicationsMapStyle}>
-                        {'Click to see planning applications'}
-                        </button>
+                    <></>
                 }
                 <button className={`map-switcher-inline ${conservation}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={conservationSwitchOnClick}>
                     {(conservation === 'enabled')? 'Click to hide Conservation Areas' : 'Click to see Conservation Areas'}

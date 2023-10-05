@@ -138,3 +138,7 @@
     background-image: none;
     border-color: #ff6065;
 }
+
+.key-button {
+    background-color: paleturquoise !important;
+}

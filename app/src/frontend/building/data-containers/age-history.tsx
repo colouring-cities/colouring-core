@@ -86,6 +86,13 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
             <DataEntryGroup name="Building age/construction date" collapsed={subcat==null || subcat!="1"}>
+            {(props.mapColourScale != "date_year") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeMapStyle}>
+                        Click to show building age.
+                    </button>
+                :
+                    <></>
+                }
                 <YearDataEntry
                     year={props.building.date_year}
                     upper={props.building.date_upper}
@@ -201,14 +208,12 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />*/}
             </DataEntryGroup>
             <DataEntryGroup name="Architectural style" collapsed={subcat==null || subcat!="2"}>
-                {(props.mapColourScale == "typology_style_period") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
-                        Click here to return to building age.
+                {(props.mapColourScale != "typology_style_period") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStylePeriodMapStyle}>
+                        Click to show architectural style.
                     </button>
                 :
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToStylePeriodMapStyle}>
-                        Click here to show architectural style.
-                    </button>
+                    <></>
                 }
                 <SelectDataEntry
                     title={dataFields.typology_style_period.title}
@@ -505,20 +510,20 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 </div>
                 {(historicMap === "enabled") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
-                        Click here to hide the 1890s OS historical map.
+                        Click to hide the 1890s OS historical map.
                     </button>
                 :
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
-                        Click here to show the 1890s OS historical map.
+                        Click to show the 1890s OS historical map.
                     </button>
                 }
                 {(historicData === "enabled") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
-                        Click here to hide the 1890s OS historical map with modern footprints.
+                        Click to hide the 1890s OS historical map with modern footprints.
                     </button>
                 :
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalDataStyle}>
-                        Click here to show the 1890s OS historical map with modern footprints.
+                        Click to show the 1890s OS historical map with modern footprints.
                     </button>
                 }
                 <SelectDataEntry

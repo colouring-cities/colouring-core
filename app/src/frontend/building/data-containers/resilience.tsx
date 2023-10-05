@@ -24,6 +24,15 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
 
+    const switchToIsSeverityMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('disaster_severity')
+    }
+    const switchToResilienceMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('dynamics_demolished_count')
+    }
+
     return (<>
         <DataEntryGroup name="Building damage assessment tool" collapsed={subcat==null || subcat!="1"}>
             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
@@ -32,6 +41,13 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     It is intended to help support emergency services, to record damage, and to aid reconstruction programmes.
                 </i>
             </div>
+            {(props.mapColourScale != "disaster_severity") ? 
+                <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToIsSeverityMapStyle}>
+                    {"Click to show severity of damage."}
+                </button>
+                :
+                <></>
+            }
             <label>Date of disaster</label>
             <div>
                 <DatePicker 
@@ -138,6 +154,13 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <InfoBox type='warning'>
                 This section is under development.
             </InfoBox>
+            {(props.mapColourScale != "dynamics_demolished_count") ? 
+                <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToResilienceMapStyle}>
+                    {"Click to show severity of damage."}
+                </button>
+                :
+                <></>
+            }
             <DataEntry
                 title="Building age"
                 slug=""

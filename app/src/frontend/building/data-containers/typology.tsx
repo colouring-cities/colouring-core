@@ -17,8 +17,7 @@ import { useDisplayPreferences } from '../../displayPreferences-context';
 * Type view/edit section
 */
 const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
-    const { darkLightTheme } = useDisplayPreferences();
-
+    
     const switchToClassificationMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('typology_classification')
@@ -47,7 +46,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
         <Fragment>
             <DataEntryGroup name="Basic typology classification" collapsed={subcat==null || subcat!="1"}>
                 {(props.mapColourScale != "typology_classification") ? 
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToClassificationMapStyle}>
                         {"Click to show typology classification."}
                     </button>
                     :
@@ -102,15 +101,6 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Architectural style" collapsed={subcat==null || subcat!="2"}>
-                {/*(props.mapColourScale == "typology_style_period") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
-                        {'Click to show typology classification.'}
-                    </button>
-                :
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToStylePeriodMapStyle}>
-                        {"Click here to show architectural style/historical period."}
-                    </button>
-                */}
                 <SelectDataEntry
                     title={dataFields.typology_style_period.title}
                     slug="typology_style_period"
@@ -167,7 +157,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </DataEntryGroup>
             <DataEntryGroup name="Dynamic tissue classification" collapsed={subcat==null || subcat!="3"}>
                 {(props.mapColourScale != "typology_dynamic_classification") ? 
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToDynamicClassificationMapStyle}>
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToDynamicClassificationMapStyle}>
                         {"Click here to show dynamic classification."}
                     </button>
                     :
@@ -223,7 +213,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </DataEntryGroup>
             <DataEntryGroup name="Original Use" collapsed={subcat==null || subcat!="4"}>
                 {(props.mapColourScale != "original_landuse") ? 
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLandUseMapStyle}>
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLandUseMapStyle}>
                         {"Click here to original land use."}
                     </button>
                 :
@@ -304,7 +294,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </DataEntryGroup>
             <DataEntryGroup name="Attachment/Adjacency" collapsed={subcat==null || subcat!="5"}>
                 {(props.mapColourScale != "building_attachment_form") ? 
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAttachmentMapStyle}>
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAttachmentMapStyle}>
                         {"Click here to show attachment/adjacency."}
                     </button>
                 :
