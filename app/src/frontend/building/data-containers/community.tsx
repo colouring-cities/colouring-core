@@ -39,9 +39,13 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     }
     const { darkLightTheme } = useDisplayPreferences();
     const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
+
+    const queryParameters = new URLSearchParams(window.location.search);
+    const subcat = queryParameters.get("sc");
+
     return (
         <Fragment>
-            <DataEntryGroup name="Community views on how well buildings work">
+            <DataEntryGroup name="Community views on how well buildings work" collapsed={subcat==null || subcat!="1"}>
             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                 <i>
                     Note: We are currently only collecting data on non-residential buildings.
@@ -151,7 +155,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </div>
             </DataEntryGroup>
-            <DataEntryGroup name="Buildings in community use">
+            <DataEntryGroup name="Buildings in community use" collapsed={subcat==null || subcat!="2"}>
             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                 <i>
                     Here we are collecting information on the location of buildings used for community activities so we can track loss of/additions to community space over time.

@@ -27,9 +27,12 @@ const ConstructionMaterialsOptions = [
 * Construction view/edit section
 */
 const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => {
+    const queryParameters = new URLSearchParams(window.location.search);
+    const subcat = queryParameters.get("sc");
+
     return (
          <Fragment>
-            <DataEntryGroup name="Structural system">
+            <DataEntryGroup name="Structural system" collapsed={subcat==null || subcat!="1"}>
             <SelectDataEntry
                     title={dataFields.construction_structural_system.title}
                     slug="construction_structural_system"
@@ -222,7 +225,7 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Materials">
+            <DataEntryGroup name="Materials" collapsed={subcat==null || subcat!="2"}>
                 <SelectDataEntry
                     title={dataFields.construction_core_material.title}
                     slug="construction_core_material"
@@ -463,7 +466,7 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Decorative features">
+            <DataEntryGroup name="Decorative features"  collapsed={subcat==null || subcat!="3"}>
                 <LogicalDataEntry
                     slug='construction_decorative_features'
                     title={dataFields.construction_decorative_features.title}

@@ -29,10 +29,13 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     if (props.building.size_storeys_basement != null) {
         total_floors += props.building.size_storeys_basement;
     }
+
+    const queryParameters = new URLSearchParams(window.location.search);
+    const subcat = queryParameters.get("sc");
     
     return (
         <Fragment>
-            <DataEntryGroup name="Number of floors/storeys">
+            <DataEntryGroup name="Number of floors/storeys" collapsed={subcat==null || subcat!="1"}>
                 <NumericDataEntry
                     title={dataFields.size_storeys_core.title}
                     slug="size_storeys_core"
@@ -130,7 +133,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Height">
+            <DataEntryGroup name="Height" collapsed={subcat==null || subcat!="2"}>
                 <NumericDataEntry
                     title={dataFields.size_height_apex.title}
                     slug="size_height_apex"
@@ -223,7 +226,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Floor area">
+            <DataEntryGroup name="Floor area" collapsed={subcat==null || subcat!="3"}>
                 <NumericDataEntry
                     title={dataFields.size_floor_area_ground.title}
                     slug="size_floor_area_ground"
@@ -288,7 +291,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Plot size">
+            <DataEntryGroup name="Plot size" collapsed={subcat==null || subcat!="4"}>
                 <NumericDataEntry
                     title={dataFields.size_width_frontage.title}
                     slug="size_width_frontage"

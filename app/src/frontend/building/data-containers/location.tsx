@@ -18,9 +18,13 @@ const osmIdentifierPattern = "[0-9]{1,9}";
 
 const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const osm_url = "www.openstreetmap.org/way/"+props.building.ref_osm_id;
+    
+    const queryParameters = new URLSearchParams(window.location.search);
+    const subcat = queryParameters.get("sc");
+
     return (
         <Fragment>
-            <DataEntryGroup name="Addresses">
+            <DataEntryGroup name="Addresses" collapsed={subcat==null || subcat!="1"}>
                 <DataEntry
                     title={dataFields.location_name.title}
                     slug="location_name"
@@ -188,7 +192,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Property subdivision">
+            <DataEntryGroup name="Property subdivision" collapsed={subcat==null || subcat!="2"}>
                 <LogicalDataEntry
                     slug='location_subdivided'
                     title={dataFields.location_subdivided.title}
@@ -258,7 +262,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Property/footprint IDs">
+            <DataEntryGroup name="Property/footprint IDs" collapsed={subcat==null || subcat!="3"}>
             <DataEntry
                     title={dataFields.ref_toid.title}
                     slug="ref_toid"
@@ -328,7 +332,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     isUrl={true}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Property coordinates">
+            <DataEntryGroup name="Property coordinates" collapsed={subcat==null || subcat!="4"}>
                 <NumericDataEntry
                     title={dataFields.location_latitude.title}
                     slug="location_latitude"

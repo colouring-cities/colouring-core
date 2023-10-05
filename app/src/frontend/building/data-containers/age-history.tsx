@@ -80,9 +80,12 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
         props.onMapColourScale('typology_style_period')
     }
 
+    const queryParameters = new URLSearchParams(window.location.search);
+    const subcat = queryParameters.get("sc");
+
     return (
         <Fragment>
-            <DataEntryGroup name="Building age/construction date">
+            <DataEntryGroup name="Building age/construction date" collapsed={subcat==null || subcat!="1"}>
                 <YearDataEntry
                     year={props.building.date_year}
                     upper={props.building.date_upper}
@@ -197,7 +200,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip='Coming Soon'
                 />*/}
             </DataEntryGroup>
-            <DataEntryGroup name="Architectural style">
+            <DataEntryGroup name="Architectural style" collapsed={subcat==null || subcat!="2"}>
                 {(props.mapColourScale == "typology_style_period") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
                         Click here to return to building age.
@@ -255,7 +258,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Cladding, extensions and retrofits">
+            <DataEntryGroup name="Cladding, extensions and retrofits" collapsed={subcat==null || subcat!="3"}>
                 <NumericDataEntry
                     slug='age_cladding_date'
                     title={dataFields.age_cladding_date.title}
@@ -406,7 +409,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Lifespan and site history">
+            <DataEntryGroup name="Lifespan and site history" collapsed={subcat==null || subcat!="4"}>
                 <DataEntryGroup name="Constructions and demolitions on this site" showCount={false}>
                     <DynamicsBuildingPane>
                         <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
@@ -493,7 +496,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     Please let us know your suggestions on the <a href="https://discuss.colouring.london/t/dynamics-category-discussion/107">discussion forum</a>! (external link - save your edits first)
                 </InfoBox>
             </DataEntryGroup>
-            <DataEntryGroup name="Survival tracking" collapsed={true} >
+            <DataEntryGroup name="Survival tracking" collapsed={subcat==null || subcat!="1"}>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         Can you help us create a map that shows how many buildings in London have survived since the 1890s? 
@@ -557,7 +560,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Historical map data options" collapsed={true} >
+            <DataEntryGroup name="Historical map data options" collapsed={subcat==null || subcat!="1"}>
                 <InfoBox type='warning'>
                     This section is under development
                 </InfoBox>

@@ -21,8 +21,11 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const [ startDate, setStartDate ] = useState(null);
     const [ endDate, setEndDate ] = useState(null);
 
+    const queryParameters = new URLSearchParams(window.location.search);
+    const subcat = queryParameters.get("sc");
+
     return (<>
-        <DataEntryGroup name="Building damage assessment tool" collapsed={true}>
+        <DataEntryGroup name="Building damage assessment tool" collapsed={subcat==null || subcat!="1"}>
             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                 <i>
                     This feature is designed as an assessment tool to help communities capture data on the state of buildings following major disasters. 
@@ -131,7 +134,7 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
         </DataEntryGroup>
-        <DataEntryGroup name="Resilience indicators and risk assessment" collapsed={true} >
+        <DataEntryGroup name="Resilience indicators and risk assessment" collapsed={subcat==null || subcat!="2"}>
             <InfoBox type='warning'>
                 This section is under development.
             </InfoBox>

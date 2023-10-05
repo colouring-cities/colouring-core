@@ -40,9 +40,12 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
         props.onMapColourScale('original_landuse')
     }
 
+    const queryParameters = new URLSearchParams(window.location.search);
+    const subcat = queryParameters.get("sc");
+
     return (
         <Fragment>
-            <DataEntryGroup name="Basic typology classification">
+            <DataEntryGroup name="Basic typology classification" collapsed={subcat==null || subcat!="1"}>
                 {(props.mapColourScale == "typology_classification") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToDynamicClassificationMapStyle}>
                         {'Click here to change map to show dynamic tissue classification.'}
@@ -100,7 +103,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Architectural style">
+            <DataEntryGroup name="Architectural style" collapsed={subcat==null || subcat!="2"}>
                 {/*(props.mapColourScale == "typology_style_period") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
                         {'Click to change map to show typology classification.'}
@@ -163,7 +166,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 } */}
             </DataEntryGroup>
-            <DataEntryGroup name="Dynamic tissue classification">
+            <DataEntryGroup name="Dynamic tissue classification" collapsed={subcat==null || subcat!="3"}>
                 {(props.mapColourScale == "typology_dynamic_classification") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
                         {'Click to change map to show typology classification.'}
@@ -221,7 +224,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Original Use">
+            <DataEntryGroup name="Original Use" collapsed={subcat==null || subcat!="4"}>
                 {(props.mapColourScale == "original_landuse") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
                         {'Click to change map to show typology classification.'}
@@ -304,7 +307,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Attachment/Adjacency">
+            <DataEntryGroup name="Attachment/Adjacency" collapsed={subcat==null || subcat!="5"}>
                 {(props.mapColourScale == "building_attachment_form") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
                         {'Click to change map to show typology classification.'}

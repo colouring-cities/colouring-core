@@ -19,9 +19,14 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const building = props.building;
     const currentYear = new Date().getFullYear();
     const currentBuildingConstructionYear = building.date_year || undefined;
-      return (
-       <form>
-            <DataEntryGroup name="General info">
+
+    const queryParameters = new URLSearchParams(window.location.search);
+    const subcat = queryParameters.get("sc");
+
+
+    return (
+        <form>
+            <DataEntryGroup name="General info" collapsed={subcat==null || subcat!="1"}>
                 <LogicalDataEntry
                     title={dataFields.has_extension.title}
                     slug="has_extension"
@@ -85,7 +90,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 </>
                 ) : (null)}
             </DataEntryGroup>
-            <DataEntryGroup name="Land ownership">
+            <DataEntryGroup name="Land ownership" collapsed={subcat==null || subcat!="2"}>
                 <MultiDataEntry
                     title={dataFields.landowner.title}
                     slug="landowner"
@@ -148,7 +153,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Developer">
+            <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="3"}>
                 <SelectDataEntry
                     slug='developer_type'
                     title={dataFields.developer_type.title}
@@ -228,7 +233,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Designer">
+            <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="4"}>
                 <MultiDataEntry
                     title={dataFields.designers.title}
                     slug="designers"
@@ -308,7 +313,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Builder">
+            <DataEntryGroup name="Builder" collapsed={subcat==null || subcat!="5"}>
                 <MultiDataEntry
                     title={dataFields.builder.title}
                     slug="builder"
@@ -370,7 +375,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Awards">
+            <DataEntryGroup name="Awards" collapsed={subcat==null || subcat!="6"}>
                 <LogicalDataEntryYesOnly
                         slug='designer_awards'
                         title={dataFields.designer_awards.title}
@@ -414,7 +419,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     ) : (null)
                     }
             </DataEntryGroup>
-     </form>
+        </form>
     );
 };
 const TeamContainer = withCopyEdit(TeamView);

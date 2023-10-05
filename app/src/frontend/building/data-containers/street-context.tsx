@@ -15,9 +15,12 @@ import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-
 */
 const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
+    const queryParameters = new URLSearchParams(window.location.search);
+    const subcat = queryParameters.get("sc");
+
     return (
         <Fragment>
-            <DataEntryGroup name="Green Space">
+            <DataEntryGroup name="Green Space" collapsed={subcat==null || subcat!="1"}>
                 <LogicalDataEntry
                     title={dataFields.context_front_garden.title}
                     slug="context_front_garden"
@@ -193,7 +196,7 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Street/pavement">
+            <DataEntryGroup name="Street/pavement" collapsed={subcat==null || subcat!="2"}>
                 <DataEntry
                     title="Walkability Index"
                     slug=""
@@ -343,7 +346,7 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Number of entrances facing street">
+            <DataEntryGroup name="Number of entrances facing street" collapsed={subcat==null || subcat!="3"}>
                 <DataEntry
                     title="Number of entrances facing street"
                     slug=""

@@ -29,10 +29,13 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
         }
     }
 
+    const queryParameters = new URLSearchParams(window.location.search);
+    const subcat = queryParameters.get("sc");
+
     const { darkLightTheme } = useDisplayPreferences();
       return (
           <Fragment>
-                <DataEntryGroup name="General Land Use">
+                <DataEntryGroup name="General Land Use" collapsed={subcat==null || subcat!="1"}>
                     <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                         <i>
                             The vast majority of properties are residential (93% in the UK), so we have set 'residential' as the default value. Can you help us identify non-residential and mixed use buildings (and verify residential buildings too)?
@@ -87,7 +90,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Specific land use(s)">
+                <DataEntryGroup name="Specific land use(s)" collapsed={subcat==null || subcat!="2"}>
                     <MultiDataEntry
                         title={dataFields.current_landuse_group.title}
                         slug="current_landuse_group"
