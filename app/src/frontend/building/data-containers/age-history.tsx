@@ -496,7 +496,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     Please let us know your suggestions on the <a href="https://discuss.colouring.london/t/dynamics-category-discussion/107">discussion forum</a>! (external link - save your edits first)
                 </InfoBox>
             </DataEntryGroup>
-            <DataEntryGroup name="Survival tracking" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Survival tracking" collapsed={subcat==null || subcat!="5"}>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         Can you help us create a map that shows how many buildings in London have survived since the 1890s? 
@@ -560,7 +560,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Historical map data options" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Historical map data options" collapsed={subcat==null || subcat!="6"}>
                 <InfoBox type='warning'>
                     This section is under development
                 </InfoBox>
