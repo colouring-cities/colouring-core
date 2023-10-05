@@ -410,7 +410,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan and site history" collapsed={subcat==null || subcat!="4"}>
-                <DataEntryGroup name="Constructions and demolitions on this site" showCount={false}>
+                <DataEntryGroup name="Constructions and demolitions on this site" collapsed={subcat==null || subcat!="4"}>
                     <DynamicsBuildingPane>
                         <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
                         <FieldRow>
