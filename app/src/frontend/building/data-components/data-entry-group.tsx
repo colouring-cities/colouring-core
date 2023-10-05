@@ -20,9 +20,26 @@ const DataEntryGroup: React.FunctionComponent<DataEntryGroupProps> = (props) => 
 
     const [collapsed, setCollapsed] = useState(initialCollapsed);
 
+    function setGroupCollapsed(collapsed): void {
+
+        if (collapsed==false) {
+            let elems = document.getElementsByClassName("data-entry-group-body");
+            
+            for (let i = 0; i < elems.length; i++) {
+                const elem = elems[i];
+
+                if (elem instanceof HTMLElement) {
+                    elem.classList.add("collapse");
+                }
+            }
+        }
+        
+        setCollapsed(collapsed);
+    }
+
     return (
         <Fragment>
-            <div className='data-entry-group-header' onClick={() => setCollapsed(!collapsed)}>
+            <div className='data-entry-group-header' onClick={() => setGroupCollapsed(!collapsed)}>
                 <CollapseIcon collapsed={collapsed} />
                 <span className='data-entry-group-title'>
                     {props.name}
