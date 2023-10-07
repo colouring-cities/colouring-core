@@ -17,6 +17,11 @@ set -x
 # Create vagrant user if not exists
 id -u vagrant >/dev/null 2>&1 || useradd --create-home vagrant
 
+# Create the file repository configuration:
+sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+# Import the repository signing key:
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 
 #
 # Install OS packages
@@ -40,7 +45,7 @@ apt-get install -y \
 #
 
 # node version and platform
-NODE_VERSION=v12.18.1
+NODE_VERSION=v16.13.2
 DISTRO=linux-x64
 
 # download
@@ -118,7 +123,7 @@ chown -R vagrant:vagrant /home/vagrant/colouringlondon
 #
 
 # Install latest release of npm
-npm install -g npm@next
+npm install -g npm@latest
 
 # Local fixed install of node modules
 cd /vagrant/app && npm install
