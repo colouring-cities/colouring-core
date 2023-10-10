@@ -3,9 +3,9 @@
 ![Build status](https://github.com/colouring-cities/colouring-core/workflows/Node.js%20CI/badge.svg)
 
 How many buildings are there in a city? What are their characteristics? Where
-are they located and how well do they work? How many are we reusing and how long are they likely to last? 
+are they located, how well do they work and how efficient, sustainable and resilient are they?  
 
-The Colouring Cities Research Programme (CCRP) is an international research initiative that designs and tests open-source tools to facilitate knowledge and data sharing on national building stocks. The project, is managed by The Alan Turing Institute (the UK's national institute for datascience and AI) in collaboration with academic partners and openly releases code, data and methods http://colouringcities.org/.  
+The Colouring Cities Research Programme (CCRP) is an international research initiative that designs and tests open-source tools to facilitate knowledge and data sharing on national building stocks. The project is managed from the UK by The Alan Turing Institute (the UK's national institute for datascience and AI) in collaboration with international academic partners and openly releases its code, data and methods. For further information please see http://colouringcities.org/.  
 
 
 ## Structure
