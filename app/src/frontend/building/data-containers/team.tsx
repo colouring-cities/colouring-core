@@ -46,6 +46,11 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
+                        step={1}
+                        min={1}
+                        max={currentYear}
+                        tooltip={dataFields.date_year.tooltip}
+                        disabled={true}
                     />
                     <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
                         <i className="source-url">To edit the building age, and to see the data mapped, please go to&nbsp;
@@ -66,6 +71,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             min={1}
                             max={currentYear}
                             tooltip={dataFields.extension_year.tooltip_extension}
+                            disabled={true}
                         />
                         <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
                             <i className="source-url">To edit the extension date, and to see the data mapped, please go to&nbsp;
