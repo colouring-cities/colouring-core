@@ -12,17 +12,6 @@ import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
 
-const ConstructionMaterialsOptions = [
-    'Wood',
-    'Stone',
-    'Brick',
-    'Steel',
-    'Reinforced Concrete',
-    'Other Metal',
-    'Other Natural Material',
-    'Other Man-Made Material'
-];
-
 /**
 * Construction view/edit section
 */
@@ -30,9 +19,37 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
 
+    const switchToCoreMaterialMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('construction_core_material')
+    }
+    const switchToStructuralSystemMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('construction_structural_system')
+    }
+    const switchToFoundationsMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('construction_foundation')
+    }
+    const switchToRoofShapeMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('construction_roof_shape')
+    }
+    const switchToRoofCoveringsMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('construction_roof_covering')
+    }
+    
     return (
          <Fragment>
             <DataEntryGroup name="Structural system" collapsed={subcat==null || subcat!="1"}>
+            {(props.mapColourScale != "construction_structural_system") ? 
+                <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStructuralSystemMapStyle}>
+                    {"Click to view structural system data."}
+                </button>
+                :
+                <></>
+            }
             <SelectDataEntry
                     title={dataFields.construction_structural_system.title}
                     slug="construction_structural_system"
@@ -81,6 +98,13 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     </>
                 }
                 <hr/>
+                {(props.mapColourScale != "construction_foundation") ? 
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToFoundationsMapStyle}>
+                        {"Click to view foundation data."}
+                    </button>
+                    :
+                    <></>
+                }
                 <SelectDataEntry
                     title={dataFields.construction_foundation.title}
                     slug="construction_foundation"
@@ -129,6 +153,13 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     </>
                 }
                 <hr/>
+                {(props.mapColourScale != "construction_roof_shape") ? 
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToRoofShapeMapStyle}>
+                        {"Click to view roof shape data."}
+                    </button>
+                    :
+                    <></>
+                }
                 <SelectDataEntry
                     title={dataFields.construction_roof_shape.title}
                     slug="construction_roof_shape"
@@ -226,12 +257,19 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Materials" collapsed={subcat==null || subcat!="2"}>
+                {props.mapColourScale != "construction_core_material" ?
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToCoreMaterialMapStyle}>
+                        {'Click to view core material data'}
+                    </button>
+                    :
+                    <></>
+                }
                 <SelectDataEntry
                     title={dataFields.construction_core_material.title}
                     slug="construction_core_material"
                     value={props.building.construction_core_material}
                     tooltip={dataFields.construction_core_material.tooltip}
-                    options={ConstructionMaterialsOptions}
+                    options={dataFields.construction_core_material.items}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
@@ -418,6 +456,13 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     </>
                 }
                 <hr/>
+                {(props.mapColourScale != "construction_roof_covering") ? 
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToRoofCoveringsMapStyle}>
+                        {"Click to view roof covering data."}
+                    </button>
+                    :
+                    <></>
+                }
                 <SelectDataEntry
                     title={dataFields.construction_roof_covering.title}
                     slug="construction_roof_covering"

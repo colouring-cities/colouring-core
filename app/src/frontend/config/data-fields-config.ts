@@ -623,6 +623,16 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "What is the main structural material thought to be?",
         tooltip: "The main structural material",
         example: "",
+        items: [
+            'Wood',
+            'Stone',
+            'Brick',
+            'Steel',
+            'Reinforced Concrete',
+            'Other Metal',
+            'Other Natural Material',
+            'Other Man-Made Material'
+        ]
     },
     construction_core_material_source_type: {
         category: Category.Construction,
