@@ -61,6 +61,14 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('planning_applications_status_all')
     }
+    const switchToLastTwelveMonthsMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('planning_applications_status_recent')
+    }
+    const switchToLastThirtyDaysMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('planning_applications_status_very_recent')
+    }
     const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, parcel, parcelSwitchOnClick, conservation, conservationSwitchOnClick, darkLightTheme } = useDisplayPreferences();
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     const currentYear = new Date().getFullYear();
@@ -77,6 +85,13 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         <br />
                         To comment on an application follow the application link if provided, or visit the relevant local authority's planning page.
                     </InfoBox>
+                    {props.mapColourScale != "planning_applications_status_all" ?
+                        <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button sub-subcategory-button`} onClick={switchToAllPlanningApplicationsMapStyle}>
+                            {'Click to view official planning application data'}
+                        </button>
+                        :
+                        <></>
+                    }
                     {props.building.planning_data ?
                         <PlanningDataOfficialDataEntry  
                             shownData={props.building.planning_data.filter(item => isArchived(item) == false)}
@@ -206,6 +221,20 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox>
                     This section provides data on past applications where available from the GLA, including those with no decision in over a year
                 </InfoBox>
+                {props.mapColourScale != "planning_applications_status_recent" ?
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button no-left-margin`} onClick={switchToLastTwelveMonthsMapStyle}>
+                        {'Click to view planning applications from the last 12 months'}
+                    </button>
+                    :
+                    <></>
+                }
+                {props.mapColourScale != "planning_applications_status_very_recent" ?
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button no-left-margin`} onClick={switchToLastThirtyDaysMapStyle}>
+                        {'Click to view planning applications from the last 30 days'}
+                    </button>
+                    :
+                    <></>
+                }
                 {props.building.planning_data ?
                     <PlanningDataOfficialDataEntry  
                         shownData={props.building.planning_data.filter(item => isArchived(item))}
@@ -223,7 +252,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <InfoBox type='info'>Click and colour buildings here if you think they may be subject to a future planning application involving demolition. To add your opinion on how well this building works, please also visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
                 {props.mapColourScale != "community_expected_planning_application_total" ?
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToExpectedApplicationMapStyle}>
-                        {'Click here to view possible locations of future applications'}
+                        {'Click to view possible locations of future applications'}
                     </button>
                     :
                     <></>
