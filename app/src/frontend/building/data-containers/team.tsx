@@ -11,6 +11,7 @@ import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-e
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
+import YearDataEntry from '../data-components/year-data-entry';
 
 /**
 * Team view/edit section
@@ -39,56 +40,42 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 {props.building.has_extension!=null && !props.building.has_extension ? (
                 <>
                     <NumericDataEntry
-                        slug='extension_year'
-                        title={dataFields.extension_year.title}
-                        value={props.building.extension_year}
+                        title={dataFields.date_year.title}
+                        slug="date_year"
+                        value={props.building.date_year}
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
-                        step={1}
-                        min={1}
-                        max={currentYear}
-                        tooltip={dataFields.extension_year.tooltip_extension}
                     />
-                    <Verification
-                        slug="extension_year"
-                        allow_verify={props.user !== undefined && props.building.extension_year !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("extension_year")}
-                        user_verified_as={props.user_verified.extension_year}
-                        verified_count={props.building.verified.extension_year}
-                        />
-                    <SelectDataEntry
-                        title={dataFields.extension_source_type.title}
-                        slug="extension_source_type"
-                        value={props.building.extension_source_type}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.extension_source_type.tooltip}
-                        options={dataFields.extension_source_type.items}
-                        placeholder={dataFields.extension_source_type.example}
-                        />
-                    {(props.building.extension_source_type == dataFields.extension_source_type.items[0] ||
-                        props.building.extension_source_type == dataFields.extension_source_type.items[1] ||
-                        props.building.extension_source_type == null) ? <></> :
-                        <>
-                            <MultiDataEntry
-                                title={dataFields.extension_source_links.title}
-                                slug="extension_source_links"
-                                value={props.building.extension_source_links}
-                                mode={props.mode}
-                                copy={props.copy}
-                                onChange={props.onChange}
-                                tooltip={dataFields.extension_source_links.tooltip}
-                                placeholder="https://..."
-                                editableEntries={true}
-                                isUrl={true}
-                            />
-                        </>
-                    }
+                    <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                        <i className="source-url">To edit the building age, and to see the data mapped, please go to&nbsp;
+                        <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=1"}>Age & History</a>.</i>
+                    </div>
                 </>
-                ) : (null)}
+                ) : 
+                    props.building.has_extension!=null && props.building.has_extension ? (
+                    <>
+                        <NumericDataEntry
+                            slug='extension_year'
+                            title={dataFields.extension_year.title}
+                            value={props.building.extension_year}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            step={1}
+                            min={1}
+                            max={currentYear}
+                            tooltip={dataFields.extension_year.tooltip_extension}
+                        />
+                        <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                            <i className="source-url">To edit the extension date, and to see the data mapped, please go to&nbsp;
+                            <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=3"}>Age & History</a>.</i>
+                        </div>
+                    </>
+                    )
+                    : 
+                    <></>
+                }
             </DataEntryGroup>
             <DataEntryGroup name="Land ownership" collapsed={subcat==null || subcat!="2"}>
                 <MultiDataEntry
