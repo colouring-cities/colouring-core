@@ -27,7 +27,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <form>
-            <DataEntryGroup name="General info" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Main Building or Significant Extension" collapsed={subcat==null || subcat!="1"}>
                 <LogicalDataEntry
                     title={dataFields.has_extension.title}
                     slug="has_extension"
@@ -37,7 +37,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     tooltip={dataFields.has_extension.tooltip}
                     />
-                {props.building.has_extension!=null && !props.building.has_extension ? (
+                {props.building.has_extension!=null && props.building.has_extension ? (
                 <>
                     <NumericDataEntry
                         title={dataFields.date_year.title}
@@ -58,7 +58,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </div>
                 </>
                 ) : 
-                    props.building.has_extension!=null && props.building.has_extension ? (
+                    props.building.has_extension!=null && !props.building.has_extension ? (
                     <>
                         <NumericDataEntry
                             slug='extension_year'
@@ -150,6 +150,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <SelectDataEntry
                     slug='developer_type'
                     title={dataFields.developer_type.title}
+                    tooltip={dataFields.developer_type.tooltip}
                     value={props.building.developer_type}
                     options={dataFields.developer_type.items}
                     onChange={props.onChange}
@@ -264,6 +265,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={dataFields.lead_designer_type.title}
                     value={props.building.lead_designer_type}
                     options={dataFields.lead_designer_type.items}
+                    tooltip={dataFields.lead_designer_type.tooltip}
                     onChange={props.onChange}
                     mode={props.mode}
                     copy={props.copy}
@@ -358,6 +360,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             title={dataFields.builder_source_link.title}
                             slug="builder_source_link"
                             value={props.building.builder_source_link}
+                            tooltip={dataFields.builder_source_link.tooltip}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}

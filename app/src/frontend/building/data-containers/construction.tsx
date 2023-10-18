@@ -516,6 +516,7 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     slug='construction_decorative_features'
                     title={dataFields.construction_decorative_features.title}
                     value={props.building.construction_decorative_features}
+                    tooltip={dataFields.construction_decorative_features.tooltip}
                     onChange={props.onSaveChange}
                     mode={props.mode}
                     copy={props.copy}

@@ -268,7 +268,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     slug="ref_toid"
                     value={props.building.ref_toid}
                     mode={props.mode}
-                    copy={props.copy}
                     tooltip={dataFields.ref_toid.tooltip}
                     onChange={props.onChange}
                     disabled={true}
@@ -298,7 +297,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     slug="ref_osm_id"
                     value={props.building.ref_osm_id}
                     mode={props.mode}
-                    copy={props.copy}
                     tooltip={dataFields.ref_osm_id.tooltip}
                     maxLength={20}
                     onChange={props.onChange}
@@ -324,7 +322,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     slug="location_alternative_footprint_links"
                     value={props.building.location_alternative_footprint_links}
                     mode={props.mode}
-                    copy={props.copy}
                     onChange={props.onChange}
                     tooltip={dataFields.location_alternative_footprint_links.tooltip}
                     placeholder="https://..."
@@ -339,7 +336,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     value={props.building.location_latitude}
                     tooltip={dataFields.location_latitude.tooltip}
                     mode={props.mode}
-                    copy={props.copy}
                     step={0.00001}
                     min={-90}
                     max={90}
@@ -360,7 +356,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     value={props.building.location_longitude}
                     tooltip={dataFields.location_latitude.tooltip}
                     mode={props.mode}
-                    copy={props.copy}
                     step={0.00001}
                     min={-180}
                     max={180}
@@ -380,7 +375,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     slug="location_coordinates_source"
                     value={props.building.location_coordinates_source}
                     mode={props.mode}
-                    copy={props.copy}
                     onChange={props.onChange}
                     tooltip={dataFields.location_coordinates_source.tooltip}
                     placeholder={dataFields.location_coordinates_source.example}
@@ -395,7 +389,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             slug="location_coordinates_links"
                             value={props.building.location_coordinates_links}
                             mode={props.mode}
-                            copy={props.copy}
                             onChange={props.onChange}
                             tooltip={dataFields.location_coordinates_links.tooltip}
                             placeholder="https://..."

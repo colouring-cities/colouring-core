@@ -156,7 +156,7 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </InfoBox>
             {(props.mapColourScale != "dynamics_demolished_count") ? 
                 <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToResilienceMapStyle}>
-                    {"Click to show severity of damage."}
+                    {"Click to show building resilience."}
                 </button>
                 :
                 <></>

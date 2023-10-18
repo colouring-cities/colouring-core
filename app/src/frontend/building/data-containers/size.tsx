@@ -9,7 +9,6 @@ import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
-import InfoBox from '../../components/info-box';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 
 /**
@@ -141,6 +140,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
+                    tooltip={dataFields.size_height_apex.tooltip}
                     step={0.1}
                     min={0}
                     />
@@ -184,6 +184,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={dataFields.size_height_eaves.title}
                     slug="size_height_eaves"
                     value={props.building.size_height_eaves}
+                    tooltip={dataFields.size_height_eaves.tooltip}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
@@ -231,6 +232,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={dataFields.size_floor_area_ground.title}
                     slug="size_floor_area_ground"
                     value={props.building.size_floor_area_ground}
+                    tooltip={dataFields.size_floor_area_ground.tooltip}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
@@ -249,6 +251,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={dataFields.size_floor_area_total.title}
                     slug="size_floor_area_total"
                     value={props.building.size_floor_area_total}
+                    tooltip={dataFields.size_floor_area_total.tooltip}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
@@ -343,6 +346,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     slug="size_plot_area_total"
                     tooltip={dataFields.size_plot_area_total.tooltip}
                     value={props.building.size_plot_area_total}
+                    copy={props.copy}
                     mode={props.mode}
                     onChange={props.onChange}
                     step={0.1}
@@ -389,7 +393,7 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     value={props.building.size_far_ratio}
                     slug="size_far_ratio"
                     tooltip={dataFields.size_far_ratio.tooltip}
-                    //placeholder={dataFields.size_far_ratio.example}
+                    copy={props.copy}
                     mode={props.mode}
                     onChange={props.onChange}
                     step={1}

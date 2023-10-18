@@ -108,6 +108,7 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
                     slug="context_green_space_distance"
                     tooltip={dataFields.context_green_space_distance.tooltip}
                     //placeholder={dataFields.context_green_space_distance.example}
+                    copy={props.copy}
                     mode={props.mode}
                     onChange={props.onChange}
                     step={1}
@@ -156,6 +157,7 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
                     tooltip={dataFields.context_tree_distance.tooltip}
                     //placeholder={dataFields.context_tree_distance.example}
                     mode={props.mode}
+                    copy={props.copy}
                     onChange={props.onChange}
                     step={1}
                     min={0}
@@ -211,6 +213,7 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
                     slug="context_street_width"
                     tooltip={dataFields.context_street_width.tooltip}
                     //placeholder={dataFields.context_street_width.example}
+                    copy={props.copy}
                     mode={props.mode}
                     onChange={props.onChange}
                     step={1}
@@ -259,6 +262,7 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
                     tooltip={dataFields.context_pavement_width.tooltip}
                     //placeholder={dataFields.context_pavement_width.example}
                     mode={props.mode}
+                    copy={props.copy}
                     onChange={props.onChange}
                     step={1}
                     min={0}

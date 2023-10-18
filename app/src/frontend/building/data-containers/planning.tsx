@@ -264,7 +264,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
                     onChange={props.onSaveChange}
                     mode={props.mode}
-                    copy={props.copy}
                 />
                 <InfoBox type='warning'>
                     Further improvements to this feature are currently being made.
@@ -283,41 +282,49 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </i>
                 </div>
                 <LogicalDataEntry
-                    title="Is the building inside a Flood Zone?"
-                    slug="planning_live_application"
-                    value={null}
-                    disabled={true}
-                    tooltip={"the GLA official description: \"All areas with more than a 1 in 1,000 annual probability of either river or sea flooding.\""}
+                    slug='planning_flood_zone'
+                    title={dataFields.planning_flood_zone.title}
+                    tooltip={dataFields.planning_flood_zone.tooltip}
+                    value={props.building.planning_flood_zone}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    mode={props.mode}
                 />
                 <button className={`map-switcher-inline ${flood}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={floodSwitchOnClick}>
                     {(flood === 'enabled')? 'Click to hide Flood Zones' : 'Click to see Flood Zones mapped'}
                 </button>
                 <LogicalDataEntry
-                    title="Is the building in a Housing Zone?"
-                    slug="planning_live_application"
-                    value={null}
-                    disabled={true}
-                    tooltip={"the GLA official description: \"Housing zones are areas funded by the Mayor and government to attract developers and relevant partners to build new homes.\""}
+                    slug='planning_housing_zone'
+                    title={dataFields.planning_housing_zone.title}
+                    tooltip={dataFields.planning_housing_zone.tooltip}
+                    value={props.building.planning_housing_zone}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    mode={props.mode}
                 />
                 <button className={`map-switcher-inline ${housing}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={housingSwitchOnClick}>
                     {(housing === 'enabled')? 'Click to hide Housing Zones' : 'Click to see Housing Zones mapped'}
                 </button>
                 <LogicalDataEntry
-                    title="Is the building in a Creative Enterprise Zone?"
-                    slug="planning_live_application"
-                    value={null}
-                    disabled={true}
-                    tooltip={"GLA official description: \"Creative Enterprise Zones are a new Mayoral initiative to designate areas of London where artists and creative businesses can find permanent affordable space to work; are supported to start-up and grow; and where local people are helped to learn creative sector skills and find new jobs.\""}
+                    slug='planning_enterprise_zone'
+                    title={dataFields.planning_enterprise_zone.title}
+                    tooltip={dataFields.planning_enterprise_zone.tooltip}
+                    value={props.building.planning_enterprise_zone}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    mode={props.mode}
                 />
                 <button className={`map-switcher-inline ${creative}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={creativeSwitchOnClick}>
                     {(creative === 'enabled')? 'Click to hide Creative Enterprise Zones' : 'Click to see Creative Enterprise Zones'}
                 </button>
                 <LogicalDataEntry
-                    title="Is the building within a Protected Vista?"
-                    slug="planning_live_application"
-                    value={null}
-                    disabled={true}
-                    tooltip={"GLA official description: \"The Protected Vistas are established in the London Plan with more detailed guidance provided in the London View Management Framework (LVMF). The London Plan seeks to protect the significant views which help to define London, including the panoramas, linear views and townscape views in this layer.\""}
+                    slug='planning_protected_vista'
+                    title={dataFields.planning_protected_vista.title}
+                    tooltip={dataFields.planning_protected_vista.tooltip}
+                    value={props.building.planning_protected_vista}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    mode={props.mode}
                 />
                 <button className={`map-switcher-inline ${vista}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={vistaSwitchOnClick}>
                     {(vista === 'enabled')? 'Click to hide Protected Vistas' : 'Click to see Protected Vistas'}
@@ -384,6 +391,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             title={dataFields.planning_heritage_at_risk_url.title}
                             slug="planning_heritage_at_risk_url"
                             value={props.building.planning_heritage_at_risk_url}
+                            tooltip={dataFields.planning_heritage_at_risk_url.tooltip}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
@@ -424,6 +432,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             title={dataFields.planning_world_list_id.title}
                             slug="planning_world_list_id"
                             value={props.building.planning_world_list_id}
+                            tooltip={dataFields.planning_world_list_id.tooltip}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
@@ -465,6 +474,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             title={dataFields.planning_local_list_url.title}
                             slug="planning_local_list_url"
                             value={props.building.planning_local_list_url}
+                            tooltip={dataFields.planning_local_list_url.tooltip}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
@@ -505,6 +515,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             title={dataFields.planning_in_conservation_area_url.title}
                             slug="planning_in_conservation_area_url"
                             value={props.building.planning_in_conservation_area_url}
+                            tooltip={dataFields.planning_in_conservation_area_url.tooltip}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
@@ -547,6 +558,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             title={dataFields.planning_in_apa_url.title}
                             slug="planning_in_apa_url"
                             value={props.building.planning_in_apa_url}
+                            tooltip={dataFields.planning_in_apa_url.tooltip}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
@@ -638,6 +650,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             title={dataFields.planning_historic_area_assessment_url.title}
                             slug="planning_historic_area_assessment_url"
                             value={props.building.planning_historic_area_assessment_url}
+                            tooltip={dataFields.planning_historic_area_assessment_url.tooltip}
                             mode={props.mode}
                             copy={props.copy}
                             onChange={props.onChange}
@@ -664,6 +677,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={dataFields.community_public_ownership.title}
                     value={props.building.community_public_ownership}
                     options={dataFields.community_public_ownership.items}
+                    tooltip={dataFields.community_public_ownership.tooltip}
                     onChange={props.onChange}
                     mode={props.mode}
                     copy={props.copy}
@@ -675,32 +689,42 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified={props.user_verified.hasOwnProperty("community_public_ownership")}
                     user_verified_as={props.user_verified.community_public_ownership}
                     verified_count={props.building.verified.community_public_ownership}
-                    />
-                <DataEntry
-                    title="Source Type"
-                    slug=""
-                    value=""
-                    mode='view'
-                    tooltip='Coming Soon'
                 />
-                <MultiDataEntry
-                    slug='community_public_ownership_sources'
-                    title={dataFields.community_public_ownership_sources.title}
-                    isUrl={true}
-                    placeholder={'https://...'}
-                    editableEntries={true}
-                    value={props.building.community_public_ownership_sources}
-                    onChange={props.onChange}
+                <SelectDataEntry
+                    title={dataFields.community_public_ownership_source_type.title}
+                    slug="community_public_ownership_source_type"
+                    value={props.building.community_public_ownership_source_type}
                     mode={props.mode}
                     copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.community_public_ownership_source_type.tooltip}
+                    options={dataFields.community_public_ownership_source_type.items}
+                    placeholder={dataFields.community_public_ownership_source_type.example}
                 />
+                {(props.building.community_public_ownership_source_type == dataFields.community_public_ownership_source_type.items[0] ||
+                    props.building.community_public_ownership_source_type == dataFields.community_public_ownership_source_type.items[1] ||
+                    props.building.community_public_ownership_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            slug='community_public_ownership_sources'
+                            title={dataFields.community_public_ownership_sources.title}
+                            tooltip={dataFields.community_public_ownership_sources.tooltip}
+                            isUrl={true}
+                            placeholder={'https://...'}
+                            editableEntries={true}
+                            value={props.building.community_public_ownership_sources}
+                            onChange={props.onChange}
+                            mode={props.mode}
+                            copy={props.copy}
+                        />
+                    </>
+                }
                 <hr/>
                 <DataEntry
                     title={dataFields.size_parcel_geometry.title}
                     slug="size_parcel_geometry"
                     value={props.building.size_parcel_geometry}
                     mode={props.mode}
-                    copy={props.copy}
                     onChange={props.onChange}
                     tooltip={dataFields.size_parcel_geometry.tooltip}
                     placeholder="https://..."

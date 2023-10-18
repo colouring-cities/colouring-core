@@ -57,7 +57,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
                         onChange={props.onSaveChange}
                         mode={props.mode}
-                        copy={props.copy}
                     />
                     </>
                 : 
@@ -110,7 +109,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
                     onChange={props.onSaveChange}
                     mode={props.mode}
-                    copy={props.copy}
                 />
                 {(props.mapColourScale != "community_local_significance_total") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLocalSignificanceMapStyle}>
@@ -128,7 +126,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
                     onChange={props.onSaveChange}
                     mode={props.mode}
-                    copy={props.copy}
                 />
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
@@ -189,6 +186,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 title={dataFields.community_public_ownership.title}
                 value={props.building.community_public_ownership}
                 options={dataFields.community_public_ownership.items}
+                tooltip={dataFields.community_public_ownership.tooltip}
                 onChange={props.onChange}
                 mode={props.mode}
                 copy={props.copy}
@@ -204,6 +202,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <MultiDataEntry
                 slug='community_public_ownership_sources'
                 title={dataFields.community_public_ownership_sources.title}
+                tooltip={dataFields.community_public_ownership_sources.tooltip}
                 isUrl={true}
                 placeholder={'https://...'}
                 editableEntries={true}

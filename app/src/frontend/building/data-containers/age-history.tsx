@@ -20,13 +20,6 @@ import { CategoryViewProps } from './category-view-props';
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 
-const SurvivalStatusOptions = [
-    'Same as Historical Map (Unchanged)',
-    'Similar to Historical Map (Some Changes)',
-    'Historical Building(s) Demolished',
-    'Current Building on Previous Green Space'
-];
-
 /**
 * Age view/edit section
 */
@@ -531,7 +524,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     slug="survival_status"
                     value={props.building.survival_status}
                     tooltip={dataFields.survival_status.tooltip}
-                    options={SurvivalStatusOptions}
+                    options={dataFields.survival_status.items}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
