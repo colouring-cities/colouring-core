@@ -288,6 +288,158 @@
             <Filter>[construction_core_material] = "Other Man-Made Material"</Filter>
             <PolygonSymbolizer fill="#c48a85" />
         </Rule>
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="construction_structural_system">
+        <Rule>
+            <Filter>[construction_structural_system] = "Solid masonry walls supporting the roof"</Filter>
+            <PolygonSymbolizer fill="#b5a859" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_structural_system] = "A lateral load resisting structure (e.g. concrete or wooden frame)"</Filter>
+            <PolygonSymbolizer fill="#ffffe3" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_structural_system] = "Other"</Filter>
+            <PolygonSymbolizer fill="#f5d96b" />
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="construction_foundation">
+        <Rule>
+            <Filter>[construction_foundation] = "Shallow foundations with no lateral support"</Filter>
+            <PolygonSymbolizer fill="#b5a859" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_foundation] = "Shallow foundations with lateral support"</Filter>
+            <PolygonSymbolizer fill="#ffffe3" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_foundation] = "Deep foundations with no lateral support"</Filter>
+            <PolygonSymbolizer fill="#f5d96b" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_foundation] = "Deep Foundations with lateral support"</Filter>
+            <PolygonSymbolizer fill="#beffe8" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_foundation] = "Other"</Filter>
+            <PolygonSymbolizer fill="#fca89d" />
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="construction_roof_shape">
+        <Rule>
+            <Filter>[construction_roof_shape] = "Flat"</Filter>
+            <PolygonSymbolizer fill="#b5a859" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_shape] = "Pitched with gable ends"</Filter>
+            <PolygonSymbolizer fill="#ffffe3" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_shape] = "Pitched and hipped"</Filter>
+            <PolygonSymbolizer fill="#f5d96b" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_shape] = "Pitched with dormers"</Filter>
+            <PolygonSymbolizer fill="#beffe8" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_shape] = "Monopitch"</Filter>
+            <PolygonSymbolizer fill="#fca89d" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_shape] = "Sawtooth"</Filter>
+            <PolygonSymbolizer fill="#5c8970" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_shape] = "Curved"</Filter>
+            <PolygonSymbolizer fill="#96613b" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_shape] = "Complex regular"</Filter>
+            <PolygonSymbolizer fill="#c48a85" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_shape] = "Complex irregular"</Filter>
+            <PolygonSymbolizer fill="#7bccc4" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_shape] = "Other"</Filter>
+            <PolygonSymbolizer fill="#bae4bc" />
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="construction_roof_covering">
+        <Rule>
+            <Filter>[construction_roof_covering] = "Slate"</Filter>
+            <PolygonSymbolizer fill="#b5a859" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_covering] = "Clay Tile"</Filter>
+            <PolygonSymbolizer fill="#ffffe3" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_covering] = "Wood"</Filter>
+            <PolygonSymbolizer fill="#f5d96b" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_covering] = "Asphalt"</Filter>
+            <PolygonSymbolizer fill="#beffe8" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_covering] = "Iron or Steel"</Filter>
+            <PolygonSymbolizer fill="#fca89d" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_covering] = "Other Metal"</Filter>
+            <PolygonSymbolizer fill="#5c8970" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_covering] = "Other Natural Material"</Filter>
+            <PolygonSymbolizer fill="#96613b" />
+        </Rule>
+        <Rule>
+            <Filter>[construction_roof_covering] = "Other Man-Made Material"</Filter>
+            <PolygonSymbolizer fill="#c48a85" />
+        </Rule>
 
         <Rule>
             <MaxScaleDenominator>17061</MaxScaleDenominator>
@@ -1170,20 +1322,16 @@
     </Style>
     <Style name="typology_dynamic_classification">
         <Rule>
-            <Filter>[typology_dynamic_classification] = "Repetitive small, domestic plots"</Filter>
-            <PolygonSymbolizer fill="#96484A" />
+            <Filter>[typology_dynamic_classification] = "Small, often repetitive plots, mainly residential"</Filter>
+            <PolygonSymbolizer fill="#FF7F11" />
         </Rule>
         <Rule>
             <Filter>[typology_dynamic_classification] = "Linear non-domestic, i.e. high streets"</Filter>
-            <PolygonSymbolizer fill="#4B9889" />
+            <PolygonSymbolizer fill="#FF1B1C" />
         </Rule>
         <Rule>
             <Filter>[typology_dynamic_classification] = "Large plots with internal roads"</Filter>
-            <PolygonSymbolizer fill="#4F8DA8" />
-        </Rule>
-        <Rule>
-            <Filter>[typology_dynamic_classification] = "Other"</Filter>
-            <PolygonSymbolizer fill="#897A5D" />
+            <PolygonSymbolizer fill="#40E0D0" />
         </Rule>
 
         <Rule>

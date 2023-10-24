@@ -112,22 +112,82 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             ]
         },
     }],
-    [Category.Construction]: [{
-        mapStyle: 'construction_core_material',
-        legend: {
-            title: 'Construction',
-            elements: [
-                { color: "#b5a859", text: "Wood" },
-                { color: "#ffffe3", text: "Stone" },
-                { color: "#f5d96b", text: "Brick" },
-                { color: "#beffe8", text: "Steel" },
-                { color: "#fca89d", text: "Reinforced Concrete" },
-                { color: "#5c8970", text: "Other Metal" },
-                { color: "#96613b", text: "Other Natural Material" },
-                { color: "#c48a85", text: "Other Man-Made Material" }
-            ]
+    [Category.Construction]: [
+        {
+            mapStyle: 'construction_core_material',
+            legend: {
+                title: 'Core material',
+                elements: [
+                    { color: "#b5a859", text: "Wood" },
+                    { color: "#ffffe3", text: "Stone" },
+                    { color: "#f5d96b", text: "Brick" },
+                    { color: "#beffe8", text: "Steel" },
+                    { color: "#fca89d", text: "Reinforced Concrete" },
+                    { color: "#5c8970", text: "Other Metal" },
+                    { color: "#96613b", text: "Other Natural Material" },
+                    { color: "#c48a85", text: "Other Man-Made Material" }
+                ]
+            },
         },
-    }],
+        {
+            mapStyle: 'construction_structural_system',
+            legend: {
+                title: 'Structural system',
+                elements: [
+                    { color: "#b5a859", text: "Solid masonry walls supporting the roof" },
+                    { color: "#ffffe3", text: "A lateral load resisting structure (e.g. concrete or wooden frame)" },
+                    { color: "#f5d96b", text: "Other" },
+                ]
+            },
+        },
+        {
+            mapStyle: 'construction_foundation',
+            legend: {
+                title: 'Foundations',
+                elements: [
+                    { color: "#b5a859", text: "Shallow foundations with no lateral support" },
+                    { color: "#ffffe3", text: "Shallow foundations with lateral support" },
+                    { color: "#f5d96b", text: "Deep foundations with no lateral support" },
+                    { color: "#beffe8", text: "Deep Foundations with lateral support" },
+                    { color: "#fca89d", text: "Other" },
+                ]
+            },
+        },
+        {
+            mapStyle: 'construction_roof_shape',
+            legend: {
+                title: 'Roof shape',
+                elements: [
+                    { color: "#b5a859", text: "Flat" },
+                    { color: "#ffffe3", text: "Pitched with gable ends" },
+                    { color: "#f5d96b", text: "Pitched and hipped" },
+                    { color: "#beffe8", text: "Pitched with dormers" },
+                    { color: "#fca89d", text: "Monopitch" },
+                    { color: "#5c8970", text: "Sawtooth" },
+                    { color: "#96613b", text: "Curved" },
+                    { color: "#c48a85", text: "Complex regular" },
+                    { color: "#7bccc4", text: "Complex irregular" },
+                    { color: "#bae4bc", text: "Other" }
+                ]
+            },
+        },
+        {
+            mapStyle: 'construction_roof_covering',
+            legend: {
+                title: 'Roof covering',
+                elements: [
+                    { color: "#b5a859", text: "Wood" },
+                    { color: "#ffffe3", text: "Stone" },
+                    { color: "#f5d96b", text: "Brick" },
+                    { color: "#beffe8", text: "Steel" },
+                    { color: "#fca89d", text: "Reinforced Concrete" },
+                    { color: "#5c8970", text: "Other Metal" },
+                    { color: "#96613b", text: "Other Natural Material" },
+                    { color: "#c48a85", text: "Other Man-Made Material" }
+                ]
+            },
+        }
+    ],
     [Category.Location]: [{
         mapStyle: 'location',
         legend: {
@@ -360,10 +420,9 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Dynamic classification',
                 elements: [
-                    { color: '#96484A', text: 'Repetitive small, domestic plots' },
-                    { color: '#4B9889', text: 'Linear non-domestic, i.e. high streets' },
-                    { color: '#4F8DA8', text: 'Large plots with internal roads' },
-                    { color: '#897A5D', text: 'Other' },
+                    { color: '#FF7F11', text: 'Small, often repetitive plots, mainly residential' },
+                    { color: '#FF1B1C', text: 'Linear non-domestic, i.e. high streets' },
+                    { color: '#40E0D0', text: 'Large plots with internal roads' },
                 ]
             }
         },

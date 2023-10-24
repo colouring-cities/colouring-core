@@ -118,4 +118,4 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 Even more thanks go to Colouring Cities contributors, funders, project partners, consultees,
 advisers, supporters and friends - [everyone involved in the
-project](https://www.pages.colouring.london/whoisinvolved).
+project](https://github.com/colouring-cities/manual/wiki/M3.2-Colouring-Britain:-Who's-Involved%3F).
