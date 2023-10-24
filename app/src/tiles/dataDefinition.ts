@@ -70,6 +70,38 @@ const LAYER_QUERIES = {
             buildings
         WHERE
             construction_core_material IS NOT NULL`,
+    construction_structural_system: `
+        SELECT
+            geometry_id,
+            construction_structural_system::text AS construction_structural_system
+        FROM
+            buildings
+        WHERE
+            construction_structural_system IS NOT NULL`,
+    construction_foundation: `
+        SELECT
+            geometry_id,
+            construction_foundation::text AS construction_foundation
+        FROM
+            buildings
+        WHERE
+            construction_foundation IS NOT NULL`,
+    construction_roof_shape: `
+        SELECT
+            geometry_id,
+            construction_roof_shape::text AS construction_roof_shape
+        FROM
+            buildings
+        WHERE
+            construction_roof_shape IS NOT NULL`,
+    construction_roof_covering: `
+        SELECT
+            geometry_id,
+            construction_roof_covering::text AS construction_roof_covering
+        FROM
+            buildings
+        WHERE
+            construction_roof_covering IS NOT NULL`,
     location: `
         SELECT blds_with_data.* 
         FROM (

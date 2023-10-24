@@ -29,17 +29,21 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
     
     const currentYear = new Date().getFullYear();
 
+    const queryParameters = new URLSearchParams(window.location.search);
+    const subcat = queryParameters.get("sc");
+
     return (
         <Fragment>
-            <DataEntryGroup name="Environmental quality rating">
+            <DataEntryGroup name="Environmental quality rating" collapsed={subcat==null || subcat!="1"}>
                 <DataEntry
                     title="Official environmental quality rating"
                     slug=""
                     value=""
                     mode='view'
+                    tooltip='Under development'
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Energy rating">
+            <DataEntryGroup name="Energy rating"  collapsed={subcat==null || subcat!="2"}>
                 <SelectDataEntry
                     title={dataFields.sust_breeam_rating.title}
                     slug="sust_breeam_rating"
@@ -75,20 +79,27 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     user_verified={props.user_verified.hasOwnProperty("sust_dec")}
                     user_verified_as={props.user_verified.sust_dec}
                     verified_count={props.building.verified.sust_dec}
-                    />
+                />
                 <SelectDataEntry
                     title={dataFields.sust_aggregate_estimate_epc.title}
                     slug="sust_aggregate_estimate_epc"
                     value={props.building.sust_aggregate_estimate_epc}
                     tooltip={dataFields.sust_aggregate_estimate_epc.tooltip}
                     options={EnergyCategoryOptions}
-                    disabled={true}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
                 />
+                <Verification
+                    slug="sust_aggregate_estimate_epc"
+                    allow_verify={props.user !== undefined && props.building.sust_aggregate_estimate_epc !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("sust_aggregate_estimate_epc")}
+                    user_verified_as={props.user_verified.sust_aggregate_estimate_epc}
+                    verified_count={props.building.verified.sust_aggregate_estimate_epc}
+                />
             </DataEntryGroup>
-            <DataEntryGroup name="Retrofit history">
+            <DataEntryGroup name="Retrofit history" collapsed={subcat==null || subcat!="3"}>
                 <NumericDataEntry
                     slug='age_retrofit_date'
                     title={dataFields.age_retrofit_date.title}
@@ -139,7 +150,7 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Solar panels">
+            <DataEntryGroup name="Solar panels" collapsed={subcat==null || subcat!="4"}>
                 <LogicalDataEntry
                     title={dataFields.energy_solar.title}
                     slug="energy_solar"
@@ -191,7 +202,7 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Green walls/roof">
+            <DataEntryGroup name="Green walls/roof" collapsed={subcat==null || subcat!="5"}>
             <LogicalDataEntry
                     title={dataFields.energy_green_roof.title}
                     slug="energy_green_roof"

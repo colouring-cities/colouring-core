@@ -71,7 +71,7 @@ class Tooltip extends Component<TooltipProps, TooltipState> {
             <div className="tooltip-wrap" tabIndex={0} onBlur={this.handleBlur}>
                 <button type="button" className={(this.state.active? 'active ': '') + 'tooltip-hint icon-button'}
                     onClick={this.toggleVisible}>
-                    Hint
+                    Info
                     <InfoIcon />
                 </button>
                 {
