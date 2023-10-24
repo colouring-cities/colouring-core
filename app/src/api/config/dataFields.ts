@@ -724,6 +724,26 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
+    extension_developer_type: {
+        edit: true,
+        verify: true
+    },
+    extension_developer_name: {
+        edit: true,
+        verify: true
+    },
+    extension_developer_links: {
+        edit: true,
+        verify: true
+    },
+    extension_developer_source_type: {
+        edit: true,
+        verify: true
+    },
+    extension_developer_source_link: {
+        edit: true,
+        verify: true
+    },
     landowner: {
         edit: true,
         verify: true
@@ -760,6 +780,26 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
+    extension_designers: {
+        edit: true,
+        verify: true
+    },
+    extension_designers_links: {
+        edit: true,
+        verify: true
+    },
+    extension_designers_source_type: {
+        edit: true,
+        verify: true
+    },
+    extension_designers_source_link: {
+        edit: true,
+        verify: true
+    },
+    extension_lead_designer_type: {
+        edit: true,
+        verify: true
+    },
     designer_awards: {
         edit: true,
         verify: true
@@ -781,6 +821,22 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         verify: true
     },
     builder_source_link: {
+        edit: true,
+        verify: true
+    },
+    extension_builder: {
+        edit: true,
+        verify: true
+    },
+    extension_builder_links: {
+        edit: true,
+        verify: true
+    },
+    extension_builder_source_type: {
+        edit: true,
+        verify: true
+    },
+    extension_builder_source_link: {
         edit: true,
         verify: true
     },

@@ -1419,6 +1419,47 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "URL for source for developer(s)",
         example: ["", "", ""],
     },
+    extension_developer_type: {
+        category: Category.Team,
+        title: "What type of developer built the extension?",
+        tooltip: "What type of developer built the extension?",
+        example: "",
+        items: [
+            "State",
+            "Charity",
+            "Community/Cooperative",
+            "Other non-profit body",
+            "Private (individual)",
+            "Commercial (company/estate)",
+            "Religious body",
+            "Other"
+        ]
+    },
+    extension_developer_name: {
+        category: Category.Team,
+        title: "Who were the developer(s)?",
+        tooltip: "Name(s) of the extension's developers.<br/><br/>Free-text entry disabled for security reasons.",
+        example: ["", "", ""],
+    },
+    extension_developer_links: {
+        category: Category.Team,
+        title: "Developer link(s)",
+        tooltip: "Link(s) to webpage(s) explaining who developed the extension.",
+        example: ["", "", ""],
+    },
+    extension_developer_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for developer data",
+        example: "",
+        items: commonSourceTypes
+    },
+    extension_developer_source_link: {
+        category: Category.Team,
+        title: "Source links for developer(s)",
+        tooltip: "URL for source for developer(s)",
+        example: ["", "", ""],
+    },
     landowner: {
         category: Category.Team,
         title: "Landowner(s) at time of construction",
@@ -1483,6 +1524,45 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Other"
         ]
     },
+    extension_designers: {
+        category: Category.Team,
+        title: "Who were the main designer(s)?",
+        tooltip: "Free-text entry disabled for security reasons.",
+        example: ["", "", ""],
+    },
+    extension_designers_links: {
+        category: Category.Team,
+        title: "Designer link(s)",
+        tooltip: "Link(s) to webpage(s) explaining who designed the extension.",
+        example: ["", "", ""],
+    },
+    extension_designers_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for designer data",
+        example: "",
+        items: commonSourceTypes
+    },
+    extension_designers_source_link: {
+        category: Category.Team,
+        title: "Source links for designer(s)",
+        tooltip: "URL for source for designer(s)",
+        example: ["", "", ""],
+    },
+    extension_lead_designer_type: {
+        category: Category.Team,
+        title: "Which title best describes the lead designer?",
+        tooltip: "Which title best describes the lead designer?",
+        example: "",
+        items: [
+            "Landowner",
+            "Speculative builder",
+            "Government architecture department",
+            "Architect/ architectural firm",
+            "Engineer/ Engineering firm",
+            "Other"
+        ]
+    },
     designer_awards: {
         category: Category.Team,
         title: "Has the building won any awards?",
@@ -1515,6 +1595,31 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         items: commonSourceTypes
     },
     builder_source_link: {
+        category: Category.Team,
+        title: "Source for builder/construction team",
+        tooltip: "Source for builder/construction team",
+        example: ["", "", ""],
+    },
+    extension_builder: {
+        category: Category.Team,
+        title: "Name of builder/construction team.",
+        tooltip: "Free-text entry disabled for security reasons.",
+        example: ["", "", ""],
+    },
+    extension_builder_links: {
+        category: Category.Team,
+        title: "Builder link(s)",
+        tooltip: "Link(s) to webpage(s) explaining who built the building.",
+        example: ["", "", ""],
+    },
+    extension_builder_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for builder data",
+        example: "",
+        items: commonSourceTypes
+    },
+    extension_builder_source_link: {
         category: Category.Team,
         title: "Source for builder/construction team",
         tooltip: "Source for builder/construction team",
