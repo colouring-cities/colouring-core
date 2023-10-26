@@ -16,6 +16,7 @@ import { BoroughLabelLayer } from './layers/borough-label-layer';
 import { ParcelBoundaryLayer } from './layers/parcel-boundary-layer';
 import { HistoricDataLayer } from './layers/historic-data-layer';
 import { HistoricMapLayer } from './layers/historic-map-layer';
+import { AerialPhotosMapLayer } from './layers/aerial-photos-map-layer';
 import { FloodBoundaryLayer } from './layers/flood-boundary-layer';
 import { ConservationAreaBoundaryLayer } from './layers/conservation-boundary-layer';
 import { VistaBoundaryLayer } from './layers/vista-boundary-layer';
@@ -36,6 +37,7 @@ import { FloodSwitcher } from './flood-switcher';
 import { ConservationAreaSwitcher } from './conservation-switcher';
 import { HistoricDataSwitcher } from './historic-data-switcher';
 import { HistoricMapSwitcher } from './historic-map-switcher';
+import { AerialPhotosMapSwitcher } from './aerial-photos-map-switcher';
 import { VistaSwitcher } from './vista-switcher';
 import { CreativeSwitcher } from './creative-switcher';
 import { HousingSwitcher } from './housing-switcher';
@@ -132,6 +134,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <CityBoundaryLayer/>
                     <HistoricDataLayer revisionId={revisionId} />
                     <HistoricMapLayer revisionId={revisionId} />
+                    <AerialPhotosMapLayer revisionId={revisionId} />
                     <BoroughBoundaryLayer/>
                     <ParcelBoundaryLayer/>
                     <FloodBoundaryLayer/>
@@ -172,6 +175,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                             <ConservationAreaSwitcher/>
                             <HistoricMapSwitcher/>
                             <HistoricDataSwitcher/>
+                            <AerialPhotosMapSwitcher/>
                             <VistaSwitcher />
                             <HousingSwitcher />
                             <CreativeSwitcher />
