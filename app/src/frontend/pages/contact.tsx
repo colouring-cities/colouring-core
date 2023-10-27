@@ -16,7 +16,7 @@ const ContactPage = () => (
 
             <p> You can send us comments or ask questions on our discussion threads at <a href="https://discuss.colouring.london/">https://discuss.colouring.london/</a>.</p>
 
-            <p> To view our technical site and platform code please visit Github at: <a href={ccconfig.githubURL}>https://github.com/colouring-cities/colouring-london</a>.</p>
+            <p> To view our technical site and platform code please visit Github at: <a href={ccconfig.githubURL}>https://github.com/colouring-cities/colouring-core</a>.</p>
 
             <p>For press enquiries please contact <a href="https://www.turing.ac.uk/contact-us/press-office">The Alan Turing Institute press office</a></p>
 
