@@ -395,6 +395,13 @@ const LAYER_QUERIES = {
         FROM
             buildings
         WHERE context_street_width IS NOT NULL`,
+    designer_awards: `
+        SELECT
+            geometry_id,
+            designer_awards
+        FROM
+            buildings
+        WHERE designer_awards IS NOT NULL`,
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';

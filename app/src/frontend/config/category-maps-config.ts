@@ -140,20 +140,32 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         }
     ],
-    [Category.Team]: [{
-        mapStyle: 'team',
-        legend: {
-            title: 'Team',
-            description: '% data collected',
-            elements: [
-                { color: '#994d00', text: '≥80%' },
-                { color: '#e67300', text: '60–80%' },
-                { color: '#ff9933', text: '40–60%' },
-                { color: '#ffbf80', text: '20–40%' },
-                { color: '#ffe6cc', text: '<20%' }
-            ]
+    [Category.Team]: [
+        {
+            mapStyle: 'team',
+            legend: {
+                title: 'Team',
+                description: '% data collected',
+                elements: [
+                    { color: '#994d00', text: '≥80%' },
+                    { color: '#e67300', text: '60–80%' },
+                    { color: '#ff9933', text: '40–60%' },
+                    { color: '#ffbf80', text: '20–40%' },
+                    { color: '#ffe6cc', text: '<20%' }
+                ]
+            },
         },
-    }],
+        {
+            mapStyle: 'designer_awards',
+            legend: {
+                title: 'Awards',
+                description: 'Has the building won any awards?',
+                elements: [
+                    {color: '#f7ec25', text: 'Yes'},
+                ]
+            },
+        },
+    ],
     [Category.Construction]: [
         {
             mapStyle: 'construction_core_material',
