@@ -402,6 +402,20 @@ const LAYER_QUERIES = {
         FROM
             buildings
         WHERE designer_awards IS NOT NULL`,
+        energy_solar: `
+        SELECT
+            geometry_id,
+            energy_solar
+        FROM
+            buildings
+        WHERE energy_solar IS NOT NULL`,
+        energy_green_roof: `
+        SELECT
+            geometry_id,
+            energy_green_roof
+        FROM
+            buildings
+        WHERE energy_green_roof IS NOT NULL`,
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';

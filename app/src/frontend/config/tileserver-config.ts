@@ -38,7 +38,9 @@ export type BuildingMapTileset =
     'typology_dynamic_classification'|
     'context_back_garden'|
     'context_street_width'|
-    'designer_awards';
+    'designer_awards' |
+    'energy_solar' |
+    'energy_green_roof';
     
 
 export type SpecialMapTileset = 'base_light' | 'base_night' | 'base_night_outlines' | 'highlight' | 'number_labels' | 'base_boroughs';

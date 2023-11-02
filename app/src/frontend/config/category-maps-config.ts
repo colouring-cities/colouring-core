@@ -416,22 +416,44 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         }
     ],
-    [Category.EnergyPerformance]: [{
-        mapStyle: 'sust_dec',
-        legend: {
-            title: 'Sustainability',
-            description: 'DEC Rating',
-            elements: [
-                { color: "#007f3d", text: 'A' },
-                { color: "#2c9f29", text: 'B' },
-                { color: "#9dcb3c", text: 'C' },
-                { color: "#fff200", text: 'D' },
-                { color: "#f7af1d", text: 'E' },
-                { color: "#ed6823", text: 'F' },
-                { color: "#e31d23", text: 'G' },
-            ]
+    [Category.EnergyPerformance]: [
+        {
+            mapStyle: 'sust_dec',
+            legend: {
+                title: 'Energy rating (DEC)',
+                description: 'Non-domestic energy rating (DEC Rating)',
+                elements: [
+                    { color: "#007f3d", text: 'A' },
+                    { color: "#2c9f29", text: 'B' },
+                    { color: "#9dcb3c", text: 'C' },
+                    { color: "#fff200", text: 'D' },
+                    { color: "#f7af1d", text: 'E' },
+                    { color: "#ed6823", text: 'F' },
+                    { color: "#e31d23", text: 'G' },
+                ]
+            },
         },
-    }],
+        {
+            mapStyle: 'energy_solar',
+            legend: {
+                title: 'Solar panels',
+                description: 'Does the building have Solar Panels?',
+                elements: [
+                    {color: '#6bb1e3', text: 'Yes'},
+                ]
+            },
+        },
+        {
+            mapStyle: 'energy_green_roof',
+            legend: {
+                title: 'Green roof',
+                description: 'Does the building have a Green Roof?',
+                elements: [
+                    {color: '#7cbf39', text: 'Yes'},
+                ]
+            },
+        },
+    ],
     [Category.Typology]: [
         {
             mapStyle: 'typology_classification',
