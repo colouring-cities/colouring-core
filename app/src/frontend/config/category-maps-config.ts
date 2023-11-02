@@ -540,13 +540,18 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         }
     ],
-    [Category.StreetContext]: [{
-        mapStyle: undefined,
-        legend: {
-            title: 'Street Context',
-            elements: []
-        },
-    }],
+    [Category.StreetContext]: [
+        {
+            mapStyle: 'context_back_garden',
+            legend: {
+                title: 'Back gardens',
+                description: 'Does the building have a back garden?',
+                elements: [
+                    {color: '#7cbf39', text: 'Yes'},
+                ]
+            },
+        }
+    ],
     [Category.Resilience]: [
         {
             mapStyle: 'disaster_severity',

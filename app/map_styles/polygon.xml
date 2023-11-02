@@ -1345,4 +1345,21 @@
             <LineSymbolizer stroke="#888" stroke-width="2.0"/>
         </Rule>
     </Style>
+    <Style name="context_back_garden">
+        <Rule>
+            <Filter>[context_back_garden] = true</Filter>
+            <PolygonSymbolizer fill="#7cbf39" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
 </Map>

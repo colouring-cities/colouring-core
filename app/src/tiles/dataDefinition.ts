@@ -381,6 +381,13 @@ const LAYER_QUERIES = {
         FROM
             buildings
         WHERE typology_dynamic_classification IS NOT NULL`,
+    context_back_garden: `
+        SELECT
+            geometry_id,
+            context_back_garden
+        FROM
+            buildings
+        WHERE context_back_garden IS NOT NULL`,
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';
