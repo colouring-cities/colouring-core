@@ -388,6 +388,13 @@ const LAYER_QUERIES = {
         FROM
             buildings
         WHERE context_back_garden IS NOT NULL`,
+    context_street_width: `
+        SELECT
+            geometry_id,
+            context_street_width
+        FROM
+            buildings
+        WHERE context_street_width IS NOT NULL`,
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';

@@ -550,6 +550,13 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     {color: '#7cbf39', text: 'Yes'},
                 ]
             },
+        },
+        {
+            mapStyle: "context_street_width",
+            legend: {
+                title: 'Street width',
+                elements: []
+            },
         }
     ],
     [Category.Resilience]: [

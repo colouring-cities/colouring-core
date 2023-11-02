@@ -36,7 +36,8 @@ export type BuildingMapTileset =
     'typology_classification'|
     'typology_style_period' |
     'typology_dynamic_classification'|
-    'context_back_garden';
+    'context_back_garden'|
+    'context_street_width';
 
 export type SpecialMapTileset = 'base_light' | 'base_night' | 'base_night_outlines' | 'highlight' | 'number_labels' | 'base_boroughs';
 
