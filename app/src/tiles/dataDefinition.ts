@@ -62,6 +62,44 @@ const LAYER_QUERIES = {
             buildings
         WHERE
             size_height_apex IS NOT NULL`,
+    size_total_floors: `
+        SELECT
+            geometry_id,
+            (size_storeys_core + size_storeys_attic + size_storeys_basement) AS size_total_floors
+        FROM
+            buildings
+        WHERE
+            size_storeys_core IS NOT NULL 
+            AND
+            size_storeys_attic IS NOT NULL 
+            AND
+            size_storeys_basement IS NOT NULL 
+            AND
+            size_storeys_core != 0
+            AND
+            size_storeys_attic != 0
+            AND
+            size_storeys_basement != 0`,
+    size_storeys_basement: `
+        SELECT
+            geometry_id,
+            size_storeys_basement AS size_storeys_basement
+        FROM
+            buildings
+        WHERE
+            size_storeys_basement IS NOT NULL
+            AND
+            size_storeys_basement != 0`,  
+    size_floor_area_ground: `
+        SELECT
+            geometry_id,
+            size_floor_area_ground AS size_floor_area_ground
+        FROM
+            buildings
+        WHERE
+            size_floor_area_ground IS NOT NULL
+            AND
+            size_floor_area_ground != 0`,           
     construction_core_material: `
         SELECT
             geometry_id,
@@ -336,7 +374,7 @@ const LAYER_QUERIES = {
         FROM
             buildings
         WHERE typology_style_period IS NOT NULL`,
-        typology_dynamic_classification: `
+    typology_dynamic_classification: `
         SELECT
             geometry_id,
             typology_dynamic_classification

@@ -96,6 +96,48 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#980043', text: '≥152'}
                 ]
             },
+        },
+        {
+            mapStyle: 'size_total_floors',
+            legend: {
+                title: 'Total number of floors',
+                elements: [
+                    { color: '#f7f4f9', text: '1 - 5'},
+                    { color: '#e7e1ef', text: '6 - 10'},
+                    { color: '#d4b9da', text: '11 - 15'},
+                    { color: '#c994c7', text: '16 - 20'},
+                    { color: '#df65b0', text: '21 - 25'},
+                    { color: '#e7298a', text: '26 - 30'},
+                    { color: '#ce1256', text: '31 - 35'},
+                    { color: '#980043', text: '35 +'}
+                ]
+            },
+        },
+        {
+            mapStyle: 'size_storeys_basement',
+            legend: {
+                title: 'Floors below ground level',
+                elements: [
+                    { color: '#f7f4f9', text: '1'},
+                    { color: '#d4b9da', text: '2'},
+                    { color: '#df65b0', text: '3'},
+                    { color: '#ce1256', text: '4+'},
+                ]
+            },
+        },
+        {
+            mapStyle: 'size_floor_area_ground',
+            legend: {
+                title: 'Ground floor area',
+                elements: [
+                    { color: '#f7f4f9', text: '0 - 100'},
+                    { color: '#e7e1ef', text: '100 - 200'},
+                    { color: '#d4b9da', text: '200 - 300'},
+                    { color: '#c994c7', text: '300 - 400'},
+                    { color: '#df65b0', text: '400 - 500'},
+                    { color: '#e7298a', text: '500 +'},
+                ]
+            },
         }
     ],
     [Category.Team]: [{
