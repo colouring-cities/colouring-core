@@ -416,6 +416,13 @@ const LAYER_QUERIES = {
         FROM
             buildings
         WHERE energy_green_roof IS NOT NULL`,
+    sust_aggregate_estimate_epc: `
+        SELECT
+            geometry_id,
+            sust_aggregate_estimate_epc
+        FROM
+            buildings
+        WHERE sust_aggregate_estimate_epc IS NOT NULL`,
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';
