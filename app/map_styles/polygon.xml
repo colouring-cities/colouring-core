@@ -300,6 +300,51 @@
             <LineSymbolizer stroke="#ccc" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="size_floor_area_ground">
+        <Rule>
+            <Filter>[size_floor_area_ground] &gt;= 0.1 and [size_floor_area_ground] &lt; 25</Filter>
+            <PolygonSymbolizer fill="#f7f4f9" />
+        </Rule>
+        <Rule>
+            <Filter>[size_floor_area_ground] &gt;= 25 and [size_floor_area_ground] &lt; 50</Filter>
+            <PolygonSymbolizer fill="#e7e1ef" />
+        </Rule>
+        <Rule>
+            <Filter>[size_floor_area_ground] &gt;= 50 and [size_floor_area_ground] &lt; 100</Filter>
+            <PolygonSymbolizer fill="#d4b9da" />
+        </Rule>
+        <Rule>
+            <Filter>[size_floor_area_ground] &gt;= 100 and [size_floor_area_ground] &lt; 250</Filter>
+            <PolygonSymbolizer fill="#c994c7" />
+        </Rule>
+        <Rule>
+            <Filter>[size_floor_area_ground] &gt;= 250 and [size_floor_area_ground] &lt; 500</Filter>
+            <PolygonSymbolizer fill="#df65b0" />
+        </Rule>
+        <Rule>
+            <Filter>[size_floor_area_ground] &gt;= 500 and [size_floor_area_ground] &lt; 1000</Filter>
+            <PolygonSymbolizer fill="#e7298a" />
+        </Rule>
+        <Rule>
+            <Filter>[size_floor_area_ground] &gt;= 1000 and [size_floor_area_ground] &lt; 2000</Filter>
+            <PolygonSymbolizer fill="#ce1256" />
+        </Rule>
+        <Rule>
+            <Filter>[size_floor_area_ground] &gt;= 2000</Filter>
+            <PolygonSymbolizer fill="#980043" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#ccc" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#ccc" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="construction_core_material">
         <Rule>
             <Filter>[construction_core_material] = "Wood"</Filter>

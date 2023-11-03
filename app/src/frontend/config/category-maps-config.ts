@@ -128,14 +128,16 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'size_floor_area_ground',
             legend: {
-                title: 'Ground floor area',
+                title: 'Ground floor area (m2)',
                 elements: [
-                    { color: '#f7f4f9', text: '0 - 100'},
-                    { color: '#e7e1ef', text: '100 - 200'},
-                    { color: '#d4b9da', text: '200 - 300'},
-                    { color: '#c994c7', text: '300 - 400'},
-                    { color: '#df65b0', text: '400 - 500'},
-                    { color: '#e7298a', text: '500 +'},
+                    { color: '#f7f4f9', text: '0 - 25'},
+                    { color: '#e7e1ef', text: '25 - 50'},
+                    { color: '#d4b9da', text: '50 - 100'},
+                    { color: '#c994c7', text: '100 - 250'},
+                    { color: '#df65b0', text: '250 - 500'},
+                    { color: '#e7298a', text: '500 - 1000'},
+                    { color: '#ce1256', text: '1000 - 2000'},
+                    { color: '#980043', text: '2000 +'}
                 ]
             },
         }
