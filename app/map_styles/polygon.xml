@@ -300,6 +300,35 @@
             <LineSymbolizer stroke="#ccc" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="size_storeys_basement">
+        <Rule>
+            <Filter>[size_storeys_basement] &gt;= 1 and [size_storeys_basement] &lt; 2</Filter>
+            <PolygonSymbolizer fill="#f7f4f9" />
+        </Rule>
+        <Rule>
+            <Filter>[size_storeys_basement] &gt;= 2 and [size_storeys_basement] &lt; 3</Filter>
+            <PolygonSymbolizer fill="#d4b9da" />
+        </Rule>
+        <Rule>
+            <Filter>[size_storeys_basement] &gt;= 3 and [size_storeys_basement] &lt; 4</Filter>
+            <PolygonSymbolizer fill="#df65b0" />
+        </Rule>
+        <Rule>
+            <Filter>[size_storeys_basement] &gt;= 4</Filter>
+            <PolygonSymbolizer fill="#ce1256" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#ccc" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#ccc" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="size_floor_area_ground">
         <Rule>
             <Filter>[size_floor_area_ground] &gt;= 0.1 and [size_floor_area_ground] &lt; 25</Filter>
