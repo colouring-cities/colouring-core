@@ -423,6 +423,13 @@ const LAYER_QUERIES = {
         FROM
             buildings
         WHERE sust_aggregate_estimate_epc IS NOT NULL`,
+    context_walkability_index: `
+        SELECT
+            geometry_id,
+            context_walkability_index
+        FROM
+            buildings
+        WHERE context_walkability_index IS NOT NULL`,
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';

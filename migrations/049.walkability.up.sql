@@ -1,0 +1,1 @@
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS context_walkability_index smallint;

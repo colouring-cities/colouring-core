@@ -201,7 +201,7 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
             <DataEntryGroup name="Street/pavement" collapsed={subcat==null || subcat!="2"}>
                 <DataEntry
                     title="Walkability Index"
-                    slug=""
+                    slug="context_walkability_index"
                     value=""
                     mode='view'
                     tooltip='Under development'

@@ -1758,6 +1758,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Source link(s) for pavement width data",
         example: ["", "", ""],
     },
+    context_walkability_index: {
+        category: Category.Team,
+        title: "Walkability index",
+        tooltip: "How walkable is the area...?",
+        example: 10
+    },
     context_green_space_distance: {
         category: Category.Team,
         title: "Distance to nearest green space (m)",

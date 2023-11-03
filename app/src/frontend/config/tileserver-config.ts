@@ -38,6 +38,7 @@ export type BuildingMapTileset =
     'typology_dynamic_classification'|
     'context_back_garden'|
     'context_street_width'|
+    'context_walkability_index' |
     'designer_awards' |
     'energy_solar' |
     'energy_green_roof' |
