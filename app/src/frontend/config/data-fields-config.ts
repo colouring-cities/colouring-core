@@ -920,7 +920,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     sust_breeam_rating: {
         category: Category.EnergyPerformance,
-        title: "Residential energy rating",
+        title: "Official environmental quality rating",
         tooltip: ccconfig.energy_rating,
         example: "",
     },

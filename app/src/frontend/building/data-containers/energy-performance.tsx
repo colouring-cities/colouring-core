@@ -35,15 +35,6 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
     return (
         <Fragment>
             <DataEntryGroup name="Environmental quality rating" collapsed={subcat==null || subcat!="1"}>
-                <DataEntry
-                    title="Official environmental quality rating"
-                    slug=""
-                    value=""
-                    mode='view'
-                    tooltip='Under development'
-                />
-            </DataEntryGroup>
-            <DataEntryGroup name="Energy rating"  collapsed={subcat==null || subcat!="2"}>
                 <SelectDataEntry
                     title={dataFields.sust_breeam_rating.title}
                     slug="sust_breeam_rating"
@@ -61,7 +52,9 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     user_verified={props.user_verified.hasOwnProperty("sust_breeam_rating")}
                     user_verified_as={props.user_verified.sust_breeam_rating}
                     verified_count={props.building.verified.sust_breeam_rating}
-                    />
+                />
+            </DataEntryGroup>
+            <DataEntryGroup name="Energy rating" collapsed={subcat==null || subcat!="2"}>
                 <SelectDataEntry
                     title={dataFields.sust_dec.title}
                     slug="sust_dec"
