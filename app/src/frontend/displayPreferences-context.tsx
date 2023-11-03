@@ -42,6 +42,10 @@ interface DisplayPreferencesContextState {
     historicMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     historicMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
+    aerialPhotosMap: LayerEnablementState;
+    aerialPhotosMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    aerialPhotosMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
     darkLightTheme: MapTheme;
     darkLightThemeSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     darkLightThemeSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -95,6 +99,10 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     historicMapSwitch: stub,
     historicMapSwitchOnClick: undefined,
 
+    aerialPhotosMap: undefined,
+    aerialPhotosMapSwitch: stub,
+    aerialPhotosMapSwitchOnClick: undefined,
+
     darkLightTheme: undefined,
     darkLightThemeSwitch: stub,
     darkLightThemeSwitchOnClick: undefined,
@@ -116,6 +124,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultConservation = 'disabled'
     const defaultHistoricData = 'disabled'
     const defaultHistoricMap = 'disabled'
+    const defaultaerialPhotosMap = 'disabled'
     const defaultShowLayerSelection = 'disabled'
     const [vista, setVista] = useState<LayerEnablementState>(defaultVista);
     const [flood, setFlood] = useState<LayerEnablementState>(defaultFlood);
@@ -126,6 +135,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [conservation, setConservation] = useState<LayerEnablementState>(defaultConservation);
     const [historicData, setHistoricData] = useState<LayerEnablementState>(defaultHistoricData);
     const [historicMap, setHistoricMap] = useState<LayerEnablementState>(defaultHistoricMap);
+    const [aerialPhotosMap, setaerialPhotosMap] = useState<LayerEnablementState>(defaultHistoricMap);
     const [darkLightTheme, setDarkLightTheme] = useState<MapTheme>('night');
     const [showLayerSelection, setShowLayerSelection] = useState<LayerEnablementState>(defaultShowLayerSelection);
 
@@ -179,6 +189,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             return true;
         }
         if(historicMap != defaultHistoricMap) {
+            return true;
+        }
+        if(aerialPhotosMap != defaultaerialPhotosMap) {
             return true;
         }
         //darkLightTheme not handled here
@@ -293,7 +306,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const historicDataSwitch = useCallback(
         (e) => {
             if (historicMap === 'enabled') {
-                fliphistoricMap(e);
+                flipHistoricMap(e);
             }
             flipHistoricData(e);
         },
@@ -313,17 +326,32 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             if (historicData === 'enabled') {
                 flipHistoricData(e);
             }
-            fliphistoricMap(e);
+            flipHistoricMap(e);
         },
         [historicMap, historicData],
     )
     const historicMapSwitchOnClick = (e) => {
-        fliphistoricMap(e)
+        flipHistoricMap(e)
     }
-    function fliphistoricMap(e) {
+    function flipHistoricMap(e) {
         e.preventDefault();
         const newHistoric = (historicMap === 'enabled')? 'disabled' : 'enabled';
         setHistoricMap(newHistoric);
+    }
+
+    const aerialPhotosMapSwitch = useCallback(
+        (e) => {
+            flipaerialPhotosMap(e);
+        },
+        [aerialPhotosMap],
+    )
+    const aerialPhotosMapSwitchOnClick = (e) => {
+        flipaerialPhotosMap(e)
+    }
+    function flipaerialPhotosMap(e) {
+        e.preventDefault();
+        const newHistoric = (aerialPhotosMap === 'enabled')? 'disabled' : 'enabled';
+        setaerialPhotosMap(newHistoric);
     }
 
     const darkLightThemeSwitch = useCallback(
@@ -392,6 +420,10 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             historicMap,
             historicMapSwitch,
             historicMapSwitchOnClick,
+
+            aerialPhotosMap,
+            aerialPhotosMapSwitch,
+            aerialPhotosMapSwitchOnClick,
 
             darkLightTheme,
             darkLightThemeSwitch,
