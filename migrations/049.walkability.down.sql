@@ -1,0 +1,1 @@
+ALTER TABLE buildings DROP COLUMN IF EXISTS context_walkability_index;

@@ -904,6 +904,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
+    context_walkability_index : {
+        edit: true,
+        verify: true
+    },
     context_pavement_width : {
         edit: true,
         verify: true
