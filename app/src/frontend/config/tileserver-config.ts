@@ -6,6 +6,9 @@
 export type BuildingMapTileset = 
     'date_year' | 
     'size_height' |
+    'size_total_floors' |
+    'size_storeys_basement' |
+    'size_floor_area_ground' |
     'construction_core_material' |
     'construction_structural_system' |
     'construction_foundation' |
@@ -32,7 +35,15 @@ export type BuildingMapTileset =
     'survival_status'|
     'typology_classification'|
     'typology_style_period' |
-    'typology_dynamic_classification';
+    'typology_dynamic_classification'|
+    'context_back_garden'|
+    'context_street_width'|
+    'context_walkability_index' |
+    'designer_awards' |
+    'energy_solar' |
+    'energy_green_roof' |
+    'sust_aggregate_estimate_epc';
+    
 
 export type SpecialMapTileset = 'base_light' | 'base_night' | 'base_night_outlines' | 'highlight' | 'number_labels' | 'base_boroughs';
 

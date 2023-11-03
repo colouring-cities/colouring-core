@@ -1345,4 +1345,113 @@
             <LineSymbolizer stroke="#888" stroke-width="2.0"/>
         </Rule>
     </Style>
+    <Style name="context_back_garden">
+        <Rule>
+            <Filter>[context_back_garden] = true</Filter>
+            <PolygonSymbolizer fill="#7cbf39" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="designer_awards">
+        <Rule>
+            <Filter>[designer_awards] = true</Filter>
+            <PolygonSymbolizer fill="#f7ec25" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="energy_solar">
+        <Rule>
+            <Filter>[energy_solar] = true</Filter>
+            <PolygonSymbolizer fill="#6bb1e3" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="energy_green_roof">
+        <Rule>
+            <Filter>[energy_green_roof] = true</Filter>
+            <PolygonSymbolizer fill="#7cbf39" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="sust_aggregate_estimate_epc">
+        <Rule>
+            <Filter>[sust_aggregate_estimate_epc] = A</Filter>
+            <PolygonSymbolizer fill="#007f3d" />
+        </Rule>
+        <Rule>
+            <Filter>[sust_aggregate_estimate_epc] = B</Filter>
+            <PolygonSymbolizer fill="#2c9f29" />
+        </Rule>
+        <Rule>
+            <Filter>[sust_aggregate_estimate_epc] = C</Filter>
+            <PolygonSymbolizer fill="#9dcb3c" />
+        </Rule>
+        <Rule>
+            <Filter>[sust_aggregate_estimate_epc] = D</Filter>
+            <PolygonSymbolizer fill="#fff200" />
+        </Rule>
+        <Rule>
+            <Filter>[sust_aggregate_estimate_epc] = E</Filter>
+            <PolygonSymbolizer fill="#f7af1d" />
+        </Rule>
+        <Rule>
+            <Filter>[sust_aggregate_estimate_epc] = F</Filter>
+            <PolygonSymbolizer fill="#ed6823" />
+        </Rule>
+        <Rule>
+            <Filter>[sust_aggregate_estimate_epc] = G</Filter>
+            <PolygonSymbolizer fill="#e31d23" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
 </Map>

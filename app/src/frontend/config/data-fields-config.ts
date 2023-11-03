@@ -920,7 +920,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     sust_breeam_rating: {
         category: Category.EnergyPerformance,
-        title: "Residential energy rating",
+        title: "Official environmental quality rating",
         tooltip: ccconfig.energy_rating,
         example: "",
     },
@@ -1757,6 +1757,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Source link(s)",
         tooltip: "Source link(s) for pavement width data",
         example: ["", "", ""],
+    },
+    context_walkability_index: {
+        category: Category.Team,
+        title: "Walkability index",
+        tooltip: "How walkable is the area...?",
+        example: 10
     },
     context_green_space_distance: {
         category: Category.Team,
