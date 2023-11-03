@@ -255,6 +255,51 @@
             <LineSymbolizer stroke="#ccc" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="size_total_floors">
+        <Rule>
+            <Filter>[size_total_floors] &gt;= 1 and [size_total_floors] &lt; 2</Filter>
+            <PolygonSymbolizer fill="#f7f4f9" />
+        </Rule>
+        <Rule>
+            <Filter>[size_total_floors] &gt;= 2 and [size_total_floors] &lt; 3</Filter>
+            <PolygonSymbolizer fill="#e7e1ef" />
+        </Rule>
+        <Rule>
+            <Filter>[size_total_floors] &gt;= 3 and [size_total_floors] &lt; 5</Filter>
+            <PolygonSymbolizer fill="#d4b9da" />
+        </Rule>
+        <Rule>
+            <Filter>[size_total_floors] &gt;= 5 and [size_total_floors] &lt; 6</Filter>
+            <PolygonSymbolizer fill="#c994c7" />
+        </Rule>
+        <Rule>
+            <Filter>[size_total_floors] &gt;= 6 and [size_total_floors] &lt; 11</Filter>
+            <PolygonSymbolizer fill="#df65b0" />
+        </Rule>
+        <Rule>
+            <Filter>[size_total_floors] &gt;= 11 and [size_total_floors] &lt; 21</Filter>
+            <PolygonSymbolizer fill="#e7298a" />
+        </Rule>
+        <Rule>
+            <Filter>[size_total_floors] &gt;= 21 and [size_total_floors] &lt; 35</Filter>
+            <PolygonSymbolizer fill="#ce1256" />
+        </Rule>
+        <Rule>
+            <Filter>[size_total_floors] &gt;= 35</Filter>
+            <PolygonSymbolizer fill="#980043" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#ccc" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#ccc" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="construction_core_material">
         <Rule>
             <Filter>[construction_core_material] = "Wood"</Filter>

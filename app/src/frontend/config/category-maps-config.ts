@@ -102,13 +102,13 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Total number of floors',
                 elements: [
-                    { color: '#f7f4f9', text: '1 - 5'},
-                    { color: '#e7e1ef', text: '6 - 10'},
-                    { color: '#d4b9da', text: '11 - 15'},
-                    { color: '#c994c7', text: '16 - 20'},
-                    { color: '#df65b0', text: '21 - 25'},
-                    { color: '#e7298a', text: '26 - 30'},
-                    { color: '#ce1256', text: '31 - 35'},
+                    { color: '#f7f4f9', text: '1'},
+                    { color: '#e7e1ef', text: '2'},
+                    { color: '#d4b9da', text: '3 - 4'},
+                    { color: '#c994c7', text: '5'},
+                    { color: '#df65b0', text: '6 - 10'},
+                    { color: '#e7298a', text: '11 - 20'},
+                    { color: '#ce1256', text: '21 - 34'},
                     { color: '#980043', text: '35 +'}
                 ]
             },
