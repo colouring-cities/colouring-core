@@ -61,7 +61,7 @@ export const App: React.FC<AppProps> = props => {
                         <Header animateLogo={false} />
                     </Route>
                     <Route>
-                        <Header animateLogo={true} />
+                        <Header animateLogo={false} />
                     </Route>
                 </Switch>
                 <Switch>
