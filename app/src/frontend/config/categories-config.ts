@@ -114,7 +114,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
     },
     [Category.Typology]: {
         slug: 'typology',
-        name: 'Typology',
+        name: 'Type & Form',
         aboutUrl: 'https://github.com/colouring-cities/manual/wiki/E1.--DATA#3-typology',
         intro: 'This section provides open data on the typology of the building.',
     },

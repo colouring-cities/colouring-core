@@ -1,33 +1,25 @@
-import React, { Fragment } from 'react';
-import InfoBox from '../../components/info-box';
+import React from 'react';
 import { commonSourceTypes, dataFields } from '../../config/data-fields-config';
 import SelectDataEntry from '../data-components/select-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import Verification from '../data-components/verification';
-import { LogicalDataEntry, LogicalDataEntryYesOnly } from '../data-components/logical-data-entry/logical-data-entry';
+import { LogicalDataEntryYesOnly } from '../data-components/logical-data-entry/logical-data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
-
 import withCopyEdit from '../data-container';
-
 import { CategoryViewProps } from './category-view-props';
-import YearDataEntry from '../data-components/year-data-entry';
 
 /**
 * Team view/edit section
 */
 const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
-    const building = props.building;
     const currentYear = new Date().getFullYear();
-    const currentBuildingConstructionYear = building.date_year || undefined;
-
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
 
-
     return (
         <form>
-            <DataEntryGroup name="Land ownership" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Land ownership at time of construction" collapsed={subcat==null || subcat!="2"}>
                 <MultiDataEntry
                     title={dataFields.landowner.title}
                     slug="landowner"
@@ -190,6 +182,24 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     }
                 </DataEntryGroup>
                 <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="4"}>
+                    <SelectDataEntry
+                        slug='lead_designer_type'
+                        title={dataFields.lead_designer_type.title}
+                        value={props.building.lead_designer_type}
+                        options={dataFields.lead_designer_type.items}
+                        tooltip={dataFields.lead_designer_type.tooltip}
+                        onChange={props.onChange}
+                        mode={props.mode}
+                        copy={props.copy}
+                    />
+                    <Verification
+                        slug="lead_designer_type"
+                        allow_verify={props.user !== undefined && props.building.lead_designer_type !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("lead_designer_type")}
+                        user_verified_as={props.user_verified.lead_designer_type}
+                        verified_count={props.building.verified.lead_designer_type}
+                    />
                     <MultiDataEntry
                         title={dataFields.designers.title}
                         slug="designers"
@@ -209,7 +219,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         user_verified={props.user_verified.hasOwnProperty("designers")}
                         user_verified_as={props.user_verified.designers}
                         verified_count={props.building.verified.designers}
-                        />
+                    />
                     <MultiDataEntry
                         title={dataFields.designers_links.title}
                         slug="designers_links"
@@ -222,24 +232,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         editableEntries={true}
                         isUrl={true}
                     />
-                    <SelectDataEntry
-                        slug='lead_designer_type'
-                        title={dataFields.lead_designer_type.title}
-                        value={props.building.lead_designer_type}
-                        options={dataFields.lead_designer_type.items}
-                        tooltip={dataFields.lead_designer_type.tooltip}
-                        onChange={props.onChange}
-                        mode={props.mode}
-                        copy={props.copy}
-                    />
-                    <Verification
-                        slug="lead_designer_type"
-                        allow_verify={props.user !== undefined && props.building.lead_designer_type !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("lead_designer_type")}
-                        user_verified_as={props.user_verified.lead_designer_type}
-                        verified_count={props.building.verified.lead_designer_type}
-                        />
                     <SelectDataEntry
                         title={dataFields.designers_source_type.title}
                         slug="designers_source_type"
@@ -434,6 +426,24 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     }
                 </DataEntryGroup>
                 <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="4"}>
+                    <SelectDataEntry
+                        slug='extension_lead_designer_type'
+                        title={dataFields.extension_lead_designer_type.title}
+                        value={props.building.extension_lead_designer_type}
+                        options={dataFields.extension_lead_designer_type.items}
+                        tooltip={dataFields.extension_lead_designer_type.tooltip}
+                        onChange={props.onChange}
+                        mode={props.mode}
+                        copy={props.copy}
+                    />
+                    <Verification
+                        slug="extension_lead_designer_type"
+                        allow_verify={props.user !== undefined && props.building.extension_lead_designer_type !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("extension_lead_designer_type")}
+                        user_verified_as={props.user_verified.extension_lead_designer_type}
+                        verified_count={props.building.verified.extension_lead_designer_type}
+                    />
                     <MultiDataEntry
                         title={dataFields.extension_designers.title}
                         slug="extension_designers"
@@ -466,24 +476,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         editableEntries={true}
                         isUrl={true}
                     />
-                    <SelectDataEntry
-                        slug='extension_lead_designer_type'
-                        title={dataFields.extension_lead_designer_type.title}
-                        value={props.building.extension_lead_designer_type}
-                        options={dataFields.extension_lead_designer_type.items}
-                        tooltip={dataFields.extension_lead_designer_type.tooltip}
-                        onChange={props.onChange}
-                        mode={props.mode}
-                        copy={props.copy}
-                    />
-                    <Verification
-                        slug="extension_lead_designer_type"
-                        allow_verify={props.user !== undefined && props.building.extension_lead_designer_type !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("extension_lead_designer_type")}
-                        user_verified_as={props.user_verified.extension_lead_designer_type}
-                        verified_count={props.building.verified.extension_lead_designer_type}
-                        />
                     <SelectDataEntry
                         title={dataFields.extension_designers_source_type.title}
                         slug="extension_designers_source_type"

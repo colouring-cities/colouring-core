@@ -622,7 +622,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'disaster_severity',
             legend: {
-                title: 'Severity of damage',
+                title: 'Damage severity',
                 description: 'Severity of damage to building',
                 elements: [
                     {

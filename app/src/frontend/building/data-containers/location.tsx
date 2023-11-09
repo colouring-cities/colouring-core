@@ -24,7 +24,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
-            <DataEntryGroup name="Addresses" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Property address" collapsed={subcat==null || subcat!="1"}>
                 <DataEntry
                     title={dataFields.location_name.title}
                     slug="location_name"
@@ -46,13 +46,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.location_name}
                 />
                 <DataEntry
-                    title="Building name (domestic)"
-                    slug=""
-                    value=""
-                    mode='view'
-                    tooltip="Not yet activated.<br><br>For security reasons, we do not allow the use of free text boxes and are currently looking into alternative ways to collect this data."
-                />
-                <DataEntry
                     title={dataFields.location_name_link.title}
                     slug="location_name_link"
                     value={props.building.location_name_link}
@@ -67,6 +60,30 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     (props.building.location_name_link == null) ? <></> :
                     <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
                         <i className="source-url">Source: <a href={props.building.location_name_link} target={"_blank"}>{props.building.location_name_link}</a></i>
+                    </div>
+                }
+                <DataEntry
+                    title="Building name (residential)"
+                    slug=""
+                    value=""
+                    mode='view'
+                    tooltip="Not yet activated.<br><br>For security reasons, we do not allow the use of free text boxes and are currently looking into alternative ways to collect this data."
+                />
+                <DataEntry
+                    title={dataFields.location_residential_name_link.title}
+                    slug="location_residential_name_link"
+                    value={props.building.location_residential_name_link}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.location_residential_name_link.tooltip}
+                    placeholder={dataFields.location_residential_name_link.example}
+                    isUrl={true}
+                />
+                {
+                    (props.building.location_residential_name_link == null) ? <></> :
+                    <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                        <i className="source-url">Source: <a href={props.building.location_residential_name_link} target={"_blank"}>{props.building.location_residential_name_link}</a></i>
                     </div>
                 }
                 <hr/>
@@ -93,6 +110,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={dataFields.location_street.title}
                     slug="location_street"
                     value={props.building.location_street}
+                    tooltip={dataFields.location_street.tooltip}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
@@ -111,6 +129,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={dataFields.location_line_two.title}
                     slug="location_line_two"
                     value={props.building.location_line_two}
+                    tooltip={dataFields.location_line_two.tooltip}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
@@ -129,6 +148,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={dataFields.location_town.title}
                     slug="location_town"
                     value={props.building.location_town}
+                    tooltip={dataFields.location_town.tooltip}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
@@ -192,7 +212,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Property subdivision" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Building subdivision" collapsed={subcat==null || subcat!="2"}>
                 <LogicalDataEntry
                     slug='location_subdivided'
                     title={dataFields.location_subdivided.title}
@@ -262,7 +282,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Property/footprint IDs" collapsed={subcat==null || subcat!="3"}>
+            <DataEntryGroup name="Open property IDs/footprint IDs" collapsed={subcat==null || subcat!="3"}>
             <DataEntry
                     title={dataFields.ref_toid.title}
                     slug="ref_toid"
@@ -329,7 +349,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     isUrl={true}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Property coordinates" collapsed={subcat==null || subcat!="4"}>
+            <DataEntryGroup name="Open property coordinates" collapsed={subcat==null || subcat!="4"}>
                 <NumericDataEntry
                     title={dataFields.location_latitude.title}
                     slug="location_latitude"
