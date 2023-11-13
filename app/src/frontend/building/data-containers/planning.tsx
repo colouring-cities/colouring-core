@@ -260,8 +260,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <UserOpinionEntry
                     slug='community_expected_planning_application'
                     title={buildingUserFields.community_expected_planning_application.title}
+                    tooltip={buildingUserFields.community_expected_planning_application.tooltip}
                     userValue={props.building.community_expected_planning_application}
-
                     onChange={props.onSaveChange}
                     mode={props.mode}
                 />
@@ -442,8 +442,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             onChange={props.onChange}
                             placeholder="add ID here"
                             linkTargetFunction={(id: String) => { return "https://whc.unesco.org/en/list/" + id } }
-                            linkDescriptionFunction={(id: String) => { return "ID Link" } }
-                            />
+                            linkDescriptionFunction={(id: String) => { return "UNESCO Link" } }
+                        />
                         <Verification
                             slug="planning_world_list_id"
                             allow_verify={props.user !== undefined && props.building.planning_world_list_id !== null && !props.edited}
@@ -451,7 +451,51 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             user_verified={props.user_verified.hasOwnProperty("planning_world_list_id")}
                             user_verified_as={props.user_verified.planning_world_list_id}
                             verified_count={props.building.verified.planning_world_list_id}
-                            />
+                        />
+                    </>
+                }
+                <hr/>
+                <LogicalDataEntry
+                    slug='planning_listed'
+                    title={dataFields.planning_listed.title}
+                    tooltip={dataFields.planning_listed.tooltip}
+                    value={props.building.planning_listed}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                />
+                <Verification
+                    slug="planning_listed"
+                    allow_verify={props.user !== undefined && props.building.planning_listed !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("planning_listed")}
+                    user_verified_as={props.user_verified.planning_listed}
+                    verified_count={props.building.verified.planning_listed}
+                />
+                {(props.building.planning_listed == null || props.building.planning_listed == false) ? <></> :
+                    <>
+                        <SelectDataEntry
+                            title={dataFields.planning_list_grade.title}
+                            slug="planning_list_grade"
+                            value={props.building.planning_list_grade}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.planning_list_grade.tooltip}
+                            options={dataFields.planning_list_grade.items}
+                        />
+                        <NumericDataEntryWithFormattedLink
+                            title={dataFields.planning_list_id.title}
+                            slug="planning_list_id"
+                            value={props.building.planning_list_id}
+                            tooltip={dataFields.planning_list_id.tooltip}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            placeholder="add ID here"
+                            linkTargetFunction={(id: String) => { return "https://historicengland.org.uk/listing/the-list/list-entry/" + id } }
+                            linkDescriptionFunction={(id: String) => { return "Historic England Link" } }
+                        />
                     </>
                 }
                 <hr/>
@@ -535,7 +579,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             user_verified={props.user_verified.hasOwnProperty("planning_in_conservation_area_url")}
                             user_verified_as={props.user_verified.planning_in_conservation_area_url}
                             verified_count={props.building.verified.planning_in_conservation_area_url}
-                            />
+                        />
                     </>
                 }
                 <hr/>
@@ -599,7 +643,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
                 {(props.building.planning_scientific_interest == null || props.building.planning_scientific_interest == false) ? <></> :
                     <>
-                        <SelectDataEntry
+                        {/*<SelectDataEntry
                             title={dataFields.planning_scientific_interest_source_type.title}
                             slug="planning_scientific_interest_source_type"
                             value={props.building.planning_scientific_interest_source_type}
@@ -614,6 +658,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             props.building.planning_scientific_interest_source_type == dataFields.planning_scientific_interest_source_type.items[1] ||
                             props.building.planning_scientific_interest_source_type == null) ? <></> :
                             <>
+                        */}
                                 <MultiDataEntry
                                     title={dataFields.planning_scientific_interest_source_links.title}
                                     slug="planning_scientific_interest_source_links"
@@ -626,8 +671,8 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                                     editableEntries={true}
                                     isUrl={true}
                                 />
-                            </>
-                        }
+                            {/* </>
+                        }*/}
                     </>
                 }
                 <hr/>
@@ -672,7 +717,7 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>      
-            <DataEntryGroup name="Land ownership" collapsed={subcat==null || subcat!="8"}>
+            <DataEntryGroup name="Land ownership type" collapsed={subcat==null || subcat!="8"}>
                 <InfoBox>
                     This section is designed to provide information on land parcels and their ownership type. Can you help us collect this information?
                 </InfoBox>

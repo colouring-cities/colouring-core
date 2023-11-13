@@ -10,6 +10,7 @@ interface UserOpinionEntryProps {
     title: string;
     mode: 'view' | 'edit' | 'multi-edit';
     userValue: boolean;
+    tooltip: string;
     //copy: CopyProps;
     onChange: (key: string, value: boolean) => void;
 }
@@ -21,6 +22,7 @@ const UserOpinionEntry: React.FunctionComponent<UserOpinionEntryProps> = (props)
         <DataTitleCopyable
             slug={props.slug}
             title={props.title}
+            tooltip={props.tooltip}
             //copy={props.copy}
         />
             <label className="form-check-label">

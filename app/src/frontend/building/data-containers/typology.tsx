@@ -155,7 +155,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 } */}
             </DataEntryGroup>
-            <DataEntryGroup name="Dynamic tissue classification" collapsed={subcat==null || subcat!="3"}>
+            <DataEntryGroup name="Dynamic classification" collapsed={subcat==null || subcat!="3"}>
                 {(props.mapColourScale != "typology_dynamic_classification") ? 
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToDynamicClassificationMapStyle}>
                         {"Click here to show dynamic classification."}
