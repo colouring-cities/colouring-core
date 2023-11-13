@@ -52,9 +52,8 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <UserOpinionEntry
                         slug='community_like'
                         title={buildingUserFields.community_like.title}
-
+                        tooltip={buildingUserFields.community_like.tooltip}
                         userValue={props.building.community_like}
-
                         onChange={props.onSaveChange}
                         mode={props.mode}
                     />
@@ -65,7 +64,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <LogicalDataEntryYesOnlyWithExplanation
                     slug='community_type_worth_keeping'
                     title={buildingUserFields.community_type_worth_keeping.title}
-
+                    tooltip={buildingUserFields.community_type_worth_keeping.tooltip}
                     value={props.building.community_type_worth_keeping}
                     disallowFalse={worthKeepingReasonsNonEmpty}
                     disallowNull={worthKeepingReasonsNonEmpty}
@@ -104,7 +103,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <UserOpinionEntry
                     slug='community_local_significance'
                     title={buildingUserFields.community_local_significance.title}
-                    
+                    tooltip={buildingUserFields.community_local_significance.tooltip}
                     userValue={props.building.community_local_significance}
 
                     onChange={props.onSaveChange}
@@ -121,7 +120,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <UserOpinionEntry
                     slug='community_expected_planning_application'
                     title={buildingUserFields.community_expected_planning_application.title}
-                    
+                    tooltip={buildingUserFields.community_expected_planning_application.tooltip}
                     userValue={props.building.community_expected_planning_application}
 
                     onChange={props.onSaveChange}

@@ -89,7 +89,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <DataEntryGroup name="Specific land use(s)" collapsed={subcat==null || subcat!="2"}>
                 {(props.mapColourScale != "landuse") ? 
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLandUseMapStyle}>
-                        {"Click to see general land use."}
+                        {"Click to see specific land use."}
                     </button>
                     :
                     <></>
@@ -103,7 +103,7 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     confirmOnEnter={true}
                     tooltip={dataFields.current_landuse_group.tooltip}
-                    placeholder="Type new land use group here"
+                    placeholder="Enter new land use group here"
                     copyable={true}
                     autofill={true}
                     showAllOptionsOnEmpty={true}
@@ -145,16 +145,13 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
                 <hr/>
-                {
-                    props.mode != 'view' &&
-                    <div>
-                        <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
-                            <i>
-                                Below is a more general classification for the land use of this building, automatically derived from the information above.
-                            </i>
-                        </div>
+                <div>
+                    <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                        <i>
+                            Below is a more general classification for the land use of this building, automatically derived from the information above.
+                        </i>
                     </div>
-                }
+                </div>
                 <DataEntry
                     title={dataFields.current_landuse_order.title}
                     tooltip={dataFields.current_landuse_order.tooltip}

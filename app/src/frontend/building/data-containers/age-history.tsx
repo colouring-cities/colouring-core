@@ -78,6 +78,62 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
+            <DataEntryGroup name="Architectural style" collapsed={subcat==null || subcat!="2"}>
+                {(props.mapColourScale != "typology_style_period") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStylePeriodMapStyle}>
+                        Click to show architectural style.
+                    </button>
+                :
+                    <></>
+                }
+                <SelectDataEntry
+                    title={dataFields.typology_style_period.title}
+                    slug="typology_style_period"
+                    value={props.building.typology_style_period}
+                    tooltip={dataFields.typology_style_period.tooltip}
+                    options={dataFields.typology_style_period.items}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                />
+                <Verification
+                    slug="typology_style_period"
+                    allow_verify={props.user !== undefined && props.building.typology_style_period !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("typology_style_period")}
+                    user_verified_as={props.user_verified.typology_style_period}
+                    verified_count={props.building.verified.typology_style_period}
+                />
+                <SelectDataEntry
+                    title={dataFields.typology_style_period_source_type.title}
+                    slug="typology_style_period_source_type"
+                    value={props.building.typology_style_period_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.typology_style_period_source_type.tooltip}
+                    placeholder={dataFields.typology_style_period_source_type.example}
+                    options={dataFields.typology_style_period_source_type.items}
+                    />
+                {(props.building.typology_style_period_source_type == commonSourceTypes[0] ||
+                    props.building.typology_style_period_source_type == commonSourceTypes[1] ||
+                    props.building.typology_style_period_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.typology_style_period_source_links.title}
+                            slug="typology_style_period_source_links"
+                            value={props.building.typology_style_period_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.typology_style_period_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+            </DataEntryGroup>
             <DataEntryGroup name="Building age/construction date" collapsed={subcat==null || subcat!="1"}>
                 {(props.mapColourScale != "date_year") ? 
                         <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeMapStyle}>
@@ -199,62 +255,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode='view'
                     tooltip='Coming Soon'
                 />*/}
-            </DataEntryGroup>
-            <DataEntryGroup name="Architectural style" collapsed={subcat==null || subcat!="2"}>
-                {(props.mapColourScale != "typology_style_period") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStylePeriodMapStyle}>
-                        Click to show architectural style.
-                    </button>
-                :
-                    <></>
-                }
-                <SelectDataEntry
-                    title={dataFields.typology_style_period.title}
-                    slug="typology_style_period"
-                    value={props.building.typology_style_period}
-                    tooltip={dataFields.typology_style_period.tooltip}
-                    options={dataFields.typology_style_period.items}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                />
-                <Verification
-                    slug="typology_style_period"
-                    allow_verify={props.user !== undefined && props.building.typology_style_period !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("typology_style_period")}
-                    user_verified_as={props.user_verified.typology_style_period}
-                    verified_count={props.building.verified.typology_style_period}
-                />
-                <SelectDataEntry
-                    title={dataFields.typology_style_period_source_type.title}
-                    slug="typology_style_period_source_type"
-                    value={props.building.typology_style_period_source_type}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    tooltip={dataFields.typology_style_period_source_type.tooltip}
-                    placeholder={dataFields.typology_style_period_source_type.example}
-                    options={dataFields.typology_style_period_source_type.items}
-                    />
-                {(props.building.typology_style_period_source_type == commonSourceTypes[0] ||
-                    props.building.typology_style_period_source_type == commonSourceTypes[1] ||
-                    props.building.typology_style_period_source_type == null) ? <></> :
-                    <>
-                        <MultiDataEntry
-                            title={dataFields.typology_style_period_source_links.title}
-                            slug="typology_style_period_source_links"
-                            value={props.building.typology_style_period_source_links}
-                            mode={props.mode}
-                            copy={props.copy}
-                            onChange={props.onChange}
-                            tooltip={dataFields.typology_style_period_source_links.tooltip}
-                            placeholder="https://..."
-                            editableEntries={true}
-                            isUrl={true}
-                        />
-                    </>
-                }
             </DataEntryGroup>
             <DataEntryGroup name="Cladding, extensions and retrofits" collapsed={subcat==null || subcat!="3"}>
                 <NumericDataEntry

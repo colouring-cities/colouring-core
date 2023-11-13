@@ -63,6 +63,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    location_residential_name_link: {
+        edit: true,
+        verify: true,
+    },
     location_number: {
         edit: true,
         verify: true,
@@ -499,6 +503,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    planning_listed: {
+        edit: true,
+        verify: true,
+    },
     planning_list_id: {
         edit: true,
         verify: true,
@@ -547,12 +555,28 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    sust_breeam_rating_source_type: {
+        edit: true,
+        verify: true
+    },
+    sust_breeam_rating_source_link: {
+        edit: true,
+        verify: true
+    },
     sust_dec: {
         edit: true,
         verify: true,
     },
     sust_aggregate_estimate_epc: {
         edit: true,
+    },
+    sust_energy_rating_source_type: {
+        edit: true,
+        verify: true
+    },
+    sust_energy_rating_source_link: {
+        edit: true,
+        verify: true
     },
     sust_retrofit_date: {
         edit: true,

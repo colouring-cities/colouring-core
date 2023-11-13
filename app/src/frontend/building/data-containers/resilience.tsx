@@ -34,7 +34,7 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
     }
 
     return (<>
-        <DataEntryGroup name="Building damage assessment tool" collapsed={subcat==null || subcat!="1"}>
+        <DataEntryGroup name="Disaster management tool" collapsed={subcat==null || subcat!="1"}>
             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                 <i>
                     This feature is designed as an assessment tool to help communities capture data on the state of buildings following major disasters. 
