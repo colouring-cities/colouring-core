@@ -22,7 +22,7 @@ export const commonSourceTypes = [
 ];
 
 const freeTextDisclaimer : string = 
-    "<br/><br/>(For security reasons, we currently only collect the names of non-residential buildings).";
+    "<br/><br/>(For security reasons, we are not currently allowing free-text input and are looking into other ways of collecting this data).";
 
 /**
  * This interface is used only in code which uses dataFields, not in the dataFields definition itself
@@ -1665,17 +1665,9 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     building_client: {
         category: Category.Team,
-        title: "Original building client",
-        tooltip: "Who was the client who commissioned the original building?<br/><br/>For info on current land ownership, see 'Planning Controls'." + freeTextDisclaimer,
-        example: "Landowner",
-        items: [
-            "Landowner",
-            "Speculative builder",
-            "Government architecture department",
-            "Architect/ architectural firm",
-            "Engineer/ Engineering firm",
-            "Other"
-        ]
+        title: "Original building client link(s)",
+        tooltip: "Link(s) describing the client who commissioned the original building?" + freeTextDisclaimer,
+        example: ["", "", ""]
     },
     building_client_source_type: {
         category: Category.Team,
@@ -1692,17 +1684,9 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     extension_client: {
         category: Category.Team,
-        title: "Extension client",
-        tooltip: "Who was the client who commissioned the most significant extension to the building?<br/><br/>For info on current land ownership, see 'Planning Controls'." + freeTextDisclaimer,
-        example: "Landowner",
-        items: [
-            "Landowner",
-            "Speculative builder",
-            "Government architecture department",
-            "Architect/ architectural firm",
-            "Engineer/ Engineering firm",
-            "Other"
-        ]
+        title: "Extension client link(s)",
+        tooltip: "Link(s) describing the client who commissioned the most significant extension to the building?" + freeTextDisclaimer,
+        example: ["", "", ""]
     },
     extension_client_source_type: {
         category: Category.Team,
