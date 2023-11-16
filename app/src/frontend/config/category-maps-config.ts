@@ -167,6 +167,16 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 ]
             },
         },
+        {
+            mapStyle: 'team_known_designer',
+            legend: {
+                title: 'Known designer',
+                description: 'Buildings with a known architect/designer',
+                elements: [
+                    {color: '#6bb1e3', text: 'Yes'},
+                ]
+            },
+        },
     ],
     [Category.Construction]: [
         {
