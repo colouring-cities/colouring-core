@@ -100,87 +100,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <i className="source-url">To edit the building age, and to see the data mapped, please go to&nbsp;
                     <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=1"}>Age & History</a>.</i>
                 </div>
-                <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="3"}>
-                    <SelectDataEntry
-                        slug='developer_type'
-                        title={dataFields.developer_type.title}
-                        tooltip={dataFields.developer_type.tooltip}
-                        value={props.building.developer_type}
-                        options={dataFields.developer_type.items}
-                        onChange={props.onChange}
-                        mode={props.mode}
-                        copy={props.copy}
-                    />
-                    <Verification
-                        slug="developer_type"
-                        allow_verify={props.user !== undefined && props.building.developer_type !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("developer_type")}
-                        user_verified_as={props.user_verified.developer_type}
-                        verified_count={props.building.verified.developer_type}
-                        />
-                    <MultiDataEntry
-                        title={dataFields.developer_name.title}
-                        slug="developer_name"
-                        value={props.building.developer_name}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.developer_name.tooltip}
-                        placeholder=""
-                        editableEntries={true}
-                        disabled={true}
-                        />
-                    <Verification
-                        slug="developer_name"
-                        allow_verify={props.user !== undefined && props.building.developer_name !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("developer_name")}
-                        user_verified_as={props.user_verified.developer_name}
-                        verified_count={props.building.verified.developer_name}
-                        />
-                    <MultiDataEntry
-                        title={dataFields.developer_links.title}
-                        slug="developer_links"
-                        value={props.building.developer_links}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.developer_links.tooltip}
-                        placeholder="https://..."
-                        editableEntries={true}
-                        isUrl={true}
-                    />
-                    <SelectDataEntry
-                        title={dataFields.developer_source_type.title}
-                        slug="developer_source_type"
-                        value={props.building.developer_source_type}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.developer_source_type.tooltip}
-                        options={dataFields.developer_source_type.items}
-                        placeholder={dataFields.developer_source_type.example}
-                        />
-                    {(props.building.developer_source_type == commonSourceTypes[0] ||
-                        props.building.developer_source_type == commonSourceTypes[1] ||
-                        props.building.developer_source_type == null) ? <></> :
-                        <>
-                            <MultiDataEntry
-                                title={dataFields.developer_source_link.title}
-                                slug="developer_source_link"
-                                value={props.building.developer_source_link}
-                                mode={props.mode}
-                                copy={props.copy}
-                                onChange={props.onChange}
-                                tooltip={dataFields.developer_source_link.tooltip}
-                                placeholder="https://..."
-                                editableEntries={true}
-                                isUrl={true}
-                            />
-                        </>
-                    }
-                </DataEntryGroup>
                 <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="4"}>
                     <SelectDataEntry
                         slug='lead_designer_type'
@@ -255,6 +174,87 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                                 copy={props.copy}
                                 onChange={props.onChange}
                                 tooltip={dataFields.designers_source_link.tooltip}
+                                placeholder="https://..."
+                                editableEntries={true}
+                                isUrl={true}
+                            />
+                        </>
+                    }
+                </DataEntryGroup>
+                <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="3"}>
+                    <SelectDataEntry
+                        slug='developer_type'
+                        title={dataFields.developer_type.title}
+                        tooltip={dataFields.developer_type.tooltip}
+                        value={props.building.developer_type}
+                        options={dataFields.developer_type.items}
+                        onChange={props.onChange}
+                        mode={props.mode}
+                        copy={props.copy}
+                    />
+                    <Verification
+                        slug="developer_type"
+                        allow_verify={props.user !== undefined && props.building.developer_type !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("developer_type")}
+                        user_verified_as={props.user_verified.developer_type}
+                        verified_count={props.building.verified.developer_type}
+                        />
+                    <MultiDataEntry
+                        title={dataFields.developer_name.title}
+                        slug="developer_name"
+                        value={props.building.developer_name}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.developer_name.tooltip}
+                        placeholder=""
+                        editableEntries={true}
+                        disabled={true}
+                        />
+                    <Verification
+                        slug="developer_name"
+                        allow_verify={props.user !== undefined && props.building.developer_name !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("developer_name")}
+                        user_verified_as={props.user_verified.developer_name}
+                        verified_count={props.building.verified.developer_name}
+                        />
+                    <MultiDataEntry
+                        title={dataFields.developer_links.title}
+                        slug="developer_links"
+                        value={props.building.developer_links}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.developer_links.tooltip}
+                        placeholder="https://..."
+                        editableEntries={true}
+                        isUrl={true}
+                    />
+                    <SelectDataEntry
+                        title={dataFields.developer_source_type.title}
+                        slug="developer_source_type"
+                        value={props.building.developer_source_type}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.developer_source_type.tooltip}
+                        options={dataFields.developer_source_type.items}
+                        placeholder={dataFields.developer_source_type.example}
+                        />
+                    {(props.building.developer_source_type == commonSourceTypes[0] ||
+                        props.building.developer_source_type == commonSourceTypes[1] ||
+                        props.building.developer_source_type == null) ? <></> :
+                        <>
+                            <MultiDataEntry
+                                title={dataFields.developer_source_link.title}
+                                slug="developer_source_link"
+                                value={props.building.developer_source_link}
+                                mode={props.mode}
+                                copy={props.copy}
+                                onChange={props.onChange}
+                                tooltip={dataFields.developer_source_link.tooltip}
                                 placeholder="https://..."
                                 editableEntries={true}
                                 isUrl={true}
@@ -344,87 +344,6 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <i className="source-url">To edit the extension date, and to see the data mapped, please go to&nbsp;
                     <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=3"}>Age & History</a>.</i>
                 </div>
-                <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="3"}>
-                    <SelectDataEntry
-                        slug='extension_developer_type'
-                        title={dataFields.extension_developer_type.title}
-                        tooltip={dataFields.extension_developer_type.tooltip}
-                        value={props.building.extension_developer_type}
-                        options={dataFields.extension_developer_type.items}
-                        onChange={props.onChange}
-                        mode={props.mode}
-                        copy={props.copy}
-                    />
-                    <Verification
-                        slug="extension_developer_type"
-                        allow_verify={props.user !== undefined && props.building.extension_developer_type !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("extension_developer_type")}
-                        user_verified_as={props.user_verified.extension_developer_type}
-                        verified_count={props.building.verified.extension_developer_type}
-                        />
-                    <MultiDataEntry
-                        title={dataFields.extension_developer_name.title}
-                        slug="extension_developer_name"
-                        value={props.building.extension_developer_name}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.extension_developer_name.tooltip}
-                        placeholder=""
-                        editableEntries={true}
-                        disabled={true}
-                        />
-                    <Verification
-                        slug="extension_developer_name"
-                        allow_verify={props.user !== undefined && props.building.extension_developer_name !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("extension_developer_name")}
-                        user_verified_as={props.user_verified.extension_developer_name}
-                        verified_count={props.building.verified.extension_developer_name}
-                        />
-                    <MultiDataEntry
-                        title={dataFields.extension_developer_links.title}
-                        slug="extension_developer_links"
-                        value={props.building.extension_developer_links}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.extension_developer_links.tooltip}
-                        placeholder="https://..."
-                        editableEntries={true}
-                        isUrl={true}
-                    />
-                    <SelectDataEntry
-                        title={dataFields.extension_developer_source_type.title}
-                        slug="extension_developer_source_type"
-                        value={props.building.extension_developer_source_type}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.extension_developer_source_type.tooltip}
-                        options={dataFields.extension_developer_source_type.items}
-                        placeholder={dataFields.extension_developer_source_type.example}
-                        />
-                    {(props.building.extension_developer_source_type == commonSourceTypes[0] ||
-                        props.building.extension_developer_source_type == commonSourceTypes[1] ||
-                        props.building.extension_developer_source_type == null) ? <></> :
-                        <>
-                            <MultiDataEntry
-                                title={dataFields.extension_developer_source_link.title}
-                                slug="extension_developer_source_link"
-                                value={props.building.extension_developer_source_link}
-                                mode={props.mode}
-                                copy={props.copy}
-                                onChange={props.onChange}
-                                tooltip={dataFields.extension_developer_source_link.tooltip}
-                                placeholder="https://..."
-                                editableEntries={true}
-                                isUrl={true}
-                            />
-                        </>
-                    }
-                </DataEntryGroup>
                 <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="4"}>
                     <SelectDataEntry
                         slug='extension_lead_designer_type'
@@ -499,6 +418,87 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                                 copy={props.copy}
                                 onChange={props.onChange}
                                 tooltip={dataFields.extension_designers_source_link.tooltip}
+                                placeholder="https://..."
+                                editableEntries={true}
+                                isUrl={true}
+                            />
+                        </>
+                    }
+                </DataEntryGroup>
+                <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="3"}>
+                    <SelectDataEntry
+                        slug='extension_developer_type'
+                        title={dataFields.extension_developer_type.title}
+                        tooltip={dataFields.extension_developer_type.tooltip}
+                        value={props.building.extension_developer_type}
+                        options={dataFields.extension_developer_type.items}
+                        onChange={props.onChange}
+                        mode={props.mode}
+                        copy={props.copy}
+                    />
+                    <Verification
+                        slug="extension_developer_type"
+                        allow_verify={props.user !== undefined && props.building.extension_developer_type !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("extension_developer_type")}
+                        user_verified_as={props.user_verified.extension_developer_type}
+                        verified_count={props.building.verified.extension_developer_type}
+                        />
+                    <MultiDataEntry
+                        title={dataFields.extension_developer_name.title}
+                        slug="extension_developer_name"
+                        value={props.building.extension_developer_name}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.extension_developer_name.tooltip}
+                        placeholder=""
+                        editableEntries={true}
+                        disabled={true}
+                        />
+                    <Verification
+                        slug="extension_developer_name"
+                        allow_verify={props.user !== undefined && props.building.extension_developer_name !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("extension_developer_name")}
+                        user_verified_as={props.user_verified.extension_developer_name}
+                        verified_count={props.building.verified.extension_developer_name}
+                        />
+                    <MultiDataEntry
+                        title={dataFields.extension_developer_links.title}
+                        slug="extension_developer_links"
+                        value={props.building.extension_developer_links}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.extension_developer_links.tooltip}
+                        placeholder="https://..."
+                        editableEntries={true}
+                        isUrl={true}
+                    />
+                    <SelectDataEntry
+                        title={dataFields.extension_developer_source_type.title}
+                        slug="extension_developer_source_type"
+                        value={props.building.extension_developer_source_type}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.extension_developer_source_type.tooltip}
+                        options={dataFields.extension_developer_source_type.items}
+                        placeholder={dataFields.extension_developer_source_type.example}
+                        />
+                    {(props.building.extension_developer_source_type == commonSourceTypes[0] ||
+                        props.building.extension_developer_source_type == commonSourceTypes[1] ||
+                        props.building.extension_developer_source_type == null) ? <></> :
+                        <>
+                            <MultiDataEntry
+                                title={dataFields.extension_developer_source_link.title}
+                                slug="extension_developer_source_link"
+                                value={props.building.extension_developer_source_link}
+                                mode={props.mode}
+                                copy={props.copy}
+                                onChange={props.onChange}
+                                tooltip={dataFields.extension_developer_source_link.tooltip}
                                 placeholder="https://..."
                                 editableEntries={true}
                                 isUrl={true}
