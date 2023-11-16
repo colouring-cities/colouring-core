@@ -11,3 +11,7 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS building_client_source_link text[
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS extension_client text[];
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS extension_client_source_type text;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS extension_client_source_link text[];
+
+UPDATE buildings
+SET planning_listed = True
+WHERE planning_list_grade != 'None';
