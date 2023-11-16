@@ -297,6 +297,21 @@ const LAYER_QUERIES = {
             OR planning_heritage_at_risk_url <> ''
             OR planning_in_apa_url <> ''
             `,
+    team_known_designer: `
+            SELECT
+                geometry_id,
+                (
+                    CASE
+                        WHEN array_length(designers,1) > 0 THEN true
+                        WHEN array_length(designers_links,1) > 0 THEN true
+                        ELSE false
+                    END
+                ) AS team_known_designer
+            FROM buildings
+            WHERE
+                designers IS NOT NULL
+                OR designers IS NOT NULL
+                `,
     conservation_area: `
         SELECT
             geometry_id

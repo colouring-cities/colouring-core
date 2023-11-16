@@ -1663,6 +1663,60 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Source other significant team members",
         example: ["", "", ""],
     },
+    building_client: {
+        category: Category.Team,
+        title: "Original building client",
+        tooltip: "Who was the client who commissioned the original building?<br/><br/>For info on current land ownership, see 'Planning Controls'." + freeTextDisclaimer,
+        example: "Landowner",
+        items: [
+            "Landowner",
+            "Speculative builder",
+            "Government architecture department",
+            "Architect/ architectural firm",
+            "Engineer/ Engineering firm",
+            "Other"
+        ]
+    },
+    building_client_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for building client data",
+        example: "",
+        items: commonSourceTypes
+    },
+    building_client_source_link: {
+        category: Category.Team,
+        title: "Source link(s)",
+        tooltip: "URL(s) for source for building client data",
+        example: ["", "", ""],
+    },
+    extension_client: {
+        category: Category.Team,
+        title: "Extension client",
+        tooltip: "Who was the client who commissioned the most significant extension to the building?<br/><br/>For info on current land ownership, see 'Planning Controls'." + freeTextDisclaimer,
+        example: "Landowner",
+        items: [
+            "Landowner",
+            "Speculative builder",
+            "Government architecture department",
+            "Architect/ architectural firm",
+            "Engineer/ Engineering firm",
+            "Other"
+        ]
+    },
+    extension_client_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for extension client data",
+        example: "",
+        items: commonSourceTypes
+    },
+    extension_client_source_link: {
+        category: Category.Team,
+        title: "Source link(s)",
+        tooltip: "URL(s) for source for extension client data",
+        example: ["", "", ""],
+    },
     disaster_type: {
         category: Category.Resilience,
         title: "Disaster type",

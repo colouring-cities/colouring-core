@@ -32,6 +32,7 @@ export type BuildingMapTileset =
     'dynamics_demolished_count' |
     'disaster_severity' |
     'team' |
+    'team_known_designer' |
     'survival_status'|
     'typology_classification'|
     'typology_style_period' |
