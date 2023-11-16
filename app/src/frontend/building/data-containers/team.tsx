@@ -100,7 +100,56 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <i className="source-url">To edit the building age, and to see the data mapped, please go to&nbsp;
                     <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=1"}>Age & History</a>.</i>
                 </div>
-                <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="3"}>
+                <DataEntryGroup name="Client" collapsed={subcat==null || subcat!="3"}>
+                    <SelectDataEntry
+                        slug='building_client'
+                        title={dataFields.building_client.title}
+                        value={props.building.building_client}
+                        options={dataFields.building_client.items}
+                        tooltip={dataFields.building_client.tooltip}
+                        onChange={props.onChange}
+                        mode={props.mode}
+                        copy={props.copy}
+                    />
+                    <Verification
+                        slug="building_client"
+                        allow_verify={props.user !== undefined && props.building.building_client !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("building_client")}
+                        user_verified_as={props.user_verified.building_client}
+                        verified_count={props.building.verified.building_client}
+                    />
+                    <SelectDataEntry
+                        title={dataFields.building_client_source_type.title}
+                        slug="building_client_source_type"
+                        value={props.building.building_client_source_type}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.building_client_source_type.tooltip}
+                        options={dataFields.building_client_source_type.items}
+                        placeholder={dataFields.building_client_source_type.example}
+                        />
+                    {(props.building.building_client_source_type == commonSourceTypes[0] ||
+                        props.building.building_client_source_type == commonSourceTypes[1] ||
+                        props.building.building_client_source_type == null) ? <></> :
+                        <>
+                            <MultiDataEntry
+                                title={dataFields.building_client_source_link.title}
+                                slug="building_client_source_link"
+                                value={props.building.building_client_source_link}
+                                mode={props.mode}
+                                copy={props.copy}
+                                onChange={props.onChange}
+                                tooltip={dataFields.building_client_source_link.tooltip}
+                                placeholder="https://..."
+                                editableEntries={true}
+                                isUrl={true}
+                            />
+                        </>
+                    }
+                </DataEntryGroup>
+                <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="4"}>
                     <SelectDataEntry
                         slug='lead_designer_type'
                         title={dataFields.lead_designer_type.title}
@@ -181,7 +230,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="4"}>
+                <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="5"}>
                     <SelectDataEntry
                         slug='developer_type'
                         title={dataFields.developer_type.title}
@@ -262,7 +311,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Builder" collapsed={subcat==null || subcat!="5"}>
+                <DataEntryGroup name="Builder" collapsed={subcat==null || subcat!="6"}>
                     <MultiDataEntry
                         title={dataFields.builder.title}
                         slug="builder"
@@ -326,7 +375,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     }
                 </DataEntryGroup>
             </DataEntryGroup>
-            <DataEntryGroup name="Most significant extension" collapsed={subcat==null || subcat!="6"}>
+            <DataEntryGroup name="Most significant extension" collapsed={subcat==null || subcat!="7"}>
                 <NumericDataEntry
                     slug='extension_year'
                     title={dataFields.extension_year.title}
@@ -344,7 +393,56 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <i className="source-url">To edit the extension date, and to see the data mapped, please go to&nbsp;
                     <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=3"}>Age & History</a>.</i>
                 </div>
-                <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="7"}>
+                <DataEntryGroup name="Client" collapsed={subcat==null || subcat!="8"}>
+                    <SelectDataEntry
+                        slug='extension_client'
+                        title={dataFields.extension_client.title}
+                        value={props.building.extension_client}
+                        options={dataFields.extension_client.items}
+                        tooltip={dataFields.extension_client.tooltip}
+                        onChange={props.onChange}
+                        mode={props.mode}
+                        copy={props.copy}
+                    />
+                    <Verification
+                        slug="extension_client"
+                        allow_verify={props.user !== undefined && props.building.extension_client !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("extension_client")}
+                        user_verified_as={props.user_verified.extension_client}
+                        verified_count={props.building.verified.extension_client}
+                    />
+                    <SelectDataEntry
+                        title={dataFields.extension_client_source_type.title}
+                        slug="extension_client_source_type"
+                        value={props.building.extension_client_source_type}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.extension_client_source_type.tooltip}
+                        options={dataFields.extension_client_source_type.items}
+                        placeholder={dataFields.extension_client_source_type.example}
+                        />
+                    {(props.building.extension_client_source_type == commonSourceTypes[0] ||
+                        props.building.extension_client_source_type == commonSourceTypes[1] ||
+                        props.building.extension_client_source_type == null) ? <></> :
+                        <>
+                            <MultiDataEntry
+                                title={dataFields.extension_client_source_link.title}
+                                slug="extension_client_source_link"
+                                value={props.building.extension_client_source_link}
+                                mode={props.mode}
+                                copy={props.copy}
+                                onChange={props.onChange}
+                                tooltip={dataFields.extension_client_source_link.tooltip}
+                                placeholder="https://..."
+                                editableEntries={true}
+                                isUrl={true}
+                            />
+                        </>
+                    }
+                </DataEntryGroup>
+                <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="9"}>
                     <SelectDataEntry
                         slug='extension_lead_designer_type'
                         title={dataFields.extension_lead_designer_type.title}
@@ -425,7 +523,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="8"}>
+                <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="10"}>
                     <SelectDataEntry
                         slug='extension_developer_type'
                         title={dataFields.extension_developer_type.title}
@@ -506,7 +604,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Builder" collapsed={subcat==null || subcat!="9"}>
+                <DataEntryGroup name="Builder" collapsed={subcat==null || subcat!="11"}>
                     <MultiDataEntry
                         title={dataFields.extension_builder.title}
                         slug="extension_builder"
@@ -570,7 +668,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     }
                 </DataEntryGroup>
             </DataEntryGroup>
-            <DataEntryGroup name="Awards" collapsed={subcat==null || subcat!="10"}>
+            <DataEntryGroup name="Awards" collapsed={subcat==null || subcat!="12"}>
                 <LogicalDataEntryYesOnly
                         slug='designer_awards'
                         title={dataFields.designer_awards.title}
