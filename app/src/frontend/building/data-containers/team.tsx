@@ -19,7 +19,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <form>
-            <DataEntryGroup name="Land ownership at time of construction" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Land ownership at time of construction" collapsed={subcat==null || subcat!="1"}>
                 <MultiDataEntry
                     title={dataFields.landowner.title}
                     slug="landowner"
@@ -82,7 +82,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Main building" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Main building" collapsed={subcat==null || subcat!="2"}>
                 <NumericDataEntry
                     title={dataFields.date_year.title}
                     slug="date_year"
@@ -100,7 +100,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <i className="source-url">To edit the building age, and to see the data mapped, please go to&nbsp;
                     <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=1"}>Age & History</a>.</i>
                 </div>
-                <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="4"}>
+                <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="3"}>
                     <SelectDataEntry
                         slug='lead_designer_type'
                         title={dataFields.lead_designer_type.title}
@@ -181,7 +181,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="3"}>
+                <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="4"}>
                     <SelectDataEntry
                         slug='developer_type'
                         title={dataFields.developer_type.title}
@@ -344,7 +344,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <i className="source-url">To edit the extension date, and to see the data mapped, please go to&nbsp;
                     <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=3"}>Age & History</a>.</i>
                 </div>
-                <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="4"}>
+                <DataEntryGroup name="Designer" collapsed={subcat==null || subcat!="7"}>
                     <SelectDataEntry
                         slug='extension_lead_designer_type'
                         title={dataFields.extension_lead_designer_type.title}
@@ -425,7 +425,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="3"}>
+                <DataEntryGroup name="Developer" collapsed={subcat==null || subcat!="8"}>
                     <SelectDataEntry
                         slug='extension_developer_type'
                         title={dataFields.extension_developer_type.title}
@@ -506,7 +506,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Builder" collapsed={subcat==null || subcat!="5"}>
+                <DataEntryGroup name="Builder" collapsed={subcat==null || subcat!="9"}>
                     <MultiDataEntry
                         title={dataFields.extension_builder.title}
                         slug="extension_builder"
@@ -570,7 +570,7 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     }
                 </DataEntryGroup>
             </DataEntryGroup>
-            <DataEntryGroup name="Awards" collapsed={subcat==null || subcat!="6"}>
+            <DataEntryGroup name="Awards" collapsed={subcat==null || subcat!="10"}>
                 <LogicalDataEntryYesOnly
                         slug='designer_awards'
                         title={dataFields.designer_awards.title}
