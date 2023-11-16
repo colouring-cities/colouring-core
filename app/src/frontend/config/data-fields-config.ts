@@ -22,7 +22,7 @@ export const commonSourceTypes = [
 ];
 
 const freeTextDisclaimer : string = 
-    "<br/><br/>(For security reasons, we currently only collect the names of non-residential buildings).";
+    "<br/><br/>(For security reasons, we are not currently allowing free-text input and are looking into other ways of collecting this data).";
 
 /**
  * This interface is used only in code which uses dataFields, not in the dataFields definition itself
@@ -1661,6 +1661,44 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     other_team_source_link: {
         category: Category.Team,
         title: "Source other significant team members",
+        example: ["", "", ""],
+    },
+    building_client: {
+        category: Category.Team,
+        title: "Original building client link(s)",
+        tooltip: "Link(s) describing the client who commissioned the original building?" + freeTextDisclaimer,
+        example: ["", "", ""]
+    },
+    building_client_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for building client data",
+        example: "",
+        items: commonSourceTypes
+    },
+    building_client_source_link: {
+        category: Category.Team,
+        title: "Source link(s)",
+        tooltip: "URL(s) for source for building client data",
+        example: ["", "", ""],
+    },
+    extension_client: {
+        category: Category.Team,
+        title: "Extension client link(s)",
+        tooltip: "Link(s) describing the client who commissioned the most significant extension to the building?" + freeTextDisclaimer,
+        example: ["", "", ""]
+    },
+    extension_client_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for extension client data",
+        example: "",
+        items: commonSourceTypes
+    },
+    extension_client_source_link: {
+        category: Category.Team,
+        title: "Source link(s)",
+        tooltip: "URL(s) for source for extension client data",
         example: ["", "", ""],
     },
     disaster_type: {

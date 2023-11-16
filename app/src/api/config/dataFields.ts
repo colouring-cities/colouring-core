@@ -872,6 +872,30 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true
     },
+    building_client: {
+        edit: true,
+        verify: true
+    },
+    building_client_source_type: {
+        edit: true,
+        verify: true
+    },
+    building_client_source_link: {
+        edit: true,
+        verify: true
+    },
+    extension_client: {
+        edit: true,
+        verify: true
+    },
+    extension_client_source_type: {
+        edit: true,
+        verify: true
+    },
+    extension_client_source_link: {
+        edit: true,
+        verify: true
+    },
     disaster_type: {
         edit: true,
         verify: true
