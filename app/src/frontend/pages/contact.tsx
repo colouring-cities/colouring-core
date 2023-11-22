@@ -15,24 +15,23 @@ const ContactPage = () => (
             <p> It is being developed by a small, dedicated team at The Alan Turing Institute. We are unable to answer individual queries but welcome constructive comments on how to improve the site, and on other types of data and new features you might like to see.</p>
 
             <p> You can send us comments or ask questions on our discussion threads at <a href="https://discuss.colouring.london/">https://discuss.colouring.london/</a>.</p>
+            <p> Or on our GitHub page at <a href={ccconfig.githubURL+"/discussions"}>{ccconfig.githubURL+"/discussions"}</a>.</p>
 
-            <p> To view our technical site and platform code please visit Github at: <a href={ccconfig.githubURL}>https://github.com/colouring-cities/colouring-london</a>.</p>
+            <p> To view our technical site and platform code please visit Github at: <a href={ccconfig.githubURL}>{ccconfig.githubURL}</a>.</p>
 
-            <p>For press enquiries please contact <a href="https://www.turing.ac.uk/contact-us/press-office">The Alan Turing Institute press office</a></p>
+            <p>For press enquiries please contact <a href="https://www.turing.ac.uk/contact-us/press-office">The Alan Turing Institute press office</a>.</p>
 
             <p>
             If you capture images from the maps on Colouring Cities, please credit our
             contributors (who collected the data) and Ordnance Survey
             (who provided the basemaps and building geometries) as follows:
             </p>
-            <p>
-            <pre><code>
-            Colouring Cities https://colouring.london Building attribute data is © Colouring Cities contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines.
-            </code></pre>
-            </p>
+            <p><code>
+            Colouring Cities - Building attribute data is © Colouring Cities contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines.
+            </code></p>
             <hr />
             <p>
-                <img className="d-block mx-auto" src="images/logo-cl.png"></img>
+                <img className="d-block mx-auto" src="images/logo-cc.jpg"></img>
             </p>
         </section>
     </article>
