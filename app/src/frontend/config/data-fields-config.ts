@@ -148,7 +148,44 @@ export const buildingUserFields = {
         title: "Do you think that this building may be subject to a planning application, involving demolition, over the next six months?",
         tooltip: "Are you aware of any upcoming planning applications relating to this building?",
         example: true
-    }
+    },
+    
+    community_building_hominess: {
+        category: Category.Community,
+        title: "Hominess",
+        tooltip: "How homey and relaxing does the building’s exterior feel to you?",
+        example: 3,
+    },
+    community_building_coherence: {
+        category: Category.Community,
+        title: "Coherence",
+        tooltip: "How coherent and well-organized does the building’s exterior feel to you?",
+        example: 3,
+    },
+    community_building_fascination: {
+        category: Category.Community,
+        title: "Fascination",
+        tooltip: "How fascinating and complex does the building’s exterior feel to you?'",
+        example: 3,
+    },
+    community_streetscape_hominess: {
+        category: Category.Community,
+        title: "Hominess",
+        tooltip: "How homey and relaxing does the building’s exterior feel to you?",
+        example: 3,
+    },
+    community_streetscape_coherence: {
+        category: Category.Community,
+        title: "Coherence",
+        tooltip: "How coherent and well-organized does the building’s exterior feel to you?",
+        example: 3,
+    },
+    community_streetscape_fascination: {
+        category: Category.Community,
+        title: "Fascination",
+        tooltip: "How fascinating and complex does the building’s exterior feel to you?'",
+        example: 3,
+    },
 };
 
 
@@ -1280,6 +1317,36 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: 100,
     },
     community_local_significance_total: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_building_hominess_count: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_building_coherence_count: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_building_fascination_count: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_streetscape_hominess_count: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_streetscape_coherence_count: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_streetscape_fascination_count: {
         category: Category.Community,
         title: "People who think the building should be recorded as one of local interest",
         example: 100,

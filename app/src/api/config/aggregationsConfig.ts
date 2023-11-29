@@ -1,6 +1,6 @@
 import { buildingAttributesConfig, buildingUserAttributesConfig } from '../config/dataFields';
 
-export type AggregationMethod = 'countTrue';
+export type AggregationMethod = 'countTrue' | 'countTotal';
 
 export interface AggregationConfig {
     aggregateFieldName: keyof typeof buildingAttributesConfig;
@@ -36,5 +36,41 @@ export const aggregationsConfig: { [key in keyof typeof buildingUserAttributesCo
             aggregateFieldName: 'community_expected_planning_application_total',
             aggregationMethod: 'countTrue'
         }
-    ]
+    ],
+    community_building_hominess: [
+        {
+            aggregateFieldName: 'community_building_hominess_count',
+            aggregationMethod: 'countTotal'
+        }
+    ],
+    community_building_coherence: [
+        {
+            aggregateFieldName: 'community_building_coherence_count',
+            aggregationMethod: 'countTotal'
+        }
+    ],
+    community_building_fascination: [
+        {
+            aggregateFieldName: 'community_building_fascination_count',
+            aggregationMethod: 'countTotal'
+        }
+    ],
+    community_streetscape_hominess: [
+        {
+            aggregateFieldName: 'community_streetscape_hominess_count',
+            aggregationMethod: 'countTotal'
+        }
+    ],
+    community_streetscape_coherence: [
+        {
+            aggregateFieldName: 'community_streetscape_coherence_count',
+            aggregationMethod: 'countTotal'
+        }
+    ],
+    community_streetscape_fascination: [
+        {
+            aggregateFieldName: 'community_streetscape_fascination_count',
+            aggregationMethod: 'countTotal'
+        }
+    ],
 };

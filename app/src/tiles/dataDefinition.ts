@@ -232,6 +232,60 @@ const LAYER_QUERIES = {
         WHERE
             community_local_significance_total > 0
     `,
+    community_building_hominess_count: `
+        SELECT
+            geometry_id,
+            community_building_hominess_count
+        FROM
+            buildings
+        WHERE
+            community_building_hominess_count > 0
+    `,
+    community_building_coherence_count: `
+        SELECT
+            geometry_id,
+            community_building_coherence_count
+        FROM
+            buildings
+        WHERE
+            community_building_coherence_count > 0
+    `,
+    community_building_fascination_count: `
+        SELECT
+            geometry_id,
+            community_building_fascination_count
+        FROM
+            buildings
+        WHERE
+            community_building_fascination_count > 0
+    `,
+    community_streetscape_hominess_count: `
+        SELECT
+            geometry_id,
+            community_streetscape_hominess_count
+        FROM
+            buildings
+        WHERE
+            community_streetscape_hominess_count > 0
+    `,
+    community_streetscape_coherence_count: `
+        SELECT
+            geometry_id,
+            community_streetscape_coherence_count
+        FROM
+            buildings
+        WHERE
+            community_streetscape_coherence_count > 0
+    `,
+    community_streetscape_fascination_count: `
+        SELECT
+            geometry_id,
+            community_streetscape_fascination_count
+        FROM
+            buildings
+        WHERE
+            community_streetscape_fascination_count > 0
+    `,
     community_expected_planning_application_total: `
         SELECT
             geometry_id,

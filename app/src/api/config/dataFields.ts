@@ -688,6 +688,36 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         derivedEdit: true,
         verify: false
     },
+    community_building_hominess_count: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_building_coherence_count: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_building_fascination_count: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_streetscape_hominess_count: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_streetscape_coherence_count: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_streetscape_fascination_count: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
     community_activities_current: {
         edit: true,
         verify: false
@@ -1156,7 +1186,37 @@ export const buildingUserAttributesConfig = valueType<DataFieldConfig>()({
         perUser: true,
         edit: true,
         verify: false
-    }
+    },
+    community_building_hominess: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_building_coherence: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_building_fascination: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_hominess: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_coherence: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_fascination: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
 });
 
 export const allAttributesConfig = Object.assign({}, buildingAttributesConfig, buildingUserAttributesConfig);
