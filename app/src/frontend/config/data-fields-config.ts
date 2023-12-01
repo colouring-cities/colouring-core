@@ -1351,6 +1351,36 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "People who think the building should be recorded as one of local interest",
         example: 100,
     },
+    community_building_hominess_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_building_coherence_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_building_fascination_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_streetscape_hominess_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_streetscape_coherence_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_streetscape_fascination_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
 
     community_expected_planning_application_total: {
         category: Category.Community,

@@ -13,3 +13,11 @@ ALTER TABLE buildings ADD COLUMN IF NOT EXISTS community_building_fascination_co
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS community_streetscape_hominess_count integer DEFAULT 0;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS community_streetscape_coherence_count integer DEFAULT 0;
 ALTER TABLE buildings ADD COLUMN IF NOT EXISTS community_streetscape_fascination_count integer DEFAULT 0;
+
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS community_building_hominess_avg float DEFAULT 0;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS community_building_coherence_avg float DEFAULT 0;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS community_building_fascination_avg float DEFAULT 0;
+
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS community_streetscape_hominess_avg float DEFAULT 0;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS community_streetscape_coherence_avg float DEFAULT 0;
+ALTER TABLE buildings ADD COLUMN IF NOT EXISTS community_streetscape_fascination_avg float DEFAULT 0;

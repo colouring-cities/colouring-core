@@ -718,6 +718,36 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         derivedEdit: true,
         verify: false
     },
+    community_building_hominess_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
+    community_building_coherence_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
+    community_building_fascination_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_hominess_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_coherence_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_fascination_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
     community_activities_current: {
         edit: true,
         verify: false

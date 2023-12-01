@@ -54,6 +54,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={buildingUserFields.community_building_hominess.tooltip}
                     value={props.building.community_building_hominess}
                     votes={props.building.community_building_hominess_count}
+                    average={props.building.community_building_hominess_avg}
                     min={1}
                     max={5}
                     dots={true}
@@ -66,6 +67,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={buildingUserFields.community_building_coherence.tooltip}
                     value={props.building.community_building_coherence}
                     votes={props.building.community_building_coherence_count}
+                    average={props.building.community_building_coherence_avg}
                     min={1}
                     max={5}
                     dots={true}
@@ -79,6 +81,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={buildingUserFields.community_building_fascination.tooltip}
                     value={props.building.community_building_fascination}
                     votes={props.building.community_building_fascination_count}
+                    average={props.building.community_building_fascination_avg}
                     min={1}
                     max={5}
                     dots={true}
@@ -146,6 +149,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={buildingUserFields.community_streetscape_hominess.tooltip}
                     value={props.building.community_streetscape_hominess}
                     votes={props.building.community_streetscape_hominess_count}
+                    average={props.building.community_streetscape_hominess_avg}
                     min={1}
                     max={5}
                     dots={true}
@@ -158,6 +162,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={buildingUserFields.community_streetscape_coherence.tooltip}
                     value={props.building.community_streetscape_coherence}
                     votes={props.building.community_streetscape_coherence_count}
+                    average={props.building.community_streetscape_coherence_avg}
                     min={1}
                     max={5}
                     dots={true}
@@ -170,6 +175,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={buildingUserFields.community_streetscape_fascination.tooltip}
                     value={props.building.community_streetscape_fascination}
                     votes={props.building.community_streetscape_fascination_count}
+                    average={props.building.community_streetscape_fascination_avg}
                     min={1}
                     max={5}
                     dots={true}

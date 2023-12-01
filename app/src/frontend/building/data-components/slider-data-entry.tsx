@@ -12,6 +12,7 @@ interface SliderDataEntryProps extends BaseDataEntryProps {
     max?: number;
     min?: number;
     votes?: number;
+    average?: number;
     onChange: (key: string, value: number) => void;
 }
 
@@ -47,7 +48,7 @@ const SliderDataEntry: React.FunctionComponent<SliderDataEntryProps> = (props) =
                     }
                 />
             </div>
-            <p>Your score: {props.value} <span className="slider-average">Average: 2.41 ({props.votes} votes)</span></p>
+            <p>Your score: {props.value} <span className="slider-average">Average: {props.average} ({props.votes} votes)</span></p>
         </Fragment>
     );
 };
