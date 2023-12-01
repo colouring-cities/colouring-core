@@ -61,6 +61,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
+                <hr />
                 <SliderDataEntry
                     slug="community_building_coherence"
                     title={buildingUserFields.community_building_coherence.title}
@@ -75,6 +76,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
 
                 />
+                <hr />
                 <SliderDataEntry
                     slug="community_building_fascination"
                     title={buildingUserFields.community_building_fascination.title}
@@ -88,51 +90,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
-                {(props.mapColourScale != "community_local_significance_total") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLocalSignificanceMapStyle}>
-                        {'Click to show buildings of local interest.'}
-                    </button>
-                    :
-                    <></>
-                }
-                <hr />
-                <UserOpinionEntry
-                    slug='community_expected_planning_application'
-                    title={buildingUserFields.community_expected_planning_application.title}
-                    tooltip={buildingUserFields.community_expected_planning_application.tooltip}
-                    userValue={props.building.community_expected_planning_application}
-
-                        onChange={props.onSaveChange}
-                        mode={props.mode}
-
-                />
-                {(props.mapColourScale != "typology_likes") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLikesMapStyle}>
-                        {'Click to show liked typologies.'}
-                    </button>
-                    :
-                    <></>
-                }
-                {
-                    props.building.community_type_worth_keeping === true &&
-                    <MultiSelectDataEntry
-                        slug='community_type_worth_keeping_reasons'
-                        title={buildingUserFields.community_type_worth_keeping_reasons.title}
-                        value={props.building.community_type_worth_keeping_reasons}
-                        disabled={!props.building.community_type_worth_keeping}
-                        onChange={props.onSaveChange}
-                        options={
-                            Object.entries(buildingUserFields.community_type_worth_keeping_reasons.fields)
-                            .map(([key, definition]) => ({
-                                key,
-                                label: definition.title
-                            }))
-                        }
-                        
-                        mode={props.mode}
-                    />
-                }
-                <hr />
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of buildings and streetscapes make people feel.
@@ -156,6 +113,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
+                <hr />
                 <SliderDataEntry
                     slug="community_streetscape_coherence"
                     title={buildingUserFields.community_streetscape_coherence.title}
@@ -169,6 +127,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
+                <hr />
                 <SliderDataEntry
                     slug="community_streetscape_fascination"
                     title={buildingUserFields.community_streetscape_fascination.title}
@@ -182,18 +141,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
-                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
-                    <i>
-                        For more information on current planning applications, refer to the Planning Controls category.
-                    </i>
-                </div>
-                {(props.mapColourScale != "community_expected_planning_application_total") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToExpectedApplicationMapStyle}>
-                        {'Click to show expected planning applications.'}
-                    </button>
-                    :
-                    <></>
-                }
             </DataEntryGroup>
             <DataEntryGroup name="Buildings in community use" collapsed={subcat==null || subcat!="2"}>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>

@@ -208,3 +208,7 @@ dd {
     float: right;
     padding-right: 12px;
 }
+
+.slider-score {
+    font-size: 13px !important;
+}
