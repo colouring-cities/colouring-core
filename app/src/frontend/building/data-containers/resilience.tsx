@@ -9,31 +9,13 @@ import Verification from '../data-components/verification';
 import { CategoryViewProps } from './category-view-props';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
-import DatePicker from "react-datepicker";
-
-import "react-datepicker/dist/react-datepicker.css";
+import DataPickerDateEntry from '../data-components/date-picker-data-entry';
 
 /**
 * Dynamics view/edit section
 */
 const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
     
-    let sDate = props.building.disaster_start_date;
-    let eDate = props.building.disaster_end_date;
-
-    let disasterStartDate = null;
-    let disasterEndDate = null;
-
-    if (sDate != null) {
-        disasterStartDate = new Date(sDate);
-    }
-    if (eDate != null) {
-        disasterEndDate = new Date(eDate);
-    }
-
-    const [ startDate, setStartDate ] = useState(disasterStartDate);
-    const [ endDate, setEndDate ] = useState(disasterEndDate);
-
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
 
@@ -62,52 +44,23 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <></>
             }
             <label>Date of disaster</label>
-            <div className="row date-picker">
-                <div className='column date-picker-label'>
-                    <label>{dataFields.disaster_start_date.title}</label>
-                </div>
-                <div className='column date-picker-dropdown'>
-                    <DatePicker 
-                        //showIcon
-                        dateFormat="dd/MM/yyyy"
-                        slug="disaster_start_date"
-                        //selected={startDate}
-                        value={startDate}
-                        onSelect={(date) => setStartDate(date)}
-                        onChange={props.onChange}
-                        title={dataFields.disaster_start_date.tooltip}
-                        isClearable
-                        placeholderText="Select start date"
-                        maxDate={new Date()}
-                    />
-                </div>
-            </div>
-            <div className="row date-picker">
-                <div className='column date-picker-label'>
-                    <label>{dataFields.disaster_end_date.title}</label>
-                </div>
-                <div className='column date-picker-dropdown'>
-                    <DatePicker 
-                        //showIcon
-                        dateFormat="dd/MM/yyyy"
-                        slug="disaster_end_date"
-                        selected={endDate}
-                        onSelect={(date) => setEndDate(date)}
-                        onChange={props.onChange}
-                        title={dataFields.disaster_end_date.tooltip}
-                        isClearable
-                        placeholderText="Select end date"
-                        maxDate={new Date()}
-                    />
-                </div>
-            </div>
-            <Verification
+            <DataPickerDateEntry 
+                slug="disaster_start_date"
+                title={dataFields.disaster_start_date.title}
+                tooltip={dataFields.disaster_start_date.tooltip}
+                value={props.building.disaster_start_date}
+                onChange={props.onChange}
+                mode={props.mode}
+                copy={props.copy}
+            />
+            <DataPickerDateEntry 
                 slug="disaster_end_date"
-                allow_verify={props.user !== undefined && props.building.disaster_end_date !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("disaster_end_date")}
-                user_verified_as={props.user_verified.disaster_end_date}
-                verified_count={props.building.verified.disaster_end_date}
+                title={dataFields.disaster_end_date.title}
+                tooltip={dataFields.disaster_end_date.tooltip}
+                value={props.building.disaster_end_date}
+                onChange={props.onChange}
+                mode={props.mode}
+                copy={props.copy}
             />
             <SelectDataEntry
                 slug='disaster_type'
