@@ -302,6 +302,45 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         },
         {
+            mapStyle: 'community_building_hominess_avg',
+            legend: {
+                title: 'Building hominess',
+                elements: [
+                    { color: '#dcfae1', text: '1' },
+                    { color: '#a8fab5', text: '2' },
+                    { color: '#6ffa84', text: '3' },
+                    { color: '#3cfa58', text: '4' },
+                    { color: '#02fa28', text: '5' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_building_coherence_avg',
+            legend: {
+                title: 'Building coherence',
+                elements: [
+                    { color: '#d9e7fa', text: '1' },
+                    { color: '#a2c4fa', text: '2' },
+                    { color: '#72a5fa', text: '3' },
+                    { color: '#3c85fa', text: '4' },
+                    { color: '#005efa', text: '5' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_building_fascination_avg',
+            legend: {
+                title: 'Building fascination',
+                elements: [
+                    { color: '#f3dcfa', text: '1' },
+                    { color: '#e1a2fa', text: '2' },
+                    { color: '#d572fa', text: '3' },
+                    { color: '#c33efa', text: '4' },
+                    { color: '#b402fa', text: '5' },
+                ]
+            }
+        },
+        {
             mapStyle: 'community_local_significance_total',
             legend: {
                 title: 'Local Interest',

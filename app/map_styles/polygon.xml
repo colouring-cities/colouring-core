@@ -1033,6 +1033,105 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="community_building_hominess_avg">
+        <Rule>
+            <Filter>[community_building_hominess_avg] &gt; 4</Filter>
+            <PolygonSymbolizer fill="#02fa28" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_hominess_avg] &gt; 3 and [community_building_hominess_avg] &lt;= 4</Filter>
+            <PolygonSymbolizer fill="#3cfa58" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_hominess_avg] &gt; 2 and [community_building_hominess_avg] &lt;= 3</Filter>
+            <PolygonSymbolizer fill="#6ffa84" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_hominess_avg] &gt; 1 and [community_building_hominess_avg] &lt;= 2</Filter>
+            <PolygonSymbolizer fill="#a8fab5" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_hominess_avg] &lt;= 1</Filter>
+            <PolygonSymbolizer fill="#dcfae1" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="community_building_fascination_avg">
+        <Rule>
+            <Filter>[community_building_fascination_avg] &gt; 4</Filter>
+            <PolygonSymbolizer fill="#b402fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_fascination_avg] &gt; 3 and [community_building_fascination_avg] &lt;= 4</Filter>
+            <PolygonSymbolizer fill="#c33efa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_fascination_avg] &gt; 2 and [community_building_fascination_avg] &lt;= 3</Filter>
+            <PolygonSymbolizer fill="#d572fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_fascination_avg] &gt; 1 and [community_building_fascination_avg] &lt;= 2</Filter>
+            <PolygonSymbolizer fill="#e1a2fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_fascination_avg] &lt;= 1</Filter>
+            <PolygonSymbolizer fill="#f3dcfa" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="community_building_coherence_avg">
+        <Rule>
+            <Filter>[community_building_coherence_avg] &gt; 4</Filter>
+            <PolygonSymbolizer fill="#005efa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_coherence_avg] &gt; 3 and [community_building_coherence_avg] &lt;= 4</Filter>
+            <PolygonSymbolizer fill="#3c85fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_coherence_avg] &gt; 2 and [community_building_coherence_avg] &lt;= 3</Filter>
+            <PolygonSymbolizer fill="#72a5fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_coherence_avg] &gt; 1 and [community_building_coherence_avg] &lt;= 2</Filter>
+            <PolygonSymbolizer fill="#a2c4fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_coherence_avg] &lt;= 1</Filter>
+            <PolygonSymbolizer fill="#d9e7fa" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="community_local_significance_total">
         <Rule>
             <Filter>[community_local_significance_total] &gt;= 100</Filter>

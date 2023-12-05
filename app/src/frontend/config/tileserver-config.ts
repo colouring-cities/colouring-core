@@ -21,6 +21,9 @@ export type BuildingMapTileset =
     'community_local_significance_total' |
     'community_expected_planning_application_total' |
     'community_in_public_ownership' |
+    'community_building_hominess_avg' |
+    'community_building_coherence_avg' |
+    'community_building_fascination_avg' |
     'planning_applications_status_all' |
     'planning_applications_status_recent' |
     'planning_applications_status_very_recent' |
