@@ -90,7 +90,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </DataEntryGroup>
             <DataEntryGroup name="Community views on streetscapes" collapsed={subcat==null || subcat!="2"}>
                 <label>
-                    What do you feel about the exterior of this building?
+                    What do you feel about the streetscape around this building?
                 </label>
                 <SliderDataEntry
                     slug="community_streetscape_hominess"
