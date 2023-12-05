@@ -56,7 +56,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         slug: 'community',
         name: 'Community',
         aboutUrl: 'https://github.com/colouring-cities/manual/wiki/E1.--DATA#12-community',
-        intro: 'This section collects data on how well citizens think specific *types* of building work. This will help us save/reuse as many useful buildings as possible, and help improve urban design quality in future.',
+        intro: 'This section collects data on community views on buildings and streetscapes, and on the the location of buildings available for community use. Can you help colour the map to inform the design of our towns and cites in future?',
     },
     [Category.Construction]: {
         slug: 'construction',

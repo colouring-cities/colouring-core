@@ -21,14 +21,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('typology_likes')
     }
-    const switchToLocalSignificanceMapStyle = (e) => {
-        e.preventDefault();
-        props.onMapColourScale('community_local_significance_total')
-    }
-   const switchToExpectedApplicationMapStyle = (e) => {
-        e.preventDefault();
-        props.onMapColourScale('community_expected_planning_application_total')
-    }
     const switchToPublicOwnershipMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('community_in_public_ownership')
