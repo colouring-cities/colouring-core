@@ -341,6 +341,19 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         },
         {
+            mapStyle: 'community_building_neuroaesthetic_avg',
+            legend: {
+                title: 'Building neuroaesthetic score',
+                elements: [
+                    { color: '#d9f8fa', text: '1' },
+                    { color: '#a2f6fa', text: '2' },
+                    { color: '#72f3fa', text: '3' },
+                    { color: '#3cf1fa', text: '4' },
+                    { color: '#3cf1fa', text: '5' },
+                ]
+            }
+        },
+        {
             mapStyle: 'community_local_significance_total',
             legend: {
                 title: 'Local Interest',

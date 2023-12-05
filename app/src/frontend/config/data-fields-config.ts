@@ -1354,17 +1354,22 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     community_building_hominess_avg: {
         category: Category.Community,
         title: "People who think the building should be recorded as one of local interest",
-        example: 100,
+        example: 3,
     },
     community_building_coherence_avg: {
         category: Category.Community,
         title: "People who think the building should be recorded as one of local interest",
-        example: 100,
+        example: 3,
     },
     community_building_fascination_avg: {
         category: Category.Community,
         title: "People who think the building should be recorded as one of local interest",
-        example: 100,
+        example: 3,
+    },
+    community_building_neuroaesthetic_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 3,
     },
     community_streetscape_hominess_avg: {
         category: Category.Community,

@@ -82,6 +82,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
+                <hr/>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of buildings and streetscapes make people feel.

@@ -1173,6 +1173,39 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="community_building_neuroaesthetic_avg">
+        <Rule>
+            <Filter>[community_building_neuroaesthetic_avg] &gt; 4</Filter>
+            <PolygonSymbolizer fill="#3cf1fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_neuroaesthetic_avg] &gt; 3 and [community_building_neuroaesthetic_avg] &lt;= 4</Filter>
+            <PolygonSymbolizer fill="#3cf1fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_neuroaesthetic_avg] &gt; 2 and [community_building_neuroaesthetic_avg] &lt;= 3</Filter>
+            <PolygonSymbolizer fill="#72f3fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_neuroaesthetic_avg] &gt; 1 and [community_building_neuroaesthetic_avg] &lt;= 2</Filter>
+            <PolygonSymbolizer fill="#a2f6fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_neuroaesthetic_avg] &lt;= 1</Filter>
+            <PolygonSymbolizer fill="#d9f8fa" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="community_expected_planning_application_total">
         <Rule>
             <Filter>[community_expected_planning_application_total] &gt;= 100</Filter>
