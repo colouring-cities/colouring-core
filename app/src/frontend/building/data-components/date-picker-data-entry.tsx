@@ -38,7 +38,7 @@ const DataPickerDataEntry: React.FunctionComponent<DataPickerDataEntryProps> = (
                         }
                         }
                         title={props.tooltip}
-                        isClearable
+                        isClearable={!(props.mode === 'view' || props.disabled)}
                         placeholderText="Select a date"
                         maxDate={new Date()}
                         disabled={props.mode === 'view' || props.disabled}
