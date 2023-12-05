@@ -212,3 +212,16 @@ dd {
 .slider-score {
     font-size: 13px !important;
 }
+
+.date-picker {
+    margin-left: 10px;
+    max-width: 400px;
+}
+
+.date-picker-label {
+    width: 100px;
+}
+
+.date-picker-label label {
+    margin-top: 8px;
+}
