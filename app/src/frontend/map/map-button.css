@@ -125,9 +125,12 @@
 .map-switcher-inline {
     border-radius: 4px;
     /*background: #FFC0CB;*/
-    margin: 12px;
-    width: 400px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    width: 412px;
     color: #343a40;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 .map-switcher-inline.night {
     color: #fff;
@@ -137,4 +140,12 @@
     background-color: transparent;
     background-image: none;
     border-color: #ff6065;
+}
+
+.key-button {
+    background-color: paleturquoise !important;
+}
+
+.sub-subcategory-button {
+    width: 395px;
 }

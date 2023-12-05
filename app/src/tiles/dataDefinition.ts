@@ -62,6 +62,38 @@ const LAYER_QUERIES = {
             buildings
         WHERE
             size_height_apex IS NOT NULL`,
+    size_total_floors: `
+        SELECT
+            geometry_id,
+            (size_storeys_core + size_storeys_attic + size_storeys_basement) AS size_total_floors
+        FROM
+            buildings
+        WHERE
+            size_storeys_core IS NOT NULL 
+            AND
+            size_storeys_attic IS NOT NULL 
+            AND
+            size_storeys_basement IS NOT NULL`,
+    size_storeys_basement: `
+        SELECT
+            geometry_id,
+            size_storeys_basement AS size_storeys_basement
+        FROM
+            buildings
+        WHERE
+            size_storeys_basement IS NOT NULL
+            AND
+            size_storeys_basement != 0`,  
+    size_floor_area_ground: `
+        SELECT
+            geometry_id,
+            size_floor_area_ground AS size_floor_area_ground
+        FROM
+            buildings
+        WHERE
+            size_floor_area_ground IS NOT NULL
+            AND
+            size_floor_area_ground != 0`,           
     construction_core_material: `
         SELECT
             geometry_id,
@@ -70,6 +102,38 @@ const LAYER_QUERIES = {
             buildings
         WHERE
             construction_core_material IS NOT NULL`,
+    construction_structural_system: `
+        SELECT
+            geometry_id,
+            construction_structural_system::text AS construction_structural_system
+        FROM
+            buildings
+        WHERE
+            construction_structural_system IS NOT NULL`,
+    construction_foundation: `
+        SELECT
+            geometry_id,
+            construction_foundation::text AS construction_foundation
+        FROM
+            buildings
+        WHERE
+            construction_foundation IS NOT NULL`,
+    construction_roof_shape: `
+        SELECT
+            geometry_id,
+            construction_roof_shape::text AS construction_roof_shape
+        FROM
+            buildings
+        WHERE
+            construction_roof_shape IS NOT NULL`,
+    construction_roof_covering: `
+        SELECT
+            geometry_id,
+            construction_roof_covering::text AS construction_roof_covering
+        FROM
+            buildings
+        WHERE
+            construction_roof_covering IS NOT NULL`,
     location: `
         SELECT blds_with_data.* 
         FROM (
@@ -233,6 +297,21 @@ const LAYER_QUERIES = {
             OR planning_heritage_at_risk_url <> ''
             OR planning_in_apa_url <> ''
             `,
+    team_known_designer: `
+            SELECT
+                geometry_id,
+                (
+                    CASE
+                        WHEN array_length(designers,1) > 0 THEN true
+                        WHEN array_length(designers_links,1) > 0 THEN true
+                        ELSE false
+                    END
+                ) AS team_known_designer
+            FROM buildings
+            WHERE
+                designers IS NOT NULL
+                OR designers IS NOT NULL
+                `,
     conservation_area: `
         SELECT
             geometry_id
@@ -304,13 +383,62 @@ const LAYER_QUERIES = {
         FROM
             buildings
         WHERE typology_style_period IS NOT NULL`,
-        typology_dynamic_classification: `
+    typology_dynamic_classification: `
         SELECT
             geometry_id,
             typology_dynamic_classification
         FROM
             buildings
         WHERE typology_dynamic_classification IS NOT NULL`,
+    context_back_garden: `
+        SELECT
+            geometry_id,
+            context_back_garden
+        FROM
+            buildings
+        WHERE context_back_garden IS NOT NULL`,
+    context_street_width: `
+        SELECT
+            geometry_id,
+            context_street_width
+        FROM
+            buildings
+        WHERE context_street_width IS NOT NULL`,
+    designer_awards: `
+        SELECT
+            geometry_id,
+            designer_awards
+        FROM
+            buildings
+        WHERE designer_awards IS NOT NULL`,
+    energy_solar: `
+        SELECT
+            geometry_id,
+            energy_solar
+        FROM
+            buildings
+        WHERE energy_solar IS NOT NULL`,
+    energy_green_roof: `
+        SELECT
+            geometry_id,
+            energy_green_roof
+        FROM
+            buildings
+        WHERE energy_green_roof IS NOT NULL`,
+    sust_aggregate_estimate_epc: `
+        SELECT
+            geometry_id,
+            sust_aggregate_estimate_epc
+        FROM
+            buildings
+        WHERE sust_aggregate_estimate_epc IS NOT NULL`,
+    context_walkability_index: `
+        SELECT
+            geometry_id,
+            context_walkability_index
+        FROM
+            buildings
+        WHERE context_walkability_index IS NOT NULL`,
 };
 
 const GEOMETRY_FIELD = 'geometry_geom';

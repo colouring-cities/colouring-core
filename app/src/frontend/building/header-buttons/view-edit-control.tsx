@@ -12,20 +12,20 @@ interface ViewEditControlProps {
 
 const ViewEditControl: React.FC<ViewEditControlProps> = props => (
     (props.mode === 'edit')?
-                        <NavLink
-                            className="icon-button view"
-                            title="View data"
-                            to={`/view/${props.cat}/${props.building.building_id}`}>
-                            View
-                            <ViewIcon />
-                        </NavLink>
-                        : <NavLink
-                            className="icon-button edit"
-                            title="Edit data"
-                            to={`/edit/${props.cat}/${props.building.building_id}`}>
-                            Edit
-                            <EditIcon />
-                        </NavLink>
+        <NavLink
+            className="icon-button view"
+            title="View data"
+            to={`/view/${props.cat}/${props.building.building_id}`}>
+            View
+            <ViewIcon />
+        </NavLink>
+        : <NavLink
+            className="icon-button edit"
+            title="Edit data"
+            to={`/edit/${props.cat}/${props.building.building_id}`}>
+            Edit
+            <EditIcon />
+        </NavLink>
 );
 
 export {

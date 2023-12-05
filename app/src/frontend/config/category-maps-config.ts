@@ -96,38 +96,164 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#980043', text: '≥152'}
                 ]
             },
+        },
+        {
+            mapStyle: 'size_total_floors',
+            legend: {
+                title: 'Total number of floors',
+                elements: [
+                    { color: '#f7f4f9', text: '1'},
+                    { color: '#e7e1ef', text: '2'},
+                    { color: '#d4b9da', text: '3 - 4'},
+                    { color: '#c994c7', text: '5'},
+                    { color: '#df65b0', text: '6 - 10'},
+                    { color: '#e7298a', text: '11 - 20'},
+                    { color: '#ce1256', text: '21 - 34'},
+                    { color: '#980043', text: '35 +'}
+                ]
+            },
+        },
+        {
+            mapStyle: 'size_storeys_basement',
+            legend: {
+                title: 'Floors below ground level',
+                elements: [
+                    { color: '#f7f4f9', text: '1'},
+                    { color: '#d4b9da', text: '2'},
+                    { color: '#df65b0', text: '3'},
+                    { color: '#ce1256', text: '4+'},
+                ]
+            },
+        },
+        {
+            mapStyle: 'size_floor_area_ground',
+            legend: {
+                title: 'Ground floor area (m2)',
+                elements: [
+                    { color: '#f7f4f9', text: '0 - 25'},
+                    { color: '#e7e1ef', text: '25 - 50'},
+                    { color: '#d4b9da', text: '50 - 100'},
+                    { color: '#c994c7', text: '100 - 250'},
+                    { color: '#df65b0', text: '250 - 500'},
+                    { color: '#e7298a', text: '500 - 1000'},
+                    { color: '#ce1256', text: '1000 - 2000'},
+                    { color: '#980043', text: '2000 +'}
+                ]
+            },
         }
     ],
-    [Category.Team]: [{
-        mapStyle: 'team',
-        legend: {
-            title: 'Team',
-            description: '% data collected',
-            elements: [
-                { color: '#994d00', text: '≥80%' },
-                { color: '#e67300', text: '60–80%' },
-                { color: '#ff9933', text: '40–60%' },
-                { color: '#ffbf80', text: '20–40%' },
-                { color: '#ffe6cc', text: '<20%' }
-            ]
+    [Category.Team]: [
+        {
+            mapStyle: 'team',
+            legend: {
+                title: 'Team',
+                description: '% data collected',
+                elements: [
+                    { color: '#994d00', text: '≥80%' },
+                    { color: '#e67300', text: '60–80%' },
+                    { color: '#ff9933', text: '40–60%' },
+                    { color: '#ffbf80', text: '20–40%' },
+                    { color: '#ffe6cc', text: '<20%' }
+                ]
+            },
         },
-    }],
-    [Category.Construction]: [{
-        mapStyle: 'construction_core_material',
-        legend: {
-            title: 'Construction',
-            elements: [
-                { color: "#b5a859", text: "Wood" },
-                { color: "#ffffe3", text: "Stone" },
-                { color: "#f5d96b", text: "Brick" },
-                { color: "#beffe8", text: "Steel" },
-                { color: "#fca89d", text: "Reinforced Concrete" },
-                { color: "#5c8970", text: "Other Metal" },
-                { color: "#96613b", text: "Other Natural Material" },
-                { color: "#c48a85", text: "Other Man-Made Material" }
-            ]
+        {
+            mapStyle: 'designer_awards',
+            legend: {
+                title: 'Awards',
+                description: 'Has the building won any awards?',
+                elements: [
+                    {color: '#f7ec25', text: 'Yes'},
+                ]
+            },
         },
-    }],
+        {
+            mapStyle: 'team_known_designer',
+            legend: {
+                title: 'Known designer',
+                description: 'Buildings with a known architect/designer',
+                elements: [
+                    {color: '#6bb1e3', text: 'Yes'},
+                ]
+            },
+        },
+    ],
+    [Category.Construction]: [
+        {
+            mapStyle: 'construction_core_material',
+            legend: {
+                title: 'Core material',
+                elements: [
+                    { color: "#b5a859", text: "Wood" },
+                    { color: "#ffffe3", text: "Stone" },
+                    { color: "#f5d96b", text: "Brick" },
+                    { color: "#beffe8", text: "Steel" },
+                    { color: "#fca89d", text: "Reinforced Concrete" },
+                    { color: "#5c8970", text: "Other Metal" },
+                    { color: "#96613b", text: "Other Natural Material" },
+                    { color: "#c48a85", text: "Other Man-Made Material" }
+                ]
+            },
+        },
+        {
+            mapStyle: 'construction_structural_system',
+            legend: {
+                title: 'Structural system',
+                elements: [
+                    { color: "#b5a859", text: "Solid masonry walls supporting the roof" },
+                    { color: "#ffffe3", text: "A lateral load resisting structure (e.g. concrete or wooden frame)" },
+                    { color: "#f5d96b", text: "Other" },
+                ]
+            },
+        },
+        {
+            mapStyle: 'construction_foundation',
+            legend: {
+                title: 'Foundations',
+                elements: [
+                    { color: "#b5a859", text: "Shallow foundations with no lateral support" },
+                    { color: "#ffffe3", text: "Shallow foundations with lateral support" },
+                    { color: "#f5d96b", text: "Deep foundations with no lateral support" },
+                    { color: "#beffe8", text: "Deep Foundations with lateral support" },
+                    { color: "#fca89d", text: "Other" },
+                ]
+            },
+        },
+        {
+            mapStyle: 'construction_roof_shape',
+            legend: {
+                title: 'Roof shape',
+                elements: [
+                    { color: "#b5a859", text: "Flat" },
+                    { color: "#ffffe3", text: "Pitched with gable ends" },
+                    { color: "#f5d96b", text: "Pitched and hipped" },
+                    { color: "#beffe8", text: "Pitched with dormers" },
+                    { color: "#fca89d", text: "Monopitch" },
+                    { color: "#5c8970", text: "Sawtooth" },
+                    { color: "#96613b", text: "Curved" },
+                    { color: "#c48a85", text: "Complex regular" },
+                    { color: "#7bccc4", text: "Complex irregular" },
+                    { color: "#bae4bc", text: "Other" }
+                ]
+            },
+        },
+        {
+            mapStyle: 'construction_roof_covering',
+            legend: {
+                title: 'Roof covering',
+                elements: [
+                    { color: "#b5a859", text: "Wood" },
+                    { color: "#ffffe3", text: "Stone" },
+                    { color: "#f5d96b", text: "Brick" },
+                    { color: "#beffe8", text: "Steel" },
+                    { color: "#fca89d", text: "Reinforced Concrete" },
+                    { color: "#5c8970", text: "Other Metal" },
+                    { color: "#96613b", text: "Other Natural Material" },
+                    { color: "#c48a85", text: "Other Man-Made Material" }
+                ]
+            },
+        }
+    ],
     [Category.Location]: [{
         mapStyle: 'location',
         legend: {
@@ -302,22 +428,60 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         }
     ],
-    [Category.EnergyPerformance]: [{
-        mapStyle: 'sust_dec',
-        legend: {
-            title: 'Sustainability',
-            description: 'DEC Rating',
-            elements: [
-                { color: "#007f3d", text: 'A' },
-                { color: "#2c9f29", text: 'B' },
-                { color: "#9dcb3c", text: 'C' },
-                { color: "#fff200", text: 'D' },
-                { color: "#f7af1d", text: 'E' },
-                { color: "#ed6823", text: 'F' },
-                { color: "#e31d23", text: 'G' },
-            ]
+    [Category.EnergyPerformance]: [
+        {
+            mapStyle: 'sust_dec',
+            legend: {
+                title: 'Energy rating (DEC)',
+                description: 'Non-domestic energy rating (DEC Rating)',
+                elements: [
+                    { color: "#007f3d", text: 'A' },
+                    { color: "#2c9f29", text: 'B' },
+                    { color: "#9dcb3c", text: 'C' },
+                    { color: "#fff200", text: 'D' },
+                    { color: "#f7af1d", text: 'E' },
+                    { color: "#ed6823", text: 'F' },
+                    { color: "#e31d23", text: 'G' },
+                ]
+            },
         },
-    }],
+        {
+            mapStyle: 'sust_aggregate_estimate_epc',
+            legend: {
+                title: 'Energy rating (EPC)',
+                description: 'Domestic energy rating (EPC Rating)',
+                elements: [
+                    { color: "#007f3d", text: 'A' },
+                    { color: "#2c9f29", text: 'B' },
+                    { color: "#9dcb3c", text: 'C' },
+                    { color: "#fff200", text: 'D' },
+                    { color: "#f7af1d", text: 'E' },
+                    { color: "#ed6823", text: 'F' },
+                    { color: "#e31d23", text: 'G' },
+                ]
+            },
+        },
+        {
+            mapStyle: 'energy_solar',
+            legend: {
+                title: 'Solar panels',
+                description: 'Does the building have Solar Panels?',
+                elements: [
+                    {color: '#6bb1e3', text: 'Yes'},
+                ]
+            },
+        },
+        {
+            mapStyle: 'energy_green_roof',
+            legend: {
+                title: 'Green roof',
+                description: 'Does the building have a Green Roof?',
+                elements: [
+                    {color: '#7cbf39', text: 'Yes'},
+                ]
+            },
+        },
+    ],
     [Category.Typology]: [
         {
             mapStyle: 'typology_classification',
@@ -360,10 +524,9 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Dynamic classification',
                 elements: [
-                    { color: '#96484A', text: 'Repetitive small, domestic plots' },
-                    { color: '#4B9889', text: 'Linear non-domestic, i.e. high streets' },
-                    { color: '#4F8DA8', text: 'Large plots with internal roads' },
-                    { color: '#897A5D', text: 'Other' },
+                    { color: '#FF7F11', text: 'Small, often repetitive plots, mainly residential' },
+                    { color: '#FF1B1C', text: 'Linear non-domestic, i.e. high streets' },
+                    { color: '#40E0D0', text: 'Large plots with internal roads' },
                 ]
             }
         },
@@ -439,18 +602,37 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         }
     ],
-    [Category.StreetContext]: [{
-        mapStyle: undefined,
-        legend: {
-            title: 'Street Context',
-            elements: []
+    [Category.StreetContext]: [
+        {
+            mapStyle: 'context_back_garden',
+            legend: {
+                title: 'Back gardens',
+                description: 'Does the building have a back garden?',
+                elements: [
+                    {color: '#7cbf39', text: 'Yes'},
+                ]
+            },
         },
-    }],
+        {
+            mapStyle: "context_walkability_index",
+            legend: {
+                title: 'Walkability Index',
+                elements: []
+            },
+        },
+        {
+            mapStyle: "context_street_width",
+            legend: {
+                title: 'Street width',
+                elements: []
+            },
+        }
+    ],
     [Category.Resilience]: [
         {
             mapStyle: 'disaster_severity',
             legend: {
-                title: 'Severity of damage',
+                title: 'Damage severity',
                 description: 'Severity of damage to building',
                 elements: [
                     {

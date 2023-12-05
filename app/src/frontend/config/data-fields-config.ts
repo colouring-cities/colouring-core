@@ -21,6 +21,9 @@ export const commonSourceTypes = [
     "Other"
 ];
 
+const freeTextDisclaimer : string = 
+    "<br/><br/>(For security reasons, we are not currently allowing free-text input and are looking into other ways of collecting this data).";
+
 /**
  * This interface is used only in code which uses dataFields, not in the dataFields definition itself
  * Cannot make dataFields an indexed type ({[key: string]: DataFieldDefinition}),
@@ -88,12 +91,14 @@ export const buildingUserFields = {
         perUser: true,
         category: Category.Community,
         title: "Do you like this building and think it contributes to the city?",
+        tooltip: "In your opinion, does this specific building contribute something to the city?",
         example: true,
     },
     community_type_worth_keeping: {
         perUser: true,
         category: Category.Community,
         title: "Do you think this **type** of building contributes to the city?",
+        tooltip: "In your opinion, does this type of building contribute something to the city?",
         example: true,
     },
     community_type_worth_keeping_reasons: {
@@ -134,12 +139,14 @@ export const buildingUserFields = {
         perUser: true,
         category: Category.Community,
         title: "Do you think this building should be recorded as being of special local interest?",
+        tooltip: "In your opinion, is this building of special local interest?",
         example: true
     },
     community_expected_planning_application: {
         perUser: true,
         category: Category.Community,
         title: "Do you think that this building may be subject to a planning application, involving demolition, over the next six months?",
+        tooltip: "Are you aware of any upcoming planning applications relating to this building?",
         example: true
     }
 };
@@ -149,14 +156,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name: {
         category: Category.Location,
         title: "Building name (non-residential)",
-        tooltip: "The name of the building.<br/><br/>(For security reasons, we currently only collect the names of non-residential buildings).",
+        tooltip: "The name of the building." + freeTextDisclaimer,
         example: "Broadcasting House",
     },
     location_name_link: {
         category: Category.Location,
-        title: "Building name link",
+        title: "Building link (non-residential) - Wikipedia or other",
         tooltip: "Link to a website with the name of the building.",
         example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
+    },
+    location_residential_name_link: {
+        category: Category.Location,
+        title: "Building link (residential) - Wikipedia or other",
+        tooltip: "Link to a website with the name of the building.",
+        example: "https://en.wikipedia.org/wiki/221B_Baker_Street",
     },
     location_number: {
         category: Category.Location,
@@ -168,19 +181,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "Street name",
         example: "Gower Street",
-        //tooltip: ,
+        tooltip: "The name of the street on which the building is located." + freeTextDisclaimer,
     },
     location_line_two: {
         category: Category.Location,
         title: "Address line 2",
         example: "Flat 21",
-        //tooltip: ,
+        tooltip: "Second line of the address." + freeTextDisclaimer,
     },
     location_town: {
         category: Category.Location,
         title: "Town/City",
         example: "London",
-        //tooltip: ,
+        tooltip: "Name of the town or city where the building is located." + freeTextDisclaimer,
     },
     location_postcode: {
         category: Category.Location,
@@ -203,7 +216,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     ref_toid: {
         category: Category.Location,
-        title: "Building footprint ID",
+        title: "Open building footprint ID",
         tooltip: "Ordnance Survey Topography Layer ID (TOID)",
         example: "",
     },
@@ -213,14 +226,39 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Links to alternative building footprint datasets (include the direct link to the footprint of this building where possible).",
         example: ["", "", ""],
     },
-
+    location_subdivided: {
+        category: Category.Location,
+        title: 'Is this building subdivided',
+        tooltip: 'Does this building comprise multiple, smaller properties?',
+        example: true,
+    },
+    location_num_subdivisions: {
+        category: Category.Location,
+        title: "How many properties are within this building?",
+        tooltip: "For example, if a former house has been converted into three flats, put '3'",
+        example: 3,
+    },
+    location_subdivisions_source_type: {
+        category: Category.Age,
+        title: "Source type",
+        tooltip: "Source type for the building data above",
+        items: commonSourceTypes,
+        example: "",
+    },
+    location_subdivisions_source_links: {
+        category: Category.Age,
+        title: "Source link(s)",
+        tooltip: "URL for data reference",
+        example: ["", "", ""],
+    },
+    
     /**
      * UPRNs is not part of the buildings table, but the string fields 
      * are included here for completeness
      */
     uprns: {
         category: Category.Location,
-        title: "Unique Property Reference Number(s) (UPRN)",
+        title: "Open Unique Property Reference Number(s) (UPRN)",
         tooltip: "Unique Property Reference Number(s) (UPRN) (derived automatically)",
         example: [{ uprn: "", parent_uprn: "" }, { uprn: "", parent_uprn: "" }],
     },
@@ -242,13 +280,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_latitude: {
         category: Category.Location,
-        title: "Centroid latitude",
+        title: "Open centroid latitude coordinate",
         tooltip: "Latitude of building centroid",
         example: 12.4564,
     },
     location_longitude: {
         category: Category.Location,
-        title: "Centroid longitude",
+        title: "Open centroid longitude coordinate",
         tooltip: "Longitude of building centroid",
         example: 0.12124,
     },
@@ -256,7 +294,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "Source type",
         example: "",
-        tooltip: "Source of lcoordinate data.",
+        tooltip: "Source of coordinate data.",
         items: commonSourceTypes
     },
     location_coordinates_links: {
@@ -274,7 +312,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     current_landuse_order: {
         category: Category.LandUse,
         title: "Current land use (order)",
-        tooltip: "Land use Order as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
+        tooltip: "Land use Order as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification). Derived automatically from the data above.",
         example: "",
     },
     current_landuse_source: {
@@ -283,15 +321,6 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Source for the current land use",
         example: "",
         items: commonSourceTypes
-        // items: [
-        //     "Expert/personal knowledge of building",
-        //     "Online streetview image",
-        //     "Open planning authority dataset",
-        //     "Open property tax dataset",
-        //     "Open housing dataset",
-        //     "Open address dataset",
-        //     "Other"
-        // ],
     },
     current_landuse_source_detail: {
         category: Category.LandUse,
@@ -313,7 +342,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     building_attachment_form: {
         category: Category.Typology,
         title: "Which description best explains the way the building is attached to others?",
-        tooltip: "We have prepopulated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
+        tooltip: "We have pre-populated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
         example: "",
         items: [
             "Detached",
@@ -325,14 +354,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     building_attachment_source_type: {
         category: Category.Age,
         title: "Source type",
-        tooltip: "Source type for the building data above",
+        tooltip: "Source type for the building subdivision data",
         items: commonSourceTypes,
         example: "",
     },
     building_attachment_source_links: {
         category: Category.Age,
         title: "Source link(s)",
-        tooltip: "URL for data reference",
+        tooltip: "URL for source of building subdivision data",
         example: ["", "", ""],
     },
     size_roof_shape: {
@@ -362,13 +391,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     facade_year: {
         category: Category.Age,
         title: "Date of front of building (best estimate)",
-        tooltip: "Best estimate",
+        tooltip: "Best estimate for when the front/facade of the building was constructed.",
         example: 1900,
     },
     date_source: {
         category: Category.Age,
         title: "Historical source type",
-        tooltip: "Source type for the building dates above",
+        tooltip: "Specific historical data source type for the building dates above.",
         items: [
             "Expert knowledge of building",
             "Expert estimate from image",
@@ -396,20 +425,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     date_link: {
         category: Category.Age,
         title: "Historical source link(s)",
-        tooltip: "URL for age and date reference",
+        tooltip: "URL(s) for historial data source(s) - Historical data source(s)",
         example: ["", "", ""],
     },
     date_source_type: {
         category: Category.Age,
-        title: "Source type",
-        tooltip: "Source type for the building dates above",
+        title: "Alternative source type",
+        tooltip: "Source type for the building dates above, if not included in the historical source types listed above.",
         items: commonSourceTypes,
         example: "",
     },
     date_source_links: {
         category: Category.Age,
-        title: "Source link(s)",
-        tooltip: "URL for age and date reference",
+        title: "Alternative Source link(s)",
+        tooltip: "URL(s) for historial data source(s) - Alternative data source(s)",
         example: ["", "", ""],
     },
 
@@ -486,13 +515,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Size,
         title: "Ground floor area (m²)",
         example: 1245.6,
-        //tooltip: ,
+        tooltip: "Area of the ground floor of the building in m²",
     },
     size_floor_area_total: {
         category: Category.Size,
         title: "Total floor area (m²)",
         example: 2001.7,
-        //tooltip: ,
+        tooltip: "Total floor area of the building in m²",
     },
     size_floor_area_source_type: {
         category: Category.Team,
@@ -556,8 +585,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     size_far_ratio: {
         category: Category.StreetContext,
         title: "FAR ratio (percentage of plot covered by building)",
-        example: 1.0,
-        tooltip: "boobs",
+        example: 60.0,
+        tooltip: "The measurement of a building's floor area in relation to the size of the lot/parcel.",
     },
     size_far_ratio_source_type: {
         category: Category.Team,
@@ -576,7 +605,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.StreetContext,
         title: "Land parcel geometry link",
         example: "https://",
-        tooltip: "INSPIRE Polygons",
+        tooltip: "Please provide a link to the land parcel geometry for this building (<a href='https://www.gov.uk/guidance/inspire-index-polygons-spatial-data'>INSPIRE Polygons</a>)",
     },
     size_parcel_geometry_source_type: {
         category: Category.Team,
@@ -595,8 +624,18 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_core_material: {
         category: Category.Construction,
         title: "What is the main structural material thought to be?",
-        tooltip: "The main structural material",
+        tooltip: "The main structural material used in the building.",
         example: "",
+        items: [
+            'Wood',
+            'Stone',
+            'Brick',
+            'Steel',
+            'Reinforced Concrete',
+            'Other Metal',
+            'Other Natural Material',
+            'Other Man-Made Material'
+        ]
     },
     construction_core_material_source_type: {
         category: Category.Construction,
@@ -622,7 +661,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_roof_covering: {
         category: Category.Construction,
         title: "What is the main roof covering?",
-        tooltip: '',
+        tooltip: "What material covers the majority of the building's roof?",
         example: "",
         items: [
             'Slate',
@@ -731,7 +770,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     construction_irregularities: {
         category: Category.Construction,
-        title: "Are there any structural irregularities in the shape of the building?",
+        title: "Are there any irregularities in the shape of the building?",
         tooltip: "i.e. Is one side higher than other? - Refer to GEM Taxonomy [<a href='https://github.com/gem/gem_taxonomy'>LINK</a>]",
         example: "No irregularities",
         items: [
@@ -755,14 +794,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     construction_decorative_features: {
         category: Category.Construction,
-        title: "Are there decorative features/mouldings integrated into the facade ?",
+        title: "Are there decorative features/mouldings integrated into the facade?",
+        tooltip: "Any features that are part of the facade that are purely decorative.",
         example: true,
-        tooltip: "",
     },
     construction_decorative_feature_materials: {
         category: Category.Construction,
         title: "What are these decorative features mainly made of?",
-        tooltip: "",
+        tooltip: "What material are the main/majority of decorative features constructed from?",
         example: "Concrete",
         items: [
             "Wood",
@@ -776,20 +815,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_decorative_feature_source_type: {
         category: Category.Construction,
         title: "Source type",
-        tooltip: "Source of roof shape data",
+        tooltip: "Source of decorative features data",
         example: "",
         items: commonSourceTypes
     },
     construction_decorative_feature_source_links: {
         category: Category.Construction,
         title: "Source links",
-        tooltip: "URL(s) for roof shape data source(s)",
+        tooltip: "URL(s) for decorative features data source(s)",
         example: ["", "", ""],
     },
     construction_internal_wall: {
         category: Category.Construction,
         title: "What is the main internal wall material thought to be?",
-        tooltip: '',
+        tooltip: "The material that comprises the majority of the internal walls of the property.",
         example: "",
         items: [
             'Brick',
@@ -823,7 +862,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_external_wall: {
         category: Category.Construction,
         title: "What is the main external wall material thought to be?",
-        tooltip: '',
+        tooltip: 'The material that comprises the majority of the external walls of the property.',
         example: "",
         items: [
             'Brick',
@@ -857,7 +896,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_ground_floor: {
         category: Category.Construction,
         title: "What is the main ground floor material thought to be?",
-        tooltip: '',
+        tooltip: "The material that comprises the majority of the ground floor of the property.",
         example: "",
         items: [
             'Masonry',
@@ -884,8 +923,21 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     sust_breeam_rating: {
         category: Category.EnergyPerformance,
-        title: "Residential energy rating",
+        title: "Official environmental quality rating",
         tooltip: ccconfig.energy_rating,
+        example: "",
+    },
+    sust_breeam_rating_source_type: {
+        category: Category.EnergyPerformance,
+        title: "Source type",
+        tooltip: "Source of environmental quality rating",
+        example: "",
+        items: commonSourceTypes
+    },
+    sust_breeam_rating_source_link: {
+        category: Category.EnergyPerformance,
+        title: "Source link",
+        tooltip: "Link to environmental quality rating",
         example: "",
     },
     sust_dec: {
@@ -898,6 +950,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.EnergyPerformance,
         title: "Residential Building Energy Rating",
         tooltip: "Energy Performance Certificate (EPC) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher may be rented",
+        example: "",
+    },
+    sust_energy_rating_source_type: {
+        category: Category.EnergyPerformance,
+        title: "Source type",
+        tooltip: "Source of energy rating",
+        example: "",
+        items: commonSourceTypes
+    },
+    sust_energy_rating_source_link: {
+        category: Category.EnergyPerformance,
+        title: "Source link",
+        tooltip: "Link to energy rating",
         example: "",
     },
     sust_retrofit_date: {
@@ -966,7 +1031,6 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: [{}],
     },
 
-
     planning_portal_link: {
         category: Category.Planning,
         title: "Local authority planning application link",
@@ -975,21 +1039,21 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_in_conservation_area_url: {
         category: Category.Planning,
-        title: "Is the building in a conservation area?",
+        title: "Please provide a link to information about the conservation area.",
+        tooltip: "Link to a website containing information about the conservation area that the building is in.",
         example: "",
-        //tooltip: ,
     },
     planning_crowdsourced_site_completion_status: {
         category: Category.Planning,
         title: "Has the work on this site been completed?",
+        tooltip: "Select 'yes' if all work has been completed, 'no' if work is still ongoing.",
         example: true,
-        tooltip: "Has the work on this site been completed?",
     },
     planning_crowdsourced_site_completion_year: {
         category: Category.Planning,
         title: "Year of completion (best estimate)",
+        tooltip: "Year when the work was completed, if known",
         example: 2022,
-        tooltip: "Year of completion, if known",
     },
     planning_crowdsourced_site_completion_source_type: {
         category: Category.Team,
@@ -1013,7 +1077,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     planning_in_conservation_area: {
         category: Category.Planning,
         title: "Is the building in a conservation area?",
-        tooltip: "Is the building in a conservation area?",
+        tooltip: "Is the building in any kind of special conservation area, such as...?",
         example: true,
     },
     planning_in_conservation_area_id: {
@@ -1028,6 +1092,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "",
         //tooltip: ,
     },
+    planning_listed: {
+        category: Category.Planning,
+        title: "Is this a listed building?",
+        tooltip: "Is the building a listed building according to <a href=\"https://historicengland.org.uk/advice/hpg/has/whs/\" target=\"_blank\">Historic England</a>",
+        example: true,
+    },
     planning_list_id: {
         category: Category.Planning,
         title: "If the building is on a national heritage register, please add the ID:",
@@ -1037,26 +1107,31 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     planning_list_grade: {
         category: Category.Planning,
         title: "What is its protection rating?",
+        tooltip: "What level of protection rating applies to this building?",
         example: "II",
-        //tooltip: ,
+        items: [
+            'I',
+            'II*',
+            'II',
+        ]
     },
     planning_heritage_at_risk_url: {
         category: Category.Planning,
-        title: "If the building is on a heritage at risk register, please add the ID:",
+        title: "If the building is on a heritage at risk register, please provide a link to the entry on the register.",
+        tooltip: "Please provide the full link to the building's entry on the register, if possible.",
         example: "",
-        //tooltip: ,
     },
     planning_world_heritage_site: {
         category: Category.Planning,
         title: "Is the building on a World Heritage Site?",
-        tooltip: "Is the building on a <a href=\"https://historicengland.org.uk/advice/hpg/has/whs/\" target=\"_blank\">World Heritage Site</a>",
+        tooltip: "Is the building on a UNESCO <a href=\"https://www.unesco.org/en\" target=\"_blank\">World Heritage Site</a>",
         example: true,
     },
     planning_world_list_id: {
         category: Category.Planning,
-        title: "If the building is on a World Heritage Site please add the ID:",
+        title: "Please add the World Heritage Site ID:",
+        tooltip: "Add the ID of the building/site on the UNESCO World Heritage Site registry. A link to the relevant resource will be generated automatically.",
         example: "488",
-        //tooltip: ,
     },
     planning_glher_url: {
         category: Category.Planning,
@@ -1067,38 +1142,38 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     planning_in_apa: {
         category: Category.Planning,
         title: "Is the building in an area of archaeological priority?",
-        tooltip: "Is the building in an area of archaeological priority?",
+        tooltip: "If the building is in an area of archaeological priority, select 'yes'.",
         example: true,
     },
     planning_in_apa_url: {
         category: Category.Planning,
-        title: "Is the building in an area of archaeological priority?",
+        title: "Area of archaeological priority link",
+        tooltip: "Please provide a link to more information about the area of archaeological priority.",
         example: "",
-        //tooltip: ,
     },
     planning_local_list: {
         category: Category.Planning,
         title: "Is the building a locally listed heritage asset?",
-        tooltip: "Is the building a locally listed heritage asset?",
+        tooltip: "Examples of locally-listed heritage assets include...",
         example: true,
     },
     planning_local_list_url: {
         category: Category.Planning,
-        title: "Is the building a locally listed heritage asset?",
+        title: "Please provide a link to the heritage asset registry.",
+        tooltip: "A website containing information about the asset registry, ideally a link to the buildings entry on that registry.",
         example: "",
-        //tooltip: ,
     },
     planning_historic_area_assessment: {
         category: Category.Planning,
         title: "Does the building have any other type of designation?",
-        tooltip: "Does the building have any other type of designation?",
+        tooltip: "Select yes if the building has any other type of special designation that does not fit into the categories above.",
         example: true,
     },
     planning_historic_area_assessment_url: {
         category: Category.Planning,
-        title: "Does it have any other type of designation?",
+        title: "Links to other designation type:",
+        tooltip: "Please provide a link describing the other special types of designation that apply to this building.",
         example: "",
-        //tooltip: ,
     },
     planning_demolition_proposed: {
         category: Category.Planning,
@@ -1121,13 +1196,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     planning_heritage_at_risk: {
         category: Category.Planning,
         title: "Is the building on a heritage at risk register?",
-        tooltip: "Is the building on a heritage at risk register?",
+        tooltip: "Examples of a heritage at risk register include...",
         example: true,
     },
     planning_scientific_interest: {
         category: Category.Planning,
         title: "Is the building on a site of special scientific interest?",
-        tooltip: "Is the building on a site of special scientific interest?",
+        tooltip: "Is this building located in an area of special scientific interest.",
         example: true,
     },
     planning_scientific_interest_source_type: {
@@ -1142,6 +1217,30 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Source links",
         tooltip: "URL(s) for site of special scientific interest data",
         example: ["", "", ""],
+    },
+    planning_flood_zone: {
+        category: Category.Planning,
+        title: "Is the building inside a Flood Zone?",
+        tooltip: "the GLA official description: \"All areas with more than a 1 in 1,000 annual probability of either river or sea flooding.\"",
+        example: true,
+    },
+    planning_housing_zone: {
+        category: Category.Planning,
+        title: "Is the building in a Housing Zone?",
+        tooltip: "the GLA official description: \"Housing zones are areas funded by the Mayor and government to attract developers and relevant partners to build new homes.\"",
+        example: true,
+    },
+    planning_enterprise_zone: {
+        category: Category.Planning,
+        title: "Is the building in a Creative Enterprise Zone?",
+        tooltip: "GLA official description: \"Creative Enterprise Zones are a new Mayoral initiative to designate areas of London where artists and creative businesses can find permanent affordable space to work; are supported to start-up and grow; and where local people are helped to learn creative sector skills and find new jobs.\"",
+        example: true,
+    },
+    planning_protected_vista: {
+        category: Category.Planning,
+        title: "Is the building within a Protected Vista?",
+        tooltip: "GLA official description: \"The Protected Vistas are established in the London Plan with more detailed guidance provided in the London View Management Framework (LVMF). The London Plan seeks to protect the significant views which help to define London, including the panoramas, linear views and townscape views in this layer.\"",
+        example: true,
     },
     
 
@@ -1210,14 +1309,10 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
-    // community_activities_dates: {
-    //     category: Category.Community,
-    //     title: "When was this building used for community activities?"
-    // },
-
     community_public_ownership: {
         category: Category.Community,
         title: "Is the building in public/community ownership?",
+        tooltip: "What type of body owns the building, is it privately-, publicly- or community-owned?",
         example: "Privately owned (non-corporate)",
         items: [
             "Public/State body",
@@ -1231,9 +1326,17 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Other",
         ]
     },
+    community_public_ownership_source_type: {
+        category: Category.Planning,
+        title: "Source type",
+        tooltip: "Source type for land ownership data",
+        example: "",
+        items: commonSourceTypes
+    },
     community_public_ownership_sources: {
         category: Category.Community,
-        title: "Community ownership source link",
+        title: "Community ownership source link(s)",
+        tooltip: "Community ownership source link(s)",
         example: ["https://example.com"]
     },
 
@@ -1306,6 +1409,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     developer_type: {
         category: Category.Team,
         title: "What type of developer built the building?",
+        tooltip: "The original developer involved in the construction of the main building.",
         example: "",
         items: [
             "State",
@@ -1321,7 +1425,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     developer_name: {
         category: Category.Team,
         title: "Who were the developer(s)?",
-        tooltip: "Name(s) of the building's developers.<br/><br/>Free-text entry disabled for security reasons.",
+        tooltip: "Name(s) of the building's developers." + freeTextDisclaimer,
         example: ["", "", ""],
     },
     developer_links: {
@@ -1343,10 +1447,51 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "URL for source for developer(s)",
         example: ["", "", ""],
     },
+    extension_developer_type: {
+        category: Category.Team,
+        title: "What type of developer built the extension?",
+        tooltip: "The main developer involved in the construction of the extension of the  building.",
+        example: "",
+        items: [
+            "State",
+            "Charity",
+            "Community/Cooperative",
+            "Other non-profit body",
+            "Private (individual)",
+            "Commercial (company/estate)",
+            "Religious body",
+            "Other"
+        ]
+    },
+    extension_developer_name: {
+        category: Category.Team,
+        title: "Who were the developer(s)?",
+        tooltip: "Name(s) of the extension's developers." + freeTextDisclaimer,
+        example: ["", "", ""],
+    },
+    extension_developer_links: {
+        category: Category.Team,
+        title: "Developer link(s)",
+        tooltip: "Link(s) to webpage(s) explaining who developed the extension.",
+        example: ["", "", ""],
+    },
+    extension_developer_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for developer data",
+        example: "",
+        items: commonSourceTypes
+    },
+    extension_developer_source_link: {
+        category: Category.Team,
+        title: "Source links for developer(s)",
+        tooltip: "URL for source for developer(s)",
+        example: ["", "", ""],
+    },
     landowner: {
         category: Category.Team,
         title: "Landowner(s) at time of construction",
-        tooltip: "Land owner when the building was constructed.<br/><br/>Free-text entry disabled for security reasons.<br/><br/>For info on current land ownership, see 'Planning Controls'.",
+        tooltip: "Land owner when the building was constructed.<br/><br/>For info on current land ownership, see 'Planning Controls'." + freeTextDisclaimer,
         example: ["", "", ""],
     },
     landowner_links: {
@@ -1371,7 +1516,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     designers: {
         category: Category.Team,
         title: "Who were the main designer(s)?",
-        tooltip: "Free-text entry disabled for security reasons.",
+        tooltip: "Who were the designers/architects involved in the original construction of the main building." + freeTextDisclaimer,
         example: ["", "", ""],
     },
     designers_links: {
@@ -1396,6 +1541,46 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     lead_designer_type: {
         category: Category.Team,
         title: "Which title best describes the lead designer?",
+        tooltip: "The original designer/architect involved in the construction of the main building.",
+        example: "",
+        items: [
+            "Landowner",
+            "Speculative builder",
+            "Government architecture department",
+            "Architect/ architectural firm",
+            "Engineer/ Engineering firm",
+            "Other"
+        ]
+    },
+    extension_designers: {
+        category: Category.Team,
+        title: "Who were the main designer(s) of the extension?",
+        tooltip: "Designer(s)/Architect(s) of the extension to the property." + freeTextDisclaimer,
+        example: ["", "", ""],
+    },
+    extension_designers_links: {
+        category: Category.Team,
+        title: "Designer link(s)",
+        tooltip: "Link(s) to webpage(s) explaining who designed the extension.",
+        example: ["", "", ""],
+    },
+    extension_designers_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for designer data",
+        example: "",
+        items: commonSourceTypes
+    },
+    extension_designers_source_link: {
+        category: Category.Team,
+        title: "Source links for designer(s)",
+        tooltip: "URL for source for designer(s)",
+        example: ["", "", ""],
+    },
+    extension_lead_designer_type: {
+        category: Category.Team,
+        title: "Which title best describes the lead designer?",
+        tooltip: "The original designer/architect involved in the extension of the building.",
         example: "",
         items: [
             "Landowner",
@@ -1409,7 +1594,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     designer_awards: {
         category: Category.Team,
         title: "Has the building won any awards?",
-        tooltip: "",
+        tooltip: "Any design awards or other awards that have been awarded to the building or any of the developers.",
         example: false
     },
     awards_source_link: {
@@ -1421,7 +1606,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     builder: {
         category: Category.Team,
         title: "Name of builder/construction team.",
-        tooltip: "Free-text entry disabled for security reasons.",
+        tooltip: "Who were the builders/construction team involved in the original construction of the main building." + freeTextDisclaimer,
         example: ["", "", ""],
     },
     builder_links: {
@@ -1440,6 +1625,32 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     builder_source_link: {
         category: Category.Team,
         title: "Source for builder/construction team",
+        tooltip: "Source for builder/construction team",
+        example: ["", "", ""],
+    },
+    extension_builder: {
+        category: Category.Team,
+        title: "Name of builder/construction team.",
+        tooltip: "Who were the builders/construction team involved in the construction of the extension to the building." + freeTextDisclaimer,
+        example: ["", "", ""],
+    },
+    extension_builder_links: {
+        category: Category.Team,
+        title: "Builder link(s)",
+        tooltip: "Link(s) to webpage(s) explaining who built the building.",
+        example: ["", "", ""],
+    },
+    extension_builder_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for builder data",
+        example: "",
+        items: commonSourceTypes
+    },
+    extension_builder_source_link: {
+        category: Category.Team,
+        title: "Source for builder/construction team",
+        tooltip: "Source for builder/construction team",
         example: ["", "", ""],
     },
     other_team: {
@@ -1452,10 +1663,48 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Source other significant team members",
         example: ["", "", ""],
     },
+    building_client: {
+        category: Category.Team,
+        title: "Original building client link(s)",
+        tooltip: "Link(s) describing the client who commissioned the original building?" + freeTextDisclaimer,
+        example: ["", "", ""]
+    },
+    building_client_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for building client data",
+        example: "",
+        items: commonSourceTypes
+    },
+    building_client_source_link: {
+        category: Category.Team,
+        title: "Source link(s)",
+        tooltip: "URL(s) for source for building client data",
+        example: ["", "", ""],
+    },
+    extension_client: {
+        category: Category.Team,
+        title: "Extension client link(s)",
+        tooltip: "Link(s) describing the client who commissioned the most significant extension to the building?" + freeTextDisclaimer,
+        example: ["", "", ""]
+    },
+    extension_client_source_type: {
+        category: Category.Team,
+        title: "Source type",
+        tooltip: "Source type for extension client data",
+        example: "",
+        items: commonSourceTypes
+    },
+    extension_client_source_link: {
+        category: Category.Team,
+        title: "Source link(s)",
+        tooltip: "URL(s) for source for extension client data",
+        example: ["", "", ""],
+    },
     disaster_type: {
         category: Category.Resilience,
         title: "Disaster type",
-        tooltip: "What type of disaster management do you wish to collect data for?",
+        tooltip: "What type of disaster has taken place that may have affected/damaged this building?",
         example: "Flood",
         items: [
             'Flood',
@@ -1471,7 +1720,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     disaster_severity: {
         category: Category.Resilience,
         title: "How severe do you assess the damage to be?",
-        tooltip: "Best estimate for the severity of damage to the building",
+        tooltip: "What is your best estimate for the severity of damage to the building",
         example: "Building destroyed",
         items: [
             'Building destroyed',
@@ -1484,14 +1733,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     disaster_assessment_method: {
         category: Category.Resilience,
-        title: "Source Type",
-        tooltip: "Please add a Best estimate for the severity of damage to the building",
+        title: "Damage assessment type",
+        tooltip: "How was the damage to the building assessed?",
         example: "Citizen/Passerby by eye",
         items: commonSourceTypes
     },
     disaster_source_link: {
         category: Category.Resilience,
-        title: "Source link(s)",
+        title: "Damage assessment source link(s)",
         tooltip: "Please add a source link(s) to official documentation/photographic evidence where applicable",
         example: ["", "", ""],
     },
@@ -1510,19 +1759,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     context_front_garden: {
         category: Category.StreetContext,
-        title: "Does the building have a front garden?",
+        title: "Does the building have a front garden with greenery?",
         tooltip: "Is the front garden mainly green/planted?",
         example: true,
     },
     context_back_garden: {
         category: Category.StreetContext,
-        title: "Does the building have a back garden?",
+        title: "Does the building have a back garden with greenery?",
         tooltip: "Is the back garden mainly green/planted?",
         example: true
     },
     context_flats_garden: {
         category: Category.StreetContext,
-        title: "Are flats with a dedicated green space?",
+        title: "Does this building contain flats and have a dedicated green space?",
         tooltip: "If the building is a block of flats, does it have a dedicated garden area/green space?",
         example: true
     },
@@ -1576,6 +1825,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "Source link(s)",
         tooltip: "Source link(s) for pavement width data",
         example: ["", "", ""],
+    },
+    context_walkability_index: {
+        category: Category.Team,
+        title: "Walkability index",
+        tooltip: "How walkable is the area...?",
+        example: 10
     },
     context_green_space_distance: {
         category: Category.Team,
@@ -1643,14 +1898,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     age_cladding_date_source_type: {
         category: Category.Age,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type cladding data",
         example: "",
         items: commonSourceTypes
     },
     age_cladding_date_source_links: {
         category: Category.Age,
         title: "Source link(s)",
-        tooltip: "Source link(s) for street width data",
+        tooltip: "Source link(s) cladding data",
         example: ["", "", ""],
     },
     age_extension_date: {
@@ -1662,14 +1917,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     age_extension_date_source_type: {
         category: Category.Age,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type extension data",
         example: "",
         items: commonSourceTypes
     },
     age_extension_date_source_links: {
         category: Category.Age,
         title: "Source link(s)",
-        tooltip: "Source link(s) for street width data",
+        tooltip: "Source link(s) extension data",
         example: ["", "", ""],
     },
     age_retrofit_date: {
@@ -1681,14 +1936,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     age_retrofit_date_source_type: {
         category: Category.Age,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type for retrofit data",
         example: "",
         items: commonSourceTypes
     },
     age_retrofit_date_source_links: {
         category: Category.Age,
         title: "Source link(s)",
-        tooltip: "Source link(s) for street width data",
+        tooltip: "Source link(s) for retrofit data",
         example: ["", "", ""],
     },
     age_historical_raster_map_links: {
@@ -1713,14 +1968,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     energy_solar_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type for solar panel data",
         example: "",
         items: commonSourceTypes
     },
     energy_solar_source_links: {
         category: Category.EnergyPerformance,
         title: "Source link(s)",
-        tooltip: "Source link(s) for street width data",
+        tooltip: "Source link(s) for solar panel data",
         example: ["", "", ""],
     },
     energy_green_roof: {
@@ -1732,14 +1987,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     energy_green_roof_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type for green roof data",
         example: "",
         items: commonSourceTypes
     },
     energy_green_roof_source_links: {
         category: Category.EnergyPerformance,
         title: "Source link(s)",
-        tooltip: "Source link(s) for street width data",
+        tooltip: "Source link(s) for green roof data",
         example: ["", "", ""],
     },
 
@@ -1763,20 +2018,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_classification_source_type: {
         category: Category.Typology,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type for classification data",
         example: "",
         items: commonSourceTypes
     },
     typology_classification_source_links: {
         category: Category.Typology,
         title: "Source link(s)",
-        tooltip: "Source link(s) for street width data",
+        tooltip: "Source link(s) for classification data",
         example: ["", "", ""],
     },
     typology_style_period: {
         category: Category.Typology,
         title: "Which description best suits the building's architectural style/historical period?",
-        tooltip: "",
+        tooltip: "Which description best suits the building's architectural style/historical period?",
         example: "Georgian (1714-1837)",
         items: [
             '43AD-410 (Roman)',
@@ -1795,39 +2050,38 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_style_period_source_type: {
         category: Category.Typology,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type for style & period data",
         example: "",
         items: commonSourceTypes
     },
     typology_style_period_source_links: {
         category: Category.Typology,
         title: "Source link(s)",
-        tooltip: "Source link(s) for street width data",
+        tooltip: "Source link(s) for style & period data",
         example: ["", "", ""],
     },
     typology_dynamic_classification: {
         category: Category.Typology,
         title: "Which description best suits the building's plot?",
-        tooltip: "HINT: Based on a dynamic classification system for urban tissue developed by Brenda Case Scheer. For further information see: <a href=\"https://www.researchgate.net/publication/242150847_The_Anatomy_of_Sprawl\">https://www.researchgate.net/publication/242150847_The_Anatomy_of_Sprawl</a>.",
+        tooltip: "HINT: Based on a dynamic classification system for urban tissue developed by Brenda Case Scheer. For further information click <a href=\"https://github.com/colouring-cities/manual/wiki/X08.-London-prototype:-Dynamics-data-capture-and-urban-morphology#14-building-typologies-and-dynamic-classifications\">here</a>.",
         example: "Large plots with internal roads",
         items: [
-            'Repetitive small, domestic plots',
+            'Small, often repetitive plots, mainly residential',
             'Linear non-domestic, i.e. high streets',
             'Large plots with internal roads',
-            'Other'
         ]
     },
     typology_dynamic_classification_source_type: {
         category: Category.Typology,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type for dynamic classification data",
         example: "",
         items: commonSourceTypes
     },
     typology_dynamic_classification_source_links: {
         category: Category.Typology,
         title: "Source link(s)",
-        tooltip: "Source link(s) for street width data",
+        tooltip: "Source link(s) for dynamic classification data",
         example: ["", "", ""],
     },
     typology_original_use: {
@@ -1844,20 +2098,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_original_use_order: {
         category: Category.Typology,
         title: "Original land use (order)",
-        tooltip: "Land use Order as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
+        tooltip: "Land use Order as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification). Derived automatically from the data above.",
         example: "",
     },
     typology_original_use_source_type: {
         category: Category.Typology,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: "Source type for original land use data",
         example: "",
         items: commonSourceTypes
     },
     typology_original_use_source_links: {
         category: Category.Typology,
         title: "Source link(s)",
-        tooltip: "Source link(s) for street width data",
+        tooltip: "Source link(s) for original land use data",
         example: ["", "", ""],
     },
 };

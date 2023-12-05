@@ -17,8 +17,7 @@ import { useDisplayPreferences } from '../../displayPreferences-context';
 * Type view/edit section
 */
 const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
-    const { darkLightTheme } = useDisplayPreferences();
-
+    
     const switchToClassificationMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('typology_classification')
@@ -40,17 +39,18 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
         props.onMapColourScale('original_landuse')
     }
 
+    const queryParameters = new URLSearchParams(window.location.search);
+    const subcat = queryParameters.get("sc");
+
     return (
         <Fragment>
-            <DataEntryGroup name="Basic typology classification">
-                {(props.mapColourScale == "typology_classification") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToDynamicClassificationMapStyle}>
-                        {'Click here to change map to show dynamic tissue classification.'}
+            <DataEntryGroup name="Basic typology classification" collapsed={subcat==null || subcat!="1"}>
+                {(props.mapColourScale != "typology_classification") ? 
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToClassificationMapStyle}>
+                        {"Click to show typology classification."}
                     </button>
-                :
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
-                        {"Click to change map to show typology classification."}
-                    </button>
+                    :
+                    <></>
                 }
                 <SelectDataEntry
                     title={dataFields.typology_classification.title}
@@ -100,16 +100,7 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Architectural style">
-                {/*(props.mapColourScale == "typology_style_period") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
-                        {'Click to change map to show typology classification.'}
-                    </button>
-                :
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToStylePeriodMapStyle}>
-                        {"Click here to change map to show architectural style/historical period."}
-                    </button>
-                */}
+            <DataEntryGroup name="Architectural style" collapsed={subcat==null || subcat!="2"}>
                 <SelectDataEntry
                     title={dataFields.typology_style_period.title}
                     slug="typology_style_period"
@@ -131,7 +122,8 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     verified_count={props.building.verified.typology_style_period}
                 /> */}
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
-                    <i className="source-url">To edit the architectural style box, and to see the data mapped, please go to <a href={"/"+props.mode+"/age/"+props.building.building_id}>Age & History</a>.</i>
+                    <i className="source-url">To edit the architectural style box, and to see the data mapped, please go to&nbsp;
+                    <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=2"}>Age & History</a>.</i>
                 </div>
                 {/* <SelectDataEntry
                     title={dataFields.typology_style_period_source_type.title}
@@ -163,15 +155,13 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 } */}
             </DataEntryGroup>
-            <DataEntryGroup name="Dynamic tissue classification">
-                {(props.mapColourScale == "typology_dynamic_classification") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
-                        {'Click to change map to show typology classification.'}
+            <DataEntryGroup name="Dynamic classification" collapsed={subcat==null || subcat!="3"}>
+                {(props.mapColourScale != "typology_dynamic_classification") ? 
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToDynamicClassificationMapStyle}>
+                        {"Click here to show dynamic classification."}
                     </button>
-                :
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToDynamicClassificationMapStyle}>
-                        {"Click here to change map to show dynamic classification."}
-                    </button>
+                    :
+                    <></>
                 }
                 <SelectDataEntry
                     title={dataFields.typology_dynamic_classification.title}
@@ -221,15 +211,13 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Original Use">
-                {(props.mapColourScale == "original_landuse") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
-                        {'Click to change map to show typology classification.'}
+            <DataEntryGroup name="Original Use" collapsed={subcat==null || subcat!="4"}>
+                {(props.mapColourScale != "original_landuse") ? 
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLandUseMapStyle}>
+                        {"Click here to original land use."}
                     </button>
                 :
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToLandUseMapStyle}>
-                        {"Click here to change map to original land use."}
-                    </button>
+                    <></>
                 }
                 <MultiDataEntry
                     title={dataFields.typology_original_use.title}
@@ -304,15 +292,13 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Attachment/Adjacency">
-                {(props.mapColourScale == "building_attachment_form") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToClassificationMapStyle}>
-                        {'Click to change map to show typology classification.'}
+            <DataEntryGroup name="Attachment/Adjacency" collapsed={subcat==null || subcat!="5"}>
+                {(props.mapColourScale != "building_attachment_form") ? 
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAttachmentMapStyle}>
+                        {"Click here to show attachment/adjacency."}
                     </button>
                 :
-                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAttachmentMapStyle}>
-                        {"Click here to change map to show attachment/adjacency."}
-                    </button>
+                    <></>
                 }
                 <SelectDataEntry
                     title={dataFields.building_attachment_form.title}
