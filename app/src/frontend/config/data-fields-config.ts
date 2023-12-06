@@ -144,7 +144,7 @@ export const buildingUserFields = {
     community_building_worth_keeping_reasons: {
         perUser: true,
         category: Category.Community,
-        title: 'Please tick one or more boxes below',
+        title: 'I think this because: (Please tick one or more boxes below)',
         fields: {
             internal_layout: {
                 title: 'The internal layout works well.'
@@ -196,7 +196,7 @@ export const buildingUserFields = {
     community_streetscape_worth_keeping_reasons: {
         perUser: true,
         category: Category.Community,
-        title: 'Please tick one or more boxes below',
+        title: 'I think this because: (Please tick one or more boxes below)',
         fields: {
             street_feel: {
                 title: "The street feels nice to walk down."
