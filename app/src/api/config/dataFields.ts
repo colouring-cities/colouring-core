@@ -678,6 +678,16 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         derivedEdit: true,
         verify: false
     },
+    community_building_worth_keeping_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_streetscape_worth_keeping_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
     community_local_significance_total: {
         edit: false,
         derivedEdit: true,
@@ -1208,6 +1218,36 @@ export const buildingUserAttributesConfig = valueType<DataFieldConfig>()({
         verify: false
     },
     community_type_worth_keeping_reasons: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_building_worth_keeping: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_building_worth_keeping_reasons: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_building_worth_keeping_based_on: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_worth_keeping: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_worth_keeping_reasons: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_worth_keeping_based_on: {
         perUser: true,
         edit: true,
         verify: false

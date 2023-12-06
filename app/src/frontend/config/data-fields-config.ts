@@ -134,6 +134,110 @@ export const buildingUserFields = {
             other: false
         }
     },
+    community_building_worth_keeping: {
+        perUser: true,
+        category: Category.Community,
+        title: "Do you think this **type** of building is worth keeping?",
+        tooltip: "Please tick the box if you think this kind of building should be kept by our towns and cities for the future?",
+        example: true,
+    },
+    community_building_worth_keeping_reasons: {
+        perUser: true,
+        category: Category.Community,
+        title: 'Please tick one or more boxes below',
+        fields: {
+            internal_layout: {
+                title: 'The internal layout works well.'
+            },
+            building_feel: {
+                title: "The building feels nice to be in/use."
+            },
+            near_greenery: {
+                title: 'The building is near greenery.'
+            },
+            adaptable: {
+                title: 'This kind of building is very adaptable.'
+            },
+            durable: {
+                title: 'This kind of building is well built and long lasting.'
+            },
+            other: {
+                title: 'Other'
+            }
+        },
+        example: {
+            internal_layout: true,
+            building_feel: true,
+            near_greenery: false,
+            adaptable: true,
+            durable: true,
+            other: false
+        }
+    },
+    community_building_worth_keeping_based_on: {
+        category: Category.Community,
+        title: "Are your answers above based on",
+        tooltip: "What are your answers to the above questions based on, please select an answer.",
+        example: "",
+        items: [
+            "Local knowledge of the building",
+            "Professional interest in this kind of building",
+            "A general impression from passing through the area",
+            "Seeing an image of the building"
+        ]
+    },
+    community_streetscape_worth_keeping: {
+        perUser: true,
+        category: Category.Community,
+        title: "Do you think this **type** of streetscape is worth keeping?",
+        tooltip: "Please tick the box if you think this kind of streetscape should be kept by our towns and cities for the future?",
+        example: true,
+    },
+    community_streetscape_worth_keeping_reasons: {
+        perUser: true,
+        category: Category.Community,
+        title: 'Please tick one or more boxes below',
+        fields: {
+            street_feel: {
+                title: "The street feels nice to walk down."
+            },
+            feels_safe: {
+                title: 'The layout and type of buildings makes the street feels safe.'
+            },
+            interesting: {
+                title: 'There are interesting things to look at.'
+            },
+            greenery: {
+                title: 'The street has greenery.'
+            },
+            public_art: {
+                title: 'The street has public art.'
+            },
+            other: {
+                title: 'Other'
+            }
+        },
+        example: {
+            street_feel: true,
+            feels_safe: true,
+            interesting: false,
+            using_outside_space: true,
+            public_art: true,
+            other: false
+        }
+    },
+    community_streetscape_worth_keeping_based_on: {
+        category: Category.Community,
+        title: "Are your answers above based on",
+        tooltip: "What are your answers to the above questions based on, please select an answer.",
+        example: "",
+        items: [
+            "Local knowledge of the street",
+            "Professional interest in this kind of building",
+            "A general impression from passing through the area",
+            "Seeing an image of the streetscape"
+        ]
+    },
 
     community_local_significance: {
         perUser: true,
@@ -1312,6 +1416,16 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "People who like the building and think it contributes to the city.",
     },
     community_type_worth_keeping_total: {
+        category: Category.Community,
+        title: "People who think this type of building contributes to the city.",
+        example: 100,
+    },
+    community_building_worth_keeping_total: {
+        category: Category.Community,
+        title: "People who think this type of building contributes to the city.",
+        example: 100,
+    },
+    community_streetscape_worth_keeping_total: {
         category: Category.Community,
         title: "People who think this type of building contributes to the city.",
         example: 100,

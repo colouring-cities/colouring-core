@@ -21,3 +21,11 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS community_building_fascination_avg;
 ALTER TABLE buildings DROP COLUMN IF EXISTS community_streetscape_hominess_avg;
 ALTER TABLE buildings DROP COLUMN IF EXISTS community_streetscape_coherence_avg;
 ALTER TABLE buildings DROP COLUMN IF EXISTS community_streetscape_fascination_avg;
+
+ALTER TABLE buildings DROP COLUMN IF EXISTS community_building_worth_keeping;
+ALTER TABLE buildings DROP COLUMN IF EXISTS community_building_worth_keeping_reasons;
+ALTER TABLE buildings DROP COLUMN IF EXISTS community_building_worth_keeping_based_on;
+
+ALTER TABLE buildings DROP COLUMN IF EXISTS community_building_worth_keeping;
+ALTER TABLE buildings DROP COLUMN IF EXISTS community_building_worth_keeping_reasons;
+ALTER TABLE buildings DROP COLUMN IF EXISTS community_building_worth_keeping_based_on;

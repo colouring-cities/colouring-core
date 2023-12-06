@@ -83,6 +83,57 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                 />
                 <hr/>
+                <LogicalDataEntryYesOnlyWithExplanation
+                    slug='community_building_worth_keeping'
+                    title={buildingUserFields.community_building_worth_keeping.title}
+                    tooltip={buildingUserFields.community_building_worth_keeping.tooltip}
+                    value={props.building.community_building_worth_keeping}
+                    disallowFalse={worthKeepingReasonsNonEmpty}
+                    disallowNull={worthKeepingReasonsNonEmpty}
+
+                    onChange={props.onSaveChange}
+                    mode={props.mode}
+
+                />
+                {(props.mapColourScale != "typology_likes") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLikesMapStyle}>
+                        {'Click to show liked typologies.'}
+                    </button>
+                    :
+                    <></>
+                }
+                {
+                    props.building.community_building_worth_keeping === true &&
+                    <>
+                        <MultiSelectDataEntry
+                            slug='community_building_worth_keeping_reasons'
+                            title={buildingUserFields.community_building_worth_keeping_reasons.title}
+                            value={props.building.community_building_worth_keeping_reasons}
+                            disabled={!props.building.community_building_worth_keeping}
+                            onChange={props.onSaveChange}
+                            options={
+                                Object.entries(buildingUserFields.community_building_worth_keeping_reasons.fields)
+                                .map(([key, definition]) => ({
+                                    key,
+                                    label: definition.title
+                                }))
+                            }
+                            
+                            mode={props.mode}
+                        />
+                        <SelectDataEntry
+                            slug='community_building_worth_keeping_based_on'
+                            title={buildingUserFields.community_building_worth_keeping_based_on.title}
+                            value={props.building.community_building_worth_keeping_based_on}
+                            options={buildingUserFields.community_building_worth_keeping_based_on.items}
+                            tooltip={buildingUserFields.community_building_worth_keeping_based_on.tooltip}
+                            onChange={props.onChange}
+                            mode={props.mode}
+                            copy={props.copy}
+                        />
+                    </>
+                }
+                <hr/>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of buildings and streetscapes make people feel.
@@ -134,6 +185,57 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
+                <hr/>
+                <LogicalDataEntryYesOnlyWithExplanation
+                    slug='community_streetscape_worth_keeping'
+                    title={buildingUserFields.community_streetscape_worth_keeping.title}
+                    tooltip={buildingUserFields.community_streetscape_worth_keeping.tooltip}
+                    value={props.building.community_streetscape_worth_keeping}
+                    disallowFalse={worthKeepingReasonsNonEmpty}
+                    disallowNull={worthKeepingReasonsNonEmpty}
+
+                    onChange={props.onSaveChange}
+                    mode={props.mode}
+
+                />
+                {(props.mapColourScale != "typology_likes") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLikesMapStyle}>
+                        {'Click to show liked typologies.'}
+                    </button>
+                    :
+                    <></>
+                }
+                {
+                    props.building.community_streetscape_worth_keeping === true &&
+                    <>
+                        <MultiSelectDataEntry
+                            slug='community_streetscape_worth_keeping_reasons'
+                            title={buildingUserFields.community_streetscape_worth_keeping_reasons.title}
+                            value={props.building.community_streetscape_worth_keeping_reasons}
+                            disabled={!props.building.community_streetscape_worth_keeping}
+                            onChange={props.onSaveChange}
+                            options={
+                                Object.entries(buildingUserFields.community_streetscape_worth_keeping_reasons.fields)
+                                .map(([key, definition]) => ({
+                                    key,
+                                    label: definition.title
+                                }))
+                            }
+                            
+                            mode={props.mode}
+                        />
+                        <SelectDataEntry
+                            slug='community_streetscape_worth_keeping_based_on'
+                            title={buildingUserFields.community_streetscape_worth_keeping_based_on.title}
+                            value={props.building.community_streetscape_worth_keeping_based_on}
+                            options={buildingUserFields.community_streetscape_worth_keeping_based_on.items}
+                            tooltip={buildingUserFields.community_streetscape_worth_keeping_based_on.tooltip}
+                            onChange={props.onChange}
+                            mode={props.mode}
+                            copy={props.copy}
+                        />
+                    </>
+                }
             </DataEntryGroup>
             <DataEntryGroup name="Buildings in community use" collapsed={subcat==null || subcat!="2"}>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
