@@ -118,24 +118,25 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             
                             mode={props.mode}
                         />
-                        <SelectDataEntry
-                            slug='community_building_worth_keeping_based_on'
-                            title={buildingUserFields.community_building_worth_keeping_based_on.title}
-                            value={props.building.community_building_worth_keeping_based_on}
-                            options={buildingUserFields.community_building_worth_keeping_based_on.items}
-                            tooltip={buildingUserFields.community_building_worth_keeping_based_on.tooltip}
-                            onChange={props.onChange}
-                            mode={props.mode}
-                            copy={props.copy}
-                        />
                     </>
                 }
+                <SelectDataEntry
+                    slug='community_building_worth_keeping_based_on'
+                    title={buildingUserFields.community_building_worth_keeping_based_on.title}
+                    value={props.building.community_building_worth_keeping_based_on}
+                    options={buildingUserFields.community_building_worth_keeping_based_on.items}
+                    tooltip={buildingUserFields.community_building_worth_keeping_based_on.tooltip}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                    copy={props.copy}
+                />
                 <hr/>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of buildings make people feel.
                     </i>
                 </div>
+                <hr/>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
                     <i className="source-url">Click <a href={"/"+props.mode+"/planning/"+props.building.building_id}>here</a> for 'Planning Controls' to see status of planning applications or to record if you think this building is likely to be demolished/significantly altered.</i>
                 </div>
@@ -224,18 +225,19 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             
                             mode={props.mode}
                         />
-                        <SelectDataEntry
-                            slug='community_streetscape_worth_keeping_based_on'
-                            title={buildingUserFields.community_streetscape_worth_keeping_based_on.title}
-                            value={props.building.community_streetscape_worth_keeping_based_on}
-                            options={buildingUserFields.community_streetscape_worth_keeping_based_on.items}
-                            tooltip={buildingUserFields.community_streetscape_worth_keeping_based_on.tooltip}
-                            onChange={props.onChange}
-                            mode={props.mode}
-                            copy={props.copy}
-                        />
                     </>
                 }
+                <hr/>
+                <SelectDataEntry
+                    slug='community_streetscape_worth_keeping_based_on'
+                    title={buildingUserFields.community_streetscape_worth_keeping_based_on.title}
+                    value={props.building.community_streetscape_worth_keeping_based_on}
+                    options={buildingUserFields.community_streetscape_worth_keeping_based_on.items}
+                    tooltip={buildingUserFields.community_streetscape_worth_keeping_based_on.tooltip}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                    copy={props.copy}
+                />
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of streetscapes make people feel.
