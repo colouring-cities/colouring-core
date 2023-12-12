@@ -34,9 +34,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
             <DataEntryGroup name="Community views on buildings" collapsed={subcat==null || subcat!="1"}>
-                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
-                    <i className="source-url">Click <a href={"/"+props.mode+"/planning/"+props.building.building_id}>here</a> for 'Planning Controls' to see status of planning applications or to record if you think this building is likely to be demolished/significantly altered.</i>
-                </div>
                 <label>
                     What do you feel about the exterior of this building?
                 </label>
@@ -138,6 +135,9 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <i>
                         Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of buildings make people feel.
                     </i>
+                </div>
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                    <i className="source-url">Click <a href={"/"+props.mode+"/planning/"+props.building.building_id}>here</a> for 'Planning Controls' to see status of planning applications or to record if you think this building is likely to be demolished/significantly altered.</i>
                 </div>
             </DataEntryGroup>
             <DataEntryGroup name="Community views on streetscapes" collapsed={subcat==null || subcat!="2"}>

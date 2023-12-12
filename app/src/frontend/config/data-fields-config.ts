@@ -1515,7 +1515,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     community_activities: {
         category: Category.Community,
-        title: "If not been used for community activities in the past?",
+        title: "If not, has the building been used for community activities in the past?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
