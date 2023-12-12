@@ -136,7 +136,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <hr/>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
-                        Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of buildings and streetscapes make people feel.
+                        Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of buildings make people feel.
                     </i>
                 </div>
             </DataEntryGroup>
@@ -236,6 +236,11 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                     </>
                 }
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                    <i>
+                        Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of streetscapes make people feel.
+                    </i>
+                </div>
             </DataEntryGroup>
             <DataEntryGroup name="Buildings in community use" collapsed={subcat==null || subcat!="2"}>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
