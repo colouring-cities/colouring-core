@@ -95,13 +95,13 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
 
                 />
-                {(props.mapColourScale != "typology_likes") ? 
+                {/* {(props.mapColourScale != "typology_likes") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLikesMapStyle}>
                         {'Click to show liked typologies.'}
                     </button>
                     :
                     <></>
-                }
+                } */}
                 {
                     props.building.community_building_worth_keeping === true &&
                     <>
@@ -198,13 +198,13 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
 
                 />
-                {(props.mapColourScale != "typology_likes") ? 
+                {/* {(props.mapColourScale != "typology_likes") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLikesMapStyle}>
                         {'Click to show liked typologies.'}
                     </button>
                     :
                     <></>
-                }
+                } */}
                 {
                     props.building.community_streetscape_worth_keeping === true &&
                     <>
