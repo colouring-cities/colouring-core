@@ -1036,7 +1036,7 @@
     <Style name="community_building_hominess_avg">
         <Rule>
             <Filter>[community_building_hominess_avg] &gt; 4</Filter>
-            <PolygonSymbolizer fill="#00fa2a" />
+            <PolygonSymbolizer fill="#00d924" />
         </Rule>
         <Rule>
             <Filter>[community_building_hominess_avg] &gt; 3 and [community_building_hominess_avg] &lt;= 4</Filter>
@@ -1176,7 +1176,7 @@
     <Style name="community_building_neuroaesthetic_avg">
         <Rule>
             <Filter>[community_building_neuroaesthetic_avg] &gt; 4</Filter>
-            <PolygonSymbolizer fill="#00edfa" />
+            <PolygonSymbolizer fill="#00ced9" />
         </Rule>
         <Rule>
             <Filter>[community_building_neuroaesthetic_avg] &gt; 3 and [community_building_neuroaesthetic_avg] &lt;= 4</Filter>

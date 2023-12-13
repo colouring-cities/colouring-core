@@ -295,7 +295,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#a8fab5', text: '2' },
                     { color: '#7dfa92', text: '3' },
                     { color: '#3efa5e', text: '4' },
-                    { color: '#00fa2a', text: '5' },
+                    { color: '#00d924', text: '5' },
                 ]
             }
         },
@@ -334,7 +334,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#bbf7fa', text: '2' },
                     { color: '#7df4fa', text: '3' },
                     { color: '#3cf0fa', text: '4' },
-                    { color: '#00edfa', text: '5' },
+                    { color: '#00ced9', text: '5' },
                 ]
             }
         },
