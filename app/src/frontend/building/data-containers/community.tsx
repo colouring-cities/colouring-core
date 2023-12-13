@@ -17,13 +17,29 @@ import SliderDataEntry from '../data-components/slider-data-entry';
 * Community view/edit section
 */
 const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
-    const switchToLikesMapStyle = (e) => {
-        e.preventDefault();
-        props.onMapColourScale('typology_likes')
-    }
+    // const switchToLikesMapStyle = (e) => {
+    //     e.preventDefault();
+    //     props.onMapColourScale('typology_likes')
+    // }
     const switchToPublicOwnershipMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('community_in_public_ownership')
+    }
+    const switchToBuildingHominessMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('community_building_hominess_avg')
+    }
+    const switchToBuildingCoherenceMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('community_building_coherence_avg')
+    }
+    const switchToBuildingFascinationMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('community_building_fascination_avg')
+    }
+    const switchToBuildingAverageMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('community_building_neuroaesthetic_avg')
     }
     
     const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
@@ -50,6 +66,13 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
+                {(props.mapColourScale != "community_building_hominess_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingHominessMapStyle}>
+                        {'Click to show building hominess.'}
+                    </button>
+                    :
+                    <></>
+                }
                 <hr />
                 <SliderDataEntry
                     slug="community_building_coherence"
@@ -65,6 +88,13 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
 
                 />
+                {(props.mapColourScale != "community_building_coherence_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingCoherenceMapStyle}>
+                        {'Click to show building coherence.'}
+                    </button>
+                    :
+                    <></>
+                }
                 <hr />
                 <SliderDataEntry
                     slug="community_building_fascination"
@@ -79,6 +109,24 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
+                {(props.mapColourScale != "community_building_fascination_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingFascinationMapStyle}>
+                        {'Click to show building fascination.'}
+                    </button>
+                    :
+                    <></>
+                }
+                <hr/>
+                <label>
+                    Average neuroaesthetic score.
+                </label>
+                {(props.mapColourScale != "community_building_neuroaesthetic_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingAverageMapStyle}>
+                        {"Click to show the building's average score."}
+                    </button>
+                    :
+                    <></>
+                }
                 <hr/>
                 <LogicalDataEntryYesOnlyWithExplanation
                     slug='community_building_worth_keeping'
@@ -94,7 +142,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
                 {/* {(props.mapColourScale != "typology_likes") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLikesMapStyle}>
-                        {'Click to show liked typologies.'}
+                        {'Click to show liked non-residential buildings.'}
                     </button>
                     :
                     <></>
@@ -201,7 +249,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
                 {/* {(props.mapColourScale != "typology_likes") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLikesMapStyle}>
-                        {'Click to show liked typologies.'}
+                        {'Click to show liked non-residential buildings.'}
                     </button>
                     :
                     <></>

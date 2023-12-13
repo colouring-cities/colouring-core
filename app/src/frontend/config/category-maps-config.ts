@@ -287,6 +287,58 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         },
         */
         {
+            mapStyle: 'community_building_hominess_avg',
+            legend: {
+                title: 'Building hominess',
+                elements: [
+                    { color: '#fafafa', text: '1' },
+                    { color: '#a8fab5', text: '2' },
+                    { color: '#7dfa92', text: '3' },
+                    { color: '#3efa5e', text: '4' },
+                    { color: '#00fa2a', text: '5' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_building_coherence_avg',
+            legend: {
+                title: 'Building coherence',
+                elements: [
+                    { color: '#fafafa', text: '1' },
+                    { color: '#bbd3fa', text: '2' },
+                    { color: '#7dabfa', text: '3' },
+                    { color: '#3e86fa', text: '4' },
+                    { color: '#005efa', text: '5' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_building_fascination_avg',
+            legend: {
+                title: 'Building fascination',
+                elements: [
+                    { color: '#fafafa', text: '1' },
+                    { color: '#e8bbfa', text: '2' },
+                    { color: '#d97dfa', text: '3' },
+                    { color: '#c33efa', text: '4' },
+                    { color: '#b300fa', text: '5' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_building_neuroaesthetic_avg',
+            legend: {
+                title: 'Building neuroaesthetic score',
+                elements: [
+                    { color: '#fafafa', text: '1' },
+                    { color: '#bbf7fa', text: '2' },
+                    { color: '#7df4fa', text: '3' },
+                    { color: '#3cf0fa', text: '4' },
+                    { color: '#00edfa', text: '5' },
+                ]
+            }
+        },
+        {
             mapStyle: 'typology_likes',
             legend: {
                 title: 'Liked non-residential buildings',
@@ -298,58 +350,6 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#feb24c', text: '👍 3–9' },
                     { color: '#fed976', text: '👍 2' },
                     { color: '#ffe8a9', text: '👍 1'}
-                ]
-            }
-        },
-        {
-            mapStyle: 'community_building_hominess_avg',
-            legend: {
-                title: 'Building hominess',
-                elements: [
-                    { color: '#dcfae1', text: '1' },
-                    { color: '#a8fab5', text: '2' },
-                    { color: '#6ffa84', text: '3' },
-                    { color: '#3cfa58', text: '4' },
-                    { color: '#02fa28', text: '5' },
-                ]
-            }
-        },
-        {
-            mapStyle: 'community_building_coherence_avg',
-            legend: {
-                title: 'Building coherence',
-                elements: [
-                    { color: '#d9e7fa', text: '1' },
-                    { color: '#a2c4fa', text: '2' },
-                    { color: '#72a5fa', text: '3' },
-                    { color: '#3c85fa', text: '4' },
-                    { color: '#005efa', text: '5' },
-                ]
-            }
-        },
-        {
-            mapStyle: 'community_building_fascination_avg',
-            legend: {
-                title: 'Building fascination',
-                elements: [
-                    { color: '#f3dcfa', text: '1' },
-                    { color: '#e1a2fa', text: '2' },
-                    { color: '#d572fa', text: '3' },
-                    { color: '#c33efa', text: '4' },
-                    { color: '#b402fa', text: '5' },
-                ]
-            }
-        },
-        {
-            mapStyle: 'community_building_neuroaesthetic_avg',
-            legend: {
-                title: 'Building neuroaesthetic score',
-                elements: [
-                    { color: '#d9f8fa', text: '1' },
-                    { color: '#a2f6fa', text: '2' },
-                    { color: '#72f3fa', text: '3' },
-                    { color: '#3cf1fa', text: '4' },
-                    { color: '#3cf1fa', text: '5' },
                 ]
             }
         },
