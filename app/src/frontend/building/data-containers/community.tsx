@@ -153,7 +153,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     disallowFalse={worthKeepingReasonsNonEmpty}
                     disallowNull={worthKeepingReasonsNonEmpty}
 
-                    onChange={props.onSaveChange}
+                    onChange={props.onChange}
                     mode={props.mode}
 
                 />
@@ -172,7 +172,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             title={buildingUserFields.community_building_worth_keeping_reasons.title}
                             value={props.building.community_building_worth_keeping_reasons}
                             disabled={!props.building.community_building_worth_keeping}
-                            onChange={props.onSaveChange}
+                            onChange={props.onChange}
                             options={
                                 Object.entries(buildingUserFields.community_building_worth_keeping_reasons.fields)
                                 .map(([key, definition]) => ({
@@ -298,7 +298,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     disallowFalse={worthKeepingReasonsNonEmpty}
                     disallowNull={worthKeepingReasonsNonEmpty}
 
-                    onChange={props.onSaveChange}
+                    onChange={props.onChange}
                     mode={props.mode}
 
                 />
@@ -317,7 +317,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             title={buildingUserFields.community_streetscape_worth_keeping_reasons.title}
                             value={props.building.community_streetscape_worth_keeping_reasons}
                             disabled={!props.building.community_streetscape_worth_keeping}
-                            onChange={props.onSaveChange}
+                            onChange={props.onChange}
                             options={
                                 Object.entries(buildingUserFields.community_streetscape_worth_keeping_reasons.fields)
                                 .map(([key, definition]) => ({
