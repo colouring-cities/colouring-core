@@ -25,6 +25,10 @@ export type BuildingMapTileset =
     'community_building_coherence_avg' |
     'community_building_fascination_avg' |
     'community_building_neuroaesthetic_avg' |
+    'community_streetscape_hominess_avg' |
+    'community_streetscape_coherence_avg' |
+    'community_streetscape_fascination_avg' |
+    'community_streetscape_neuroaesthetic_avg' |
     'planning_applications_status_all' |
     'planning_applications_status_recent' |
     'planning_applications_status_very_recent' |

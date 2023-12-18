@@ -354,6 +354,20 @@ const LAYER_QUERIES = {
         WHERE
             community_streetscape_fascination_avg > 0
     `,
+    community_streetscape_neuroaesthetic_avg: `
+        SELECT
+            geometry_id,
+            (community_streetscape_hominess_avg +
+            community_streetscape_coherence_avg +
+            community_streetscape_fascination_avg) / 3 as community_streetscape_neuroaesthetic_avg
+        FROM
+            buildings
+        WHERE
+            community_streetscape_hominess_avg > 0 AND
+            community_streetscape_coherence_avg > 0 AND
+            community_streetscape_fascination_avg > 0
+
+    `,
     community_expected_planning_application_total: `
         SELECT
             geometry_id,

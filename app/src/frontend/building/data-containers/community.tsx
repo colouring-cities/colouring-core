@@ -41,6 +41,22 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('community_building_neuroaesthetic_avg')
     }
+    const switchToStreetscapeHominessMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('community_streetscape_hominess_avg')
+    }
+    const switchToStreetscapeCoherenceMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('community_streetscape_coherence_avg')
+    }
+    const switchToStreetscapeFascinationMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('community_streetscape_fascination_avg')
+    }
+    const switchToStreetscapeAverageMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('community_streetscape_neuroaesthetic_avg')
+    }
     
     const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
 
@@ -117,8 +133,9 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <></>
                 }
                 <hr/>
-                <label>
-                    Average neuroaesthetic score.
+                {console.log(props.building.community_building_neuroaesthetic_avg)}
+                <label className='average-score'>
+                    Average neuroaesthetic score for this building: <span className='float-right'><strong>{props.building.community_building_neuroaesthetic_avg}</strong></span>
                 </label>
                 {(props.mapColourScale != "community_building_neuroaesthetic_avg") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingAverageMapStyle}>
@@ -212,6 +229,13 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
+                {(props.mapColourScale != "community_streetscape_hominess_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStreetscapeHominessMapStyle}>
+                        {'Click to show streetscape hominess.'}
+                    </button>
+                    :
+                    <></>
+                }
                 <hr />
                 <SliderDataEntry
                     slug="community_streetscape_coherence"
@@ -226,6 +250,13 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
+                {(props.mapColourScale != "community_streetscape_coherence_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStreetscapeCoherenceMapStyle}>
+                        {'Click to show streetscape coherence.'}
+                    </button>
+                    :
+                    <></>
+                }
                 <hr />
                 <SliderDataEntry
                     slug="community_streetscape_fascination"
@@ -240,6 +271,24 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
+                {(props.mapColourScale != "community_streetscape_fascination_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingFascinationMapStyle}>
+                        {'Click to show streetscape fascination.'}
+                    </button>
+                    :
+                    <></>
+                }
+                <hr/>
+                <label className='average-score'>
+                    Average neuroaesthetic score for the streetscape: <span className='float-right'><strong>{props.building.community_streetscape_neuroaesthetic_avg}</strong></span>
+                </label>
+                {(props.mapColourScale != "community_streetscape_neuroaesthetic_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStreetscapeAverageMapStyle}>
+                        {"Click to show the screetscape's average score."}
+                    </button>
+                    :
+                    <></>
+                }
                 <hr/>
                 <LogicalDataEntryYesOnlyWithExplanation
                     slug='community_streetscape_worth_keeping'

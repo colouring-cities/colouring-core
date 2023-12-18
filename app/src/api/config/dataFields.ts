@@ -763,6 +763,11 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: false
     },
+    community_streetscape_neuroaesthetic_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
     community_activities_current: {
         edit: true,
         verify: false

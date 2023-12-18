@@ -1500,6 +1500,11 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "People who think the building should be recorded as one of local interest",
         example: 100,
     },
+    community_streetscape_neuroaesthetic_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 3,
+    },
 
     community_expected_planning_application_total: {
         category: Category.Community,
