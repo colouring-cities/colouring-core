@@ -161,7 +161,7 @@ export const buildingUserFields = {
             durable: {
                 title: 'This kind of building is well built and long lasting.'
             },
-            other: {
+            building_other: {
                 title: 'Other'
             }
         },
@@ -171,7 +171,7 @@ export const buildingUserFields = {
             near_greenery: false,
             adaptable: true,
             durable: true,
-            other: false
+            building_other: false
         }
     },
     community_building_worth_keeping_based_on: {
@@ -213,7 +213,7 @@ export const buildingUserFields = {
             public_art: {
                 title: 'The street has public art.'
             },
-            other: {
+            streetscape_other: {
                 title: 'Other'
             }
         },
@@ -221,9 +221,9 @@ export const buildingUserFields = {
             street_feel: true,
             feels_safe: true,
             interesting: false,
-            using_outside_space: true,
+            greenery: true,
             public_art: true,
-            other: false
+            streetscape_other: false
         }
     },
     community_streetscape_worth_keeping_based_on: {
