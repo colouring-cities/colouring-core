@@ -137,7 +137,7 @@ export const buildingUserFields = {
     community_building_worth_keeping: {
         perUser: true,
         category: Category.Community,
-        title: "Do you think this **type** of building is worth keeping?",
+        title: "Would you like to see this **type** of building kept?",
         tooltip: "Please tick the box if you think this kind of building should be kept by our towns and cities for the future?",
         example: true,
     },
