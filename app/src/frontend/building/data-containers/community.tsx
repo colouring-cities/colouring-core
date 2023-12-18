@@ -177,7 +177,13 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                     copy={props.copy}
+                    required={true}
                 />
+                <div className={`alert alert-danger`} role="alert" style={{ fontSize: 13}}>
+                    <i>
+                        Please note: You cannot save your entry unless you have filled in the above question.
+                    </i>
+                </div>
                 <hr/>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
@@ -285,7 +291,14 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                     copy={props.copy}
+                    required={true}
                 />
+                <div className={`alert alert-danger`} role="alert" style={{ fontSize: 13}}>
+                    <i>
+                        Please note: You cannot save your entry unless you have filled in the above question.
+                    </i>
+                </div>
+                <hr/>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of streetscapes make people feel.
