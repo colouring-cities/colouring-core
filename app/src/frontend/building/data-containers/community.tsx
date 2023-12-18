@@ -58,7 +58,16 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
         props.onMapColourScale('community_streetscape_neuroaesthetic_avg')
     }
     
-    const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
+    //const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
+    const buildingWorthKeepingReasonsNonEmpty = Object.values(props.building.community_building_worth_keeping_reasons ?? {}).some(x => x);
+    const streetscapeWorthKeepingReasonsNonEmpty = Object.values(props.building.community_streetscape_worth_keeping_reasons ?? {}).some(x => x);
+
+    let buildingResponseRequired = 
+        props.building.community_building_hominess > 0 || props.building.community_building_fascination > 0 || props.building.community_building_coherence > 0 ||
+        props.building.community_building_worth_keeping != null;
+    let streetscapeResponseRequired = 
+        props.building.community_streetscape_hominess > 0 || props.building.community_streetscape_fascination > 0 || props.building.community_streetscape_coherence > 0 ||
+        props.building.community_streetscape_worth_keeping != null;
 
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
@@ -150,8 +159,8 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={buildingUserFields.community_building_worth_keeping.title}
                     tooltip={buildingUserFields.community_building_worth_keeping.tooltip}
                     value={props.building.community_building_worth_keeping}
-                    disallowFalse={worthKeepingReasonsNonEmpty}
-                    disallowNull={worthKeepingReasonsNonEmpty}
+                    disallowFalse={buildingWorthKeepingReasonsNonEmpty}
+                    disallowNull={buildingWorthKeepingReasonsNonEmpty}
 
                     onChange={props.onChange}
                     mode={props.mode}
@@ -194,7 +203,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                     copy={props.copy}
-                    required={true}
+                    required={buildingResponseRequired}
                 />
                 <div className={`alert alert-danger`} role="alert" style={{ fontSize: 13}}>
                     <i>
@@ -295,8 +304,8 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={buildingUserFields.community_streetscape_worth_keeping.title}
                     tooltip={buildingUserFields.community_streetscape_worth_keeping.tooltip}
                     value={props.building.community_streetscape_worth_keeping}
-                    disallowFalse={worthKeepingReasonsNonEmpty}
-                    disallowNull={worthKeepingReasonsNonEmpty}
+                    disallowFalse={streetscapeWorthKeepingReasonsNonEmpty}
+                    disallowNull={streetscapeWorthKeepingReasonsNonEmpty}
 
                     onChange={props.onChange}
                     mode={props.mode}
@@ -340,7 +349,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                     copy={props.copy}
-                    required={true}
+                    required={streetscapeResponseRequired}
                 />
                 <div className={`alert alert-danger`} role="alert" style={{ fontSize: 13}}>
                     <i>
