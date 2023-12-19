@@ -19,6 +19,7 @@ interface SliderDataEntryProps extends BaseDataEntryProps {
 const SliderDataEntry: React.FunctionComponent<SliderDataEntryProps> = (props) => {
 
     const marks = {
+        ["None"]: <strong>n/a</strong>,
         [props.min]: <strong>{props.min}</strong>,
         [props.max]: <strong>{props.max}</strong>
     };
@@ -34,21 +35,24 @@ const SliderDataEntry: React.FunctionComponent<SliderDataEntryProps> = (props) =
             />
             <div className="slider-container">
                 <Slider
-                    value={props.value || props.min}
+                    value={props.value || 0}
+                    defaultValue={0}
                     max={props.max}
-                    min={props.min}
+                    min={0}
                     dots={props.dots}
                     marks={marks}
                     disabled={props.mode === 'view' || props.disabled}
                     onChange={
                         e => props.onChange(
                             props.slug, 
-                            typeof(e)=="number" ? e : e[0]
+                            typeof(e)=="number" ? (e?e:null) : e[0]
                         )
                     }
                 />
             </div>
-            <p className="slider-score">Your score: {props.value} <span className="slider-average">Average: {props.average} ({props.votes} votes)</span></p>
+            <p className="slider-score">
+                Your score: {props.value?props.value:"None"} <span className="slider-average">Average: {props.average} ({props.votes} votes)</span>
+            </p>
         </Fragment>
     );
 };
