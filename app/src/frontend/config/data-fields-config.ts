@@ -175,6 +175,7 @@ export const buildingUserFields = {
         }
     },
     community_building_worth_keeping_based_on: {
+        perUser: true,
         category: Category.Community,
         title: "Are your answers above based on:",
         tooltip: "What are your answers to the above questions based on, please select an answer.",
@@ -227,6 +228,7 @@ export const buildingUserFields = {
         }
     },
     community_streetscape_worth_keeping_based_on: {
+        perUser: true,
         category: Category.Community,
         title: "Are your answers above based on:",
         tooltip: "What are your answers to the above questions based on, please select an answer.",
