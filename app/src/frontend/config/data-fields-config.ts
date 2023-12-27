@@ -1746,12 +1746,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     disaster_start_date: {
         category: Category.Resilience,
-        title: "What was the start date of the disaster?",
+        title: "Start date",
+        tooltip: "What was the start date of the disaster?",
         example: "01/04/2023"
     },
     disaster_end_date: {
         category: Category.Resilience,
-        title: "What was the end date of the disaster? (if applicable)",
+        title: "End date",
+        tooltip: "What was the end date of the disaster? (if different to start date)",
         example: "03/04/2023"
     },
 
