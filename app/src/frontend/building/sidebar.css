@@ -198,6 +198,12 @@ dd {
     margin-bottom: 10px;
 }
 
+.slider-container { 
+    margin-left: 10px;
+    margin-right: 15px;
+    margin-bottom: 50px;
+}
+
 .date-picker {
     margin-left: 10px;
     max-width: 400px;
