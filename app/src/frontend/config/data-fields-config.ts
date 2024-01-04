@@ -474,7 +474,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     size_storeys_basement: {
         category: Category.Size,
-        title: "Number of floors beneath ground Level",
+        title: "Number of floors beneath ground level",
         tooltip: "How many floors below pavement level?",
         example: 1,
     },
