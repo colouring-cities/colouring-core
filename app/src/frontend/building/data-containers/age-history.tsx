@@ -78,7 +78,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
-            <DataEntryGroup name="Architectural style" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Architectural style/historial period" collapsed={subcat==null || subcat!="2"}>
                 {(props.mapColourScale != "typology_style_period") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStylePeriodMapStyle}>
                         Click to show architectural style.
@@ -497,7 +497,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <DataEntryGroup name="Survival tracking" collapsed={subcat==null || subcat!="5"}>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
-                        Can you help us create a map that shows how many buildings in London have survived since the 1890s? 
+                        Can you help us create a map that shows how many buildings in this area have survived since the 1890s? 
                         Choose a colour to indicate whether the building has survived.
                     </i>
                 </div>
