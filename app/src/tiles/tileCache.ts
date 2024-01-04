@@ -104,7 +104,7 @@ class TileCache {
         try {
             await unlink(location.fname);
         } catch(err) {}
-        console.log(`Expire cache ${formatParams(tileParams)}`);
+        //console.log(`Expire cache ${formatParams(tileParams)}`);
     }
 
     async removeAllAtBbox(bbox: BoundingBox): Promise<void[]> {

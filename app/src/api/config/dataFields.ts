@@ -1156,7 +1156,22 @@ export const buildingUserAttributesConfig = valueType<DataFieldConfig>()({
         perUser: true,
         edit: true,
         verify: false
-    }
+    },
+    community_building_hominess: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_building_coherence: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_building_fascination: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
 });
 
 export const allAttributesConfig = Object.assign({}, buildingAttributesConfig, buildingUserAttributesConfig);

@@ -11,6 +11,8 @@ import { buildingUserFields, dataFields } from '../../config/data-fields-config'
 import SelectDataEntry from '../data-components/select-data-entry';
 import Verification from '../data-components/verification';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
+import SliderDataEntry from "../data-components/slider-data-entry";
+import DataTitle from '../data-components/data-title';
 
 /**
 * Community view/edit section
@@ -19,14 +21,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const switchToLikesMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('typology_likes')
-    }
-    const switchToLocalSignificanceMapStyle = (e) => {
-        e.preventDefault();
-        props.onMapColourScale('community_local_significance_total')
-    }
-   const switchToExpectedApplicationMapStyle = (e) => {
-        e.preventDefault();
-        props.onMapColourScale('community_expected_planning_application_total')
     }
     const switchToPublicOwnershipMapStyle = (e) => {
         e.preventDefault();
@@ -40,107 +34,117 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
-            <DataEntryGroup name="Community views on how well buildings work" collapsed={subcat==null || subcat!="1"}>
-            <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
-                <i>
-                    Note: We are currently only collecting data on non-residential buildings.
-                </i>
-            </div>
-            <div className='community-opinion-pane'>
-                {(props.building.is_domestic === "no" || props.building.is_domestic === "mixed domestic/non-domestic") ?
-                <>
-                    <UserOpinionEntry
-                        slug='community_like'
-                        title={buildingUserFields.community_like.title}
-                        tooltip={buildingUserFields.community_like.tooltip}
-                        userValue={props.building.community_like}
+            <DataEntryGroup name="Community views on buildings" collapsed={subcat==null || subcat!="1"}>
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                    <i className="source-url">Click <a href={"/"+props.mode+"/planning/"+props.building.building_id}>here</a> for 'Planning Controls' to see status of planning applications or to record if you think this building is likely to be demolished/significantly altered.</i>
+                </div>
+                <label>
+                    What do you feel about the exterior of this building?
+                </label>
+                <SliderDataEntry
+                    slug="community_building_hominess"
+                    title={buildingUserFields.community_building_hominess.title}
+                    tooltip={buildingUserFields.community_building_hominess.tooltip}
+                    value={props.building.community_building_hominess}
+                    min={1}
+                    max={5}
+                    dots={true}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                />
+                <SliderDataEntry
+                    slug="community_building_coherence"
+                    title={buildingUserFields.community_building_coherence.title}
+                    tooltip={buildingUserFields.community_building_coherence.tooltip}
+                    value={props.building.community_building_coherence}
+                    min={1}
+                    max={5}
+                    dots={true}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                />
+                <SliderDataEntry
+                    slug="community_building_fascination"
+                    title={buildingUserFields.community_building_fascination.title}
+                    tooltip={buildingUserFields.community_building_fascination.tooltip}
+                    value={props.building.community_building_fascination}
+                    min={1}
+                    max={5}
+                    dots={true}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                />
+                <hr />
+                <div className='community-opinion-pane'>
+                    {(props.building.is_domestic === "no" || props.building.is_domestic === "mixed domestic/non-domestic") ?
+                    <>
+                        <UserOpinionEntry
+                            slug='community_like'
+                            title={buildingUserFields.community_like.title}
+                            tooltip={buildingUserFields.community_like.tooltip}
+                            userValue={props.building.community_like}
+                            onChange={props.onSaveChange}
+                            mode={props.mode}
+                        />
+                        </>
+                    : 
+                        <></>
+                    }
+                    <LogicalDataEntryYesOnlyWithExplanation
+                        slug='community_type_worth_keeping'
+                        title={buildingUserFields.community_type_worth_keeping.title}
+                        tooltip={buildingUserFields.community_type_worth_keeping.tooltip}
+                        value={props.building.community_type_worth_keeping}
+                        disallowFalse={worthKeepingReasonsNonEmpty}
+                        disallowNull={worthKeepingReasonsNonEmpty}
+
                         onChange={props.onSaveChange}
                         mode={props.mode}
+
                     />
-                    </>
-                : 
-                    <></>
-                }
-                <LogicalDataEntryYesOnlyWithExplanation
-                    slug='community_type_worth_keeping'
-                    title={buildingUserFields.community_type_worth_keeping.title}
-                    tooltip={buildingUserFields.community_type_worth_keeping.tooltip}
-                    value={props.building.community_type_worth_keeping}
-                    disallowFalse={worthKeepingReasonsNonEmpty}
-                    disallowNull={worthKeepingReasonsNonEmpty}
-
-                    onChange={props.onSaveChange}
-                    mode={props.mode}
-
-                />
-                {(props.mapColourScale != "typology_likes") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLikesMapStyle}>
-                        {'Click to show liked typologies.'}
-                    </button>
-                    :
-                    <></>
-                }
-                {
-                    props.building.community_type_worth_keeping === true &&
-                    <MultiSelectDataEntry
-                        slug='community_type_worth_keeping_reasons'
-                        title={buildingUserFields.community_type_worth_keeping_reasons.title}
-                        value={props.building.community_type_worth_keeping_reasons}
-                        disabled={!props.building.community_type_worth_keeping}
-                        onChange={props.onSaveChange}
-                        options={
-                            Object.entries(buildingUserFields.community_type_worth_keeping_reasons.fields)
-                            .map(([key, definition]) => ({
-                                key,
-                                label: definition.title
-                            }))
-                        }
-                        
-                        mode={props.mode}
-                    />
-                }
-                <hr />
-                <UserOpinionEntry
-                    slug='community_local_significance'
-                    title={buildingUserFields.community_local_significance.title}
-                    tooltip={buildingUserFields.community_local_significance.tooltip}
-                    userValue={props.building.community_local_significance}
-
-                    onChange={props.onSaveChange}
-                    mode={props.mode}
-                />
-                {(props.mapColourScale != "community_local_significance_total") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLocalSignificanceMapStyle}>
-                        {'Click to show buildings of local interest.'}
-                    </button>
-                    :
-                    <></>
-                }
-                <hr />
-                <UserOpinionEntry
-                    slug='community_expected_planning_application'
-                    title={buildingUserFields.community_expected_planning_application.title}
-                    tooltip={buildingUserFields.community_expected_planning_application.tooltip}
-                    userValue={props.building.community_expected_planning_application}
-
-                    onChange={props.onSaveChange}
-                    mode={props.mode}
-                />
+                    {(props.mapColourScale != "typology_likes") ? 
+                        <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLikesMapStyle}>
+                            {'Click to show liked typologies.'}
+                        </button>
+                        :
+                        <></>
+                    }
+                    {
+                        props.building.community_type_worth_keeping === true &&
+                        <MultiSelectDataEntry
+                            slug='community_type_worth_keeping_reasons'
+                            title={buildingUserFields.community_type_worth_keeping_reasons.title}
+                            value={props.building.community_type_worth_keeping_reasons}
+                            disabled={!props.building.community_type_worth_keeping}
+                            onChange={props.onSaveChange}
+                            options={
+                                Object.entries(buildingUserFields.community_type_worth_keeping_reasons.fields)
+                                .map(([key, definition]) => ({
+                                    key,
+                                    label: definition.title
+                                }))
+                            }
+                            
+                            mode={props.mode}
+                        />
+                    }
+                    <hr />
+                </div>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
-                        For more information on current planning applications, refer to the Planning Controls category.
+                        Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of buildings and streetscapes make people feel.
                     </i>
                 </div>
-                {(props.mapColourScale != "community_expected_planning_application_total") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToExpectedApplicationMapStyle}>
-                        {'Click to show expected planning applications.'}
-                    </button>
-                    :
-                    <></>
-                }
-            </div>
             </DataEntryGroup>
-            <DataEntryGroup name="Buildings in community use" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Community views on streetscapes" collapsed={subcat==null || subcat!="2"}>
+                
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                    <i>
+                        Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of buildings and streetscapes make people feel.
+                    </i>
+                </div>
+            </DataEntryGroup>
+            <DataEntryGroup name="Buildings with community uses" collapsed={subcat==null || subcat!="3"}>
             <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                 <i>
                     Here we are collecting information on the location of buildings used for community activities so we can track loss of/additions to community space over time.
