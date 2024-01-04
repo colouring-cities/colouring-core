@@ -9,18 +9,13 @@ import Verification from '../data-components/verification';
 import { CategoryViewProps } from './category-view-props';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
-import DatePicker from "react-datepicker";
-
-import "react-datepicker/dist/react-datepicker.css";
+import DataPickerDateEntry from '../data-components/date-picker-data-entry';
 
 /**
 * Dynamics view/edit section
 */
 const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
     
-    const [ startDate, setStartDate ] = useState(null);
-    const [ endDate, setEndDate ] = useState(null);
-
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
 
@@ -49,41 +44,23 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <></>
             }
             <label>Date of disaster</label>
-            <div>
-                <DatePicker 
-                    showIcon
-                    dateFormat="dd/MM/yyyy"
-                    slug="disaster_start_date"
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)} 
-                    title={dataFields.disaster_start_date.title}
-                    //value={props.building.disaster_start_date}
-                    isClearable
-                    placeholderText="Select start date"
-                    maxDate={new Date()}
-                />
-            </div>
-            <div>
-                <DatePicker 
-                    showIcon
-                    dateFormat="dd/MM/yyyy"
-                    slug="disaster_end_date"
-                    selected={endDate}
-                    onChange={(date) => setEndDate(date)} 
-                    title={dataFields.disaster_end_date.title}
-                    //value={props.building.disaster_end_date}
-                    isClearable
-                    placeholderText="Select end date"
-                    maxDate={new Date()}
-                />
-            </div>
-            <Verification
+            <DataPickerDateEntry 
+                slug="disaster_start_date"
+                title={dataFields.disaster_start_date.title}
+                tooltip={dataFields.disaster_start_date.tooltip}
+                value={props.building.disaster_start_date}
+                onChange={props.onChange}
+                mode={props.mode}
+                copy={props.copy}
+            />
+            <DataPickerDateEntry 
                 slug="disaster_end_date"
-                allow_verify={props.user !== undefined && props.building.disaster_end_date !== null && !props.edited}
-                onVerify={props.onVerify}
-                user_verified={props.user_verified.hasOwnProperty("disaster_end_date")}
-                user_verified_as={props.user_verified.disaster_end_date}
-                verified_count={props.building.verified.disaster_end_date}
+                title={dataFields.disaster_end_date.title}
+                tooltip={dataFields.disaster_end_date.tooltip}
+                value={props.building.disaster_end_date}
+                onChange={props.onChange}
+                mode={props.mode}
+                copy={props.copy}
             />
             <SelectDataEntry
                 slug='disaster_type'

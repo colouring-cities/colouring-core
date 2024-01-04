@@ -203,3 +203,16 @@ dd {
     margin-right: 15px;
     margin-bottom: 50px;
 }
+
+.date-picker {
+    margin-left: 10px;
+    max-width: 400px;
+}
+
+.date-picker-label {
+    width: 100px;
+}
+
+.date-picker-label label {
+    margin-top: 8px;
+}
