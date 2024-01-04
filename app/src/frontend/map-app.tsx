@@ -145,7 +145,7 @@ export const MapApp: React.FC<MapAppProps> = props => {
                         <Welcome />
                     </Route>
                     <Route exact path="/multi-edit/:cat">
-                        <MultiEdit category={displayCategory} />
+                        <MultiEdit category={displayCategory} building_id={selectedBuildingId} />
                     </Route>
                     <Route path="/:mode/:cat">
                         <Categories mode={mode || 'view'} building_id={selectedBuildingId} />

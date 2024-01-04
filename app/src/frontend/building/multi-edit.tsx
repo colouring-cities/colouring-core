@@ -10,6 +10,7 @@ import DataEntry from './data-components/data-entry';
 
 interface MultiEditProps {
     category: string;
+    building_id: number;
 }
 
 const MultiEdit: React.FC<MultiEditProps> = (props) => {
@@ -41,8 +42,8 @@ const MultiEdit: React.FC<MultiEditProps> = (props) => {
                     }
                 </form>
                 <form className='buttons-container'>
-                    <Link to={`/view/${props.category}`} className='btn btn-secondary'>Back to view</Link>
-                    <Link to={`/edit/${props.category}`} className='btn btn-secondary'>Back to edit</Link>
+                    <Link to={`/view/${props.category}/${props.building_id}`} className='btn btn-secondary'>Back to view</Link>
+                    <Link to={`/edit/${props.category}/${props.building_id}`} className='btn btn-secondary'>Back to edit</Link>
                 </form>
             </div>
         </section>
