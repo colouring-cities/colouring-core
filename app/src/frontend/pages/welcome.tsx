@@ -18,8 +18,8 @@ const Welcome = () => (
 
         </p>
         <p>
-            {config.projectBlurb}&nbsp;
-            The Colouring Cities Research Programme (CCRP), led by the Alan Turing Institute,
+            {config.projectBlurb}
+            &nbsp;The Colouring Cities Research Programme (CCRP), led by the Alan Turing Institute,
             is <a href="https://github.com/colouring-cities/colouring-cities.github.io">an international consortium of academic institutions</a> involved
             in building research. Our aim is to maximise accessibility to building-level data across countries, 
             to help improve stock quality, efficiency, sustainability and resilience and meet net-zero goals.
