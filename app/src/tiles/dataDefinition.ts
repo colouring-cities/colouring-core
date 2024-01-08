@@ -379,10 +379,23 @@ const LAYER_QUERIES = {
     typology_style_period: `
         SELECT
             geometry_id,
-            typology_style_period
+            CASE
+                WHEN typology_style_period IS NOT NULL THEN  typology_style_period
+                WHEN date_year >= 43 AND date_year < 410 THEN '43AD-410 (Roman)'
+                WHEN date_year >= 410 AND date_year < 1485 THEN '410-1485 (Medieval)'
+                WHEN date_year >= 1485 AND date_year < 1603 THEN '1485-1603 (Tudor)'
+                WHEN date_year >= 1603 AND date_year < 1714 THEN '1603-1714 (Stuart)'
+                WHEN date_year >= 1714 AND date_year < 1837 THEN '1714-1837 (Georgian)'
+                WHEN date_year >= 1837 AND date_year < 1901 THEN '1837-1901 (Victorian)'
+                WHEN date_year >= 1901 AND date_year < 1914 THEN '1901-1914 (Edwardian)'
+                WHEN date_year >= 1914 AND date_year <= 1945 THEN '1914-1945 (WWI-WWII)'
+                WHEN date_year >= 1946 AND date_year <= 1979 THEN '1946-1979 (Post war)'
+                WHEN date_year >= 1980 AND date_year <= 1999 THEN '1980-1999 (Late 20th Century)'
+                WHEN date_year >= 2000 AND date_year <= 2025 THEN '2000-2025 (Early 21st Century)'
+            END AS typology_style_period
         FROM
             buildings
-        WHERE typology_style_period IS NOT NULL`,
+        WHERE typology_style_period IS NOT NULL OR (date_year >= 43 AND date_year <= 2025)`,
     typology_dynamic_classification: `
         SELECT
             geometry_id,
