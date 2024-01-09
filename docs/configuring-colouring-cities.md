@@ -17,7 +17,7 @@ The configuration files are located here:
 ### > cc-config.json
 The JSON file contains the definition of the values of the variables. 
 
-Currently, these parameters are:
+Currently, these parameters include:
 
 - **'cityName'** (string) - The name of the city/country. 
 - **'projectBlurb'** (string) - A line of text describing the relationship of the project to the CCRP
@@ -57,4 +57,4 @@ If you want to add additional parameters into the configuration framework, then 
   
 **NOTE: Any additional project specific text strings and parameters should be added to this file and the JSON file.**
 
-*REQUEST: If you find any Colouring London-specific text or values, please report them or create a pull request to move them into the configuration framework.*
+*REQUEST: If you find any London-specific text or values, please report them or create a pull request to move them into the configuration framework.*
