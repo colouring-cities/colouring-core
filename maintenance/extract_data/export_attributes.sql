@@ -55,7 +55,6 @@ COPY (SELECT
     planning_portal_link,
     planning_in_conservation_area_id,
     planning_in_conservation_area_url,
-    planning_in_conservation_area_source_url,
     planning_conservation_area_name,
     planning_in_list,
     planning_list_id,
@@ -118,7 +117,7 @@ COPY (SELECT
     age_extension_date_source_links,
     age_retrofit_date,
     age_retrofit_date_source_type,
-    age_retrofit_date_source_links,
+    age_retrofit_date_source_links
 FROM buildings)
 TO '/tmp/building_attributes.csv'
 WITH CSV HEADER
