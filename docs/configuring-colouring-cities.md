@@ -17,7 +17,7 @@ The configuration files are located here:
 ### > cc-config.json
 The JSON file contains the definition of the values of the variables. 
 
-Currently, these parameters are:
+Currently, these parameters include:
 
 - **'cityName'** (string) - The name of the city/country. 
 - **'projectBlurb'** (string) - A line of text describing the relationship of the project to the CCRP
@@ -30,6 +30,8 @@ There are also some other values to customise the behaviour of the application:
 
 - **'initialMapPosition'** (string) - The default latitude and longitude of the map when the page loads. 
 - **'initialZoomLevel'** (string) - The default zoom level when the map loads. 
+- **'basemapTileUrl'** (string) - URL of basemap, in format accepted by Leaflet, shown under any displayed features. Note that default one is using external servers with own [Usage Policy](https://operations.osmfoundation.org/policies/tiles/) - please review it.
+- **'baseAttribution'** (string) - basic attribution, in format accepted by Leaflet, should include basemap attribution, attribution for work of Colouring platform contributors and likely also attribute source of building geometries. Default `baseAttribution` always needs to be edited, though it contains part of required attribution for attribute data and default basemap.
 
 For example, the [JSON file for Colouring London](https://github.com/colouring-cities/colouring-london/blob/master/app/src/cc-config.json) looks like this:
 
@@ -57,4 +59,4 @@ If you want to add additional parameters into the configuration framework, then 
   
 **NOTE: Any additional project specific text strings and parameters should be added to this file and the JSON file.**
 
-*REQUEST: If you find any Colouring London-specific text or values, please report them or create a pull request to move them into the configuration framework.*
+*REQUEST: If you find any London-specific text or values, please report them or create a pull request to move them into the configuration framework.*
