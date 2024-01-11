@@ -14,6 +14,6 @@
 
     "bbox": [-61149.622628, 6667754.851372, 37183, 6744803.375884],
 
-    "basemapTileUrl": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-    "baseAttribution": "Building attribute data is © Colouring Cities contributors. Basemap © <a href=https://www.openstreetmap.org/copyright>OpenStreetMap contributors</a>. Building © MODIFY TO PROVIDE RELEVANT INFO"
-}
+    "basemapTileUrl": "https://api.os.uk/maps/raster/v1/zxy/Light_3857/{z}/{x}/{y}.png?key=UVWEspgInusDKKYANE5bmyddoEmCSD4r",
+    "baseAttribution": "Building attribute data is © Colouring Cities contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>"
+    }
