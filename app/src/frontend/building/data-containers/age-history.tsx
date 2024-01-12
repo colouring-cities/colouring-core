@@ -30,8 +30,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const thisYear = (new Date()).getFullYear();
     const currentBuildingConstructionYear = building.date_year || undefined;
 
-    const ageLinkUrl = `/${props.mode}/${Category.Age}/${props.building.building_id}`;
-
     const { historicData, historicDataSwitchOnClick, darkLightTheme } = useDisplayPreferences();
     const { historicMap, historicMapSwitchOnClick } = useDisplayPreferences();
 
@@ -410,7 +408,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <DataEntryGroup name="Lifespan and site history" collapsed={subcat==null || subcat!="4"}>
                 <DataEntryGroup name="Constructions and demolitions on this site" collapsed={subcat==null || subcat!="4"}>
                     <DynamicsBuildingPane>
-                        <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
+                        <label>Current building (building age data editable above)</label>
                         <FieldRow>
                             <div>
                                 <NumericDataEntry
@@ -444,7 +442,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </DynamicsBuildingPane>
                     {
                         currentBuildingConstructionYear == undefined ?
-                            <InfoBox>To add historical records, fill in the <Link to={ageLinkUrl}>Age</Link> data first.</InfoBox> :
+                            <InfoBox>To add historical records, fill in the building age data (above) first.</InfoBox> :
                             
                             <>
                                 <LogicalDataEntry
