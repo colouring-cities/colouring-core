@@ -1,10 +1,10 @@
 {
-    "cityName": "London",
-    "projectBlurb": "Colouring London is part of Colouring Cities.",
+    "cityName": "Britain",
+    "projectBlurb": "Colouring Britain is part of Colouring Cities.",
     
     "githubURL": "https://github.com/colouring-cities/colouring-london",
     "manualURL": "https://github.com/colouring-cities/manual/wiki/M3.-COLOURING-BRITAIN",
-    "privacyStatement": "Colouring London stores your data at The Alan Turing Institute in London behind the organisation’s firewall in a secure database using industry standard practices",
+    "privacyStatement": "Colouring Britain stores your data at The Alan Turing Institute in London behind the organisation’s firewall in a secure database using industry standard practices",
 
     "initialMapPosition": [ 51.5245255, -0.1338422 ],
     "initialZoomLevel": 16,
