@@ -13,7 +13,7 @@ def planning_data_entry_to_address(element):
 def generate_address(site_name, site_number, street_name, secondary_street_name):
     """
     this function generates address from planning data that was provided
-    sadly it does not always works well and relies on many heursitics as data quality is limited
+    sadly it does not always works well and relies on many heuristics as data quality is limited
     """
 
     if site_name is not None:
