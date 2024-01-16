@@ -287,6 +287,110 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         },
         */
         {
+            mapStyle: 'community_building_hominess_avg',
+            legend: {
+                title: 'Building hominess',
+                elements: [
+                    { color: '#fafafa', text: '1' },
+                    { color: '#a8fab5', text: '2' },
+                    { color: '#7dfa92', text: '3' },
+                    { color: '#3efa5e', text: '4' },
+                    { color: '#00d924', text: '5' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_building_coherence_avg',
+            legend: {
+                title: 'Building coherence',
+                elements: [
+                    { color: '#fafafa', text: '1' },
+                    { color: '#bbd3fa', text: '2' },
+                    { color: '#7dabfa', text: '3' },
+                    { color: '#3e86fa', text: '4' },
+                    { color: '#005efa', text: '5' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_building_fascination_avg',
+            legend: {
+                title: 'Building fascination',
+                elements: [
+                    { color: '#fafafa', text: '1' },
+                    { color: '#e8bbfa', text: '2' },
+                    { color: '#d97dfa', text: '3' },
+                    { color: '#c33efa', text: '4' },
+                    { color: '#b300fa', text: '5' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_building_neuroaesthetic_avg',
+            legend: {
+                title: 'Building neuroaesthetic score',
+                elements: [
+                    { color: '#fafafa', text: '1' },
+                    { color: '#bbf7fa', text: '2' },
+                    { color: '#7df4fa', text: '3' },
+                    { color: '#3cf0fa', text: '4' },
+                    { color: '#00ced9', text: '5' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_streetscape_hominess_avg',
+            legend: {
+                title: 'Streetscape hominess',
+                elements: [
+                    { color: '#fafafa', text: '1' },
+                    { color: '#a8fab5', text: '2' },
+                    { color: '#7dfa92', text: '3' },
+                    { color: '#3efa5e', text: '4' },
+                    { color: '#00d924', text: '5' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_streetscape_coherence_avg',
+            legend: {
+                title: 'Streetscape coherence',
+                elements: [
+                    { color: '#fafafa', text: '1' },
+                    { color: '#bbd3fa', text: '2' },
+                    { color: '#7dabfa', text: '3' },
+                    { color: '#3e86fa', text: '4' },
+                    { color: '#005efa', text: '5' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_streetscape_fascination_avg',
+            legend: {
+                title: 'Streetscape fascination',
+                elements: [
+                    { color: '#fafafa', text: '1' },
+                    { color: '#e8bbfa', text: '2' },
+                    { color: '#d97dfa', text: '3' },
+                    { color: '#c33efa', text: '4' },
+                    { color: '#b300fa', text: '5' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_streetscape_neuroaesthetic_avg',
+            legend: {
+                title: 'Streetscape neuroaesthetic score',
+                elements: [
+                    { color: '#fafafa', text: '1' },
+                    { color: '#bbf7fa', text: '2' },
+                    { color: '#7df4fa', text: '3' },
+                    { color: '#3cf0fa', text: '4' },
+                    { color: '#00ced9', text: '5' },
+                ]
+            }
+        },
+        {
             mapStyle: 'typology_likes',
             legend: {
                 title: 'Liked non-residential buildings',

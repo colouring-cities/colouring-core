@@ -678,6 +678,16 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         derivedEdit: true,
         verify: false
     },
+    community_building_worth_keeping_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_streetscape_worth_keeping_total: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
     community_local_significance_total: {
         edit: false,
         derivedEdit: true,
@@ -686,6 +696,76 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     community_expected_planning_application_total: {
         edit: false,
         derivedEdit: true,
+        verify: false
+    },
+    community_building_hominess_count: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_building_coherence_count: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_building_fascination_count: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_streetscape_hominess_count: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_streetscape_coherence_count: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_streetscape_fascination_count: {
+        edit: false,
+        derivedEdit: true,
+        verify: false
+    },
+    community_building_hominess_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
+    community_building_coherence_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
+    community_building_fascination_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
+    community_building_neuroaesthetic_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_hominess_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_coherence_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_fascination_avg: {
+        perUser: false,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_neuroaesthetic_avg: {
+        perUser: false,
+        edit: true,
         verify: false
     },
     community_activities_current: {
@@ -1147,6 +1227,36 @@ export const buildingUserAttributesConfig = valueType<DataFieldConfig>()({
         edit: true,
         verify: false
     },
+    community_building_worth_keeping: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_building_worth_keeping_reasons: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_building_worth_keeping_based_on: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_worth_keeping: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_worth_keeping_reasons: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_worth_keeping_based_on: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
     community_local_significance: {
         perUser: true,
         edit: true,
@@ -1168,6 +1278,21 @@ export const buildingUserAttributesConfig = valueType<DataFieldConfig>()({
         verify: false
     },
     community_building_fascination: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_hominess: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_coherence: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
+    community_streetscape_fascination: {
         perUser: true,
         edit: true,
         verify: false

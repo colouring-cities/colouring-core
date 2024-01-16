@@ -3,3 +3,9 @@
     padding-bottom: 0.5em;
     border-bottom: 1px solid gray;
 }
+
+.average-score {
+    width: 100%;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}

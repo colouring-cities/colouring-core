@@ -1,6 +1,6 @@
 import { buildingAttributesConfig, buildingUserAttributesConfig } from '../config/dataFields';
 
-export type AggregationMethod = 'countTrue';
+export type AggregationMethod = 'countTrue' | 'countSubmissions' | 'countTotal' | 'countAverage';
 
 export interface AggregationConfig {
     aggregateFieldName: keyof typeof buildingAttributesConfig;
@@ -36,5 +36,65 @@ export const aggregationsConfig: { [key in keyof typeof buildingUserAttributesCo
             aggregateFieldName: 'community_expected_planning_application_total',
             aggregationMethod: 'countTrue'
         }
-    ]
+    ],
+    community_building_hominess: [
+        {
+            aggregateFieldName: 'community_building_hominess_count',
+            aggregationMethod: 'countSubmissions'
+        },
+        {
+            aggregateFieldName: 'community_building_hominess_avg',
+            aggregationMethod: 'countAverage'
+        }
+    ],
+    community_building_coherence: [
+        {
+            aggregateFieldName: 'community_building_coherence_count',
+            aggregationMethod: 'countSubmissions'
+        },
+        {
+            aggregateFieldName: 'community_building_coherence_avg',
+            aggregationMethod: 'countAverage'
+        }
+    ],
+    community_building_fascination: [
+        {
+            aggregateFieldName: 'community_building_fascination_count',
+            aggregationMethod: 'countSubmissions'
+        },
+        {
+            aggregateFieldName: 'community_building_fascination_avg',
+            aggregationMethod: 'countAverage'
+        }
+    ],
+    community_streetscape_hominess: [
+        {
+            aggregateFieldName: 'community_streetscape_hominess_count',
+            aggregationMethod: 'countSubmissions'
+        },
+        {
+            aggregateFieldName: 'community_streetscape_hominess_avg',
+            aggregationMethod: 'countAverage'
+        }
+    ],
+    community_streetscape_coherence: [
+        {
+            aggregateFieldName: 'community_streetscape_coherence_count',
+            aggregationMethod: 'countSubmissions'
+        },
+        {
+            aggregateFieldName: 'community_streetscape_coherence_avg',
+            aggregationMethod: 'countAverage'
+        }
+    ],
+    community_streetscape_fascination: [
+        {
+            aggregateFieldName: 'community_streetscape_fascination_count',
+            aggregationMethod: 'countSubmissions'
+        },
+        {
+            aggregateFieldName: 'community_streetscape_fascination_avg',
+            aggregationMethod: 'countAverage'
+        }
+    ],
 };
