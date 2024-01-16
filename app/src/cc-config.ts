@@ -14,5 +14,9 @@ export interface CCConfig
 
     postcode: string;                           // Alternative for "Postcode" text (i.e. "Zip Code")
     energy_rating: string;                      // Official Environmental Energy Rating (BREEAM Rating in UK)
+
+    bbox: [number, number, number, number];     // Bounding box of generated tiles, in CRS epsg:3857 in form: [w, s, e, n]
+    basemapTileUrl: string;
+    baseAttribution: string;
 }
 

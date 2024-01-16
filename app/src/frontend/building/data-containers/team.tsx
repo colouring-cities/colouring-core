@@ -101,11 +101,10 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=1"}>Age & History</a>.</i>
                 </div>
                 <DataEntryGroup name="Client" collapsed={subcat==null || subcat!="3"}>
-                    <SelectDataEntry
+                    <MultiDataEntry
                         slug='building_client'
                         title={dataFields.building_client.title}
                         value={props.building.building_client}
-                        options={dataFields.building_client.items}
                         tooltip={dataFields.building_client.tooltip}
                         onChange={props.onChange}
                         mode={props.mode}
@@ -394,11 +393,10 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=3"}>Age & History</a>.</i>
                 </div>
                 <DataEntryGroup name="Client" collapsed={subcat==null || subcat!="8"}>
-                    <SelectDataEntry
+                    <MultiDataEntry
                         slug='extension_client'
                         title={dataFields.extension_client.title}
                         value={props.building.extension_client}
-                        options={dataFields.extension_client.items}
                         tooltip={dataFields.extension_client.tooltip}
                         onChange={props.onChange}
                         mode={props.mode}

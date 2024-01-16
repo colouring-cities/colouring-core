@@ -1,6 +1,6 @@
 {
     "cityName": "Cities",
-    "projectBlurb": "Colouring {City Name} is part Colouring Cities.",
+    "projectBlurb": "Colouring {City Name} is part of Colouring Cities.",
     
     "githubURL": "https://github.com/colouring-cities/colouring-core",
     "manualURL": "https://github.com/colouring-cities/manual/wiki/M3.-COLOURING-BRITAIN",
@@ -10,5 +10,10 @@
     "initialZoomLevel": 16,
 
     "postcode": "Postcode",
-    "energy_rating": "Building Research Establishment Environmental Assessment Method (BREEAM) rating [<a href='https://bregroup.com/products/breeam/how-breeam-works'>More info</a>]"
+    "energy_rating": "Building Research Establishment Environmental Assessment Method (BREEAM) rating [<a href='https://bregroup.com/products/breeam/how-breeam-works'>More info</a>]",
+
+    "bbox": [-61149.622628, 6667754.851372, 37183, 6744803.375884],
+
+    "basemapTileUrl": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "baseAttribution": "Building attribute data is © Colouring Cities contributors. Basemap © <a href=https://www.openstreetmap.org/copyright>OpenStreetMap contributors</a>. Building © MODIFY TO PROVIDE RELEVANT INFO"
 }

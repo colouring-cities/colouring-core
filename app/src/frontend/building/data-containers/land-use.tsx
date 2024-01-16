@@ -127,8 +127,8 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     placeholder={dataFields.current_landuse_source.example}
                     options={dataFields.current_landuse_source.items}
                     />
-                {(props.building.current_landuse_source == "Expert/personal knowledge of building" ||
-                    props.building.current_landuse_source == "Online streetview image" ||
+                {(props.building.current_landuse_source == commonSourceTypes[0] ||
+                    props.building.current_landuse_source == commonSourceTypes[1] ||
                     props.building.current_landuse_source == null) ? <></> :
                     <><MultiDataEntry
                         title={dataFields.current_landuse_link.title}

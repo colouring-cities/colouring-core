@@ -68,7 +68,7 @@ export const AutofillDropdown: React.FC<AutofillDropdownProps> =  props => {
                             props.onClose();
                         }}
                     >
-                        {option.value} ({option.id})
+                        {option.value}
                     </div>)
             }
         </div>
