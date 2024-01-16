@@ -1033,6 +1033,138 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="community_building_hominess_avg">
+        <Rule>
+            <Filter>[community_building_hominess_avg] &gt; 4</Filter>
+            <PolygonSymbolizer fill="#00d924" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_hominess_avg] &gt; 3 and [community_building_hominess_avg] &lt;= 4</Filter>
+            <PolygonSymbolizer fill="#3efa5e" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_hominess_avg] &gt; 2 and [community_building_hominess_avg] &lt;= 3</Filter>
+            <PolygonSymbolizer fill="#7dfa92" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_hominess_avg] &gt; 1 and [community_building_hominess_avg] &lt;= 2</Filter>
+            <PolygonSymbolizer fill="#a8fab5" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_hominess_avg] &lt;= 1</Filter>
+            <PolygonSymbolizer fill="#fafafa" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="community_building_fascination_avg">
+        <Rule>
+            <Filter>[community_building_fascination_avg] &gt; 4</Filter>
+            <PolygonSymbolizer fill="#b300fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_fascination_avg] &gt; 3 and [community_building_fascination_avg] &lt;= 4</Filter>
+            <PolygonSymbolizer fill="#c33efa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_fascination_avg] &gt; 2 and [community_building_fascination_avg] &lt;= 3</Filter>
+            <PolygonSymbolizer fill="#d97dfa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_fascination_avg] &gt; 1 and [community_building_fascination_avg] &lt;= 2</Filter>
+            <PolygonSymbolizer fill="#e8bbfa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_fascination_avg] &lt;= 1</Filter>
+            <PolygonSymbolizer fill="#fafafa" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="community_building_coherence_avg">
+        <Rule>
+            <Filter>[community_building_coherence_avg] &gt; 4</Filter>
+            <PolygonSymbolizer fill="#005efa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_coherence_avg] &gt; 3 and [community_building_coherence_avg] &lt;= 4</Filter>
+            <PolygonSymbolizer fill="#3e86fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_coherence_avg] &gt; 2 and [community_building_coherence_avg] &lt;= 3</Filter>
+            <PolygonSymbolizer fill="#7dabfa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_coherence_avg] &gt; 1 and [community_building_coherence_avg] &lt;= 2</Filter>
+            <PolygonSymbolizer fill="#bbd3fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_coherence_avg] &lt;= 1</Filter>
+            <PolygonSymbolizer fill="#fafafa" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="community_building_neuroaesthetic_avg">
+        <Rule>
+            <Filter>[community_building_neuroaesthetic_avg] &gt; 4</Filter>
+            <PolygonSymbolizer fill="#00ced9" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_neuroaesthetic_avg] &gt; 3 and [community_building_neuroaesthetic_avg] &lt;= 4</Filter>
+            <PolygonSymbolizer fill="#3cf0fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_neuroaesthetic_avg] &gt; 2 and [community_building_neuroaesthetic_avg] &lt;= 3</Filter>
+            <PolygonSymbolizer fill="#7df4fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_neuroaesthetic_avg] &gt; 1 and [community_building_neuroaesthetic_avg] &lt;= 2</Filter>
+            <PolygonSymbolizer fill="#bbf7fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_building_neuroaesthetic_avg] &lt;= 1</Filter>
+            <PolygonSymbolizer fill="#fafafa" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="community_local_significance_total">
         <Rule>
             <Filter>[community_local_significance_total] &gt;= 100</Filter>
@@ -1061,6 +1193,138 @@
         <Rule>
             <Filter>[community_local_significance_total] = 1</Filter>
             <PolygonSymbolizer fill="#ffe8a9" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="community_streetscape_hominess_avg">
+        <Rule>
+            <Filter>[community_streetscape_hominess_avg] &gt; 4</Filter>
+            <PolygonSymbolizer fill="#00d924" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_hominess_avg] &gt; 3 and [community_streetscape_hominess_avg] &lt;= 4</Filter>
+            <PolygonSymbolizer fill="#3efa5e" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_hominess_avg] &gt; 2 and [community_streetscape_hominess_avg] &lt;= 3</Filter>
+            <PolygonSymbolizer fill="#7dfa92" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_hominess_avg] &gt; 1 and [community_streetscape_hominess_avg] &lt;= 2</Filter>
+            <PolygonSymbolizer fill="#a8fab5" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_hominess_avg] &lt;= 1</Filter>
+            <PolygonSymbolizer fill="#fafafa" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="community_streetscape_fascination_avg">
+        <Rule>
+            <Filter>[community_streetscape_fascination_avg] &gt; 4</Filter>
+            <PolygonSymbolizer fill="#b300fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_fascination_avg] &gt; 3 and [community_streetscape_fascination_avg] &lt;= 4</Filter>
+            <PolygonSymbolizer fill="#c33efa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_fascination_avg] &gt; 2 and [community_streetscape_fascination_avg] &lt;= 3</Filter>
+            <PolygonSymbolizer fill="#d97dfa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_fascination_avg] &gt; 1 and [community_streetscape_fascination_avg] &lt;= 2</Filter>
+            <PolygonSymbolizer fill="#e8bbfa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_fascination_avg] &lt;= 1</Filter>
+            <PolygonSymbolizer fill="#fafafa" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="community_streetscape_coherence_avg">
+        <Rule>
+            <Filter>[community_streetscape_coherence_avg] &gt; 4</Filter>
+            <PolygonSymbolizer fill="#005efa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_coherence_avg] &gt; 3 and [community_streetscape_coherence_avg] &lt;= 4</Filter>
+            <PolygonSymbolizer fill="#3e86fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_coherence_avg] &gt; 2 and [community_streetscape_coherence_avg] &lt;= 3</Filter>
+            <PolygonSymbolizer fill="#7dabfa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_coherence_avg] &gt; 1 and [community_streetscape_coherence_avg] &lt;= 2</Filter>
+            <PolygonSymbolizer fill="#bbd3fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_coherence_avg] &lt;= 1</Filter>
+            <PolygonSymbolizer fill="#fafafa" />
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
+    <Style name="community_streetscape_neuroaesthetic_avg">
+        <Rule>
+            <Filter>[community_streetscape_neuroaesthetic_avg] &gt; 4</Filter>
+            <PolygonSymbolizer fill="#00ced9" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_neuroaesthetic_avg] &gt; 3 and [community_streetscape_neuroaesthetic_avg] &lt;= 4</Filter>
+            <PolygonSymbolizer fill="#3cf0fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_neuroaesthetic_avg] &gt; 2 and [community_streetscape_neuroaesthetic_avg] &lt;= 3</Filter>
+            <PolygonSymbolizer fill="#7df4fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_neuroaesthetic_avg] &gt; 1 and [community_streetscape_neuroaesthetic_avg] &lt;= 2</Filter>
+            <PolygonSymbolizer fill="#bbf7fa" />
+        </Rule>
+        <Rule>
+            <Filter>[community_streetscape_neuroaesthetic_avg] &lt;= 1</Filter>
+            <PolygonSymbolizer fill="#fafafa" />
         </Rule>
 
         <Rule>

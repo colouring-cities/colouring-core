@@ -332,7 +332,7 @@ def process_status(status, decision_date):
         print("Status was too long and was skipped:", status)
         return {
             "status": "Processing failed",
-            "status_explanation_note": "status was unusally long and it was imposible to save it",
+            "status_explanation_note": "status was unusually long and it was impossible to save it",
         }
     if status in [
         "Submitted",

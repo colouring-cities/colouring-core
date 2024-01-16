@@ -204,6 +204,15 @@ dd {
     margin-bottom: 50px;
 }
 
+.slider-average{
+    float: right;
+    padding-right: 12px;
+}
+
+.slider-score {
+    font-size: 13px !important;
+}
+
 .date-picker {
     margin-left: 10px;
     max-width: 400px;
