@@ -380,7 +380,6 @@ const LAYER_QUERIES = {
         SELECT
             geometry_id,
             CASE
-                WHEN typology_style_period IS NOT NULL THEN  typology_style_period
                 WHEN date_year >= 43 AND date_year < 410 THEN '43AD-410 (Roman)'
                 WHEN date_year >= 410 AND date_year < 1485 THEN '410-1485 (Medieval)'
                 WHEN date_year >= 1485 AND date_year < 1603 THEN '1485-1603 (Tudor)'
@@ -392,6 +391,7 @@ const LAYER_QUERIES = {
                 WHEN date_year >= 1946 AND date_year <= 1979 THEN '1946-1979 (Post war)'
                 WHEN date_year >= 1980 AND date_year <= 1999 THEN '1980-1999 (Late 20th Century)'
                 WHEN date_year >= 2000 AND date_year <= 2025 THEN '2000-2025 (Early 21st Century)'
+                WHEN typology_style_period IS NOT NULL THEN  typology_style_period
             END AS typology_style_period
         FROM
             buildings
