@@ -39,12 +39,13 @@ if(!allLayersCacheSwitch) {
         ['base_light', 'base_night', 'base_night_outlines', 'base_boroughs'].includes(tileset) && z <= 18;
 }
 
+const MIN_ZOOM_FOR_RENDERING_TILES = 9
+
 const tileCache = new TileCache(
     process.env.TILECACHE_PATH,
     {
         tilesets: getBuildingLayerNames(),
-        minZoom: 9,
-        maxZoom: 19,
+        minZoom: MIN_ZOOM_FOR_RENDERING_TILES,
         scales: [1, 2]
     },
     shouldCacheFn,
@@ -69,7 +70,12 @@ function stitchOrRenderBuildingTile(tileParams: TileParams, dataParams: any): Pr
 }
 
 function renderTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
-    if (isOutsideExtent(tileParams, EXTENT_BBOX)) {
+    if (isOutsideExtent(tileParams, EXTENT_BBOX) || tileParams.z < MIN_ZOOM_FOR_RENDERING_TILES) {
+        // if tiles are on lower zoom level then producing/caching is expected
+        // then we should short-circuit tile generation
+        // otherwise tile would be generated and not cached
+
+        // also, tiles outside EXTENT_BBOX are not to be produced
         return createBlankTile();
     }
 
