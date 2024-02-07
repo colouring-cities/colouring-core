@@ -53,11 +53,6 @@ interface CacheDomain {
     minZoom: number;
 
     /**
-     * The highest zoom level to cache
-     */
-    maxZoom: number;
-
-    /**
      * An array of scale factors to cache
      */
     scales: number[];
@@ -137,7 +132,6 @@ class TileCache {
     private shouldUseCache(tileParams: TileParams): boolean {
         return this.cacheDomain.tilesets.includes(tileParams.tileset) &&
             this.cacheDomain.minZoom <= tileParams.z &&
-            this.cacheDomain.maxZoom >= tileParams.z &&
             this.cacheDomain.scales.includes(tileParams.scale) &&
             (this.shouldCacheFn == undefined || this.shouldCacheFn(tileParams));
     }
