@@ -126,6 +126,10 @@
     top: 517px;
 }
 
+.openstreetmap-switcher {
+    top: 557px;
+}
+
 .map-switcher-inline {
     border-radius: 4px;
     /*background: #FFC0CB;*/
