@@ -137,7 +137,7 @@ export const buildingUserFields = {
     community_building_worth_keeping: {
         perUser: true,
         category: Category.Community,
-        title: "Would you like to see this **type** of building kept?",
+        title: "Do you think this **type** of building is worth keeping?",
         tooltip: "Please tick the box if you think this kind of building should be kept by our towns and cities for the future?",
         example: true,
     },
@@ -177,8 +177,8 @@ export const buildingUserFields = {
     community_building_worth_keeping_based_on: {
         perUser: true,
         category: Category.Community,
-        title: "Are your answers above based on:",
-        tooltip: "What are your answers to the above questions based on, please select an answer.",
+        title: "How well do you know this building?",
+        tooltip: "What are your answers to the questions below based on, please select an answer.",
         example: "",
         items: [
             "Local knowledge of the building",
@@ -258,37 +258,37 @@ export const buildingUserFields = {
     
     community_building_hominess: {
         category: Category.Community,
-        title: "Hominess - How homey and relaxing does the building’s exterior feel to you?",
+        title: "Hominess of the building’s exterior.",
         tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
     community_building_coherence: {
         category: Category.Community,
-        title: "Coherence - How coherent and well-organized does the building’s exterior feel to you?",
+        title: "Coherence of the building's exterior",
         tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
     community_building_fascination: {
         category: Category.Community,
-        title: "Fascination - How fascinating and complex does the building’s exterior feel to you?",
+        title: "Fascination of the building's exterior",
         tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
     community_streetscape_hominess: {
         category: Category.Community,
-        title: "Hominess - How homey and relaxing does the streetscape feel to you?",
+        title: "Hominess of the surrounding streetscape.",
         tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
     community_streetscape_coherence: {
         category: Category.Community,
-        title: "Coherence - How coherent and well-organized does the streetscape feel to you?",
+        title: "Coherence of the surrounding streetscape.",
         tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
     community_streetscape_fascination: {
         category: Category.Community,
-        title: "Fascination - How fascinating and complex does the streetscape feel to you?",
+        title: "Fascination of the surrounding streetscape.",
         tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
