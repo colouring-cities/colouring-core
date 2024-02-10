@@ -99,7 +99,7 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/C.-Ethical-framework-and-ethics-policies",
+                to: "https://github.com/colouring-cities/manual/wiki/F1.-ETHICAL-FRAMEWORK-and-ethics-policies",
                 text: "Ethical Framework",
                 external: true
             }
