@@ -111,15 +111,20 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     style={{zIndex: 50}}
                 >
                     <CityBaseMapLayer theme={darkLightTheme} />
-                    <BuildingBaseLayer theme={darkLightTheme} />
+                    <OpenStreetMapLayer/>
                 </Pane>
 
                 <Pane
                     name='cc-overlay-pane-shown-behind-buildings'
-                    style={{zIndex: 199}}
+                    style={{zIndex: 190}}
                 >
-                    <ConservationAreaBoundaryLayer/>
-                    <OpenStreetMapLayer/>
+                </Pane>
+
+                <Pane
+                    name={'cc-base-building-pane'}
+                    style={{zIndex: 195}}
+                >
+                    <BuildingBaseLayer theme={darkLightTheme} />
                 </Pane>
 
                 {
@@ -134,6 +139,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     name='cc-overlay-pane'
                     style={{zIndex: 300}}
                 >
+                    <ConservationAreaBoundaryLayer/>
                     <CityBoundaryLayer/>
                     <HistoricDataLayer revisionId={revisionId} />
                     <HistoricMapLayer revisionId={revisionId} />
