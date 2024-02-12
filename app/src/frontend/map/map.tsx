@@ -119,6 +119,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     style={{zIndex: 199}}
                 >
                     <ConservationAreaBoundaryLayer/>
+                    <OpenStreetMapLayer/>
                 </Pane>
 
                 {
@@ -137,7 +138,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <HistoricDataLayer revisionId={revisionId} />
                     <HistoricMapLayer revisionId={revisionId} />
                     <AerialPhotosMapLayer revisionId={revisionId} />
-                    <OpenStreetMapLayer/>
                     <BoroughBoundaryLayer/>
                     <ParcelBoundaryLayer/>
                     <FloodBoundaryLayer/>
