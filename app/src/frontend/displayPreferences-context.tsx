@@ -46,6 +46,10 @@ interface DisplayPreferencesContextState {
     aerialPhotosMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     aerialPhotosMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
+    openStreetMap: LayerEnablementState;
+    openStreetMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    openStreetMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
     darkLightTheme: MapTheme;
     darkLightThemeSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     darkLightThemeSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -103,6 +107,10 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     aerialPhotosMapSwitch: stub,
     aerialPhotosMapSwitchOnClick: undefined,
 
+    openStreetMap: undefined,
+    openStreetMapSwitch: stub,
+    openStreetMapSwitchOnClick: undefined,
+
     darkLightTheme: undefined,
     darkLightThemeSwitch: stub,
     darkLightThemeSwitchOnClick: undefined,
@@ -125,6 +133,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultHistoricData = 'disabled'
     const defaultHistoricMap = 'disabled'
     const defaultaerialPhotosMap = 'disabled'
+    const defaultOpenStreetMap = 'disabled'
     const defaultShowLayerSelection = 'disabled'
     const [vista, setVista] = useState<LayerEnablementState>(defaultVista);
     const [flood, setFlood] = useState<LayerEnablementState>(defaultFlood);
@@ -136,6 +145,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [historicData, setHistoricData] = useState<LayerEnablementState>(defaultHistoricData);
     const [historicMap, setHistoricMap] = useState<LayerEnablementState>(defaultHistoricMap);
     const [aerialPhotosMap, setaerialPhotosMap] = useState<LayerEnablementState>(defaultHistoricMap);
+    const [openStreetMap, setOpenStreetMapMap] = useState<LayerEnablementState>(defaultOpenStreetMap);
     const [darkLightTheme, setDarkLightTheme] = useState<MapTheme>('night');
     const [showLayerSelection, setShowLayerSelection] = useState<LayerEnablementState>(defaultShowLayerSelection);
 
@@ -192,6 +202,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             return true;
         }
         if(aerialPhotosMap != defaultaerialPhotosMap) {
+            return true;
+        }
+        if(openStreetMap != defaultOpenStreetMap) {
             return true;
         }
         //darkLightTheme not handled here
@@ -354,6 +367,21 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         setaerialPhotosMap(newHistoric);
     }
 
+    const openStreetMapSwitch = useCallback(
+        (e) => {
+            flipOpenStreetMap(e);
+        },
+        [openStreetMap],
+    )
+    const openStreetMapSwitchOnClick = (e) => {
+        flipOpenStreetMap(e)
+    }
+    function flipOpenStreetMap(e) {
+        e.preventDefault();
+        const newOpenStreetMap = (openStreetMap === 'enabled')? 'disabled' : 'enabled';
+        setOpenStreetMapMap(newOpenStreetMap);
+    }
+
     const darkLightThemeSwitch = useCallback(
         (e) => {
             flipDarkLightTheme(e)
@@ -424,6 +452,10 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             aerialPhotosMap,
             aerialPhotosMapSwitch,
             aerialPhotosMapSwitchOnClick,
+
+            openStreetMap,
+            openStreetMapSwitch,
+            openStreetMapSwitchOnClick,
 
             darkLightTheme,
             darkLightThemeSwitch,
