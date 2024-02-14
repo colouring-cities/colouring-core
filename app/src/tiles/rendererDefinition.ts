@@ -40,12 +40,14 @@ if(!allLayersCacheSwitch) {
 }
 
 const MIN_ZOOM_FOR_RENDERING_TILES = 9
+const MAX_ZOOM_FOR_RENDERING_TILES = 19
 
 const tileCache = new TileCache(
     process.env.TILECACHE_PATH,
     {
         tilesets: getBuildingLayerNames(),
         minZoom: MIN_ZOOM_FOR_RENDERING_TILES,
+        maxZoom: MAX_ZOOM_FOR_RENDERING_TILES,
         scales: [1, 2]
     },
     shouldCacheFn,
@@ -70,8 +72,11 @@ function stitchOrRenderBuildingTile(tileParams: TileParams, dataParams: any): Pr
 }
 
 function renderTile(tileParams: TileParams, dataParams: any): Promise<Tile> {
-    if (isOutsideExtent(tileParams, EXTENT_BBOX) || tileParams.z < MIN_ZOOM_FOR_RENDERING_TILES) {
-        // if tiles are on lower zoom level then producing/caching is expected
+    if (isOutsideExtent(tileParams, EXTENT_BBOX) 
+        || tileParams.z < MIN_ZOOM_FOR_RENDERING_TILES
+        || tileParams.z > MAX_ZOOM_FOR_RENDERING_TILES
+        ) {
+        // if tiles are outside cache zoom level then producing/caching is expected
         // then we should short-circuit tile generation
         // otherwise tile would be generated and not cached
 
