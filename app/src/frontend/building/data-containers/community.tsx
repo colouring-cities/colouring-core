@@ -308,6 +308,15 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
                 <hr/>
+                <LogicalDataEntryYesOnlyWithExplanation
+                    slug='community_school_project_data'
+                    title={buildingUserFields.community_school_project_data.title}
+                    tooltip={buildingUserFields.community_school_project_data.tooltip}
+                    value={props.building.community_school_project_data}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                />
+                <hr/>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
                     <i className="source-url">Click <a href={"/"+props.mode+"/planning/"+props.building.building_id}>here</a> for 'Planning Controls' to see status of planning applications or to record if you think this building is likely to be demolished/significantly altered.</i>
                 </div>

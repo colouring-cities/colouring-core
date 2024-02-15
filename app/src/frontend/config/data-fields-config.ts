@@ -240,6 +240,13 @@ export const buildingUserFields = {
             "Seeing an image of the streetscape"
         ]
     },
+    community_school_project_data: {
+        perUser: true,
+        category: Category.Community,
+        title: "Are you entering this data as part of a school project?",
+        tooltip: "Please tick here if data is being entered as part of a school project.",
+        example: true,
+    },
 
     community_local_significance: {
         perUser: true,
