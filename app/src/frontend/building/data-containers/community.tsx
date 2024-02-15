@@ -139,6 +139,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         {'Showing building streetscape hominess.'}
                     </button>
                 }
+                <hr/>
                 <h4 className="subtitle">Coherence</h4>
                 <label>
                     How coherent and well-organized does the building feel to you?
