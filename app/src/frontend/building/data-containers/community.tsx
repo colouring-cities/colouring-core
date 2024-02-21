@@ -75,9 +75,11 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
             <DataEntryGroup name="Community views on buildings & streetscapes" collapsed={subcat==null || subcat!="1"}>
-                <label>
-                    This section collects data on what people feel about the exterior of a building and the surrounding streetscape.
-                </label>
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                    <i>
+                        This section collects data on what people feel about the exterior of a building and the surrounding streetscape.
+                    </i>
+                </div>
                 <SelectDataEntry
                     slug='community_building_worth_keeping_based_on'
                     title={buildingUserFields.community_building_worth_keeping_based_on.title}
@@ -358,7 +360,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 /> */}
             </DataEntryGroup>
             <DataEntryGroup name="Buildings in community use" collapsed={subcat==null || subcat!="2"}>
-                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
                     <i>
                         Here we are collecting information on the location of buildings used for community activities so we can track loss of/additions to community space over time.
                     </i>
@@ -379,24 +381,34 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
-                <LogicalDataEntry
-                    slug='community_activities'
-                    title={dataFields.community_activities.title}
-                    tooltip={dataFields.community_activities.tooltip}
-                    value={props.building.community_activities}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    mode={props.mode}
-                />
-                <LogicalDataEntry
-                    slug='community_activities_always'
-                    title={dataFields.community_activities_always.title}
-                    tooltip={dataFields.community_activities_always.tooltip}
-                    value={props.building.community_activities_always}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    mode={props.mode}
-                />
+                {
+                    props.building.community_activities_current === false &&
+                    <>
+                        <LogicalDataEntry
+                            slug='community_activities'
+                            title={dataFields.community_activities.title}
+                            tooltip={dataFields.community_activities.tooltip}
+                            value={props.building.community_activities}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            mode={props.mode}
+                        />
+                    </>
+                }
+                {
+                    props.building.community_activities_current === true &&
+                    <>
+                        <LogicalDataEntry
+                            slug='community_activities_always'
+                            title={dataFields.community_activities_always.title}
+                            tooltip={dataFields.community_activities_always.tooltip}
+                            value={props.building.community_activities_always}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            mode={props.mode}
+                        />
+                    </>
+                }
                 <SelectDataEntry
                     slug='community_public_ownership'
                     title={dataFields.community_public_ownership.title}

@@ -137,14 +137,14 @@ export const buildingUserFields = {
     community_building_worth_keeping: {
         perUser: true,
         category: Category.Community,
-        title: "Do you think this **type** of building is worth keeping?",
+        title: "Do you have any other comments on this **type** of building?",
         tooltip: "Please tick the box if you think this kind of building should be kept by our towns and cities for the future?",
         example: true,
     },
     community_building_worth_keeping_reasons: {
         perUser: true,
         category: Category.Community,
-        title: 'I think this because: (Please tick one or more boxes below)',
+        title: 'I think that: (Please tick all that apply)',
         fields: {
             internal_layout: {
                 title: 'The internal layout works well.'
@@ -177,27 +177,27 @@ export const buildingUserFields = {
     community_building_worth_keeping_based_on: {
         perUser: true,
         category: Category.Community,
-        title: "How well do you know this building?",
+        title: "How well do you know this building and its streetscape?",
         tooltip: "What are your answers to the questions below based on, please select an answer.",
         example: "",
         items: [
-            "Local knowledge of the building",
-            "Professional interest in this kind of building",
+            "Local knowledge",
+            "Professional interest",
             "A general impression from passing through the area",
-            "Seeing an image of the building"
+            "Seeing an image"
         ]
     },
     community_streetscape_worth_keeping: {
         perUser: true,
         category: Category.Community,
-        title: "Do you think this **type** of streetscape is worth keeping?",
+        title: "Do you have any other comments on this **type** of streetscape?",
         tooltip: "Please tick the box if you think this kind of streetscape should be kept by our towns and cities for the future?",
         example: true,
     },
     community_streetscape_worth_keeping_reasons: {
         perUser: true,
         category: Category.Community,
-        title: 'I think this because: (Please tick one or more boxes below)',
+        title: 'I think that: (Please tick all that apply)',
         fields: {
             street_feel: {
                 title: "The street feels nice to walk down."
@@ -1529,13 +1529,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     community_activities: {
         category: Category.Community,
-        title: "If not, has the building been used for community activities in the past?",
+        title: "If not, has it been used for community activities in the past?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
     community_activities_always: {
         category: Category.Community,
-        title: "If in community use now, has it always been used for community activities?",
+        title: "If yes, has it always been used for community activities?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },

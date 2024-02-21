@@ -325,19 +325,19 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 ]
             }
         },
-        {
-            mapStyle: 'community_building_neuroaesthetic_avg',
-            legend: {
-                title: 'Building neuroaesthetic score',
-                elements: [
-                    { color: '#fafafa', text: '1' },
-                    { color: '#bbf7fa', text: '2' },
-                    { color: '#7df4fa', text: '3' },
-                    { color: '#3cf0fa', text: '4' },
-                    { color: '#00ced9', text: '5' },
-                ]
-            }
-        },
+        // {
+        //     mapStyle: 'community_building_neuroaesthetic_avg',
+        //     legend: {
+        //         title: 'Building neuroaesthetic score',
+        //         elements: [
+        //             { color: '#fafafa', text: '1' },
+        //             { color: '#bbf7fa', text: '2' },
+        //             { color: '#7df4fa', text: '3' },
+        //             { color: '#3cf0fa', text: '4' },
+        //             { color: '#00ced9', text: '5' },
+        //         ]
+        //     }
+        // },
         {
             mapStyle: 'community_streetscape_hominess_avg',
             legend: {
@@ -377,19 +377,19 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 ]
             }
         },
-        {
-            mapStyle: 'community_streetscape_neuroaesthetic_avg',
-            legend: {
-                title: 'Streetscape neuroaesthetic score',
-                elements: [
-                    { color: '#fafafa', text: '1' },
-                    { color: '#bbf7fa', text: '2' },
-                    { color: '#7df4fa', text: '3' },
-                    { color: '#3cf0fa', text: '4' },
-                    { color: '#00ced9', text: '5' },
-                ]
-            }
-        },
+        // {
+        //     mapStyle: 'community_streetscape_neuroaesthetic_avg',
+        //     legend: {
+        //         title: 'Streetscape neuroaesthetic score',
+        //         elements: [
+        //             { color: '#fafafa', text: '1' },
+        //             { color: '#bbf7fa', text: '2' },
+        //             { color: '#7df4fa', text: '3' },
+        //             { color: '#3cf0fa', text: '4' },
+        //             { color: '#00ced9', text: '5' },
+        //         ]
+        //     }
+        // },
         {
             mapStyle: 'typology_likes',
             legend: {
