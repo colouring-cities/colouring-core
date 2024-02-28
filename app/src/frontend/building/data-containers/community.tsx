@@ -94,7 +94,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <hr/>
                 <h4 className="subtitle">Hominess</h4>
                 <label>
-                    How homey and relaxing does the building feel to you? 
+                    How homey and relaxing does the exterior of this building feel to you? 
                 </label>
                 <SliderDataEntry
                     slug="community_building_hominess"
@@ -144,7 +144,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <hr/>
                 <h4 className="subtitle">Coherence</h4>
                 <label>
-                    How coherent and well-organized does the building feel to you?
+                    How coherent and well-organized does the exterior of this building feel to you?
                 </label>
                 <SliderDataEntry
                     slug="community_building_coherence"
@@ -194,7 +194,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <hr />
                 <h4 className="subtitle">Fascination</h4>
                 <label>
-                    How fascinating and complex does the building feel to you?
+                    How fascinating and complex does the exterior of this building feel to you?
                 </label>
                 <SliderDataEntry
                     slug="community_building_fascination"
