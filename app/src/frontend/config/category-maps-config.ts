@@ -344,10 +344,10 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 title: 'Streetscape hominess',
                 elements: [
                     { color: '#fafafa', text: '1' },
-                    { color: '#a8fab5', text: '2' },
-                    { color: '#7dfa92', text: '3' },
-                    { color: '#3efa5e', text: '4' },
-                    { color: '#00d924', text: '5' },
+                    { color: '#d8faa8', text: '2' },
+                    { color: '#c6fa7d', text: '3' },
+                    { color: '#acfa3e', text: '4' },
+                    { color: '#7fd900', text: '5' },
                 ]
             }
         },
@@ -357,10 +357,10 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 title: 'Streetscape coherence',
                 elements: [
                     { color: '#fafafa', text: '1' },
-                    { color: '#bbd3fa', text: '2' },
-                    { color: '#7dabfa', text: '3' },
-                    { color: '#3e86fa', text: '4' },
-                    { color: '#005efa', text: '5' },
+                    { color: '#bbe5fa', text: '2' },
+                    { color: '#7dcefa', text: '3' },
+                    { color: '#3ebbfa', text: '4' },
+                    { color: '#00a7fa', text: '5' },
                 ]
             }
         },
@@ -370,10 +370,10 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 title: 'Streetscape fascination',
                 elements: [
                     { color: '#fafafa', text: '1' },
-                    { color: '#e8bbfa', text: '2' },
-                    { color: '#d97dfa', text: '3' },
-                    { color: '#c33efa', text: '4' },
-                    { color: '#b300fa', text: '5' },
+                    { color: '#fabbf5', text: '2' },
+                    { color: '#fa7df0', text: '3' },
+                    { color: '#fa3eea', text: '4' },
+                    { color: '#fa00e5', text: '5' },
                 ]
             }
         },

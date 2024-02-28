@@ -1209,19 +1209,19 @@
     <Style name="community_streetscape_hominess_avg">
         <Rule>
             <Filter>[community_streetscape_hominess_avg] &gt; 4</Filter>
-            <PolygonSymbolizer fill="#00d924" />
+            <PolygonSymbolizer fill="#7fd900" />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_hominess_avg] &gt; 3 and [community_streetscape_hominess_avg] &lt;= 4</Filter>
-            <PolygonSymbolizer fill="#3efa5e" />
+            <PolygonSymbolizer fill="#acfa3e" />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_hominess_avg] &gt; 2 and [community_streetscape_hominess_avg] &lt;= 3</Filter>
-            <PolygonSymbolizer fill="#7dfa92" />
+            <PolygonSymbolizer fill="#c6fa7d" />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_hominess_avg] &gt; 1 and [community_streetscape_hominess_avg] &lt;= 2</Filter>
-            <PolygonSymbolizer fill="#a8fab5" />
+            <PolygonSymbolizer fill="#d8faa8" />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_hominess_avg] &lt;= 1</Filter>
@@ -1242,19 +1242,19 @@
     <Style name="community_streetscape_fascination_avg">
         <Rule>
             <Filter>[community_streetscape_fascination_avg] &gt; 4</Filter>
-            <PolygonSymbolizer fill="#b300fa" />
+            <PolygonSymbolizer fill="#fa00e5" />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_fascination_avg] &gt; 3 and [community_streetscape_fascination_avg] &lt;= 4</Filter>
-            <PolygonSymbolizer fill="#c33efa" />
+            <PolygonSymbolizer fill="#fa3eea" />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_fascination_avg] &gt; 2 and [community_streetscape_fascination_avg] &lt;= 3</Filter>
-            <PolygonSymbolizer fill="#d97dfa" />
+            <PolygonSymbolizer fill="#fa7df0" />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_fascination_avg] &gt; 1 and [community_streetscape_fascination_avg] &lt;= 2</Filter>
-            <PolygonSymbolizer fill="#e8bbfa" />
+            <PolygonSymbolizer fill="#fabbf5" />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_fascination_avg] &lt;= 1</Filter>
@@ -1275,19 +1275,19 @@
     <Style name="community_streetscape_coherence_avg">
         <Rule>
             <Filter>[community_streetscape_coherence_avg] &gt; 4</Filter>
-            <PolygonSymbolizer fill="#005efa" />
+            <PolygonSymbolizer fill="#00a7fa" />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_coherence_avg] &gt; 3 and [community_streetscape_coherence_avg] &lt;= 4</Filter>
-            <PolygonSymbolizer fill="#3e86fa" />
+            <PolygonSymbolizer fill="#3ebbfa" />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_coherence_avg] &gt; 2 and [community_streetscape_coherence_avg] &lt;= 3</Filter>
-            <PolygonSymbolizer fill="#7dabfa" />
+            <PolygonSymbolizer fill="#7dcefa" />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_coherence_avg] &gt; 1 and [community_streetscape_coherence_avg] &lt;= 2</Filter>
-            <PolygonSymbolizer fill="#bbd3fa" />
+            <PolygonSymbolizer fill="#bbe5fa" />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_coherence_avg] &lt;= 1</Filter>
