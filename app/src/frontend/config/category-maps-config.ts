@@ -357,10 +357,10 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 title: 'Streetscape coherence',
                 elements: [
                     { color: '#fafafa', text: '1' },
-                    { color: '#bbe5fa', text: '2' },
-                    { color: '#7dcefa', text: '3' },
-                    { color: '#3ebbfa', text: '4' },
-                    { color: '#00a7fa', text: '5' },
+                    { color: '#bbf5fa', text: '2' },
+                    { color: '#7df0fa', text: '3' },
+                    { color: '#3eeafa', text: '4' },
+                    { color: '#00e5fa', text: '5' },
                 ]
             }
         },
@@ -370,10 +370,10 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 title: 'Streetscape fascination',
                 elements: [
                     { color: '#fafafa', text: '1' },
-                    { color: '#fabbf5', text: '2' },
-                    { color: '#fa7df0', text: '3' },
-                    { color: '#fa3eea', text: '4' },
-                    { color: '#fa00e5', text: '5' },
+                    { color: '#fabbd3', text: '2' },
+                    { color: '#fa7dad', text: '3' },
+                    { color: '#fa3e86', text: '4' },
+                    { color: '#fa0060', text: '5' },
                 ]
             }
         },
