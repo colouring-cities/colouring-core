@@ -291,7 +291,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Building hominess',
                 elements: [
-                    { color: '#fafafa', text: '1' },
+                    { color: '#e1fce5', text: '1' },
                     { color: '#a8fab5', text: '2' },
                     { color: '#7dfa92', text: '3' },
                     { color: '#3efa5e', text: '4' },
@@ -304,7 +304,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Building coherence',
                 elements: [
-                    { color: '#fafafa', text: '1' },
+                    { color: '#e1ebfc', text: '1' },
                     { color: '#bbd3fa', text: '2' },
                     { color: '#7dabfa', text: '3' },
                     { color: '#3e86fa', text: '4' },
@@ -317,7 +317,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Building fascination',
                 elements: [
-                    { color: '#fafafa', text: '1' },
+                    { color: '#f1e1f7', text: '1' },
                     { color: '#e8bbfa', text: '2' },
                     { color: '#d97dfa', text: '3' },
                     { color: '#c33efa', text: '4' },
@@ -343,7 +343,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Streetscape hominess',
                 elements: [
-                    { color: '#fafafa', text: '1' },
+                    { color: '#f0fcde', text: '1' },
                     { color: '#d8faa8', text: '2' },
                     { color: '#c6fa7d', text: '3' },
                     { color: '#acfa3e', text: '4' },
@@ -356,7 +356,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Streetscape coherence',
                 elements: [
-                    { color: '#fafafa', text: '1' },
+                    { color: '#e3fafc', text: '1' },
                     { color: '#bbf5fa', text: '2' },
                     { color: '#7df0fa', text: '3' },
                     { color: '#3eeafa', text: '4' },
@@ -369,7 +369,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Streetscape fascination',
                 elements: [
-                    { color: '#fafafa', text: '1' },
+                    { color: '#fce8f0', text: '1' },
                     { color: '#fabbd3', text: '2' },
                     { color: '#fa7dad', text: '3' },
                     { color: '#fa3e86', text: '4' },

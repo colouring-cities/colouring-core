@@ -1052,7 +1052,7 @@
         </Rule>
         <Rule>
             <Filter>[community_building_hominess_avg] &lt;= 1</Filter>
-            <PolygonSymbolizer fill="#fafafa" />
+            <PolygonSymbolizer fill="#e1fce5" />
         </Rule>
 
         <Rule>
@@ -1085,7 +1085,7 @@
         </Rule>
         <Rule>
             <Filter>[community_building_fascination_avg] &lt;= 1</Filter>
-            <PolygonSymbolizer fill="#fafafa" />
+            <PolygonSymbolizer fill="#f1e1f7" />
         </Rule>
 
         <Rule>
@@ -1118,7 +1118,7 @@
         </Rule>
         <Rule>
             <Filter>[community_building_coherence_avg] &lt;= 1</Filter>
-            <PolygonSymbolizer fill="#fafafa" />
+            <PolygonSymbolizer fill="#e1ebfc" />
         </Rule>
 
         <Rule>
@@ -1225,7 +1225,7 @@
         </Rule>
         <Rule>
             <Filter>[community_streetscape_hominess_avg] &lt;= 1</Filter>
-            <PolygonSymbolizer fill="#fafafa" />
+            <PolygonSymbolizer fill="#f0fcde" />
         </Rule>
 
         <Rule>
@@ -1258,7 +1258,7 @@
         </Rule>
         <Rule>
             <Filter>[community_streetscape_fascination_avg] &lt;= 1</Filter>
-            <PolygonSymbolizer fill="#fafafa" />
+            <PolygonSymbolizer fill="#fce8f0" />
         </Rule>
 
         <Rule>
@@ -1287,11 +1287,11 @@
         </Rule>
         <Rule>
             <Filter>[community_streetscape_coherence_avg] &gt; 1 and [community_streetscape_coherence_avg] &lt;= 2</Filter>
-            <PolygonSymbolizer fill="#bbf5fa" />
+            <PolygonSymbolizer fill="#bbf5fa " />
         </Rule>
         <Rule>
             <Filter>[community_streetscape_coherence_avg] &lt;= 1</Filter>
-            <PolygonSymbolizer fill="#fafafa" />
+            <PolygonSymbolizer fill="#e3fafc" />
         </Rule>
 
         <Rule>
