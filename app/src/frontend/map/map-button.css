@@ -122,12 +122,16 @@
     top: 477px;
 }
 
-.aerial-photos-map-switcher {
+.historical-footprints-switcher {
     top: 517px;
 }
 
-.openstreetmap-switcher {
+.aerial-photos-map-switcher {
     top: 557px;
+}
+
+.openstreetmap-switcher {
+    top: 597px;
 }
 
 .map-switcher-inline {

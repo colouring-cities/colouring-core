@@ -27,6 +27,7 @@ import { BuildingBaseLayer } from './layers/building-base-layer';
 import { BuildingDataLayer } from './layers/building-data-layer';
 import { BuildingNumbersLayer } from './layers/building-numbers-layer';
 import { BuildingHighlightLayer } from './layers/building-highlight-layer';
+import { HistoricalFootprintsLayer } from './layers/historical-footprints-layer';
 
 import { Legend } from './legend';
 import SearchBox from './search-box';
@@ -39,6 +40,7 @@ import { ConservationAreaSwitcher } from './conservation-switcher';
 import { HistoricDataSwitcher } from './historic-data-switcher';
 import { HistoricMapSwitcher } from './historic-map-switcher';
 import { AerialPhotosMapSwitcher } from './aerial-photos-map-switcher';
+import { HistoricalFootprintsSwitcher } from './historical-footprints-switcher';
 import { OpenStreetMapSwitcher } from './openstreetmap-switcher';
 import { VistaSwitcher } from './vista-switcher';
 import { CreativeSwitcher } from './creative-switcher';
@@ -150,6 +152,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <VistaBoundaryLayer/>
                     <HousingBoundaryLayer/>
                     <CreativeBoundaryLayer/>
+                    <HistoricalFootprintsLayer/>
                     <BuildingNumbersLayer revisionId={revisionId} />
                     {
                         selectedBuildingId &&
@@ -185,6 +188,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                             <HistoricMapSwitcher/>
                             <HistoricDataSwitcher/>
                             <AerialPhotosMapSwitcher/>
+                            <HistoricalFootprintsSwitcher/>
                             <OpenStreetMapSwitcher/>
                             <VistaSwitcher />
                             <HousingSwitcher />
