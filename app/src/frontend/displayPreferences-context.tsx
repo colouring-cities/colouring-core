@@ -332,6 +332,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             if (historicMap === 'enabled') {
                 flipHistoricMap(e);
             }
+            if (historicalFootprints === 'enabled') {
+                flipHistoricFootprints(e);
+            }
             flipHistoricData(e);
         },
         [historicData, historicMap],
@@ -349,6 +352,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         (e) => {
             if (historicData === 'enabled') {
                 flipHistoricData(e);
+            }
+            if (historicalFootprints === 'enabled') {
+                flipHistoricFootprints(e);
             }
             flipHistoricMap(e);
         },
@@ -380,6 +386,12 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
 
     const historicalFootprintsSwitch = useCallback(
         (e) => {
+            if (historicMap === 'enabled') {
+                flipHistoricMap(e);
+            }
+            if (historicData === 'enabled') {
+                flipHistoricData(e);
+            }
             flipHistoricFootprints(e)
         },
         [historicalFootprints],
