@@ -96,9 +96,6 @@ function renderHTML(context, data, req, res) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8" />
 
-        <meta name="twitter:card"              content="summary" />
-        <meta name="twitter:site"              content="@colouringlondon" />
-
         <meta property="og:url"                content="https://colouring.london" />
         <meta property="og:type"               content="website" />
         <meta property="og:title"              content="Colouring ${config.cityName}" />
