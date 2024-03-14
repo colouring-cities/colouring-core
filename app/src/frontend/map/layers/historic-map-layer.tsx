@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { TileLayer } from 'react-leaflet';
+import { LayerEnablementState } from '../../config/map-config';
+import { BuildingBaseLayerAllZoom } from './building-base-layer-all-zoom';
 import { useDisplayPreferences } from '../../displayPreferences-context';
+import { BuildingDataLayer } from './building-data-layer';
 
 export function HistoricMapLayer({revisionId}: {revisionId: string}) {
     const { historicMap } = useDisplayPreferences();

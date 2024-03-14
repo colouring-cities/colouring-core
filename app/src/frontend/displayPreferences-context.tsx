@@ -42,18 +42,6 @@ interface DisplayPreferencesContextState {
     historicMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     historicMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
-    aerialPhotosMap: LayerEnablementState;
-    aerialPhotosMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
-    aerialPhotosMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
-
-    historicalFootprints: LayerEnablementState;
-    historicalFootprintsSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
-    historicalFootprintsSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
-
-    openStreetMap: LayerEnablementState;
-    openStreetMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
-    openStreetMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
-
     darkLightTheme: MapTheme;
     darkLightThemeSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     darkLightThemeSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -107,18 +95,6 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     historicMapSwitch: stub,
     historicMapSwitchOnClick: undefined,
 
-    aerialPhotosMap: undefined,
-    aerialPhotosMapSwitch: stub,
-    aerialPhotosMapSwitchOnClick: undefined,
-
-    historicalFootprints: undefined,
-    historicalFootprintsSwitch: stub,
-    historicalFootprintsSwitchOnClick: undefined,
-
-    openStreetMap: undefined,
-    openStreetMapSwitch: stub,
-    openStreetMapSwitchOnClick: undefined,
-
     darkLightTheme: undefined,
     darkLightThemeSwitch: stub,
     darkLightThemeSwitchOnClick: undefined,
@@ -140,9 +116,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultConservation = 'disabled'
     const defaultHistoricData = 'disabled'
     const defaultHistoricMap = 'disabled'
-    const defaultaerialPhotosMap = 'disabled'
-    const defaultHistoricalFootprints = 'disabled'
-    const defaultOpenStreetMap = 'disabled'
     const defaultShowLayerSelection = 'disabled'
     const [vista, setVista] = useState<LayerEnablementState>(defaultVista);
     const [flood, setFlood] = useState<LayerEnablementState>(defaultFlood);
@@ -153,9 +126,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [conservation, setConservation] = useState<LayerEnablementState>(defaultConservation);
     const [historicData, setHistoricData] = useState<LayerEnablementState>(defaultHistoricData);
     const [historicMap, setHistoricMap] = useState<LayerEnablementState>(defaultHistoricMap);
-    const [aerialPhotosMap, setaerialPhotosMap] = useState<LayerEnablementState>(defaultHistoricMap);
-    const [historicalFootprints, setHistoricalFootprints] = useState<LayerEnablementState>(defaultHistoricalFootprints);
-    const [openStreetMap, setOpenStreetMapMap] = useState<LayerEnablementState>(defaultOpenStreetMap);
     const [darkLightTheme, setDarkLightTheme] = useState<MapTheme>('night');
     const [showLayerSelection, setShowLayerSelection] = useState<LayerEnablementState>(defaultShowLayerSelection);
 
@@ -177,7 +147,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             setConservation(defaultConservation);
             setHistoricData(defaultHistoricData);
             setHistoricMap(defaultHistoricMap);
-            setHistoricalFootprints(defaultHistoricalFootprints);
             setShowLayerSelection(defaultShowLayerSelection); // reset layers + hiding this panel is integrated into one action
             //setDarkLightTheme('night'); // reset only layers
     },
@@ -210,15 +179,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             return true;
         }
         if(historicMap != defaultHistoricMap) {
-            return true;
-        }
-        if(aerialPhotosMap != defaultaerialPhotosMap) {
-            return true;
-        }
-        if(historicalFootprints != defaultHistoricalFootprints) {
-            return true;
-        }
-        if(openStreetMap != defaultOpenStreetMap) {
             return true;
         }
         //darkLightTheme not handled here
@@ -333,14 +293,11 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const historicDataSwitch = useCallback(
         (e) => {
             if (historicMap === 'enabled') {
-                flipHistoricMap(e);
-            }
-            if (historicalFootprints === 'enabled') {
-                flipHistoricFootprints(e);
+                fliphistoricMap(e);
             }
             flipHistoricData(e);
         },
-        [historicData, historicMap, historicalFootprints],
+        [historicData, historicMap],
     )
     const historicDataSwitchOnClick = (e) => {
         flipHistoricData(e)
@@ -356,72 +313,17 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             if (historicData === 'enabled') {
                 flipHistoricData(e);
             }
-            if (historicalFootprints === 'enabled') {
-                flipHistoricFootprints(e);
-            }
-            flipHistoricMap(e);
+            fliphistoricMap(e);
         },
-        [historicMap, historicData, historicalFootprints],
+        [historicMap, historicData],
     )
     const historicMapSwitchOnClick = (e) => {
-        flipHistoricMap(e)
+        fliphistoricMap(e)
     }
-    function flipHistoricMap(e) {
+    function fliphistoricMap(e) {
         e.preventDefault();
         const newHistoric = (historicMap === 'enabled')? 'disabled' : 'enabled';
-        
         setHistoricMap(newHistoric);
-    }
-
-    const aerialPhotosMapSwitch = useCallback(
-        (e) => {
-            flipaerialPhotosMap(e);
-        },
-        [aerialPhotosMap],
-    )
-    const aerialPhotosMapSwitchOnClick = (e) => {
-        flipaerialPhotosMap(e)
-    }
-    function flipaerialPhotosMap(e) {
-        e.preventDefault();
-        const newHistoric = (aerialPhotosMap === 'enabled')? 'disabled' : 'enabled';
-        setaerialPhotosMap(newHistoric);
-    }
-
-    const historicalFootprintsSwitch = useCallback(
-        (e) => {
-            if (historicMap === 'enabled') {
-                flipHistoricMap(e);
-            }
-            if (historicData === 'enabled') {
-                flipHistoricData(e);
-            }
-            flipHistoricFootprints(e)
-        },
-        [historicMap, historicData, historicalFootprints],
-    )
-    const historicalFootprintsSwitchOnClick = (e) => {
-        flipHistoricFootprints(e)
-    }
-    function flipHistoricFootprints(e) {
-        e.preventDefault();
-        const newFootprints = (historicalFootprints === 'enabled')? 'disabled' : 'enabled';
-        setHistoricalFootprints(newFootprints);
-    }
-
-    const openStreetMapSwitch = useCallback(
-        (e) => {
-            flipOpenStreetMap(e);
-        },
-        [openStreetMap],
-    )
-    const openStreetMapSwitchOnClick = (e) => {
-        flipOpenStreetMap(e)
-    }
-    function flipOpenStreetMap(e) {
-        e.preventDefault();
-        const newOpenStreetMap = (openStreetMap === 'enabled')? 'disabled' : 'enabled';
-        setOpenStreetMapMap(newOpenStreetMap);
     }
 
     const darkLightThemeSwitch = useCallback(
@@ -490,18 +392,6 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             historicMap,
             historicMapSwitch,
             historicMapSwitchOnClick,
-
-            aerialPhotosMap,
-            aerialPhotosMapSwitch,
-            aerialPhotosMapSwitchOnClick,
-
-            historicalFootprints,
-            historicalFootprintsSwitch,
-            historicalFootprintsSwitchOnClick,
-
-            openStreetMap,
-            openStreetMapSwitch,
-            openStreetMapSwitchOnClick,
 
             darkLightTheme,
             darkLightThemeSwitch,
