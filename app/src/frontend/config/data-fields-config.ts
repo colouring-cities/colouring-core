@@ -137,14 +137,14 @@ export const buildingUserFields = {
     community_building_worth_keeping: {
         perUser: true,
         category: Category.Community,
-        title: "Would you like to see this **type** of building kept?",
+        title: "Do you have any other comments on this **type** of building?",
         tooltip: "Please tick the box if you think this kind of building should be kept by our towns and cities for the future?",
         example: true,
     },
     community_building_worth_keeping_reasons: {
         perUser: true,
         category: Category.Community,
-        title: 'I think this because: (Please tick one or more boxes below)',
+        title: 'I think that: (Please tick all that apply)',
         fields: {
             internal_layout: {
                 title: 'The internal layout works well.'
@@ -177,27 +177,27 @@ export const buildingUserFields = {
     community_building_worth_keeping_based_on: {
         perUser: true,
         category: Category.Community,
-        title: "Are your answers above based on:",
-        tooltip: "What are your answers to the above questions based on, please select an answer.",
+        title: "How well do you know this building and its streetscape?",
+        tooltip: "What are your answers to the questions below based on, please select an answer.",
         example: "",
         items: [
-            "Local knowledge of the building",
-            "Professional interest in this kind of building",
+            "Local knowledge",
+            "Professional interest",
             "A general impression from passing through the area",
-            "Seeing an image of the building"
+            "Seeing an image"
         ]
     },
     community_streetscape_worth_keeping: {
         perUser: true,
         category: Category.Community,
-        title: "Do you think this **type** of streetscape is worth keeping?",
+        title: "Do you have any other comments on this **type** of streetscape?",
         tooltip: "Please tick the box if you think this kind of streetscape should be kept by our towns and cities for the future?",
         example: true,
     },
     community_streetscape_worth_keeping_reasons: {
         perUser: true,
         category: Category.Community,
-        title: 'I think this because: (Please tick one or more boxes below)',
+        title: 'I think that: (Please tick all that apply)',
         fields: {
             street_feel: {
                 title: "The street feels nice to walk down."
@@ -240,6 +240,13 @@ export const buildingUserFields = {
             "Seeing an image of the streetscape"
         ]
     },
+    community_school_project_data: {
+        perUser: true,
+        category: Category.Community,
+        title: "Are you entering this data as part of a school project?",
+        tooltip: "Please tick here if data is being entered as part of a school project.",
+        example: true,
+    },
 
     community_local_significance: {
         perUser: true,
@@ -258,37 +265,37 @@ export const buildingUserFields = {
     
     community_building_hominess: {
         category: Category.Community,
-        title: "Hominess - How homey and relaxing does the building’s exterior feel to you?",
+        title: "Hominess of the building’s exterior.",
         tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
     community_building_coherence: {
         category: Category.Community,
-        title: "Coherence - How coherent and well-organized does the building’s exterior feel to you?",
+        title: "Coherence of the building's exterior",
         tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
     community_building_fascination: {
         category: Category.Community,
-        title: "Fascination - How fascinating and complex does the building’s exterior feel to you?",
+        title: "Fascination of the building's exterior",
         tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
     community_streetscape_hominess: {
         category: Category.Community,
-        title: "Hominess - How homey and relaxing does the streetscape feel to you?",
+        title: "Hominess of the surrounding streetscape.",
         tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
     community_streetscape_coherence: {
         category: Category.Community,
-        title: "Coherence - How coherent and well-organized does the streetscape feel to you?",
+        title: "Coherence of the surrounding streetscape.",
         tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
     community_streetscape_fascination: {
         category: Category.Community,
-        title: "Fascination - How fascinating and complex does the streetscape feel to you?",
+        title: "Fascination of the surrounding streetscape.",
         tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
@@ -1522,13 +1529,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     community_activities: {
         category: Category.Community,
-        title: "If not, has the building been used for community activities in the past?",
+        title: "If not, has it been used for community activities in the past?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
     community_activities_always: {
         category: Category.Community,
-        title: "If in community use now, has it always been used for community activities?",
+        title: "If yes, has it always been used for community activities?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },

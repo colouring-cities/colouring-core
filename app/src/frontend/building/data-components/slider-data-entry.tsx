@@ -51,7 +51,7 @@ const SliderDataEntry: React.FunctionComponent<SliderDataEntryProps> = (props) =
                 />
             </div>
             <p className="slider-score">
-                Your score: {props.value?props.value:"None"} <span className="slider-average">Average: {props.average} ({props.votes} votes)</span>
+                Your score: {props.value?props.value:"Not yet entered"} <span className="slider-average">Average: {props.average} ({props.votes} voters)</span>
             </p>
         </Fragment>
     );
