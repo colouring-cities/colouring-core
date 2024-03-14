@@ -74,9 +74,27 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
-            <DataEntryGroup name="Community views on buildings" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Community views on buildings & streetscapes" collapsed={subcat==null || subcat!="1"}>
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                    <i>
+                        This section collects data on what people feel about the exterior of a building and the surrounding streetscape.
+                    </i>
+                </div>
+                <SelectDataEntry
+                    slug='community_building_worth_keeping_based_on'
+                    title={buildingUserFields.community_building_worth_keeping_based_on.title}
+                    value={props.building.community_building_worth_keeping_based_on}
+                    options={buildingUserFields.community_building_worth_keeping_based_on.items}
+                    tooltip={buildingUserFields.community_building_worth_keeping_based_on.tooltip}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                    copy={props.copy}
+                    required={buildingResponseRequired}
+                />
+                <hr/>
+                <h4 className="subtitle">Hominess</h4>
                 <label>
-                    What do you feel about the exterior of this building?
+                    How homey and relaxing does the exterior of this building feel to you? 
                 </label>
                 <SliderDataEntry
                     slug="community_building_hominess"
@@ -96,9 +114,38 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         {'Click to show building hominess.'}
                     </button>
                     :
-                    <></>
+                    <button disabled className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button-disabled`}>
+                        {'Showing building hominess.'}
+                    </button>
                 }
                 <hr />
+                <SliderDataEntry
+                    slug="community_streetscape_hominess"
+                    title={buildingUserFields.community_streetscape_hominess.title}
+                    tooltip={buildingUserFields.community_streetscape_hominess.tooltip}
+                    value={props.building.community_streetscape_hominess}
+                    votes={props.building.community_streetscape_hominess_count}
+                    average={props.building.community_streetscape_hominess_avg}
+                    min={1}
+                    max={5}
+                    dots={true}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                />
+                {(props.mapColourScale != "community_streetscape_hominess_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStreetscapeHominessMapStyle}>
+                        {'Click to show streetscape hominess.'}
+                    </button>
+                    :
+                    <button disabled className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button-disabled`}>
+                        {'Showing building streetscape hominess.'}
+                    </button>
+                }
+                <hr/>
+                <h4 className="subtitle">Coherence</h4>
+                <label>
+                    How coherent and well-organized does the exterior of this building feel to you?
+                </label>
                 <SliderDataEntry
                     slug="community_building_coherence"
                     title={buildingUserFields.community_building_coherence.title}
@@ -111,16 +158,44 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     dots={true}
                     onChange={props.onChange}
                     mode={props.mode}
-
                 />
                 {(props.mapColourScale != "community_building_coherence_avg") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingCoherenceMapStyle}>
                         {'Click to show building coherence.'}
                     </button>
                     :
-                    <></>
+                    <button disabled className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button-disabled`}>
+                        {'Showing building coherence.'}
+                    </button>
                 }
                 <hr />
+                <SliderDataEntry
+                    slug="community_streetscape_coherence"
+                    title={buildingUserFields.community_streetscape_coherence.title}
+                    tooltip={buildingUserFields.community_streetscape_coherence.tooltip}
+                    value={props.building.community_streetscape_coherence}
+                    votes={props.building.community_streetscape_coherence_count}
+                    average={props.building.community_streetscape_coherence_avg}
+                    min={1}
+                    max={5}
+                    dots={true}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                />
+                {(props.mapColourScale != "community_streetscape_coherence_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStreetscapeCoherenceMapStyle}>
+                        {'Click to show streetscape coherence.'}
+                    </button>
+                    :
+                    <button disabled className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button-disabled`}>
+                        {'Showing streetscape coherence.'}
+                    </button>
+                }
+                <hr />
+                <h4 className="subtitle">Fascination</h4>
+                <label>
+                    How fascinating and complex does the exterior of this building feel to you?
+                </label>
                 <SliderDataEntry
                     slug="community_building_fascination"
                     title={buildingUserFields.community_building_fascination.title}
@@ -139,19 +214,32 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         {'Click to show building fascination.'}
                     </button>
                     :
-                    <></>
+                    <button disabled className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button-disabled`}>
+                        {'Showing building fascination.'}
+                    </button>
                 }
                 <hr/>
-                {console.log(props.building.community_building_neuroaesthetic_avg)}
-                <label className='average-score'>
-                    Average neuroaesthetic score for this building: <span className='float-right'><strong>{props.building.community_building_neuroaesthetic_avg}</strong></span>
-                </label>
-                {(props.mapColourScale != "community_building_neuroaesthetic_avg") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingAverageMapStyle}>
-                        {"Click to show the building's average score."}
+                <SliderDataEntry
+                    slug="community_streetscape_fascination"
+                    title={buildingUserFields.community_streetscape_fascination.title}
+                    tooltip={buildingUserFields.community_streetscape_fascination.tooltip}
+                    value={props.building.community_streetscape_fascination}
+                    votes={props.building.community_streetscape_fascination_count}
+                    average={props.building.community_streetscape_fascination_avg}
+                    min={1}
+                    max={5}
+                    dots={true}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                />
+                {(props.mapColourScale != "community_streetscape_fascination_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingFascinationMapStyle}>
+                        {'Click to show streetscape fascination.'}
                     </button>
                     :
-                    <></>
+                    <button disabled className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button-disabled`}>
+                        {'Showing streetscape fascination.'}
+                    </button>
                 }
                 <hr/>
                 <LogicalDataEntryYesOnlyWithExplanation
@@ -166,13 +254,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
 
                 />
-                {/* {(props.mapColourScale != "typology_likes") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLikesMapStyle}>
-                        {'Click to show liked non-residential buildings.'}
-                    </button>
-                    :
-                    <></>
-                } */}
                 {
                     props.building.community_building_worth_keeping === true &&
                     <>
@@ -194,110 +275,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                     </>
                 }
-                <SelectDataEntry
-                    slug='community_building_worth_keeping_based_on'
-                    title={buildingUserFields.community_building_worth_keeping_based_on.title}
-                    value={props.building.community_building_worth_keeping_based_on}
-                    options={buildingUserFields.community_building_worth_keeping_based_on.items}
-                    tooltip={buildingUserFields.community_building_worth_keeping_based_on.tooltip}
-                    onChange={props.onChange}
-                    mode={props.mode}
-                    copy={props.copy}
-                    required={buildingResponseRequired}
-                />
-                <div className={`alert alert-danger`} role="alert" style={{ fontSize: 13}}>
-                    <i>
-                        Please note: You cannot save your entry unless you have filled in the above question.
-                    </i>
-                </div>
-                <hr/>
-                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
-                    <i>
-                        Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of buildings make people feel.
-                    </i>
-                </div>
-                <hr/>
-                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
-                    <i className="source-url">Click <a href={"/"+props.mode+"/planning/"+props.building.building_id}>here</a> for 'Planning Controls' to see status of planning applications or to record if you think this building is likely to be demolished/significantly altered.</i>
-                </div>
-            </DataEntryGroup>
-            <DataEntryGroup name="Community views on streetscapes" collapsed={subcat==null || subcat!="2"}>
-                <label>
-                    What do you feel about the streetscape around this building?
-                </label>
-                <SliderDataEntry
-                    slug="community_streetscape_hominess"
-                    title={buildingUserFields.community_streetscape_hominess.title}
-                    tooltip={buildingUserFields.community_streetscape_hominess.tooltip}
-                    value={props.building.community_streetscape_hominess}
-                    votes={props.building.community_streetscape_hominess_count}
-                    average={props.building.community_streetscape_hominess_avg}
-                    min={1}
-                    max={5}
-                    dots={true}
-                    onChange={props.onChange}
-                    mode={props.mode}
-                />
-                {(props.mapColourScale != "community_streetscape_hominess_avg") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStreetscapeHominessMapStyle}>
-                        {'Click to show streetscape hominess.'}
-                    </button>
-                    :
-                    <></>
-                }
-                <hr />
-                <SliderDataEntry
-                    slug="community_streetscape_coherence"
-                    title={buildingUserFields.community_streetscape_coherence.title}
-                    tooltip={buildingUserFields.community_streetscape_coherence.tooltip}
-                    value={props.building.community_streetscape_coherence}
-                    votes={props.building.community_streetscape_coherence_count}
-                    average={props.building.community_streetscape_coherence_avg}
-                    min={1}
-                    max={5}
-                    dots={true}
-                    onChange={props.onChange}
-                    mode={props.mode}
-                />
-                {(props.mapColourScale != "community_streetscape_coherence_avg") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStreetscapeCoherenceMapStyle}>
-                        {'Click to show streetscape coherence.'}
-                    </button>
-                    :
-                    <></>
-                }
-                <hr />
-                <SliderDataEntry
-                    slug="community_streetscape_fascination"
-                    title={buildingUserFields.community_streetscape_fascination.title}
-                    tooltip={buildingUserFields.community_streetscape_fascination.tooltip}
-                    value={props.building.community_streetscape_fascination}
-                    votes={props.building.community_streetscape_fascination_count}
-                    average={props.building.community_streetscape_fascination_avg}
-                    min={1}
-                    max={5}
-                    dots={true}
-                    onChange={props.onChange}
-                    mode={props.mode}
-                />
-                {(props.mapColourScale != "community_streetscape_fascination_avg") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingFascinationMapStyle}>
-                        {'Click to show streetscape fascination.'}
-                    </button>
-                    :
-                    <></>
-                }
-                <hr/>
-                <label className='average-score'>
-                    Average neuroaesthetic score for the streetscape: <span className='float-right'><strong>{props.building.community_streetscape_neuroaesthetic_avg}</strong></span>
-                </label>
-                {(props.mapColourScale != "community_streetscape_neuroaesthetic_avg") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStreetscapeAverageMapStyle}>
-                        {"Click to show the screetscape's average score."}
-                    </button>
-                    :
-                    <></>
-                }
                 <hr/>
                 <LogicalDataEntryYesOnlyWithExplanation
                     slug='community_streetscape_worth_keeping'
@@ -311,13 +288,6 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
 
                 />
-                {/* {(props.mapColourScale != "typology_likes") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLikesMapStyle}>
-                        {'Click to show liked non-residential buildings.'}
-                    </button>
-                    :
-                    <></>
-                } */}
                 {
                     props.building.community_streetscape_worth_keeping === true &&
                     <>
@@ -340,7 +310,44 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
                 <hr/>
-                <SelectDataEntry
+                <LogicalDataEntryYesOnlyWithExplanation
+                    slug='community_school_project_data'
+                    title={buildingUserFields.community_school_project_data.title}
+                    tooltip={buildingUserFields.community_school_project_data.tooltip}
+                    value={props.building.community_school_project_data}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                />
+                <hr/>
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                    <i className="source-url">Click <a href={"/"+props.mode+"/planning/"+props.building.building_id}>here</a> for 'Planning Controls' to see status of planning applications or to record if you think this building is likely to be demolished/significantly altered.</i>
+                </div>
+                {/* <label className='average-score'>
+                    Average neuroaesthetic score for this building: <span className='float-right'><strong>{props.building.community_building_neuroaesthetic_avg}</strong></span>
+                </label>
+                {(props.mapColourScale != "community_building_neuroaesthetic_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingAverageMapStyle}>
+                        {"Click to show the building's average score."}
+                    </button>
+                    :
+                    <></>
+                }
+                <hr/> */}
+                {/* 
+                }
+                <hr />
+                {<label className='average-score'>
+                    Average neuroaesthetic score for the streetscape: <span className='float-right'><strong>{props.building.community_streetscape_neuroaesthetic_avg}</strong></span>
+                </label>
+                {(props.mapColourScale != "community_streetscape_neuroaesthetic_avg") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStreetscapeAverageMapStyle}>
+                        {"Click to show the screetscape's average score."}
+                    </button>
+                    :
+                    <></>
+                } 
+                <hr/>
+                {/* <SelectDataEntry
                     slug='community_streetscape_worth_keeping_based_on'
                     title={buildingUserFields.community_streetscape_worth_keeping_based_on.title}
                     value={props.building.community_streetscape_worth_keeping_based_on}
@@ -350,21 +357,10 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     mode={props.mode}
                     copy={props.copy}
                     required={streetscapeResponseRequired}
-                />
-                <div className={`alert alert-danger`} role="alert" style={{ fontSize: 13}}>
-                    <i>
-                        Please note: You cannot save your entry unless you have filled in the above question.
-                    </i>
-                </div>
-                <hr/>
-                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
-                    <i>
-                        Thank you for for your feedback! Your answers will help planners, designers and developers better understand how the form and decoration of streetscapes make people feel.
-                    </i>
-                </div>
+                /> */}
             </DataEntryGroup>
             <DataEntryGroup name="Buildings in community use" collapsed={subcat==null || subcat!="2"}>
-                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
                     <i>
                         Here we are collecting information on the location of buildings used for community activities so we can track loss of/additions to community space over time.
                     </i>
@@ -385,24 +381,34 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     mode={props.mode}
                 />
-                <LogicalDataEntry
-                    slug='community_activities'
-                    title={dataFields.community_activities.title}
-                    tooltip={dataFields.community_activities.tooltip}
-                    value={props.building.community_activities}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    mode={props.mode}
-                />
-                <LogicalDataEntry
-                    slug='community_activities_always'
-                    title={dataFields.community_activities_always.title}
-                    tooltip={dataFields.community_activities_always.tooltip}
-                    value={props.building.community_activities_always}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    mode={props.mode}
-                />
+                {
+                    props.building.community_activities_current === false &&
+                    <>
+                        <LogicalDataEntry
+                            slug='community_activities'
+                            title={dataFields.community_activities.title}
+                            tooltip={dataFields.community_activities.tooltip}
+                            value={props.building.community_activities}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            mode={props.mode}
+                        />
+                    </>
+                }
+                {
+                    props.building.community_activities_current === true &&
+                    <>
+                        <LogicalDataEntry
+                            slug='community_activities_always'
+                            title={dataFields.community_activities_always.title}
+                            tooltip={dataFields.community_activities_always.tooltip}
+                            value={props.building.community_activities_always}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            mode={props.mode}
+                        />
+                    </>
+                }
                 <SelectDataEntry
                     slug='community_public_ownership'
                     title={dataFields.community_public_ownership.title}
