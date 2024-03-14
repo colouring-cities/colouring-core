@@ -340,7 +340,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             }
             flipHistoricData(e);
         },
-        [historicData, historicMap],
+        [historicData, historicMap, historicalFootprints],
     )
     const historicDataSwitchOnClick = (e) => {
         flipHistoricData(e)
@@ -361,7 +361,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             }
             flipHistoricMap(e);
         },
-        [historicMap, historicData],
+        [historicMap, historicData, historicalFootprints],
     )
     const historicMapSwitchOnClick = (e) => {
         flipHistoricMap(e)
@@ -369,6 +369,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     function flipHistoricMap(e) {
         e.preventDefault();
         const newHistoric = (historicMap === 'enabled')? 'disabled' : 'enabled';
+        
         setHistoricMap(newHistoric);
     }
 
@@ -397,7 +398,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             }
             flipHistoricFootprints(e)
         },
-        [historicalFootprints],
+        [historicMap, historicData, historicalFootprints],
     )
     const historicalFootprintsSwitchOnClick = (e) => {
         flipHistoricFootprints(e)
