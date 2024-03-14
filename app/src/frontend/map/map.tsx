@@ -16,6 +16,8 @@ import { BoroughLabelLayer } from './layers/borough-label-layer';
 import { ParcelBoundaryLayer } from './layers/parcel-boundary-layer';
 import { HistoricDataLayer } from './layers/historic-data-layer';
 import { HistoricMapLayer } from './layers/historic-map-layer';
+import { AerialPhotosMapLayer } from './layers/aerial-photos-map-layer';
+import { OpenStreetMapLayer } from './layers/openstreetmap-layer';
 import { FloodBoundaryLayer } from './layers/flood-boundary-layer';
 import { ConservationAreaBoundaryLayer } from './layers/conservation-boundary-layer';
 import { VistaBoundaryLayer } from './layers/vista-boundary-layer';
@@ -25,6 +27,7 @@ import { BuildingBaseLayer } from './layers/building-base-layer';
 import { BuildingDataLayer } from './layers/building-data-layer';
 import { BuildingNumbersLayer } from './layers/building-numbers-layer';
 import { BuildingHighlightLayer } from './layers/building-highlight-layer';
+import { HistoricalFootprintsLayer } from './layers/historical-footprints-layer';
 
 import { Legend } from './legend';
 import SearchBox from './search-box';
@@ -36,6 +39,9 @@ import { FloodSwitcher } from './flood-switcher';
 import { ConservationAreaSwitcher } from './conservation-switcher';
 import { HistoricDataSwitcher } from './historic-data-switcher';
 import { HistoricMapSwitcher } from './historic-map-switcher';
+import { AerialPhotosMapSwitcher } from './aerial-photos-map-switcher';
+import { HistoricalFootprintsSwitcher } from './historical-footprints-switcher';
+import { OpenStreetMapSwitcher } from './openstreetmap-switcher';
 import { VistaSwitcher } from './vista-switcher';
 import { CreativeSwitcher } from './creative-switcher';
 import { HousingSwitcher } from './housing-switcher';
@@ -91,7 +97,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
             <MapContainer
                 center={initialMapViewport.position}
                 zoom={initialMapViewport.zoom}
-                minZoom={9}
+                minZoom={7}
                 maxZoom={18}
                 doubleClickZoom={false}
                 zoomControl={false}
@@ -107,14 +113,20 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     style={{zIndex: 50}}
                 >
                     <CityBaseMapLayer theme={darkLightTheme} />
-                    <BuildingBaseLayer theme={darkLightTheme} />
+                    <OpenStreetMapLayer/>
                 </Pane>
 
                 <Pane
                     name='cc-overlay-pane-shown-behind-buildings'
-                    style={{zIndex: 199}}
+                    style={{zIndex: 190}}
                 >
-                    <ConservationAreaBoundaryLayer/>
+                </Pane>
+
+                <Pane
+                    name={'cc-base-building-pane'}
+                    style={{zIndex: 195}}
+                >
+                    <BuildingBaseLayer theme={darkLightTheme} />
                 </Pane>
 
                 {
@@ -129,15 +141,18 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     name='cc-overlay-pane'
                     style={{zIndex: 300}}
                 >
+                    <ConservationAreaBoundaryLayer/>
                     <CityBoundaryLayer/>
                     <HistoricDataLayer revisionId={revisionId} />
                     <HistoricMapLayer revisionId={revisionId} />
+                    <AerialPhotosMapLayer revisionId={revisionId} />
                     <BoroughBoundaryLayer/>
                     <ParcelBoundaryLayer/>
                     <FloodBoundaryLayer/>
                     <VistaBoundaryLayer/>
                     <HousingBoundaryLayer/>
                     <CreativeBoundaryLayer/>
+                    <HistoricalFootprintsLayer/>
                     <BuildingNumbersLayer revisionId={revisionId} />
                     {
                         selectedBuildingId &&
@@ -172,6 +187,9 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                             <ConservationAreaSwitcher/>
                             <HistoricMapSwitcher/>
                             <HistoricDataSwitcher/>
+                            <AerialPhotosMapSwitcher/>
+                            <HistoricalFootprintsSwitcher/>
+                            <OpenStreetMapSwitcher/>
                             <VistaSwitcher />
                             <HousingSwitcher />
                             <CreativeSwitcher />

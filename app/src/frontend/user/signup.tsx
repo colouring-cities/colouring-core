@@ -38,7 +38,7 @@ export const SignUp: React.FC = () => {
                 <InfoBox msg={msgName}>
                     <br/>Please <a href="https://discuss.colouring.london/">discuss
                     suggestions for improvements</a> and <a
-                        href="https://github.com/colouring-cities/colouring-core/issues">
+                        href="https://github.com/colouring-cities/colouring-london/issues">
                     report issues or problems</a>.
                 </InfoBox>
                 <p>
