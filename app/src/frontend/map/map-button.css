@@ -158,6 +158,10 @@
     background-color: paleturquoise !important;
 }
 
+.key-button-disabled {
+    background-color: lightgrey !important;
+}
+
 .sub-subcategory-button {
     width: 395px;
 }

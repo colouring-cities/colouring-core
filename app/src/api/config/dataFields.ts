@@ -1257,6 +1257,11 @@ export const buildingUserAttributesConfig = valueType<DataFieldConfig>()({
         edit: true,
         verify: false
     },
+    community_school_project_data: {
+        perUser: true,
+        edit: true,
+        verify: false
+    },
     community_local_significance: {
         perUser: true,
         edit: true,
