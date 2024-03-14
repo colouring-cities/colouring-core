@@ -3,14 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { GeoJSON, TileLayer } from 'react-leaflet';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 import { apiGet } from '../../apiHelpers';
-import { BuildingBaseLayerAllZoom } from './building-base-layer-all-zoom';
 
 export function HistoricalFootprintsLayer({}) {
     const [boundaryGeojson, setBoundaryGeojson] = useState<GeoJsonObject>(null);
     const { historicalFootprints } = useDisplayPreferences();
 
     useEffect(() => {
-        apiGet('/geometries/historial_footprints.geojson')
+        apiGet('/geometries/historical_footprints.geojson')
             .then(data => setBoundaryGeojson(data as GeoJsonObject));
     }, []);
 

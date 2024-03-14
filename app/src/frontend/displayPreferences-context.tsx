@@ -215,6 +215,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         if(aerialPhotosMap != defaultaerialPhotosMap) {
             return true;
         }
+        if(historicalFootprints != defaultHistoricalFootprints) {
+            return true;
+        }
         if(openStreetMap != defaultOpenStreetMap) {
             return true;
         }
