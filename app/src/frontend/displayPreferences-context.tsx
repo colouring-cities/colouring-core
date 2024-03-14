@@ -46,6 +46,10 @@ interface DisplayPreferencesContextState {
     aerialPhotosMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     aerialPhotosMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
+    historicalFootprints: LayerEnablementState;
+    historicalFootprintsSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    historicalFootprintsSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
     openStreetMap: LayerEnablementState;
     openStreetMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     openStreetMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -107,6 +111,10 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     aerialPhotosMapSwitch: stub,
     aerialPhotosMapSwitchOnClick: undefined,
 
+    historicalFootprints: undefined,
+    historicalFootprintsSwitch: stub,
+    historicalFootprintsSwitchOnClick: undefined,
+
     openStreetMap: undefined,
     openStreetMapSwitch: stub,
     openStreetMapSwitchOnClick: undefined,
@@ -133,6 +141,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultHistoricData = 'disabled'
     const defaultHistoricMap = 'disabled'
     const defaultaerialPhotosMap = 'disabled'
+    const defaultHistoricalFootprints = 'disabled'
     const defaultOpenStreetMap = 'disabled'
     const defaultShowLayerSelection = 'disabled'
     const [vista, setVista] = useState<LayerEnablementState>(defaultVista);
@@ -145,6 +154,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [historicData, setHistoricData] = useState<LayerEnablementState>(defaultHistoricData);
     const [historicMap, setHistoricMap] = useState<LayerEnablementState>(defaultHistoricMap);
     const [aerialPhotosMap, setaerialPhotosMap] = useState<LayerEnablementState>(defaultHistoricMap);
+    const [historicalFootprints, setHistoricalFootprints] = useState<LayerEnablementState>(defaultHistoricalFootprints);
     const [openStreetMap, setOpenStreetMapMap] = useState<LayerEnablementState>(defaultOpenStreetMap);
     const [darkLightTheme, setDarkLightTheme] = useState<MapTheme>('night');
     const [showLayerSelection, setShowLayerSelection] = useState<LayerEnablementState>(defaultShowLayerSelection);
@@ -167,6 +177,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             setConservation(defaultConservation);
             setHistoricData(defaultHistoricData);
             setHistoricMap(defaultHistoricMap);
+            setHistoricalFootprints(defaultHistoricalFootprints);
             setShowLayerSelection(defaultShowLayerSelection); // reset layers + hiding this panel is integrated into one action
             //setDarkLightTheme('night'); // reset only layers
     },
@@ -202,6 +213,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             return true;
         }
         if(aerialPhotosMap != defaultaerialPhotosMap) {
+            return true;
+        }
+        if(historicalFootprints != defaultHistoricalFootprints) {
             return true;
         }
         if(openStreetMap != defaultOpenStreetMap) {
@@ -321,9 +335,12 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             if (historicMap === 'enabled') {
                 flipHistoricMap(e);
             }
+            if (historicalFootprints === 'enabled') {
+                flipHistoricFootprints(e);
+            }
             flipHistoricData(e);
         },
-        [historicData, historicMap],
+        [historicData, historicMap, historicalFootprints],
     )
     const historicDataSwitchOnClick = (e) => {
         flipHistoricData(e)
@@ -339,9 +356,12 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             if (historicData === 'enabled') {
                 flipHistoricData(e);
             }
+            if (historicalFootprints === 'enabled') {
+                flipHistoricFootprints(e);
+            }
             flipHistoricMap(e);
         },
-        [historicMap, historicData],
+        [historicMap, historicData, historicalFootprints],
     )
     const historicMapSwitchOnClick = (e) => {
         flipHistoricMap(e)
@@ -349,6 +369,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     function flipHistoricMap(e) {
         e.preventDefault();
         const newHistoric = (historicMap === 'enabled')? 'disabled' : 'enabled';
+        
         setHistoricMap(newHistoric);
     }
 
@@ -365,6 +386,27 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         e.preventDefault();
         const newHistoric = (aerialPhotosMap === 'enabled')? 'disabled' : 'enabled';
         setaerialPhotosMap(newHistoric);
+    }
+
+    const historicalFootprintsSwitch = useCallback(
+        (e) => {
+            if (historicMap === 'enabled') {
+                flipHistoricMap(e);
+            }
+            if (historicData === 'enabled') {
+                flipHistoricData(e);
+            }
+            flipHistoricFootprints(e)
+        },
+        [historicMap, historicData, historicalFootprints],
+    )
+    const historicalFootprintsSwitchOnClick = (e) => {
+        flipHistoricFootprints(e)
+    }
+    function flipHistoricFootprints(e) {
+        e.preventDefault();
+        const newFootprints = (historicalFootprints === 'enabled')? 'disabled' : 'enabled';
+        setHistoricalFootprints(newFootprints);
     }
 
     const openStreetMapSwitch = useCallback(
@@ -452,6 +494,10 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             aerialPhotosMap,
             aerialPhotosMapSwitch,
             aerialPhotosMapSwitchOnClick,
+
+            historicalFootprints,
+            historicalFootprintsSwitch,
+            historicalFootprintsSwitchOnClick,
 
             openStreetMap,
             openStreetMapSwitch,

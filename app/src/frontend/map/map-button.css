@@ -118,16 +118,20 @@
     top: 397px;
 }
 
-.parcel-switcher {
+.historical-footprints-switcher {
     top: 477px;
 }
 
-.aerial-photos-map-switcher {
+.parcel-switcher {
     top: 517px;
 }
 
-.openstreetmap-switcher {
+.aerial-photos-map-switcher {
     top: 557px;
+}
+
+.openstreetmap-switcher {
+    top: 597px;
 }
 
 .map-switcher-inline {
