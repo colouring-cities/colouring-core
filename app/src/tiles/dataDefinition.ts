@@ -564,7 +564,7 @@ const LAYER_QUERIES = {
     sust_aggregate_estimate_epc: `
         SELECT
             geometry_id,
-            sust_aggregate_estimate_epc
+            sust_aggregate_estimate_epc::text AS sust_aggregate_estimate_epc
         FROM
             buildings
         WHERE sust_aggregate_estimate_epc IS NOT NULL`,
