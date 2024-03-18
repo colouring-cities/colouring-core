@@ -323,13 +323,14 @@ def process_status(status, decision_date):
         "application invalid",
         "insufficient fee",
         "dismissed",
+        "rejected",
     ]:
         status = "Rejected"
-    if status.lower() in ["appeal received"]:
+    if status.lower() in ["appeal received", "appeal in progress"]:
         status = "Appeal In Progress"
-    if status.lower() in ["completed", "allowed", "approval"]:
+    if status.lower() in ["completed", "allowed", "approval", "approved"]:
         status = "Approved"
-    if status.lower() in ["lapsed"]:
+    if status.lower() in ["lapsed", "withdrawn"]:
         status = "Withdrawn"
     if len(status) > status_length_limit:
         print("Status was too long and was skipped:", status)
