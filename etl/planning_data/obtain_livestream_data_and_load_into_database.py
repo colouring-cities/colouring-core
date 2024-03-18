@@ -31,20 +31,17 @@ def main():
 
 
 def get_cursor_from_connection(connection):
-    #return None
     return connection.cursor()
 
 
 def execute_database_command(cursor, command, passed_values=None):
-    #return
-    if passed_values != None:
+    if passed_values is not None:
         cursor.execute(command, passed_values)
     else:
         cursor.execute(command)
 
 
 def get_connection():
-    #return None
     return psycopg2.connect(
         host=os.environ["PGHOST"],
         dbname=os.environ["PGDATABASE"],
@@ -214,6 +211,7 @@ def make_api_call(url, headers, json_data):
                 continue
             raise e
         except requests.exceptions.ReadTimeout as e:
+            print(e)
             sleep_before_retry("requests.exceptions.ReadTimeout", url, headers, json_data)
             continue
         except requests.exceptions.ChunkedEncodingError as e:
