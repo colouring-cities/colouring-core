@@ -4,7 +4,7 @@ import os
 import requests
 import psycopg2
 import address_data
-
+import time
 
 def main():
     connection = get_connection()
@@ -187,12 +187,37 @@ def query(search_after):
         json_data["search_after"] = search_after
 
     print(json_data)
-    return requests.post(
-        "https://planningdata.london.gov.uk/api-guest/applications/_search",
-        headers=headers,
-        json=json_data,
-    )
+    return make_api_call("https://planningdata.london.gov.uk/api-guest/applications/_search", headers, json_data)
 
+def make_api_call(url, headers, json_data):
+    while True:
+        try:
+            return requests.post(
+                url,
+                headers=headers,
+                json=json_data,
+            )
+        except requests.exceptions.ConnectionError as e:
+            print(e)
+            sleep_before_retry("requests.exceptions.ConnectionError", url, headers, json_data)
+            continue
+        except requests.exceptions.HTTPError as e:
+            print(e.response.status_code)
+            if e.response.status_code == 503:
+                sleep_before_retry("requests.exceptions.HTTPError", url, headers, json_data)
+                continue
+            raise e
+        except requests.exceptions.ReadTimeout as e:
+            sleep_before_retry("requests.exceptions.ReadTimeout", url, headers, json_data)
+            continue
+        except requests.exceptions.ChunkedEncodingError as e:
+            print(e)
+            sleep_before_retry("requests.exceptions.ChunkedEncodingError", url, headers, json_data)
+            continue
+
+def sleep_before_retry(message, url, headers, json_data):
+    time.sleep(10)
+    print(message, url, headers, json_data)
 
 def filepath():
     return os.path.dirname(os.path.realpath(__file__)) + os.sep + "data.json"
