@@ -297,6 +297,7 @@ def obtain_entry_link(provided_link, application_id):
             if ";" == provided_link[-1]:
                 return provided_link[:-1]
         return provided_link
+    application_id = str(application_id) # in some responses it is an integer
     if "Hackney" in application_id:
         # https://cl-staging.uksouth.cloudapp.azure.com/view/planning/1377846
         # Planning application ID: Hackney-2021_2491
