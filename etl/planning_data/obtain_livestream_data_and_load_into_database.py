@@ -8,8 +8,8 @@ import address_data
 
 def main():
     connection = get_connection()
-    cursor = connection.cursor()
-    cursor.execute("TRUNCATE planning_data")
+    cursor = get_cursor_from_connection(connection)
+    execute_database_command(cursor, "TRUNCATE planning_data")
 
     downloaded = 0
     last_sort = None
@@ -28,6 +28,25 @@ def main():
         search_after = last_sort
     connection.commit()
 
+def get_cursor_from_connection(connection):
+    #return None
+    return connection.cursor()
+
+def execute_database_command(cursor, command, passed_values=None):
+    #return
+    if passed_values != None:
+        cursor.execute(command, passed_values)
+    else:
+        cursor.execute(command)
+
+def get_connection():
+    #return None
+    return psycopg2.connect(
+        host=os.environ["PGHOST"],
+        dbname=os.environ["PGDATABASE"],
+        user=os.environ["PGUSER"],
+        password=os.environ["PGPASSWORD"],
+    )
 
 def load_data_into_database(cursor, data):
     if "timed_out" not in data:
@@ -175,15 +194,6 @@ def query(search_after):
     )
 
 
-def get_connection():
-    return psycopg2.connect(
-        host=os.environ["PGHOST"],
-        dbname=os.environ["PGDATABASE"],
-        user=os.environ["PGUSER"],
-        password=os.environ["PGPASSWORD"],
-    )
-
-
 def filepath():
     return os.path.dirname(os.path.realpath(__file__)) + os.sep + "data.json"
 
@@ -194,7 +204,7 @@ def insert_entry(cursor, e):
         application_url = None
         if e["application_url"] is not None:
             application_url = e["application_url"]
-        cursor.execute(
+        execute_database_command(cursor,
             """INSERT INTO
                 planning_data (planning_application_id, planning_application_link, description, registered_with_local_authority_date, days_since_registration_cached, decision_date, days_since_decision_date_cached, last_synced_date, status, status_before_aliasing, status_explanation_note, data_source, data_source_link, address, uprn)
             VALUES
