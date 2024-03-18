@@ -308,25 +308,25 @@ def obtain_entry_link(provided_link, application_id):
 
 def process_status(status, decision_date):
     status_length_limit = 50  # see migrations/034.planning_livestream_data.up.sql
-    if status in ["Application Under Consideration", "Application Received"]:
+    if status == None or status.lower() in ["null", "not_mapped"]:
+        status = "Unknown"
+    if status.lower() in ["application under consideration", "application received"]:
         if decision_date is None:
             status = "Submitted"
-    if status in [
-        "Refused",
-        "Refusal",
-        "Refusal (P)",
-        "Application Invalid",
-        "Insufficient Fee",
-        "Dismissed",
+    if status.lower() in [
+        "refused",
+        "refusal",
+        "refusal (p)",
+        "application invalid",
+        "insufficient fee",
+        "dismissed",
     ]:
         status = "Rejected"
-    if status == "Appeal Received":
+    if status.lower() in ["appeal received"]:
         status = "Appeal In Progress"
-    if status in ["Completed", "Allowed", "Approval"]:
+    if status.lower() in ["completed", "allowed", "approval"]:
         status = "Approved"
-    if status in [None, "NOT_MAPPED"]:
-        status = "Unknown"
-    if status in ["Lapsed"]:
+    if status.lower() in ["lapsed"]:
         status = "Withdrawn"
     if len(status) > status_length_limit:
         print("Status was too long and was skipped:", status)
@@ -351,7 +351,7 @@ def process_status(status, decision_date):
             "status": "Approved",
             "status_explanation_note": "preapproved application, local authority is unable to reject it",
         }
-    print("Unexpected status " + status)
+    print("Unexpected status <" + status + ">")
     if status not in [
         "Not Required",
         "SECS",
