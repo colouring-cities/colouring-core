@@ -250,6 +250,9 @@ def parse_date_string_into_date_object(incoming):
         date = datetime.datetime.strptime(
             incoming, "%Y-%m-%dT%H:%M:%S.%fZ"
         )  # '2022-08-08T20:07:22.238Z'
+    if date < datetime.datetime(1950, 1, 1): # not believable values
+        print("Unexpectedly early date, treating it as a missing date:", date)
+        date = None
     return date
 
 
