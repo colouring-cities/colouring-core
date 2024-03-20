@@ -4,12 +4,13 @@ import os
 import requests
 import psycopg2
 import address_data
+import time
 
 
 def main():
     connection = get_connection()
-    cursor = connection.cursor()
-    cursor.execute("TRUNCATE planning_data")
+    cursor = get_cursor_from_connection(connection)
+    execute_database_command(cursor, "TRUNCATE planning_data")
 
     downloaded = 0
     last_sort = None
@@ -27,6 +28,26 @@ def main():
             break
         search_after = last_sort
     connection.commit()
+
+
+def get_cursor_from_connection(connection):
+    return connection.cursor()
+
+
+def execute_database_command(cursor, command, passed_values=None):
+    if passed_values is not None:
+        cursor.execute(command, passed_values)
+    else:
+        cursor.execute(command)
+
+
+def get_connection():
+    return psycopg2.connect(
+        host=os.environ["PGHOST"],
+        dbname=os.environ["PGDATABASE"],
+        user=os.environ["PGUSER"],
+        password=os.environ["PGPASSWORD"],
+    )
 
 
 def load_data_into_database(cursor, data):
@@ -168,20 +189,40 @@ def query(search_after):
         json_data["search_after"] = search_after
 
     print(json_data)
-    return requests.post(
-        "https://planningdata.london.gov.uk/api-guest/applications/_search",
-        headers=headers,
-        json=json_data,
-    )
+    return make_api_call("https://planningdata.london.gov.uk/api-guest/applications/_search", headers, json_data)
 
 
-def get_connection():
-    return psycopg2.connect(
-        host=os.environ["PGHOST"],
-        dbname=os.environ["PGDATABASE"],
-        user=os.environ["PGUSER"],
-        password=os.environ["PGPASSWORD"],
-    )
+def make_api_call(url, headers, json_data):
+    while True:
+        try:
+            return requests.post(
+                url,
+                headers=headers,
+                json=json_data,
+            )
+        except requests.exceptions.ConnectionError as e:
+            print(e)
+            sleep_before_retry("requests.exceptions.ConnectionError", url, headers, json_data)
+            continue
+        except requests.exceptions.HTTPError as e:
+            print(e.response.status_code)
+            if e.response.status_code == 503:
+                sleep_before_retry("requests.exceptions.HTTPError", url, headers, json_data)
+                continue
+            raise e
+        except requests.exceptions.ReadTimeout as e:
+            print(e)
+            sleep_before_retry("requests.exceptions.ReadTimeout", url, headers, json_data)
+            continue
+        except requests.exceptions.ChunkedEncodingError as e:
+            print(e)
+            sleep_before_retry("requests.exceptions.ChunkedEncodingError", url, headers, json_data)
+            continue
+
+
+def sleep_before_retry(message, url, headers, json_data):
+    time.sleep(10)
+    print(message, url, headers, json_data)
 
 
 def filepath():
@@ -194,30 +235,34 @@ def insert_entry(cursor, e):
         application_url = None
         if e["application_url"] is not None:
             application_url = e["application_url"]
-        cursor.execute(
-            """INSERT INTO
+        execute_database_command(cursor,
+                                 """INSERT INTO
                 planning_data (planning_application_id, planning_application_link, description, registered_with_local_authority_date, days_since_registration_cached, decision_date, days_since_decision_date_cached, last_synced_date, status, status_before_aliasing, status_explanation_note, data_source, data_source_link, address, uprn)
             VALUES
                 (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """,
-            (
-                e["application_id"],
-                application_url,
-                e["description"],
-                date_object_into_date_string(e["registered_with_local_authority_date"]),
-                days_since(e["registered_with_local_authority_date"], now),
-                date_object_into_date_string(e["decision_date"]),
-                days_since(e["decision_date"], now),
-                date_object_into_date_string(e["last_synced_date"]),
-                e["status"],
-                e["status_before_aliasing"],
-                e["status_explanation_note"],
-                e["data_source"],
-                e["data_source_link"],
-                e["address"],
-                e["uprn"],
-            ),
-        )
+                                 (
+                                     e["application_id"],
+                                     application_url,
+                                     e["description"],
+                                     date_object_into_date_string(
+                                         e["registered_with_local_authority_date"]),
+                                     days_since(
+                                         e["registered_with_local_authority_date"], now),
+                                     date_object_into_date_string(
+                                         e["decision_date"]),
+                                     days_since(e["decision_date"], now),
+                                     date_object_into_date_string(
+                                         e["last_synced_date"]),
+                                     e["status"],
+                                     e["status_before_aliasing"],
+                                     e["status_explanation_note"],
+                                     e["data_source"],
+                                     e["data_source_link"],
+                                     e["address"],
+                                     e["uprn"],
+                                 ),
+                                 )
     except psycopg2.errors.Error as error:
         show_dictionary(e)
         raise error
@@ -250,6 +295,9 @@ def parse_date_string_into_date_object(incoming):
         date = datetime.datetime.strptime(
             incoming, "%Y-%m-%dT%H:%M:%S.%fZ"
         )  # '2022-08-08T20:07:22.238Z'
+    if date < datetime.datetime(1950, 1, 1):  # not believable values
+        print("Unexpectedly early date, treating it as a missing date:", date)
+        date = None
     return date
 
 
@@ -259,6 +307,7 @@ def obtain_entry_link(provided_link, application_id):
             if ";" == provided_link[-1]:
                 return provided_link[:-1]
         return provided_link
+    application_id = str(application_id)  # in some responses it is an integer
     if "Hackney" in application_id:
         # https://cl-staging.uksouth.cloudapp.azure.com/view/planning/1377846
         # Planning application ID: Hackney-2021_2491
@@ -308,25 +357,26 @@ def obtain_entry_link(provided_link, application_id):
 
 def process_status(status, decision_date):
     status_length_limit = 50  # see migrations/034.planning_livestream_data.up.sql
-    if status in ["Application Under Consideration", "Application Received"]:
+    if status is None or status.lower() in ["null", "not_mapped"]:
+        status = "Unknown"
+    if status.lower() in ["application under consideration", "application received"]:
         if decision_date is None:
             status = "Submitted"
-    if status in [
-        "Refused",
-        "Refusal",
-        "Refusal (P)",
-        "Application Invalid",
-        "Insufficient Fee",
-        "Dismissed",
+    if status.lower() in [
+        "refused",
+        "refusal",
+        "refusal (p)",
+        "application invalid",
+        "insufficient fee",
+        "dismissed",
+        "rejected",
     ]:
         status = "Rejected"
-    if status == "Appeal Received":
+    if status.lower() in ["appeal received", "appeal in progress"]:
         status = "Appeal In Progress"
-    if status in ["Completed", "Allowed", "Approval"]:
+    if status.lower() in ["completed", "allowed", "approval", "approved"]:
         status = "Approved"
-    if status in [None, "NOT_MAPPED"]:
-        status = "Unknown"
-    if status in ["Lapsed"]:
+    if status.lower() in ["lapsed", "withdrawn"]:
         status = "Withdrawn"
     if len(status) > status_length_limit:
         print("Status was too long and was skipped:", status)
@@ -351,7 +401,7 @@ def process_status(status, decision_date):
             "status": "Approved",
             "status_explanation_note": "preapproved application, local authority is unable to reject it",
         }
-    print("Unexpected status " + status)
+    print("Unexpected status <" + status + ">")
     if status not in [
         "Not Required",
         "SECS",
