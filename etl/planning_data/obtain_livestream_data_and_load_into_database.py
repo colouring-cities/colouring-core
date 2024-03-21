@@ -31,6 +31,11 @@ def main():
     print("unexpected_status_statistics")
     for code, occurences in unexpected_status_statistics.items():
         print(code, "x" + str(occurences))
+    print()
+    print("popular values in unexpected_status_statistics")
+    for code, occurences in unexpected_status_statistics.items():
+        if occurences > 100:
+            print(code, "x" + str(occurences))
     connection.commit()
 
 
