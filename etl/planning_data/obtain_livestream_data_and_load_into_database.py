@@ -146,7 +146,7 @@ def throw_away_invalid_dates(entry):
             # Brent-87_0946 has "valid_date": "23/04/9187"
             entry[date_code] = None
 
-        if entry[date_code] != None:
+        if entry[date_code] is not None:
             # not believable values
             if entry[date_code] < datetime.datetime(1950, 1, 1):
                 print(date_code, "Unexpectedly early date, treating it as a missing date:", entry[date_code])
