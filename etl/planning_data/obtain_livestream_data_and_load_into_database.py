@@ -15,9 +15,10 @@ def main():
     downloaded = 0
     last_sort = None
     search_after = []
+    unexpected_status_statistics = {}
     while True:
         data = query(search_after).json()
-        load_data_into_database(cursor, data)
+        unexpected_status_statistics = load_data_into_database(cursor, data, unexpected_status_statistics)
         for entry in data["hits"]["hits"]:
             downloaded += 1
             last_sort = entry["sort"]
@@ -27,6 +28,7 @@ def main():
         if search_after == last_sort:
             break
         search_after = last_sort
+    print(unexpected_status_statistics)
     connection.commit()
 
 
@@ -50,7 +52,7 @@ def get_connection():
     )
 
 
-def load_data_into_database(cursor, data):
+def load_data_into_database(cursor, data, unexpected_status_statistics):
     if "timed_out" not in data:
         print(json.dumps(data, indent=4))
         print("timed_out field missing in provided data")
@@ -72,7 +74,8 @@ def load_data_into_database(cursor, data):
             )
             uprn = entry["_source"]["uprn"]
             status_before_aliasing = entry["_source"]["status"]
-            status_info = process_status(status_before_aliasing, decision_date)
+            status_info = process_status(status_before_aliasing, decision_date, unexpected_status_statistics)
+            unexpected_status_statistics = status_info['unexpected_status_statistics']
             status = status_info["status"]
             status_explanation_note = status_info["status_explanation_note"]
             planning_url = obtain_entry_link(
@@ -140,6 +143,7 @@ def load_data_into_database(cursor, data):
             print()
             show_dictionary(entry)
             raise e
+    return unexpected_status_statistics
 
 
 def date_in_future(date):
@@ -355,7 +359,7 @@ def obtain_entry_link(provided_link, application_id):
     # Richmond is simply broken
 
 
-def process_status(status, decision_date):
+def process_status(status, decision_date, unexpected_status_statistics):
     status_length_limit = 50  # see migrations/034.planning_livestream_data.up.sql
     if status is None or status.lower() in ["null", "not_mapped"]:
         status = "Unknown"
@@ -383,6 +387,7 @@ def process_status(status, decision_date):
         return {
             "status": "Processing failed",
             "status_explanation_note": "status was unusually long and it was impossible to save it",
+            "unexpected_status_statistics": unexpected_status_statistics,
         }
     if status in [
         "Submitted",
@@ -392,7 +397,11 @@ def process_status(status, decision_date):
         "Withdrawn",
         "Unknown",
     ]:
-        return {"status": status, "status_explanation_note": None}
+        return {
+            "status": status, 
+            "status_explanation_note": None,
+            "unexpected_status_statistics": unexpected_status_statistics,
+        }
     if status in [
         "No Objection to Proposal (OBS only)",
         "Objection Raised to Proposal (OBS only)",
@@ -400,18 +409,17 @@ def process_status(status, decision_date):
         return {
             "status": "Approved",
             "status_explanation_note": "preapproved application, local authority is unable to reject it",
+            "unexpected_status_statistics": unexpected_status_statistics,
         }
     print("Unexpected status <" + status + ">")
-    if status not in [
-        "Not Required",
-        "SECS",
-        "Comment Issued",
-        "ALL DECISIONS ISSUED",
-        "Closed",
-        "Declined to Determine",
-    ]:
-        print("New unexpected status " + status)
-    return {"status": status, "status_explanation_note": None}
+    if status not in unexpected_status_statistics:
+        unexpected_status_statistics[status] = 0
+    unexpected_status_statistics[status] += 1
+    return {
+        "status": status,
+        "status_explanation_note": None,
+        "unexpected_status_statistics": unexpected_status_statistics,
+    }
 
 
 if __name__ == "__main__":
