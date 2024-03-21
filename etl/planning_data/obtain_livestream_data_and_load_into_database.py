@@ -110,24 +110,7 @@ def load_data_into_database(cursor, data, unexpected_status_statistics):
                 if len(entry["address"]) > maximum_address_length:
                     print("address is too long, shortening", entry["address"])
                     entry["address"] = entry["address"][0:maximum_address_length]
-            if date_in_future(entry["registered_with_local_authority_date"]):
-                print(
-                    "registered_with_local_authority_date is treated as invalid:",
-                    entry["registered_with_local_authority_date"],
-                )
-                # Brent-87_0946 has "valid_date": "23/04/9187"
-                entry["registered_with_local_authority_date"] = None
-
-            if date_in_future(entry["decision_date"]):
-                print("decision_date is treated as invalid:", entry["decision_date"])
-                entry["decision_date"] = None
-
-            if date_in_future(entry["last_synced_date"]):
-                print(
-                    "last_synced_date is treated as invalid:", entry["last_synced_date"]
-                )
-                entry["last_synced_date"] = None
-
+            entry = throw_away_invalid_dates(entry)
             if "Hackney" in application_id_with_borough_identifier:
                 if entry["application_url"] is not None:
                     if "https://" not in entry["application_url"]:
@@ -145,6 +128,22 @@ def load_data_into_database(cursor, data, unexpected_status_statistics):
             raise e
     return unexpected_status_statistics
 
+
+def throw_away_invalid_dates(entry):
+    for date_code in ["registered_with_local_authority_date", "decision_date", "last_synced_date"]:
+        if date_in_future(entry[date_code]):
+            print(
+                date_code + " is treated as invalid:",
+                entry[date_code],
+            )
+            # Brent-87_0946 has "valid_date": "23/04/9187"
+            entry[date_code] = None
+
+        if entry[date_code] != None:
+            if entry[date_code] < datetime.datetime(1950, 1, 1):  # not believable values
+                print(date_code, "Unexpectedly early date, treating it as a missing date:", entry[date_code])
+                entry[date_code] = None
+    return entry
 
 def date_in_future(date):
     if date is None:
@@ -299,9 +298,6 @@ def parse_date_string_into_date_object(incoming):
         date = datetime.datetime.strptime(
             incoming, "%Y-%m-%dT%H:%M:%S.%fZ"
         )  # '2022-08-08T20:07:22.238Z'
-    if date < datetime.datetime(1950, 1, 1):  # not believable values
-        print("Unexpectedly early date, treating it as a missing date:", date)
-        date = None
     return date
 
 
