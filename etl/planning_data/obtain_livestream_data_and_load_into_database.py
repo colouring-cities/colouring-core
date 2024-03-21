@@ -18,8 +18,7 @@ def main():
     unexpected_status_statistics = {}
     while True:
         data = query(search_after).json()
-        unexpected_status_statistics = load_data_into_database(
-            cursor, data, unexpected_status_statistics)
+        unexpected_status_statistics = load_data_into_database(cursor, data, unexpected_status_statistics)
         for entry in data["hits"]["hits"]:
             downloaded += 1
             last_sort = entry["sort"]
@@ -82,8 +81,7 @@ def load_data_into_database(cursor, data, unexpected_status_statistics):
             )
             uprn = entry["_source"]["uprn"]
             status_before_aliasing = entry["_source"]["status"]
-            status_info = process_status(
-                status_before_aliasing, decision_date, unexpected_status_statistics)
+            status_info = process_status(status_before_aliasing, decision_date, unexpected_status_statistics)
             unexpected_status_statistics = status_info['unexpected_status_statistics']
             status = status_info["status"]
             status_explanation_note = status_info["status_explanation_note"]
@@ -151,8 +149,7 @@ def throw_away_invalid_dates(entry):
         if entry[date_code] != None:
             # not believable values
             if entry[date_code] < datetime.datetime(1950, 1, 1):
-                print(
-                    date_code, "Unexpectedly early date, treating it as a missing date:", entry[date_code])
+                print(date_code, "Unexpectedly early date, treating it as a missing date:", entry[date_code])
                 entry[date_code] = None
     return entry
 
@@ -217,25 +214,21 @@ def make_api_call(url, headers, json_data):
             )
         except requests.exceptions.ConnectionError as e:
             print(e)
-            sleep_before_retry(
-                "requests.exceptions.ConnectionError", url, headers, json_data)
+            sleep_before_retry("requests.exceptions.ConnectionError", url, headers, json_data)
             continue
         except requests.exceptions.HTTPError as e:
             print(e.response.status_code)
             if e.response.status_code == 503:
-                sleep_before_retry(
-                    "requests.exceptions.HTTPError", url, headers, json_data)
+                sleep_before_retry("requests.exceptions.HTTPError", url, headers, json_data)
                 continue
             raise e
         except requests.exceptions.ReadTimeout as e:
             print(e)
-            sleep_before_retry(
-                "requests.exceptions.ReadTimeout", url, headers, json_data)
+            sleep_before_retry("requests.exceptions.ReadTimeout", url, headers, json_data)
             continue
         except requests.exceptions.ChunkedEncodingError as e:
             print(e)
-            sleep_before_retry(
-                "requests.exceptions.ChunkedEncodingError", url, headers, json_data)
+            sleep_before_retry("requests.exceptions.ChunkedEncodingError", url, headers, json_data)
             continue
 
 
