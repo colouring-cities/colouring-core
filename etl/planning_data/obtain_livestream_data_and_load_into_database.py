@@ -414,7 +414,6 @@ def process_status(status, decision_date, unexpected_status_statistics):
     if canonical_status in [
         "no objection to proposal (obs only)",
         "objection raised to proposal (obs only)",
-        "opinion issued",
     ]:
         return {
             "status": "Approved",
