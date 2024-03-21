@@ -364,12 +364,18 @@ def obtain_entry_link(provided_link, application_id):
 
 def process_status(status, decision_date, unexpected_status_statistics):
     status_length_limit = 50  # see migrations/034.planning_livestream_data.up.sql
-    if status is None or status.lower() in ["null", "not_mapped"]:
+    if status is None:
         status = "Unknown"
-    if status.lower() in ["application under consideration", "application received"]:
+    canonical_status = status.lower().strip()
+    if canonical_status in ["null", "not_mapped", "", "not known"]:
+        status = "Unknown"
+    if canonical_status in ["application under consideration", "application received"]:
         if decision_date is None:
             status = "Submitted"
-    if status.lower() in [
+        else:
+            print(status, "but with", decision_date, "marking as unknown status")
+            status = "Unknown"
+    if canonical_status in [
         "refused",
         "refusal",
         "refusal (p)",
@@ -379,11 +385,11 @@ def process_status(status, decision_date, unexpected_status_statistics):
         "rejected",
     ]:
         status = "Rejected"
-    if status.lower() in ["appeal received", "appeal in progress"]:
+    if canonical_status in ["appeal received", "appeal in progress", "refusal (appealed)", "refusal (p) (appealed)"]:
         status = "Appeal In Progress"
-    if status.lower() in ["completed", "allowed", "approval", "approved"]:
+    if canonical_status in ["completed", "allowed", "allow", "approval", "approved"]:
         status = "Approved"
-    if status.lower() in ["lapsed", "withdrawn"]:
+    if canonical_status in ["lapsed", "withdrawn"]:
         status = "Withdrawn"
     if len(status) > status_length_limit:
         print("Status was too long and was skipped:", status)
@@ -405,9 +411,10 @@ def process_status(status, decision_date, unexpected_status_statistics):
             "status_explanation_note": None,
             "unexpected_status_statistics": unexpected_status_statistics,
         }
-    if status in [
-        "No Objection to Proposal (OBS only)",
-        "Objection Raised to Proposal (OBS only)",
+    if canonical_status in [
+        "no objection to proposal (obs only)",
+        "objection raised to proposal (obs only)",
+        "opinion issued",
     ]:
         return {
             "status": "Approved",
