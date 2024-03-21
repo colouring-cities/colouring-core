@@ -28,7 +28,9 @@ def main():
         if search_after == last_sort:
             break
         search_after = last_sort
-    print(unexpected_status_statistics)
+    print("unexpected_status_statistics")
+    for code, occurences in unexpected_status_statistics.items():
+        print(code, "x" + str(occurences))
     connection.commit()
 
 
