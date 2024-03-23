@@ -161,25 +161,26 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                 mode !== 'basic' &&
                 <>
                     <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={onMapColourScale}/>
-                    <ThemeSwitcher onSubmit={darkLightThemeSwitch} currentTheme={darkLightTheme} />
-                    <DataLayerSwitcher />
-                    {
-                        (showLayerSelection == "enabled") ?
-                        <>
-                            <BoroughSwitcher/>
-                            <ParcelSwitcher/>
-                            <FloodSwitcher/>
-                            <ConservationAreaSwitcher/>
-                            <HistoricMapSwitcher/>
-                            <HistoricDataSwitcher/>
-                            <VistaSwitcher />
-                            <HousingSwitcher />
-                            <CreativeSwitcher />
-                            
-                        </>
-                        : <></>
-                    }
-                    {/* TODO change remaining ones*/}
+                    <div className="switchers-of-layers-map-menu">
+                        <ThemeSwitcher onSubmit={darkLightThemeSwitch} currentTheme={darkLightTheme} />
+                        <DataLayerSwitcher />
+                        {
+                            (showLayerSelection == "enabled") ?
+                            <>
+                                <BoroughSwitcher/>
+                                <ParcelSwitcher/>
+                                <FloodSwitcher/>
+                                <ConservationAreaSwitcher/>
+                                <HistoricMapSwitcher/>
+                                <HistoricDataSwitcher/>
+                                <VistaSwitcher />
+                                <HousingSwitcher />
+                                <CreativeSwitcher />
+                            </>
+                            : <></>
+                        }
+                        {/* TODO change remaining ones*/}
+                    </div>
                     <SearchBox onLocate={handleLocate} />
                 </>
             }
