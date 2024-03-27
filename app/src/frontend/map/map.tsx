@@ -179,7 +179,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                             </>
                             : <></>
                         }
-                        {/* TODO change remaining ones*/}
                     </div>
                     <SearchBox onLocate={handleLocate} />
                 </>
