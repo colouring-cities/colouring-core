@@ -21,6 +21,51 @@ export async function aggregateCountTrue(buildingId: number, attributeName: stri
     }
 }
 
+export async function aggregateCountSubmissions(buildingId: number, attributeName: string, t?: ITask<any>): Promise<number> {
+    try {
+        // use pg-format here instead of pg-promise parameterised queries as they don't support column name from parameter
+        // assume that there won't be more likes than Postgres int range and cast to int
+        // otherwise the count is returned as a bigint which has less support in node-postgres
+        const query = format(`SELECT count(*)::int as agg FROM building_user_attributes WHERE building_id = %L::int AND %I != 0;`, buildingId, attributeName);
+        const { agg } = await (t || db).one(query);
+
+        return agg;
+    } catch(error) {
+        throw new DatabaseError(error);
+    }
+}
+
+export async function aggregateCountTotal(buildingId: number, attributeName: string, t?: ITask<any>): Promise<number> {
+    try {
+        // use pg-format here instead of pg-promise parameterised queries as they don't support column name from parameter
+        // assume that there won't be more likes than Postgres int range and cast to int
+        // otherwise the count is returned as a bigint which has less support in node-postgres
+        const query = format(`SELECT SUM(%I) as agg FROM building_user_attributes WHERE building_id = %L::int AND %I != 0;`, attributeName, buildingId, attributeName);
+        const { agg } = await (t || db).one(query);
+
+        return agg;
+    } catch(error) {
+        throw new DatabaseError(error);
+    }
+}
+
+export async function aggregateCountAverage(buildingId: number, attributeName: string, t?: ITask<any>): Promise<number> {
+    try {
+        // use pg-format here instead of pg-promise parameterised queries as they don't support column name from parameter
+        // assume that there won't be more likes than Postgres int range and cast to int
+        // otherwise the count is returned as a bigint which has less support in node-postgres
+        const query = format(`SELECT AVG(%I) as agg FROM building_user_attributes WHERE building_id = %L::int AND %I != 0;`, attributeName, buildingId, attributeName);
+        const { agg } = await (t || db).one(query);
+
+        return agg;
+    } catch(error) {
+        throw new DatabaseError(error);
+    }
+}
+
 export const aggregationMethods: Record<AggregationMethod, AggregationMethodFunction> = {
-    'countTrue': aggregateCountTrue
+    'countTrue': aggregateCountTrue,
+    'countSubmissions': aggregateCountSubmissions,
+    'countTotal': aggregateCountTotal,
+    'countAverage': aggregateCountAverage,
 };

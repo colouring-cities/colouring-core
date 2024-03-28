@@ -7,7 +7,9 @@ We have added new configuration options to the Colouring Cities Core Platform, i
 This is done using configuration files, which are described in detail later in this document.  
 
 Our hope is that every project in the Colouring Cities Research Programme (CCRP) will use this method to customise the interfaces of the Colouring Cities Platform for their own use as the programme moves forwards.
-  
+
+Some location specific information can be also added into database - for example location info used by search function can be customized for a given location.
+
 ## The Config Files
 The configuration files are located here:  
 
@@ -60,3 +62,21 @@ If you want to add additional parameters into the configuration framework, then 
 **NOTE: Any additional project specific text strings and parameters should be added to this file and the JSON file.**
 
 *REQUEST: If you find any London-specific text or values, please report them or create a pull request to move them into the configuration framework.*
+
+## Database
+
+`search_locations` can be populated with post codes and location names specific for a given area.
+
+Queries that should be run look like
+
+```sql
+INSERT INTO search_locations(search_str, search_class, center, zoom) VALUES
+('TA1 1AA', 'postcode', ST_SetSRID(ST_MakePoint(-3.10964, 51.02344), 4326), 18), ('TA1 1AD', 'postcode', ST_SetSRID(ST_MakePoint(-3.108002733789686, 51.017315853093045), 4326), 18),
+('Lboro', 'settlement_name', ST_SetSRID(ST_MakePoint(-1.20552, 52.77230), 4326), 14),
+('Loughborough', 'settlement_name', ST_SetSRID(ST_MakePoint(-1.20552, 52.77230), 4326), 14)
+;
+```
+
+See an [example script used by Colouring Britain](https://github.com/colouring-cities/colouring-britain/blob/master/etl/load_postcodes.sh) as a potential inspiration. But other data sources will be needed for locations outside UK.
+
+After adding new locations run `REINDEX TABLE search_locations;` to improve performance of search.

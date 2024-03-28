@@ -134,6 +134,119 @@ export const buildingUserFields = {
             other: false
         }
     },
+    community_building_worth_keeping: {
+        perUser: true,
+        category: Category.Community,
+        title: "Do you have any other comments on this **type** of building?",
+        tooltip: "Please tick the box if you think this kind of building should be kept by our towns and cities for the future?",
+        example: true,
+    },
+    community_building_worth_keeping_reasons: {
+        perUser: true,
+        category: Category.Community,
+        title: 'I think that: (Please tick all that apply)',
+        fields: {
+            internal_layout: {
+                title: 'The internal layout works well.'
+            },
+            building_feel: {
+                title: "The building feels nice to be in/use."
+            },
+            near_greenery: {
+                title: 'The building is near greenery.'
+            },
+            adaptable: {
+                title: 'This kind of building is very adaptable.'
+            },
+            durable: {
+                title: 'This kind of building is well built and long lasting.'
+            },
+            building_other: {
+                title: 'Other'
+            }
+        },
+        example: {
+            internal_layout: true,
+            building_feel: true,
+            near_greenery: false,
+            adaptable: true,
+            durable: true,
+            building_other: false
+        }
+    },
+    community_building_worth_keeping_based_on: {
+        perUser: true,
+        category: Category.Community,
+        title: "How well do you know this building and its streetscape?",
+        tooltip: "What are your answers to the questions below based on, please select an answer.",
+        example: "",
+        items: [
+            "Local knowledge",
+            "Professional interest",
+            "A general impression from passing through the area",
+            "Seeing an image"
+        ]
+    },
+    community_streetscape_worth_keeping: {
+        perUser: true,
+        category: Category.Community,
+        title: "Do you have any other comments on this **type** of streetscape?",
+        tooltip: "Please tick the box if you think this kind of streetscape should be kept by our towns and cities for the future?",
+        example: true,
+    },
+    community_streetscape_worth_keeping_reasons: {
+        perUser: true,
+        category: Category.Community,
+        title: 'I think that: (Please tick all that apply)',
+        fields: {
+            street_feel: {
+                title: "The street feels nice to walk down."
+            },
+            feels_safe: {
+                title: 'The layout and type of buildings makes the street feels safe.'
+            },
+            interesting: {
+                title: 'There are interesting things to look at.'
+            },
+            greenery: {
+                title: 'The street has greenery.'
+            },
+            public_art: {
+                title: 'The street has public art.'
+            },
+            streetscape_other: {
+                title: 'Other'
+            }
+        },
+        example: {
+            street_feel: true,
+            feels_safe: true,
+            interesting: false,
+            greenery: true,
+            public_art: true,
+            streetscape_other: false
+        }
+    },
+    community_streetscape_worth_keeping_based_on: {
+        perUser: true,
+        category: Category.Community,
+        title: "Are your answers above based on:",
+        tooltip: "What are your answers to the above questions based on, please select an answer.",
+        example: "",
+        items: [
+            "Local knowledge of the street",
+            "Professional interest in this kind of building",
+            "A general impression from passing through the area",
+            "Seeing an image of the streetscape"
+        ]
+    },
+    community_school_project_data: {
+        perUser: true,
+        category: Category.Community,
+        title: "Are you entering this data as part of a school project?",
+        tooltip: "Please tick here if data is being entered as part of a school project.",
+        example: true,
+    },
 
     community_local_significance: {
         perUser: true,
@@ -149,22 +262,41 @@ export const buildingUserFields = {
         tooltip: "Are you aware of any upcoming planning applications relating to this building?",
         example: true
     },
+    
     community_building_hominess: {
         category: Category.Community,
-        title: "Hominess",
-        tooltip: "How homey and relaxing does the building’s exterior feel to you?",
+        title: "Hominess of the building’s exterior.",
+        tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
     community_building_coherence: {
         category: Category.Community,
-        title: "Coherence",
-        tooltip: "How coherent and well-organized does the building’s exterior feel to you?",
+        title: "Coherence of the building's exterior",
+        tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
     community_building_fascination: {
         category: Category.Community,
-        title: "Fascination",
-        tooltip: "How fascinating and complex does the building’s exterior feel to you?'",
+        title: "Fascination of the building's exterior",
+        tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
+        example: 3,
+    },
+    community_streetscape_hominess: {
+        category: Category.Community,
+        title: "Hominess of the surrounding streetscape.",
+        tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
+        example: 3,
+    },
+    community_streetscape_coherence: {
+        category: Category.Community,
+        title: "Coherence of the surrounding streetscape.",
+        tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
+        example: 3,
+    },
+    community_streetscape_fascination: {
+        category: Category.Community,
+        title: "Fascination of the surrounding streetscape.",
+        tooltip: `Based on <a href="https://www.sciencedirect.com/science/article/pii/S0010945220300332?casa_token=WiBFU-E3AGcAAAAA:6qOymtPLh1gxvgLXiVSD8OAhbOY37-ErO3NehKj4vEnhZr-uR2lCU-vFcbGDE8IN8UkI8Ug">Coburn et. al</a>.`,
         example: 3,
     },
 };
@@ -1297,10 +1429,90 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         title: "People who think this type of building contributes to the city.",
         example: 100,
     },
+    community_building_worth_keeping_total: {
+        category: Category.Community,
+        title: "People who think this type of building contributes to the city.",
+        example: 100,
+    },
+    community_streetscape_worth_keeping_total: {
+        category: Category.Community,
+        title: "People who think this type of building contributes to the city.",
+        example: 100,
+    },
     community_local_significance_total: {
         category: Category.Community,
         title: "People who think the building should be recorded as one of local interest",
         example: 100,
+    },
+    community_building_hominess_count: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_building_coherence_count: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_building_fascination_count: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_streetscape_hominess_count: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_streetscape_coherence_count: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_streetscape_fascination_count: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_building_hominess_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 3,
+    },
+    community_building_coherence_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 3,
+    },
+    community_building_fascination_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 3,
+    },
+    community_building_neuroaesthetic_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 3,
+    },
+    community_streetscape_hominess_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_streetscape_coherence_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_streetscape_fascination_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 100,
+    },
+    community_streetscape_neuroaesthetic_avg: {
+        category: Category.Community,
+        title: "People who think the building should be recorded as one of local interest",
+        example: 3,
     },
 
     community_expected_planning_application_total: {
@@ -1317,13 +1529,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     community_activities: {
         category: Category.Community,
-        title: "If not been used for community activities in the past?",
+        title: "If not, has it been used for community activities in the past?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },
     community_activities_always: {
         category: Category.Community,
-        title: "If in community use now, has it always been used for community activities?",
+        title: "If yes, has it always been used for community activities?",
         tooltip: "E.g. youth club, place of worship, GP surgery, pub",
         example: true
     },

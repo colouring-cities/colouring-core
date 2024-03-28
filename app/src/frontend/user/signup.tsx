@@ -50,7 +50,7 @@ export const SignUp: React.FC = () => {
                     <input name="username" id="username"
                         className="form-control" type="text"
                         value={username} onChange={e => setUsername(e.target.value)}
-                        placeholder="not-your-real-name" required
+                        placeholder="name-you-would-like-shown-on-the-edit-history-and-active-contributors-list" required
                         minLength={4}
                         maxLength={29}
                         pattern="\w+"
@@ -111,7 +111,7 @@ export const SignUp: React.FC = () => {
                         {isLoading && <span><SpinnerIcon/>Sending sign up data...</span>}
                     </div>
                     <InfoBox msg="">
-                        Please also read our <a href="https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement">data ethics policy</a> before using or sharing our data
+                        Please also read our <a href="https://github.com/colouring-cities/manual/wiki/F1.-ETHICAL-FRAMEWORK-and-ethics-policies">data ethics policy</a> before using or sharing our data
                     </InfoBox>
 
                     Do you already have an account?

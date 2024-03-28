@@ -99,7 +99,7 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/C.-Ethical-framework-and-ethics-policies",
+                to: "https://github.com/colouring-cities/manual/wiki/F1.-ETHICAL-FRAMEWORK-and-ethics-policies",
                 text: "Ethical Framework",
                 external: true
             }
@@ -122,12 +122,12 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
         ],
         [
             {
-                to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-contributor-privacy-statement",
+                to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-contributor-privacy-policy",
                 text: "Privacy Policy",
                 external: true
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement",
+                to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement",
                 text: "Contributor Agreement",
                 external: true
             },
@@ -136,17 +136,17 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 text: "Code of Conduct"
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement",
+                to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement",
                 text: "Data Accuracy and Use Agreement",
                 external: true
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-equality-diversity-and-inclusion-policy",
+                to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-equality-diversity-and-inclusion-policy",
                 text: "Equality, Diversity and Inclusion",
                 external: true
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/C1.-Protocols,-codes-of-conduct-&-data-sharing-agreements#ccrp-protocols-for-international-academic-partners",
+                to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-protocols-for-international-academic-partners",
                 text: "CCRP Academic Partner Protocols",
                 external: true
             },

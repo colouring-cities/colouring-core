@@ -168,10 +168,10 @@ class SearchBox extends Component<SearchBoxProps, SearchBoxState> {
                             id="search-box-q"
                             name="q"
                             value={this.state.q}
-                            placeholder="Type a postcode..."
-                            aria-label="Type a postcode..."
+                            placeholder="Type a postcode or a place name..."
+                            aria-label="Type a postcode or a place name..."
                             onChange={this.handleChange}
-                            maxLength={8}
+                            maxLength={28}
                         />
                         <button className="search-btn btn btn-outline-dark" type="submit">Search</button>
                     </form>
