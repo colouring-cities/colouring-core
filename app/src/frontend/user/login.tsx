@@ -35,7 +35,7 @@ export const Login: React.FC = () => {
                 <InfoBox msg={msgText}>
                     <br/>Please <a href="https://discuss.colouring.london/">discuss
                     suggestions for improvements</a> and <a
-                        href="https://github.com/colouring-cities/colouring-core/issues">
+                        href="https://github.com/colouring-cities/colouring-london/issues">
                     report issues or problems</a>.
                 </InfoBox>
                 <ErrorBox msg={error} />

@@ -48,7 +48,7 @@ Clone the remote Colouring Cities GitHub repository into `/var/www`
 
 `cd /var/www`
 
-`sudo git clone https://github.com/colouring-cities/colouring-core.git`
+`sudo git clone https://github.com/colouring-cities/colouring-london.git`
 
 Create a system user (`nodeapp`) to `chown` the `colouring-core` directory
 

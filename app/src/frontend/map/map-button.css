@@ -87,6 +87,18 @@
     right: 0px;
 }
 
+.parcel-switcher {
+    top: 517px;
+}
+
+.aerial-photos-map-switcher {
+    top: 557px;
+}
+
+.openstreetmap-switcher {
+    top: 597px;
+}
+
 .map-switcher-inline {
     border-radius: 4px;
     /*background: #FFC0CB;*/
