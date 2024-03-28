@@ -414,7 +414,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_source: {
         category: Category.Age,
-        title: "Historical source type",
+        title: "Specific historical source type",
         tooltip: "Specific historical data source type for the building dates above.",
         items: [
             "Expert knowledge of building",
@@ -448,8 +448,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_source_type: {
         category: Category.Age,
-        title: "Alternative source type",
-        tooltip: "Source type for the building dates above, if not included in the historical source types listed above.",
+        title: "Source type",
+        tooltip: "Source type for the building dates above, more specific historical source types listed below.",
         items: commonSourceTypes,
         example: "",
     },
