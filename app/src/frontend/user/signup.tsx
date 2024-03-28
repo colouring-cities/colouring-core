@@ -50,7 +50,7 @@ export const SignUp: React.FC = () => {
                     <input name="username" id="username"
                         className="form-control" type="text"
                         value={username} onChange={e => setUsername(e.target.value)}
-                        placeholder="not-your-real-name" required
+                        placeholder="name-you-would-like-shown-on-the-edit-history-and-active-contributors-list" required
                         minLength={4}
                         maxLength={29}
                         pattern="\w+"

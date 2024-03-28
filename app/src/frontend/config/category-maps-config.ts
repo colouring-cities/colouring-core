@@ -290,6 +290,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'community_building_hominess_avg',
             legend: {
                 title: 'Building hominess',
+                description: 'The average of all scores for the building',
                 elements: [
                     { color: '#e1fce5', text: '1' },
                     { color: '#a8fab5', text: '2' },
@@ -303,6 +304,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'community_building_coherence_avg',
             legend: {
                 title: 'Building coherence',
+                description: 'The average of all scores for the building',
                 elements: [
                     { color: '#e1ebfc', text: '1' },
                     { color: '#bbd3fa', text: '2' },
@@ -316,6 +318,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'community_building_fascination_avg',
             legend: {
                 title: 'Building fascination',
+                description: 'The average of all scores for the building',
                 elements: [
                     { color: '#f1e1f7', text: '1' },
                     { color: '#e8bbfa', text: '2' },
@@ -342,6 +345,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'community_streetscape_hominess_avg',
             legend: {
                 title: 'Streetscape hominess',
+                description: 'The average of all scores for the building',
                 elements: [
                     { color: '#f0fcde', text: '1' },
                     { color: '#d8faa8', text: '2' },
@@ -355,6 +359,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'community_streetscape_coherence_avg',
             legend: {
                 title: 'Streetscape coherence',
+                description: 'The average of all scores for the building',
                 elements: [
                     { color: '#e3fafc', text: '1' },
                     { color: '#bbf5fa', text: '2' },
@@ -368,6 +373,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'community_streetscape_fascination_avg',
             legend: {
                 title: 'Streetscape fascination',
+                description: 'The average of all scores for the building',
                 elements: [
                     { color: '#fce8f0', text: '1' },
                     { color: '#fabbd3', text: '2' },

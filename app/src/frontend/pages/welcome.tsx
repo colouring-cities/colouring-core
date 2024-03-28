@@ -13,26 +13,30 @@ const Welcome = () => (
         <h1 className="h2">Welcome to Colouring {config.cityName}!</h1>
         <p>
 
-            Colouring {config.cityName} is a free knowledge exchange platform designed to provide over fifty types
-            of open data on buildings in the city, to help make the city more sustainable.
+            Colouring {config.cityName}  is a research-led, free public resource, providing open spatial data 
+            on {config.cityName}'s buildings. It is also an open knowledge initiative, built collectively by, 
+            and for, academia, communities, government, industry and the third sector. 
+            Any information you can add to our open platform is greatly appreciated.
 
         </p>
         <p>
-            {config.projectBlurb}
-            &nbsp;The Colouring Cities Research Programme (CCRP), led by the Alan Turing Institute,
-            is <a href="https://github.com/colouring-cities/colouring-cities.github.io">an international consortium of academic institutions</a> involved
-            in building research. Our aim is to maximise accessibility to building-level data across countries, 
-            to help improve stock quality, efficiency, sustainability and resilience and meet net-zero goals.
+            Colouring {config.cityName} forms part of the Colouring Cities Research Programme (CCRP), 
+            managed by <a href="https://www.turing.ac.uk/research/research-projects/colouring-cities-research-programme">
+            The Alan Turing Institute</a>, which allows international academic institutions to co-work on a global network 
+            of interoperable open data platforms on national building stocks, and to accelerate sharing of resources and expertise. 
+            The CCRP's overall aim is to help improve the quality, efficiency, resilience and sustainability of buildings, 
+            and urban areas, and to accelerate the move to net zero in line with United Nations Sustainable Development Goals.
         </p>
         <p>
-            New data and features are added all the time. We are keen to engage as many people as possible in platform development. Whether you are a resident, 
-            or a stakeholder in academia, government, industry or the third sector, any help you can give colouring in our Colouring Cities maps, 
-            and enriching and verifying our open databases with your knowledge, is greatly appreciated.
+            New data and features are added all the time. We are keen to engage as many people as possible in platform development. 
+            Whether you are a resident, or a stakeholder in academia, government, industry or the third sector, any help you can give 
+            colouring in our Colouring Cities maps, and enriching and verifying our open databases with your knowledge, is greatly appreciated.
         </p>
         <p>
-            All our <Link to="/data-extracts.html">data</Link> and <a href="https://github.com/colouring-cities/colouring-core">code</a> are 
-            free to download, use and share under our open licence terms. 
-            Our <a href="https://github.com/colouring-cities/manual/wiki">open manual</a> also provides non-technical information on the CCRP for anyone interested in our research.
+            All data collected (e.g <a href="/data-extracts.html">data-extracts</a>) 
+            and <a href="https://github.com/colouring-cities/colouring-core">code</a> are free to download, 
+            use and share under open licence terms. Our <a href="https://github.com/colouring-cities/manual/wiki">
+            open manual</a> also provides non-technical information for anyone interested in our research.
         </p>
         <Link to="/view/categories"
             className="btn btn-outline-dark btn-lg btn-block">

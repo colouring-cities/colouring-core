@@ -55,12 +55,9 @@ def generate_address(site_name, site_number, street_name, secondary_street_name)
     if site_number is not None and street_name is not None:
         address = site_number + " " + street_name
         if site_name is not None:
-            print(
-                '"site_name is not None and site_number is not None and street_name is not None"'
-            )
-            show_data(
-                site_name, site_number, street_name, secondary_street_name, address
-            )
+            address += " - " + site_name
+        # in some cases it results in duplication when site_name repeats
+        # address parts, but often it provides useful data
 
         return {"result": address, "data": data}
 

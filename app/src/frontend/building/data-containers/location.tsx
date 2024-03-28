@@ -53,7 +53,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     onChange={props.onChange}
                     tooltip={dataFields.location_name_link.tooltip}
-                    placeholder={dataFields.location_name_link.example}
+                    placeholder={props.mode=="edit"?dataFields.location_name_link.example:""}
                     isUrl={true}
                 />
                 {
@@ -77,7 +77,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     onChange={props.onChange}
                     tooltip={dataFields.location_residential_name_link.tooltip}
-                    placeholder={dataFields.location_residential_name_link.example}
+                    placeholder={props.mode=="edit"?dataFields.location_residential_name_link.example:""}
                     isUrl={true}
                 />
                 {

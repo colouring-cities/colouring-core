@@ -30,8 +30,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const thisYear = (new Date()).getFullYear();
     const currentBuildingConstructionYear = building.date_year || undefined;
 
-    const ageLinkUrl = `/${props.mode}/${Category.Age}/${props.building.building_id}`;
-
     const { historicData, historicDataSwitchOnClick, darkLightTheme } = useDisplayPreferences();
     const { historicMap, historicMapSwitchOnClick } = useDisplayPreferences();
 
@@ -190,36 +188,6 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     />
                 <hr/>
                 <SelectDataEntry
-                    title={dataFields.date_source.title}
-                    slug="date_source"
-                    value={props.building.date_source}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    tooltip={dataFields.date_source.tooltip}
-                    options={dataFields.date_source.items}
-                    placeholder={dataFields.date_source.example}
-                    />
-                {(props.building.date_source == dataFields.date_source.items[0] ||
-                    props.building.date_source == dataFields.date_source.items[1] ||
-                    props.building.date_source == null) ? <></> :
-                    <>
-                        <MultiDataEntry
-                            title={dataFields.date_link.title}
-                            slug="date_link"
-                            value={props.building.date_link}
-                            mode={props.mode}
-                            copy={props.copy}
-                            onChange={props.onChange}
-                            tooltip={dataFields.date_link.tooltip}
-                            placeholder="https://..."
-                            editableEntries={true}
-                            isUrl={true}
-                        />
-                    </>
-                }
-                <hr/>
-                <SelectDataEntry
                     title={dataFields.date_source_type.title}
                     slug="date_source_type"
                     value={props.building.date_source_type}
@@ -248,13 +216,36 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                     </>
                 }
-                {/*<DataEntry
-                    title="Year of completion (best estimate)"
-                    slug=""
-                    value=""
-                    mode='view'
-                    tooltip='Coming Soon'
-                />*/}
+                <hr/>
+                <SelectDataEntry
+                    title={dataFields.date_source.title}
+                    slug="date_source"
+                    value={props.building.date_source}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.date_source.tooltip}
+                    options={dataFields.date_source.items}
+                    placeholder={dataFields.date_source.example}
+                    />
+                {(props.building.date_source == dataFields.date_source.items[0] ||
+                    props.building.date_source == dataFields.date_source.items[1] ||
+                    props.building.date_source == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.date_link.title}
+                            slug="date_link"
+                            value={props.building.date_link}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.date_link.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
             </DataEntryGroup>
             <DataEntryGroup name="Cladding, extensions and retrofits" collapsed={subcat==null || subcat!="3"}>
                 <NumericDataEntry
@@ -410,7 +401,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <DataEntryGroup name="Lifespan and site history" collapsed={subcat==null || subcat!="4"}>
                 <DataEntryGroup name="Constructions and demolitions on this site" collapsed={subcat==null || subcat!="4"}>
                     <DynamicsBuildingPane>
-                        <label>Current building (age data <Link to={ageLinkUrl}>editable here</Link>)</label>
+                        <label>Current building (building age data editable above)</label>
                         <FieldRow>
                             <div>
                                 <NumericDataEntry
@@ -444,7 +435,7 @@ const AgeView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </DynamicsBuildingPane>
                     {
                         currentBuildingConstructionYear == undefined ?
-                            <InfoBox>To add historical records, fill in the <Link to={ageLinkUrl}>Age</Link> data first.</InfoBox> :
+                            <InfoBox>To add historical records, fill in the building age data (above) first.</InfoBox> :
                             
                             <>
                                 <LogicalDataEntry

@@ -176,28 +176,28 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                 mode !== 'basic' &&
                 <>
                     <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={onMapColourScale}/>
-                    <ThemeSwitcher onSubmit={darkLightThemeSwitch} currentTheme={darkLightTheme} />
-                    <DataLayerSwitcher />
-                    {
-                        (showLayerSelection == "enabled") ?
-                        <>
-                            <BoroughSwitcher/>
-                            <ParcelSwitcher/>
-                            <FloodSwitcher/>
-                            <ConservationAreaSwitcher/>
-                            <HistoricMapSwitcher/>
-                            <HistoricDataSwitcher/>
-                            <AerialPhotosMapSwitcher/>
-                            <HistoricalFootprintsSwitcher/>
-                            <OpenStreetMapSwitcher/>
-                            <VistaSwitcher />
-                            <HousingSwitcher />
-                            <CreativeSwitcher />
-                            
-                        </>
-                        : <></>
-                    }
-                    {/* TODO change remaining ones*/}
+                    <div className="switchers-of-layers-map-menu">
+                        <ThemeSwitcher onSubmit={darkLightThemeSwitch} currentTheme={darkLightTheme} />
+                        <DataLayerSwitcher />
+                        {
+                            (showLayerSelection == "enabled") ?
+                            <>
+                                <BoroughSwitcher/>
+                                <ParcelSwitcher/>
+                                <FloodSwitcher/>
+                                <ConservationAreaSwitcher/>
+                                <HistoricMapSwitcher/>
+                                <HistoricDataSwitcher/>
+                                <HistoricalFootprintsSwitcher/>
+                                <VistaSwitcher/>
+                                <HousingSwitcher/>
+                                <CreativeSwitcher/>
+                                <AerialPhotosMapSwitcher/>
+                                <OpenStreetMapSwitcher/>
+                            </>
+                            : <></>
+                        }
+                    </div>
                     <SearchBox onLocate={handleLocate} />
                 </>
             }
