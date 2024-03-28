@@ -47,7 +47,6 @@ const Welcome = () => (
         </div>
         <div className="image-row">
             <img src="images/logo-loughborough.png" alt="Colouring Cities collaborating organisations: Loughborough University" />
-            <img src="images/logo-newcastle.png" alt="Colouring Cities collaborating organisations: Newcastle University" />
         </div>
     </div>
 );
