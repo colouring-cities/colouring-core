@@ -188,9 +188,12 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                                 <ConservationAreaSwitcher/>
                                 <HistoricMapSwitcher/>
                                 <HistoricDataSwitcher/>
-                                <VistaSwitcher />
-                                <HousingSwitcher />
-                                <CreativeSwitcher />
+                                <HistoricalFootprintsSwitcher/>
+                                <VistaSwitcher/>
+                                <HousingSwitcher/>
+                                <CreativeSwitcher/>
+                                <AerialPhotosMapSwitcher/>
+                                <OpenStreetMapSwitcher/>
                             </>
                             : <></>
                         }
