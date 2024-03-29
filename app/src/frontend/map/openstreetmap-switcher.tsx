@@ -6,7 +6,7 @@ import { useDisplayPreferences } from '../displayPreferences-context';
 export const OpenStreetMapSwitcher: React.FC<{}> = () => {
     const { openStreetMap, openStreetMapSwitch, darkLightTheme } = useDisplayPreferences();
     return (
-        <form className={`openstreetmap-switcher map-button ${openStreetMap}-state ${darkLightTheme}`} onSubmit={openStreetMapSwitch}>
+        <form className={`map-button ${openStreetMap}-state ${darkLightTheme}`} onSubmit={openStreetMapSwitch}>
             <button className="btn btn-outline btn-outline-dark"
                 type="submit">
                 {(openStreetMap === 'enabled')? 'OpenStreetMap on' : 'OpenStreetMap off'}
