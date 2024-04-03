@@ -21,6 +21,9 @@ Building attribute data collected as part of the project will be made available
 for download under a liberal open data license
 ([ODbL](https://opendatacommons.org/licenses/odbl/1.0/)).
 
+## Project Board and Issues
+To view all of the issue relating to Colouring Britain (and their current status) please visit the [Colouring Britain Project](https://github.com/orgs/colouring-cities/projects/4).
+
 ## Setup and run
 
 #### Forking the Core Repository
