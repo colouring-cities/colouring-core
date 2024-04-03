@@ -192,6 +192,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={dataFields.location_address_source.tooltip}
                     placeholder={dataFields.location_address_source.example}
                     options={dataFields.location_address_source.items}
+                    required={true}
                     />
                 {(props.building.location_address_source == commonSourceTypes[0] ||
                     props.building.location_address_source == commonSourceTypes[1] ||
