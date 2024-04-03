@@ -49,14 +49,14 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
         e.preventDefault();
         props.onMapColourScale('community_streetscape_coherence_avg')
     }
-    const switchToStreetscapeFascinationMapStyle = (e) => {
-        e.preventDefault();
-        props.onMapColourScale('community_streetscape_fascination_avg')
-    }
-    const switchToStreetscapeAverageMapStyle = (e) => {
-        e.preventDefault();
-        props.onMapColourScale('community_streetscape_neuroaesthetic_avg')
-    }
+    // const switchToStreetscapeFascinationMapStyle = (e) => {
+    //     e.preventDefault();
+    //     props.onMapColourScale('community_streetscape_fascination_avg')
+    // }
+    // const switchToStreetscapeAverageMapStyle = (e) => {
+    //     e.preventDefault();
+    //     props.onMapColourScale('community_streetscape_neuroaesthetic_avg')
+    // }
     
     //const worthKeepingReasonsNonEmpty = Object.values(props.building.community_type_worth_keeping_reasons ?? {}).some(x => x);
     const buildingWorthKeepingReasonsNonEmpty = Object.values(props.building.community_building_worth_keeping_reasons ?? {}).some(x => x);
