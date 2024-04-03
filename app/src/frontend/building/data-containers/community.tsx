@@ -65,9 +65,9 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
     let buildingResponseRequired = 
         props.building.community_building_hominess > 0 || props.building.community_building_fascination > 0 || props.building.community_building_coherence > 0 ||
         props.building.community_building_worth_keeping != null;
-    let streetscapeResponseRequired = 
-        props.building.community_streetscape_hominess > 0 || props.building.community_streetscape_fascination > 0 || props.building.community_streetscape_coherence > 0 ||
-        props.building.community_streetscape_worth_keeping != null;
+    //let streetscapeResponseRequired = 
+    //    props.building.community_streetscape_hominess > 0 || props.building.community_streetscape_fascination > 0 || props.building.community_streetscape_coherence > 0 ||
+    //    props.building.community_streetscape_worth_keeping != null;
 
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
