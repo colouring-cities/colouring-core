@@ -8,7 +8,7 @@ interface ThemeSwitcherProps {
 }
 
 const ThemeSwitcher: React.FC<ThemeSwitcherProps> = (props) => (
-    <form className={`theme-switcher map-button ${props.currentTheme}`} onSubmit={props.onSubmit}>
+    <form className={`map-button ${props.currentTheme}`} onSubmit={props.onSubmit}>
         <button className="btn btn-outline btn-outline-dark"
             type="submit">
             Switch theme ({(props.currentTheme === 'light')? 'Light' : 'Night'})

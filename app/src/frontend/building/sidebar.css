@@ -199,9 +199,19 @@ dd {
 }
 
 .slider-container { 
+    margin-top: 10px;
     margin-left: 10px;
     margin-right: 15px;
     margin-bottom: 50px;
+}
+
+.slider-average{
+    float: right;
+    padding-right: 12px;
+}
+
+.slider-score {
+    font-size: 13px !important;
 }
 
 .date-picker {

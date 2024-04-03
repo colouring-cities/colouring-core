@@ -43,7 +43,7 @@ ALTER TABLE buildings
 
 -- Insulation, tool tip for glazing in construction to cross link
 -- Which components are insulated
--- Cosntraint multi-entry and ENUM stored in josnb object
+-- Constraint multi-entry and ENUM stored in josnb object
 -- Values; Wall, Roof, FLOOR
 CREATE TYPE constrctn_insulation
 AS ENUM ('Cavity wall',

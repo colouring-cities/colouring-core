@@ -17,7 +17,7 @@ const DataLayerSwitcher: React.FC<DataLayerSwitcherProps> = (props) => {
         }
     }
     return (
-        <form className={`data-switcher map-button ${darkLightTheme}`} onSubmit={handleSubmit}>
+        <form className={`map-button ${darkLightTheme}`} onSubmit={handleSubmit}>
             <button className="btn btn-outline btn-outline-dark"
                 type="submit">
                 {(showLayerSelection === 'enabled')? 'Clear layer options' : 'Show layer options'}

@@ -364,6 +364,9 @@ Create a building record per outline.
 ```
 </details>
 
+After buildings are loaded or their geometries changed, it is necessary to flush cache files so outdated geometries are not shown.
+This can be achieved by deleting relevant folder at the server.
+
 ## :computer: Running the application
 
 Now we are ready to run the application.

@@ -8,7 +8,8 @@
 
 .map-button {
     z-index: 1000;
-    position: absolute;
+    position: relative;
+    clear: both;
     right: 10px;
     float: right;
     background: white;
@@ -72,54 +73,18 @@
     }
 }
 
-.theme-switcher {
-    top: 77px;
-}
 .theme-switcher .btn {
     min-width: 340px;
 }
 
-.data-switcher {
-    top: 117px;
-}
 .data-switcher .btn {
     min-width: 340px;
 }
 
-.borough-switcher {
-    top: 157px;
-}
-
-.housing-switcher {
-    top: 197px;
-}
-
-.creative-switcher {
-    top: 237px;
-}
-
-.flood-switcher {
-    top: 277px;
-}
-
-.vista-switcher {
-    top: 317px;
-}
-
-.conservation-switcher {
-    top: 357px;
-}
-
-.historic-data-switcher {
-    top: 437px;
-}
-
-.historic-map-switcher {
-    top: 397px;
-}
-
-.parcel-switcher {
-    top: 477px;
+.switchers-of-layers-map-menu {
+    position: absolute;
+    top: 77px;
+    right: 0px;
 }
 
 .map-switcher-inline {
@@ -144,6 +109,10 @@
 
 .key-button {
     background-color: paleturquoise !important;
+}
+
+.key-button-disabled {
+    background-color: lightgrey !important;
 }
 
 .sub-subcategory-button {

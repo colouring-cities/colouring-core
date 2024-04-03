@@ -15,7 +15,7 @@ When adding a new attribute a set of seed data should be identified, the base da
 1. Add a column to the `buildings` table in the database.
 2. Add any check constraints or foreign key constraints on the column, if necessary (if the foreign key constraint is used to restrict the column to a set of values, the table with the values might need to be created from scratch)
 3. If a source is being collected for field. Add a column `fieldName_source` to the `sources` table. 
-4. If verfication is being enabled. Add a column `bieldName_verifications` to the `verfication` table.
+4. If verification is being enabled. Add a column `bieldName_verifications` to the `verfication` table.
 
 
 ### In API

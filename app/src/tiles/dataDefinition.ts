@@ -232,6 +232,142 @@ const LAYER_QUERIES = {
         WHERE
             community_local_significance_total > 0
     `,
+    community_building_hominess_count: `
+        SELECT
+            geometry_id,
+            community_building_hominess_count
+        FROM
+            buildings
+        WHERE
+            community_building_hominess_count > 0
+    `,
+    community_building_coherence_count: `
+        SELECT
+            geometry_id,
+            community_building_coherence_count
+        FROM
+            buildings
+        WHERE
+            community_building_coherence_count > 0
+    `,
+    community_building_fascination_count: `
+        SELECT
+            geometry_id,
+            community_building_fascination_count
+        FROM
+            buildings
+        WHERE
+            community_building_fascination_count > 0
+    `,
+    community_streetscape_hominess_count: `
+        SELECT
+            geometry_id,
+            community_streetscape_hominess_count
+        FROM
+            buildings
+        WHERE
+            community_streetscape_hominess_count > 0
+    `,
+    community_streetscape_coherence_count: `
+        SELECT
+            geometry_id,
+            community_streetscape_coherence_count
+        FROM
+            buildings
+        WHERE
+            community_streetscape_coherence_count > 0
+    `,
+    community_streetscape_fascination_count: `
+        SELECT
+            geometry_id,
+            community_streetscape_fascination_count
+        FROM
+            buildings
+        WHERE
+            community_streetscape_fascination_count > 0
+    `,
+    community_building_hominess_avg: `
+        SELECT
+            geometry_id,
+            community_building_hominess_avg
+        FROM
+            buildings
+        WHERE
+            community_building_hominess_avg > 0
+    `,
+    community_building_coherence_avg: `
+        SELECT
+            geometry_id,
+            community_building_coherence_avg
+        FROM
+            buildings
+        WHERE
+            community_building_coherence_avg > 0
+    `,
+    community_building_fascination_avg: `
+        SELECT
+            geometry_id,
+            community_building_fascination_avg
+        FROM
+            buildings
+        WHERE
+            community_building_fascination_avg > 0
+    `,
+    community_building_neuroaesthetic_avg: `
+        SELECT
+            geometry_id,
+            (community_building_hominess_avg +
+            community_building_coherence_avg +
+            community_building_fascination_avg) / 3 as community_building_neuroaesthetic_avg
+        FROM
+            buildings
+        WHERE
+            community_building_hominess_avg > 0 AND
+            community_building_coherence_avg > 0 AND
+            community_building_fascination_avg > 0
+
+    `,
+    community_streetscape_hominess_avg: `
+        SELECT
+            geometry_id,
+            community_streetscape_hominess_avg
+        FROM
+            buildings
+        WHERE
+            community_streetscape_hominess_avg > 0
+    `,
+    community_streetscape_coherence_avg: `
+        SELECT
+            geometry_id,
+            community_streetscape_coherence_avg
+        FROM
+            buildings
+        WHERE
+            community_streetscape_coherence_avg > 0
+    `,
+    community_streetscape_fascination_avg: `
+        SELECT
+            geometry_id,
+            community_streetscape_fascination_avg
+        FROM
+            buildings
+        WHERE
+            community_streetscape_fascination_avg > 0
+    `,
+    community_streetscape_neuroaesthetic_avg: `
+        SELECT
+            geometry_id,
+            (community_streetscape_hominess_avg +
+            community_streetscape_coherence_avg +
+            community_streetscape_fascination_avg) / 3 as community_streetscape_neuroaesthetic_avg
+        FROM
+            buildings
+        WHERE
+            community_streetscape_hominess_avg > 0 AND
+            community_streetscape_coherence_avg > 0 AND
+            community_streetscape_fascination_avg > 0
+
+    `,
     community_expected_planning_application_total: `
         SELECT
             geometry_id,
@@ -428,7 +564,7 @@ const LAYER_QUERIES = {
     sust_aggregate_estimate_epc: `
         SELECT
             geometry_id,
-            sust_aggregate_estimate_epc
+            sust_aggregate_estimate_epc::text AS sust_aggregate_estimate_epc
         FROM
             buildings
         WHERE sust_aggregate_estimate_epc IS NOT NULL`,

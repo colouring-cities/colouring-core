@@ -11,7 +11,6 @@ import { Header } from './header';
 import { MapApp } from './map-app';
 import { Building, UserVerified } from './models/building';
 import { User } from './models/user';
-import AboutPage from './pages/about';
 import ChangesPage from './pages/changes';
 import CodeOfConductPage from './pages/code-of-conduct';
 import ContactPage from './pages/contact';
@@ -65,7 +64,6 @@ export const App: React.FC<AppProps> = props => {
                     </Route>
                 </Switch>
                 <Switch>
-                    <Route exact path="/about.html" component={AboutPage} />
                     <AuthRoute exact path="/login.html" component={Login} />
                     <AuthRoute exact path="/forgotten-password.html" component={ForgottenPassword} />
                     <AuthRoute exact path="/password-reset.html" component={PasswordReset} />

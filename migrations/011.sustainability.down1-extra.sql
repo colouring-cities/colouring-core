@@ -21,7 +21,7 @@ ALTER TABLE buildings DROP COLUMN IF EXISTS sust_biodiversity;
 
 -- Insulation, tool tip for glazing in construction to cross link
 -- Which components are insulated
--- Cosntraint multi-entry and ENUM stored in josnb object
+-- Constraint multi-entry and ENUM stored in josnb object
 -- Values; Wall, Roof, FLOOR
 ALTER TABLE buildings DROP COLUMN IF EXISTS constrctn_insulation;
 

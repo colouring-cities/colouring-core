@@ -3,3 +3,16 @@
     padding-bottom: 0.5em;
     border-bottom: 1px solid gray;
 }
+
+.average-score {
+    width: 100%;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: large;
+    font-weight: bold;
+}
