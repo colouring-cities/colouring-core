@@ -409,7 +409,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     uprns: {
         category: Category.Location,
         title: "Open Unique Property Reference Number(s) (UPRN)",
-        tooltip: "Unique Property Reference Number(s) (UPRN) (derived automatically)",
+        tooltip: "Unique Property Reference Number(s) (UPRN) (derived automatically).<br/><br/>License information: <a href='https://www.ordnancesurvey.co.uk/business-government/tools-support/open-mastermap-programme/open-id-policy'>here</a>",
         example: [{ uprn: "", parent_uprn: "" }, { uprn: "", parent_uprn: "" }],
     },
 
