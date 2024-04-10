@@ -150,10 +150,6 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 text: "CCRP Academic Partner Protocols",
                 external: true
             },
-            {
-                to: "/ordnance-survey-uprn.html",
-                text: "Ordnance Survey terms of UPRN usage"
-            },
         ],
         [
             {
