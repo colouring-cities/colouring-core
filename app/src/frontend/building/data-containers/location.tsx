@@ -25,7 +25,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
             <DataEntryGroup name="Property address" collapsed={subcat==null || subcat!="1"}>
-                <DataEntry
+                {/* <DataEntry
                     title={dataFields.location_name.title}
                     slug="location_name"
                     value={props.building.location_name}
@@ -44,7 +44,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified={props.user_verified.hasOwnProperty("location_name")}
                     user_verified_as={props.user_verified.location_name}
                     verified_count={props.building.verified.location_name}
-                />
+                /> */}
                 <DataEntry
                     title={dataFields.location_name_link.title}
                     slug="location_name_link"
@@ -62,13 +62,13 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         <i className="source-url">Source: <a href={props.building.location_name_link} target={"_blank"}>{props.building.location_name_link}</a></i>
                     </div>
                 }
-                <DataEntry
+                {/* <DataEntry
                     title="Building name (residential)"
                     slug=""
                     value=""
                     mode='view'
                     tooltip="Not yet activated.<br><br>For security reasons, we do not allow the use of free text boxes and are currently looking into alternative ways to collect this data."
-                />
+                /> */}
                 <DataEntry
                     title={dataFields.location_residential_name_link.title}
                     slug="location_residential_name_link"
