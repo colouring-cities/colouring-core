@@ -128,17 +128,12 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
             },
             {
                 to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement",
-                text: "Contributor Agreement",
+                text: "Contributor & Data User Data Accuracy & Ethical Use Agreement",
                 external: true
             },
             {
                 to: "/code-of-conduct.html",
                 text: "Code of Conduct"
-            },
-            {
-                to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement",
-                text: "Data Accuracy and Use Agreement",
-                external: true
             },
             {
                 to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-equality-diversity-and-inclusion-policy",
