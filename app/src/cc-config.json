@@ -1,5 +1,6 @@
 {
     "cityName": "Cities",
+    "institution": "The Alan Turing Institute",
     "projectBlurb": "Colouring {City Name} is part of Colouring Cities.",
     
     "githubURL": "https://github.com/colouring-cities/colouring-core",
