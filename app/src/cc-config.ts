@@ -3,6 +3,7 @@ import { StringNullableChain } from "lodash";
 export interface CCConfig
 {
     cityName: string;                           // City name (i.e. "Colouring {City Name}")
+    institution: string;                        // Institution responsible for managing the local platform (i.e. "The University of...")
     projectBlurb: string;                       // Description used on homepage
     
     githubURL: string;                          // URL of the project's GitHub repository

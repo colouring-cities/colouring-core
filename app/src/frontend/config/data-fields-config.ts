@@ -311,13 +311,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_name_link: {
         category: Category.Location,
-        title: "Building link (non-residential) - Wikipedia or other",
+        title: "Building name link (non-residential) - Wikipedia or other",
         tooltip: "Link to a website with the name of the building.",
         example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
     },
     location_residential_name_link: {
         category: Category.Location,
-        title: "Building link (residential) - Wikipedia or other",
+        title: "Building name link (residential) - Wikipedia or other",
         tooltip: "Link to a website with the name of the building.",
         example: "https://en.wikipedia.org/wiki/221B_Baker_Street",
     },
@@ -409,7 +409,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     uprns: {
         category: Category.Location,
         title: "Open Unique Property Reference Number(s) (UPRN)",
-        tooltip: "Unique Property Reference Number(s) (UPRN) (derived automatically)",
+        tooltip: "Unique Property Reference Number(s) (UPRN) (derived automatically).<br/><br/>License information: <a href='https://www.ordnancesurvey.co.uk/business-government/tools-support/open-mastermap-programme/open-id-policy'>here</a>",
         example: [{ uprn: "", parent_uprn: "" }, { uprn: "", parent_uprn: "" }],
     },
 
