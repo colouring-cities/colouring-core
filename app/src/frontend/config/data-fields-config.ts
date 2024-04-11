@@ -575,7 +575,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     date_link: {
         category: Category.Age,
         title: "Historical source link(s)",
-        tooltip: "URL(s) for historial data source(s) - Historical data source(s)",
+        tooltip: "URL(s) for historical data source(s) - Historical data source(s)",
         example: ["", "", ""],
     },
     date_source_type: {
@@ -588,7 +588,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     date_source_links: {
         category: Category.Age,
         title: "Alternative Source link(s)",
-        tooltip: "URL(s) for historial data source(s) - Alternative data source(s)",
+        tooltip: "URL(s) for historical data source(s) - Alternative data source(s)",
         example: ["", "", ""],
     },
 
