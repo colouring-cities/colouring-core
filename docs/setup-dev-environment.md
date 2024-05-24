@@ -226,7 +226,7 @@ Now upgrade the npm package manager to the most recent release with global privi
 ```bash
 export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin/
 export PATH=$NODEJS_HOME:$PATH
-sudo env "PATH=$PATH" npm install -g npm@latest
+sudo env "PATH=$PATH" npm install -g npm@8.1.2
 ```
 
 Now install the required Node packages. This needs to done from the `app` directory of your
