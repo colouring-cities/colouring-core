@@ -1,11 +1,13 @@
-# Colouring Cities Core Platform
+# Colouring Britain Platform
 [![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors)
 ![Build status](https://github.com/colouring-cities/colouring-core/workflows/Node.js%20CI/badge.svg)
 
-How many buildings are there in a city? What are their characteristics? Where
+How many buildings are there in a Britain? What are their characteristics? Where
 are different types of building located? How well do they work for users/local communities? And how efficient, sustainable and resilient are they?  
 
-The Colouring Cities Research Programme (CCRP) is an international research initiative that designs and tests open-source tools to facilitate knowledge and data sharing on national building stocks. The project is managed from the UK by The Alan Turing Institute (the UK's national institute for datascience and AI) and involves a global consortium of academic partners testing CCRP platform code. All CCRP code, data and methods are released under open licences. For further information please see http://colouringcities.org/.  
+Colouring Britain with website at https://colouringbritain.org/ is a research-led, free public resource, providing open spatial data on Britain's buildings. It is also an open knowledge initiative, built collectively by, and for, academia, communities, government, industry and the third sector. Any information you can add to our open platform is greatly appreciated.
+
+Colouring Britain forms part of the Colouring Cities Research Programme (CCRP), managed by [The Alan Turing Institute](https://www.turing.ac.uk/research/research-projects/colouring-cities-research-programme), which allows international academic institutions to co-work on a global network of interoperable open data platforms on national building stocks, and to accelerate sharing of resources and expertise. The CCRP's overall aim is to help improve the quality, efficiency, resilience and sustainability of buildings, and urban areas, and to accelerate the move to net zero in line with United Nations Sustainable Development Goals. For further information please see http://colouringcities.org/.  
 
 
 ## Structure
