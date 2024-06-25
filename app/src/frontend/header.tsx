@@ -67,9 +67,9 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "/showcase.html",
-                text: "Case Study Showcase",
-                disabled: true,
+                to: "https://colouringcities.org/impact-studies",
+                text: "Impact Study Showcase",
+                external: true
             },
         ],
         [
