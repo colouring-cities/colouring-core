@@ -74,7 +74,7 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
         ],
         [
             {
-                to: "https://github.com/colouring-cities/manual/wiki/A.-What-is-the-CCRP%3F",
+                to: "https://github.com/colouring-cities/manual/wiki/A.-ABOUT",
                 text: "About the Colouring Cities Research Programme",
                 external: true
             },
@@ -84,12 +84,12 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/A2.-How-to%3F-Guides",
+                to: "https://github.com/colouring-cities/manual/wiki/A2.-HOW-TO-GUIDES",
                 text: "How to Use",
                 external: true
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/I.--DATA",
+                to: "https://github.com/colouring-cities/manual/wiki/E1.--DATA",
                 text: "Data Categories",
                 external: true
             },
