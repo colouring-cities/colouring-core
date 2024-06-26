@@ -67,14 +67,14 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "/showcase.html",
-                text: "Case Study Showcase",
-                disabled: true,
+                to: "https://colouringcities.org/impact-studies",
+                text: "Impact Study Showcase",
+                external: true
             },
         ],
         [
             {
-                to: "https://github.com/colouring-cities/manual/wiki/A.-What-is-the-CCRP%3F",
+                to: "https://github.com/colouring-cities/manual/wiki/A.-ABOUT",
                 text: "About the Colouring Cities Research Programme",
                 external: true
             },
@@ -89,12 +89,12 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/A2.-How-to%3F-Guides",
+                to: "https://github.com/colouring-cities/manual/wiki/A2.-HOW-TO-GUIDES",
                 text: "How to Use",
                 external: true
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/I.--DATA",
+                to: "https://github.com/colouring-cities/manual/wiki/E1.--DATA",
                 text: "Data Categories",
                 external: true
             },
@@ -133,17 +133,12 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
             },
             {
                 to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement",
-                text: "Contributor Agreement",
+                text: "Contributor & Data User Data Accuracy & Ethical Use Agreement",
                 external: true
             },
             {
                 to: "/code-of-conduct.html",
                 text: "Code of Conduct"
-            },
-            {
-                to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-contributor--data-user-data-accuracy--ethical-use-agreement",
-                text: "Data Accuracy and Use Agreement",
-                external: true
             },
             {
                 to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-equality-diversity-and-inclusion-policy",
@@ -154,10 +149,6 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-protocols-for-international-academic-partners",
                 text: "CCRP Academic Partner Protocols",
                 external: true
-            },
-            {
-                to: "/ordnance-survey-uprn.html",
-                text: "Ordnance Survey terms of UPRN usage"
             },
         ],
         [

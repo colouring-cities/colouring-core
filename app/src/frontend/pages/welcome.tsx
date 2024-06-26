@@ -20,9 +20,8 @@ const Welcome = () => (
 
         </p>
         <p>
-            Colouring {config.cityName} forms part of the Colouring Cities Research Programme (CCRP), 
-            managed by <a href="https://www.turing.ac.uk/research/research-projects/colouring-cities-research-programme">
-            The Alan Turing Institute</a>, which allows international academic institutions to co-work on a global network 
+            Colouring {config.cityName} forms part of the <a href="https://colouringcities.org/">Colouring Cities Research Programme</a> (CCRP), 
+            managed in {config.cityName} by {config.institution}. The CCRP allows international academic institutions to co-work on a global network 
             of interoperable open data platforms on national building stocks, and to accelerate sharing of resources and expertise. 
             The CCRP's overall aim is to help improve the quality, efficiency, resilience and sustainability of buildings, 
             and urban areas, and to accelerate the move to net zero in line with United Nations Sustainable Development Goals.
@@ -51,7 +50,6 @@ const Welcome = () => (
         </div>
         <div className="image-row">
             <img src="images/logo-loughborough.png" alt="Colouring Cities collaborating organisations: Loughborough University" />
-            <img src="images/logo-newcastle.png" alt="Colouring Cities collaborating organisations: Newcastle University" />
         </div>
     </div>
 );
