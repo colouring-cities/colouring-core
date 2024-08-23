@@ -66,4 +66,7 @@ subprocess.run(
 )
 
 # add SRID for ease of loading to PostgreSQL
-subprocess.run(["sed", "-i", 's/^"POLYGON/"SRID=3857;POLYGON/', test_data_csv])
+if os.name == "posix":
+    subprocess.run(["gsed", "-i", 's/^"POLYGON/"SRID=3857;POLYGON/', test_data_csv])
+else:
+    subprocess.run(["sed", "-i", 's/^"POLYGON/"SRID=3857;POLYGON/', test_data_csv])
