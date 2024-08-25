@@ -72,7 +72,13 @@ arch
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-2. Install prerequisites for the ETL scripts using Homebrew
+2. Add the homebrew executable path to the top of ~/.zshrc
+
+```bash
+export PATH="$PATH:/opt/homebrew/bin/"
+```
+
+3. Install prerequisites for the ETL scripts using Homebrew
 
 ```bash
 brew install parallel
@@ -98,7 +104,7 @@ brew install gnu-sed
 
 <img src="./images/postgres-running.png" width="600">
 
-5. Add psql executable to ~/.zshrc
+5. Add the psql executable path to the top of ~/.zshrc
 
 ```bash
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/12/bin"
