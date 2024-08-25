@@ -90,7 +90,7 @@ source ~/.zshrc
 homebrew --version
 ```
 
-3. Install prerequisites for the ETL scripts using Homebrew
+5. Install prerequisites for the ETL scripts using Homebrew
 
 ```bash
 brew install parallel
