@@ -87,7 +87,7 @@ source ~/.zshrc
 4. Verify the homebrew installation
 
 ```bash
-homebrew --version
+brew --version
 ```
 
 5. Install prerequisites for the ETL scripts using Homebrew
