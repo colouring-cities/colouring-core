@@ -78,6 +78,18 @@ arch
 export PATH="$PATH:/opt/homebrew/bin/"
 ```
 
+3. source .zshrc to so terminal can access homebrew
+
+```bash
+source ~/.zshrc
+```
+
+4. Verify the homebrew installation
+
+```bash
+homebrew --version
+```
+
 3. Install prerequisites for the ETL scripts using Homebrew
 
 ```bash
