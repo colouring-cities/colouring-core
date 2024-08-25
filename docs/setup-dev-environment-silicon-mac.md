@@ -30,44 +30,49 @@ This guide assumes you are working with the ['colouring-core'](https://github.co
 
 Download Visual Studio Code from the [official Visual Studio Code website](https://code.visualstudio.com/docs/setup/mac).
 
-Configure a terminal inside Visual Studio Code that uses Rosetta so the Coloring Core application can be run with the i386 architecture. Open settings.json by pressing Press ⌘ + shift + P, typing settings.json, and selecting the user settings option. Search for the following line
+Configure a terminal inside Visual Studio Code that uses Rosetta so the Coloring Core application can be run with the x86
+(i386) architecture.
+
+1. Open settings.json by pressing Press ⌘ + shift + P, typing settings.json, and selecting the user settings option. Search for the following line
 
 ```bash
 terminal.integrated.profiles.osx
 ```
 
-At the end of the list, add the "x86 zsh" section:
+2. At the end of the list, add the "x86 zsh" section. Make sure to save the file otherwise it will not appear in the terminal list.
 
 ```bash
     "pwsh": {
       "path": "pwsh",
       "icon": "terminal-powershell"
     },
-    "i386 zsh": {
+    "x86 zsh": {
       "path": "/usr/bin/arch",
       "args": ["-arch", "x86_64", "/bin/zsh"],
       "overrideName": true
     }
 ```
 
-The new i386 terminal can be accessed by pressing the + icon above the active terminal
+The new x86 terminal can be accessed by pressing the arrow next to the + icon above the active terminal
 <img src="./images/x86-zsh-vscode.png" width="400">
 
-Verify that the terminal is using Rosetta. The value should be i386.
+3.Verify that the terminal is using Rosetta. The value should be i386.
 
 ```bash
 arch
 ```
 
+**Note:** :exclamation: The x86 terminal is _**only**_ required for the <u>installation of Node</u> and for <u>running the Colouring Cities application</u>. Please use a normal arm64 terminal for the rest of the installation.
+
 ### :beer: Install Homebrew
 
-The Homebrew installer can be run using curl
+1. The Homebrew installer can be run using curl
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Install prerequisites for ETL using homebrew
+2. Install prerequisites for the ETL scripts using Homebrew
 
 ```bash
 brew install parallel
@@ -77,36 +82,36 @@ brew install gnu-sed
 
 ### :red_circle: Installing PostgreSQL
 
-Download PostgreSQL with all currently supported versions from [Postgres.app](https://postgresapp.com/downloads.html). Postgres.app comes with postgis by default so it does not need to be installed separately.
+1. Download PostgreSQL with all currently supported versions from [Postgres.app](https://postgresapp.com/downloads.html). Postgres.app comes with postgis by default so it does not need to be installed separately.
 
 <img src="./images/postgres-app-installer.png" width="600">
 
-Open PostgreSQL and select the + button in the bottom left to create a new server. Enter PostgreSQL 12 as the name and select version PostgreSQL 12. Click Create Server to create the server.
+2. Open PostgreSQL then select the + button in the bottom left to create a new server. Enter PostgreSQL 12 as the name and select version PostgreSQL 12. Click Create Server to create the server.
 
 <img src="./images/create-postgres-server.png" width="600">
 
-On the list of servers on the left, select PostgreSQL 12.
+3. On the list of servers on the left, select PostgreSQL 12.
 
 <img src="./images/select-postgres-12.png" width="600">
 
-Click the "Start" button to start the server.
+4. Click the "Start" button to start the server.
 
 <img src="./images/postgres-running.png" width="600">
 
-Add psql executable to ~/.zshrc
+5. Add psql executable to ~/.zshrc
 
 ```bash
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/12/bin"
 ```
 
-Source .zshrc and verify PostgreSQL installation
+6. Source .zshrc and verify PostgreSQL installation
 
 ```bash
 source ~/.zshrc
 psql --version
 ```
 
-Ensure the `en_US` locale exists.
+7. Ensure the `en_US` locale exists.
 
 ```bash
 locale
@@ -114,13 +119,15 @@ locale
 
 ### :large_blue_circle: Configuring PostgreSQL
 
-Now we configure postgres. Open psql
+Now we configure postgres.
+
+1. Open psql
 
 ```bash
 psql -U <currently_logged_in_mac_username> postgres
 ```
 
-Set a password for the current user in postgres
+2. Set a password for the current user in postgres
 
 ```bash
 ALTER USER <currently_logged_in_mac_username> PASSWORD '<password>';
@@ -209,10 +216,25 @@ nvm alias x86-16 v16.13.2
 
 ### :snake: Set up Python
 
-Install python and related tools.
+Install the latest version of python from the [official python website](https://www.python.org/downloads/macos/)
+
+**Note:** This will install python so it is accessible via python3 and pip3 in the command line. If you prefer to use the python and pip commands, you must add them as aliases to .zshrc. The following steps will assume that you have made this change.
 
 ```bash
-sudo apt-get install -y python3 python3-pip python3-dev python3-venv
+alias python='/Library/Frameworks/Python.framework/Versions/3.12/bin/python3'
+alias pip='/Library/Frameworks/Python.framework/Versions/3.12/bin/pip3'
+```
+
+Source .zshrc to activate the new aliases
+
+```bash
+source ~/.zshrc
+```
+
+Install pyvenv to create a colouring-cities virtual environment
+
+```bash
+pip install virtualenv
 ```
 
 ### :rainbow: Installing Colouring Cities Core Platform
@@ -235,29 +257,6 @@ Install required node packages
 
 ```bash
 npm install
-```
-
-### :snake: Set up Python
-
-Install the latest version of python from the [official python website](https://www.python.org/downloads/macos/)
-
-**Note:** This will install python so it is accessible via python3 and pip3 in the command line. If you prefer to use the python and pip commands, you must add them as aliases to .zshrc. The following steps will assume that you have made this change.
-
-```bash
-alias python='/Library/Frameworks/Python.framework/Versions/3.12/bin/python3'
-alias pip='/Library/Frameworks/Python.framework/Versions/3.12/bin/pip3'
-```
-
-Source .zshrc to activate the new aliases
-
-```bash
-source ~/.zshrc
-```
-
-Install pyvenv to create a colouring-cities virtual environment
-
-```bash
-pip install virtualenv
 ```
 
 ## :house: Loading the building data
