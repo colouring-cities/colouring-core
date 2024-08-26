@@ -28,18 +28,22 @@ This guide assumes you are working with the ['colouring-core'](https://github.co
 
 ### :computer: Installing Visual Studio Code
 
-Download Visual Studio Code from the [official Visual Studio Code website](https://code.visualstudio.com/docs/setup/mac).
+1. Download Visual Studio Code from the [official Visual Studio Code website](https://code.visualstudio.com/docs/setup/mac).
 
 Configure a terminal inside Visual Studio Code that uses Rosetta so the Coloring Core application can be run with the x86
 (i386) architecture.
 
-1. Open settings.json by pressing Press ⌘ + shift + P, typing settings.json, and selecting the user settings option. Search for the following line
+2. Inside of Visual Studio Code open settings by going to **Code -> Settings -> Settings** in the menu bar
+
+3. In the search bar type
 
 ```bash
-terminal.integrated.profiles.osx
+terminal.int segrated.profiles.osx
 ```
 
-2. At the end of the list, add the "x86 zsh" section. Make sure to save the file otherwise it will not appear in the terminal list.
+4. Click **edit in settings.json**. This will create the settings.json file if it is not created and add the initial terminal integrated profiles.
+
+5. At the end of profiles list, add the "x86 zsh" section. Make sure to save the file otherwise it will not appear in the terminal list.
 
 ```bash
     "pwsh": {
@@ -56,7 +60,7 @@ terminal.integrated.profiles.osx
 The new x86 terminal can be accessed by pressing the arrow next to the + icon above the active terminal
 <img src="./images/x86-zsh-vscode.png" width="400">
 
-3.Verify that the terminal is using Rosetta. The value should be i386.
+6. Verify that the terminal is using Rosetta. The value should be i386.
 
 ```bash
 arch
@@ -78,7 +82,7 @@ arch
 export PATH="$PATH:/opt/homebrew/bin/"
 ```
 
-3. source .zshrc to so terminal can access homebrew
+3. source .zshrc so the terminal can access homebrew
 
 ```bash
 source ~/.zshrc
@@ -151,6 +155,12 @@ psql -U <currently_logged_in_mac_username> postgres
 ALTER USER <currently_logged_in_mac_username> PASSWORD '<password>';
 ```
 
+3. Quit psql
+
+```bash
+\q
+```
+
 <details>
 <summary>Note for "Colouring Cities" devs</summary><p></p>
 
@@ -160,24 +170,22 @@ If you intend to load the full CL database from a dump file into your dev enviro
 
 ### :space_invader: Create an empty database
 
-Set environment variables, which will simplify running subsequent `psql` commands.
+1. Set environment variables, which will simplify running subsequent `psql` commands.
 
 ```bash
 export PGPASSWORD=<pgpassword>
-export PGUSER=<username>
+export PGUSER=<currently_logged_in_mac_username>
 export PGHOST=localhost
 export PGDATABASE=<colouringcitiesdb>
 ```
 
-Now create an empty database configured with geo-spatial tools. The database name (`<colouringcitiesdb>`) is arbitrary.
-
-Create the Colouring Cities database.
+2. Now create an empty database configured with geo-spatial tools. The database name (`<colouringcitiesdb>`) is arbitrary. Create the Colouring Cities database.
 
 ```bash
-sudo -u <currently_logged_in_mac_username> psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringcitiesdb>';" | grep -q 1 || sudo -u <currently_logged_in_mac_username> createdb -E UTF8 -T template0 --locale=en_US.UTF-8 -O <currently_logged_in_mac_username> <colouringcitiesdb>
+sudo -u $PGUSER psql -c "SELECT 1 FROM pg_database WHERE datname = '$PGDATABASE';" | grep -q 1 || sudo -u $PGUSER createdb -E UTF8 -T template0 --locale=en_US.UTF-8 -O $PGUSER $PGDATABASE
 ```
 
-Install necessary PostgreSQL extensions
+3. Install necessary PostgreSQL extensions
 
 ```bash
 psql -c "create extension postgis;"
@@ -187,38 +195,44 @@ psql -c "create extension pg_trgm;"
 
 ### :arrow_down: Installing Node.js using NVM
 
-Install NVM using curl
+1. Install NVM using curl
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 ```
 
-Open .zshrc with Nano
+2. Open .zshrc with nano
 
 ```bash
 nano ~/.zshrc
 ```
 
-Add the following lines to the end of the file then restart terminal
+3. Add the following lines to the end of .zshrc
 
 ```bash
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 ```
 
-Open a new x86 terminal in VSCode. Inside of the new terminal, install Node v16.13.2
+4. Source .zshrc so terminal can access nvm
+
+```bash
+source ~/.zshrc
+```
+
+5. Open a new x86 terminal in VSCode. Inside of the new terminal, install Node v16.13.2
 
 ```bash
 nvm install v16.13.2
 ```
 
-Verify that the correct Node version is selected
+6. Verify that the correct Node version is selected
 
 ```bash
 node --version
 ```
 
-You can also verify that x86 Node was installed
+7. You can also verify that x86 Node was installed
 
 ```bash
 node -e 'console.log(process.arch)'
@@ -226,30 +240,51 @@ node -e 'console.log(process.arch)'
 
 This should return **x64**
 
-Create an alias to distinguish the x86 version of Node from the arm64 versions
+8. Create an alias to distinguish the x86 version of Node from the arm64 versions
 
 ```bash
 nvm alias x86-16 v16.13.2
 ```
 
+9. To activate the x86 version, you can select it with nvm
+
+```bash
+nvm use x86-16
+```
+
 ### :snake: Set up Python
 
-Install the latest version of python from the [official python website](https://www.python.org/downloads/macos/)
+1. Install the latest version of python from the [official python website](https://www.python.org/downloads/macos/)
 
 **Note:** This will install python so it is accessible via python3 and pip3 in the command line. If you prefer to use the python and pip commands, you must add them as aliases to .zshrc. The following steps will assume that you have made this change.
+
+2. Open .zshrc with nano
+
+```bash
+nano ~/.zshrc
+```
+
+3. Add the python and pip alias to the top of .zshrc
 
 ```bash
 alias python='/Library/Frameworks/Python.framework/Versions/3.12/bin/python3'
 alias pip='/Library/Frameworks/Python.framework/Versions/3.12/bin/pip3'
 ```
 
-Source .zshrc to activate the new aliases
+4. Source .zshrc to activate the new aliases
 
 ```bash
 source ~/.zshrc
 ```
 
-Install pyvenv to create a colouring-cities virtual environment
+5. Verify the python and pip alias
+
+```bash
+which python
+which pip
+```
+
+6. Install pyvenv to create a colouring-cities virtual environment
 
 ```bash
 pip install virtualenv
@@ -257,13 +292,13 @@ pip install virtualenv
 
 ### :rainbow: Installing Colouring Cities Core Platform
 
-Now clone the `colouring-core` codebase.
+1. Clone the `colouring-core` codebase.
 
 ```bash
 cd ~ && git clone https://github.com/colouring-cities/colouring-core.git
 ```
 
-Go into the app directory of the colouring-core repository
+2. Go into the app directory of the colouring-core repository
 
 ```bash
 cd ~/colouring-core/app
@@ -271,7 +306,7 @@ cd ~/colouring-core/app
 
 **Note:** We assume here that you will clone the repo into your home directory. Watch out for later commands in this guide that assume the repo is located at `~/colouring-core` and modify the path if appropriate.
 
-Install required node packages
+3. Install required node packages
 
 ```bash
 npm install
@@ -407,19 +442,19 @@ This can be achieved by deleting relevant folder at the server.
 
 Now we are ready to run the application.
 
-First enter the app directory.
+1. First enter the app directory.
 
 ```bash
 cd ~/colouring-core/app
 ```
 
-Then create a folder for the tilecache.
+2. Then create a folder for the tilecache.
 
 ```bash
 mkdir tilecache
 ```
 
-Create some additional variables for running the application (the `APP_COOKIE_SECRET` is arbitrary).
+3. Create some additional variables for running the application (the `APP_COOKIE_SECRET` is arbitrary).
 
 ```bash
 export PGPORT=5432
@@ -427,7 +462,7 @@ export APP_COOKIE_SECRET=123456
 export TILECACHE_PATH=~/colouring-core/app/tilecache
 ```
 
-Finally, simply run the application with npm.
+4. Finally, simply run the application with npm.
 
 ```bash
 npm start
@@ -448,6 +483,6 @@ PGPASSWORD=<pgpassword> PGDATABASE=<colouringcitiesdb> PGUSER=<username> PGHOST=
 
 ### :eyes: Viewing the application
 
-The site can then be viewed on http://localhost:3000 on the host computer.
+The site can then be viewed on http://localhost:3000 in the browser on the host computer.
 
 Finally to quit the application type `Ctrl-C`.
