@@ -12,7 +12,6 @@ import { MapApp } from './map-app';
 import { Building, UserVerified } from './models/building';
 import { User } from './models/user';
 import ChangesPage from './pages/changes';
-import CodeOfConductPage from './pages/code-of-conduct';
 import ContactPage from './pages/contact';
 import ContributorAgreementPage from './pages/contributor-agreement';
 import DataAccuracyPage from './pages/data-accuracy';
@@ -74,7 +73,6 @@ export const App: React.FC<AppProps> = props => {
                     <Route exact path="/data-accuracy.html" component={DataAccuracyPage} />
                     <Route exact path="/data-extracts.html" component={DataExtracts} />
                     <Route exact path="/contact.html" component={ContactPage} />
-                    <Route exact path="/code-of-conduct.html" component={CodeOfConductPage} />
                     <Route exact path="/leaderboard.html" component={LeaderboardPage} />
                     <Route exact path="/history.html" component={ChangesPage} />
                     <Route exact path={mapAppPaths} >
