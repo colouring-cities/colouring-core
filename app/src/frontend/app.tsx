@@ -13,7 +13,6 @@ import { Building, UserVerified } from './models/building';
 import { User } from './models/user';
 import ChangesPage from './pages/changes';
 import ContactPage from './pages/contact';
-import ContributorAgreementPage from './pages/contributor-agreement';
 import DataAccuracyPage from './pages/data-accuracy';
 import DataExtracts from './pages/data-extracts';
 import LeaderboardPage from './pages/leaderboard';
@@ -68,7 +67,6 @@ export const App: React.FC<AppProps> = props => {
                     <AuthRoute exact path="/sign-up.html" component={SignUp} />
                     <PrivateRoute exact path="/my-account.html" component={MyAccountPage} />
                     <Route exact path="/privacy-policy.html" component={PrivacyPolicyPage} />
-                    <Route exact path="/contributor-agreement.html" component={ContributorAgreementPage} />
                     <Route exact path="/ordnance-survey-licence.html" component={OrdnanceSurveyLicencePage} />
                     <Route exact path="/data-accuracy.html" component={DataAccuracyPage} />
                     <Route exact path="/data-extracts.html" component={DataExtracts} />
