@@ -35,8 +35,11 @@ const Welcome = () => (
             All data collected (e.g <a href="/data-extracts.html">data-extracts</a>) 
             and <a href="https://github.com/colouring-cities/colouring-core">code</a> are free to download, 
             use and share under open licence terms. Our <a href="https://github.com/colouring-cities/manual/wiki">
-            open manual</a> provides non-technical information for anyone interested in our research.
-            We also have an <a href="https://colouringcities.org/impact-studies">impact studies showcase</a>.
+            open manual</a> provides non-technical information for anyone interested in our research,
+            as well as a <a href="https://github.com/colouring-cities/ccrp-technical-manual/wiki">Technical Manual</a>, 
+            which describes how to use and contribute to the platform.
+            We also have an <a href="https://colouringcities.org/impact-studies">impact studies showcase</a>,
+            which shows how the data from the platform can be used.
         </p>
         <Link to="/view/categories"
             className="btn btn-outline-dark btn-lg btn-block">
