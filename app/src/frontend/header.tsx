@@ -132,7 +132,7 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/ETHICAL-FRAMEWORK",
+                to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-contributor-code-of-conduct",
                 text: "Code of Conduct"
             },
             {
