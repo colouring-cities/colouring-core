@@ -13,5 +13,5 @@ Commit messages should start from an upper case. So `Change public ownership sou
 We are still in the process of moving from the Colouring Britain prototype to the Colouring Cities Core platform. If you notice any London-specific/Britain-specific text or variables in the Core code, we would be grateful if you could flag those up, either by raising an issue so that we can fix them or by fixing them yourself and creating a pull request. 
 
 Ideally, any references to London should be replaced, either:
-- with the City Name parameter (specified in [docs/configuring-colouring-cities](docs/configuring-colouring-cities.md)) when referring to a specific deployment.
+- with the City Name parameter (specified in [the technical manual](https://github.com/colouring-cities/ccrp-technical-manual/wiki/Configuring-the-Colouring-Cities-Core-Platform)) when referring to a specific deployment.
 - with "Colouring Cities" when referring to the wider CCRP.
