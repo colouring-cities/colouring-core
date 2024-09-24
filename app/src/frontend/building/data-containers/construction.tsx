@@ -78,7 +78,9 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
         e.preventDefault();
         props.onMapColourScale('community_local_significance_total')
     }
-    const { flood, floodSwitchOnClick, housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, parcel, parcelSwitchOnClick, conservation, conservationSwitchOnClick, darkLightTheme } = useDisplayPreferences();
+
+    const { housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, parcel, parcelSwitchOnClick, conservation, conservationSwitchOnClick, darkLightTheme } = useDisplayPreferences();
+    
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     const currentYear = new Date().getFullYear();
 
@@ -304,19 +306,6 @@ const ConstructionView: React.FunctionComponent<CategoryViewProps> = (props) => 
                             Specific sources are mentioned in the footer of map for currently enabled layers.
                         </i>
                     </div>
-                    <LogicalDataEntry
-                        slug='planning_flood_zone'
-                        title={dataFields.planning_flood_zone.title}
-                        tooltip={dataFields.planning_flood_zone.tooltip}
-                        value={props.building.planning_flood_zone}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        mode={props.mode}
-                        disabled={true}
-                    />
-                    <button className={`map-switcher-inline ${flood}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={floodSwitchOnClick}>
-                        {(flood === 'enabled')? 'Click to hide Flood Zones' : 'Click to see Flood Zones mapped'}
-                    </button>
                     <LogicalDataEntry
                         slug='planning_housing_zone'
                         title={dataFields.planning_housing_zone.title}

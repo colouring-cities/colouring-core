@@ -223,6 +223,16 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 ]
             },
         },
+        {
+            mapStyle: 'energy_solar',
+            legend: {
+                title: 'Solar panels',
+                description: 'Does the building have Solar Panels?',
+                elements: [
+                    {color: '#6bb1e3', text: 'Yes'},
+                ]
+            },
+        },
     ],
     [Category.Construction]: [
         {
@@ -532,16 +542,6 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 description: 'Does the building have a back garden?',
                 elements: [
                     {color: '#7cbf39', text: 'Yes'},
-                ]
-            },
-        },
-        {
-            mapStyle: 'energy_solar',
-            legend: {
-                title: 'Solar panels',
-                description: 'Does the building have Solar Panels?',
-                elements: [
-                    {color: '#6bb1e3', text: 'Yes'},
                 ]
             },
         },

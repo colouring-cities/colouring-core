@@ -3,7 +3,7 @@ import { commonSourceTypes, dataFields } from '../../config/data-fields-config';
 import SelectDataEntry from '../data-components/select-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import Verification from '../data-components/verification';
-import { LogicalDataEntryYesOnly } from '../data-components/logical-data-entry/logical-data-entry';
+import { LogicalDataEntry, LogicalDataEntryYesOnly } from '../data-components/logical-data-entry/logical-data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import withCopyEdit from '../data-container';
@@ -153,6 +153,58 @@ const TeamView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     This section is under development.
                     Please let us know your suggestions on the <a href="https://github.com/colouring-cities/colouring-core/discussions">discussion forum</a>! (external link - save your edits first)
                 </InfoBox>
+                <DataEntryGroup name="Solar panels" collapsed={subcat==null || subcat!="4"}>
+                    <LogicalDataEntry
+                        title={dataFields.energy_solar.title}
+                        slug="energy_solar"
+                        value={props.building.energy_solar}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.energy_solar.tooltip}
+                    />
+                    <Verification
+                        slug="energy_solar"
+                        allow_verify={props.user !== undefined && props.building.energy_solar !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("energy_solar")}
+                        user_verified_as={props.user_verified.energy_solar}
+                        verified_count={props.building.verified.energy_solar}
+                        />
+                    {props.building.energy_solar == null ? <></> :
+                        <>
+                            <SelectDataEntry
+                                title={dataFields.energy_solar_source_type.title}
+                                slug="energy_solar_source_type"
+                                value={props.building.energy_solar_source_type}
+                                mode={props.mode}
+                                copy={props.copy}
+                                onChange={props.onChange}
+                                tooltip={dataFields.energy_solar_source_type.tooltip}
+                                options={dataFields.energy_solar_source_type.items}
+                                placeholder={dataFields.energy_solar_source_type.example}
+                            />
+                            {(props.building.energy_solar_source_type == dataFields.energy_solar_source_type.items[0] ||
+                                props.building.energy_solar_source_type == dataFields.energy_solar_source_type.items[1] ||
+                                props.building.energy_solar_source_type == null) ? <></> :
+                                <>
+                                    <MultiDataEntry
+                                        title={dataFields.energy_solar_source_links.title}
+                                        slug="energy_solar_source_links"
+                                        value={props.building.energy_solar_source_links}
+                                        mode={props.mode}
+                                        copy={props.copy}
+                                        onChange={props.onChange}
+                                        tooltip={dataFields.energy_solar_source_links.tooltip}
+                                        placeholder="https://..."
+                                        editableEntries={true}
+                                        isUrl={true}
+                                    />
+                                </>
+                            }
+                        </>
+                    }
+                </DataEntryGroup>
             </DataEntryGroup>
         </form>
     );

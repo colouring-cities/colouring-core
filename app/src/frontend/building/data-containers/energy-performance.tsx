@@ -12,6 +12,7 @@ import { CategoryViewProps } from './category-view-props';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
+import { useDisplayPreferences } from '../../displayPreferences-context';
 
 
 /**
@@ -22,60 +23,10 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
 
+    const { flood, floodSwitchOnClick, darkLightTheme } = useDisplayPreferences();
+
     return (
         <Fragment>
-            <DataEntryGroup name="Solar panels" collapsed={subcat==null || subcat!="4"}>
-                <LogicalDataEntry
-                    title={dataFields.energy_solar.title}
-                    slug="energy_solar"
-                    value={props.building.energy_solar}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    tooltip={dataFields.energy_solar.tooltip}
-                />
-                <Verification
-                    slug="energy_solar"
-                    allow_verify={props.user !== undefined && props.building.energy_solar !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("energy_solar")}
-                    user_verified_as={props.user_verified.energy_solar}
-                    verified_count={props.building.verified.energy_solar}
-                    />
-                {props.building.energy_solar == null ? <></> :
-                    <>
-                        <SelectDataEntry
-                            title={dataFields.energy_solar_source_type.title}
-                            slug="energy_solar_source_type"
-                            value={props.building.energy_solar_source_type}
-                            mode={props.mode}
-                            copy={props.copy}
-                            onChange={props.onChange}
-                            tooltip={dataFields.energy_solar_source_type.tooltip}
-                            options={dataFields.energy_solar_source_type.items}
-                            placeholder={dataFields.energy_solar_source_type.example}
-                        />
-                        {(props.building.energy_solar_source_type == dataFields.energy_solar_source_type.items[0] ||
-                            props.building.energy_solar_source_type == dataFields.energy_solar_source_type.items[1] ||
-                            props.building.energy_solar_source_type == null) ? <></> :
-                            <>
-                                <MultiDataEntry
-                                    title={dataFields.energy_solar_source_links.title}
-                                    slug="energy_solar_source_links"
-                                    value={props.building.energy_solar_source_links}
-                                    mode={props.mode}
-                                    copy={props.copy}
-                                    onChange={props.onChange}
-                                    tooltip={dataFields.energy_solar_source_links.tooltip}
-                                    placeholder="https://..."
-                                    editableEntries={true}
-                                    isUrl={true}
-                                />
-                            </>
-                        }
-                    </>
-                }
-            </DataEntryGroup>
             <DataEntryGroup name="Green walls/roof" collapsed={subcat==null || subcat!="5"}>
             <LogicalDataEntry
                     title={dataFields.energy_green_roof.title}
@@ -306,6 +257,19 @@ const SustainabilityView: React.FunctionComponent<CategoryViewProps> = (props) =
                     </>
                 }
             </DataEntryGroup>
+            <LogicalDataEntry
+                slug='planning_flood_zone'
+                title={dataFields.planning_flood_zone.title}
+                tooltip={dataFields.planning_flood_zone.tooltip}
+                value={props.building.planning_flood_zone}
+                copy={props.copy}
+                onChange={props.onChange}
+                mode={props.mode}
+                disabled={true}
+            />
+            <button className={`map-switcher-inline ${flood}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={floodSwitchOnClick}>
+                {(flood === 'enabled')? 'Click to hide Flood Zones' : 'Click to see Flood Zones mapped'}
+            </button>
         </Fragment>
     );
     };
