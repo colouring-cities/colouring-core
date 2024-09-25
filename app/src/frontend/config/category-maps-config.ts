@@ -21,10 +21,10 @@ export interface CategoryMapDefinition {
     legend: LegendConfig;
 }
 
-export const defaultMapCategory = Category.Age;
+export const defaultMapCategory = Category.AgeHistory;
 
 export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = {
-    [Category.Age]: [
+    [Category.AgeHistory]: [
         {
             mapStyle: 'date_year',
             legend: {
@@ -80,7 +80,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         },
     ],
-    [Category.Size]: [
+    [Category.ConstructionDesign]: [
         {
             mapStyle: 'construction_core_material',
             legend: {
@@ -190,7 +190,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         },
     ],
-    [Category.Team]: [
+    [Category.EnergyPerformance]: [
         {
             mapStyle: 'sust_dec',
             legend: {
@@ -234,7 +234,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         },
     ],
-    [Category.Construction]: [
+    [Category.PlanningConservation]: [
         {
             // this database commad allows to see statistics about decision dates per year
             // SELECT COUNT(*), date_part('year', decision_date) as year from planning_data WHERE decision_date IS NOT NULL GROUP BY year ORDER BY year ASC;
@@ -518,7 +518,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         }
     ],
-    [Category.Planning]: [
+    [Category.UrbanInfrastructure]: [
         {
             mapStyle: "context_walkability_index",
             legend: {
@@ -534,7 +534,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         }
     ],
-    [Category.EnergyPerformance]: [
+    [Category.WaterGreenInfrastructure]: [
         {
             mapStyle: 'context_back_garden',
             legend: {
@@ -556,7 +556,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         },
     ],
-    [Category.Typology]: [
+    [Category.TypologySize]: [
         {
             mapStyle: 'typology_classification',
             legend: {
@@ -736,10 +736,10 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         }
     ],
-    [Category.StreetContext]: [
+    [Category.RetrofitCondition]: [
         
     ],
-    [Category.Resilience]: [
+    [Category.DisasterManagement]: [
         {
             mapStyle: 'disaster_severity',
             legend: {
