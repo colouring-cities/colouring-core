@@ -53,17 +53,17 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Architectural style',
                 elements: [
-                    { color: '#FFF739', text: '43AD-410 (Roman)' },
-                    { color: '#C5BD00', text: '410-1485 (Medieval)' },
-                    { color: '#FF9A39', text: '1485-1603 (Tudor)' },
-                    { color: '#C56000', text: '1603-1714 (Stuart)' },
-                    { color: '#EA8072', text: '1714-1837 (Georgian)' },
-                    { color: '#A71200', text: '1837-1901 (Victorian)' },
-                    { color: '#A272D4', text: '1901-1914 (Edwardian)' },
-                    { color: '#3988C5', text: '1914-1945 (WWI-WWII)' },
-                    { color: '#5ADFA2', text: '1946-1979 (Post war)' },
-                    { color: '#C2F47A', text: '1980-1999 (Late C20)' },
-                    { color: '#6FB40A', text: '2000-2025 (Early C21)' },
+                    { color: '#fae269', text: '2000-2025 (Early C21)' },
+                    { color: '#fbaf27', text: '1980-1999 (Late C20)' },
+                    { color: '#cc1212', text: '1946-1979 (Post war)' },
+                    { color: '#8f5385', text: '1914-1945 (WWI-WWII)' },
+                    { color: '#c3e1eb', text: '1901-1914 (Edwardian)' },
+                    { color: '#6a9dba', text: '1837-1901 (Victorian)' },
+                    { color: '#acc98f', text: '1714-1837 (Georgian)' },
+                    { color: '#6d8a51', text: '1603-1714 (Stuart)' },
+                    { color: '#d0c291', text: '1485-1603 (Tudor)' },
+                    { color: '#a9a695', text: '410-1485 (Medieval)' },
+                    { color: '#dadada', text: '43AD-410 (Roman)' },
                 ]
             }
         },
