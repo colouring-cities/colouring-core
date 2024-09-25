@@ -257,19 +257,21 @@ const WaterGreenInfrastructureView: React.FunctionComponent<CategoryViewProps> =
                     </>
                 }
             </DataEntryGroup>
-            <LogicalDataEntry
-                slug='planning_flood_zone'
-                title={dataFields.planning_flood_zone.title}
-                tooltip={dataFields.planning_flood_zone.tooltip}
-                value={props.building.planning_flood_zone}
-                copy={props.copy}
-                onChange={props.onChange}
-                mode={props.mode}
-                disabled={true}
-            />
-            <button className={`map-switcher-inline ${flood}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={floodSwitchOnClick}>
-                {(flood === 'enabled')? 'Click to hide Flood Zones' : 'Click to see Flood Zones mapped'}
-            </button>
+            <DataEntryGroup name="Flood zones" collapsed={subcat==null || subcat!="1"}>
+                <LogicalDataEntry
+                    slug='planning_flood_zone'
+                    title={dataFields.planning_flood_zone.title}
+                    tooltip={dataFields.planning_flood_zone.tooltip}
+                    value={props.building.planning_flood_zone}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    mode={props.mode}
+                    disabled={true}
+                />
+                <button className={`map-switcher-inline ${flood}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={floodSwitchOnClick}>
+                    {(flood === 'enabled')? 'Click to hide Flood Zones' : 'Click to see Flood Zones mapped'}
+                </button>
+            </DataEntryGroup>
         </Fragment>
     );
     };
