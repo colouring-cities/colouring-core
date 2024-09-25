@@ -10,9 +10,9 @@ import Verification from '../data-components/verification';
 import InfoBox from '../../components/info-box';
 
 /**
-* Street Context view/edit section
+* Retrofit & Condition view/edit section
 */
-const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) => {
+const RetrofitConditionView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
@@ -81,6 +81,6 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
         </Fragment>
     );
 };
-const StreetContextContainer = withCopyEdit(StreetContextView);
+const RetrofitConditionContainer = withCopyEdit(RetrofitConditionView);
 
-export default StreetContextContainer;
+export default RetrofitConditionContainer;

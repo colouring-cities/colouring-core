@@ -14,9 +14,9 @@ import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-e
 import { useDisplayPreferences } from '../../displayPreferences-context';
 
 /**
-* Type view/edit section
+* Typology & Size view/edit section
 */
-const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
+const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
     
     const switchToClassificationMapStyle = (e) => {
         e.preventDefault();
@@ -774,6 +774,6 @@ const TypeView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </Fragment>
     );
     };
-const TypeContainer = withCopyEdit(TypeView);
+const TypologySizeContainer = withCopyEdit(TypologySizeView);
 
-export default TypeContainer;
+export default TypologySizeContainer;

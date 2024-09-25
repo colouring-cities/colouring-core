@@ -20,8 +20,10 @@ import { Category } from '../../config/categories-config';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 
-
-const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
+/**
+* Urban Infrastructure Context view/edit section
+*/
+const UrbanInfrastructureView: React.FunctionComponent<CategoryViewProps> = (props) => {
     
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
@@ -192,6 +194,6 @@ const PlanningView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </Fragment>
     );
 };
-const PlanningContainer = withCopyEdit(PlanningView);
+const UrbanInfrastructureContainer = withCopyEdit(UrbanInfrastructureView);
 
-export default PlanningContainer;
+export default UrbanInfrastructureContainer;

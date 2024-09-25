@@ -13,9 +13,9 @@ import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-e
 import { LogicalDataEntry, LogicalDataEntryYesOnly } from '../data-components/logical-data-entry/logical-data-entry';
 
 /**
-* Size view/edit section
+* Construction & Design view/edit section
 */
-const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
+const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (props) => {
     
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
@@ -1283,6 +1283,6 @@ const SizeView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </Fragment>
     )
 };
-const SizeContainer = withCopyEdit(SizeView);
+const ConstructionDesignContainer = withCopyEdit(ConstructionDesignView);
 
-export default SizeContainer;
+export default ConstructionDesignContainer;
