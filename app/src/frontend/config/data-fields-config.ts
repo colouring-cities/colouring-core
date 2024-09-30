@@ -430,14 +430,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_latitude: {
         category: Category.Location,
-        title: "Open centroid latitude coordinate",
-        tooltip: "Latitude of building centroid",
+        title: "Centroid latitude coordinate",
+        tooltip: "Latitude of building centroid, using WGS 84 (EPSG:4326)",
         example: 12.4564,
     },
     location_longitude: {
         category: Category.Location,
-        title: "Open centroid longitude coordinate",
-        tooltip: "Longitude of building centroid",
+        title: "Centroid longitude coordinate",
+        tooltip: "Longitude of building centroid, using WGS 84 (EPSG:4326)",
         example: 0.12124,
     },
     location_coordinates_source: {
