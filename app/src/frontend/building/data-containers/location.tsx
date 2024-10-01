@@ -374,7 +374,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     title={dataFields.location_longitude.title}
                     slug="location_longitude"
                     value={props.building.location_longitude}
-                    tooltip={dataFields.location_latitude.tooltip}
+                    tooltip={dataFields.location_longitude.tooltip}
                     mode={props.mode}
                     step={0.00001}
                     min={-180}
