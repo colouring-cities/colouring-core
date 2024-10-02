@@ -21,10 +21,10 @@ export interface CategoryMapDefinition {
     legend: LegendConfig;
 }
 
-export const defaultMapCategory = Category.Age;
+export const defaultMapCategory = Category.AgeHistory;
 
 export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = {
-    [Category.Age]: [
+    [Category.AgeHistory]: [
         {
             mapStyle: 'date_year',
             legend: {
@@ -80,105 +80,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         },
     ],
-    [Category.Size]: [
-        {
-            mapStyle: 'size_height',
-            legend: {
-                title: 'Height to apex',
-                elements: [
-                    { color: '#f7f4f9', text: '0-5.55'},
-                    { color: '#e7e1ef', text: '5.55-7.73'},
-                    { color: '#d4b9da', text: '7.73-11.38'},
-                    { color: '#c994c7', text: '11.38-18.45'},
-                    { color: '#df65b0', text: '18.45-35.05'},
-                    { color: '#e7298a', text: '35.05-89.30'},
-                    { color: '#ce1256', text: '89.30-152'},
-                    { color: '#980043', text: '≥152'}
-                ]
-            },
-        },
-        {
-            mapStyle: 'size_total_floors',
-            legend: {
-                title: 'Total number of floors',
-                elements: [
-                    { color: '#f7f4f9', text: '1'},
-                    { color: '#e7e1ef', text: '2'},
-                    { color: '#d4b9da', text: '3 - 4'},
-                    { color: '#c994c7', text: '5'},
-                    { color: '#df65b0', text: '6 - 10'},
-                    { color: '#e7298a', text: '11 - 20'},
-                    { color: '#ce1256', text: '21 - 34'},
-                    { color: '#980043', text: '35 +'}
-                ]
-            },
-        },
-        {
-            mapStyle: 'size_storeys_basement',
-            legend: {
-                title: 'Floors below ground level',
-                elements: [
-                    { color: '#f7f4f9', text: '1'},
-                    { color: '#d4b9da', text: '2'},
-                    { color: '#df65b0', text: '3'},
-                    { color: '#ce1256', text: '4+'},
-                ]
-            },
-        },
-        {
-            mapStyle: 'size_floor_area_ground',
-            legend: {
-                title: 'Ground floor area (m2)',
-                elements: [
-                    { color: '#f7f4f9', text: '0 - 25'},
-                    { color: '#e7e1ef', text: '25 - 50'},
-                    { color: '#d4b9da', text: '50 - 100'},
-                    { color: '#c994c7', text: '100 - 250'},
-                    { color: '#df65b0', text: '250 - 500'},
-                    { color: '#e7298a', text: '500 - 1000'},
-                    { color: '#ce1256', text: '1000 - 2000'},
-                    { color: '#980043', text: '2000 +'}
-                ]
-            },
-        }
-    ],
-    [Category.Team]: [
-        {
-            mapStyle: 'team',
-            legend: {
-                title: 'Team',
-                description: '% data collected',
-                elements: [
-                    { color: '#994d00', text: '≥80%' },
-                    { color: '#e67300', text: '60–80%' },
-                    { color: '#ff9933', text: '40–60%' },
-                    { color: '#ffbf80', text: '20–40%' },
-                    { color: '#ffe6cc', text: '<20%' }
-                ]
-            },
-        },
-        {
-            mapStyle: 'designer_awards',
-            legend: {
-                title: 'Awards',
-                description: 'Has the building won any awards?',
-                elements: [
-                    {color: '#f7ec25', text: 'Yes'},
-                ]
-            },
-        },
-        {
-            mapStyle: 'team_known_designer',
-            legend: {
-                title: 'Known designer',
-                description: 'Buildings with a known architect/designer',
-                elements: [
-                    {color: '#6bb1e3', text: 'Yes'},
-                ]
-            },
-        },
-    ],
-    [Category.Construction]: [
+    [Category.ConstructionDesign]: [
         {
             mapStyle: 'construction_core_material',
             legend: {
@@ -250,6 +152,167 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: "#5c8970", text: "Other Metal" },
                     { color: "#96613b", text: "Other Natural Material" },
                     { color: "#c48a85", text: "Other Man-Made Material" }
+                ]
+            },
+        },
+        {
+            mapStyle: 'team',
+            legend: {
+                title: 'Team',
+                description: '% data collected',
+                elements: [
+                    { color: '#994d00', text: '≥80%' },
+                    { color: '#e67300', text: '60–80%' },
+                    { color: '#ff9933', text: '40–60%' },
+                    { color: '#ffbf80', text: '20–40%' },
+                    { color: '#ffe6cc', text: '<20%' }
+                ]
+            },
+        },
+        {
+            mapStyle: 'designer_awards',
+            legend: {
+                title: 'Awards',
+                description: 'Has the building won any awards?',
+                elements: [
+                    {color: '#f7ec25', text: 'Yes'},
+                ]
+            },
+        },
+        {
+            mapStyle: 'team_known_designer',
+            legend: {
+                title: 'Known designer',
+                description: 'Buildings with a known architect/designer',
+                elements: [
+                    {color: '#6bb1e3', text: 'Yes'},
+                ]
+            },
+        },
+    ],
+    [Category.EnergyPerformance]: [
+        {
+            mapStyle: 'sust_dec',
+            legend: {
+                title: 'Energy rating (DEC)',
+                description: 'Non-domestic energy rating (DEC Rating)',
+                elements: [
+                    { color: "#007f3d", text: 'A' },
+                    { color: "#2c9f29", text: 'B' },
+                    { color: "#9dcb3c", text: 'C' },
+                    { color: "#fff200", text: 'D' },
+                    { color: "#f7af1d", text: 'E' },
+                    { color: "#ed6823", text: 'F' },
+                    { color: "#e31d23", text: 'G' },
+                ]
+            },
+        },
+        {
+            mapStyle: 'sust_aggregate_estimate_epc',
+            legend: {
+                title: 'Energy rating (EPC)',
+                description: 'Domestic energy rating (EPC Rating)',
+                elements: [
+                    { color: "#007f3d", text: 'A' },
+                    { color: "#2c9f29", text: 'B' },
+                    { color: "#9dcb3c", text: 'C' },
+                    { color: "#fff200", text: 'D' },
+                    { color: "#f7af1d", text: 'E' },
+                    { color: "#ed6823", text: 'F' },
+                    { color: "#e31d23", text: 'G' },
+                ]
+            },
+        },
+        {
+            mapStyle: 'energy_solar',
+            legend: {
+                title: 'Solar panels',
+                description: 'Does the building have Solar Panels?',
+                elements: [
+                    {color: '#6bb1e3', text: 'Yes'},
+                ]
+            },
+        },
+    ],
+    [Category.PlanningConservation]: [
+        {
+            // this database commad allows to see statistics about decision dates per year
+            // SELECT COUNT(*), date_part('year', decision_date) as year from planning_data WHERE decision_date IS NOT NULL GROUP BY year ORDER BY year ASC;
+            // SELECT COUNT(*), date_part('year', registered_with_local_authority_date) as year from planning_data WHERE decision_date IS NOT NULL GROUP BY year ORDER BY year ASC;
+            mapStyle: 'planning_applications_status_all',
+            legend: {
+                title: 'All planning applications available from GLA (official data)',
+                disclaimer: 'The map shows official data available from the GLA Planning London Datahub. What you are looking at is mainly applications from 2019 onwards.',
+                elements: [
+                    { color: '#a040a0', text: 'Submitted, awaiting decision' },
+                    { color: '#fff200', text: 'Appeal In Progress' },
+                    { color: '#16cf15', text: 'Approved' },
+                    { color: '#e31d23', text: 'Rejected' },
+                    { color: '#7a84a0', text: 'Withdrawn' },
+                    { color: '#eacad0', text: 'Other' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'planning_applications_status_recent',
+            legend: {
+                title: 'The last 12 months - planning applications submissions/decisions (official data)',
+                disclaimer: 'The map shows applications where the submission or decision data falls within the last 12 months.',
+                elements: [
+                    { color: '#a040a0', text: 'Submitted, awaiting decision' },
+                    { color: '#fff200', text: 'Appeal In Progress' },
+                    { color: '#16cf15', text: 'Approved' },
+                    { color: '#e31d23', text: 'Rejected' },
+                    { color: '#7a84a0', text: 'Withdrawn' },
+                    { color: '#eacad0', text: 'Other' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'planning_applications_status_very_recent',
+            legend: {
+                title: 'Last 30 days - planning applications submissions/decisions (official data)',
+                disclaimer: 'The map shows applications where the submission or decision data falls within last 30 days.',
+                elements: [
+                    { color: '#a040a0', text: 'Submitted, awaiting decision' },
+                    { color: '#fff200', text: 'Appeal In Progress' },
+                    { color: '#16cf15', text: 'Approved' },
+                    { color: '#e31d23', text: 'Rejected' },
+                    { color: '#7a84a0', text: 'Withdrawn' },
+                    { color: '#eacad0', text: 'Other' },
+                ]
+            }
+        },
+        {
+            mapStyle: 'community_expected_planning_application_total',
+            legend: {
+                title: 'Expected planning applications (crowdsourced data)',
+                disclaimer: 'Sites identified by users as likely to be subject to planning application over the next six months',
+                elements: [
+                    { color: '#bd0026', text: '100+' },
+                    { color: '#e31a1c', text: '50–99' },
+                    { color: '#fc4e2a', text: '20–49' },
+                    { color: '#fd8d3c', text: '10–19' },
+                    { color: '#feb24c', text: '3–9' },
+                    { color: '#fed976', text: '2' },
+                    { color: '#ffe8a9', text: '1'}
+                ]
+            }
+        },
+        {
+            mapStyle: 'planning_combined',
+            legend: {
+                title: 'Designation/protection (official and crowdsourced data)',
+                disclaimer: 'All data relating to designated buildings should be checked against the National Heritage List for England and local authority websites. Designation data is currently incomplete. We are aiming for 100% coverage by December 2023.',
+                elements: [
+                    { color: '#95beba', text: 'In Conservation Area'},
+                    { color: '#c72e08', text: 'Grade I Listed'},
+                    { color: '#e75b42', text: 'Grade II* Listed'},
+                    { color: '#ffbea1', text: 'Grade II Listed'},
+                    { color: '#85ffd4', text: 'Heritage at Risk'},
+                    { color: '#858ed4', text: 'Locally Listed'},
+                    { color: '#858eff', text: 'In World Heritage Site'},
+                    { color: '#8500d4', text: 'In Archaeological Priority Area'},
                 ]
             },
         }
@@ -455,129 +518,30 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         }
     ],
-    [Category.Planning]: [
+    [Category.UrbanInfrastructure]: [
         {
-            // this database commad allows to see statistics about decision dates per year
-            // SELECT COUNT(*), date_part('year', decision_date) as year from planning_data WHERE decision_date IS NOT NULL GROUP BY year ORDER BY year ASC;
-            // SELECT COUNT(*), date_part('year', registered_with_local_authority_date) as year from planning_data WHERE decision_date IS NOT NULL GROUP BY year ORDER BY year ASC;
-            mapStyle: 'planning_applications_status_all',
+            mapStyle: "context_walkability_index",
             legend: {
-                title: 'All planning applications available from GLA (official data)',
-                disclaimer: 'The map shows official data available from the GLA Planning London Datahub. What you are looking at is mainly applications from 2019 onwards.',
-                elements: [
-                    { color: '#a040a0', text: 'Submitted, awaiting decision' },
-                    { color: '#fff200', text: 'Appeal In Progress' },
-                    { color: '#16cf15', text: 'Approved' },
-                    { color: '#e31d23', text: 'Rejected' },
-                    { color: '#7a84a0', text: 'Withdrawn' },
-                    { color: '#eacad0', text: 'Other' },
-                ]
-            }
+                title: 'Walkability Index',
+                elements: []
+            },
         },
         {
-            mapStyle: 'planning_applications_status_recent',
+            mapStyle: "context_street_width",
             legend: {
-                title: 'The last 12 months - planning applications submissions/decisions (official data)',
-                disclaimer: 'The map shows applications where the submission or decision data falls within the last 12 months.',
-                elements: [
-                    { color: '#a040a0', text: 'Submitted, awaiting decision' },
-                    { color: '#fff200', text: 'Appeal In Progress' },
-                    { color: '#16cf15', text: 'Approved' },
-                    { color: '#e31d23', text: 'Rejected' },
-                    { color: '#7a84a0', text: 'Withdrawn' },
-                    { color: '#eacad0', text: 'Other' },
-                ]
-            }
-        },
-        {
-            mapStyle: 'planning_applications_status_very_recent',
-            legend: {
-                title: 'Last 30 days - planning applications submissions/decisions (official data)',
-                disclaimer: 'The map shows applications where the submission or decision data falls within last 30 days.',
-                elements: [
-                    { color: '#a040a0', text: 'Submitted, awaiting decision' },
-                    { color: '#fff200', text: 'Appeal In Progress' },
-                    { color: '#16cf15', text: 'Approved' },
-                    { color: '#e31d23', text: 'Rejected' },
-                    { color: '#7a84a0', text: 'Withdrawn' },
-                    { color: '#eacad0', text: 'Other' },
-                ]
-            }
-        },
-        {
-            mapStyle: 'community_expected_planning_application_total',
-            legend: {
-                title: 'Expected planning applications (crowdsourced data)',
-                disclaimer: 'Sites identified by users as likely to be subject to planning application over the next six months',
-                elements: [
-                    { color: '#bd0026', text: '100+' },
-                    { color: '#e31a1c', text: '50–99' },
-                    { color: '#fc4e2a', text: '20–49' },
-                    { color: '#fd8d3c', text: '10–19' },
-                    { color: '#feb24c', text: '3–9' },
-                    { color: '#fed976', text: '2' },
-                    { color: '#ffe8a9', text: '1'}
-                ]
-            }
-        },
-        {
-            mapStyle: 'planning_combined',
-            legend: {
-                title: 'Designation/protection (official and crowdsourced data)',
-                disclaimer: 'All data relating to designated buildings should be checked against the National Heritage List for England and local authority websites. Designation data is currently incomplete. We are aiming for 100% coverage by December 2023.',
-                elements: [
-                    { color: '#95beba', text: 'In Conservation Area'},
-                    { color: '#c72e08', text: 'Grade I Listed'},
-                    { color: '#e75b42', text: 'Grade II* Listed'},
-                    { color: '#ffbea1', text: 'Grade II Listed'},
-                    { color: '#85ffd4', text: 'Heritage at Risk'},
-                    { color: '#858ed4', text: 'Locally Listed'},
-                    { color: '#858eff', text: 'In World Heritage Site'},
-                    { color: '#8500d4', text: 'In Archaeological Priority Area'},
-                ]
+                title: 'Street width',
+                elements: []
             },
         }
     ],
-    [Category.EnergyPerformance]: [
+    [Category.WaterGreenInfrastructure]: [
         {
-            mapStyle: 'sust_dec',
+            mapStyle: 'context_back_garden',
             legend: {
-                title: 'Energy rating (DEC)',
-                description: 'Non-domestic energy rating (DEC Rating)',
+                title: 'Back gardens',
+                description: 'Does the building have a back garden?',
                 elements: [
-                    { color: "#007f3d", text: 'A' },
-                    { color: "#2c9f29", text: 'B' },
-                    { color: "#9dcb3c", text: 'C' },
-                    { color: "#fff200", text: 'D' },
-                    { color: "#f7af1d", text: 'E' },
-                    { color: "#ed6823", text: 'F' },
-                    { color: "#e31d23", text: 'G' },
-                ]
-            },
-        },
-        {
-            mapStyle: 'sust_aggregate_estimate_epc',
-            legend: {
-                title: 'Energy rating (EPC)',
-                description: 'Domestic energy rating (EPC Rating)',
-                elements: [
-                    { color: "#007f3d", text: 'A' },
-                    { color: "#2c9f29", text: 'B' },
-                    { color: "#9dcb3c", text: 'C' },
-                    { color: "#fff200", text: 'D' },
-                    { color: "#f7af1d", text: 'E' },
-                    { color: "#ed6823", text: 'F' },
-                    { color: "#e31d23", text: 'G' },
-                ]
-            },
-        },
-        {
-            mapStyle: 'energy_solar',
-            legend: {
-                title: 'Solar panels',
-                description: 'Does the building have Solar Panels?',
-                elements: [
-                    {color: '#6bb1e3', text: 'Yes'},
+                    {color: '#7cbf39', text: 'Yes'},
                 ]
             },
         },
@@ -592,7 +556,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         },
     ],
-    [Category.Typology]: [
+    [Category.TypologySize]: [
         {
             mapStyle: 'typology_classification',
             legend: {
@@ -675,6 +639,66 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 ]
             },
         },
+        {
+            mapStyle: 'size_height',
+            legend: {
+                title: 'Height to apex',
+                elements: [
+                    { color: '#f7f4f9', text: '0-5.55'},
+                    { color: '#e7e1ef', text: '5.55-7.73'},
+                    { color: '#d4b9da', text: '7.73-11.38'},
+                    { color: '#c994c7', text: '11.38-18.45'},
+                    { color: '#df65b0', text: '18.45-35.05'},
+                    { color: '#e7298a', text: '35.05-89.30'},
+                    { color: '#ce1256', text: '89.30-152'},
+                    { color: '#980043', text: '≥152'}
+                ]
+            },
+        },
+        {
+            mapStyle: 'size_total_floors',
+            legend: {
+                title: 'Total number of floors',
+                elements: [
+                    { color: '#f7f4f9', text: '1'},
+                    { color: '#e7e1ef', text: '2'},
+                    { color: '#d4b9da', text: '3 - 4'},
+                    { color: '#c994c7', text: '5'},
+                    { color: '#df65b0', text: '6 - 10'},
+                    { color: '#e7298a', text: '11 - 20'},
+                    { color: '#ce1256', text: '21 - 34'},
+                    { color: '#980043', text: '35 +'}
+                ]
+            },
+        },
+        {
+            mapStyle: 'size_storeys_basement',
+            legend: {
+                title: 'Floors below ground level',
+                elements: [
+                    { color: '#f7f4f9', text: '1'},
+                    { color: '#d4b9da', text: '2'},
+                    { color: '#df65b0', text: '3'},
+                    { color: '#ce1256', text: '4+'},
+                ]
+            },
+        },
+        {
+            mapStyle: 'size_floor_area_ground',
+            legend: {
+                title: 'Ground floor area (m2)',
+                elements: [
+                    { color: '#f7f4f9', text: '0 - 25'},
+                    { color: '#e7e1ef', text: '25 - 50'},
+                    { color: '#d4b9da', text: '50 - 100'},
+                    { color: '#c994c7', text: '100 - 250'},
+                    { color: '#df65b0', text: '250 - 500'},
+                    { color: '#e7298a', text: '500 - 1000'},
+                    { color: '#ce1256', text: '1000 - 2000'},
+                    { color: '#980043', text: '2000 +'}
+                ]
+            },
+        }
     ],
     [Category.LandUse]: [
         {
@@ -712,33 +736,10 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         }
     ],
-    [Category.StreetContext]: [
-        {
-            mapStyle: 'context_back_garden',
-            legend: {
-                title: 'Back gardens',
-                description: 'Does the building have a back garden?',
-                elements: [
-                    {color: '#7cbf39', text: 'Yes'},
-                ]
-            },
-        },
-        {
-            mapStyle: "context_walkability_index",
-            legend: {
-                title: 'Walkability Index',
-                elements: []
-            },
-        },
-        {
-            mapStyle: "context_street_width",
-            legend: {
-                title: 'Street width',
-                elements: []
-            },
-        }
+    [Category.RetrofitCondition]: [
+        
     ],
-    [Category.Resilience]: [
+    [Category.DisasterManagement]: [
         {
             mapStyle: 'disaster_severity',
             legend: {

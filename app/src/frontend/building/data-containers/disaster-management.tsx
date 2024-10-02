@@ -12,9 +12,9 @@ import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-e
 import DataPickerDateEntry from '../data-components/date-picker-data-entry';
 
 /**
-* Dynamics view/edit section
+* Disaster management view/edit section
 */
-const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
+const DisasterManagementView: React.FunctionComponent<CategoryViewProps> = (props) => {
     
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
@@ -214,6 +214,6 @@ const ResilienceView: React.FunctionComponent<CategoryViewProps> = (props) => {
     </>)
 };
 
-const ResilienceContainer = withCopyEdit(ResilienceView);
+const DisasterManagementContainer = withCopyEdit(DisasterManagementView);
 
-export default ResilienceContainer;
+export default DisasterManagementContainer;

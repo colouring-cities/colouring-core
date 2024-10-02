@@ -14,6 +14,7 @@
     float: right;
     background: white;
     border-radius: 4px;
+    margin-bottom: 5px;
 }
 .map-button .btn {
     margin: 0;

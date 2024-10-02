@@ -16,6 +16,8 @@ const CategoryLink: React.FC<CategoryLinkProps> = (props) => {
     let categoryLink = `/${props.mode}/${props.slug}`;
     if (props.building_id != undefined) categoryLink += `/${props.building_id}`;
 
+    let className = "category-title";
+
     return (
         <NavLink
             className={`category-link background-${props.slug}`}
@@ -25,7 +27,7 @@ const CategoryLink: React.FC<CategoryLinkProps> = (props) => {
                     'Coming soon… Click more info for details.'
                     : 'View/Edit Map'
             }>
-                <h3 className="category-title">{props.title}</h3>
+                <h3 className={className}>{props.title}</h3>
         </NavLink>
     );
 };

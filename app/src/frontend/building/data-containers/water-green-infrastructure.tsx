@@ -1,25 +1,84 @@
 import React, { Fragment } from 'react';
+
 import { commonSourceTypes, dataFields } from '../../config/data-fields-config';
 import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
+import SelectDataEntry from '../data-components/select-data-entry';
+import Verification from '../data-components/verification';
 import withCopyEdit from '../data-container';
+import InfoBox from '../../components/info-box';
+
 import { CategoryViewProps } from './category-view-props';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
-import SelectDataEntry from '../data-components/select-data-entry';
-import Verification from '../data-components/verification';
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
+import { useDisplayPreferences } from '../../displayPreferences-context';
+
 
 /**
-* Street Context view/edit section
+* Water & Green Infrastructure Context view/edit section
 */
-const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) => {
-
+const WaterGreenInfrastructureView: React.FunctionComponent<CategoryViewProps> = (props) => {
+    
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
 
+    const { flood, floodSwitchOnClick, darkLightTheme } = useDisplayPreferences();
+
     return (
         <Fragment>
+            <DataEntryGroup name="Green walls/roof" collapsed={subcat==null || subcat!="5"}>
+            <LogicalDataEntry
+                    title={dataFields.energy_green_roof.title}
+                    slug="energy_green_roof"
+                    value={props.building.energy_green_roof}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.energy_green_roof.tooltip}
+                />
+                <Verification
+                    slug="energy_green_roof"
+                    allow_verify={props.user !== undefined && props.building.energy_green_roof !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("energy_green_roof")}
+                    user_verified_as={props.user_verified.energy_green_roof}
+                    verified_count={props.building.verified.energy_green_roof}
+                    />
+                {props.building.energy_green_roof == null ? <></> :
+                    <>
+                        <SelectDataEntry
+                            title={dataFields.energy_green_roof_source_type.title}
+                            slug="energy_green_roof_source_type"
+                            value={props.building.energy_green_roof_source_type}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.energy_green_roof_source_type.tooltip}
+                            options={dataFields.energy_green_roof_source_type.items}
+                            placeholder={dataFields.energy_green_roof_source_type.example}
+                        />
+                        {(props.building.energy_green_roof_source_type == dataFields.energy_green_roof_source_type.items[0] ||
+                            props.building.energy_green_roof_source_type == dataFields.energy_green_roof_source_type.items[1] ||
+                            props.building.energy_green_roof_source_type == null) ? <></> :
+                            <>
+                                <MultiDataEntry
+                                    title={dataFields.energy_green_roof_source_links.title}
+                                    slug="energy_green_roof_source_links"
+                                    value={props.building.energy_green_roof_source_links}
+                                    mode={props.mode}
+                                    copy={props.copy}
+                                    onChange={props.onChange}
+                                    tooltip={dataFields.energy_green_roof_source_links.tooltip}
+                                    placeholder="https://..."
+                                    editableEntries={true}
+                                    isUrl={true}
+                                />
+                            </>
+                        }
+                    </>
+                }
+            </DataEntryGroup>
             <DataEntryGroup name="Green Space" collapsed={subcat==null || subcat!="1"}>
                 <LogicalDataEntry
                     title={dataFields.context_front_garden.title}
@@ -198,170 +257,24 @@ const StreetContextView: React.FunctionComponent<CategoryViewProps> = (props) =>
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Street/pavement" collapsed={subcat==null || subcat!="2"}>
-                <DataEntry
-                    title="Walkability Index"
-                    slug="context_walkability_index"
-                    value=""
-                    mode='view'
-                    tooltip='Under development'
-                />
-                <hr/>
-                <NumericDataEntry
-                    title={dataFields.context_street_width.title}
-                    value={props.building.context_street_width}
-                    slug="context_street_width"
-                    tooltip={dataFields.context_street_width.tooltip}
-                    //placeholder={dataFields.context_street_width.example}
-                    copy={props.copy}
-                    mode={props.mode}
-                    onChange={props.onChange}
-                    step={1}
-                    min={0}
-                />
-                <Verification
-                    slug="context_street_width"
-                    allow_verify={props.user !== undefined && props.building.context_street_width !== null}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("context_street_width")}
-                    user_verified_as={props.user_verified.context_street_width}
-                    verified_count={props.building.verified.context_street_width}
-                    />
-                <SelectDataEntry
-                    title={dataFields.context_street_width_source_type.title}
-                    slug="context_street_width_source_type"
-                    value={props.building.context_street_width_source_type}
-                    options={dataFields.context_street_width_source_type.items}
-                    mode={props.mode}
+            <DataEntryGroup name="Flood zones" collapsed={subcat==null || subcat!="1"}>
+                <LogicalDataEntry
+                    slug='planning_flood_zone'
+                    title={dataFields.planning_flood_zone.title}
+                    tooltip={dataFields.planning_flood_zone.tooltip}
+                    value={props.building.planning_flood_zone}
                     copy={props.copy}
                     onChange={props.onChange}
-                    tooltip={dataFields.context_street_width_source_type.tooltip}
-                />
-                {(props.building.context_street_width_source_type == commonSourceTypes[0] ||
-                    props.building.context_street_width_source_type == commonSourceTypes[1] ||
-                    props.building.context_street_width_source_type == null) ? <></> :
-                    <><MultiDataEntry
-                        title={dataFields.context_street_width_source_links.title}
-                        slug="context_street_width_source_links"
-                        value={props.building.context_street_width_source_links}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.context_street_width_source_links.tooltip}
-                        placeholder="https://..."
-                        editableEntries={true}
-                        isUrl={true}
-                        />
-                    </>
-                }
-                <hr/>
-                <NumericDataEntry
-                    title={dataFields.context_pavement_width.title}
-                    value={props.building.context_pavement_width}
-                    slug="context_pavement_width"
-                    tooltip={dataFields.context_pavement_width.tooltip}
-                    //placeholder={dataFields.context_pavement_width.example}
                     mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    step={1}
-                    min={0}
+                    disabled={true}
                 />
-                <Verification
-                    slug="context_pavement_width"
-                    allow_verify={props.user !== undefined && props.building.context_pavement_width !== null}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("context_pavement_width")}
-                    user_verified_as={props.user_verified.context_pavement_width}
-                    verified_count={props.building.verified.context_pavement_width}
-                    />
-                <SelectDataEntry
-                    title={dataFields.context_pavement_width_source_type.title}
-                    slug="context_pavement_width_source_type"
-                    value={props.building.context_pavement_width_source_type}
-                    options={dataFields.context_pavement_width_source_type.items}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    tooltip={dataFields.context_pavement_width_source_type.tooltip}
-                />
-                {(props.building.context_pavement_width_source_type == commonSourceTypes[0] ||
-                    props.building.context_pavement_width_source_type == commonSourceTypes[1] ||
-                    props.building.context_pavement_width_source_type == null) ? <></> :
-                    <><MultiDataEntry
-                        title={dataFields.context_pavement_width_source_links.title}
-                        slug="context_pavement_width_source_links"
-                        value={props.building.context_pavement_width_source_links}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.context_pavement_width_source_links.tooltip}
-                        placeholder="https://..."
-                        editableEntries={true}
-                        isUrl={true}
-                        />
-                    </>
-                }
-                <hr/>
-                <DataEntry
-                        title={dataFields.context_street_geometry.title}
-                        slug="context_street_geometry"
-                        value={props.building.context_street_geometry}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.context_street_geometry.tooltip}
-                        placeholder="https://..."
-                        isUrl={true}
-                    />
-                <Verification
-                    slug="context_street_geometry"
-                    allow_verify={props.user !== undefined && props.building.context_street_geometry !== null}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("context_street_geometry")}
-                    user_verified_as={props.user_verified.context_street_geometry}
-                    verified_count={props.building.verified.context_street_geometry}
-                    />
-                <SelectDataEntry
-                    title={dataFields.context_street_geometry_source_type.title}
-                    slug="context_street_geometry_source_type"
-                    value={props.building.context_street_geometry_source_type}
-                    options={dataFields.context_street_geometry_source_type.items}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    tooltip={dataFields.context_street_geometry_source_type.tooltip}
-                />
-                {(props.building.context_street_geometry_source_type == commonSourceTypes[0] ||
-                    props.building.context_street_geometry_source_type == commonSourceTypes[1] ||
-                    props.building.context_street_geometry_source_type == null) ? <></> :
-                    <><MultiDataEntry
-                        title={dataFields.context_street_geometry_source_links.title}
-                        slug="context_street_geometry_source_links"
-                        value={props.building.context_street_geometry_source_links}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.context_street_geometry_source_links.tooltip}
-                        placeholder="https://..."
-                        editableEntries={true}
-                        isUrl={true}
-                        />
-                    </>
-                }
-            </DataEntryGroup>
-            <DataEntryGroup name="Number of entrances facing street" collapsed={subcat==null || subcat!="3"}>
-                <DataEntry
-                    title="Number of entrances facing street"
-                    slug=""
-                    value=""
-                    mode='view'
-                    tooltip='Under development'
-                />
+                <button className={`map-switcher-inline ${flood}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={floodSwitchOnClick}>
+                    {(flood === 'enabled')? 'Click to hide Flood Zones' : 'Click to see Flood Zones mapped'}
+                </button>
             </DataEntryGroup>
         </Fragment>
     );
-};
-const StreetContextContainer = withCopyEdit(StreetContextView);
+    };
+const WaterGreenInfrastructureContainer = withCopyEdit(WaterGreenInfrastructureView);
 
-export default StreetContextContainer;
+export default WaterGreenInfrastructureContainer;
