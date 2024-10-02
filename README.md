@@ -29,7 +29,7 @@ To view all of the issue relating to Colouring Britain (and their current status
 ## Setup and run
 
 #### Forking the Core Repository
-If you are working with us as part of this GitHub organisation, then a repository and team may already have been set up for you. If you are already using the repository and want to add a new project, perhaps because you are expanding to additional cities, then please following these instructions to create a Fork of the core repository: [docs/working-with-colouring-core](docs/working-with-colouring-core.md).
+If you are working with us as part of this GitHub organisation, then a repository and team may already have been set up for you. If you are already using the repository and want to add a new project, perhaps because you are expanding to additional cities, then please following these instructions to create a Fork of the core repository: [working-with-colouring-core](docs/working-with-colouring-core.md).
 
 #### Customise the Application:
 
@@ -37,24 +37,24 @@ You can customise the Colouring Cities application by changing the values in the
 
 `app/src/cc-config.json`
 
-For more information on the config system, see [docs/configuring-colouring-cities](docs/configuring-colouring-cities.md).
+For more information on the config system, see [configuring-colouring-cities](https://github.com/colouring-cities/ccrp-technical-manual/wiki/Configuring-the-Colouring-Cities-Core-Platform).
 
 #### Test the application:
 
-You can try out the Colouring Cities application by setting up your own development environment, which includes the option to load test data from OpenStreetMaps (OSM). See [docs/setup-dev-environment](docs/setup-dev-environment.md).
+You can try out the Colouring Cities application by setting up your own development environment, which includes the option to load test data from OpenStreetMaps (OSM). See [setup-dev-environment](https://github.com/colouring-cities/ccrp-technical-manual/wiki/Setting-up-a-local-development-environment).
   
 _Last updated March 2022_
 
 #### Create a production version of the application:
 
-We also have documentation on setting up a production environment here: [docs/setup-production-environment](docs/setup-production-environment.md).
+We also have documentation on setting up a production environment here: [setup-production-environment](https://github.com/colouring-cities/ccrp-technical-manual/wiki/Setting-Up-A-Production-Environment).
   
 _Last updated December 2021_
 
-**Note:** There are additional useful documentation within the `/docs` folder.
+**Note:** There are additional useful documentation in the [CCRP Technical Manual](https://github.com/colouring-cities/ccrp-technical-manual/wiki).
 
 #### Troubleshooting
-If you are having problems with the application, first look here: [docs/troubleshooting](docs/troubleshooting.md) to see if there is a solution for your problem.
+If you are having problems with the application, first look here: [troubleshooting](docs/troubleshooting.md) to see if there is a solution for your problem.
 (Also, please consider updating this document if you encounter and problems and manage to solve them!)
 
 ## Acknowledgements

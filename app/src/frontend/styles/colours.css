@@ -62,31 +62,31 @@
 .background-land-use {
     background-color: #f7ec25;
 }
-.background-typology {
+.background-typology-size {
     background-color: #f77d11;
 }
-.background-age {
-    background-color: #ab8fb0;
-}
-.background-size {
-    background-color: #ff6161;
-}
-.background-construction {
+.background-age-history {
     background-color: #f2a2b9;
 }
-.background-street-context {
+.background-construction-design {
+    background-color: #ff6161;
+}
+.background-planning-conservation {
+    background-color: #ab8fb0;
+}
+.background-retrofit-condition {
     background-color: #718899;
 }
-.background-team {
+.background-energy-performance {
     background-color: #7cbf39;
 }
-.background-planning {
+.background-urban-infrastructure {
     background-color: #57c28e;
 }
-.background-energy-performance {
+.background-water-green-infrastructure {
     background-color: #6bb1e3;
 }
-.background-resilience {
+.background-disaster-management {
     background-color: #aaaaaa;
 }
 .background-community {

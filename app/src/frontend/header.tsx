@@ -104,7 +104,7 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/F1.-ETHICAL-FRAMEWORK-and-ethics-policies",
+                to: "https://github.com/colouring-cities/manual/wiki/ETHICAL-FRAMEWORK",
                 text: "Ethical Framework",
                 external: true
             }
@@ -137,8 +137,9 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "/code-of-conduct.html",
-                text: "Code of Conduct"
+                to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-contributor-code-of-conduct",
+                text: "Code of Conduct",
+                external: true
             },
             {
                 to: "https://github.com/colouring-cities/manual/wiki/F2.-PROTOCOLS-&-CODES-OF-CONDUCT#ccrp-equality-diversity-and-inclusion-policy",
