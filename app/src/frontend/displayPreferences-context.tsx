@@ -42,6 +42,10 @@ interface DisplayPreferencesContextState {
     historicMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     historicMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
+    editableBuildings: LayerEnablementState;
+    editableBuildingsSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    editableBuildingsSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
     darkLightTheme: MapTheme;
     darkLightThemeSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     darkLightThemeSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -95,6 +99,10 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     historicMapSwitch: stub,
     historicMapSwitchOnClick: undefined,
 
+    editableBuildings: undefined,
+    editableBuildingsSwitch: stub,
+    editableBuildingsSwitchOnClick: undefined,
+
     darkLightTheme: undefined,
     darkLightThemeSwitch: stub,
     darkLightThemeSwitchOnClick: undefined,
@@ -116,6 +124,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultConservation = 'disabled'
     const defaultHistoricData = 'disabled'
     const defaultHistoricMap = 'disabled'
+    const defaultEditableBuildings = 'enabled'
     const defaultShowLayerSelection = 'disabled'
     const [vista, setVista] = useState<LayerEnablementState>(defaultVista);
     const [flood, setFlood] = useState<LayerEnablementState>(defaultFlood);
@@ -126,6 +135,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [conservation, setConservation] = useState<LayerEnablementState>(defaultConservation);
     const [historicData, setHistoricData] = useState<LayerEnablementState>(defaultHistoricData);
     const [historicMap, setHistoricMap] = useState<LayerEnablementState>(defaultHistoricMap);
+    const [editableBuildings, setEditableBuildings] = useState<LayerEnablementState>(defaultEditableBuildings);
     const [darkLightTheme, setDarkLightTheme] = useState<MapTheme>('night');
     const [showLayerSelection, setShowLayerSelection] = useState<LayerEnablementState>(defaultShowLayerSelection);
 
@@ -147,6 +157,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             setConservation(defaultConservation);
             setHistoricData(defaultHistoricData);
             setHistoricMap(defaultHistoricMap);
+            setEditableBuildings(defaultEditableBuildings)
             setShowLayerSelection(defaultShowLayerSelection); // reset layers + hiding this panel is integrated into one action
             //setDarkLightTheme('night'); // reset only layers
     },
@@ -181,6 +192,10 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         if(historicMap != defaultHistoricMap) {
             return true;
         }
+        if(editableBuildings != defaultEditableBuildings) {
+            return true;
+        }
+        setEditableBuildings
         //darkLightTheme not handled here
         return false;
     }
@@ -326,6 +341,21 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         setHistoricMap(newHistoric);
     }
 
+    const editableBuildingsSwitch = useCallback(
+        (e) => {
+            flipEditableBuildings(e)
+        },
+        [editableBuildings],
+    )
+    const editableBuildingsSwitchOnClick = (e) => {
+        flipEditableBuildings(e)
+    }
+    function flipEditableBuildings(e) {
+        e.preventDefault();
+        const newValue = (editableBuildings === 'enabled')? 'disabled' : 'enabled';
+        setEditableBuildings(newValue);
+    }
+
     const darkLightThemeSwitch = useCallback(
         (e) => {
             flipDarkLightTheme(e)
@@ -392,6 +422,10 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             historicMap,
             historicMapSwitch,
             historicMapSwitchOnClick,
+
+            editableBuildings,
+            editableBuildingsSwitch,
+            editableBuildingsSwitchOnClick,
 
             darkLightTheme,
             darkLightThemeSwitch,
