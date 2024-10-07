@@ -54,6 +54,10 @@ interface DisplayPreferencesContextState {
     openStreetMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     openStreetMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
+    editableBuildings: LayerEnablementState;
+    editableBuildingsSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    editableBuildingsSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
     darkLightTheme: MapTheme;
     darkLightThemeSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     darkLightThemeSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -119,6 +123,10 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     openStreetMapSwitch: stub,
     openStreetMapSwitchOnClick: undefined,
 
+    editableBuildings: undefined,
+    editableBuildingsSwitch: stub,
+    editableBuildingsSwitchOnClick: undefined,
+
     darkLightTheme: undefined,
     darkLightThemeSwitch: stub,
     darkLightThemeSwitchOnClick: undefined,
@@ -143,6 +151,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultaerialPhotosMap = 'disabled'
     const defaultHistoricalFootprints = 'disabled'
     const defaultOpenStreetMap = 'disabled'
+    const defaultEditableBuildings = 'enabled'
     const defaultShowLayerSelection = 'disabled'
     const [vista, setVista] = useState<LayerEnablementState>(defaultVista);
     const [flood, setFlood] = useState<LayerEnablementState>(defaultFlood);
@@ -156,6 +165,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [aerialPhotosMap, setaerialPhotosMap] = useState<LayerEnablementState>(defaultHistoricMap);
     const [historicalFootprints, setHistoricalFootprints] = useState<LayerEnablementState>(defaultHistoricalFootprints);
     const [openStreetMap, setOpenStreetMapMap] = useState<LayerEnablementState>(defaultOpenStreetMap);
+    const [editableBuildings, setEditableBuildings] = useState<LayerEnablementState>(defaultEditableBuildings);
     const [darkLightTheme, setDarkLightTheme] = useState<MapTheme>('night');
     const [showLayerSelection, setShowLayerSelection] = useState<LayerEnablementState>(defaultShowLayerSelection);
 
@@ -178,6 +188,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             setHistoricData(defaultHistoricData);
             setHistoricMap(defaultHistoricMap);
             setHistoricalFootprints(defaultHistoricalFootprints);
+            setEditableBuildings(defaultEditableBuildings)
             setShowLayerSelection(defaultShowLayerSelection); // reset layers + hiding this panel is integrated into one action
             //setDarkLightTheme('night'); // reset only layers
     },
@@ -221,6 +232,10 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         if(openStreetMap != defaultOpenStreetMap) {
             return true;
         }
+        if(editableBuildings != defaultEditableBuildings) {
+            return true;
+        }
+        setEditableBuildings
         //darkLightTheme not handled here
         return false;
     }
@@ -424,6 +439,21 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         setOpenStreetMapMap(newOpenStreetMap);
     }
 
+    const editableBuildingsSwitch = useCallback(
+        (e) => {
+            flipEditableBuildings(e)
+        },
+        [editableBuildings],
+    )
+    const editableBuildingsSwitchOnClick = (e) => {
+        flipEditableBuildings(e)
+    }
+    function flipEditableBuildings(e) {
+        e.preventDefault();
+        const newValue = (editableBuildings === 'enabled')? 'disabled' : 'enabled';
+        setEditableBuildings(newValue);
+    }
+
     const darkLightThemeSwitch = useCallback(
         (e) => {
             flipDarkLightTheme(e)
@@ -502,6 +532,10 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             openStreetMap,
             openStreetMapSwitch,
             openStreetMapSwitchOnClick,
+
+            editableBuildings,
+            editableBuildingsSwitch,
+            editableBuildingsSwitchOnClick,
 
             darkLightTheme,
             darkLightThemeSwitch,
