@@ -45,6 +45,7 @@ import { OpenStreetMapSwitcher } from './openstreetmap-switcher';
 import { VistaSwitcher } from './vista-switcher';
 import { CreativeSwitcher } from './creative-switcher';
 import { HousingSwitcher } from './housing-switcher';
+import { EditableBuildingsSwitcher } from './editable-buildings-switcher';
 import { BuildingMapTileset } from '../config/tileserver-config';
 import { useDisplayPreferences } from '../displayPreferences-context';
 import { CategoryMapDefinition } from '../config/category-maps-config';
@@ -194,6 +195,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                                 <CreativeSwitcher/>
                                 <AerialPhotosMapSwitcher/>
                                 <OpenStreetMapSwitcher/>
+                                <EditableBuildingsSwitcher />
                             </>
                             : <></>
                         }
