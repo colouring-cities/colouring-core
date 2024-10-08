@@ -27,16 +27,16 @@ export const Login: React.FC = () => {
     }, [username, password]);
 
     const msgText = `Welcome to Colouring ${config.cityName}. You're one of the first people to use the site!`;
+    const issuesURL = config.githubURL + "/issues";
+    const discussURL = config.githubURL + "/discussions";
 
     return (
         <article>
             <section className="main-col">
                 <h1 className="h2">Log in</h1>
                 <InfoBox msg={msgText}>
-                    <br/>Please <a href="https://discuss.colouring.london/">discuss
-                    suggestions for improvements</a> and <a
-                        href="https://github.com/colouring-cities/colouring-core/issues">
-                    report issues or problems</a>.
+                    <br/>Please <a href={discussURL}>discuss suggestions for improvements</a> and {' '}
+                    <a href={issuesURL}>report issues or problems</a>.
                 </InfoBox>
                 <ErrorBox msg={error} />
                 <form onSubmit={onSubmit}>
