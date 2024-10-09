@@ -546,40 +546,6 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Best estimate for when the front/facade of the building was constructed.",
         example: 1900,
     },
-    date_source: {
-        category: Category.AgeHistory,
-        title: "Specific historical source type",
-        tooltip: "Specific historical data source type for the building dates above.",
-        items: [
-            "Expert knowledge of building",
-            "Expert estimate from image",
-            "Survey of London",
-            "Pevsner Guides",
-            "Victoria County History",
-            "Local history publication",
-            "Other publication",
-            "National Heritage List for England",
-            "Other database or gazetteer",
-            "Historical map",
-            "Other archive document",
-            "Film/Video",
-            "Other website",
-            "Other"
-        ],
-        example: "",
-    },
-    date_source_detail: {
-        category: Category.AgeHistory,
-        title: "Source details",
-        tooltip: "References for date source (max 500 characters)",
-        example: "",
-    },
-    date_link: {
-        category: Category.AgeHistory,
-        title: "Historical source link(s)",
-        tooltip: "URL(s) for historial data source(s) - Historical data source(s)",
-        example: ["", "", ""],
-    },
     date_source_type: {
         category: Category.AgeHistory,
         title: "Source type",
@@ -593,7 +559,6 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "URL(s) for historial data source(s) - Alternative data source(s)",
         example: ["", "", ""],
     },
-
     size_storeys_core: {
         category: Category.ConstructionDesign,
         title: "Core number of floors",
