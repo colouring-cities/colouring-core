@@ -31,8 +31,8 @@ export const categoriesOrder: Category[] = [
     Category.PlanningConservation,
     Category.RetrofitCondition,
     Category.EnergyPerformance,
-    Category.UrbanInfrastructure,
     Category.WaterGreenInfrastructure,
+    Category.UrbanInfrastructure,
     Category.DisasterManagement,
     Category.Community,
 ];
@@ -66,7 +66,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
     },
     [Category.WaterGreenInfrastructure]: {
         slug: 'water-green-infrastructure',
-        name: 'Water/Green Infrastructure Context',
+        name: 'Green/Water Infrastructure Context',
         aboutUrl: 'https://github.com/colouring-cities/manual/wiki/E1.--DATA#10-energy-performance',
         intro: "This section provides open data on the building's water supply and any green infrastructure.",
     },
