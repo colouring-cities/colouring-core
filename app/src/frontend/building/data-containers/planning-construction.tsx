@@ -216,36 +216,6 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                         />
                     </>
                 }
-                <hr/>
-                <SelectDataEntry
-                    title={dataFields.date_source.title}
-                    slug="date_source"
-                    value={props.building.date_source}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    tooltip={dataFields.date_source.tooltip}
-                    options={dataFields.date_source.items}
-                    placeholder={dataFields.date_source.example}
-                    />
-                {(props.building.date_source == dataFields.date_source.items[0] ||
-                    props.building.date_source == dataFields.date_source.items[1] ||
-                    props.building.date_source == null) ? <></> :
-                    <>
-                        <MultiDataEntry
-                            title={dataFields.date_link.title}
-                            slug="date_link"
-                            value={props.building.date_link}
-                            mode={props.mode}
-                            copy={props.copy}
-                            onChange={props.onChange}
-                            tooltip={dataFields.date_link.tooltip}
-                            placeholder="https://..."
-                            editableEntries={true}
-                            isUrl={true}
-                        />
-                    </>
-                }
             </DataEntryGroup>
             <DataEntryGroup name="Cladding, extensions and retrofits" collapsed={subcat==null || subcat!="3"}>
                 <NumericDataEntry

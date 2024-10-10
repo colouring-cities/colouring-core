@@ -42,7 +42,8 @@ export const MyAccountPage: React.FC = () => {
         );
     }
 
-    const issuesURL = config.githubURL + "/issues"
+    const issuesURL = config.githubURL + "/issues";
+    const discussURL = config.githubURL + "/discussions";
 
     return (
         <article>
@@ -52,7 +53,7 @@ export const MyAccountPage: React.FC = () => {
                     <h1 className="h1">Welcome, {user.username}!</h1>
                     <p>
                         Colouring {config.cityName} is under active development. Please{' '}
-                        <a href="https://discuss.colouring.london/">discuss suggestions for improvements</a> and{' '}
+                        <a href={discussURL}>discuss suggestions for improvements</a> and{' '}
                         <a href={issuesURL}> report issues or problems</a>.
                     </p>
                     <p>
