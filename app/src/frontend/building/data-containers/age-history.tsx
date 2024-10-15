@@ -12,7 +12,6 @@ import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-e
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import { useDisplayPreferences } from '../../displayPreferences-context';
-import YearDataEntry from '../data-components/year-data-entry';
 import { DynamicsBuildingPane, DynamicsDataEntry } from './dynamics/dynamics-data-entry';
 import { FieldRow } from '../data-components/field-row';
 
@@ -65,6 +64,12 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const switchToStylePeriodMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('typology_style_period')
+    }
+
+    let construction_length = null;
+
+    if (props.building.date_year != null && props.building.date_lower != null) {
+        construction_length += props.building.date_year - props.building.date_lower;
     }
 
     const queryParameters = new URLSearchParams(window.location.search);
@@ -136,32 +141,59 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 :
                     <></>
                 }
-                <YearDataEntry
-                    year={props.building.date_year}
-                    upper={props.building.date_upper}
-                    lower={props.building.date_lower}
+                <NumericDataEntry
+                    title={dataFields.date_lower.title}
+                    slug="date_lower"
+                    value={props.building.date_lower}
                     mode={props.mode}
                     copy={props.copy}
                     onChange={props.onChange}
-
+                    step={1}
+                    min={1}
+                    max={currentYear}
+                    tooltip={dataFields.date_lower.tooltip}
+                    />
+                <Verification
+                    slug="date_lower"
+                    allow_verify={props.user !== undefined && props.building.date_lower !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("date_lower")}
+                    user_verified_as={props.user_verified.date_lower}
+                    verified_count={props.building.verified.date_lower}
+                    />
+                <NumericDataEntry
+                    title={dataFields.date_year.title}
+                    slug="date_year"
+                    value={props.building.date_year}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={1}
+                    max={currentYear}
+                    tooltip={dataFields.date_year.tooltip}
+                    />
+                <Verification
+                    slug="date_year"
                     allow_verify={props.user !== undefined && props.building.date_year !== null && !props.edited}
                     onVerify={props.onVerify}
                     user_verified={props.user_verified.hasOwnProperty("date_year")}
                     user_verified_as={props.user_verified.date_year}
                     verified_count={props.building.verified.date_year}
-                    
-                    allow_verify_upper={props.user !== undefined && props.building.date_upper !== null && !props.edited}
-                    onVerify_upper={props.onVerify}
-                    user_verified_upper={props.user_verified.hasOwnProperty("date_upper")}
-                    user_verified_as_upper={props.user_verified.date_upper}
-                    verified_count_upper={props.building.verified.date_upper}
-                    
-                    allow_verify_lower={props.user !== undefined && props.building.date_lower !== null && !props.edited}
-                    onVerify_lower={props.onVerify}
-                    user_verified_lower={props.user_verified.hasOwnProperty("date_lower")}
-                    user_verified_as_lower={props.user_verified.date_lower}
-                    verified_count_lower={props.building.verified.date_lower}
                     />
+                <NumericDataEntry
+                    title="Estimated duration of construction (years)"
+                    slug="size_total_floors"
+                    value={construction_length}
+                    mode={props.mode}
+                    copy={props.copy}
+                    tooltip="Length of building construction (calculated from above values)."
+                    onChange={props.onChange}
+                    step={1}
+                    min={0}
+                    disabled={true}
+                    />
+                <hr/>
                 <NumericDataEntry
                     title={dataFields.facade_year.title}
                     slug="facade_year"
