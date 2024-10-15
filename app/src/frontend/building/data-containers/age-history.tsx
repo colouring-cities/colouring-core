@@ -226,10 +226,25 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     options={dataFields.date_source_type.items}
                     placeholder={dataFields.date_source_type.example}
                     />
+                <SelectDataEntry
+                    title={dataFields.date_source.title}
+                    slug="date_source"
+                    value={props.building.date_source}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.date_source.tooltip}
+                    options={dataFields.date_source.items}
+                    placeholder={dataFields.date_source.example}
+                    />
                 {(props.building.date_source_type == dataFields.date_source_type.items[0] ||
                     props.building.date_source_type == dataFields.date_source_type.items[1] ||
-                    props.building.date_source_type == null) ? <></> :
-                    <>
+                    props.building.date_source_type == null) 
+                    && (props.building.date_source == dataFields.date_source.items[0] ||
+                        props.building.date_source == dataFields.date_source.items[1] ||
+                        props.building.date_source == null) 
+                    ? <></> 
+                    : <>
                         <MultiDataEntry
                             title={dataFields.date_source_links.title}
                             slug="date_source_links"
