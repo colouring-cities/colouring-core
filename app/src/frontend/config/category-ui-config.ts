@@ -1,6 +1,6 @@
 import { Category } from './categories-config';
 
-import PlanningConservationContainer from '../building/data-containers/planning-construction';
+import PlanningConservationContainer from '../building/data-containers/planning-conservation';
 import CommunityContainer from '../building/data-containers/community';
 import AgeHistoryContainer from '../building/data-containers/age-history';
 import DisasterManagementContainer from '../building/data-containers/disaster-management';
@@ -11,17 +11,17 @@ import RetrofitConditionContainer from '../building/data-containers/retrofit-con
 import WaterGreenInfrastructureContainer from '../building/data-containers/water-green-infrastructure';
 import EnergyPerformanceContainer from '../building/data-containers/energy-performance';
 import TypologySizeContainer from '../building/data-containers/typology-size';
-import UseContainer from '../building/data-containers/land-use';
+import LandUseContainer from '../building/data-containers/land-use';
 
 import { DataContainerType } from '../building/data-container';
 
 export const categoryUiConfig: {[key in Category]: DataContainerType} = {
     [Category.Location]: LocationContainer,
-    [Category.LandUse]: UseContainer,
+    [Category.LandUse]: LandUseContainer,
     [Category.TypologySize]: TypologySizeContainer,
-    [Category.AgeHistory]: PlanningConservationContainer,
+    [Category.AgeHistory]: AgeHistoryContainer,
     [Category.ConstructionDesign]: ConstructionDesignContainer,
-    [Category.PlanningConservation]: AgeHistoryContainer,
+    [Category.PlanningConservation]: PlanningConservationContainer,
     [Category.RetrofitCondition]: RetrofitConditionContainer,
     [Category.EnergyPerformance]: EnergyPerformanceContainer,
     [Category.UrbanInfrastructure]: UrbanInfrastructureContainer,
