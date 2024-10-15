@@ -524,14 +524,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_year: {
         category: Category.AgeHistory,
-        title: "Year of construction of main building (best estimate)",
-        tooltip: "Best estimate for construction of main body of the building.",
+        title: "Year of construction completed (best estimate)",
+        tooltip: "Best estimate for the year that construction of main body of the building was completed.",
         example: 1924,
     },
     date_lower: {
         category: Category.AgeHistory,
-        title: "Earliest possible start year",
-        tooltip: "This should be the earliest year in which construction could have started.",
+        title: "Year construction started (best estimate)",
+        tooltip: "Best estimate for the earliest year in which construction could have started.",
         example: 1900,
     },
     date_upper: {

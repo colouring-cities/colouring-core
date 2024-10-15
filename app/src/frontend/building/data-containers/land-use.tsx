@@ -12,7 +12,7 @@ import { DataEntryGroup } from '../data-components/data-entry-group';
 /**
  * Use view/edit section
  */
-const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
+const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const switchToIsDomesticMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('is_domestic')
@@ -166,6 +166,6 @@ const UseView: React.FunctionComponent<CategoryViewProps> = (props) => {
         </Fragment>
     );
 };
-const UseContainer = withCopyEdit(UseView);
+const LandUseContainer = withCopyEdit(LandUseView);
 
-export default UseContainer;
+export default LandUseContainer;
