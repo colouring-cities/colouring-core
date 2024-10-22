@@ -78,7 +78,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
-            <DataEntryGroup name="Architectural style/historial period" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Architectural style/historical period" collapsed={subcat==null || subcat!="2"}>
                 {(props.mapColourScale != "typology_style_period") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStylePeriodMapStyle}>
                         Click to show architectural style.
