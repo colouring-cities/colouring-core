@@ -69,7 +69,8 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
     let construction_length = null;
 
     if (props.building.date_year != null && props.building.date_lower != null) {
-        construction_length += props.building.date_year - props.building.date_lower;
+        construction_length = props.building.date_year - props.building.date_lower;
+        construction_length = Math.max(construction_length, 1);
     }
 
     const queryParameters = new URLSearchParams(window.location.search);
@@ -150,7 +151,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     step={1}
                     min={1}
-                    max={currentYear}
+                    max={props.building.date_year}
                     tooltip={dataFields.date_lower.tooltip}
                     />
                 <Verification
@@ -169,7 +170,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     onChange={props.onChange}
                     step={1}
-                    min={1}
+                    min={props.building.date_lower}
                     max={currentYear}
                     tooltip={dataFields.date_year.tooltip}
                     />
