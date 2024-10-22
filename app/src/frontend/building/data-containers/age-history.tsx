@@ -68,8 +68,8 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     let construction_length = null;
 
-    if (props.building.date_year != null && props.building.date_lower != null) {
-        construction_length = props.building.date_year - props.building.date_lower;
+    if (props.building.date_year != null && props.building.date_year_completed != null) {
+        construction_length = props.building.date_year_completed - props.building.date_year;
         construction_length = Math.max(construction_length, 1);
     }
 
@@ -143,26 +143,6 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <></>
                 }
                 <NumericDataEntry
-                    title={dataFields.date_lower.title}
-                    slug="date_lower"
-                    value={props.building.date_lower}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    step={1}
-                    min={1}
-                    max={props.building.date_year}
-                    tooltip={dataFields.date_lower.tooltip}
-                    />
-                <Verification
-                    slug="date_lower"
-                    allow_verify={props.user !== undefined && props.building.date_lower !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("date_lower")}
-                    user_verified_as={props.user_verified.date_lower}
-                    verified_count={props.building.verified.date_lower}
-                    />
-                <NumericDataEntry
                     title={dataFields.date_year.title}
                     slug="date_year"
                     value={props.building.date_year}
@@ -170,8 +150,8 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     copy={props.copy}
                     onChange={props.onChange}
                     step={1}
-                    min={props.building.date_lower}
-                    max={currentYear}
+                    min={1}
+                    max={props.building.date_year_completed}
                     tooltip={dataFields.date_year.tooltip}
                     />
                 <Verification
@@ -181,6 +161,26 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified={props.user_verified.hasOwnProperty("date_year")}
                     user_verified_as={props.user_verified.date_year}
                     verified_count={props.building.verified.date_year}
+                    />
+                <NumericDataEntry
+                    title={dataFields.date_year_completed.title}
+                    slug="date_year_completed"
+                    value={props.building.date_year_completed}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={props.building.date_year}
+                    max={currentYear}
+                    tooltip={dataFields.date_year_completed.tooltip}
+                    />
+                <Verification
+                    slug="date_year_completed"
+                    allow_verify={props.user !== undefined && props.building.date_year_completed !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("date_year_completed")}
+                    user_verified_as={props.user_verified.date_year_completed}
+                    verified_count={props.building.verified.date_year_completed}
                     />
                 <NumericDataEntry
                     title="Estimated duration of construction (years)"
