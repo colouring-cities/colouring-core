@@ -524,9 +524,15 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_year: {
         category: Category.AgeHistory,
-        title: "Year of construction completed (best estimate)",
-        tooltip: "Best estimate for the year that construction of main body of the building was completed.",
+        title: "Year construction started (best estimate)",
+        tooltip: "Best estimate for the year that construction began on this building.",
         example: 1924,
+    },
+    date_year_completed: {
+        category: Category.AgeHistory,
+        title: "Year construction completed (best estimate)",
+        tooltip: "Best estimate for the year that construction completed on this building.",
+        example: 1925,
     },
     date_lower: {
         category: Category.AgeHistory,
@@ -556,7 +562,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     date_source_links: {
         category: Category.AgeHistory,
         title: "Alternative Source link(s)",
-        tooltip: "URL(s) for historial data source(s) - Alternative data source(s)",
+        tooltip: "URL(s) for historical data source(s) - Alternative data source(s)",
         example: ["", "", ""],
     },
     size_storeys_core: {
