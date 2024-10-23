@@ -43,6 +43,13 @@ const LAYER_QUERIES = {
         FROM
             buildings
         WHERE date_year IS NOT NULL`,
+    date_year_completed: `
+        SELECT
+            geometry_id,
+            date_year_completed
+        FROM
+            buildings
+        WHERE date_year_completed IS NOT NULL`,
     size_storeys: `
         SELECT
             geometry_id,

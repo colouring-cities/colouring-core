@@ -432,14 +432,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_latitude: {
         category: Category.Location,
-        title: "Centroid latitude coordinate",
-        tooltip: "Latitude of building centroid, using WGS 84 (EPSG:4326)",
+        title: "Building latitude coordinate",
+        tooltip: "Latitude of building, using WGS 84 (EPSG:4326). Building geometry is reduced to a point representing it.",
         example: 12.4564,
     },
     location_longitude: {
         category: Category.Location,
-        title: "Centroid longitude coordinate",
-        tooltip: "Longitude of building centroid, using WGS 84 (EPSG:4326)",
+        title: "Building longitude coordinate",
+        tooltip: "Longitude of building, using WGS 84 (EPSG:4326). Building geometry is reduced to a point representing it.",
         example: 0.12124,
     },
     location_coordinates_source: {
@@ -524,9 +524,15 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_year: {
         category: Category.AgeHistory,
-        title: "Year of construction completed (best estimate)",
-        tooltip: "Best estimate for the year that construction of main body of the building was completed.",
+        title: "Year construction started (best estimate)",
+        tooltip: "Best estimate for the year that construction began on this building.",
         example: 1924,
+    },
+    date_year_completed: {
+        category: Category.AgeHistory,
+        title: "Year construction completed (best estimate)",
+        tooltip: "Best estimate for the year that construction completed on this building.",
+        example: 1925,
     },
     date_lower: {
         category: Category.AgeHistory,
