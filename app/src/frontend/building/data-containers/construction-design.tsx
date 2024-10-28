@@ -587,7 +587,7 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                         }
                     </DataEntryGroup>
                 </DataEntryGroup>
-            <DataEntryGroup name="Design / Team" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Design/Team" collapsed={subcat==null || subcat!="2"}>
                 <DataEntryGroup name="Land Ownership at Time of Construction" collapsed={subcat==null || subcat!="1"}>
                     <MultiDataEntry
                         title={dataFields.landowner.title}
