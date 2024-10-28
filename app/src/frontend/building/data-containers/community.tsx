@@ -74,7 +74,7 @@ const CommunityView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
-            <DataEntryGroup name="Community views on buildings & streetscapes" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Community Views On Buildings & Streetscapes" collapsed={subcat==null || subcat!="1"}>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
                     <i>
                         This section collects data on what people feel about the exterior of a building and the surrounding streetscape.

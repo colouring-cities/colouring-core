@@ -88,8 +88,8 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
     return (
          <Fragment>
             <DataEntryGroup name="Planning" collapsed={subcat==null || (subcat!="1" && subcat!="2" && subcat!="3")}>
-                <DataEntryGroup name="Current planning applications" collapsed={subcat==null || (subcat!="1" && subcat!="2" && subcat!="3")}>
-                    <DataEntryGroup name="Official data" collapsed={subcat==null || subcat!="1"}>
+                <DataEntryGroup name="Current Planning Applications" collapsed={subcat==null || (subcat!="1" && subcat!="2" && subcat!="3")}>
+                    <DataEntryGroup name="Official Data" collapsed={subcat==null || subcat!="1"}>
                         <InfoBox>
                             This section provides data on active applications. We define these as applications with any activity in the last year.
                             <br />
@@ -115,7 +115,7 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                         : <></>
                         }
                     </DataEntryGroup>
-                    <DataEntryGroup name="Year of completion" collapsed={subcat==null || subcat!="2"}>
+                    <DataEntryGroup name="Year of Completion" collapsed={subcat==null || subcat!="2"}>
                         <LogicalDataEntry
                             slug='planning_crowdsourced_site_completion_status'
                             title={dataFields.planning_crowdsourced_site_completion_status.title}
@@ -187,7 +187,7 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                             </>
                         }   
                     </DataEntryGroup>
-                    <DataEntryGroup name="Incomplete/missing data" collapsed={subcat==null || subcat!="3"}>
+                    <DataEntryGroup name="Incomplete/Missing Data" collapsed={subcat==null || subcat!="3"}>
                         <LogicalDataEntry
                             slug='planning_missing_data'
                             title={dataFields.planning_missing_data.title}
@@ -227,7 +227,7 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                         </InfoBox>
                     </DataEntryGroup>
                 </DataEntryGroup>
-                <DataEntryGroup name="Past applications" collapsed={subcat==null || subcat!="4"}>
+                <DataEntryGroup name="Past Applications" collapsed={subcat==null || subcat!="4"}>
                     <InfoBox>
                         This section provides data on past applications where available from the GLA, including those with no decision in over a year
                     </InfoBox>
@@ -258,7 +258,7 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                     : <></>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Possible future applications" collapsed={subcat==null || subcat!="5"}>
+                <DataEntryGroup name="Possible Future Applications" collapsed={subcat==null || subcat!="5"}>
                     <InfoBox type='info'>Click and colour buildings here if you think they may be subject to a future planning application involving demolition. To add your opinion on how well this building works, please also visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
                     {props.mapColourScale != "community_expected_planning_application_total" ?
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToExpectedApplicationMapStyle}>
@@ -295,7 +295,7 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                         <></>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Planning zones" collapsed={subcat==null || subcat!="6"}>
+                <DataEntryGroup name="Planning Zones" collapsed={subcat==null || subcat!="6"}>
                     <InfoBox>
                         To view planning zone data for London click the buttons below. You may need to <u>zoom out</u>.
                         Information on whether a specific building is in a zone will be added automatically in future.
@@ -367,7 +367,7 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                         />
                     */}
                 </DataEntryGroup>    
-                <DataEntryGroup name="Land ownership type" collapsed={subcat==null || subcat!="8"}>
+                <DataEntryGroup name="Land Ownership Type" collapsed={subcat==null || subcat!="8"}>
                     <InfoBox>
                         This section is designed to provide information on land parcels and their ownership type. Can you help us collect this information?
                     </InfoBox>
@@ -434,7 +434,7 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                     </button>
                 </DataEntryGroup>
             </DataEntryGroup>
-            <DataEntryGroup name="Heritage assets and building protection" collapsed={subcat==null || subcat!="7"}>
+            <DataEntryGroup name="Heritage Assets and Building Protection" collapsed={subcat==null || subcat!="7"}>
                 <InfoBox>
                 Help us produce the most accurate map possible for London's designated/protected buildings. Please add data if missing or click "Verify" where entries are correct.
                 </InfoBox>

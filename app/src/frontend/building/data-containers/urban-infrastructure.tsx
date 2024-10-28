@@ -30,7 +30,7 @@ const UrbanInfrastructureView: React.FunctionComponent<CategoryViewProps> = (pro
 
     return (
         <Fragment>
-            <DataEntryGroup name="Street/pavement" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Street/Pavement" collapsed={subcat==null || subcat!="2"}>
                 <DataEntry
                     title="Walkability Index"
                     slug="context_walkability_index"
@@ -182,7 +182,7 @@ const UrbanInfrastructureView: React.FunctionComponent<CategoryViewProps> = (pro
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Number of entrances facing street" collapsed={subcat==null || subcat!="3"}>
+            <DataEntryGroup name="Number of Entrances Facing Street" collapsed={subcat==null || subcat!="3"}>
                 <DataEntry
                     title="Number of entrances facing street"
                     slug=""
