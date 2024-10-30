@@ -11,8 +11,18 @@ type GetAutofillOptionsFn = (value: string, all?: boolean) => Promise<AutofillOp
 const autofillFunctionMap : { [fieldName: string] : GetAutofillOptionsFn } = {
     current_landuse_group: getLanduseGroupOptions,
     typology_original_use: getLanduseGroupOptions,
+    building_footprint_issues: getBuildingFootprintIssues,
 };
 
+function getBuildingFootprintIssues(value: string, all: boolean = false) {
+    return [
+        {id: "detach", value: "Should be detached from adjacent polygon.", similarity: 1},
+        {id: "split", value: "Should be split into two or more buildings.", similarity: 1},
+        {id: "remove", value: "Remove thin spikes extending from the real building area.", similarity: 1},
+        {id: "adjacent", value: "Adjacent building is missing.", similarity: 1},
+        {id: "merge", value: "Two or more buildings merged in one polygon.", similarity: 1},
+    ]
+}
 
 function getLanduseGroupOptions(value: string, all: boolean = false) {
     if(all) {

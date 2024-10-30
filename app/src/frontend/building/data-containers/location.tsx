@@ -418,6 +418,30 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
+            <DataEntryGroup name="Building Footprint Section" collapsed={subcat==null || subcat!="4"}>
+                <MultiDataEntry
+                    title={dataFields.building_footprint_issues.title}
+                    slug="building_footprint_issues"
+                    value={props.building.building_footprint_issues}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    confirmOnEnter={true}
+                    tooltip={dataFields.building_footprint_issues.tooltip}
+                    placeholder="Select what is wrong with building footprint"
+                    copyable={true}
+                    autofill={true}
+                    showAllOptionsOnEmpty={true}
+                />
+                <Verification
+                    slug="building_footprint_issues"
+                    allow_verify={props.user !== undefined && props.building.building_footprint_issues !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("building_footprint_issues")}
+                    user_verified_as={props.user_verified.building_footprint_issues}
+                    verified_count={props.building.verified.building_footprint_issues}
+                />
+            </DataEntryGroup>
         </Fragment>
     );
 }

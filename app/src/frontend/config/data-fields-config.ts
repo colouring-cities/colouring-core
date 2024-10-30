@@ -403,6 +403,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "URL for data reference",
         example: ["", "", ""],
     },
+    building_footprint_issues: {
+        category: Category.Location,
+        title: "What is wrong here?",
+        tooltip: "The most significant problem should be first",
+        example: ["", ""],
+    },
     
     /**
      * UPRNs is not part of the buildings table, but the string fields 

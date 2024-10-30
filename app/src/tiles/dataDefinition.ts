@@ -162,6 +162,19 @@ const LAYER_QUERIES = {
                     buildings
             ) AS blds_with_data
         WHERE blds_with_data.location_info_count > 0`,
+    building_footprint_issues: `
+        SELECT blds_with_data.* 
+            FROM (
+                SELECT 
+                    geometry_id,
+                    CASE
+                        WHEN building_footprint_issues IS NULL OR array_length(building_footprint_issues, 1) = 0 THEN NULL
+                        ELSE building_footprint_issues[1]
+                    END AS building_footprint_issues
+                FROM buildings
+                WHERE
+                    building_footprint_issues IS NOT NULL
+            ) AS blds_with_data`,
     team: `
         SELECT blds_with_data.* 
         FROM (
