@@ -340,8 +340,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 { color: '#f699cd', text: 'Should be detached from adjacent polygon.' },
                 { color: '#ff0000', text: 'Should be split into two or more buildings.' },
                 { color: '#00ff00', text: 'Remove thin spikes extending from the real building area.' },
-                { color: '#b5a859', text: 'Adjacent building is missing.' },
-                { color: '#08e8de', text: 'Two or more buildings merged in one polygon.' },
+                { color: '#08e8de', text: 'Adjacent building is missing.' },
+                { color: '#ed7014', text: 'Two or more buildings merged in one polygon.' },
             ]
         },
     },

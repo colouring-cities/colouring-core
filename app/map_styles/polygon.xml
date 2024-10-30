@@ -171,19 +171,19 @@
         </Rule>
         <Rule>
             <Filter>[building_footprint_issues] = "Adjacent building is missing."</Filter>
-            <PolygonSymbolizer fill="#b5a859" />
+            <PolygonSymbolizer fill="#08e8de" />
         </Rule>
         <Rule>
             <Filter>[building_footprint_issues] = "Adjacent building is missing."</Filter>
-            <PolygonSymbolizer fill="#ffffe3" />
-        </Rule>
-        <Rule>
-            <Filter>[building_footprint_issues] = "Two or more buildings merged in one polygon."</Filter>
             <PolygonSymbolizer fill="#08e8de" />
         </Rule>
         <Rule>
             <Filter>[building_footprint_issues] = "Two or more buildings merged in one polygon."</Filter>
-            <PolygonSymbolizer fill="#08e8de" />
+            <PolygonSymbolizer fill="#ed7014" />
+        </Rule>
+        <Rule>
+            <Filter>[building_footprint_issues] = "Two or more buildings merged in one polygon."</Filter>
+            <PolygonSymbolizer fill="#ed7014" />
         </Rule>
         <Rule>
             <MaxScaleDenominator>17061</MaxScaleDenominator>
