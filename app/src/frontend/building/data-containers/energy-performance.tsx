@@ -33,7 +33,7 @@ const EnergyPerformanceView: React.FunctionComponent<CategoryViewProps> = (props
     return (
         <form>
             <DataEntryGroup name="Energy Performance" collapsed={subcat==null || subcat!="1"}>
-                <DataEntryGroup name="Official environmental quality rating" collapsed={subcat==null || subcat!="1"}>
+                <DataEntryGroup name="Official Environmental Quality Rating" collapsed={subcat==null || subcat!="1"}>
                     <SelectDataEntry
                         title={dataFields.sust_breeam_rating.title}
                         slug="sust_breeam_rating"
@@ -81,7 +81,7 @@ const EnergyPerformanceView: React.FunctionComponent<CategoryViewProps> = (props
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Official energy rating" collapsed={subcat==null || subcat!="2"}>
+                <DataEntryGroup name="Official Energy Rating" collapsed={subcat==null || subcat!="2"}>
                     <SelectDataEntry
                         title={dataFields.sust_dec.title}
                         slug="sust_dec"
@@ -153,7 +153,7 @@ const EnergyPerformanceView: React.FunctionComponent<CategoryViewProps> = (props
                     This section is under development.
                     Please let us know your suggestions on the <a href="https://github.com/colouring-cities/colouring-core/discussions">discussion forum</a>! (external link - save your edits first)
                 </InfoBox>
-                <DataEntryGroup name="Solar panels" collapsed={subcat==null || subcat!="4"}>
+                <DataEntryGroup name="Solar Panels" collapsed={subcat==null || subcat!="4"}>
                     <LogicalDataEntry
                         title={dataFields.energy_solar.title}
                         slug="energy_solar"

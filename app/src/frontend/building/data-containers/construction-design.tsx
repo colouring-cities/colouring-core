@@ -515,7 +515,7 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                             </>
                         }
                     </DataEntryGroup>
-                    <DataEntryGroup name="Decorative features"  collapsed={subcat==null || subcat!="3"}>
+                    <DataEntryGroup name="Decorative Features"  collapsed={subcat==null || subcat!="3"}>
                         <LogicalDataEntry
                             slug='construction_decorative_features'
                             title={dataFields.construction_decorative_features.title}
@@ -587,8 +587,8 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                         }
                     </DataEntryGroup>
                 </DataEntryGroup>
-            <DataEntryGroup name="Design / Team" collapsed={subcat==null || subcat!="2"}>
-                <DataEntryGroup name="Land ownership at time of construction" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Design/Team" collapsed={subcat==null || subcat!="2"}>
+                <DataEntryGroup name="Land Ownership at Time of Construction" collapsed={subcat==null || subcat!="1"}>
                     <MultiDataEntry
                         title={dataFields.landowner.title}
                         slug="landowner"
@@ -651,7 +651,7 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Main building" collapsed={subcat==null || subcat!="2"}>
+                <DataEntryGroup name="Main Building" collapsed={subcat==null || subcat!="2"}>
                     <NumericDataEntry
                         title={dataFields.date_year.title}
                         slug="date_year"
@@ -943,7 +943,7 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                         }
                     </DataEntryGroup>
                 </DataEntryGroup>
-                <DataEntryGroup name="Most significant extension" collapsed={subcat==null || subcat!="7"}>
+                <DataEntryGroup name="Most Significant Extension" collapsed={subcat==null || subcat!="7"}>
                     <NumericDataEntry
                         slug='extension_year'
                         title={dataFields.extension_year.title}
