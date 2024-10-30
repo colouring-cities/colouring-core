@@ -418,7 +418,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Building Footprint Section" collapsed={subcat==null || subcat!="4"}>
+            <DataEntryGroup name="Building Footprint Issues" collapsed={subcat==null || subcat!="4"}>
                 <MultiDataEntry
                     title={dataFields.building_footprint_issues.title}
                     slug="building_footprint_issues"
