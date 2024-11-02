@@ -127,7 +127,7 @@ const DisasterManagementView: React.FunctionComponent<CategoryViewProps> = (prop
                     </>
                 }
         </DataEntryGroup>
-        <DataEntryGroup name="Resilience Indicators and Risk Assessment" collapsed={subcat==null || subcat!="2"}>
+        <DataEntryGroup name="Resilience Indicators & Risk Assessment" collapsed={subcat==null || subcat!="2"}>
             <InfoBox type='warning'>
                 This section is under development.
             </InfoBox>

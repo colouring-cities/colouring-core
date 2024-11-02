@@ -434,7 +434,7 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                     </button>
                 </DataEntryGroup>
             </DataEntryGroup>
-            <DataEntryGroup name="Heritage Assets and Building Protection" collapsed={subcat==null || subcat!="7"}>
+            <DataEntryGroup name="Heritage Assets & Building Protection" collapsed={subcat==null || subcat!="7"}>
                 <InfoBox>
                 Help us produce the most accurate map possible for London's designated/protected buildings. Please add data if missing or click "Verify" where entries are correct.
                 </InfoBox>
