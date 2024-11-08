@@ -246,7 +246,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Cladding, Extensions and Retrofits" collapsed={subcat==null || subcat!="3"}>
+            <DataEntryGroup name="Cladding, Extensions & Retrofits" collapsed={subcat==null || subcat!="3"}>
                 <NumericDataEntry
                     slug='age_cladding_date'
                     title={dataFields.age_cladding_date.title}
@@ -397,8 +397,8 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Lifespan and Site History" collapsed={subcat==null || subcat!="4"}>
-                <DataEntryGroup name="Constructions and Demolitions on this Site" collapsed={subcat==null || subcat!="4"}>
+            <DataEntryGroup name="Lifespan & Site History" collapsed={subcat==null || subcat!="4"}>
+                <DataEntryGroup name="Constructions & Demolitions on this Site" collapsed={subcat==null || subcat!="4"}>
                     <DynamicsBuildingPane>
                         <label>Current building (building age data editable above)</label>
                         <FieldRow>

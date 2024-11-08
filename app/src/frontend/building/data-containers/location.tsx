@@ -349,7 +349,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     isUrl={true}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Base Building Footprints/Polygons Used For Data Collation, Verification And Visualisation" collapsed={subcat==null || subcat!="4"}>
+            <DataEntryGroup name="Base Building Footprints/Polygons Used for Data Collation, Verification & Visualisation" collapsed={subcat==null || subcat!="4"}>
                 <NumericDataEntry
                     title={dataFields.location_latitude.title}
                     slug="location_latitude"
