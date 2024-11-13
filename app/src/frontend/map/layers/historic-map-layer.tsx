@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TileLayer } from 'react-leaflet';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 
-export function HistoricMapLayer({revisionId}: {revisionId: string}) {
+export function HistoricMapLayer() {
     const { historicMap } = useDisplayPreferences();
     if(historicMap == "enabled") {
         return <>

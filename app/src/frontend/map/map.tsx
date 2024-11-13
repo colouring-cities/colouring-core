@@ -145,7 +145,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <ConservationAreaBoundaryLayer/>
                     <CityBoundaryLayer/>
                     <HistoricDataLayer revisionId={revisionId} />
-                    <HistoricMapLayer revisionId={revisionId} />
+                    <HistoricMapLayer />
                     <AerialPhotosMapLayer revisionId={revisionId} />
                     <BoroughBoundaryLayer/>
                     <ParcelBoundaryLayer/>
