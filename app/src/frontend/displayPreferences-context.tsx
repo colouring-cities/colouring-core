@@ -162,7 +162,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [conservation, setConservation] = useState<LayerEnablementState>(defaultConservation);
     const [historicData, setHistoricData] = useState<LayerEnablementState>(defaultHistoricData);
     const [historicMap, setHistoricMap] = useState<LayerEnablementState>(defaultHistoricMap);
-    const [aerialPhotosMap, setaerialPhotosMap] = useState<LayerEnablementState>(defaultHistoricMap);
+    const [aerialPhotosMap, setaerialPhotosMap] = useState<LayerEnablementState>(defaultaerialPhotosMap);
     const [historicalFootprints, setHistoricalFootprints] = useState<LayerEnablementState>(defaultHistoricalFootprints);
     const [openStreetMap, setOpenStreetMapMap] = useState<LayerEnablementState>(defaultOpenStreetMap);
     const [editableBuildings, setEditableBuildings] = useState<LayerEnablementState>(defaultEditableBuildings);
