@@ -42,6 +42,10 @@ interface DisplayPreferencesContextState {
     historicMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     historicMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
+    historicMapLboro: LayerEnablementState;
+    historicMapLboroSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    historicMapLboroSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
     aerialPhotosMap: LayerEnablementState;
     aerialPhotosMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     aerialPhotosMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -111,6 +115,10 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     historicMapSwitch: stub,
     historicMapSwitchOnClick: undefined,
 
+    historicMapLboro: undefined,
+    historicMapLboroSwitch: stub,
+    historicMapLboroSwitchOnClick: undefined,
+
     aerialPhotosMap: undefined,
     aerialPhotosMapSwitch: stub,
     aerialPhotosMapSwitchOnClick: undefined,
@@ -148,6 +156,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultConservation = 'disabled'
     const defaultHistoricData = 'disabled'
     const defaultHistoricMap = 'disabled'
+    const defaultHistoricMapLboro = 'disabled'
     const defaultaerialPhotosMap = 'disabled'
     const defaultHistoricalFootprints = 'disabled'
     const defaultOpenStreetMap = 'disabled'
@@ -162,6 +171,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [conservation, setConservation] = useState<LayerEnablementState>(defaultConservation);
     const [historicData, setHistoricData] = useState<LayerEnablementState>(defaultHistoricData);
     const [historicMap, setHistoricMap] = useState<LayerEnablementState>(defaultHistoricMap);
+    const [historicMapLboro, setHistoricMapLboro] = useState<LayerEnablementState>(defaultHistoricMapLboro);
     const [aerialPhotosMap, setaerialPhotosMap] = useState<LayerEnablementState>(defaultaerialPhotosMap);
     const [historicalFootprints, setHistoricalFootprints] = useState<LayerEnablementState>(defaultHistoricalFootprints);
     const [openStreetMap, setOpenStreetMapMap] = useState<LayerEnablementState>(defaultOpenStreetMap);
@@ -187,6 +197,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             setConservation(defaultConservation);
             setHistoricData(defaultHistoricData);
             setHistoricMap(defaultHistoricMap);
+            setHistoricMapLboro(defaultHistoricMapLboro);
             setaerialPhotosMap(defaultaerialPhotosMap);
             setHistoricalFootprints(defaultHistoricalFootprints);
             setEditableBuildings(defaultEditableBuildings)
@@ -222,6 +233,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             return true;
         }
         if(historicMap != defaultHistoricMap) {
+            return true;
+        }
+        if(historicMapLboro != defaultHistoricMapLboro) {
             return true;
         }
         if(aerialPhotosMap != defaultaerialPhotosMap) {
@@ -389,6 +403,28 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         setHistoricMap(newHistoric);
     }
 
+    const historicMapLboroSwitch = useCallback(
+        (e) => {
+            if (historicData === 'enabled') {
+                flipHistoricData(e);
+            }
+            if (historicalFootprints === 'enabled') {
+                flipHistoricFootprints(e);
+            }
+            flipHistoricMapLboro(e);
+        },
+        [historicMapLboro, historicData, historicalFootprints],
+    )
+    const historicMapLboroSwitchOnClick = (e) => {
+        flipHistoricMapLboro(e)
+    }
+    function flipHistoricMapLboro(e) {
+        e.preventDefault();
+        const newHistoricLboro = (historicMapLboro === 'enabled')? 'disabled' : 'enabled';
+        
+        setHistoricMapLboro(newHistoricLboro);
+    }
+
     const aerialPhotosMapSwitch = useCallback(
         (e) => {
             flipaerialPhotosMap(e);
@@ -521,6 +557,10 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             historicMap,
             historicMapSwitch,
             historicMapSwitchOnClick,
+
+            historicMapLboro,
+            historicMapLboroSwitch,
+            historicMapLboroSwitchOnClick,
 
             aerialPhotosMap,
             aerialPhotosMapSwitch,
