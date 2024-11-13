@@ -2,9 +2,9 @@ import * as React from 'react';
 import { TileLayer } from 'react-leaflet';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 
-export function HistoricMapLayerLboro() {
-    const { historicMapLboro } = useDisplayPreferences();
-    if(historicMapLboro == "enabled") {
+export function HistoricMapLayerLeicestershire() {
+    const { historicMapLeicestershire } = useDisplayPreferences();
+    if(historicMapLeicestershire == "enabled") {
         return <>
                 <TileLayer
                     url="https://mapseries-tilesets.s3.amazonaws.com/25_inch/leicestershire/{z}/{x}/{y}.png"

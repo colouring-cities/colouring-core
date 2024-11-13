@@ -42,9 +42,9 @@ interface DisplayPreferencesContextState {
     historicMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     historicMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
-    historicMapLboro: LayerEnablementState;
-    historicMapLboroSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
-    historicMapLboroSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+    historicMapLeicestershire: LayerEnablementState;
+    historicMapLeicestershireSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    historicMapLeicestershireSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
     aerialPhotosMap: LayerEnablementState;
     aerialPhotosMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -115,9 +115,9 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     historicMapSwitch: stub,
     historicMapSwitchOnClick: undefined,
 
-    historicMapLboro: undefined,
-    historicMapLboroSwitch: stub,
-    historicMapLboroSwitchOnClick: undefined,
+    historicMapLeicestershire: undefined,
+    historicMapLeicestershireSwitch: stub,
+    historicMapLeicestershireSwitchOnClick: undefined,
 
     aerialPhotosMap: undefined,
     aerialPhotosMapSwitch: stub,
@@ -156,7 +156,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultConservation = 'disabled'
     const defaultHistoricData = 'disabled'
     const defaultHistoricMap = 'disabled'
-    const defaultHistoricMapLboro = 'disabled'
+    const defaultHistoricMapLeicestershire = 'disabled'
     const defaultaerialPhotosMap = 'disabled'
     const defaultHistoricalFootprints = 'disabled'
     const defaultOpenStreetMap = 'disabled'
@@ -171,7 +171,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [conservation, setConservation] = useState<LayerEnablementState>(defaultConservation);
     const [historicData, setHistoricData] = useState<LayerEnablementState>(defaultHistoricData);
     const [historicMap, setHistoricMap] = useState<LayerEnablementState>(defaultHistoricMap);
-    const [historicMapLboro, setHistoricMapLboro] = useState<LayerEnablementState>(defaultHistoricMapLboro);
+    const [historicMapLeicestershire, setHistoricMapLeicestershire] = useState<LayerEnablementState>(defaultHistoricMapLeicestershire);
     const [aerialPhotosMap, setaerialPhotosMap] = useState<LayerEnablementState>(defaultaerialPhotosMap);
     const [historicalFootprints, setHistoricalFootprints] = useState<LayerEnablementState>(defaultHistoricalFootprints);
     const [openStreetMap, setOpenStreetMapMap] = useState<LayerEnablementState>(defaultOpenStreetMap);
@@ -197,7 +197,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             setConservation(defaultConservation);
             setHistoricData(defaultHistoricData);
             setHistoricMap(defaultHistoricMap);
-            setHistoricMapLboro(defaultHistoricMapLboro);
+            setHistoricMapLeicestershire(defaultHistoricMapLeicestershire);
             setaerialPhotosMap(defaultaerialPhotosMap);
             setHistoricalFootprints(defaultHistoricalFootprints);
             setEditableBuildings(defaultEditableBuildings)
@@ -235,7 +235,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         if(historicMap != defaultHistoricMap) {
             return true;
         }
-        if(historicMapLboro != defaultHistoricMapLboro) {
+        if(historicMapLeicestershire != defaultHistoricMapLeicestershire) {
             return true;
         }
         if(aerialPhotosMap != defaultaerialPhotosMap) {
@@ -403,7 +403,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         setHistoricMap(newHistoric);
     }
 
-    const historicMapLboroSwitch = useCallback(
+    const historicMapLeicestershireSwitch = useCallback(
         (e) => {
             if (historicData === 'enabled') {
                 flipHistoricData(e);
@@ -411,18 +411,18 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             if (historicalFootprints === 'enabled') {
                 flipHistoricFootprints(e);
             }
-            flipHistoricMapLboro(e);
+            flipHistoricMapLeicestershire(e);
         },
-        [historicMapLboro, historicData, historicalFootprints],
+        [historicMapLeicestershire, historicData, historicalFootprints],
     )
-    const historicMapLboroSwitchOnClick = (e) => {
-        flipHistoricMapLboro(e)
+    const historicMapLeicestershireSwitchOnClick = (e) => {
+        flipHistoricMapLeicestershire(e)
     }
-    function flipHistoricMapLboro(e) {
+    function flipHistoricMapLeicestershire(e) {
         e.preventDefault();
-        const newHistoricLboro = (historicMapLboro === 'enabled')? 'disabled' : 'enabled';
+        const newHistoricLeicestershire = (historicMapLeicestershire === 'enabled')? 'disabled' : 'enabled';
         
-        setHistoricMapLboro(newHistoricLboro);
+        setHistoricMapLeicestershire(newHistoricLeicestershire);
     }
 
     const aerialPhotosMapSwitch = useCallback(
@@ -558,9 +558,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             historicMapSwitch,
             historicMapSwitchOnClick,
 
-            historicMapLboro,
-            historicMapLboroSwitch,
-            historicMapLboroSwitchOnClick,
+            historicMapLeicestershire,
+            historicMapLeicestershireSwitch,
+            historicMapLeicestershireSwitchOnClick,
 
             aerialPhotosMap,
             aerialPhotosMapSwitch,
