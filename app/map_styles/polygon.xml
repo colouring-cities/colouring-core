@@ -162,11 +162,11 @@
             <PolygonSymbolizer fill="#ff0000" />
         </Rule>
         <Rule>
-            <Filter>[building_footprint_issues] = "Remove thin spikes extending from the real building area."</Filter>
+            <Filter>[building_footprint_issues] = "Remove thin spikes."</Filter>
             <PolygonSymbolizer fill="#00ff00" />
         </Rule>
         <Rule>
-            <Filter>[building_footprint_issues] = "Remove thin spikes extending from the real building area."</Filter>
+            <Filter>[building_footprint_issues] = "Remove thin spikes."</Filter>
             <PolygonSymbolizer fill="#00ff00" />
         </Rule>
         <Rule>
