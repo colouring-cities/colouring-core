@@ -16,6 +16,7 @@ import { BoroughLabelLayer } from './layers/borough-label-layer';
 import { ParcelBoundaryLayer } from './layers/parcel-boundary-layer';
 import { HistoricDataLayer } from './layers/historic-data-layer';
 import { HistoricMapLayer } from './layers/historic-map-layer';
+import { HistoricMapLayerLeicestershire } from './layers/historic-map-leicestershire-layer';
 import { AerialPhotosMapLayer } from './layers/aerial-photos-map-layer';
 import { OpenStreetMapLayer } from './layers/openstreetmap-layer';
 import { FloodBoundaryLayer } from './layers/flood-boundary-layer';
@@ -39,6 +40,7 @@ import { FloodSwitcher } from './flood-switcher';
 import { ConservationAreaSwitcher } from './conservation-switcher';
 import { HistoricDataSwitcher } from './historic-data-switcher';
 import { HistoricMapSwitcher } from './historic-map-switcher';
+import { HistoricMapLeicestershireSwitcher } from './historic-map-leicestershire-switcher';
 import { AerialPhotosMapSwitcher } from './aerial-photos-map-switcher';
 import { HistoricalFootprintsSwitcher } from './historical-footprints-switcher';
 import { OpenStreetMapSwitcher } from './openstreetmap-switcher';
@@ -145,7 +147,8 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <ConservationAreaBoundaryLayer/>
                     <CityBoundaryLayer/>
                     <HistoricDataLayer revisionId={revisionId} />
-                    <HistoricMapLayer revisionId={revisionId} />
+                    <HistoricMapLayer />
+                    <HistoricMapLayerLeicestershire />
                     <AerialPhotosMapLayer revisionId={revisionId} />
                     <BoroughBoundaryLayer/>
                     <ParcelBoundaryLayer/>
@@ -190,6 +193,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                                 <HistoricMapSwitcher/>
                                 <HistoricDataSwitcher/>
                                 <HistoricalFootprintsSwitcher/>
+                                <HistoricMapLeicestershireSwitcher/>
                                 <VistaSwitcher/>
                                 <HousingSwitcher/>
                                 <CreativeSwitcher/>
