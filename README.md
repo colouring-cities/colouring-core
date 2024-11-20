@@ -1,19 +1,18 @@
-# Colouring Cities Core Platform
+# Colouring Britain Platform
 [![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors)
 ![Build status](https://github.com/colouring-cities/colouring-core/workflows/Node.js%20CI/badge.svg)
 
-How many buildings are there in a city? What are their characteristics? Where
-are they located and how do they contribute to the city? How adaptable are
-they? How long will they last, and what are the environmental and
-socio-economic implications of demolition?
+How many buildings are there in a Britain? What are their characteristics? Where
+are different types of building located? How well do they work for users/local communities? And how efficient, sustainable and resilient are they?  
 
-Colouring Cities is a web-based citizen social
-science project designed to help address these questions by crowdsourcing and
-visualising twelve categories of information on the buildings in our cities.
+Colouring Britain with website at https://colouringbritain.org/ is a research-led, free public resource, providing open spatial data on Britain's buildings. It is also an open knowledge initiative, built collectively by, and for, academia, communities, government, industry and the third sector. Any information you can add to our open platform is greatly appreciated.
+
+Colouring Britain forms part of the Colouring Cities Research Programme (CCRP), managed by [The Alan Turing Institute](https://www.turing.ac.uk/research/research-projects/colouring-cities-research-programme), which allows international academic institutions to co-work on a global network of interoperable open data platforms on national building stocks, and to accelerate sharing of resources and expertise. The CCRP's overall aim is to help improve the quality, efficiency, resilience and sustainability of buildings, and urban areas, and to accelerate the move to net zero in line with United Nations Sustainable Development Goals. For further information please see http://colouringcities.org/.  
+
 
 ## Structure
 
-This repository will contain open-source code for the project which:
+This repository contain open-source code for the project which:
 
 - stores building footprint polygons and source metadata
 - allows site users to record building attribute data
@@ -23,6 +22,9 @@ This repository will contain open-source code for the project which:
 Building attribute data collected as part of the project will be made available
 for download under a liberal open data license
 ([ODbL](https://opendatacommons.org/licenses/odbl/1.0/)).
+
+## Project Board and Issues
+To view all of the issue relating to Colouring Britain (and their current status) please visit the [Colouring Britain Project](https://github.com/orgs/colouring-cities/projects/4).
 
 ## Setup and run
 
@@ -57,11 +59,8 @@ If you are having problems with the application, first look here: [troubleshooti
 
 ## Acknowledgements
 
-Colouring London was set up at the Centre for Advanced Spatial
-Analysis (CASA), University College London and is now based at The Alan Turing Institute.
-Ordnance Survey is providing building footprints required to collect the data,
-facilitated by the Greater London Authority (GLA), and giving access to its API
-and technical support.
+Colouring London was set up at the Centre for Advanced Spatial Analysis, University College London in 2016 as part of EPSRC funded doctoral research undertaken by Polly Hudson. Tom Russell was responsible for original technical design and open licence strategy and selection.  Ordnance Survey and the Greater London Authority provided access to high quality building footprints, essential for platform operation. In 2020 the Colouring Cities Research Programme (CCRP) was set up at The Alan Turing Institute, which has since funded CCRP development. Exceptional technical contributions to the prototype have been made by Mateusz Konieczny, Maciej Ziakowski, Ed Chalstrey, Dominic Humphrey and Dr Mike Simpson, and to CCRP international programme development by Dr Falli Palaiologou, Will Taylor, Dr Alden Conner, and research colleagues managing platforms in Australia, Bahrain, Lebanon, Greece, Germany, Colombia, Sweden and Indonesia. Many other individuals and organisations have also contributed to the research programme and are thanked on individual CCRP platforms. 
+
 
 ## License
 

@@ -21,7 +21,7 @@ const RetrofitConditionView: React.FunctionComponent<CategoryViewProps> = (props
 
     return (
         <Fragment>
-            <DataEntryGroup name="Retrofit History" collapsed={subcat==null || subcat!="3"}>
+            <DataEntryGroup name="Retrofit history" collapsed={subcat==null || subcat!="3"}>
                 <NumericDataEntry
                     slug='age_retrofit_date'
                     title={dataFields.age_retrofit_date.title}
