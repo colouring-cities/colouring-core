@@ -54,7 +54,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
     return (
         <Fragment>
             <DataEntryGroup name="Typology" collapsed={subcat==null || subcat!="1"}>
-                <DataEntryGroup name="Basic typology classification" collapsed={subcat==null || subcat!="1"}>
+                <DataEntryGroup name="Basic Typology Classification" collapsed={subcat==null || subcat!="1"}>
                     {(props.mapColourScale != "typology_classification") ? 
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToClassificationMapStyle}>
                             {"Click to show typology classification."}
@@ -110,7 +110,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Architectural style" collapsed={subcat==null || subcat!="2"}>
+                <DataEntryGroup name="Architectural Style" collapsed={subcat==null || subcat!="2"}>
                     <SelectDataEntry
                         title={dataFields.typology_style_period.title}
                         slug="typology_style_period"
@@ -127,7 +127,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=2"}>Age & History</a>.</i>
                     </div>
                 </DataEntryGroup>
-                <DataEntryGroup name="Dynamic classification" collapsed={subcat==null || subcat!="3"}>
+                <DataEntryGroup name="Dynamic Classification" collapsed={subcat==null || subcat!="3"}>
                     {(props.mapColourScale != "typology_dynamic_classification") ? 
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToDynamicClassificationMapStyle}>
                             {"Click here to show dynamic classification."}
@@ -322,7 +322,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                 </DataEntryGroup>
             </DataEntryGroup>
             <DataEntryGroup name="Size" collapsed={subcat==null || subcat!="1"}>
-                <DataEntryGroup name="Number of floors/storeys" collapsed={subcat==null || subcat!="1"}>
+                <DataEntryGroup name="Number of Floors/Storeys" collapsed={subcat==null || subcat!="1"}>
                     <NumericDataEntry
                         title={dataFields.size_storeys_core.title}
                         slug="size_storeys_core"
@@ -515,7 +515,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Floor area" collapsed={subcat==null || subcat!="3"}>
+                <DataEntryGroup name="Floor Area" collapsed={subcat==null || subcat!="3"}>
                     <NumericDataEntry
                         title={dataFields.size_floor_area_ground.title}
                         slug="size_floor_area_ground"
@@ -582,7 +582,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Plot size" collapsed={subcat==null || subcat!="4"}>
+                <DataEntryGroup name="Plot Size" collapsed={subcat==null || subcat!="4"}>
                     <NumericDataEntry
                         title={dataFields.size_width_frontage.title}
                         slug="size_width_frontage"

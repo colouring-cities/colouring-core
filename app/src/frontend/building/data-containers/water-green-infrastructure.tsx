@@ -27,7 +27,7 @@ const WaterGreenInfrastructureView: React.FunctionComponent<CategoryViewProps> =
 
     return (
         <Fragment>
-            <DataEntryGroup name="Green walls/roof" collapsed={subcat==null || subcat!="5"}>
+            <DataEntryGroup name="Green Walls/Roof" collapsed={subcat==null || subcat!="5"}>
             <LogicalDataEntry
                     title={dataFields.energy_green_roof.title}
                     slug="energy_green_roof"
@@ -257,7 +257,7 @@ const WaterGreenInfrastructureView: React.FunctionComponent<CategoryViewProps> =
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Flood zones" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Flood Zones" collapsed={subcat==null || subcat!="1"}>
                 <LogicalDataEntry
                     slug='planning_flood_zone'
                     title={dataFields.planning_flood_zone.title}

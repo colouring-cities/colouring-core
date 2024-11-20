@@ -24,7 +24,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
-            <DataEntryGroup name="Property address" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Property Address" collapsed={subcat==null || subcat!="1"}>
                 {/* <DataEntry
                     title={dataFields.location_name.title}
                     slug="location_name"
@@ -212,7 +212,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Building subdivision" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Building Subdivision" collapsed={subcat==null || subcat!="2"}>
                 <LogicalDataEntry
                     slug='location_subdivided'
                     title={dataFields.location_subdivided.title}
@@ -282,7 +282,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Open property IDs/footprint IDs" collapsed={subcat==null || subcat!="3"}>
+            <DataEntryGroup name="Open Property IDs/Footprint IDs" collapsed={subcat==null || subcat!="3"}>
             <DataEntry
                     title={dataFields.ref_toid.title}
                     slug="ref_toid"
@@ -349,7 +349,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     isUrl={true}
                 />
             </DataEntryGroup>
-            <DataEntryGroup name="Base building footprints/polygons used for data collation, verification and visualisation" collapsed={subcat==null || subcat!="4"}>
+            <DataEntryGroup name="Base Building Footprints/Polygons Used for Data Collation, Verification & Visualisation" collapsed={subcat==null || subcat!="4"}>
                 <NumericDataEntry
                     title={dataFields.location_latitude.title}
                     slug="location_latitude"

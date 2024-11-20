@@ -86,7 +86,7 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Specific land use(s)" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Specific Land Use(s)" collapsed={subcat==null || subcat!="2"}>
                 {(props.mapColourScale != "landuse") ? 
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLandUseMapStyle}>
                         {"Click to see specific land use."}
