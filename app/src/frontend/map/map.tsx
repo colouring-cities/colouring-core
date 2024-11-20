@@ -162,29 +162,29 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                 mode !== 'basic' &&
                 <>
                     <Legend mapColourScaleDefinitions={categoryMapDefinitions} mapColourScale={mapColourScale} onMapColourScale={onMapColourScale}/>
+                    <div className="switchers-of-layers-map-menu">
+                        <ThemeSwitcher onSubmit={darkLightThemeSwitch} currentTheme={darkLightTheme} />
+                        <DataLayerSwitcher />
+                        {
+                            (showLayerSelection == "enabled") ?
+                            <>
+                                <BoroughSwitcher/>
+                                <ParcelSwitcher/>
+                                <FloodSwitcher/>
+                                <ConservationAreaSwitcher/>
+                                { /* <HistoricMapSwitcher/> */ }
+                                { /* <HistoricDataSwitcher/> */ }
+                                <VistaSwitcher />
+                                <HousingSwitcher />
+                                <CreativeSwitcher />
+                                { /* <EditableBuildingsSwitcher /> */ }
+                            </>
+                            : <></>
+                        }
+                    </div>
+                    <SearchBox onLocate={handleLocate} />
                 </>
             }
-            <div className="switchers-of-layers-map-menu">
-                <ThemeSwitcher onSubmit={darkLightThemeSwitch} currentTheme={darkLightTheme} />
-                <DataLayerSwitcher />
-                {
-                    (showLayerSelection == "enabled") ?
-                    <>
-                        <BoroughSwitcher/>
-                        <ParcelSwitcher/>
-                        <FloodSwitcher/>
-                        <ConservationAreaSwitcher/>
-                        { /* <HistoricMapSwitcher/> */ }
-                        { /* <HistoricDataSwitcher/> */ }
-                        <VistaSwitcher />
-                        <HousingSwitcher />
-                        <CreativeSwitcher />
-                        { /* <EditableBuildingsSwitcher /> */ }
-                    </>
-                    : <></>
-                }
-            </div>
-            <SearchBox onLocate={handleLocate} />
         </div>
     );
 }
