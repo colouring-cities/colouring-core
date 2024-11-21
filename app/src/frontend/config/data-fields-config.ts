@@ -405,7 +405,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     building_footprint_issues: {
         category: Category.Location,
-        title: "What is wrong here?",
+        title: "Please lets us know of any inaccuracies here",
         tooltip: "The most significant problem should be first",
         example: ["", ""],
     },

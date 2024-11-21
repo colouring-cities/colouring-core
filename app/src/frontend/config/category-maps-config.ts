@@ -335,7 +335,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         mapStyle: 'building_footprint_issues',
         legend: {
             title: 'Building footprint issues',
-            description: 'What is wrong with building footprints?',
+            description: 'Please lets us know of any inaccuracies here',
             elements: [
                 { color: '#f699cd', text: 'Should be detached from adjacent polygon.' },
                 { color: '#ff0000', text: 'Should be split into two or more buildings.' },
