@@ -479,10 +479,6 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                             </>
                     }
                 </DataEntryGroup>
-                <InfoBox type='warning'>
-                    This section is under development in collaboration with the historic environment sector.
-                    Please let us know your suggestions on the <a href="https://discuss.colouring.london/t/dynamics-category-discussion/107">discussion forum</a>! (external link - save your edits first)
-                </InfoBox>
             </DataEntryGroup>
             <DataEntryGroup name="Survival Tracking" collapsed={subcat==null || subcat!="5"}>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
