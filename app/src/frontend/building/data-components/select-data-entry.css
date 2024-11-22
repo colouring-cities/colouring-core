@@ -1,0 +1,7 @@
+select.form-control {
+    background-image: url('data:image/svg+xml,<%3Fxml version="1.0" encoding="UTF-8"%3F><!-- form control --><svg width="118.78mm" height="102.87mm" version="1.1" viewBox="0 0 118.78 102.87" xmlns="http://www.w3.org/2000/svg"><path d="m59.391 100.81-57.609-99.781 115.22-3e-6 -28.804 49.891z" fill-rule="evenodd" stroke-opacity="0"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+    padding-right: 30px; /* Add padding to make space for the arrow */
+}

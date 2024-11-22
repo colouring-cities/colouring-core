@@ -10,7 +10,7 @@ import './welcome.css';
 const Welcome = () => (
     <div className="section-body welcome">
         <Categories mode="view"/>
-        <h1 className="h2">Welcome to Colouring {config.cityName}!</h1>
+        <h1 className="h3">Welcome to Colouring {config.cityName}!</h1>
         <p>
 
             Colouring {config.cityName}  is a research-led, free public resource, providing open spatial data 
