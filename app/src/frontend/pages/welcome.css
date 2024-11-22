@@ -28,3 +28,8 @@
 .turing-logo {
     height: 4em;
 }
+
+p {
+    font-size: 1rem;
+    word-spacing: 105%;
+}

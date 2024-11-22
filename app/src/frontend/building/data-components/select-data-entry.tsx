@@ -3,6 +3,8 @@ import React, { Fragment } from 'react';
 import { BaseDataEntryProps } from './data-entry';
 import { DataTitleCopyable } from './data-title';
 
+import './select-data-entry.css';
+
 interface SelectOption {
     value: string;
     label: string;

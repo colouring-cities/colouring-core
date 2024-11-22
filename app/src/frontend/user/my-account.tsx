@@ -64,7 +64,7 @@ export const MyAccountPage: React.FC = () => {
                     <ErrorBox msg={error} />
                     <form onSubmit={handleLogout}>
                         <div className="buttons-container">
-                            <Link to="/edit/age" className="btn btn-warning">Start colouring</Link>
+                            <Link to="/edit/age" className="btn btn-warning"><h1>Start colouring</h1></Link>
                             <input className="btn btn-secondary" type="submit" value="Log out"/>
                         </div>
                     </form>
@@ -85,7 +85,7 @@ export const MyAccountPage: React.FC = () => {
                     <h3 className="h3">API key</h3>
                     <p>{user.api_key || '-'}</p>
                     <form onSubmit={handleGenerateKey} className="form-group mb-3">
-                        <input className="btn btn-warning" type="submit" value="Generate API key"/>
+                        <input className="btn btn-secondary" type="submit" value="Generate API key"/>
                     </form>
 
                     <h3 className="h3">Open Source Code</h3>
