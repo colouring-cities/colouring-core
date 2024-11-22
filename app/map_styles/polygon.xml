@@ -144,6 +144,58 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="building_footprint_issues">
+        <Rule>
+            <Filter>[building_footprint_issues] = "Should be detached from adjacent polygon."</Filter>
+            <PolygonSymbolizer fill="#f699cd" />
+        </Rule>
+        <Rule>
+            <Filter>[building_footprint_issues] = "Should be detached from adjacent polygon."</Filter>
+            <PolygonSymbolizer fill="#f699cd" />
+        </Rule>
+        <Rule>
+            <Filter>[building_footprint_issues] = "Should be split into two or more buildings."</Filter>
+            <PolygonSymbolizer fill="#ff0000" />
+        </Rule>
+        <Rule>
+            <Filter>[building_footprint_issues] = "Should be split into two or more buildings."</Filter>
+            <PolygonSymbolizer fill="#ff0000" />
+        </Rule>
+        <Rule>
+            <Filter>[building_footprint_issues] = "Remove thin spikes."</Filter>
+            <PolygonSymbolizer fill="#00ff00" />
+        </Rule>
+        <Rule>
+            <Filter>[building_footprint_issues] = "Remove thin spikes."</Filter>
+            <PolygonSymbolizer fill="#00ff00" />
+        </Rule>
+        <Rule>
+            <Filter>[building_footprint_issues] = "Adjacent building is missing."</Filter>
+            <PolygonSymbolizer fill="#08e8de" />
+        </Rule>
+        <Rule>
+            <Filter>[building_footprint_issues] = "Adjacent building is missing."</Filter>
+            <PolygonSymbolizer fill="#08e8de" />
+        </Rule>
+        <Rule>
+            <Filter>[building_footprint_issues] = "Two or more buildings merged in one polygon."</Filter>
+            <PolygonSymbolizer fill="#ed7014" />
+        </Rule>
+        <Rule>
+            <Filter>[building_footprint_issues] = "Two or more buildings merged in one polygon."</Filter>
+            <PolygonSymbolizer fill="#ed7014" />
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="team">
         <Rule>
             <Filter>[team_info_count] &gt;= 8</Filter>
