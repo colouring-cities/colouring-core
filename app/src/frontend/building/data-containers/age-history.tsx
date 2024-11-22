@@ -26,12 +26,13 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const currentBuildingConstructionYear = building.date_year || undefined;
 
     const { historicData, historicDataSwitchOnClick, darkLightTheme } = useDisplayPreferences();
-    const { historicMap, historicMapSwitchOnClick } = useDisplayPreferences();
+    const { historicMap, historicMapSwitchOnClick, historicMapLeicestershire, historicMapLeicestershireSwitchOnClick } = useDisplayPreferences();
 
     const switchToSurvivalMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('survival_status');
         historicMapSwitchOnClick(e);
+        historicMapLeicestershireSwitchOnClick(e);
         
         if (historicData === 'enabled') {
            historicDataSwitchOnClick(e);
@@ -46,6 +47,9 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
         if (historicMap === 'enabled') {
             historicMapSwitchOnClick(e);
         }
+        if (historicMapLeicestershire === 'enabled') {
+            historicMapLeicestershireSwitchOnClick(e);
+        }
     }
 
     const switchToAgeMapStyle = (e) => {
@@ -56,6 +60,9 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
         }
         if (historicMap === 'enabled') {
             historicMapSwitchOnClick(e);
+        }
+        if (historicMapLeicestershire === 'enabled') {
+            historicMapLeicestershireSwitchOnClick(e);
         }
 
         props.onMapColourScale('date_year');
@@ -504,11 +511,11 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 </div>
                 {(historicMap === "enabled") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
-                        Click to hide the 1890s OS historical map.
+                        Click to hide OS historical map.
                     </button>
                 :
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
-                        Click to show the 1890s OS historical map.
+                        Click to show OS historical map.
                     </button>
                 }
                 {(historicData === "enabled") ? 
