@@ -64,7 +64,7 @@ export const MyAccountPage: React.FC = () => {
                     <ErrorBox msg={error} />
                     <form onSubmit={handleLogout}>
                         <div className="buttons-container">
-                            <Link to="/edit/age" className="btn btn-warning"><h1>Start colouring</h1></Link>
+                            <Link to="/edit/age-history" className="btn btn-warning"><h1>Start colouring</h1></Link>
                             <input className="btn btn-secondary" type="submit" value="Log out"/>
                         </div>
                     </form>
