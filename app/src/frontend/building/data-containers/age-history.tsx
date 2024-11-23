@@ -520,11 +520,11 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
                 {(historicData === "enabled") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
-                        Click to hide the 1890s OS historical map with modern footprints.
+                        Click to hide the OS historical map with modern footprints and fill indicating survival status.
                     </button>
                 :
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalDataStyle}>
-                        Click to show the 1890s OS historical map with modern footprints.
+                        Click to show the OS historical map with modern footprints and fill indicating survival status.
                     </button>
                 }
                 <SelectDataEntry
