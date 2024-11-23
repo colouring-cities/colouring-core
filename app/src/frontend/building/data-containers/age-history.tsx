@@ -44,6 +44,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
         props.onMapColourScale('survival_status');
         historicDataSwitchOnClick(e);
 
+        // HistoricDataLayer includes these two on their own
         if (historicMap === 'enabled') {
             historicMapSwitchOnClick(e);
         }
