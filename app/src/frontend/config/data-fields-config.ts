@@ -2137,7 +2137,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     age_cladding_date: {
         category: Category.AgeHistory,
         title: "Cladding date (best estimate)",
-        tooltip: "Width of the street in metres.",
+        tooltip: null,
         example: 1970
     },
     age_cladding_date_source_type: {
@@ -2156,7 +2156,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     age_extension_date: {
         category: Category.AgeHistory,
         title: "Date of significant extensions (best estimate)",
-        tooltip: "Width of the street in metres.",
+        tooltip: null,
         example: 1970
     },
     age_extension_date_source_type: {
@@ -2175,7 +2175,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     age_retrofit_date: {
         category: Category.AgeHistory,
         title: "Date of last significant retrofit (best estimate)",
-        tooltip: "Width of the street in metres.",
+        tooltip: null,
         example: 1970
     },
     age_retrofit_date_source_type: {

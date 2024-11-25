@@ -52,25 +52,39 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
         }
     }
 
-    const switchToAgeMapStyle = (e) => {
-        e.preventDefault();
-
-        if (historicData === 'enabled') {
-            historicDataSwitchOnClick(e);
-        }
-        if (historicMap === 'enabled') {
-            historicMapSwitchOnClick(e);
-        }
-        if (historicMapLeicestershire === 'enabled') {
-            historicMapLeicestershireSwitchOnClick(e);
-        }
-
-        props.onMapColourScale('date_year');
-    }
-
     const switchToStylePeriodMapStyle = (e) => {
         e.preventDefault();
-        props.onMapColourScale('typology_style_period')
+        switchToMapStyleHideHistoricMaps(e, 'typology_style_period')
+    }
+
+    const switchToAgeMapStyle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        switchToMapStyleHideHistoricMaps(event, 'date_year')
+    }
+
+    const switchToAgeCladdingMapStyle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        switchToMapStyleHideHistoricMaps(event, 'cladding_year')
+    }
+
+    const switchToAgeExtensionMapStyle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        switchToMapStyleHideHistoricMaps(event, 'extension_year')
+    }
+
+    const switchToAgeRetrofitMapStyle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        switchToMapStyleHideHistoricMaps(event, 'retrofit_year')
+    }
+
+    const switchToMapStyleHideHistoricMaps = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, map_style: string) => {
+        event.preventDefault();
+        if (historicData === 'enabled') {
+            historicDataSwitchOnClick(event);
+        }
+        if (historicMap === 'enabled') {
+            historicMapSwitchOnClick(event);
+        }
+        if (historicMapLeicestershire === 'enabled') {
+            historicMapLeicestershireSwitchOnClick(event);
+        }
+        props.onMapColourScale(map_style);
     }
 
     let construction_length = null;
@@ -269,6 +283,13 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Cladding, Extensions & Retrofits" collapsed={subcat==null || subcat!="3"}>
+                {(props.mapColourScale != "cladding_year") ? 
+                        <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeCladdingMapStyle}>
+                            Click to show cladding date.
+                        </button>
+                :
+                    <></>
+                }
                 <NumericDataEntry
                     slug='age_cladding_date'
                     title={dataFields.age_cladding_date.title}
@@ -279,7 +300,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.extension_year.tooltip}
+                    tooltip={dataFields.age_cladding_date.tooltip}
                     />
                 <Verification
                     slug="age_cladding_date"
@@ -319,6 +340,13 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
                 <hr/>
+                {(props.mapColourScale != "extension_year") ? 
+                        <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeExtensionMapStyle}>
+                            Click to show extension date.
+                        </button>
+                :
+                    <></>
+                }
                 <NumericDataEntry
                     slug='age_extension_date'
                     title={dataFields.age_extension_date.title}
@@ -329,7 +357,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.extension_year.tooltip}
+                    tooltip={dataFields.age_extension_date.tooltip}
                     />
                 <Verification
                     slug="age_extension_date"
@@ -369,6 +397,13 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
                 <hr/>
+                {(props.mapColourScale != "retrofit_year") ? 
+                        <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeRetrofitMapStyle}>
+                            Click to show retrofit date.
+                        </button>
+                :
+                    <></>
+                }
                 <NumericDataEntry
                     slug='age_retrofit_date'
                     title={dataFields.age_retrofit_date.title}
@@ -379,7 +414,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.extension_year.tooltip}
+                    tooltip={dataFields.age_retrofit_date.tooltip}
                     />
                 <Verification
                     slug="age_retrofit_date"
