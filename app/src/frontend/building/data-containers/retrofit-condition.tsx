@@ -32,7 +32,7 @@ const RetrofitConditionView: React.FunctionComponent<CategoryViewProps> = (props
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.extension_year.tooltip}
+                    tooltip={dataFields.age_retrofit_date.tooltip}
                     />
                 <Verification
                     slug="age_retrofit_date"
