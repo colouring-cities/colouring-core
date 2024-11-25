@@ -257,7 +257,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.extension_year.tooltip}
+                    tooltip={dataFields.age_cladding_date.tooltip}
                     />
                 <Verification
                     slug="age_cladding_date"
@@ -307,7 +307,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.extension_year.tooltip}
+                    tooltip={dataFields.age_extension_date.tooltip}
                     />
                 <Verification
                     slug="age_extension_date"
@@ -357,7 +357,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     step={1}
                     min={1}
                     max={currentYear}
-                    tooltip={dataFields.extension_year.tooltip}
+                    tooltip={dataFields.age_retrofit_date.tooltip}
                     />
                 <Verification
                     slug="age_retrofit_date"
