@@ -72,21 +72,21 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'cladding_year',
             legend: {
-                title: 'Cladding Age',
+                title: 'Cladding Date',
                 elements: ageLegend,
             },
         },
         {
             mapStyle: 'extension_year',
             legend: {
-                title: 'Extension Age',
+                title: 'Extension Date',
                 elements: ageLegend,
             },
         },
         {
             mapStyle: 'retrofit_year',
             legend: {
-                title: 'Retrofit Age',
+                title: 'Retrofit Date',
                 elements: ageLegend,
             },
         },

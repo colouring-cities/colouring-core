@@ -263,7 +263,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
             <DataEntryGroup name="Cladding, Extensions & Retrofits" collapsed={subcat==null || subcat!="3"}>
                 {(props.mapColourScale != "cladding_year") ? 
                         <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeCladdingMapStyle}>
-                            Click to show cladding age.
+                            Click to show cladding date.
                         </button>
                 :
                     <></>
@@ -320,7 +320,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <hr/>
                 {(props.mapColourScale != "extension_year") ? 
                         <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeExtensionMapStyle}>
-                            Click to show extension age.
+                            Click to show extension date.
                         </button>
                 :
                     <></>
@@ -377,7 +377,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <hr/>
                 {(props.mapColourScale != "retrofit_year") ? 
                         <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeRetrofitMapStyle}>
-                            Click to show retrofit age.
+                            Click to show retrofit date.
                         </button>
                 :
                     <></>
