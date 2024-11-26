@@ -158,6 +158,10 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    date_source: {
+        edit: true,
+        verify: true,
+    },
     date_source_links: {
         edit: true,
         verify: true,
