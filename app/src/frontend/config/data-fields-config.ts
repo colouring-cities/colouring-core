@@ -1122,7 +1122,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
             "Same as Historical Map (Unchanged)",
             "Similar to Historical Map (Some Changes)",
             "Historical Building(s) Demolished",
-            "Current Building on Previously Unbuilt-on Site"
+            "Current Building on previously Unbuilt-on Site"
         ],
         example: "",
     },

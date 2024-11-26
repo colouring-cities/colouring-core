@@ -1156,7 +1156,7 @@
             <PolygonSymbolizer fill="#ff2121" />
         </Rule>
         <Rule>
-            <Filter>[survival_status] = "Current Building on Previously Unbuilt-on Site"</Filter>
+            <Filter>[survival_status] = "Current Building on previously Unbuilt-on Site"</Filter>
             <PolygonSymbolizer fill="#CF26DF" />
         </Rule>
         <Rule>
