@@ -14,6 +14,7 @@ import NumericDataEntry from '../data-components/numeric-data-entry';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 import { DynamicsBuildingPane, DynamicsDataEntry } from './dynamics/dynamics-data-entry';
 import { FieldRow } from '../data-components/field-row';
+import { MapTileset } from '../../config/tileserver-config';
 
 /**
 * Age & History view/edit section
@@ -69,7 +70,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
         switchToMapStyleHideHistoricMaps(event, 'retrofit_year')
     }
 
-    const switchToMapStyleHideHistoricMaps = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, map_style: string) => {
+    const switchToMapStyleHideHistoricMaps = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, map_style: MapTileset) => {
         event.preventDefault();
         if (historicData === 'enabled') {
             historicDataSwitchOnClick(event);
