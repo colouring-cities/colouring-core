@@ -24,16 +24,19 @@ function canEdit(key: string, allowDerived: boolean = false) {
 
 export function validateFieldChange(field: string, value: any, isExternal: boolean = true) {
     if(!isDefined(field)) {
+        console.log('Field does not exist', field);
         throw new InvalidFieldError('Field does not exist', field);
     }
     
     const allowDerived = !isExternal;
     if(!canEdit(field, allowDerived)) {
+        console.log('Field is not editable', field);
         throw new InvalidFieldError('Field is not editable', field);
     }
     
     if(field in compiledSchemas) {
         if(!compiledSchemas[field](value)) {
+            console.log('Invalid format of data sent', field, value);
             throw new FieldTypeError('Invalid format of data sent', field);
         }
     }
