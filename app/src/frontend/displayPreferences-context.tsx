@@ -54,6 +54,10 @@ interface DisplayPreferencesContextState {
     historicalFootprintsSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     historicalFootprintsSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
+    historicalMapAndFootprintsWithoutFill: LayerEnablementState;
+    historicalMapAndFootprintsWithoutFillSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    historicalMapAndFootprintsWithoutFillSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
     openStreetMap: LayerEnablementState;
     openStreetMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     openStreetMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -127,6 +131,10 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     historicalFootprintsSwitch: stub,
     historicalFootprintsSwitchOnClick: undefined,
 
+    historicalMapAndFootprintsWithoutFill: undefined,
+    historicalMapAndFootprintsWithoutFillSwitch: stub,
+    historicalMapAndFootprintsWithoutFillSwitchOnClick: undefined,
+
     openStreetMap: undefined,
     openStreetMapSwitch: stub,
     openStreetMapSwitchOnClick: undefined,
@@ -159,6 +167,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultHistoricMapLeicestershire = 'disabled'
     const defaultaerialPhotosMap = 'disabled'
     const defaultHistoricalFootprints = 'disabled'
+    const defaultHistoricalMapAndFootprintsWithoutFill = 'disabled'
     const defaultOpenStreetMap = 'disabled'
     const defaultEditableBuildings = 'enabled'
     const defaultShowLayerSelection = 'disabled'
@@ -174,6 +183,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [historicMapLeicestershire, setHistoricMapLeicestershire] = useState<LayerEnablementState>(defaultHistoricMapLeicestershire);
     const [aerialPhotosMap, setaerialPhotosMap] = useState<LayerEnablementState>(defaultaerialPhotosMap);
     const [historicalFootprints, setHistoricalFootprints] = useState<LayerEnablementState>(defaultHistoricalFootprints);
+    const [historicalMapAndFootprintsWithoutFill, setHistoricalMapAndFootprintsWithoutFill] = useState<LayerEnablementState>(defaultHistoricalMapAndFootprintsWithoutFill);
     const [openStreetMap, setOpenStreetMapMap] = useState<LayerEnablementState>(defaultOpenStreetMap);
     const [editableBuildings, setEditableBuildings] = useState<LayerEnablementState>(defaultEditableBuildings);
     const [darkLightTheme, setDarkLightTheme] = useState<MapTheme>('night');
@@ -200,6 +210,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             setHistoricMapLeicestershire(defaultHistoricMapLeicestershire);
             setaerialPhotosMap(defaultaerialPhotosMap);
             setHistoricalFootprints(defaultHistoricalFootprints);
+            setHistoricalMapAndFootprintsWithoutFill(defaultHistoricalMapAndFootprintsWithoutFill);
             setEditableBuildings(defaultEditableBuildings)
             setShowLayerSelection(defaultShowLayerSelection); // reset layers + hiding this panel is integrated into one action
             //setDarkLightTheme('night'); // reset only layers
@@ -242,6 +253,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             return true;
         }
         if(historicalFootprints != defaultHistoricalFootprints) {
+            return true;
+        }
+        if(historicalMapAndFootprintsWithoutFill != defaultHistoricalMapAndFootprintsWithoutFill) {
             return true;
         }
         if(openStreetMap != defaultOpenStreetMap) {
@@ -461,6 +475,30 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         setHistoricalFootprints(newFootprints);
     }
 
+    const historicalMapAndFootprintsWithoutFillSwitch = useCallback(
+        (e) => {
+            if (historicMap === 'enabled') {
+                flipHistoricMap(e);
+            }
+            if (historicData === 'enabled') {
+                flipHistoricData(e);
+            }
+            if (historicalFootprints === 'enabled') {
+                flipHistoricFootprints(e);
+            }
+            flipHistoricalMapAndFootprintsWithoutFill(e)
+        },
+        [historicMap, historicData, historicalFootprints],
+    )
+    const historicalMapAndFootprintsWithoutFillSwitchOnClick = (e) => {
+        flipHistoricalMapAndFootprintsWithoutFill(e)
+    }
+    function flipHistoricalMapAndFootprintsWithoutFill(e) {
+        e.preventDefault();
+        const newHistoricalMapMapAndFootprintsWithoutFill = (historicalMapAndFootprintsWithoutFill === 'enabled')? 'disabled' : 'enabled';
+        setHistoricalMapAndFootprintsWithoutFill(newHistoricalMapMapAndFootprintsWithoutFill);
+    }
+
     const openStreetMapSwitch = useCallback(
         (e) => {
             flipOpenStreetMap(e);
@@ -569,6 +607,10 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             historicalFootprints,
             historicalFootprintsSwitch,
             historicalFootprintsSwitchOnClick,
+
+            historicalMapAndFootprintsWithoutFill,
+            historicalMapAndFootprintsWithoutFillSwitch,
+            historicalMapAndFootprintsWithoutFillSwitchOnClick,
 
             openStreetMap,
             openStreetMapSwitch,

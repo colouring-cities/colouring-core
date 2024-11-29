@@ -27,7 +27,10 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const currentBuildingConstructionYear = building.date_year || undefined;
 
     const { historicData, historicDataSwitchOnClick, darkLightTheme } = useDisplayPreferences();
-    const { historicMap, historicMapSwitchOnClick, historicMapLeicestershire, historicMapLeicestershireSwitchOnClick } = useDisplayPreferences();
+    const { historicMap, historicMapSwitchOnClick,
+            historicMapLeicestershire, historicMapLeicestershireSwitchOnClick,
+            historicalMapAndFootprintsWithoutFill, historicalMapAndFootprintsWithoutFillSwitchOnClick,
+         } = useDisplayPreferences();
 
     const switchToSurvivalMapStyle = (e) => {
         e.preventDefault();
@@ -36,14 +39,40 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
         historicMapLeicestershireSwitchOnClick(e);
         
         if (historicData === 'enabled') {
-           historicDataSwitchOnClick(e);
-        }
-    }
+            historicDataSwitchOnClick(e);
+         }
+         if (historicalMapAndFootprintsWithoutFill === 'enabled') {
+            historicalMapAndFootprintsWithoutFillSwitchOnClick(e);
+         }
+      }
 
     const switchToSurvivalDataStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('survival_status');
         historicDataSwitchOnClick(e);
+
+        // HistoricDataLayer includes these two on their own
+        if (historicMap === 'enabled') {
+            historicMapSwitchOnClick(e);
+        }
+        if (historicMapLeicestershire === 'enabled') {
+            historicMapLeicestershireSwitchOnClick(e);
+        }
+
+        // nearly the same as one being enabled
+        if (historicalMapAndFootprintsWithoutFill === 'enabled') {
+            historicalMapAndFootprintsWithoutFillSwitchOnClick(e);
+        }
+    }
+
+    const switchToSurvivalDataStyleFootprintsOnly = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('survival_status');
+        historicalMapAndFootprintsWithoutFillSwitchOnClick(e);
+
+        if (historicData === 'enabled') {
+            historicDataSwitchOnClick(e);
+        }
 
         // HistoricDataLayer includes these two on their own
         if (historicMap === 'enabled') {
@@ -82,6 +111,9 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
         }
         if (historicMap === 'enabled') {
             historicMapSwitchOnClick(event);
+        }
+        if (historicalMapAndFootprintsWithoutFill === 'enabled') {
+            historicalMapAndFootprintsWithoutFillSwitchOnClick(event);
         }
         if (historicMapLeicestershire === 'enabled') {
             historicMapLeicestershireSwitchOnClick(event);
@@ -562,6 +594,15 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 :
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalDataStyle}>
                         Click to show the OS historical map with modern footprints and fill indicating survival status.
+                    </button>
+                }
+                {(historicalMapAndFootprintsWithoutFill === "enabled") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
+                        Click to hide the OS historical map with modern footprints, without fill.
+                    </button>
+                :
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalDataStyleFootprintsOnly}>
+                        Click to show the OS historical map with modern footprints, without fill.
                     </button>
                 }
                 <SelectDataEntry

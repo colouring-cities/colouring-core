@@ -16,6 +16,7 @@ import { BoroughLabelLayer } from './layers/borough-label-layer';
 import { ParcelBoundaryLayer } from './layers/parcel-boundary-layer';
 import { HistoricDataLayer } from './layers/historic-data-layer';
 import { HistoricMapLayer } from './layers/historic-map-layer';
+import { HistoricMapLayerWithoutFill } from './layers/historic-map-without-fill-layer';
 import { HistoricMapLayerLeicestershire } from './layers/historic-map-leicestershire-layer';
 import { AerialPhotosMapLayer } from './layers/aerial-photos-map-layer';
 import { OpenStreetMapLayer } from './layers/openstreetmap-layer';
@@ -148,6 +149,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <CityBoundaryLayer/>
                     <HistoricDataLayer revisionId={revisionId} />
                     <HistoricMapLayer />
+                    <HistoricMapLayerWithoutFill mapColourScale={mapColourScale}/>
                     <HistoricMapLayerLeicestershire />
                     <AerialPhotosMapLayer revisionId={revisionId} />
                     <BoroughBoundaryLayer/>
