@@ -2234,7 +2234,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_style_period: {
         category: Category.TypologySize,
         title: "Which description best suits the building's historical period?",
-        tooltip: "Which description best suits the building's historical period?",
+        tooltip: null,
         example: "Georgian (1714-1837)",
         items: [
             '43AD-410 (Roman)',
