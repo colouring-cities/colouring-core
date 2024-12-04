@@ -581,9 +581,6 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Historical Map Data Options" collapsed={subcat==null || subcat!="6"}>
-                <InfoBox type='warning'>
-                    This section is under development
-                </InfoBox>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         This section provides links to open digitised historical maps/mapping data that we are using in the Colouring Cities platform.
