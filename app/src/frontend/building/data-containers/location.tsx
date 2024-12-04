@@ -11,12 +11,22 @@ import { DataEntryGroup } from '../data-components/data-entry-group';
 import SelectDataEntry from '../data-components/select-data-entry';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
+import { MapTileset } from '../../config/tileserver-config';
 
 const locationNumberPattern = "[1-9]\\d*[a-z]?(-([1-9]\\d*))?"; ///[1-9]\d*[a-z]?(-([1-9]\d*))?/;
 const postcodeCharacterPattern = "^[A-Z]{1,2}[0-9]{1,2}[A-Z]?(\\s*[0-9][A-Z]{1,2})?$";
 const osmIdentifierPattern = "[0-9]{1,9}";
 
 const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
+    const switchToFootprintIssuesStyle = (e) => {
+        switchToMapStyle(e, 'building_footprint_issues')
+    }
+
+    const switchToMapStyle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, map_style: MapTileset) => {
+        event.preventDefault();
+        props.onMapColourScale(map_style);
+    }
+
     const osm_url = "www.openstreetmap.org/way/"+props.building.ref_osm_id;
     
     const queryParameters = new URLSearchParams(window.location.search);
@@ -419,6 +429,13 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Building Footprint Issues" collapsed={subcat==null || subcat!="4"}>
+                {(props.mapColourScale != "building_footprint_issues") ? 
+                        <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToFootprintIssuesStyle}>
+                            Click to show footprint issues.
+                        </button>
+                :
+                    <></>
+                }
                 <MultiDataEntry
                     title={dataFields.building_footprint_issues.title}
                     slug="building_footprint_issues"
