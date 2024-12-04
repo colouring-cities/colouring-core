@@ -463,7 +463,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     current_landuse_order: {
         category: Category.LandUse,
-        title: "Current land use (order)",
+        title: "This land use is shown on the map as:",
         tooltip: "Land use Order as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification). Derived automatically from the data above.",
         example: "",
     },
@@ -1370,8 +1370,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     is_domestic: {
         category: Category.EnergyPerformance,
-        title: "Is the building a home/residential building?",
-        tooltip: "Note: Homes used as offices for working from home should be classified as residential.",
+        title: "Is the building residential, non-residential or mixed? (automatically generated from Specific Land Use/s)",
+        tooltip: null,
         example: "mixed domestic/non-domestic",
         items: [
             "Yes",
@@ -2291,7 +2291,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_original_use: {
         category: Category.TypologySize,
         title: "Which land use best describes the purpose for which the building was built?",
-        tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification)",
+        tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification).\n\nNote: Homes used as offices for working from home should be classified as residential.",
         example: ["", ""],
     },
     typology_original_use_verified: {
