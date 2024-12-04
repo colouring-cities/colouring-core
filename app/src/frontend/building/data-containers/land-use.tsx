@@ -119,6 +119,7 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     tooltip={dataFields.is_domestic.tooltip}
                 />
+                {/*
                 <Verification
                     slug="is_domestic"
                     allow_verify={props.user !== undefined && props.building.is_domestic !== null && !props.edited}
@@ -154,6 +155,7 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                     </>
                 }
+                */}
             </DataEntryGroup>
         </Fragment>
     );
