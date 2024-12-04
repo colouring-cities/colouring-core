@@ -148,7 +148,7 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <div>
                     <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                         <i>
-                            Below is a more general classification for the land use of this building, automatically derived from the information above.
+                            This section is automatically generated.
                         </i>
                     </div>
                 </div>
