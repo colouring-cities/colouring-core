@@ -1129,12 +1129,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     survival_source: {
         category: Category.AgeHistory,
-        title: "Source type",
+        title: "Method type",
         tooltip: "Source for the survival status",
         items: [
             "Matched by comparing maps",
             "Checked using streetview images",
             "Historical publication or archive document",
+            "Expert knowledge",
             "Other"
         ],
         example: "",
