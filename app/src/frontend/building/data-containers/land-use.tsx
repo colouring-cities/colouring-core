@@ -28,6 +28,11 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
     return (
         <Fragment>
             <DataEntryGroup name="Specific Land Use(s)" collapsed={subcat==null || subcat!="1"}>
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                    <i>
+                        The vast majority of properties are residential (93% in the UK), so we have set 'residential' as the default value. Can you help us identify non-residential and mixed use buildings (and verify residential buildings too)?
+                    </i>
+                </div>
                 {(props.mapColourScale != "landuse") ? 
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLandUseMapStyle}>
                         {"Click to see specific land use."}
@@ -85,14 +90,6 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         />
                     </>
                 }
-                <hr/>
-                <div>
-                    <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
-                        <i>
-                            Below is a more general classification for the land use of this building, automatically derived from the information above.
-                        </i>
-                    </div>
-                </div>
                 <DataEntry
                     title={dataFields.current_landuse_order.title}
                     tooltip={dataFields.current_landuse_order.tooltip}
@@ -105,11 +102,6 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="General Land Use" collapsed={subcat==null || subcat!="2"}>
-                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
-                    <i>
-                        The vast majority of properties are residential (93% in the UK), so we have set 'residential' as the default value. Can you help us identify non-residential and mixed use buildings (and verify residential buildings too)?
-                    </i>
-                </div>
                 {(props.mapColourScale != "is_domestic") ? 
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToIsDomesticMapStyle}>
                         {"Click to see residential, non-residential and mixed-use buildings."}
