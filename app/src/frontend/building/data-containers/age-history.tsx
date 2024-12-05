@@ -70,6 +70,10 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
         switchToMapStyleHideHistoricMaps(event, 'retrofit_year')
     }
 
+    const switchToResilienceMapStyle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        switchToMapStyleHideHistoricMaps(event, 'dynamics_demolished_count')
+    }
+
     const switchToMapStyleHideHistoricMaps = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, map_style: MapTileset) => {
         event.preventDefault();
         if (historicData === 'enabled') {
@@ -435,6 +439,13 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
             </DataEntryGroup>
             <DataEntryGroup name="Lifespan & Site History" collapsed={subcat==null || subcat!="4"}>
                 <DataEntryGroup name="Constructions & Demolitions on this Site" collapsed={subcat==null || subcat!="4"}>
+                    {(props.mapColourScale != "dynamics_demolished_count") ? 
+                        <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToResilienceMapStyle}>
+                            {"Click to show map how many buildings existing before."}
+                        </button>
+                        :
+                        <></>
+                    }
                     <DynamicsBuildingPane>
                         <label>Current building (building age data editable above)</label>
                         <FieldRow>
