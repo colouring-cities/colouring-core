@@ -110,7 +110,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Architectural Style" collapsed={subcat==null || subcat!="2"}>
+                <DataEntryGroup name="Historical Period" collapsed={subcat==null || subcat!="2"}>
                     <SelectDataEntry
                         title={dataFields.typology_style_period.title}
                         slug="typology_style_period"
@@ -123,7 +123,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         disabled={true}
                     />
                     <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
-                        <i className="source-url">To edit the architectural style box, and to see the data mapped, please go to&nbsp;
+                        <i className="source-url">To edit the historical period box, and to see the data mapped, please go to&nbsp;
                         <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=2"}>Age & History</a>.</i>
                     </div>
                 </DataEntryGroup>
