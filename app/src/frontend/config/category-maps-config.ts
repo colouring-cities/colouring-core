@@ -41,6 +41,34 @@ export const ageLegend = [
     { color: '#d0c291', text: '<1700' },
 ]
 
+export const knownDemolishedCountLegend = [
+    {
+        text: '7+',
+        color: '#bd0026',
+    }, {
+        text: '6',
+        color: '#e31a1c',
+    }, {
+        text: '5',
+        color: '#fc4e2a',
+    }, {
+        text: '4',
+        color: '#fd8d3c',
+    }, {
+        text: '3',
+        color: '#feb24c',
+    }, {
+        text: '2',
+        color: '#fed976',
+    }, {
+        text: '1',
+        color: '#ffe8a9',
+    }, {
+        text: 'None',
+        color: '#0C7BDC'
+    }
+]
+
 export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = {
     [Category.AgeHistory]: [
         {
@@ -102,6 +130,14 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 ]
             }
         },
+        {
+            mapStyle: 'dynamics_demolished_count',
+            legend: {
+                title: 'Known demolished',
+                description: 'Recorded demolished buildings on the same site',
+                elements: knownDemolishedCountLegend,
+            },
+        }
     ],
     [Category.ConstructionDesign]: [
         {
@@ -796,33 +832,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Resilience',
                 description: 'Demolished buildings on the same site',
-                elements: [
-                    {
-                        text: '7+',
-                        color: '#bd0026',
-                    }, {
-                        text: '6',
-                        color: '#e31a1c',
-                    }, {
-                        text: '5',
-                        color: '#fc4e2a',
-                    }, {
-                        text: '4',
-                        color: '#fd8d3c',
-                    }, {
-                        text: '3',
-                        color: '#feb24c',
-                    }, {
-                        text: '2',
-                        color: '#fed976',
-                    }, {
-                        text: '1',
-                        color: '#ffe8a9',
-                    }, {
-                        text: 'None',
-                        color: '#0C7BDC'
-                    }
-                ],
+                elements: knownDemolishedCountLegend,
             },
         }
     ]
