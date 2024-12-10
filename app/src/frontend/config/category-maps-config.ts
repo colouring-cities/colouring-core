@@ -121,7 +121,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'survival_status',
             legend: {
-                title: 'Survival status',
+                title: 'Survival Status',
                 elements: [
                     { color: '#6ded45', text: 'Same as Historical Map (Unchanged)' },
                     { color: '#f7c725', text: 'Similar to Historical Map (Some Changes)' },
