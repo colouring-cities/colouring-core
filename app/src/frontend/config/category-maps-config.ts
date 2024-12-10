@@ -133,8 +133,8 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'dynamics_demolished_count',
             legend: {
-                title: 'Known demolished',
-                description: 'Recorded demolished buildings on the same site',
+                title: 'Number of Redevelopments',
+                description: 'Number of historical redevelopments for which data has been added',
                 elements: knownDemolishedCountLegend,
             },
         }

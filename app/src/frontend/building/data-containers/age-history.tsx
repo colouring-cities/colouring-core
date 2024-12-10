@@ -441,7 +441,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 <DataEntryGroup name="Constructions & Demolitions on this Site" collapsed={subcat==null || subcat!="4"}>
                     {(props.mapColourScale != "dynamics_demolished_count") ? 
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToResilienceMapStyle}>
-                            {"Click to show map how many buildings existing before."}
+                            {"Click to show data captured so far on the the number of developments ever built on each site."}
                         </button>
                         :
                         <></>
