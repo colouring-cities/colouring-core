@@ -53,7 +53,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'typology_style_period',
             legend: {
-                title: 'Architectural style',
+                title: 'Historical Period',
                 elements: [
                     { color: '#fae269', text: '2000-2025 (Early C21)' },
                     { color: '#fbaf27', text: '1980-1999 (Late C20)' },
