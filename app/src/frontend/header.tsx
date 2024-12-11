@@ -89,7 +89,7 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
-                to: "https://github.com/colouring-cities/manual/wiki/A2.-HOW-TO-GUIDES",
+                to: "https://github.com/colouring-cities/manual/wiki/How‐to‐use-Platform-Guides",
                 text: "How to Use",
                 external: true
             },

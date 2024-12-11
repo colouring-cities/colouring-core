@@ -83,7 +83,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
         }
     }
 
-    const switchToStylePeriodMapStyle = (e) => {
+    const switchToHistoricalPeriodMapStyle = (e) => {
         e.preventDefault();
         switchToMapStyleHideHistoricMaps(e, 'typology_style_period')
     }
@@ -133,10 +133,10 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
-            <DataEntryGroup name="Architectural Style/Historical Period" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Historical Period" collapsed={subcat==null || subcat!="2"}>
                 {(props.mapColourScale != "typology_style_period") ? 
-                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToStylePeriodMapStyle}>
-                        Click to show architectural style.
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToHistoricalPeriodMapStyle}>
+                        Click to show historical period.
                     </button>
                 :
                     <></>
@@ -645,9 +645,6 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Historical Map Data Options" collapsed={subcat==null || subcat!="6"}>
-                <InfoBox type='warning'>
-                    This section is under development
-                </InfoBox>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         This section provides links to open digitised historical maps/mapping data that we are using in the Colouring Cities platform.
