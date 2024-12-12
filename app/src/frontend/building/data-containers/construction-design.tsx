@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { commonSourceTypes, dataFields } from '../../config/data-fields-config';
+import { Category } from '../../config/categories-config';
 import DataEntry from '../data-components/data-entry';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import NumericDataEntry from '../data-components/numeric-data-entry';
@@ -667,7 +668,7 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                     />
                     <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
                         <i className="source-url">To edit the building age, and to see the data mapped, please go to&nbsp;
-                        <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=1"}>Age & History</a>.</i>
+                        <a href={"/"+props.mode+"/"+Category.AgeHistory+"/"+props.building.building_id+"?sc=1"}>Age & History</a>.</i>
                     </div>
                     <DataEntryGroup name="Client" collapsed={subcat==null || subcat!="3"}>
                         <MultiDataEntry
@@ -959,7 +960,7 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                     />
                     <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
                         <i className="source-url">To edit the extension date, and to see the data mapped, please go to&nbsp;
-                        <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=3"}>Age & History</a>.</i>
+                        <a href={"/"+props.mode+"/"+Category.AgeHistory+"/"+props.building.building_id+"?sc=3"}>Age & History</a>.</i>
                     </div>
                     <DataEntryGroup name="Client" collapsed={subcat==null || subcat!="8"}>
                         <MultiDataEntry
