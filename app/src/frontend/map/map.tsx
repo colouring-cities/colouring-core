@@ -179,7 +179,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                         <VistaSwitcher />
                         <HousingSwitcher />
                         <CreativeSwitcher />
-                        { /* <EditableBuildingsSwitcher /> */ }
+                        <EditableBuildingsSwitcher />
                     </>
                     : <></>
                 }
