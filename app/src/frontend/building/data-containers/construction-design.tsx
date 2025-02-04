@@ -1237,7 +1237,7 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                     </DataEntryGroup>
                 </DataEntryGroup>
                 <DataEntryGroup name="Awards" collapsed={subcat==null || subcat!="12"}>
-                    <LogicalDataEntryYesOnly
+                    <LogicalDataEntry
                             slug='designer_awards'
                             title={dataFields.designer_awards.title}
                             tooltip={dataFields.designer_awards.tooltip}
