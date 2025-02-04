@@ -11,7 +11,7 @@ import withCopyEdit from '../data-container';
 
 import { CategoryViewProps } from './category-view-props';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
-import { LogicalDataEntry, LogicalDataEntryYesOnly } from '../data-components/logical-data-entry/logical-data-entry';
+import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
 
 /**
 * Construction & Design view/edit section
@@ -1237,7 +1237,7 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                     </DataEntryGroup>
                 </DataEntryGroup>
                 <DataEntryGroup name="Awards" collapsed={subcat==null || subcat!="12"}>
-                    <LogicalDataEntryYesOnly
+                    <LogicalDataEntry
                             slug='designer_awards'
                             title={dataFields.designer_awards.title}
                             tooltip={dataFields.designer_awards.tooltip}
