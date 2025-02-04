@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch , matchPath } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -24,8 +24,8 @@ import { MyAccountPage } from './user/my-account';
 import PasswordReset from './user/password-reset';
 import { SignUp } from './user/signup';
 import { NotFound } from './pages/not-found';
-
-
+import { useCategory } from '../frontend/Category-contetxt';
+import { CategoryProvider } from '../frontend/Category-contetxt';
 interface AppProps {
     user?: User;
     building?: Building;
@@ -47,11 +47,13 @@ interface AppProps {
  */
 
 export const App: React.FC<AppProps> = props => {
-    const mapAppPaths = ['/', '/:mode(view|edit|multi-edit)/:category/:building(\\d+)?/(history)?'];
+    const mapAppPaths = ['/', '/:category_id(\\d+)?/:mode(view|edit|multi-edit)/:category/:building(\\d+)?/(history)?'];
 
     return (
+        <CategoryProvider> 
         <DisplayPreferencesProvider>
             <AuthProvider preloadedUser={props.user}>
+          
                 <Switch>
                     <Route exact path={mapAppPaths}>
                         <Header animateLogo={false} />
@@ -78,11 +80,14 @@ export const App: React.FC<AppProps> = props => {
                             building={props.building}
                             user_verified={props.user_verified}
                             revisionId={props.revisionId}
+                          
                         />
                     </Route>
                     <Route component={NotFound} />
                 </Switch>
+            
             </AuthProvider>
         </DisplayPreferencesProvider>
+        </CategoryProvider>
     );
 };
