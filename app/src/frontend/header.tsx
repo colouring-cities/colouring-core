@@ -84,6 +84,11 @@ function getCurrentMenuLinks(username: string): MenuLink[][] {
                 external: true
             },
             {
+                to: "https://github.com/colouring-cities/manual/wiki/M3.1-News",
+                text: "Colouring Cities development news",
+                external: true
+            },
+            {
                 to: "https://github.com/colouring-cities/manual/wiki/How‐to‐use-Platform-Guides",
                 text: "How to Use",
                 external: true
