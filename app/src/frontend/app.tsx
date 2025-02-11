@@ -47,8 +47,8 @@ interface AppProps {
  */
 
 export const App: React.FC<AppProps> = props => {
-    const mapAppPaths = ['/', '/:category_id(\\d+)?/:mode(view|edit|multi-edit)/:category/:building(\\d+)?/(history)?'];
-
+    const mapAppPaths = ['/', '/:mode(view|edit|multi-edit)/:category/:building(\\d+)?/(history)?'];
+  // const mapAppPaths = ['/', '/:mode(view|edit|multi-edit)/dynamicCategory/:building(\\d+)?/(history)?'];
     return (
         <CategoryProvider> 
         <DisplayPreferencesProvider>

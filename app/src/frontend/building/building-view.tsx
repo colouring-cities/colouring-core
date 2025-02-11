@@ -17,6 +17,7 @@ interface BuildingViewProps {
     onUserVerifiedUpdate: (buildingId: number, updatedData: UserVerified) => void;
     mapColourScale: BuildingMapTileset;
     onMapColourScale: (x: BuildingMapTileset) => void;
+    category_id:number;
 }
 
 /**

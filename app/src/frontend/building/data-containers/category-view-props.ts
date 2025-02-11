@@ -28,6 +28,7 @@ interface CategoryViewProps {
     mode: 'view' | 'edit' | 'multi-edit';
     edited: boolean;
     copy: defaultCopyProps;
+    category_id?:string;
     onChange: (key: string, value: any) => void;
     onVerify: (slug: string, verify: boolean, x: number, y: number) => void;
 

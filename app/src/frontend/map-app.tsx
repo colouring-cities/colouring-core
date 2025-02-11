@@ -23,7 +23,7 @@ import { defaultMapCategory, categoryMapsConfig } from './config/category-maps-c
 import { useMultiEditData } from './hooks/use-multi-edit-data';
 import { useAuth } from './auth-context';
 import { sendBuildingUpdate } from './api-data/building-update';
-
+import { useCategory } from './Category-contetxt';
 /**
  * Load and render ColouringMap component on client-side only.
  * This is because leaflet and react-leaflet currently don't work on the server
@@ -72,6 +72,7 @@ function useStateWithOptions<T>(defaultValue: T, options: T[]): [T, (x: T) => vo
 export const MapApp: React.FC<MapAppProps> = props => {
     const { user } = useAuth();
     const [categoryUrlParam] = useUrlCategoryParam();
+    const {categoryId}=useCategory();
 
     const [currentCategory, setCategory] = useState<Category>();
     useEffect(() => setCategory(unless(categoryUrlParam, 'categories')), [categoryUrlParam]);
@@ -155,6 +156,7 @@ export const MapApp: React.FC<MapAppProps> = props => {
                             </Route>
                             <Route exact path="/:mode/:cat/:building?">
                                 <BuildingView
+                                    category_id={categoryId}
                                     mode={viewEditMode}
                                     cat={displayCategory}
                                     building={building}

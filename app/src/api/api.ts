@@ -11,6 +11,7 @@ import leaderboardRouter from './routes/leaderboardRouter';
 import usersRouter from './routes/usersRouter';
 import { queryLocation } from './services/search';
 import { authUser, getNewUserAPIKey, logout } from './services/user';
+import categoryRouter from './routes/categoryRouter';
 
 const server = express.Router();
 
@@ -24,6 +25,8 @@ server.use('/leaderboard', leaderboardRouter);
 
 server.get('/history', editHistoryController.getGlobalEditHistory);
 server.get('/autofill', autofillController.getAutofillOptions);
+
+server.use('/categories', categoryRouter);
 
 // POST user auth
 server.post('/login', function (req, res) {

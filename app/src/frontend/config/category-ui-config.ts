@@ -12,6 +12,7 @@ import WaterGreenInfrastructureContainer from '../building/data-containers/water
 import EnergyPerformanceContainer from '../building/data-containers/energy-performance';
 import TypologySizeContainer from '../building/data-containers/typology-size';
 import LandUseContainer from '../building/data-containers/land-use';
+import  dynamicCategory from '../building/data-containers/dynamicCategory'
 
 import { DataContainerType } from '../building/data-container';
 
@@ -28,5 +29,6 @@ export const categoryUiConfig: {[key in Category]: DataContainerType} = {
     [Category.WaterGreenInfrastructure]: WaterGreenInfrastructureContainer,
     [Category.DisasterManagement]: DisasterManagementContainer,
     [Category.Community]: CommunityContainer,
+    [Category.dynamicCategory]: dynamicCategory,
 };
 

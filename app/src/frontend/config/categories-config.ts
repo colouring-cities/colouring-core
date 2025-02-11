@@ -15,6 +15,7 @@ export enum Category {
     RetrofitCondition = 'retrofit-condition',
     EnergyPerformance = 'energy-performance',
     TypologySize = 'typology-size',
+    dynamicCategory='dynamicCategory'
 }
 
 /**
@@ -35,6 +36,7 @@ export const categoriesOrder: Category[] = [
     Category.UrbanInfrastructure,
     Category.DisasterManagement,
     Category.Community,
+    Category.dynamicCategory,
 ];
 
 interface CategoryDefinition {
@@ -46,6 +48,12 @@ interface CategoryDefinition {
 }
 
 export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
+    [Category.dynamicCategory]: {
+        slug: 'dynamicCategory',
+        name: 'dynamicCategory',
+        aboutUrl: 'https://github.com/colouring-cities/manual/wiki/E1.--DATA#4-age-and-history',
+        intro: 'This section provides open data on the age of buildings and the history of buildings and sites.',
+    },
     [Category.AgeHistory]: {
         slug: 'age-history',
         name: 'Age & History',

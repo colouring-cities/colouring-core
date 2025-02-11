@@ -16,7 +16,7 @@ interface CategoryLinkProps {
 }
 
 const CategoryLink: React.FC<CategoryLinkProps> = (props) => {
-    let categoryLink = `/${props.category_id}/${props.mode}/${props.slug}`;
+    let categoryLink = `/${props.mode}/dynamicCategory`;
     if (props.building_id != undefined) categoryLink += `/${props.building_id}`;
 
     let className = "category-title";
