@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './logical-data-entry.css';
+
 import { BaseDataEntryProps } from '../data-entry';
 import { DataTitleCopyable } from '../data-title';
 
@@ -33,12 +35,14 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
                 style: { cursor: 'default'}
             }}
         >
-            <input type="radio" name="options" value={value + ''}
-                autoComplete="off"
-                checked={checked}
-                onChange={onChange}
-                disabled={disabled}
-            />
+            <div className="boolean">
+                <input type="radio" name="options" value={value + ''}
+                    autoComplete="off"
+                    checked={checked}
+                    onChange={onChange}
+                    disabled={disabled}
+                />
+            </div>
             {children}
         </label>
     );
