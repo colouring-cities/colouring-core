@@ -190,19 +190,18 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                 {
                     (showLayerSelection == "enabled") ?
                     <>
-                            <BoroughSwitcher/>
-                            <ParcelSwitcher/>
-                            <FloodSwitcher/>
-                            <ConservationAreaSwitcher/>
-                            { /* <HistoricDataSwitcher/> */ }
-                            { /* <HistoricalFootprintsSwitcher/> */ }
-                            { /* <HistoricMapLeicestershireSwitcher/> */ }
-                            <VistaSwitcher/>
-                            <HousingSwitcher/>
-                            <CreativeSwitcher/>
-                            <AerialPhotosMapSwitcher/>
-                            <OpenStreetMapSwitcher/>
-                            { /* <EditableBuildingsSwitcher /> */ }
+                        <BoroughSwitcher/>
+                        <ParcelSwitcher/>
+                        <FloodSwitcher/>
+                        <ConservationAreaSwitcher/>
+                        { /* <HistoricMapSwitcher/> */ }
+                        { /* <HistoricDataSwitcher/> */ }
+                        { /* <HistoricMapLeicestershireSwitcher/> */ }
+                        <VistaSwitcher />
+                        <HousingSwitcher />
+                        <CreativeSwitcher />
+                        <AerialPhotosMapSwitcher/>
+                        <EditableBuildingsSwitcher />
                     </>
                     : <></>
                 }

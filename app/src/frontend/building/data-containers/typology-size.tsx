@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { commonSourceTypes, dataFields } from '../../config/data-fields-config';
+import { Category } from '../../config/categories-config';
 import DataEntry from '../data-components/data-entry';
 import NumericDataEntry from '../data-components/numeric-data-entry';
 import SelectDataEntry from '../data-components/select-data-entry';
@@ -124,7 +125,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     />
                     <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
                         <i className="source-url">To edit the historical period box, and to see the data mapped, please go to&nbsp;
-                        <a href={"/"+props.mode+"/age/"+props.building.building_id+"?sc=2"}>Age & History</a>.</i>
+                        <a href={"/"+props.mode+"/" + Category.AgeHistory + "/"+props.building.building_id+"?sc=2"}>Age & History</a>.</i>
                     </div>
                 </DataEntryGroup>
                 <DataEntryGroup name="Dynamic Classification" collapsed={subcat==null || subcat!="3"}>
