@@ -12,6 +12,7 @@ import withCopyEdit from '../data-container';
 import { CategoryViewProps } from './category-view-props';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
+import InfoBox from '../../components/info-box';
 
 /**
 * Construction & Design view/edit section
@@ -1280,6 +1281,25 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                         ) : (null)
                     }
                 </DataEntryGroup>
+            </DataEntryGroup>
+            <DataEntryGroup name="Direction and Shape"  collapsed={subcat==null || subcat!="4"}>
+                <InfoBox type='warning'>
+                    This section is under development.
+                </InfoBox>
+                <DataEntry
+                    title="Direction"
+                    tooltip='the orientation of building(s) with different lateral load-resisting systems in two principal horizontal directions of the building plan which are perpendicular to one another.'
+                    slug=""
+                    value=""
+                    mode='view'
+                />
+                <DataEntry
+                    title="Shape"
+                    tooltip='Shape of the building plan - e.g. L-shape, rectangular shape, etc.'
+                    slug=""
+                    value=""
+                    mode='view'
+                />
             </DataEntryGroup>
         </Fragment>
     )
