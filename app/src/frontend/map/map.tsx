@@ -202,6 +202,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                         <CreativeSwitcher />
                         <AerialPhotosMapSwitcher/>
                         <EditableBuildingsSwitcher />
+                        <OpenStreetMapSwitcher />
                     </>
                     : <></>
                 }
