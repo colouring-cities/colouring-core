@@ -62,6 +62,18 @@ interface DisplayPreferencesContextState {
     openStreetMapSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     openStreetMapSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
+    regions: LayerEnablementState;
+    regionsSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    regionsSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
+    ceremonialCounties: LayerEnablementState;
+    ceremonialCountiesSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    ceremonialCountiesSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
+    motorways: LayerEnablementState;
+    motorwaysSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    motorwaysSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
     editableBuildings: LayerEnablementState;
     editableBuildingsSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     editableBuildingsSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -135,6 +147,18 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     historicalMapAndFootprintsWithoutFillSwitch: stub,
     historicalMapAndFootprintsWithoutFillSwitchOnClick: undefined,
 
+    regions: undefined,
+    regionsSwitch: stub,
+    regionsSwitchOnClick: undefined,
+
+    ceremonialCounties: undefined,
+    ceremonialCountiesSwitch: stub,
+    ceremonialCountiesSwitchOnClick: undefined,
+
+    motorways: undefined,
+    motorwaysSwitch: stub,
+    motorwaysSwitchOnClick: undefined,
+    
     openStreetMap: undefined,
     openStreetMapSwitch: stub,
     openStreetMapSwitchOnClick: undefined,
@@ -168,6 +192,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultaerialPhotosMap = 'disabled'
     const defaultHistoricalFootprints = 'disabled'
     const defaultHistoricalMapAndFootprintsWithoutFill = 'disabled'
+    const defaultRegions = 'disabled'
+    const defaultCeremonialCounties = 'disabled'
+    const defaultMotorways = 'disabled'
     const defaultOpenStreetMap = 'disabled'
     const defaultEditableBuildings = 'enabled'
     const defaultShowLayerSelection = 'disabled'
@@ -184,6 +211,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [aerialPhotosMap, setaerialPhotosMap] = useState<LayerEnablementState>(defaultaerialPhotosMap);
     const [historicalFootprints, setHistoricalFootprints] = useState<LayerEnablementState>(defaultHistoricalFootprints);
     const [historicalMapAndFootprintsWithoutFill, setHistoricalMapAndFootprintsWithoutFill] = useState<LayerEnablementState>(defaultHistoricalMapAndFootprintsWithoutFill);
+    const [regions, setRegions] = useState<LayerEnablementState>(defaultRegions);
+    const [ceremonialCounties, setCeremonialCounties] = useState<LayerEnablementState>(defaultCeremonialCounties);
+    const [motorways, setMotorways] = useState<LayerEnablementState>(defaultMotorways);
     const [openStreetMap, setOpenStreetMapMap] = useState<LayerEnablementState>(defaultOpenStreetMap);
     const [editableBuildings, setEditableBuildings] = useState<LayerEnablementState>(defaultEditableBuildings);
     const [darkLightTheme, setDarkLightTheme] = useState<MapTheme>('night');
@@ -198,6 +228,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
 
     const resetLayersAndHideTheirList = useCallback(
         (e) => {
+            setOpenStreetMapMap(defaultOpenStreetMap);
             setVista(defaultVista);
             setFlood(defaultFlood);
             setCreative(defaultCreative);
@@ -211,6 +242,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             setaerialPhotosMap(defaultaerialPhotosMap);
             setHistoricalFootprints(defaultHistoricalFootprints);
             setHistoricalMapAndFootprintsWithoutFill(defaultHistoricalMapAndFootprintsWithoutFill);
+            setRegions(defaultRegions);
+            setCeremonialCounties(defaultCeremonialCounties);
+            setMotorways(defaultMotorways);
             setEditableBuildings(defaultEditableBuildings)
             setShowLayerSelection(defaultShowLayerSelection); // reset layers + hiding this panel is integrated into one action
             //setDarkLightTheme('night'); // reset only layers
@@ -256,6 +290,15 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             return true;
         }
         if(historicalMapAndFootprintsWithoutFill != defaultHistoricalMapAndFootprintsWithoutFill) {
+            return true;
+        }
+        if(regions != defaultRegions) {
+            return true;
+        }
+        if(ceremonialCounties != defaultCeremonialCounties) {
+            return true;
+        }
+        if(motorways != defaultMotorways) {
             return true;
         }
         if(openStreetMap != defaultOpenStreetMap) {
@@ -529,6 +572,51 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         setEditableBuildings(newValue);
     }
 
+    const regionsSwitch = useCallback(
+        (e) => {
+            flipRegions(e)
+        },
+        [regions],
+    )
+    const regionsSwitchOnClick = (e) => {
+        flipRegions(e)
+    }
+    function flipRegions(e) {
+        e.preventDefault();
+        const newRegions = (regions === 'enabled')? 'disabled' : 'enabled';
+        setRegions(newRegions);
+    }
+
+    const ceremonialCountiesSwitch = useCallback(
+        (e) => {
+            flipCeremonialCounties(e)
+        },
+        [ceremonialCounties],
+    )
+    const ceremonialCountiesSwitchOnClick = (e) => {
+        flipCeremonialCounties(e)
+    }
+    function flipCeremonialCounties(e) {
+        e.preventDefault();
+        const newCeremonialCounties = (ceremonialCounties === 'enabled')? 'disabled' : 'enabled';
+        setCeremonialCounties(newCeremonialCounties);
+    }
+
+    const motorwaysSwitch = useCallback(
+            (e) => {
+                flipMotorways(e)
+            },
+            [motorways],
+        )
+    const motorwaysSwitchOnClick = (e) => {
+        flipMotorways(e)
+    }
+    function flipMotorways(e) {
+        e.preventDefault();
+        const newMotorways = (motorways === 'enabled')? 'disabled' : 'enabled';
+        setMotorways(newMotorways);
+    }
+
     const darkLightThemeSwitch = useCallback(
         (e) => {
             flipDarkLightTheme(e)
@@ -612,6 +700,18 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             historicalMapAndFootprintsWithoutFillSwitch,
             historicalMapAndFootprintsWithoutFillSwitchOnClick,
 
+            regions,
+            regionsSwitch,
+            regionsSwitchOnClick,
+
+            ceremonialCounties,
+            ceremonialCountiesSwitch,
+            ceremonialCountiesSwitchOnClick,
+
+            motorways,
+            motorwaysSwitch,
+            motorwaysSwitchOnClick,
+            
             openStreetMap,
             openStreetMapSwitch,
             openStreetMapSwitchOnClick,

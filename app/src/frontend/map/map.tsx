@@ -23,6 +23,9 @@ import { OpenStreetMapLayer } from './layers/openstreetmap-layer';
 import { FloodBoundaryLayer } from './layers/flood-boundary-layer';
 import { ConservationAreaBoundaryLayer } from './layers/conservation-boundary-layer';
 import { VistaBoundaryLayer } from './layers/vista-boundary-layer';
+import { CeremonialCountiesLayer } from './layers/ceremonial-counties-layer';
+import { RegionsLayer } from './layers/regions-layer';
+import { MotorwaysLayer } from './layers/motorways-layer';
 import { HousingBoundaryLayer } from './layers/housing-boundary-layer';
 import { CreativeBoundaryLayer } from './layers/creative-boundary-layer';
 import { BuildingBaseLayer } from './layers/building-base-layer';
@@ -46,6 +49,9 @@ import { AerialPhotosMapSwitcher } from './aerial-photos-map-switcher';
 import { HistoricalFootprintsSwitcher } from './historical-footprints-switcher';
 import { OpenStreetMapSwitcher } from './openstreetmap-switcher';
 import { VistaSwitcher } from './vista-switcher';
+import { MotorwaysSwitcher } from './motorways-switcher';
+import { RegionsSwitcher } from './regions-switcher';
+import { CeremonialCountiesSwitcher } from './ceremonial-counties-switcher';
 import { CreativeSwitcher } from './creative-switcher';
 import { HousingSwitcher } from './housing-switcher';
 import { EditableBuildingsSwitcher } from './editable-buildings-switcher';
@@ -156,6 +162,9 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <ParcelBoundaryLayer/>
                     <FloodBoundaryLayer/>
                     <VistaBoundaryLayer/>
+                    <CeremonialCountiesLayer/>
+                    <RegionsLayer/>
+                    <MotorwaysLayer/>
                     <HousingBoundaryLayer/>
                     <CreativeBoundaryLayer/>
                     <HistoricalFootprintsLayer/>
@@ -200,6 +209,9 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                         <VistaSwitcher />
                         <HousingSwitcher />
                         <CreativeSwitcher />
+                        <RegionsSwitcher />
+                        <CeremonialCountiesSwitcher />
+                        <MotorwaysSwitcher />
                         <AerialPhotosMapSwitcher/>
                         <EditableBuildingsSwitcher />
                         <OpenStreetMapSwitcher />

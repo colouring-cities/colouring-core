@@ -19,7 +19,7 @@ export function BoroughBoundaryLayer({}) {
         <GeoJSON 
             attribution='Borough boundary from <a href=https://data.london.gov.uk/dataset/london_boroughs>London Datastore</a> Ordnance Survey Open Data - Contains public sector information licensed under the <a href=https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/>Open Government Licence v3.0</a>'
             data={boundaryGeojson}
-            style={{color: '#f00', fill: false, weight: 1}}
+            style={{color: '#ffa500', fill: false, weight: 0.8}}
         />;
     } else {
         return <></>
