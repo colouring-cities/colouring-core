@@ -17,5 +17,5 @@
     "bbox": [-1227219, 6390006, 232268, 8640082],
 
     "basemapTileUrl": "https://api.os.uk/maps/raster/v1/zxy/Light_3857/{z}/{x}/{y}.png?key=UVWEspgInusDKKYANE5bmyddoEmCSD4r",
-    "baseAttribution": "Building attribute data is © Colouring Cities contributors. Maps contain OS data © Crown copyright: OS Maps baselayers and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>, search results are powered by Code-Point® Open on <a href=https://github.com/colouring-cities/colouring-britain/issues/www.nationalarchives.gov.uk/doc/open-government-licence/version/3/>OGL license</a>"
+    "baseAttribution": "Building attribute data is © Colouring Cities contributors. Maps contain OS data © Crown copyright: OS Maps baselayers (OS Light Basemap) and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>, search results are powered by Code-Point® Open on <a href=https://github.com/colouring-cities/colouring-britain/issues/www.nationalarchives.gov.uk/doc/open-government-licence/version/3/>OGL license</a>"
 }
