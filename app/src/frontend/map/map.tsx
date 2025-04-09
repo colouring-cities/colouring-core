@@ -33,6 +33,7 @@ import { BuildingDataLayer } from './layers/building-data-layer';
 import { BuildingNumbersLayer } from './layers/building-numbers-layer';
 import { BuildingHighlightLayer } from './layers/building-highlight-layer';
 import { HistoricalFootprintsLayer } from './layers/historical-footprints-layer';
+import { GreenbeltLayer } from './layers/greenbelt-layer';
 
 import { Legend } from './legend';
 import SearchBox from './search-box';
@@ -54,6 +55,7 @@ import { RegionsSwitcher } from './regions-switcher';
 import { CeremonialCountiesSwitcher } from './ceremonial-counties-switcher';
 import { CreativeSwitcher } from './creative-switcher';
 import { HousingSwitcher } from './housing-switcher';
+import { GreenbeltSwitcher } from './greenbelt-switcher';
 import { EditableBuildingsSwitcher } from './editable-buildings-switcher';
 import { BuildingMapTileset } from '../config/tileserver-config';
 import { useDisplayPreferences } from '../displayPreferences-context';
@@ -164,6 +166,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <VistaBoundaryLayer/>
                     <CeremonialCountiesLayer/>
                     <RegionsLayer/>
+                    <GreenbeltLayer/>
                     <MotorwaysLayer/>
                     <HousingBoundaryLayer/>
                     <CreativeBoundaryLayer/>
@@ -211,6 +214,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                         <CreativeSwitcher />
                         <RegionsSwitcher />
                         <CeremonialCountiesSwitcher />
+                        <GreenbeltSwitcher />
                         <MotorwaysSwitcher />
                         <AerialPhotosMapSwitcher/>
                         <EditableBuildingsSwitcher />

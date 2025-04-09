@@ -74,6 +74,10 @@ interface DisplayPreferencesContextState {
     motorwaysSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     motorwaysSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
 
+    greenbelt: LayerEnablementState;
+    greenbeltSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
+    greenbeltSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
+
     editableBuildings: LayerEnablementState;
     editableBuildingsSwitch: (e: React.FormEvent<HTMLFormElement>) => void;
     editableBuildingsSwitchOnClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -155,6 +159,10 @@ export const DisplayPreferencesContext = createContext<DisplayPreferencesContext
     ceremonialCountiesSwitch: stub,
     ceremonialCountiesSwitchOnClick: undefined,
 
+    greenbelt: undefined,
+    greenbeltSwitch: stub,
+    greenbeltSwitchOnClick: undefined,
+    
     motorways: undefined,
     motorwaysSwitch: stub,
     motorwaysSwitchOnClick: undefined,
@@ -194,6 +202,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultHistoricalMapAndFootprintsWithoutFill = 'disabled'
     const defaultRegions = 'disabled'
     const defaultCeremonialCounties = 'disabled'
+    const defaultGreenbelt = 'disabled'
     const defaultMotorways = 'disabled'
     const defaultOpenStreetMap = 'disabled'
     const defaultEditableBuildings = 'enabled'
@@ -213,6 +222,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const [historicalMapAndFootprintsWithoutFill, setHistoricalMapAndFootprintsWithoutFill] = useState<LayerEnablementState>(defaultHistoricalMapAndFootprintsWithoutFill);
     const [regions, setRegions] = useState<LayerEnablementState>(defaultRegions);
     const [ceremonialCounties, setCeremonialCounties] = useState<LayerEnablementState>(defaultCeremonialCounties);
+    const [greenbelt, setGreenbelt] = useState<LayerEnablementState>(defaultGreenbelt);
     const [motorways, setMotorways] = useState<LayerEnablementState>(defaultMotorways);
     const [openStreetMap, setOpenStreetMapMap] = useState<LayerEnablementState>(defaultOpenStreetMap);
     const [editableBuildings, setEditableBuildings] = useState<LayerEnablementState>(defaultEditableBuildings);
@@ -244,6 +254,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             setHistoricalMapAndFootprintsWithoutFill(defaultHistoricalMapAndFootprintsWithoutFill);
             setRegions(defaultRegions);
             setCeremonialCounties(defaultCeremonialCounties);
+            setGreenbelt(defaultGreenbelt);
             setMotorways(defaultMotorways);
             setEditableBuildings(defaultEditableBuildings)
             setShowLayerSelection(defaultShowLayerSelection); // reset layers + hiding this panel is integrated into one action
@@ -299,6 +310,9 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             return true;
         }
         if(motorways != defaultMotorways) {
+            return true;
+        }
+        if(greenbelt != defaultGreenbelt) {
             return true;
         }
         if(openStreetMap != defaultOpenStreetMap) {
@@ -617,6 +631,21 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
         setMotorways(newMotorways);
     }
 
+    const greenbeltSwitch = useCallback(
+        (e) => {
+            flipGreenbelt(e)
+        },
+        [greenbelt],
+    )
+    const greenbeltSwitchOnClick = (e) => {
+        flipGreenbelt(e)
+    }
+    function flipGreenbelt(e) {
+        e.preventDefault();
+        const newGreenbelt = (greenbelt === 'enabled')? 'disabled' : 'enabled';
+        setGreenbelt(newGreenbelt);
+    }
+
     const darkLightThemeSwitch = useCallback(
         (e) => {
             flipDarkLightTheme(e)
@@ -712,6 +741,10 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
             motorwaysSwitch,
             motorwaysSwitchOnClick,
             
+            greenbelt,
+            greenbeltSwitch,
+            greenbeltSwitchOnClick,
+
             openStreetMap,
             openStreetMapSwitch,
             openStreetMapSwitchOnClick,
