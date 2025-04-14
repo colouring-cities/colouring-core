@@ -8,6 +8,7 @@ import { CategoryViewProps } from './category-view-props';
 import Verification from '../data-components/verification';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 import { DataEntryGroup } from '../data-components/data-entry-group';
+import InfoBox from '../../components/info-box';
 
 /**
  * Use view/edit section
@@ -102,6 +103,23 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 />
             </DataEntryGroup>
             <DataEntryGroup name="General Land Use" collapsed={subcat==null || subcat!="2"}>
+                {/*deprecate this field somehow */}
+                <Fragment>
+                    <div className="data-title">
+                        <div className="data-title-text">
+                            <div className="data-title-text">
+                                <label>
+                                    <span>Is the building residential, non-residential or mixed? (automatically generated from Specific Land Use/s)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </Fragment>
+                <InfoBox type='success'>
+                    <Fragment>
+                        {["Mixed Use", "Residential"].includes(props.building.current_landuse_order) ? props.building.current_landuse_order : "Non-residential"}
+                    </Fragment>
+                </InfoBox>
                 {(props.mapColourScale != "is_domestic") ? 
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToIsDomesticMapStyle}>
                         {"Click to see residential, non-residential and mixed-use buildings."}
@@ -109,6 +127,8 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     :
                     <></>
                 }
+                {/* switched to automatically filled based on specific landuse data*/
+                /*
                 <SelectDataEntry
                     title={dataFields.is_domestic.title}
                     slug="is_domestic"
@@ -119,7 +139,6 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     onChange={props.onChange}
                     tooltip={dataFields.is_domestic.tooltip}
                 />
-                {/*
                 <Verification
                     slug="is_domestic"
                     allow_verify={props.user !== undefined && props.building.is_domestic !== null && !props.edited}
