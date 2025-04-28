@@ -11,10 +11,12 @@ import { DataEntryGroup } from '../data-components/data-entry-group';
 import SelectDataEntry from '../data-components/select-data-entry';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
 import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
+import { CCConfig } from '../../../cc-config';
 
 const locationNumberPattern = "[1-9]\\d*[a-z]?(-([1-9]\\d*))?"; ///[1-9]\d*[a-z]?(-([1-9]\d*))?/;
 const postcodeCharacterPattern = "^[A-Z]{1,2}[0-9]{1,2}[A-Z]?(\\s*[0-9][A-Z]{1,2})?$";
 const osmIdentifierPattern = "[0-9]{1,9}";
+let config: CCConfig = require('../../../cc-config.json')
 
 const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const osm_url = "www.openstreetmap.org/way/"+props.building.ref_osm_id;
@@ -24,7 +26,12 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
-            <DataEntryGroup name="Base Building Footprints/Polygons Used for Data Collation, Verification & Visualisation" collapsed={subcat==null || subcat!="4"}>
+            <DataEntryGroup name="Building Footprints/Polygons" collapsed={subcat==null || subcat!="4"}>
+                <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                    <i>
+                    Building footprints are an essential component of Colouring {config.cityName} and are used data capture, collation, verification & visualisation.
+                    </i>
+                </div>
                 <NumericDataEntry
                     title={dataFields.location_latitude.title}
                     slug="location_latitude"
