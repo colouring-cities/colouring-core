@@ -10,7 +10,6 @@ import { CategoryViewProps } from './category-view-props';
 import { DataEntryGroup } from '../data-components/data-entry-group';
 import SelectDataEntry from '../data-components/select-data-entry';
 import { MultiDataEntry } from '../data-components/multi-data-entry/multi-data-entry';
-import { LogicalDataEntry } from '../data-components/logical-data-entry/logical-data-entry';
 import { CCConfig } from '../../../cc-config';
 
 const locationNumberPattern = "[1-9]\\d*[a-z]?(-([1-9]\\d*))?"; ///[1-9]\d*[a-z]?(-([1-9]\d*))?/;
@@ -288,76 +287,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Building Subdivision" collapsed={subcat==null || subcat!="2"}>
-                <LogicalDataEntry
-                    slug='location_subdivided'
-                    title={dataFields.location_subdivided.title}
-                    tooltip={dataFields.location_subdivided.tooltip}
-                    value={props.building.location_subdivided}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    mode={props.mode}
-                />
-                <Verification
-                    slug="location_subdivided"
-                    allow_verify={props.user !== undefined && props.building.location_subdivided !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("location_subdivided")}
-                    user_verified_as={props.user_verified.location_subdivided}
-                    verified_count={props.building.verified.location_subdivided}
-                />
-                {props.building.location_subdivided == null ||
-                    props.building.location_subdivided == false ? <></> :
-                    <>
-                        <NumericDataEntry
-                            title={dataFields.location_num_subdivisions.title}
-                            slug="location_num_subdivisions"
-                            value={props.building.location_num_subdivisions}
-                            mode={props.mode}
-                            copy={props.copy}
-                            tooltip={dataFields.location_num_subdivisions.tooltip}
-                            onChange={props.onChange}
-                            step={1}
-                            min={0}
-                        />
-                        <Verification
-                            slug="location_num_subdivisions"
-                            allow_verify={props.user !== undefined && props.building.location_num_subdivisions !== null}
-                            onVerify={props.onVerify}
-                            user_verified={props.user_verified.hasOwnProperty("location_num_subdivisions")}
-                            user_verified_as={props.user_verified.location_num_subdivisions}
-                            verified_count={props.building.verified.location_num_subdivisions}
-                        />
-                        <SelectDataEntry
-                            title={dataFields.location_subdivisions_source_type.title}
-                            slug="location_subdivisions_source_type"
-                            value={props.building.location_subdivisions_source_type}
-                            options={dataFields.location_subdivisions_source_type.items}
-                            mode={props.mode}
-                            copy={props.copy}
-                            onChange={props.onChange}
-                            tooltip={dataFields.location_subdivisions_source_type.tooltip}
-                        />
-                        {(props.building.location_subdivisions_source_type == commonSourceTypes[0] ||
-                            props.building.location_subdivisions_source_type == commonSourceTypes[1] ||
-                            props.building.location_subdivisions_source_type == null) ? <></> :
-                            <><MultiDataEntry
-                                title={dataFields.location_subdivisions_source_links.title}
-                                slug="location_subdivisions_source_links"
-                                value={props.building.location_subdivisions_source_links}
-                                mode={props.mode}
-                                copy={props.copy}
-                                onChange={props.onChange}
-                                tooltip={dataFields.location_subdivisions_source_links.tooltip}
-                                placeholder="https://..."
-                                editableEntries={true}
-                                isUrl={true}
-                                />
-                            </>
-                        }
-                    </>
-                }
-            </DataEntryGroup>
+
             <DataEntryGroup name="Open Property IDs/Footprint IDs" collapsed={subcat==null || subcat!="3"}>
             <DataEntry
                     title={dataFields.ref_toid.title}
