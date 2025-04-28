@@ -24,6 +24,75 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
+            <DataEntryGroup name="Base Building Footprints/Polygons Used for Data Collation, Verification & Visualisation" collapsed={subcat==null || subcat!="4"}>
+                <NumericDataEntry
+                    title={dataFields.location_latitude.title}
+                    slug="location_latitude"
+                    value={props.building.location_latitude}
+                    tooltip={dataFields.location_latitude.tooltip}
+                    mode={props.mode}
+                    step={0.00001}
+                    min={-90}
+                    max={90}
+                    placeholder="Latitude, e.g. 51.5467"
+                    onChange={props.onChange}
+                    />
+                <Verification
+                    slug="location_latitude"
+                    allow_verify={props.user !== undefined && props.building.location_latitude !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("location_latitude")}
+                    user_verified_as={props.user_verified.location_latitude}
+                    verified_count={props.building.verified.location_latitude}
+                    />
+                <NumericDataEntry
+                    title={dataFields.location_longitude.title}
+                    slug="location_longitude"
+                    value={props.building.location_longitude}
+                    tooltip={dataFields.location_longitude.tooltip}
+                    mode={props.mode}
+                    step={0.00001}
+                    min={-180}
+                    max={180}
+                    placeholder="Longitude, e.g. -0.0586"
+                    onChange={props.onChange}
+                    />
+                <Verification
+                    slug="location_longitude"
+                    allow_verify={props.user !== undefined && props.building.location_longitude !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("location_longitude")}
+                    user_verified_as={props.user_verified.location_longitude}
+                    verified_count={props.building.verified.location_longitude}
+                    />
+                <SelectDataEntry
+                    title={dataFields.location_coordinates_source.title}
+                    slug="location_coordinates_source"
+                    value={props.building.location_coordinates_source}
+                    mode={props.mode}
+                    onChange={props.onChange}
+                    tooltip={dataFields.location_coordinates_source.tooltip}
+                    placeholder={dataFields.location_coordinates_source.example}
+                    options={dataFields.location_coordinates_source.items}
+                    />
+                {(props.building.location_coordinates_source == commonSourceTypes[0] ||
+                    props.building.location_coordinates_source == commonSourceTypes[1] ||
+                    props.building.location_coordinates_source == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.location_coordinates_links.title}
+                            slug="location_coordinates_links"
+                            value={props.building.location_coordinates_links}
+                            mode={props.mode}
+                            onChange={props.onChange}
+                            tooltip={dataFields.location_coordinates_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+            </DataEntryGroup>
             <DataEntryGroup name="Property Address" collapsed={subcat==null || subcat!="1"}>
                 {/* <DataEntry
                     title={dataFields.location_name.title}
@@ -348,75 +417,6 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     editableEntries={true}
                     isUrl={true}
                 />
-            </DataEntryGroup>
-            <DataEntryGroup name="Base Building Footprints/Polygons Used for Data Collation, Verification & Visualisation" collapsed={subcat==null || subcat!="4"}>
-                <NumericDataEntry
-                    title={dataFields.location_latitude.title}
-                    slug="location_latitude"
-                    value={props.building.location_latitude}
-                    tooltip={dataFields.location_latitude.tooltip}
-                    mode={props.mode}
-                    step={0.00001}
-                    min={-90}
-                    max={90}
-                    placeholder="Latitude, e.g. 51.5467"
-                    onChange={props.onChange}
-                    />
-                <Verification
-                    slug="location_latitude"
-                    allow_verify={props.user !== undefined && props.building.location_latitude !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("location_latitude")}
-                    user_verified_as={props.user_verified.location_latitude}
-                    verified_count={props.building.verified.location_latitude}
-                    />
-                <NumericDataEntry
-                    title={dataFields.location_longitude.title}
-                    slug="location_longitude"
-                    value={props.building.location_longitude}
-                    tooltip={dataFields.location_longitude.tooltip}
-                    mode={props.mode}
-                    step={0.00001}
-                    min={-180}
-                    max={180}
-                    placeholder="Longitude, e.g. -0.0586"
-                    onChange={props.onChange}
-                    />
-                <Verification
-                    slug="location_longitude"
-                    allow_verify={props.user !== undefined && props.building.location_longitude !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("location_longitude")}
-                    user_verified_as={props.user_verified.location_longitude}
-                    verified_count={props.building.verified.location_longitude}
-                    />
-                <SelectDataEntry
-                    title={dataFields.location_coordinates_source.title}
-                    slug="location_coordinates_source"
-                    value={props.building.location_coordinates_source}
-                    mode={props.mode}
-                    onChange={props.onChange}
-                    tooltip={dataFields.location_coordinates_source.tooltip}
-                    placeholder={dataFields.location_coordinates_source.example}
-                    options={dataFields.location_coordinates_source.items}
-                    />
-                {(props.building.location_coordinates_source == commonSourceTypes[0] ||
-                    props.building.location_coordinates_source == commonSourceTypes[1] ||
-                    props.building.location_coordinates_source == null) ? <></> :
-                    <>
-                        <MultiDataEntry
-                            title={dataFields.location_coordinates_links.title}
-                            slug="location_coordinates_links"
-                            value={props.building.location_coordinates_links}
-                            mode={props.mode}
-                            onChange={props.onChange}
-                            tooltip={dataFields.location_coordinates_links.tooltip}
-                            placeholder="https://..."
-                            editableEntries={true}
-                            isUrl={true}
-                        />
-                    </>
-                }
             </DataEntryGroup>
         </Fragment>
     );
