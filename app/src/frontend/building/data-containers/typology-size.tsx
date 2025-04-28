@@ -162,55 +162,55 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         <a href={"/"+props.mode+"/" + Category.AgeHistory + "/"+props.building.building_id+"?sc=2"}>Age & History</a>.</i>
                     </div>
                 </DataEntryGroup>
-                <DataEntryGroup name="Dynamic Classification" collapsed={subcat==null || subcat!="4"}>
-                    {(props.mapColourScale != "typology_dynamic_classification") ? 
-                        <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToDynamicClassificationMapStyle}>
-                            {"Click here to show dynamic classification."}
+                <DataEntryGroup name="Attachment/Adjacency" collapsed={subcat==null || subcat!="4"}>
+                    {(props.mapColourScale != "building_attachment_form") ? 
+                        <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAttachmentMapStyle}>
+                            {"Click here to show attachment/adjacency."}
                         </button>
-                        :
+                    :
                         <></>
                     }
                     <SelectDataEntry
-                        title={dataFields.typology_dynamic_classification.title}
-                        slug="typology_dynamic_classification"
-                        value={props.building.typology_dynamic_classification}
-                        tooltip={dataFields.typology_dynamic_classification.tooltip}
-                        options={dataFields.typology_dynamic_classification.items}
+                        title={dataFields.building_attachment_form.title}
+                        slug="building_attachment_form"
+                        value={props.building.building_attachment_form}
+                        tooltip={dataFields.building_attachment_form.tooltip}
+                        options={dataFields.building_attachment_form.items}
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
                     />
                     <Verification
-                        slug="typology_dynamic_classification"
-                        allow_verify={props.user !== undefined && props.building.typology_dynamic_classification !== null && !props.edited}
+                        slug="building_attachment_form"
+                        allow_verify={props.user !== undefined && props.building.building_attachment_form !== null && !props.edited}
                         onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("typology_dynamic_classification")}
-                        user_verified_as={props.user_verified.typology_dynamic_classification}
-                        verified_count={props.building.verified.typology_dynamic_classification}
-                    />
+                        user_verified={props.user_verified.hasOwnProperty("building_attachment_form")}
+                        user_verified_as={props.user_verified.building_attachment_form}
+                        verified_count={props.building.verified.building_attachment_form}
+                        />
                     <SelectDataEntry
-                        title={dataFields.typology_dynamic_classification_source_type.title}
-                        slug="typology_dynamic_classification_source_type"
-                        value={props.building.typology_dynamic_classification_source_type}
+                        title={dataFields.building_attachment_source_type.title}
+                        slug="building_attachment_source_type"
+                        value={props.building.building_attachment_source_type}
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
-                        tooltip={dataFields.typology_dynamic_classification_source_type.tooltip}
-                        placeholder={dataFields.typology_dynamic_classification_source_type.example}
-                        options={dataFields.typology_dynamic_classification_source_type.items}
+                        tooltip={dataFields.building_attachment_source_type.tooltip}
+                        placeholder={dataFields.building_attachment_source_type.example}
+                        options={dataFields.building_attachment_source_type.items}
                         />
-                    {(props.building.typology_dynamic_classification_source_type == commonSourceTypes[0] ||
-                        props.building.typology_dynamic_classification_source_type == commonSourceTypes[1] ||
-                        props.building.typology_dynamic_classification_source_type == null) ? <></> :
+                    {(props.building.building_attachment_source_type == commonSourceTypes[0] ||
+                        props.building.building_attachment_source_type == commonSourceTypes[1] ||
+                        props.building.building_attachment_source_type == null) ? <></> :
                         <>
                             <MultiDataEntry
-                                title={dataFields.typology_dynamic_classification_source_links.title}
-                                slug="typology_dynamic_classification_source_links"
-                                value={props.building.typology_dynamic_classification_source_links}
+                                title={dataFields.building_attachment_source_links.title}
+                                slug="building_attachment_source_links"
+                                value={props.building.building_attachment_source_links}
                                 mode={props.mode}
                                 copy={props.copy}
                                 onChange={props.onChange}
-                                tooltip={dataFields.typology_dynamic_classification_source_links.tooltip}
+                                tooltip={dataFields.building_attachment_source_links.tooltip}
                                 placeholder="https://..."
                                 editableEntries={true}
                                 isUrl={true}
@@ -299,55 +299,55 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         onChange={props.onChange}
                     />
                 </DataEntryGroup>
-                <DataEntryGroup name="Attachment/Adjacency" collapsed={subcat==null || subcat!="6"}>
-                    {(props.mapColourScale != "building_attachment_form") ? 
-                        <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAttachmentMapStyle}>
-                            {"Click here to show attachment/adjacency."}
+                <DataEntryGroup name="Dynamic Classification" collapsed={subcat==null || subcat!="6"}>
+                    {(props.mapColourScale != "typology_dynamic_classification") ? 
+                        <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToDynamicClassificationMapStyle}>
+                            {"Click here to show dynamic classification."}
                         </button>
-                    :
+                        :
                         <></>
                     }
                     <SelectDataEntry
-                        title={dataFields.building_attachment_form.title}
-                        slug="building_attachment_form"
-                        value={props.building.building_attachment_form}
-                        tooltip={dataFields.building_attachment_form.tooltip}
-                        options={dataFields.building_attachment_form.items}
+                        title={dataFields.typology_dynamic_classification.title}
+                        slug="typology_dynamic_classification"
+                        value={props.building.typology_dynamic_classification}
+                        tooltip={dataFields.typology_dynamic_classification.tooltip}
+                        options={dataFields.typology_dynamic_classification.items}
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
                     />
                     <Verification
-                        slug="building_attachment_form"
-                        allow_verify={props.user !== undefined && props.building.building_attachment_form !== null && !props.edited}
+                        slug="typology_dynamic_classification"
+                        allow_verify={props.user !== undefined && props.building.typology_dynamic_classification !== null && !props.edited}
                         onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("building_attachment_form")}
-                        user_verified_as={props.user_verified.building_attachment_form}
-                        verified_count={props.building.verified.building_attachment_form}
-                        />
+                        user_verified={props.user_verified.hasOwnProperty("typology_dynamic_classification")}
+                        user_verified_as={props.user_verified.typology_dynamic_classification}
+                        verified_count={props.building.verified.typology_dynamic_classification}
+                    />
                     <SelectDataEntry
-                        title={dataFields.building_attachment_source_type.title}
-                        slug="building_attachment_source_type"
-                        value={props.building.building_attachment_source_type}
+                        title={dataFields.typology_dynamic_classification_source_type.title}
+                        slug="typology_dynamic_classification_source_type"
+                        value={props.building.typology_dynamic_classification_source_type}
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
-                        tooltip={dataFields.building_attachment_source_type.tooltip}
-                        placeholder={dataFields.building_attachment_source_type.example}
-                        options={dataFields.building_attachment_source_type.items}
+                        tooltip={dataFields.typology_dynamic_classification_source_type.tooltip}
+                        placeholder={dataFields.typology_dynamic_classification_source_type.example}
+                        options={dataFields.typology_dynamic_classification_source_type.items}
                         />
-                    {(props.building.building_attachment_source_type == commonSourceTypes[0] ||
-                        props.building.building_attachment_source_type == commonSourceTypes[1] ||
-                        props.building.building_attachment_source_type == null) ? <></> :
+                    {(props.building.typology_dynamic_classification_source_type == commonSourceTypes[0] ||
+                        props.building.typology_dynamic_classification_source_type == commonSourceTypes[1] ||
+                        props.building.typology_dynamic_classification_source_type == null) ? <></> :
                         <>
                             <MultiDataEntry
-                                title={dataFields.building_attachment_source_links.title}
-                                slug="building_attachment_source_links"
-                                value={props.building.building_attachment_source_links}
+                                title={dataFields.typology_dynamic_classification_source_links.title}
+                                slug="typology_dynamic_classification_source_links"
+                                value={props.building.typology_dynamic_classification_source_links}
                                 mode={props.mode}
                                 copy={props.copy}
                                 onChange={props.onChange}
-                                tooltip={dataFields.building_attachment_source_links.tooltip}
+                                tooltip={dataFields.typology_dynamic_classification_source_links.tooltip}
                                 placeholder="https://..."
                                 editableEntries={true}
                                 isUrl={true}
