@@ -357,7 +357,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "Source type",
         example: "",
-        tooltip: "Source of address data.",
+        tooltip: null,
         items: commonSourceTypes
     },
     location_address_links: {
@@ -2222,14 +2222,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_classification_source_type: {
         category: Category.TypologySize,
         title: "Source type",
-        tooltip: "Source type for classification data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     typology_classification_source_links: {
         category: Category.TypologySize,
         title: "Source link(s)",
-        tooltip: "Source link(s) for classification data",
+        tooltip: null,
         example: ["", "", ""],
     },
     typology_style_period: {
@@ -2254,14 +2254,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_style_period_source_type: {
         category: Category.TypologySize,
         title: "Source type",
-        tooltip: "Source type for style & period data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     typology_style_period_source_links: {
         category: Category.TypologySize,
         title: "Source link(s)",
-        tooltip: "Source link(s) for style & period data",
+        tooltip: null,
         example: ["", "", ""],
     },
     typology_dynamic_classification: {
@@ -2278,14 +2278,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_dynamic_classification_source_type: {
         category: Category.TypologySize,
         title: "Source type",
-        tooltip: "Source type for dynamic classification data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     typology_dynamic_classification_source_links: {
         category: Category.TypologySize,
         title: "Source link(s)",
-        tooltip: "Source link(s) for dynamic classification data",
+        tooltip: null,
         example: ["", "", ""],
     },
     typology_original_use: {
