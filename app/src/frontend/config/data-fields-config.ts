@@ -381,7 +381,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_subdivided: {
         category: Category.Location,
         title: 'Is this building subdivided',
-        tooltip: 'Does this building comprise multiple, smaller properties?',
+        tooltip: null,
         example: true,
     },
     location_num_subdivisions: {
@@ -494,7 +494,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     building_attachment_form: {
         category: Category.TypologySize,
         title: "Which description best explains the way the building is attached to others?",
-        tooltip: "We have pre-populated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
+        tooltip: null,
         example: "",
         items: [
             "Detached",
@@ -1541,7 +1541,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     community_public_ownership: {
         category: Category.Community,
         title: "Is the building in public/community ownership?",
-        tooltip: "What type of body owns the building, is it privately-, publicly- or community-owned?",
+        tooltip: null,
         example: "Privately owned (non-corporate)",
         items: [
             "Public/State body",
