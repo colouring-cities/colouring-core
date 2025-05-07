@@ -342,6 +342,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         <i className="source-url">Source: <a href={"https://"+osm_url} target={"_blank"}>{osm_url}</a></i>
                     </div>
                 }
+                {/*
                 <hr/>
                 <MultiDataEntry
                     title={dataFields.location_alternative_footprint_links.title}
@@ -354,6 +355,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     editableEntries={true}
                     isUrl={true}
                 />
+                */}
             </DataEntryGroup>
         </Fragment>
     );
