@@ -314,13 +314,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name_link: {
         category: Category.Location,
         title: "Building name link (non-residential) - Wikipedia or other",
-        tooltip: "Link to a website with the name of the building.",
+        tooltip: "The name of the building." + freeTextDisclaimer,
         example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
     },
     location_residential_name_link: {
         category: Category.Location,
         title: "Building name link (residential) - Wikipedia or other",
-        tooltip: "Link to a website with the name of the building.",
+        tooltip: "The name of the building." + freeTextDisclaimer,
         example: "https://en.wikipedia.org/wiki/221B_Baker_Street",
     },
     location_number: {
@@ -333,19 +333,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "Street name",
         example: "Gower Street",
-        tooltip: "The name of the street on which the building is located." + freeTextDisclaimer,
+        tooltip: freeTextDisclaimer,
     },
     location_line_two: {
         category: Category.Location,
         title: "Address line 2",
         example: "Flat 21",
-        tooltip: "Second line of the address." + freeTextDisclaimer,
+        tooltip: freeTextDisclaimer,
     },
     location_town: {
         category: Category.Location,
         title: "Town/City",
         example: "London",
-        tooltip: "Name of the town or city where the building is located." + freeTextDisclaimer,
+        tooltip: freeTextDisclaimer,
     },
     location_postcode: {
         category: Category.Location,
@@ -418,7 +418,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     planning_data: {
         category: Category.Location,
         title: "PLANNING DATA",
-        tooltip: "PLANNING DATA",
+        tooltip: null,
         example: [{ uprn: "", building_id: 1, data_source: "" },
         { uprn: "", building_id: 1, data_source: "", status: "", status_before_aliasing: "", decision_date: "", description: "", planning_application_link: "", registered_with_local_authority_date: "", last_synced_date: "", data_source_link: "", address: "" },
         ],
@@ -663,13 +663,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.ConstructionDesign,
         title: "Ground floor area (m²)",
         example: 1245.6,
-        tooltip: "Area of the ground floor of the building in m²",
+        tooltip: null,
     },
     size_floor_area_total: {
         category: Category.ConstructionDesign,
         title: "Total floor area (m²)",
         example: 2001.7,
-        tooltip: "Total floor area of the building in m²",
+        tooltip: null,
     },
     size_floor_area_source_type: {
         category: Category.EnergyPerformance,
@@ -715,7 +715,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.RetrofitCondition,
         title: "Total area of plot (m²)",
         example: 123.02,
-        tooltip: "Total area of plot (m²)",
+        tooltip: null,
     },
     size_plot_area_total_source_type: {
         category: Category.EnergyPerformance,
@@ -802,7 +802,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_secondary_materials: {
         category: Category.PlanningConservation,
         title: "Main secondary construction material/s",
-        tooltip: "Other construction materials",
+        tooltip: null,
         example: "",
     },
 
@@ -1044,7 +1044,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_ground_floor: {
         category: Category.PlanningConservation,
         title: "What is the main ground floor material thought to be?",
-        tooltip: "The material that comprises the majority of the ground floor of the property.",
+        tooltip: null,
         example: "",
         items: [
             'Masonry',
@@ -1115,8 +1115,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     sust_retrofit_date: {
         category: Category.WaterGreenInfrastructure,
-        title: "Last significant retrofit",
-        tooltip: "Date of last major building refurbishment",
+        title: "Date of last significant retrofit",
+        tooltip: null,
         example: 1920,
     },
     sust_retrofit_source_type: {
@@ -1176,7 +1176,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     edit_history: {
         category: Category.UrbanInfrastructure,
         title: "PLANNING DATA",
-        tooltip: "PLANNING DATA",
+        tooltip: null,
         example: [{}],
     },
 
@@ -1565,7 +1565,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     community_public_ownership_sources: {
         category: Category.Community,
         title: "Community ownership source link(s)",
-        tooltip: "Community ownership source link(s)",
+        tooltip: null,
         example: ["https://example.com"]
     },
 
