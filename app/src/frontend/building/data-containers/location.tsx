@@ -25,7 +25,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
-            <DataEntryGroup name="Building Footprints/Polygons" collapsed={subcat==null || subcat!="4"}>
+            <DataEntryGroup name="Building Footprints (Datasets)" collapsed={subcat==null || subcat!="4"}>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                     Building footprints are an essential component of Colouring {config.cityName} and are used data capture, collation, verification & visualisation.
@@ -99,7 +99,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Property Address" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Individual Building/Property Address" collapsed={subcat==null || subcat!="1"}>
                 {/* <DataEntry
                     title={dataFields.location_name.title}
                     slug="location_name"
@@ -288,7 +288,7 @@ const LocationView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
 
-            <DataEntryGroup name="Open Property IDs/Footprint IDs" collapsed={subcat==null || subcat!="3"}>
+            <DataEntryGroup name="Individual Building/Property ID" collapsed={subcat==null || subcat!="3"}>
             <DataEntry
                     title={dataFields.ref_toid.title}
                     slug="ref_toid"
