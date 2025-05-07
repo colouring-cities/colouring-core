@@ -522,8 +522,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: null,
         example: "",
         items: [
-            "Single-storey house",
-            "Bungalow",
+            "Single-storey house/Bungalow",
             "Multi-storey house",
             "Maisonette",
             "Flat"
