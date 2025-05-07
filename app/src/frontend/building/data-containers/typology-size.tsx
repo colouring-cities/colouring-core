@@ -293,7 +293,38 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     </>
                 }
                 </ DataEntryGroup>
-                <DataEntryGroup name="Original Use" collapsed={subcat==null || subcat!="6"}>
+                <DataEntryGroup name="Residential Typology Description" collapsed={subcat==null || subcat!="6"}>
+                    <SelectDataEntry
+                        title={dataFields.building_residential_typology_description.title}
+                        slug="building_residential_typology_description"
+                        value={props.building.building_residential_typology_description}
+                        tooltip={dataFields.building_residential_typology_description.tooltip}
+                        options={dataFields.building_residential_typology_description.items}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                    />
+                    <Verification
+                        slug="building_residential_typology_description"
+                        allow_verify={props.user !== undefined && props.building.building_residential_typology_description !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("building_residential_typology_description")}
+                        user_verified_as={props.user_verified.building_residential_typology_description}
+                        verified_count={props.building.verified.building_residential_typology_description}
+                    />
+                    <SelectDataEntry
+                        title={dataFields.building_residential_typology_source_type.title}
+                        slug="building_residential_typology_source_type"
+                        value={props.building.building_residential_typology_source_type}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.building_residential_typology_source_type.tooltip}
+                        placeholder={dataFields.building_residential_typology_source_type.example}
+                        options={dataFields.building_residential_typology_source_type.items}
+                        />
+                </ DataEntryGroup>
+                <DataEntryGroup name="Original Use" collapsed={subcat==null || subcat!="7"}>
                     {(props.mapColourScale != "original_landuse") ? 
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLandUseMapStyle}>
                             {"Click here to original land use."}
@@ -374,7 +405,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         onChange={props.onChange}
                     />
                 </DataEntryGroup>
-                <DataEntryGroup name="Dynamic Classification" collapsed={subcat==null || subcat!="7"}>
+                <DataEntryGroup name="Dynamic Classification" collapsed={subcat==null || subcat!="8"}>
                     {(props.mapColourScale != "typology_dynamic_classification") ? 
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToDynamicClassificationMapStyle}>
                             {"Click here to show dynamic classification."}

@@ -516,6 +516,32 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: null,
         example: ["", "", ""],
     },
+    building_residential_typology_description: {
+        category: Category.TypologySize,
+        title: "Which category best matches its residential typology description?", // which text TODO
+        tooltip: null,
+        example: "",
+        items: [
+            "Single-storey house",
+            "Bungalow",
+            "Multi-storey house",
+            "Maisonette",
+            "Flat"
+        ]
+    },
+    building_residential_typology_source_type: {
+        category: Category.TypologySize,
+        title: "Source type",
+        tooltip: null,
+        items: commonSourceTypes,
+        example: "",
+    },
+    building_residential_typology_source_links: {
+        category: Category.TypologySize,
+        title: "Source link(s)",
+        tooltip: null,
+        example: ["", "", ""],
+    },
     size_roof_shape: {
         category: Category.TypologySize,
         title: "Roof type",
