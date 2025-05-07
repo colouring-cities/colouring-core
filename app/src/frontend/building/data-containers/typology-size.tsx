@@ -57,19 +57,24 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
         <Fragment>
             <DataEntryGroup name="Typology" collapsed={subcat==null || subcat!="1"}>
                 <DataEntryGroup name="Archetype" collapsed={subcat==null || subcat!="1"}>
-                    {/*
+                    <InfoBox type='info'>
+                        This section is under development.
+                    </InfoBox>
+                    {/* TODO  to be replaced by actual values */}
+                    {/*TODO which title?*/}
                     <SelectDataEntry
-                        title={"Dropdown to be added"}
-                        slug="typology_classification"
+                        title={"Archetype question"}
+                        slug="typology_none_yet"
                         value={props.building.typology_classification}
-                        tooltip={dataFields.typology_classification.tooltip}
+                        tooltip={null /* dataFields.typology_classification.tooltip */}
                         options={dataFields.typology_classification.items}
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
+                        disabled={true}
                     />
                     <Verification
-                        slug="typology_classification"
+                        slug="typology_none_yet"
                         allow_verify={props.user !== undefined && props.building.typology_classification !== null && !props.edited}
                         onVerify={props.onVerify}
                         user_verified={props.user_verified.hasOwnProperty("typology_classification")}
@@ -78,7 +83,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     />
                     <SelectDataEntry
                         title={dataFields.typology_classification_source_type.title}
-                        slug="typology_classification_source_type"
+                        slug="typology_none_yet_source_type"
                         value={props.building.typology_classification_source_type}
                         mode={props.mode}
                         copy={props.copy}
@@ -86,8 +91,8 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         tooltip={dataFields.typology_classification_source_type.tooltip}
                         placeholder={dataFields.typology_classification_source_type.example}
                         options={dataFields.typology_classification_source_type.items}
+                        disabled={true}
                         />
-                    */}
                 </ DataEntryGroup>
                 <DataEntryGroup name="Block/Density Classification" collapsed={subcat==null || subcat!="2"}>
                     {(props.mapColourScale != "typology_classification") ? 
