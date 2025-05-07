@@ -583,7 +583,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'typology_classification',
             legend: {
-                title: 'Typology classification',
+                title: 'National Historical Description',
                 elements: [
                     { color: '#0311AB', text: '1-3 storeys: Detached' },
                     { color: '#3845D4', text: '1-3 storeys: Tightly grouped' },
