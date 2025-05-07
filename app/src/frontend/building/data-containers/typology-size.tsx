@@ -61,9 +61,8 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         This section is under development.
                     </InfoBox>
                     {/* TODO  to be replaced by actual values */}
-                    {/*TODO which title?*/}
                     <SelectDataEntry
-                        title={"Archetype question"}
+                        title={"Which dropdown option best describes the building archetype?"}
                         slug="typology_none_yet"
                         value={props.building.typology_classification}
                         tooltip={null /* dataFields.typology_classification.tooltip */}
