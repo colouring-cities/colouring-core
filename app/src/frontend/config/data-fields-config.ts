@@ -2290,7 +2290,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     typology_original_use: {
         category: Category.TypologySize,
-        title: "Which land use best describes the purpose for which the building was built?",
+        title: "Which land use best describes the purpose for which the building was originally built?",
         tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification).\n\nNote: Homes used as offices for working from home should be classified as residential.",
         example: ["", ""],
     },
