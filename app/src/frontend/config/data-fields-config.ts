@@ -2230,7 +2230,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_classification: {
         category: Category.TypologySize,
         title: "Which description best suits the building and its context?",
-        tooltip: "HINT: Adapted from building type classifications developed in urban morphology. See <a href=\"https://www.smog.chalmers.se/\">https://www.smog.chalmers.se/</a> 'Space Matrix' for further information.",
+        tooltip: "Adapted from building type classifications developed in urban morphology. See <a href=\"https://www.smog.chalmers.se/\">https://www.smog.chalmers.se/</a> 'Space Matrix' for further information.",
         example: "8+ storeys: Detached",
         items: [
             'Low-rise: Not part of a group/cluster (1-3 core floors- excluding extensions)',
