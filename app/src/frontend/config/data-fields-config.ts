@@ -386,7 +386,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     location_num_subdivisions: {
         category: Category.Location,
-        title: "How many properties are within this building?",
+        title: "How many properties are there within this building?",
         tooltip: "For example, if a former house has been converted into three flats, put '3'",
         example: 3,
     },
@@ -518,7 +518,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     building_residential_typology_description: {
         category: Category.TypologySize,
-        title: "Which category best matches its residential typology description?", // which text TODO
+        title: "Which dropdown option best matches the residential typology description?",
         tooltip: null,
         example: "",
         items: [
@@ -1540,7 +1540,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     community_public_ownership: {
         category: Category.Community,
-        title: "Is the building in public/community ownership?",
+        title: "What is the ownership type for this building?",
         tooltip: null,
         example: "Privately owned (non-corporate)",
         items: [
@@ -2229,7 +2229,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     typology_classification: {
         category: Category.TypologySize,
-        title: "Which description best suits the building and its context?",
+        title: "Which dropdown option best suits the building and its context?",
         tooltip: "Adapted from building type classifications developed in urban morphology. See <a href=\"https://www.smog.chalmers.se/\">https://www.smog.chalmers.se/</a> 'Space Matrix' for further information.",
         example: "8+ storeys: Detached",
         items: [
