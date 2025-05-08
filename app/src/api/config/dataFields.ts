@@ -609,6 +609,18 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    building_residential_typology_description: {
+        edit: true,
+        verify: true,
+    },
+    building_residential_typology_source_type: {
+        edit: true,
+        verify: true,
+    },
+    building_residential_typology_source_links: {
+        edit: true,
+        verify: true,
+    },
     date_change_building_use: {
         edit: true,
     },
