@@ -2292,7 +2292,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_dynamic_classification: {
         category: Category.TypologySize,
         title: "Which description best suits the building's plot?",
-        tooltip: "HINT: Based on a dynamic classification system for urban tissue developed by Brenda Case Scheer. For further information click <a href=\"https://github.com/colouring-cities/manual/wiki/X08.-London-prototype:-Dynamics-data-capture-and-urban-morphology#14-building-typologies-and-dynamic-classifications\">here</a>.",
+        tooltip: "Based on a dynamic classification system for urban tissue developed by Brenda Case Scheer. For further information click <a href=\"https://github.com/colouring-cities/manual/wiki/X08.-London-prototype:-Dynamics-data-capture-and-urban-morphology#14-building-typologies-and-dynamic-classifications\">here</a>.",
         example: "Large plots with internal roads",
         items: [
             'Small, often repetitive plots, mainly residential',
