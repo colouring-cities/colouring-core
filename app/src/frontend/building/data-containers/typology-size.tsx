@@ -324,6 +324,14 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         />
                 </ DataEntryGroup>
                 <DataEntryGroup name="Original Use" collapsed={subcat==null || subcat!="7"}>
+                    <div>
+                        <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                            <i>
+                                This section is being updated and linked to the updated landuse category.
+                            </i>
+                        </div>
+                    </div>
+                    {/*
                     {(props.mapColourScale != "original_landuse") ? 
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLandUseMapStyle}>
                             {"Click here to original land use."}
@@ -403,6 +411,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         copy={props.copy}
                         onChange={props.onChange}
                     />
+                */}
                 </DataEntryGroup>
                 <DataEntryGroup name="Dynamic Classification" collapsed={subcat==null || subcat!="8"}>
                     {(props.mapColourScale != "typology_dynamic_classification") ? 
