@@ -72,7 +72,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
     },
     [Category.LandUse]: {
         slug: 'land-use',
-        name: 'Land Use',
+        name: 'Land Use & Ownership',
         aboutUrl: 'https://github.com/colouring-cities/manual/wiki/E1.--DATA#2-land-use',
         intro: 'How are buildings used, and how does use change over time?',
     },

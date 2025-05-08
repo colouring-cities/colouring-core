@@ -314,13 +314,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name_link: {
         category: Category.Location,
         title: "Building name link (non-residential) - Wikipedia or other",
-        tooltip: "Link to a website with the name of the building.",
+        tooltip: "The name of the building." + freeTextDisclaimer,
         example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
     },
     location_residential_name_link: {
         category: Category.Location,
         title: "Building name link (residential) - Wikipedia or other",
-        tooltip: "Link to a website with the name of the building.",
+        tooltip: "The name of the building." + freeTextDisclaimer,
         example: "https://en.wikipedia.org/wiki/221B_Baker_Street",
     },
     location_number: {
@@ -333,19 +333,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "Street name",
         example: "Gower Street",
-        tooltip: "The name of the street on which the building is located." + freeTextDisclaimer,
+        tooltip: freeTextDisclaimer,
     },
     location_line_two: {
         category: Category.Location,
         title: "Address line 2",
         example: "Flat 21",
-        tooltip: "Second line of the address." + freeTextDisclaimer,
+        tooltip: freeTextDisclaimer,
     },
     location_town: {
         category: Category.Location,
         title: "Town/City",
         example: "London",
-        tooltip: "Name of the town or city where the building is located." + freeTextDisclaimer,
+        tooltip: freeTextDisclaimer,
     },
     location_postcode: {
         category: Category.Location,
@@ -357,13 +357,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "Source type",
         example: "",
-        tooltip: "Source of address data.",
+        tooltip: null,
         items: commonSourceTypes
     },
     location_address_links: {
         category: Category.Location,
         title: "Source link(s)",
-        tooltip: "URL(s) for building address data source(s).",
+        tooltip: null,
         example: ["", "", ""],
     },
     ref_toid: {
@@ -381,26 +381,26 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_subdivided: {
         category: Category.Location,
         title: 'Is this building subdivided',
-        tooltip: 'Does this building comprise multiple, smaller properties?',
+        tooltip: null,
         example: true,
     },
     location_num_subdivisions: {
         category: Category.Location,
-        title: "How many properties are within this building?",
+        title: "How many properties are there within this building?",
         tooltip: "For example, if a former house has been converted into three flats, put '3'",
         example: 3,
     },
     location_subdivisions_source_type: {
         category: Category.AgeHistory,
         title: "Source type",
-        tooltip: "Source type for the building data above",
+        tooltip: null,
         items: commonSourceTypes,
         example: "",
     },
     location_subdivisions_source_links: {
         category: Category.AgeHistory,
         title: "Source link(s)",
-        tooltip: "URL for data reference",
+        tooltip: null,
         example: ["", "", ""],
     },
     building_footprint_issues: {
@@ -424,7 +424,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     planning_data: {
         category: Category.Location,
         title: "PLANNING DATA",
-        tooltip: "PLANNING DATA",
+        tooltip: null,
         example: [{ uprn: "", building_id: 1, data_source: "" },
         { uprn: "", building_id: 1, data_source: "", status: "", status_before_aliasing: "", decision_date: "", description: "", planning_application_link: "", registered_with_local_authority_date: "", last_synced_date: "", data_source_link: "", address: "" },
         ],
@@ -452,13 +452,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "Source type",
         example: "",
-        tooltip: "Source of coordinate data.",
+        tooltip: null,
         items: commonSourceTypes
     },
     location_coordinates_links: {
         category: Category.Location,
         title: "Source link(s)",
-        tooltip: "URL(s) for building coordinate data source(s).",
+        tooltip: null,
         example: ["", "", ""],
     },
     current_landuse_group: {
@@ -476,7 +476,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     current_landuse_source: {
         category: Category.LandUse,
         title: "Source type",
-        tooltip: "Source for the current land use",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
@@ -489,7 +489,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     current_landuse_link: {
         category: Category.LandUse,
         title: "Source link(s)",
-        tooltip: "URL(s) for current land use reference",
+        tooltip: null,
         example: ["", "", ""],
     },
     current_landuse_verified: {
@@ -500,7 +500,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     building_attachment_form: {
         category: Category.TypologySize,
         title: "Which description best explains the way the building is attached to others?",
-        tooltip: "We have pre-populated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
+        tooltip: null,
         example: "",
         items: [
             "Detached",
@@ -512,14 +512,39 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     building_attachment_source_type: {
         category: Category.AgeHistory,
         title: "Source type",
-        tooltip: "Source type for the building subdivision data",
+        tooltip: null,
         items: commonSourceTypes,
         example: "",
     },
     building_attachment_source_links: {
         category: Category.AgeHistory,
         title: "Source link(s)",
-        tooltip: "URL for source of building subdivision data",
+        tooltip: null,
+        example: ["", "", ""],
+    },
+    building_residential_typology_description: {
+        category: Category.TypologySize,
+        title: "Which dropdown option best matches the residential typology description?",
+        tooltip: null,
+        example: "",
+        items: [
+            "Single-storey house/Bungalow",
+            "Multi-storey house",
+            "Maisonette",
+            "Flat"
+        ]
+    },
+    building_residential_typology_source_type: {
+        category: Category.TypologySize,
+        title: "Source type",
+        tooltip: null,
+        items: commonSourceTypes,
+        example: "",
+    },
+    building_residential_typology_source_links: {
+        category: Category.TypologySize,
+        title: "Source link(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     size_roof_shape: {
@@ -597,7 +622,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     date_source_type: {
         category: Category.AgeHistory,
         title: "Source type",
-        tooltip: "Source type for the building dates above, more specific historical source types listed below.",
+        tooltip: null,
         items: commonSourceTypes,
         example: "",
     },
@@ -628,14 +653,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     size_storeys_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source of building floors data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     size_storeys_source_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for building floors data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     size_height_apex: {
@@ -647,14 +672,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     size_height_apex_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source of building height (apex) data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     size_height_apex_source_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for building height (apex) source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     size_height_eaves: {
@@ -666,39 +691,39 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     size_height_eaves_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source of building height (eaves) data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     size_height_eaves_source_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for building height (eaves) source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     size_floor_area_ground: {
         category: Category.ConstructionDesign,
         title: "Ground floor area (m²)",
         example: 1245.6,
-        tooltip: "Area of the ground floor of the building in m²",
+        tooltip: null,
     },
     size_floor_area_total: {
         category: Category.ConstructionDesign,
         title: "Total floor area (m²)",
         example: 2001.7,
-        tooltip: "Total floor area of the building in m²",
+        tooltip: null,
     },
     size_floor_area_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source of floor area data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     size_floor_area_source_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for floor area data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     size_width_frontage: {
@@ -710,14 +735,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     size_width_frontage_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source of building frontage data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     size_width_frontage_source_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for building frontage source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
 
@@ -732,19 +757,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.RetrofitCondition,
         title: "Total area of plot (m²)",
         example: 123.02,
-        tooltip: "Total area of plot (m²)",
+        tooltip: null,
     },
     size_plot_area_total_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source of plot area data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     size_plot_area_total_source_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for plot area data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     size_far_ratio: {
@@ -756,14 +781,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     size_far_ratio_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source of FAR ratio data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     size_far_ratio_source_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for FAR ratio data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     size_parcel_geometry: {
@@ -775,14 +800,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     size_parcel_geometry_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source of parcel geometry data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     size_parcel_geometry_source_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for parcel geometry data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
 
@@ -805,21 +830,21 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_core_material_source_type: {
         category: Category.PlanningConservation,
         title: "Source type",
-        tooltip: "Source of main structural material data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     construction_core_material_source_links: {
         category: Category.PlanningConservation,
         title: "Source links",
-        tooltip: "URL(s) for main structural material data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
 
     construction_secondary_materials: {
         category: Category.PlanningConservation,
         title: "Main secondary construction material/s",
-        tooltip: "Other construction materials",
+        tooltip: null,
         example: "",
     },
 
@@ -842,14 +867,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_roof_covering_source_type: {
         category: Category.PlanningConservation,
         title: "Source type",
-        tooltip: "Source of roof covering data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     construction_roof_covering_source_links: {
         category: Category.PlanningConservation,
         title: "Source links",
-        tooltip: "URL(s) for roof covering data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     construction_structural_system: {
@@ -866,14 +891,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_structural_system_source_type: {
         category: Category.PlanningConservation,
         title: "Source type",
-        tooltip: "Source of structural system data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     construction_structural_system_source_links: {
         category: Category.PlanningConservation,
         title: "Source links",
-        tooltip: "URL(s) for structural system data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     construction_foundation: {
@@ -892,14 +917,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_foundation_source_type: {
         category: Category.PlanningConservation,
         title: "Source type",
-        tooltip: "Source of foundation system data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     construction_foundation_source_links: {
         category: Category.PlanningConservation,
         title: "Source links",
-        tooltip: "URL(s) for foundation system data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     construction_roof_shape: {
@@ -923,14 +948,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_roof_shape_source_type: {
         category: Category.PlanningConservation,
         title: "Source type",
-        tooltip: "Source of roof shape data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     construction_roof_shape_source_links: {
         category: Category.PlanningConservation,
         title: "Source links",
-        tooltip: "URL(s) for roof shape data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     construction_irregularities: {
@@ -947,14 +972,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_irregularities_source_type: {
         category: Category.PlanningConservation,
         title: "Source type",
-        tooltip: "Source of irregularity data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     construction_irregularities_source_links: {
         category: Category.PlanningConservation,
         title: "Source links",
-        tooltip: "URL(s) for irregularity data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     construction_decorative_features: {
@@ -980,14 +1005,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_decorative_feature_source_type: {
         category: Category.PlanningConservation,
         title: "Source type",
-        tooltip: "Source of decorative features data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     construction_decorative_feature_source_links: {
         category: Category.PlanningConservation,
         title: "Source links",
-        tooltip: "URL(s) for decorative features data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     construction_internal_wall: {
@@ -1014,14 +1039,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_internal_wall_source_type: {
         category: Category.PlanningConservation,
         title: "Source type",
-        tooltip: "Source of internal wall data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     construction_internal_wall_source_links: {
         category: Category.PlanningConservation,
         title: "Source links",
-        tooltip: "URL(s) for internal wall data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     construction_external_wall: {
@@ -1048,20 +1073,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_external_wall_source_type: {
         category: Category.PlanningConservation,
         title: "Source type",
-        tooltip: "Source of external wall data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     construction_external_wall_source_links: {
         category: Category.PlanningConservation,
         title: "Source links",
-        tooltip: "URL(s) for external wall data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     construction_ground_floor: {
         category: Category.PlanningConservation,
         title: "What is the main ground floor material thought to be?",
-        tooltip: "The material that comprises the majority of the ground floor of the property.",
+        tooltip: null,
         example: "",
         items: [
             'Masonry',
@@ -1075,14 +1100,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_ground_floor_source_type: {
         category: Category.PlanningConservation,
         title: "Source type",
-        tooltip: "Source of ground floor material data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     construction_ground_floor_source_links: {
         category: Category.PlanningConservation,
         title: "Source links",
-        tooltip: "URL(s) for ground floor material data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
 
@@ -1095,14 +1120,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     sust_breeam_rating_source_type: {
         category: Category.WaterGreenInfrastructure,
         title: "Source type",
-        tooltip: "Source of environmental quality rating",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     sust_breeam_rating_source_link: {
         category: Category.WaterGreenInfrastructure,
         title: "Source link",
-        tooltip: "Link to environmental quality rating",
+        tooltip: null,
         example: "",
     },
     sust_dec: {
@@ -1120,33 +1145,33 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     sust_energy_rating_source_type: {
         category: Category.WaterGreenInfrastructure,
         title: "Source type",
-        tooltip: "Source of energy rating",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     sust_energy_rating_source_link: {
         category: Category.WaterGreenInfrastructure,
         title: "Source link",
-        tooltip: "Link to energy rating",
+        tooltip: null,
         example: "",
     },
     sust_retrofit_date: {
         category: Category.WaterGreenInfrastructure,
-        title: "Last significant retrofit",
-        tooltip: "Date of last major building refurbishment",
+        title: "Date of last significant retrofit",
+        tooltip: null,
         example: 1920,
     },
     sust_retrofit_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source of last significant retrofit data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     sust_retrofit_source_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for last significant retrofit data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     sust_life_expectancy: {
@@ -1172,7 +1197,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     survival_source: {
         category: Category.AgeHistory,
         title: "Method type",
-        tooltip: "Source for the survival status",
+        tooltip: null,
         items: [
             "Matched by comparing maps",
             "Checked using streetview images",
@@ -1186,14 +1211,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     survival_source_links: {
         category: Category.AgeHistory,
         title: "Source link(s)",
-        tooltip: "Links to sources of survival/historical information on this building",
+        tooltip: null,
         example: ["", "", ""],
     },
 
     edit_history: {
         category: Category.UrbanInfrastructure,
         title: "PLANNING DATA",
-        tooltip: "PLANNING DATA",
+        tooltip: null,
         example: [{}],
     },
 
@@ -1224,14 +1249,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     planning_crowdsourced_site_completion_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for work complete data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     planning_crowdsourced_site_completion_source_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for work complete  data",
+        tooltip: null,
         example: ["", "", ""],
     },
     planning_crowdsourced_planning_id: {
@@ -1350,13 +1375,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     planning_missing_data: {
         category: Category.UrbanInfrastructure,
         title: "Is information on a planning application relating to this building missing?",
-        tooltip: "Is information on a planning application relating to this building missing?",
+        tooltip: null,
         example: true,
     },
     planning_missing_data_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for missing planning information",
+        tooltip: null,
         example: ["", "", ""],
     },
     planning_heritage_at_risk: {
@@ -1374,14 +1399,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     planning_scientific_interest_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for site of special scientific interest data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     planning_scientific_interest_source_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for site of special scientific interest data",
+        tooltip: null,
         example: ["", "", ""],
     },
     planning_flood_zone: {
@@ -1424,14 +1449,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     is_domestic_source: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source of residential/non-residential data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     is_domestic_links: {
         category: Category.EnergyPerformance,
         title: "Source links",
-        tooltip: "URL(s) for residential/non-residential data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     likes_total: {
@@ -1557,8 +1582,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     community_public_ownership: {
         category: Category.Community,
-        title: "Is the building in public/community ownership?",
-        tooltip: "What type of body owns the building, is it privately-, publicly- or community-owned?",
+        title: "What is the ownership type for this building?",
+        tooltip: null,
         example: "Privately owned (non-corporate)",
         items: [
             "Public/State body",
@@ -1575,14 +1600,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     community_public_ownership_source_type: {
         category: Category.UrbanInfrastructure,
         title: "Source type",
-        tooltip: "Source type for land ownership data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     community_public_ownership_sources: {
         category: Category.Community,
         title: "Community ownership source link(s)",
-        tooltip: "Community ownership source link(s)",
+        tooltip: null,
         example: ["https://example.com"]
     },
 
@@ -1642,14 +1667,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     extension_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for extension data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     extension_source_links: {
         category: Category.EnergyPerformance,
         title: "Source link(s)",
-        tooltip: "Source link(s) for extension data",
+        tooltip: null,
         example: ["", "", ""],
     },
     developer_type: {
@@ -1683,14 +1708,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     developer_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for developer data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     developer_source_link: {
         category: Category.EnergyPerformance,
         title: "Source links for developer(s)",
-        tooltip: "URL for source for developer(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     extension_developer_type: {
@@ -1724,14 +1749,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     extension_developer_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for developer data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     extension_developer_source_link: {
         category: Category.EnergyPerformance,
         title: "Source links for developer(s)",
-        tooltip: "URL for source for developer(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     landowner: {
@@ -1749,14 +1774,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     landowner_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for landowner data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     landowner_source_link: {
         category: Category.EnergyPerformance,
         title: "Source link(s)",
-        tooltip: "URL(s) for source for landowner data",
+        tooltip: null,
         example: ["", "", ""],
     },
     designers: {
@@ -1774,14 +1799,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     designers_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for designer data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     designers_source_link: {
         category: Category.EnergyPerformance,
         title: "Source links for designer(s)",
-        tooltip: "URL for source for designer(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     lead_designer_type: {
@@ -1813,14 +1838,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     extension_designers_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for designer data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     extension_designers_source_link: {
         category: Category.EnergyPerformance,
         title: "Source links for designer(s)",
-        tooltip: "URL for source for designer(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     extension_lead_designer_type: {
@@ -1846,7 +1871,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     awards_source_link: {
         category: Category.EnergyPerformance,
         title: "Source link(s) for building award(s)",
-        tooltip: "URL for source for building award(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     builder: {
@@ -1864,14 +1889,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     builder_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for builder data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     builder_source_link: {
         category: Category.EnergyPerformance,
         title: "Source for builder/construction team",
-        tooltip: "Source for builder/construction team",
+        tooltip: null,
         example: ["", "", ""],
     },
     extension_builder: {
@@ -1889,14 +1914,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     extension_builder_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for builder data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     extension_builder_source_link: {
         category: Category.EnergyPerformance,
         title: "Source for builder/construction team",
-        tooltip: "Source for builder/construction team",
+        tooltip: null,
         example: ["", "", ""],
     },
     other_team: {
@@ -1918,14 +1943,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     building_client_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for building client data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     building_client_source_link: {
         category: Category.EnergyPerformance,
         title: "Source link(s)",
-        tooltip: "URL(s) for source for building client data",
+        tooltip: null,
         example: ["", "", ""],
     },
     extension_client: {
@@ -1937,14 +1962,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     extension_client_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for extension client data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     extension_client_source_link: {
         category: Category.EnergyPerformance,
         title: "Source link(s)",
-        tooltip: "URL(s) for source for extension client data",
+        tooltip: null,
         example: ["", "", ""],
     },
     disaster_type: {
@@ -2024,14 +2049,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     context_garden_source_type: {
         category: Category.RetrofitCondition,
         title: "Source type",
-        tooltip: "Source type for garden data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     context_garden_source_links: {
         category: Category.RetrofitCondition,
         title: "Source link(s)",
-        tooltip: "Source link(s) for garden data source(s)",
+        tooltip: null,
         example: ["", "", ""],
     },
     context_street_width: {
@@ -2043,14 +2068,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     context_street_width_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for street width data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     context_street_width_source_links: {
         category: Category.EnergyPerformance,
         title: "Source link(s)",
-        tooltip: "Source link(s) for street width data",
+        tooltip: null,
         example: ["", "", ""],
     },
     context_pavement_width: {
@@ -2062,14 +2087,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     context_pavement_width_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for pavement width data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     context_pavement_width_source_links: {
         category: Category.EnergyPerformance,
         title: "Source link(s)",
-        tooltip: "Source link(s) for pavement width data",
+        tooltip: null,
         example: ["", "", ""],
     },
     context_walkability_index: {
@@ -2087,14 +2112,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     context_green_space_distance_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for green space data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     context_green_space_distance_source_links: {
         category: Category.EnergyPerformance,
         title: "Source link(s)",
-        tooltip: "Source link(s) for green space data",
+        tooltip: null,
         example: ["", "", ""],
     },
     context_tree_distance: {
@@ -2106,14 +2131,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     context_tree_distance_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for tree data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     context_tree_distance_source_links: {
         category: Category.EnergyPerformance,
         title: "Source link(s)",
-        tooltip: "Source link(s) for tree data",
+        tooltip: null,
         example: ["", "", ""],
     },
     context_street_geometry: {
@@ -2125,14 +2150,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     context_street_geometry_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
-        tooltip: "Source type for tree data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     context_street_geometry_source_links: {
         category: Category.EnergyPerformance,
         title: "Source link(s)",
-        tooltip: "Source link(s) for tree data",
+        tooltip: null,
         example: ["", "", ""],
     },
     age_cladding_date: {
@@ -2144,14 +2169,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     age_cladding_date_source_type: {
         category: Category.AgeHistory,
         title: "Source type",
-        tooltip: "Source type cladding data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     age_cladding_date_source_links: {
         category: Category.AgeHistory,
         title: "Source link(s)",
-        tooltip: "Source link(s) cladding data",
+        tooltip: null,
         example: ["", "", ""],
     },
     age_extension_date: {
@@ -2163,14 +2188,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     age_extension_date_source_type: {
         category: Category.AgeHistory,
         title: "Source type",
-        tooltip: "Source type extension data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     age_extension_date_source_links: {
         category: Category.AgeHistory,
         title: "Source link(s)",
-        tooltip: "Source link(s) extension data",
+        tooltip: null,
         example: ["", "", ""],
     },
     age_retrofit_date: {
@@ -2182,14 +2207,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     age_retrofit_date_source_type: {
         category: Category.AgeHistory,
         title: "Source type",
-        tooltip: "Source type for retrofit data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     age_retrofit_date_source_links: {
         category: Category.AgeHistory,
         title: "Source link(s)",
-        tooltip: "Source link(s) for retrofit data",
+        tooltip: null,
         example: ["", "", ""],
     },
     age_historical_raster_map_links: {
@@ -2214,14 +2239,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     energy_solar_source_type: {
         category: Category.WaterGreenInfrastructure,
         title: "Source type",
-        tooltip: "Source type for solar panel data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     energy_solar_source_links: {
         category: Category.WaterGreenInfrastructure,
         title: "Source link(s)",
-        tooltip: "Source link(s) for solar panel data",
+        tooltip: null,
         example: ["", "", ""],
     },
     energy_green_roof: {
@@ -2233,21 +2258,21 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     energy_green_roof_source_type: {
         category: Category.WaterGreenInfrastructure,
         title: "Source type",
-        tooltip: "Source type for green roof data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     energy_green_roof_source_links: {
         category: Category.WaterGreenInfrastructure,
         title: "Source link(s)",
-        tooltip: "Source link(s) for green roof data",
+        tooltip: null,
         example: ["", "", ""],
     },
 
     typology_classification: {
         category: Category.TypologySize,
-        title: "Which description best suits the building and its context?",
-        tooltip: "HINT: Adapted from building type classifications developed in urban morphology. See <a href=\"https://www.smog.chalmers.se/\">https://www.smog.chalmers.se/</a> 'Space Matrix' for further information.",
+        title: "Which dropdown option best suits the building and its context?",
+        tooltip: "Adapted from building type classifications developed in urban morphology. See <a href=\"https://www.smog.chalmers.se/\">https://www.smog.chalmers.se/</a> 'Space Matrix' for further information.",
         example: "8+ storeys: Detached",
         items: [
             'Low-rise: Not part of a group/cluster (1-3 core floors- excluding extensions)',
@@ -2264,14 +2289,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_classification_source_type: {
         category: Category.TypologySize,
         title: "Source type",
-        tooltip: "Source type for classification data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     typology_classification_source_links: {
         category: Category.TypologySize,
         title: "Source link(s)",
-        tooltip: "Source link(s) for classification data",
+        tooltip: null,
         example: ["", "", ""],
     },
     typology_style_period: {
@@ -2296,20 +2321,20 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_style_period_source_type: {
         category: Category.TypologySize,
         title: "Source type",
-        tooltip: "Source type for style & period data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     typology_style_period_source_links: {
         category: Category.TypologySize,
         title: "Source link(s)",
-        tooltip: "Source link(s) for style & period data",
+        tooltip: null,
         example: ["", "", ""],
     },
     typology_dynamic_classification: {
         category: Category.TypologySize,
-        title: "Which description best suits the building's plot?",
-        tooltip: "HINT: Based on a dynamic classification system for urban tissue developed by Brenda Case Scheer. For further information click <a href=\"https://github.com/colouring-cities/manual/wiki/X08.-London-prototype:-Dynamics-data-capture-and-urban-morphology#14-building-typologies-and-dynamic-classifications\">here</a>.",
+        title: "Which dropdown option best describes the urban tissue?",
+        tooltip: "Based on a dynamic classification system for urban tissue developed by Brenda Case Scheer. For further information click <a href=\"https://github.com/colouring-cities/manual/wiki/X08.-London-prototype:-Dynamics-data-capture-and-urban-morphology#14-building-typologies-and-dynamic-classifications\">here</a>.",
         example: "Large plots with internal roads",
         items: [
             'Small, often repetitive plots, mainly residential',
@@ -2320,19 +2345,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_dynamic_classification_source_type: {
         category: Category.TypologySize,
         title: "Source type",
-        tooltip: "Source type for dynamic classification data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     typology_dynamic_classification_source_links: {
         category: Category.TypologySize,
         title: "Source link(s)",
-        tooltip: "Source link(s) for dynamic classification data",
+        tooltip: null,
         example: ["", "", ""],
     },
     typology_original_use: {
         category: Category.TypologySize,
-        title: "Which land use best describes the purpose for which the building was built?",
+        title: "Which land use best describes the purpose for which the building was originally built?",
         tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification).\n\nNote: Homes used as offices for working from home should be classified as residential.",
         example: ["", ""],
     },
@@ -2350,14 +2375,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     typology_original_use_source_type: {
         category: Category.TypologySize,
         title: "Source type",
-        tooltip: "Source type for original land use data",
+        tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     typology_original_use_source_links: {
         category: Category.TypologySize,
         title: "Source link(s)",
-        tooltip: "Source link(s) for original land use data",
+        tooltip: null,
         example: ["", "", ""],
     },
 };
