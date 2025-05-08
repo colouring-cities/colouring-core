@@ -314,13 +314,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_name_link: {
         category: Category.Location,
         title: "Building name link (non-residential) - Wikipedia or other",
-        tooltip: "Link to a website with the name of the building.",
+        tooltip: "The name of the building." + freeTextDisclaimer,
         example: "https://en.wikipedia.org/wiki/Palace_of_Westminster",
     },
     location_residential_name_link: {
         category: Category.Location,
         title: "Building name link (residential) - Wikipedia or other",
-        tooltip: "Link to a website with the name of the building.",
+        tooltip: "The name of the building." + freeTextDisclaimer,
         example: "https://en.wikipedia.org/wiki/221B_Baker_Street",
     },
     location_number: {
@@ -333,19 +333,19 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.Location,
         title: "Street name",
         example: "Gower Street",
-        tooltip: "The name of the street on which the building is located." + freeTextDisclaimer,
+        tooltip: freeTextDisclaimer,
     },
     location_line_two: {
         category: Category.Location,
         title: "Address line 2",
         example: "Flat 21",
-        tooltip: "Second line of the address." + freeTextDisclaimer,
+        tooltip: freeTextDisclaimer,
     },
     location_town: {
         category: Category.Location,
         title: "Town/City",
         example: "London",
-        tooltip: "Name of the town or city where the building is located." + freeTextDisclaimer,
+        tooltip: freeTextDisclaimer,
     },
     location_postcode: {
         category: Category.Location,
@@ -381,12 +381,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     location_subdivided: {
         category: Category.Location,
         title: 'Is this building subdivided',
-        tooltip: 'Does this building comprise multiple, smaller properties?',
+        tooltip: null,
         example: true,
     },
     location_num_subdivisions: {
         category: Category.Location,
-        title: "How many properties are within this building?",
+        title: "How many properties are there within this building?",
         tooltip: "For example, if a former house has been converted into three flats, put '3'",
         example: 3,
     },
@@ -418,7 +418,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     planning_data: {
         category: Category.Location,
         title: "PLANNING DATA",
-        tooltip: "PLANNING DATA",
+        tooltip: null,
         example: [{ uprn: "", building_id: 1, data_source: "" },
         { uprn: "", building_id: 1, data_source: "", status: "", status_before_aliasing: "", decision_date: "", description: "", planning_application_link: "", registered_with_local_authority_date: "", last_synced_date: "", data_source_link: "", address: "" },
         ],
@@ -494,7 +494,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     building_attachment_form: {
         category: Category.TypologySize,
         title: "Which description best explains the way the building is attached to others?",
-        tooltip: "We have pre-populated these based on their current attachment. A building can either be detached, semi-detached or part of a terrace (middle or end)",
+        tooltip: null,
         example: "",
         items: [
             "Detached",
@@ -512,6 +512,31 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     building_attachment_source_links: {
         category: Category.AgeHistory,
+        title: "Source link(s)",
+        tooltip: null,
+        example: ["", "", ""],
+    },
+    building_residential_typology_description: {
+        category: Category.TypologySize,
+        title: "Which dropdown option best matches the residential typology description?",
+        tooltip: null,
+        example: "",
+        items: [
+            "Single-storey house/Bungalow",
+            "Multi-storey house",
+            "Maisonette",
+            "Flat"
+        ]
+    },
+    building_residential_typology_source_type: {
+        category: Category.TypologySize,
+        title: "Source type",
+        tooltip: null,
+        items: commonSourceTypes,
+        example: "",
+    },
+    building_residential_typology_source_links: {
+        category: Category.TypologySize,
         title: "Source link(s)",
         tooltip: null,
         example: ["", "", ""],
@@ -638,13 +663,13 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.ConstructionDesign,
         title: "Ground floor area (m²)",
         example: 1245.6,
-        tooltip: "Area of the ground floor of the building in m²",
+        tooltip: null,
     },
     size_floor_area_total: {
         category: Category.ConstructionDesign,
         title: "Total floor area (m²)",
         example: 2001.7,
-        tooltip: "Total floor area of the building in m²",
+        tooltip: null,
     },
     size_floor_area_source_type: {
         category: Category.EnergyPerformance,
@@ -690,7 +715,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         category: Category.RetrofitCondition,
         title: "Total area of plot (m²)",
         example: 123.02,
-        tooltip: "Total area of plot (m²)",
+        tooltip: null,
     },
     size_plot_area_total_source_type: {
         category: Category.EnergyPerformance,
@@ -777,7 +802,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_secondary_materials: {
         category: Category.PlanningConservation,
         title: "Main secondary construction material/s",
-        tooltip: "Other construction materials",
+        tooltip: null,
         example: "",
     },
 
@@ -1019,7 +1044,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     construction_ground_floor: {
         category: Category.PlanningConservation,
         title: "What is the main ground floor material thought to be?",
-        tooltip: "The material that comprises the majority of the ground floor of the property.",
+        tooltip: null,
         example: "",
         items: [
             'Masonry',
@@ -1090,8 +1115,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     sust_retrofit_date: {
         category: Category.WaterGreenInfrastructure,
-        title: "Last significant retrofit",
-        tooltip: "Date of last major building refurbishment",
+        title: "Date of last significant retrofit",
+        tooltip: null,
         example: 1920,
     },
     sust_retrofit_source_type: {
@@ -1151,7 +1176,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     edit_history: {
         category: Category.UrbanInfrastructure,
         title: "PLANNING DATA",
-        tooltip: "PLANNING DATA",
+        tooltip: null,
         example: [{}],
     },
 
@@ -1515,8 +1540,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     community_public_ownership: {
         category: Category.Community,
-        title: "Is the building in public/community ownership?",
-        tooltip: "What type of body owns the building, is it privately-, publicly- or community-owned?",
+        title: "What is the ownership type for this building?",
+        tooltip: null,
         example: "Privately owned (non-corporate)",
         items: [
             "Public/State body",
@@ -1540,7 +1565,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     community_public_ownership_sources: {
         category: Category.Community,
         title: "Community ownership source link(s)",
-        tooltip: "Community ownership source link(s)",
+        tooltip: null,
         example: ["https://example.com"]
     },
 
@@ -2204,8 +2229,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
 
     typology_classification: {
         category: Category.TypologySize,
-        title: "Which description best suits the building and its context?",
-        tooltip: "HINT: Adapted from building type classifications developed in urban morphology. See <a href=\"https://www.smog.chalmers.se/\">https://www.smog.chalmers.se/</a> 'Space Matrix' for further information.",
+        title: "Which dropdown option best suits the building and its context?",
+        tooltip: "Adapted from building type classifications developed in urban morphology. See <a href=\"https://www.smog.chalmers.se/\">https://www.smog.chalmers.se/</a> 'Space Matrix' for further information.",
         example: "8+ storeys: Detached",
         items: [
             'Low-rise: Not part of a group/cluster (1-3 core floors- excluding extensions)',
@@ -2266,8 +2291,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     typology_dynamic_classification: {
         category: Category.TypologySize,
-        title: "Which description best suits the building's plot?",
-        tooltip: "HINT: Based on a dynamic classification system for urban tissue developed by Brenda Case Scheer. For further information click <a href=\"https://github.com/colouring-cities/manual/wiki/X08.-London-prototype:-Dynamics-data-capture-and-urban-morphology#14-building-typologies-and-dynamic-classifications\">here</a>.",
+        title: "Which dropdown option best describes the urban tissue?",
+        tooltip: "Based on a dynamic classification system for urban tissue developed by Brenda Case Scheer. For further information click <a href=\"https://github.com/colouring-cities/manual/wiki/X08.-London-prototype:-Dynamics-data-capture-and-urban-morphology#14-building-typologies-and-dynamic-classifications\">here</a>.",
         example: "Large plots with internal roads",
         items: [
             'Small, often repetitive plots, mainly residential',
@@ -2290,7 +2315,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     typology_original_use: {
         category: Category.TypologySize,
-        title: "Which land use best describes the purpose for which the building was built?",
+        title: "Which land use best describes the purpose for which the building was originally built?",
         tooltip: "Land use Groups as classified by [NLUD](https://www.gov.uk/government/statistics/national-land-use-database-land-use-and-land-cover-classification).\n\nNote: Homes used as offices for working from home should be classified as residential.",
         example: ["", ""],
     },

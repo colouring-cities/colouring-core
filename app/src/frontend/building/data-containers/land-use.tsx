@@ -8,6 +8,7 @@ import { CategoryViewProps } from './category-view-props';
 import Verification from '../data-components/verification';
 import { useDisplayPreferences } from '../../displayPreferences-context';
 import { DataEntryGroup } from '../data-components/data-entry-group';
+import InfoBox from '../../components/info-box';
 
 /**
  * Use view/edit section
@@ -25,6 +26,8 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
 
+    const { parcel, parcelSwitchOnClick, darkLightTheme } = useDisplayPreferences();
+    
     return (
         <Fragment>
             <DataEntryGroup name="Specific Land Use/s" collapsed={subcat==null || subcat!="1"}>
@@ -157,6 +160,72 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
                 */}
             </DataEntryGroup>
+            <DataEntryGroup name="Land Ownership Type" collapsed={subcat==null || subcat!="3"}>
+                    <InfoBox>
+                        This section is designed to provide information on land parcels and their ownership type. Can you help us collect this information?
+                    </InfoBox>
+                    <SelectDataEntry
+                        slug='community_public_ownership'
+                        title={dataFields.community_public_ownership.title}
+                        value={props.building.community_public_ownership}
+                        options={dataFields.community_public_ownership.items}
+                        tooltip={dataFields.community_public_ownership.tooltip}
+                        onChange={props.onChange}
+                        mode={props.mode}
+                        copy={props.copy}
+                    />
+                    <Verification
+                        slug="community_public_ownership"
+                        allow_verify={props.user !== undefined && props.building.community_public_ownership !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("community_public_ownership")}
+                        user_verified_as={props.user_verified.community_public_ownership}
+                        verified_count={props.building.verified.community_public_ownership}
+                    />
+                    <SelectDataEntry
+                        title={dataFields.community_public_ownership_source_type.title}
+                        slug="community_public_ownership_source_type"
+                        value={props.building.community_public_ownership_source_type}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.community_public_ownership_source_type.tooltip}
+                        options={dataFields.community_public_ownership_source_type.items}
+                        placeholder={dataFields.community_public_ownership_source_type.example}
+                    />
+                    {(props.building.community_public_ownership_source_type == dataFields.community_public_ownership_source_type.items[0] ||
+                        props.building.community_public_ownership_source_type == dataFields.community_public_ownership_source_type.items[1] ||
+                        props.building.community_public_ownership_source_type == null) ? <></> :
+                        <>
+                            <MultiDataEntry
+                                slug='community_public_ownership_sources'
+                                title={dataFields.community_public_ownership_sources.title}
+                                tooltip={dataFields.community_public_ownership_sources.tooltip}
+                                isUrl={true}
+                                placeholder={'https://...'}
+                                editableEntries={true}
+                                value={props.building.community_public_ownership_sources}
+                                onChange={props.onChange}
+                                mode={props.mode}
+                                copy={props.copy}
+                            />
+                        </>
+                    }
+                    <hr/>
+                    <DataEntry
+                        title={dataFields.size_parcel_geometry.title}
+                        slug="size_parcel_geometry"
+                        value={props.building.size_parcel_geometry}
+                        mode={props.mode}
+                        onChange={props.onChange}
+                        tooltip={dataFields.size_parcel_geometry.tooltip}
+                        placeholder="https://..."
+                        isUrl={true}
+                    />
+                    <button className={`map-switcher-inline ${parcel}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={parcelSwitchOnClick}>
+                        {(parcel === 'enabled')? 'Click to hide sample land parcel data' : 'Click to show sample land parcel data'}
+                    </button>
+                </DataEntryGroup>
         </Fragment>
     );
 };
