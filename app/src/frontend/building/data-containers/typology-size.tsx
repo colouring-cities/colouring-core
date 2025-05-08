@@ -58,7 +58,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
             <DataEntryGroup name="Typology" collapsed={subcat==null || subcat!="1"}>
                 <DataEntryGroup name="Archetype" collapsed={subcat==null || subcat!="1"}>
                     <InfoBox type='info'>
-                        This section is under development.
+                        The archetype subcategory is still under development.
                     </InfoBox>
                     {/* TODO  to be replaced by actual values */}
                     <SelectDataEntry
