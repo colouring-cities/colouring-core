@@ -407,7 +407,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         onChange={props.onChange}
                     />
                 </DataEntryGroup>
-                <DataEntryGroup name="Dynamic Classification" collapsed={subcat==null || subcat!="8"}>
+                <DataEntryGroup name="Urban Tissue Types/Dynamic Classification" collapsed={subcat==null || subcat!="8"}>
                     {(props.mapColourScale != "typology_dynamic_classification") ? 
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToDynamicClassificationMapStyle}>
                             {"Click here to show dynamic classification."}
