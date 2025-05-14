@@ -155,10 +155,9 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         mode={props.mode}
                         copy={props.copy}
                         onChange={props.onChange}
-                        disabled={true}
                     />
                     <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
-                        <i className="source-url">To edit the historical period box, and to see the data mapped, please go to&nbsp;
+                        <i className="source-url">To see the data mapped, please go to&nbsp;
                         <a href={"/"+props.mode+"/" + Category.AgeHistory + "/"+props.building.building_id+"?sc=2"}>Age & History</a>.</i>
                     </div>
                 </DataEntryGroup>
