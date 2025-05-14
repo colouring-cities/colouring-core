@@ -56,16 +56,17 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
     return (
         <Fragment>
             <DataEntryGroup name="Typology" collapsed={subcat==null || subcat!="1"}>
+                {/*
                 <DataEntryGroup name="Archetype" collapsed={subcat==null || subcat!="1"}>
                     <InfoBox type='info'>
                         The archetype subcategory is still under development.
                     </InfoBox>
-                    {/* TODO  to be replaced by actual values */}
+                    {/ TODO  to be replaced by actual values /}
                     <SelectDataEntry
                         title={"Which dropdown option best describes the building archetype?"}
                         slug="typology_none_yet"
                         value={props.building.typology_classification}
-                        tooltip={null /* dataFields.typology_classification.tooltip */}
+                        tooltip={null / dataFields.typology_classification.tooltip /}
                         options={dataFields.typology_classification.items}
                         mode={props.mode}
                         copy={props.copy}
@@ -93,7 +94,8 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         disabled={true}
                         />
                 </ DataEntryGroup>
-                <DataEntryGroup name="Block/Density Classification" collapsed={subcat==null || subcat!="2"}>
+                */}
+                <DataEntryGroup name="Block/Density Classification" collapsed={subcat==null || subcat!="1"}>
                     {(props.mapColourScale != "typology_classification") ? 
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToClassificationMapStyle}>
                             {"Click to show typology classification."}
@@ -149,7 +151,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="National Historical Description" collapsed={subcat==null || subcat!="3"}>
+                <DataEntryGroup name="National Historical Description" collapsed={subcat==null || subcat!="2"}>
                     <SelectDataEntry
                         title={dataFields.typology_style_period.title}
                         slug="typology_style_period"
@@ -165,7 +167,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         <a href={"/"+props.mode+"/" + Category.AgeHistory + "/"+props.building.building_id+"?sc=2"}>Age & History</a>.</i>
                     </div>
                 </DataEntryGroup>
-                <DataEntryGroup name="Attachment/Adjacency" collapsed={subcat==null || subcat!="4"}>
+                <DataEntryGroup name="Attachment/Adjacency" collapsed={subcat==null || subcat!="3"}>
                     {(props.mapColourScale != "building_attachment_form") ? 
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAttachmentMapStyle}>
                             {"Click here to show attachment/adjacency."}
@@ -221,7 +223,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Building Subdivision" collapsed={subcat==null || subcat!="5"}>
+                <DataEntryGroup name="Building Subdivision" collapsed={subcat==null || subcat!="4"}>
                 <LogicalDataEntry
                     slug='location_subdivided'
                     title={dataFields.location_subdivided.title}
@@ -291,7 +293,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     </>
                 }
                 </ DataEntryGroup>
-                <DataEntryGroup name="Residential Typology Description" collapsed={subcat==null || subcat!="6"}>
+                <DataEntryGroup name="Residential Typology Description" collapsed={subcat==null || subcat!="5"}>
                     <SelectDataEntry
                         title={dataFields.building_residential_typology_description.title}
                         slug="building_residential_typology_description"
@@ -322,7 +324,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         options={dataFields.building_residential_typology_source_type.items}
                         />
                 </ DataEntryGroup>
-                <DataEntryGroup name="Original Use" collapsed={subcat==null || subcat!="7"}>
+                <DataEntryGroup name="Original Use" collapsed={subcat==null || subcat!="6"}>
                     <InfoBox type='info'>
                         The archetype subcategory is still under development.
                     </InfoBox>
@@ -406,7 +408,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         onChange={props.onChange}
                     />
                 </DataEntryGroup>
-                <DataEntryGroup name="Urban Tissue Types/Dynamic Classification" collapsed={subcat==null || subcat!="8"}>
+                <DataEntryGroup name="Urban Tissue Types/Dynamic Classification" collapsed={subcat==null || subcat!="7"}>
                     {(props.mapColourScale != "typology_dynamic_classification") ? 
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToDynamicClassificationMapStyle}>
                             {"Click here to show dynamic classification."}
