@@ -285,9 +285,6 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                         onChange={props.onSaveChange}
                         mode={props.mode}
                     />
-                    <InfoBox type='warning'>
-                        Further improvements to this feature are currently being made.
-                    </InfoBox>
                     {(props.mapColourScale != "community_local_significance_total") ? 
                         <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLocalSignificanceMapStyle}>
                             {'Click to show buildings of local interest.'}
