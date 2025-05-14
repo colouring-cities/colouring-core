@@ -225,7 +225,88 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     <button className={`map-switcher-inline ${parcel}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={parcelSwitchOnClick}>
                         {(parcel === 'enabled')? 'Click to hide sample land parcel data' : 'Click to show sample land parcel data'}
                     </button>
-                </DataEntryGroup>
+            </DataEntryGroup>
+            <DataEntryGroup name="Original Use" collapsed={subcat==null || subcat!="4"}>
+                {(props.mapColourScale != "original_landuse") ? 
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLandUseMapStyle}>
+                        {"Click here to see original land use."}
+                    </button>
+                :
+                    <></>
+                }
+                <MultiDataEntry
+                    title={dataFields.typology_original_use.title}
+                    slug="typology_original_use"
+                    value={props.building.typology_original_use}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    confirmOnEnter={true}
+                    tooltip={dataFields.typology_original_use.tooltip}
+                    placeholder="Type new land use group here"
+                    copyable={true}
+                    autofill={true}
+                    showAllOptionsOnEmpty={true}
+                />
+                <Verification
+                    slug="typology_original_use"
+                    allow_verify={props.user !== undefined && props.building.typology_original_use !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("typology_original_use")}
+                    user_verified_as={props.user_verified.typology_original_use}
+                    verified_count={props.building.verified.typology_original_use}
+                />
+                <SelectDataEntry
+                    title={dataFields.typology_original_use_source_type.title}
+                    slug="typology_original_use_source_type"
+                    value={props.building.typology_original_use_source_type}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.typology_original_use_source_type.tooltip}
+                    placeholder={dataFields.typology_original_use_source_type.example}
+                    options={dataFields.typology_original_use_source_type.items}
+                    />
+                {(props.building.typology_original_use_source_type == commonSourceTypes[0] ||
+                    props.building.typology_original_use_source_type == commonSourceTypes[1] ||
+                    props.building.typology_original_use_source_type == null) ? <></> :
+                    <>
+                        <MultiDataEntry
+                            title={dataFields.typology_original_use_source_links.title}
+                            slug="typology_original_use_source_links"
+                            value={props.building.typology_original_use_source_links}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.typology_original_use_source_links.tooltip}
+                            placeholder="https://..."
+                            editableEntries={true}
+                            isUrl={true}
+                        />
+                    </>
+                }
+                <hr/>
+                {
+                    props.mode != 'view' &&
+                    <div>
+                        <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
+                            <i>
+                                Below is a more general classification for the original land use of this building, automatically derived from the information above.
+                            </i>
+                        </div>
+                    </div>
+                }
+                <DataEntry
+                    title={dataFields.typology_original_use_order.title}
+                    tooltip={dataFields.typology_original_use_order.tooltip}
+                    slug="typology_original_use_order"
+                    value={props.building.typology_original_use_order}
+                    mode={props.mode}
+                    disabled={true}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                />
+            </DataEntryGroup>
         </Fragment>
     );
 };
