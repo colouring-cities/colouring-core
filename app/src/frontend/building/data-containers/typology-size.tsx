@@ -55,7 +55,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
 
     return (
         <Fragment>
-            <DataEntryGroup name="Typology" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Urban Form" collapsed={subcat==null || subcat!="1"}>
                 {/*
                 <DataEntryGroup name="Archetype" collapsed={subcat==null || subcat!="1"}>
                     <InfoBox type='info'>
@@ -151,23 +151,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                         </>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="National Historical Description" collapsed={subcat==null || subcat!="2"}>
-                    <SelectDataEntry
-                        title={dataFields.typology_style_period.title}
-                        slug="typology_style_period"
-                        value={props.building.typology_style_period}
-                        tooltip={dataFields.typology_style_period.tooltip}
-                        options={dataFields.typology_style_period.items}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                    />
-                    <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
-                        <i className="source-url">To see the data mapped, please go to&nbsp;
-                        <a href={"/"+props.mode+"/" + Category.AgeHistory + "/"+props.building.building_id+"?sc=2"}>Age & History</a>.</i>
-                    </div>
-                </DataEntryGroup>
-                <DataEntryGroup name="Attachment/Adjacency" collapsed={subcat==null || subcat!="3"}>
+                <DataEntryGroup name="Attachment/Adjacency" collapsed={subcat==null || subcat!="2"}>
                     {(props.mapColourScale != "building_attachment_form") ? 
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAttachmentMapStyle}>
                             {"Click here to show attachment/adjacency."}
@@ -222,6 +206,112 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                             />
                         </>
                     }
+                </DataEntryGroup>
+                <DataEntryGroup name="Residential Typology Description" collapsed={subcat==null || subcat!="3"}>
+                    <SelectDataEntry
+                        title={dataFields.building_residential_typology_description.title}
+                        slug="building_residential_typology_description"
+                        value={props.building.building_residential_typology_description}
+                        tooltip={dataFields.building_residential_typology_description.tooltip}
+                        options={dataFields.building_residential_typology_description.items}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                    />
+                    <Verification
+                        slug="building_residential_typology_description"
+                        allow_verify={props.user !== undefined && props.building.building_residential_typology_description !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("building_residential_typology_description")}
+                        user_verified_as={props.user_verified.building_residential_typology_description}
+                        verified_count={props.building.verified.building_residential_typology_description}
+                    />
+                    <SelectDataEntry
+                        title={dataFields.building_residential_typology_source_type.title}
+                        slug="building_residential_typology_source_type"
+                        value={props.building.building_residential_typology_source_type}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.building_residential_typology_source_type.tooltip}
+                        placeholder={dataFields.building_residential_typology_source_type.example}
+                        options={dataFields.building_residential_typology_source_type.items}
+                        />
+                </ DataEntryGroup>
+                <DataEntryGroup name="Urban Tissue Types/Dynamic Classification" collapsed={subcat==null || subcat!="4"}>
+                    {(props.mapColourScale != "typology_dynamic_classification") ? 
+                        <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToDynamicClassificationMapStyle}>
+                            {"Click here to show dynamic classification."}
+                        </button>
+                        :
+                        <></>
+                    }
+                    <SelectDataEntry
+                        title={dataFields.typology_dynamic_classification.title}
+                        slug="typology_dynamic_classification"
+                        value={props.building.typology_dynamic_classification}
+                        tooltip={dataFields.typology_dynamic_classification.tooltip}
+                        options={dataFields.typology_dynamic_classification.items}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                    />
+                    <Verification
+                        slug="typology_dynamic_classification"
+                        allow_verify={props.user !== undefined && props.building.typology_dynamic_classification !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("typology_dynamic_classification")}
+                        user_verified_as={props.user_verified.typology_dynamic_classification}
+                        verified_count={props.building.verified.typology_dynamic_classification}
+                    />
+                    <SelectDataEntry
+                        title={dataFields.typology_dynamic_classification_source_type.title}
+                        slug="typology_dynamic_classification_source_type"
+                        value={props.building.typology_dynamic_classification_source_type}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.typology_dynamic_classification_source_type.tooltip}
+                        placeholder={dataFields.typology_dynamic_classification_source_type.example}
+                        options={dataFields.typology_dynamic_classification_source_type.items}
+                        />
+                    {(props.building.typology_dynamic_classification_source_type == commonSourceTypes[0] ||
+                        props.building.typology_dynamic_classification_source_type == commonSourceTypes[1] ||
+                        props.building.typology_dynamic_classification_source_type == null) ? <></> :
+                        <>
+                            <MultiDataEntry
+                                title={dataFields.typology_dynamic_classification_source_links.title}
+                                slug="typology_dynamic_classification_source_links"
+                                value={props.building.typology_dynamic_classification_source_links}
+                                mode={props.mode}
+                                copy={props.copy}
+                                onChange={props.onChange}
+                                tooltip={dataFields.typology_dynamic_classification_source_links.tooltip}
+                                placeholder="https://..."
+                                editableEntries={true}
+                                isUrl={true}
+                            />
+                        </>
+                    }
+                </DataEntryGroup>
+            </DataEntryGroup>
+
+            <DataEntryGroup name="Building Form" collapsed={subcat==null || subcat!="1"}>
+                <DataEntryGroup name="National Historical Description" collapsed={subcat==null || subcat!="2"}>
+                    <SelectDataEntry
+                        title={dataFields.typology_style_period.title}
+                        slug="typology_style_period"
+                        value={props.building.typology_style_period}
+                        tooltip={dataFields.typology_style_period.tooltip}
+                        options={dataFields.typology_style_period.items}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                    />
+                    <div className={`alert alert-dark`} role="alert" style={{ fontSize: 14, backgroundColor: "#f6f8f9" }}>
+                        <i className="source-url">To see the data mapped, please go to&nbsp;
+                        <a href={"/"+props.mode+"/" + Category.AgeHistory + "/"+props.building.building_id+"?sc=2"}>Age & History</a>.</i>
+                    </div>
                 </DataEntryGroup>
                 <DataEntryGroup name="Building Subdivision" collapsed={subcat==null || subcat!="4"}>
                 <LogicalDataEntry
@@ -293,177 +383,6 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
                     </>
                 }
                 </ DataEntryGroup>
-                <DataEntryGroup name="Residential Typology Description" collapsed={subcat==null || subcat!="5"}>
-                    <SelectDataEntry
-                        title={dataFields.building_residential_typology_description.title}
-                        slug="building_residential_typology_description"
-                        value={props.building.building_residential_typology_description}
-                        tooltip={dataFields.building_residential_typology_description.tooltip}
-                        options={dataFields.building_residential_typology_description.items}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                    />
-                    <Verification
-                        slug="building_residential_typology_description"
-                        allow_verify={props.user !== undefined && props.building.building_residential_typology_description !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("building_residential_typology_description")}
-                        user_verified_as={props.user_verified.building_residential_typology_description}
-                        verified_count={props.building.verified.building_residential_typology_description}
-                    />
-                    <SelectDataEntry
-                        title={dataFields.building_residential_typology_source_type.title}
-                        slug="building_residential_typology_source_type"
-                        value={props.building.building_residential_typology_source_type}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.building_residential_typology_source_type.tooltip}
-                        placeholder={dataFields.building_residential_typology_source_type.example}
-                        options={dataFields.building_residential_typology_source_type.items}
-                        />
-                </ DataEntryGroup>
-                <DataEntryGroup name="Original Use" collapsed={subcat==null || subcat!="6"}>
-                    <InfoBox type='info'>
-                        The archetype subcategory is still under development.
-                    </InfoBox>
-                    {(props.mapColourScale != "original_landuse") ? 
-                        <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLandUseMapStyle}>
-                            {"Click here to original land use."}
-                        </button>
-                    :
-                        <></>
-                    }
-                    <MultiDataEntry
-                        title={dataFields.typology_original_use.title}
-                        slug="typology_original_use"
-                        value={props.building.typology_original_use}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        confirmOnEnter={true}
-                        tooltip={dataFields.typology_original_use.tooltip}
-                        placeholder="Type new land use group here"
-                        copyable={true}
-                        autofill={true}
-                        showAllOptionsOnEmpty={true}
-                    />
-                    <Verification
-                        slug="typology_original_use"
-                        allow_verify={props.user !== undefined && props.building.typology_original_use !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("typology_original_use")}
-                        user_verified_as={props.user_verified.typology_original_use}
-                        verified_count={props.building.verified.typology_original_use}
-                    />
-                    <SelectDataEntry
-                        title={dataFields.typology_original_use_source_type.title}
-                        slug="typology_original_use_source_type"
-                        value={props.building.typology_original_use_source_type}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.typology_original_use_source_type.tooltip}
-                        placeholder={dataFields.typology_original_use_source_type.example}
-                        options={dataFields.typology_original_use_source_type.items}
-                        />
-                    {(props.building.typology_original_use_source_type == commonSourceTypes[0] ||
-                        props.building.typology_original_use_source_type == commonSourceTypes[1] ||
-                        props.building.typology_original_use_source_type == null) ? <></> :
-                        <>
-                            <MultiDataEntry
-                                title={dataFields.typology_original_use_source_links.title}
-                                slug="typology_original_use_source_links"
-                                value={props.building.typology_original_use_source_links}
-                                mode={props.mode}
-                                copy={props.copy}
-                                onChange={props.onChange}
-                                tooltip={dataFields.typology_original_use_source_links.tooltip}
-                                placeholder="https://..."
-                                editableEntries={true}
-                                isUrl={true}
-                            />
-                        </>
-                    }
-                    <hr/>
-                    {
-                        props.mode != 'view' &&
-                        <div>
-                            <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
-                                <i>
-                                    Below is a more general classification for the original land use of this building, automatically derived from the information above.
-                                </i>
-                            </div>
-                        </div>
-                    }
-                    <DataEntry
-                        title={dataFields.typology_original_use_order.title}
-                        tooltip={dataFields.typology_original_use_order.tooltip}
-                        slug="typology_original_use_order"
-                        value={props.building.typology_original_use_order}
-                        mode={props.mode}
-                        disabled={true}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                    />
-                </DataEntryGroup>
-                <DataEntryGroup name="Urban Tissue Types/Dynamic Classification" collapsed={subcat==null || subcat!="7"}>
-                    {(props.mapColourScale != "typology_dynamic_classification") ? 
-                        <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToDynamicClassificationMapStyle}>
-                            {"Click here to show dynamic classification."}
-                        </button>
-                        :
-                        <></>
-                    }
-                    <SelectDataEntry
-                        title={dataFields.typology_dynamic_classification.title}
-                        slug="typology_dynamic_classification"
-                        value={props.building.typology_dynamic_classification}
-                        tooltip={dataFields.typology_dynamic_classification.tooltip}
-                        options={dataFields.typology_dynamic_classification.items}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                    />
-                    <Verification
-                        slug="typology_dynamic_classification"
-                        allow_verify={props.user !== undefined && props.building.typology_dynamic_classification !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("typology_dynamic_classification")}
-                        user_verified_as={props.user_verified.typology_dynamic_classification}
-                        verified_count={props.building.verified.typology_dynamic_classification}
-                    />
-                    <SelectDataEntry
-                        title={dataFields.typology_dynamic_classification_source_type.title}
-                        slug="typology_dynamic_classification_source_type"
-                        value={props.building.typology_dynamic_classification_source_type}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.typology_dynamic_classification_source_type.tooltip}
-                        placeholder={dataFields.typology_dynamic_classification_source_type.example}
-                        options={dataFields.typology_dynamic_classification_source_type.items}
-                        />
-                    {(props.building.typology_dynamic_classification_source_type == commonSourceTypes[0] ||
-                        props.building.typology_dynamic_classification_source_type == commonSourceTypes[1] ||
-                        props.building.typology_dynamic_classification_source_type == null) ? <></> :
-                        <>
-                            <MultiDataEntry
-                                title={dataFields.typology_dynamic_classification_source_links.title}
-                                slug="typology_dynamic_classification_source_links"
-                                value={props.building.typology_dynamic_classification_source_links}
-                                mode={props.mode}
-                                copy={props.copy}
-                                onChange={props.onChange}
-                                tooltip={dataFields.typology_dynamic_classification_source_links.tooltip}
-                                placeholder="https://..."
-                                editableEntries={true}
-                                isUrl={true}
-                            />
-                        </>
-                    }
-            </DataEntryGroup>
             </DataEntryGroup>
             <DataEntryGroup name="Size" collapsed={subcat==null || subcat!="1"}>
                 <DataEntryGroup name="Number of Floors/Storeys" collapsed={subcat==null || subcat!="1"}>
