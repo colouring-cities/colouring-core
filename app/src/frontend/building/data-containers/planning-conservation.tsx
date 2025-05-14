@@ -258,7 +258,7 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                     : <></>
                     }
                 </DataEntryGroup>
-                <DataEntryGroup name="Possible Future Applications" collapsed={subcat==null || subcat!="5"}>
+                <DataEntryGroup name="Possible Future Applications/Demolitions" collapsed={subcat==null || subcat!="5"}>
                     <InfoBox type='info'>Click and colour buildings here if you think they may be subject to a future planning application involving demolition. To add your opinion on how well this building works, please also visit the <Link to={communityLinkUrl}>Community</Link> section.</InfoBox>
                     <UserOpinionEntry
                         slug='community_expected_planning_application'
@@ -270,7 +270,7 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                     />
                     {props.mapColourScale != "community_expected_planning_application_total" ?
                         <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToExpectedApplicationMapStyle}>
-                            {'Click to view possible locations of future applications'}
+                            {'Click to view possible locations of future applications/demolitions'}
                         </button>
                         :
                         <></>
