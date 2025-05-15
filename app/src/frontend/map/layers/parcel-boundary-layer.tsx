@@ -10,7 +10,7 @@ export function ParcelBoundaryLayer() {
     const { parcel } = useDisplayPreferences();
 
     useEffect(() => {
-        apiGet('/geometries/parcels_city_of_london.geojson')
+        apiGet('/geometries/parcels_city_of_london_and_lboro.geojson')
             .then(data => setBoundaryGeojson(data as GeoJsonObject));
     }, []);
 
