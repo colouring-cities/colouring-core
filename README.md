@@ -1,19 +1,18 @@
-# Colouring Cities Core Platform
+# Colouring Britain Platform
 [![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors)
 ![Build status](https://github.com/colouring-cities/colouring-core/workflows/Node.js%20CI/badge.svg)
 
-How many buildings are there in a city? What are their characteristics? Where
-are they located and how do they contribute to the city? How adaptable are
-they? How long will they last, and what are the environmental and
-socio-economic implications of demolition?
+How many buildings are there in a Britain? What are their characteristics? Where
+are different types of building located? How well do they work for users/local communities? And how efficient, sustainable and resilient are they?  
 
-Colouring Cities is a web-based citizen social
-science project designed to help address these questions by crowdsourcing and
-visualising twelve categories of information on the buildings in our cities.
+Colouring Britain with website at https://colouringbritain.org/ is a research-led, free public resource, providing open spatial data on Britain's buildings. It is also an open knowledge initiative, built collectively by, and for, academia, communities, government, industry and the third sector. Any information you can add to our open platform is greatly appreciated.
+
+Colouring Britain forms part of the Colouring Cities Research Programme (CCRP), currently overseen by [The Alan Turing Institute](https://www.turing.ac.uk/research/research-projects/colouring-cities-research-programme), and developed in collaboration with international academic institutions across countries co-work on a global network of interoperable open data platforms on national building stocks, and to accelerate sharing of resources and expertise. The CCRP's overall aim is to help improve the quality, efficiency, resilience and sustainability of buildings, and urban areas, and to accelerate the move to net zero in line with United Nations Sustainable Development Goals. For further information please see http://colouringcities.org/.  
+
 
 ## Structure
 
-This repository will contain open-source code for the project which:
+This repository contain open-source code for the project which:
 
 - stores building footprint polygons and source metadata
 - allows site users to record building attribute data
@@ -23,6 +22,9 @@ This repository will contain open-source code for the project which:
 Building attribute data collected as part of the project will be made available
 for download under a liberal open data license
 ([ODbL](https://opendatacommons.org/licenses/odbl/1.0/)).
+
+## Project Board and Issues
+To view all of the issue relating to Colouring Britain (and their current status) please visit the [Colouring Britain Project](https://github.com/orgs/colouring-cities/projects/4).
 
 ## Setup and run
 
@@ -55,13 +57,10 @@ _Last updated December 2021_
 If you are having problems with the application, first look here: [troubleshooting](docs/troubleshooting.md) to see if there is a solution for your problem.
 (Also, please consider updating this document if you encounter and problems and manage to solve them!)
 
-## Acknowledgements
+## History & core acknowledgements - updated March 2025
 
-Colouring London was set up at the Centre for Advanced Spatial
-Analysis (CASA), University College London and is now based at The Alan Turing Institute.
-Ordnance Survey is providing building footprints required to collect the data,
-facilitated by the Greater London Authority (GLA), and giving access to its API
-and technical support.
+Colouring London was set up at the Centre for Advanced Spatial Analysis, UCL in 2016 as part of EPSRC funded doctoral research, undertaken by Polly Hudson and supported by Professors Mike Batty, Andrew Hudson-Smith and Elsa Aracute. Ordnance Survey, the Greater London Authority and Historic England were major contributors at this stage. The Colouring London prototype built on previous work into public spatial data platforms integrating microspatial data on building stocks - and into methods for co-developing free physical and technical tools to support sustainable urban development through cross sector collaboration- undertaken at The Building Exploratory charitable trust (London) in the 1990s. Tom Russell was responsible for original technical design and open licence strategy and selection. In 2020 when the  initiative moved to The Alan Turing Institute where the international Colouring Cities Research Programme (CCRP) was set up. Since 2024 the UK RSE team, led by Mateusz Konieczny, and funded by Turing and Loughborough, has begun joint work with CCRP research software engineering teams in Germany (IOER), Sweden (Malardalen University) and Canada (Concordia University). Special thanks go to Dr Falli Palaiologou (CCRP Co-I), to Will Taylor, Dr Alden Conner, Dr Dr Allaine Cerwonka, Dr Flora Roumpani & Professor Jon Crowcroft at Turing, and to Dr Taimaz Larimian (Loughborough University) in the UK; in Germany by Dr Robert Hecht, Dr Hendrik Herold and Professor Martin Behnisch (IOER); in Sweden by Dr Allan Hawas (Malardalen University); in Canada by Oriola Gavalda and Professor Ursula Eicker (Concordia University); in Greece by Dr Athina Vlachou (NTUA) and Dr Alcestis Rodi (University of Patras); in Australia by Professor Chris Pettit and Dr Matthew Ng (UNSW); in Kenya by Dr George Musumba (Dedan Kimathi University of Technology); in Lebanon by Dr Sara Najem (AUB); in Bahrain by Dr Wafa Alghatam (University of Bahrain); for Colombia by Dr Fernando Benitez (St Andrew's University), and for Indonesia by Dr Zahratu Shabrina (KCL). We are grateful to the many other individuals and organisations who have contributed to the resarch programme since 2016 and who are helping it expand and improve today.
+
 
 ## License
 

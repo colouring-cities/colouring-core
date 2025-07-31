@@ -1,11 +1,12 @@
 {
-    "cityName": "Cities",
+
+    "cityName": "Britain",
     "institution": "The Alan Turing Institute",
-    "projectBlurb": "Colouring {City Name} is part of Colouring Cities.",
+    "projectBlurb": "Colouring Britain is part of Colouring Cities.",
     
-    "githubURL": "https://github.com/colouring-cities/colouring-core",
-    "manualURL": "https://github.com/colouring-cities/manual/wiki/COLOURING-BRITAIN",
-    "privacyStatement": "{Privacy statement goes here}",
+    "githubURL": "https://github.com/colouring-cities/colouring-britain",
+    "manualURL": "https://github.com/colouring-cities/manual/wiki/M3.-COLOURING-BRITAIN",
+    "privacyStatement": "Colouring Britain stores your data at The Alan Turing Institute in London behind the organisation’s firewall in a secure database using industry standard practices",
 
     "initialMapPosition": [ 51.5245255, -0.1338422 ],
     "initialZoomLevel": 16,
@@ -13,8 +14,8 @@
     "postcode": "Postcode",
     "energy_rating": "Building Research Establishment Environmental Assessment Method (BREEAM) rating [<a href='https://bregroup.com/products/breeam/how-breeam-works'>More info</a>]",
 
-    "bbox": [-61149.622628, 6667754.851372, 37183, 6744803.375884],
+    "bbox": [-1227219, 6390006, 232268, 8640082],
 
-    "basemapTileUrl": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-    "baseAttribution": "Building attribute data is © Colouring Cities contributors. Basemap © <a href=https://www.openstreetmap.org/copyright>OpenStreetMap contributors</a>. Building © MODIFY TO PROVIDE RELEVANT INFO"
+    "basemapTileUrl": "https://api.os.uk/maps/raster/v1/zxy/Light_3857/{z}/{x}/{y}.png?key=UVWEspgInusDKKYANE5bmyddoEmCSD4r",
+    "baseAttribution": "Building attribute data is © Colouring Cities contributors. Maps contain OS data © Crown copyright: OS Maps baselayers (OS Light Basemap) and building outlines. <a href=/ordnance-survey-licence.html>OS licence</a>, search results are powered by Code-Point® Open on <a href=https://github.com/colouring-cities/colouring-britain/issues/www.nationalarchives.gov.uk/doc/open-government-licence/version/3/>OGL license</a>"
 }

@@ -403,6 +403,12 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: null,
         example: ["", "", ""],
     },
+    building_footprint_issues: {
+        category: Category.Location,
+        title: "Please lets us know of any inaccuracies here",
+        tooltip: "The most significant problem should be first",
+        example: ["", ""],
+    },
     
     /**
      * UPRNs is not part of the buildings table, but the string fields 
@@ -577,6 +583,42 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Best estimate for when the front/facade of the building was constructed.",
         example: 1900,
     },
+    date_source: {
+        category: Category.AgeHistory,
+        title: "Historical source type",
+        tooltip: "Specific historical data source type for the building dates above.",
+        items: [
+            "Official conservation area appraisals",
+            "Pevsner Guides",
+            "Victoria County History",
+            "Survey of London",
+            "Local history publication (book/record)",
+            "Other publication",
+            "Local history website",
+            "Other website",
+            "National Heritage List for England",
+            "Other database or gazetteer",
+            "Historical map",
+            "Film/Video",
+            "Other archive document",
+            "Expert knowledge of building",
+            "Expert estimate from image",
+            "Other"
+        ],
+        example: "",
+    },
+    date_source_detail: {
+        category: Category.AgeHistory,
+        title: "Source details",
+        tooltip: "References for date source (max 500 characters)",
+        example: "",
+    },
+    date_link: {
+        category: Category.AgeHistory,
+        title: "Historical source link(s)",
+        tooltip: "URL(s) for historical data source(s) - Historical data source(s)",
+        example: ["", "", ""],
+    },
     date_source_type: {
         category: Category.AgeHistory,
         title: "Source type",
@@ -586,8 +628,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_source_links: {
         category: Category.AgeHistory,
-        title: "Alternative Source link(s)",
-        tooltip: null,
+        title: "Source link(s)",
+        tooltip: "URL(s) for historical data source(s) - Alternative data source(s)",
         example: ["", "", ""],
     },
     size_storeys_core: {

@@ -16,15 +16,24 @@ import { BoroughLabelLayer } from './layers/borough-label-layer';
 import { ParcelBoundaryLayer } from './layers/parcel-boundary-layer';
 import { HistoricDataLayer } from './layers/historic-data-layer';
 import { HistoricMapLayer } from './layers/historic-map-layer';
+import { HistoricMapLayerWithoutFill } from './layers/historic-map-without-fill-layer';
+import { HistoricMapLayerLeicestershire } from './layers/historic-map-leicestershire-layer';
+import { AerialPhotosMapLayer } from './layers/aerial-photos-map-layer';
+import { OpenStreetMapLayer } from './layers/openstreetmap-layer';
 import { FloodBoundaryLayer } from './layers/flood-boundary-layer';
 import { ConservationAreaBoundaryLayer } from './layers/conservation-boundary-layer';
 import { VistaBoundaryLayer } from './layers/vista-boundary-layer';
+import { CeremonialCountiesLayer } from './layers/ceremonial-counties-layer';
+import { RegionsLayer } from './layers/regions-layer';
+import { MotorwaysLayer } from './layers/motorways-layer';
 import { HousingBoundaryLayer } from './layers/housing-boundary-layer';
 import { CreativeBoundaryLayer } from './layers/creative-boundary-layer';
 import { BuildingBaseLayer } from './layers/building-base-layer';
 import { BuildingDataLayer } from './layers/building-data-layer';
 import { BuildingNumbersLayer } from './layers/building-numbers-layer';
 import { BuildingHighlightLayer } from './layers/building-highlight-layer';
+import { HistoricalFootprintsLayer } from './layers/historical-footprints-layer';
+import { GreenbeltLayer } from './layers/greenbelt-layer';
 
 import { Legend } from './legend';
 import SearchBox from './search-box';
@@ -36,9 +45,17 @@ import { FloodSwitcher } from './flood-switcher';
 import { ConservationAreaSwitcher } from './conservation-switcher';
 import { HistoricDataSwitcher } from './historic-data-switcher';
 import { HistoricMapSwitcher } from './historic-map-switcher';
+import { HistoricMapLeicestershireSwitcher } from './historic-map-leicestershire-switcher';
+import { AerialPhotosMapSwitcher } from './aerial-photos-map-switcher';
+import { HistoricalFootprintsSwitcher } from './historical-footprints-switcher';
+import { OpenStreetMapSwitcher } from './openstreetmap-switcher';
 import { VistaSwitcher } from './vista-switcher';
+import { MotorwaysSwitcher } from './motorways-switcher';
+import { RegionsSwitcher } from './regions-switcher';
+import { CeremonialCountiesSwitcher } from './ceremonial-counties-switcher';
 import { CreativeSwitcher } from './creative-switcher';
 import { HousingSwitcher } from './housing-switcher';
+import { GreenbeltSwitcher } from './greenbelt-switcher';
 import { EditableBuildingsSwitcher } from './editable-buildings-switcher';
 import { BuildingMapTileset } from '../config/tileserver-config';
 import { useDisplayPreferences } from '../displayPreferences-context';
@@ -92,7 +109,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
             <MapContainer
                 center={initialMapViewport.position}
                 zoom={initialMapViewport.zoom}
-                minZoom={9}
+                minZoom={7}
                 maxZoom={18}
                 doubleClickZoom={false}
                 zoomControl={false}
@@ -108,14 +125,20 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     style={{zIndex: 50}}
                 >
                     <CityBaseMapLayer theme={darkLightTheme} />
-                    <BuildingBaseLayer theme={darkLightTheme} />
+                    <OpenStreetMapLayer/>
                 </Pane>
 
                 <Pane
                     name='cc-overlay-pane-shown-behind-buildings'
-                    style={{zIndex: 199}}
+                    style={{zIndex: 190}}
                 >
-                    <ConservationAreaBoundaryLayer/>
+                </Pane>
+
+                <Pane
+                    name={'cc-base-building-pane'}
+                    style={{zIndex: 195}}
+                >
+                    <BuildingBaseLayer theme={darkLightTheme} />
                 </Pane>
 
                 {
@@ -130,15 +153,24 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     name='cc-overlay-pane'
                     style={{zIndex: 300}}
                 >
+                    <ConservationAreaBoundaryLayer/>
                     <CityBoundaryLayer/>
                     <HistoricDataLayer revisionId={revisionId} />
-                    <HistoricMapLayer revisionId={revisionId} />
+                    <HistoricMapLayer />
+                    <HistoricMapLayerWithoutFill mapColourScale={mapColourScale}/>
+                    <HistoricMapLayerLeicestershire />
+                    <AerialPhotosMapLayer revisionId={revisionId} />
                     <BoroughBoundaryLayer/>
                     <ParcelBoundaryLayer/>
                     <FloodBoundaryLayer/>
                     <VistaBoundaryLayer/>
+                    <CeremonialCountiesLayer/>
+                    <RegionsLayer/>
+                    <GreenbeltLayer/>
+                    <MotorwaysLayer/>
                     <HousingBoundaryLayer/>
                     <CreativeBoundaryLayer/>
+                    <HistoricalFootprintsLayer/>
                     <BuildingNumbersLayer revisionId={revisionId} />
                     {
                         selectedBuildingId &&
@@ -176,10 +208,17 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                         <ConservationAreaSwitcher/>
                         { /* <HistoricMapSwitcher/> */ }
                         { /* <HistoricDataSwitcher/> */ }
+                        { /* <HistoricMapLeicestershireSwitcher/> */ }
                         <VistaSwitcher />
                         <HousingSwitcher />
                         <CreativeSwitcher />
+                        <RegionsSwitcher />
+                        <CeremonialCountiesSwitcher />
+                        <GreenbeltSwitcher />
+                        <MotorwaysSwitcher />
+                        <AerialPhotosMapSwitcher/>
                         <EditableBuildingsSwitcher />
+                        <OpenStreetMapSwitcher />
                     </>
                     : <></>
                 }

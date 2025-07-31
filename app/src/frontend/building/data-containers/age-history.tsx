@@ -27,31 +27,65 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
     const currentBuildingConstructionYear = building.date_year || undefined;
 
     const { historicData, historicDataSwitchOnClick, darkLightTheme } = useDisplayPreferences();
-    const { historicMap, historicMapSwitchOnClick } = useDisplayPreferences();
+    const { historicMap, historicMapSwitchOnClick,
+            historicMapLeicestershire, historicMapLeicestershireSwitchOnClick,
+            historicalMapAndFootprintsWithoutFill, historicalMapAndFootprintsWithoutFillSwitchOnClick,
+         } = useDisplayPreferences();
 
     const switchToSurvivalMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('survival_status');
         historicMapSwitchOnClick(e);
+        historicMapLeicestershireSwitchOnClick(e);
         
         if (historicData === 'enabled') {
-           historicDataSwitchOnClick(e);
-        }
-    }
+            historicDataSwitchOnClick(e);
+         }
+         if (historicalMapAndFootprintsWithoutFill === 'enabled') {
+            historicalMapAndFootprintsWithoutFillSwitchOnClick(e);
+         }
+      }
 
     const switchToSurvivalDataStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('survival_status');
         historicDataSwitchOnClick(e);
 
+        // HistoricDataLayer includes these two on their own
         if (historicMap === 'enabled') {
             historicMapSwitchOnClick(e);
+        }
+        if (historicMapLeicestershire === 'enabled') {
+            historicMapLeicestershireSwitchOnClick(e);
+        }
+
+        // nearly the same as one being enabled
+        if (historicalMapAndFootprintsWithoutFill === 'enabled') {
+            historicalMapAndFootprintsWithoutFillSwitchOnClick(e);
+        }
+    }
+
+    const switchToSurvivalDataStyleFootprintsOnly = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('survival_status');
+        historicalMapAndFootprintsWithoutFillSwitchOnClick(e);
+
+        if (historicData === 'enabled') {
+            historicDataSwitchOnClick(e);
+        }
+
+        // HistoricDataLayer includes these two on their own
+        if (historicMap === 'enabled') {
+            historicMapSwitchOnClick(e);
+        }
+        if (historicMapLeicestershire === 'enabled') {
+            historicMapLeicestershireSwitchOnClick(e);
         }
     }
 
     const switchToHistoricalPeriodMapStyle = (e) => {
         e.preventDefault();
-        props.onMapColourScale('typology_style_period')
+        switchToMapStyleHideHistoricMaps(e, 'typology_style_period')
     }
 
     const switchToAgeMapStyle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -77,6 +111,12 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
         }
         if (historicMap === 'enabled') {
             historicMapSwitchOnClick(event);
+        }
+        if (historicalMapAndFootprintsWithoutFill === 'enabled') {
+            historicalMapAndFootprintsWithoutFillSwitchOnClick(event);
+        }
+        if (historicMapLeicestershire === 'enabled') {
+            historicMapLeicestershireSwitchOnClick(event);
         }
         props.onMapColourScale(map_style);
     }
@@ -242,10 +282,25 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     options={dataFields.date_source_type.items}
                     placeholder={dataFields.date_source_type.example}
                     />
+                <SelectDataEntry
+                    title={dataFields.date_source.title}
+                    slug="date_source"
+                    value={props.building.date_source}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    tooltip={dataFields.date_source.tooltip}
+                    options={dataFields.date_source.items}
+                    placeholder={dataFields.date_source.example}
+                    />
                 {(props.building.date_source_type == dataFields.date_source_type.items[0] ||
                     props.building.date_source_type == dataFields.date_source_type.items[1] ||
-                    props.building.date_source_type == null) ? <></> :
-                    <>
+                    props.building.date_source_type == null) 
+                    && (props.building.date_source == dataFields.date_source.items[0] ||
+                        props.building.date_source == dataFields.date_source.items[1] ||
+                        props.building.date_source == null) 
+                    ? <></> 
+                    : <>
                         <MultiDataEntry
                             title={dataFields.date_source_links.title}
                             slug="date_source_links"
@@ -525,20 +580,29 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 </div>
                 {(historicMap === "enabled") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
-                        Click to hide the 1890s OS historical map.
+                        Click to hide OS historical map.
                     </button>
                 :
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalMapStyle}>
-                        Click to show the 1890s OS historical map.
+                        Click to show OS historical map.
                     </button>
                 }
                 {(historicData === "enabled") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
-                        Click to hide the 1890s OS historical map with modern footprints.
+                        Click to hide the OS historical map with modern footprints and fill indicating survival status.
                     </button>
                 :
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalDataStyle}>
-                        Click to show the 1890s OS historical map with modern footprints.
+                        Click to show the OS historical map with modern footprints and fill indicating survival status.
+                    </button>
+                }
+                {(historicalMapAndFootprintsWithoutFill === "enabled") ? 
+                    <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToAgeMapStyle}>
+                        Click to hide the OS historical map with modern footprints, without fill.
+                    </button>
+                :
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={switchToSurvivalDataStyleFootprintsOnly}>
+                        Click to show the OS historical map with modern footprints, without fill.
                     </button>
                 }
                 <SelectDataEntry
