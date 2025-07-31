@@ -1102,31 +1102,31 @@
     </Style>
     <Style name="sust_dec">
         <Rule>
-            <Filter>[sust_dec] = A</Filter>
+            <Filter>[sust_dec] = 'A'</Filter>
             <PolygonSymbolizer fill="#007f3d" />
         </Rule>
         <Rule>
-            <Filter>[sust_dec] = B</Filter>
+            <Filter>[sust_dec] = 'B'</Filter>
             <PolygonSymbolizer fill="#2c9f29" />
         </Rule>
         <Rule>
-            <Filter>[sust_dec] = C</Filter>
+            <Filter>[sust_dec] = 'C'</Filter>
             <PolygonSymbolizer fill="#9dcb3c" />
         </Rule>
         <Rule>
-            <Filter>[sust_dec] = D</Filter>
+            <Filter>[sust_dec] = 'D'</Filter>
             <PolygonSymbolizer fill="#fff200" />
         </Rule>
         <Rule>
-            <Filter>[sust_dec] = E</Filter>
+            <Filter>[sust_dec] = 'E'</Filter>
             <PolygonSymbolizer fill="#f7af1d" />
         </Rule>
         <Rule>
-            <Filter>[sust_dec] = F</Filter>
+            <Filter>[sust_dec] = 'F'</Filter>
             <PolygonSymbolizer fill="#ed6823" />
         </Rule>
         <Rule>
-            <Filter>[sust_dec] = G</Filter>
+            <Filter>[sust_dec] = 'G'</Filter>
             <PolygonSymbolizer fill="#e31d23" />
         </Rule>
 
@@ -2086,31 +2086,31 @@
     </Style>
     <Style name="sust_aggregate_estimate_epc">
         <Rule>
-            <Filter>[sust_aggregate_estimate_epc] = A</Filter>
+            <Filter>[sust_aggregate_estimate_epc] = 'A'</Filter>
             <PolygonSymbolizer fill="#007f3d" />
         </Rule>
         <Rule>
-            <Filter>[sust_aggregate_estimate_epc] = B</Filter>
+            <Filter>[sust_aggregate_estimate_epc] = 'B'</Filter>
             <PolygonSymbolizer fill="#2c9f29" />
         </Rule>
         <Rule>
-            <Filter>[sust_aggregate_estimate_epc] = C</Filter>
+            <Filter>[sust_aggregate_estimate_epc] = 'C'</Filter>
             <PolygonSymbolizer fill="#9dcb3c" />
         </Rule>
         <Rule>
-            <Filter>[sust_aggregate_estimate_epc] = D</Filter>
+            <Filter>[sust_aggregate_estimate_epc] = 'D'</Filter>
             <PolygonSymbolizer fill="#fff200" />
         </Rule>
         <Rule>
-            <Filter>[sust_aggregate_estimate_epc] = E</Filter>
+            <Filter>[sust_aggregate_estimate_epc] = 'E'</Filter>
             <PolygonSymbolizer fill="#f7af1d" />
         </Rule>
         <Rule>
-            <Filter>[sust_aggregate_estimate_epc] = F</Filter>
+            <Filter>[sust_aggregate_estimate_epc] = 'F'</Filter>
             <PolygonSymbolizer fill="#ed6823" />
         </Rule>
         <Rule>
-            <Filter>[sust_aggregate_estimate_epc] = G</Filter>
+            <Filter>[sust_aggregate_estimate_epc] = 'G'</Filter>
             <PolygonSymbolizer fill="#e31d23" />
         </Rule>
 
