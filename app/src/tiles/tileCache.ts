@@ -16,7 +16,7 @@
 // Using node-fs package to patch fs
 // for node >10 we could drop this in favour of fs.mkdir (which has recursive option)
 // and then use stdlib `import fs from 'fs';`
-import { Image } from 'mapnik';
+import { Image } from '@mapnik/mapnik';
 import fs from 'node-fs';
 import { promisify } from 'util';
 

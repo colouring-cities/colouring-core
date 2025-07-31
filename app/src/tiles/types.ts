@@ -1,4 +1,4 @@
-import { Image } from 'mapnik';
+import { Image } from '@mapnik/mapnik';
 import { Sharp } from 'sharp';
 
 /**
