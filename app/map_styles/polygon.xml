@@ -2036,41 +2036,43 @@
         <Rule>
             <Filter>[sust_aggregate_estimate_epc] = A</Filter>
             <PolygonSymbolizer fill="#007f3d" />
+            <LineSymbolizer stroke="#007f3d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_aggregate_estimate_epc] = B</Filter>
             <PolygonSymbolizer fill="#2c9f29" />
+            <LineSymbolizer stroke="#2c9f29" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_aggregate_estimate_epc] = C</Filter>
             <PolygonSymbolizer fill="#9dcb3c" />
+            <LineSymbolizer stroke="#9dcb3c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_aggregate_estimate_epc] = D</Filter>
             <PolygonSymbolizer fill="#fff200" />
+            <LineSymbolizer stroke="#fff200" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_aggregate_estimate_epc] = E</Filter>
             <PolygonSymbolizer fill="#f7af1d" />
+            <LineSymbolizer stroke="#f7af1d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_aggregate_estimate_epc] = F</Filter>
             <PolygonSymbolizer fill="#ed6823" />
+            <LineSymbolizer stroke="#ed6823" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_aggregate_estimate_epc] = G</Filter>
             <PolygonSymbolizer fill="#e31d23" />
+            <LineSymbolizer stroke="#e31d23" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_aggregate_estimate_epc] is null</Filter>
             <PolygonSymbolizer fill="#c0c0c0" />
         </Rule>
 
-        <Rule>
-            <MaxScaleDenominator>17061</MaxScaleDenominator>
-            <MinScaleDenominator>4264</MinScaleDenominator>
-            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
-        </Rule>
         <Rule>
             <MaxScaleDenominator>4264</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
