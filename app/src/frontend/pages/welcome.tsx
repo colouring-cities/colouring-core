@@ -14,22 +14,17 @@ const Welcome = () => (
         <p>
 
             Colouring {config.cityName}  is a research-led, free public resource, providing open spatial data 
-            on {config.cityName}'s buildings. It is also an open knowledge initiative, built collectively by, 
+            on {config.cityName}'s buildings and natural environment. It is also an open knowledge initiative, built collectively by, 
             and for, academia, communities, government, industry and the third sector. 
             Any information you can add to our open platform is greatly appreciated.
-
+            New data and features are added all the time.
         </p>
         <p>
-            Colouring {config.cityName} forms part of the <a href="https://colouringcities.org/">Colouring Cities Research Programme</a> (CCRP), 
-            managed in {config.cityName} by {config.institution}. The CCRP allows international academic institutions to co-work on a global network 
-            of interoperable open data platforms on national building stocks, and to accelerate sharing of resources and expertise. 
-            The CCRP's overall aim is to help improve the quality, efficiency, resilience and sustainability of buildings, 
-            and urban areas, and to accelerate the move to net zero in line with United Nations Sustainable Development Goals.
-        </p>
-        <p>
-            New data and features are added all the time. We are keen to engage as many people as possible in platform development. 
-            Whether you are a resident, or a stakeholder in academia, government, industry or the third sector, any help you can give 
-            colouring-in our Colouring Cities maps, and enriching and verifying our open databases with your knowledge, is greatly appreciated.
+            Colouring {config.cityName} is managed by {config.institution}.
+            It forms part of the <a href="https://colouringcities.org/">Colouring Cities Research Programme</a> (CCRP), which brings together academic institutions worldwide, interested in co-working on a global network
+            of interoperable open data platforms. These provide spatial data on buildings, and the built and natural infrastructure, and support cross-sector knowledge and resource sharing.
+            The CCRP works to improve environmental quality, resilience and sustainability, and to accelerate progress towards net zero, and other United Nations Sustainable Development Goals.
+            It is overseen by an informal international academic consortium, made up of representatives from CCRP expert groups and Global Hubs.
         </p>
         <p>
             All data collected (e.g <a href="/data-extracts.html">data-extracts</a>) 
