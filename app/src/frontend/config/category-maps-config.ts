@@ -235,6 +235,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Energy rating (EPC)',
                 description: 'Domestic energy rating (EPC Rating)',
+                disclaimer: 'This map shows official 2025 EPC data, required for new, sold and rented buildings. Please note EPC ratings may be out-of-date, as retrofit may have occurred since certification.',
                 elements: [
                     { color: "#007f3d", text: 'A' },
                     { color: "#2c9f29", text: 'B' },
@@ -265,7 +266,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'planning_applications_status_all',
             legend: {
                 title: 'All planning applications available from GLA (official data)',
-                disclaimer: 'The map shows official data available from the GLA Planning London Datahub. What you are looking at is mainly applications from 2019 onwards.',
+                disclaimer: 'This map shows official data available from the GLA Planning London Datahub. What you are looking at is mainly applications from 2019 onwards.',
                 elements: [
                     { color: '#a040a0', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
@@ -280,7 +281,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'planning_applications_status_recent',
             legend: {
                 title: 'The last 12 months - planning applications submissions/decisions (official data)',
-                disclaimer: 'The map shows applications where the submission or decision data falls within the last 12 months.',
+                disclaimer: 'This map shows applications where the submission or decision data falls within the last 12 months.',
                 elements: [
                     { color: '#a040a0', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },
@@ -295,7 +296,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'planning_applications_status_very_recent',
             legend: {
                 title: 'Last 30 days - planning applications submissions/decisions (official data)',
-                disclaimer: 'The map shows applications where the submission or decision data falls within last 30 days.',
+                disclaimer: 'This map shows applications where the submission or decision data falls within last 30 days.',
                 elements: [
                     { color: '#a040a0', text: 'Submitted, awaiting decision' },
                     { color: '#fff200', text: 'Appeal In Progress' },

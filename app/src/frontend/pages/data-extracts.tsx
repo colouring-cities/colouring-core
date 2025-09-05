@@ -56,6 +56,9 @@ export default class DataExtracts extends React.Component<{}, DataExtractsState>
                     <p>
                     By downloading data extracts from this site, you agree to the <Link to="/data-accuracy.html">data accuracy agreement</Link>.
                     </p>
+                    <p>
+                    Please note that certain datasets including building footprint geometries are not currently included as we are still undertaking assessment of these. Improvements to the download section will be made over the next six months.
+                    </p>
 
                     {
                         this.state.extracts == undefined ?
