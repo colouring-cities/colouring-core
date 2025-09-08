@@ -2062,7 +2062,7 @@
             <PolygonSymbolizer fill="#e31d23" />
         </Rule>
         <Rule>
-            <Filter>[sust_aggregate_estimate_epc] = null</Filter>
+            <Filter>[sust_aggregate_estimate_epc] is null</Filter>
             <PolygonSymbolizer fill="#c0c0c0" />
         </Rule>
 
