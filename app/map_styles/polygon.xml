@@ -2061,6 +2061,10 @@
             <Filter>[sust_aggregate_estimate_epc] = G</Filter>
             <PolygonSymbolizer fill="#e31d23" />
         </Rule>
+        <Rule>
+            <Filter>[sust_aggregate_estimate_epc] = null</Filter>
+            <PolygonSymbolizer fill="#c0c0c0" />
+        </Rule>
 
         <Rule>
             <MaxScaleDenominator>17061</MaxScaleDenominator>
