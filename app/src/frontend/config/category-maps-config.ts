@@ -218,7 +218,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             mapStyle: 'sust_aggregate_estimate_epc',
             legend: {
                 title: 'Energy rating (EPC)',
-                description: 'Domestic energy rating (EPC Rating)',
+                description: 'Residential energy rating (EPC Rating)',
                 disclaimer: 'This map shows official 2025 EPC data, required for new, sold and rented buildings. Please note EPC ratings may be out-of-date, as retrofit may have occurred since certification.',
                 elements: [
                     { color: "#007f3d", text: 'A' },
