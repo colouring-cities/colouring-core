@@ -215,10 +215,11 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
     ],
     [Category.EnergyPerformance]: [
         {
-            mapStyle: 'sust_dec',
+            mapStyle: 'sust_aggregate_estimate_epc',
             legend: {
-                title: 'Energy rating (DEC)',
-                description: 'Non-domestic energy rating (DEC Rating)',
+                title: 'Energy rating (EPC)',
+                description: 'Domestic energy rating (EPC Rating)',
+                disclaimer: 'This map shows official 2025 EPC data, required for new, sold and rented buildings. Please note EPC ratings may be out-of-date, as retrofit may have occurred since certification.',
                 elements: [
                     { color: "#007f3d", text: 'A' },
                     { color: "#2c9f29", text: 'B' },
@@ -231,11 +232,10 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         },
         {
-            mapStyle: 'sust_aggregate_estimate_epc',
+            mapStyle: 'sust_dec',
             legend: {
-                title: 'Energy rating (EPC)',
-                description: 'Domestic energy rating (EPC Rating)',
-                disclaimer: 'This map shows official 2025 EPC data, required for new, sold and rented buildings. Please note EPC ratings may be out-of-date, as retrofit may have occurred since certification.',
+                title: 'Energy rating (DEC)',
+                description: 'Non-domestic energy rating (DEC Rating)',
                 elements: [
                     { color: "#007f3d", text: 'A' },
                     { color: "#2c9f29", text: 'B' },
