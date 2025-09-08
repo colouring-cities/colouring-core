@@ -33,6 +33,72 @@ const EnergyPerformanceView: React.FunctionComponent<CategoryViewProps> = (props
     return (
         <form>
             <DataEntryGroup name="Energy Performance" collapsed={subcat==null || subcat!="1"}>
+                <DataEntryGroup name="Official Energy Rating" collapsed={subcat==null || subcat!="1"}>
+                    <SelectDataEntry
+                        title={dataFields.sust_aggregate_estimate_epc.title}
+                        slug="sust_aggregate_estimate_epc"
+                        value={props.building.sust_aggregate_estimate_epc}
+                        tooltip={dataFields.sust_aggregate_estimate_epc.tooltip}
+                        options={EnergyCategoryOptions}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                    />
+                    <Verification
+                        slug="sust_aggregate_estimate_epc"
+                        allow_verify={props.user !== undefined && props.building.sust_aggregate_estimate_epc !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("sust_aggregate_estimate_epc")}
+                        user_verified_as={props.user_verified.sust_aggregate_estimate_epc}
+                        verified_count={props.building.verified.sust_aggregate_estimate_epc}
+                    />
+                    <SelectDataEntry
+                        title={dataFields.sust_dec.title}
+                        slug="sust_dec"
+                        value={props.building.sust_dec}
+                        tooltip={dataFields.sust_dec.tooltip}
+                        options={EnergyCategoryOptions}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                    />
+                    <Verification
+                        slug="sust_dec"
+                        allow_verify={props.user !== undefined && props.building.sust_dec !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("sust_dec")}
+                        user_verified_as={props.user_verified.sust_dec}
+                        verified_count={props.building.verified.sust_dec}
+                    />
+                    <SelectDataEntry
+                        title={dataFields.sust_energy_rating_source_type.title}
+                        slug="sust_energy_rating_source_type"
+                        value={props.building.sust_energy_rating_source_type}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.sust_energy_rating_source_type.tooltip}
+                        options={dataFields.sust_energy_rating_source_type.items}
+                        placeholder={dataFields.sust_energy_rating_source_type.example}
+                        />
+                    {(props.building.sust_energy_rating_source_type == dataFields.sust_energy_rating_source_type.items[0] ||
+                        props.building.sust_energy_rating_source_type == dataFields.sust_energy_rating_source_type.items[1] ||
+                        props.building.sust_energy_rating_source_type == null) ? <></> :
+                        <>
+                            <DataEntry
+                                title={dataFields.sust_energy_rating_source_link.title}
+                                slug="sust_energy_rating_source_link"
+                                value={props.building.sust_energy_rating_source_link}
+                                mode={props.mode}
+                                copy={props.copy}
+                                onChange={props.onChange}
+                                tooltip={dataFields.sust_energy_rating_source_link.tooltip}
+                                placeholder="https://..."
+                                isUrl={true}
+                            />
+                        </>
+                    }
+                </DataEntryGroup>
                 <DataEntryGroup name="Official Environmental Quality Rating" collapsed={subcat==null || subcat!="1"}>
                     <SelectDataEntry
                         title={dataFields.sust_breeam_rating.title}
@@ -75,72 +141,6 @@ const EnergyPerformanceView: React.FunctionComponent<CategoryViewProps> = (props
                                 copy={props.copy}
                                 onChange={props.onChange}
                                 tooltip={dataFields.sust_breeam_rating_source_link.tooltip}
-                                placeholder="https://..."
-                                isUrl={true}
-                            />
-                        </>
-                    }
-                </DataEntryGroup>
-                <DataEntryGroup name="Official Energy Rating" collapsed={subcat==null || subcat!="2"}>
-                    <SelectDataEntry
-                        title={dataFields.sust_dec.title}
-                        slug="sust_dec"
-                        value={props.building.sust_dec}
-                        tooltip={dataFields.sust_dec.tooltip}
-                        options={EnergyCategoryOptions}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                    />
-                    <Verification
-                        slug="sust_dec"
-                        allow_verify={props.user !== undefined && props.building.sust_dec !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("sust_dec")}
-                        user_verified_as={props.user_verified.sust_dec}
-                        verified_count={props.building.verified.sust_dec}
-                    />
-                    <SelectDataEntry
-                        title={dataFields.sust_aggregate_estimate_epc.title}
-                        slug="sust_aggregate_estimate_epc"
-                        value={props.building.sust_aggregate_estimate_epc}
-                        tooltip={dataFields.sust_aggregate_estimate_epc.tooltip}
-                        options={EnergyCategoryOptions}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                    />
-                    <Verification
-                        slug="sust_aggregate_estimate_epc"
-                        allow_verify={props.user !== undefined && props.building.sust_aggregate_estimate_epc !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("sust_aggregate_estimate_epc")}
-                        user_verified_as={props.user_verified.sust_aggregate_estimate_epc}
-                        verified_count={props.building.verified.sust_aggregate_estimate_epc}
-                    />
-                    <SelectDataEntry
-                        title={dataFields.sust_energy_rating_source_type.title}
-                        slug="sust_energy_rating_source_type"
-                        value={props.building.sust_energy_rating_source_type}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.sust_energy_rating_source_type.tooltip}
-                        options={dataFields.sust_energy_rating_source_type.items}
-                        placeholder={dataFields.sust_energy_rating_source_type.example}
-                        />
-                    {(props.building.sust_energy_rating_source_type == dataFields.sust_energy_rating_source_type.items[0] ||
-                        props.building.sust_energy_rating_source_type == dataFields.sust_energy_rating_source_type.items[1] ||
-                        props.building.sust_energy_rating_source_type == null) ? <></> :
-                        <>
-                            <DataEntry
-                                title={dataFields.sust_energy_rating_source_link.title}
-                                slug="sust_energy_rating_source_link"
-                                value={props.building.sust_energy_rating_source_link}
-                                mode={props.mode}
-                                copy={props.copy}
-                                onChange={props.onChange}
-                                tooltip={dataFields.sust_energy_rating_source_link.tooltip}
                                 placeholder="https://..."
                                 isUrl={true}
                             />
