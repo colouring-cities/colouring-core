@@ -33,54 +33,6 @@ const EnergyPerformanceView: React.FunctionComponent<CategoryViewProps> = (props
     return (
         <form>
             <DataEntryGroup name="Energy Performance" collapsed={subcat==null || subcat!="1"}>
-                <DataEntryGroup name="Official Environmental Quality Rating" collapsed={subcat==null || subcat!="1"}>
-                    <SelectDataEntry
-                        title={dataFields.sust_breeam_rating.title}
-                        slug="sust_breeam_rating"
-                        value={props.building.sust_breeam_rating}
-                        tooltip={dataFields.sust_breeam_rating.tooltip}
-                        options={BreeamRatingOptions}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                    />
-                    <Verification
-                        slug="sust_breeam_rating"
-                        allow_verify={props.user !== undefined && props.building.sust_breeam_rating !== null && !props.edited}
-                        onVerify={props.onVerify}
-                        user_verified={props.user_verified.hasOwnProperty("sust_breeam_rating")}
-                        user_verified_as={props.user_verified.sust_breeam_rating}
-                        verified_count={props.building.verified.sust_breeam_rating}
-                    />
-                    <SelectDataEntry
-                        title={dataFields.sust_breeam_rating_source_type.title}
-                        slug="sust_breeam_rating_source_type"
-                        value={props.building.sust_breeam_rating_source_type}
-                        mode={props.mode}
-                        copy={props.copy}
-                        onChange={props.onChange}
-                        tooltip={dataFields.sust_breeam_rating_source_type.tooltip}
-                        options={dataFields.sust_breeam_rating_source_type.items}
-                        placeholder={dataFields.sust_breeam_rating_source_type.example}
-                        />
-                    {(props.building.sust_breeam_rating_source_type == dataFields.sust_breeam_rating_source_type.items[0] ||
-                        props.building.sust_breeam_rating_source_type == dataFields.sust_breeam_rating_source_type.items[1] ||
-                        props.building.sust_breeam_rating_source_type == null) ? <></> :
-                        <>
-                            <DataEntry
-                                title={dataFields.sust_breeam_rating_source_link.title}
-                                slug="sust_breeam_rating_source_link"
-                                value={props.building.sust_breeam_rating_source_link}
-                                mode={props.mode}
-                                copy={props.copy}
-                                onChange={props.onChange}
-                                tooltip={dataFields.sust_breeam_rating_source_link.tooltip}
-                                placeholder="https://..."
-                                isUrl={true}
-                            />
-                        </>
-                    }
-                </DataEntryGroup>
                 <DataEntryGroup name="Official Energy Rating" collapsed={subcat==null || subcat!="2"}>
                     <SelectDataEntry
                         title={dataFields.sust_dec.title}
@@ -141,6 +93,54 @@ const EnergyPerformanceView: React.FunctionComponent<CategoryViewProps> = (props
                                 copy={props.copy}
                                 onChange={props.onChange}
                                 tooltip={dataFields.sust_energy_rating_source_link.tooltip}
+                                placeholder="https://..."
+                                isUrl={true}
+                            />
+                        </>
+                    }
+                </DataEntryGroup>
+                <DataEntryGroup name="Official Environmental Quality Rating" collapsed={subcat==null || subcat!="1"}>
+                    <SelectDataEntry
+                        title={dataFields.sust_breeam_rating.title}
+                        slug="sust_breeam_rating"
+                        value={props.building.sust_breeam_rating}
+                        tooltip={dataFields.sust_breeam_rating.tooltip}
+                        options={BreeamRatingOptions}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                    />
+                    <Verification
+                        slug="sust_breeam_rating"
+                        allow_verify={props.user !== undefined && props.building.sust_breeam_rating !== null && !props.edited}
+                        onVerify={props.onVerify}
+                        user_verified={props.user_verified.hasOwnProperty("sust_breeam_rating")}
+                        user_verified_as={props.user_verified.sust_breeam_rating}
+                        verified_count={props.building.verified.sust_breeam_rating}
+                    />
+                    <SelectDataEntry
+                        title={dataFields.sust_breeam_rating_source_type.title}
+                        slug="sust_breeam_rating_source_type"
+                        value={props.building.sust_breeam_rating_source_type}
+                        mode={props.mode}
+                        copy={props.copy}
+                        onChange={props.onChange}
+                        tooltip={dataFields.sust_breeam_rating_source_type.tooltip}
+                        options={dataFields.sust_breeam_rating_source_type.items}
+                        placeholder={dataFields.sust_breeam_rating_source_type.example}
+                        />
+                    {(props.building.sust_breeam_rating_source_type == dataFields.sust_breeam_rating_source_type.items[0] ||
+                        props.building.sust_breeam_rating_source_type == dataFields.sust_breeam_rating_source_type.items[1] ||
+                        props.building.sust_breeam_rating_source_type == null) ? <></> :
+                        <>
+                            <DataEntry
+                                title={dataFields.sust_breeam_rating_source_link.title}
+                                slug="sust_breeam_rating_source_link"
+                                value={props.building.sust_breeam_rating_source_link}
+                                mode={props.mode}
+                                copy={props.copy}
+                                onChange={props.onChange}
+                                tooltip={dataFields.sust_breeam_rating_source_link.tooltip}
                                 placeholder="https://..."
                                 isUrl={true}
                             />
