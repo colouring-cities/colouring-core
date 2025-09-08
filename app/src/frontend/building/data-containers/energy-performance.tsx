@@ -33,7 +33,7 @@ const EnergyPerformanceView: React.FunctionComponent<CategoryViewProps> = (props
     return (
         <form>
             <DataEntryGroup name="Energy Performance" collapsed={subcat==null || subcat!="1"}>
-                <DataEntryGroup name="Official Energy Rating" collapsed={subcat==null || subcat!="2"}>
+                <DataEntryGroup name="Official Energy Rating" collapsed={subcat==null || subcat!="1"}>
                     <SelectDataEntry
                         title={dataFields.sust_aggregate_estimate_epc.title}
                         slug="sust_aggregate_estimate_epc"
