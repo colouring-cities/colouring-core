@@ -1101,14 +1101,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "",
     },
     sust_energy_rating_source_type: {
-        category: Category.WaterGreenInfrastructure,
+        category: Category.EnergyPerformance,
         title: "Source type",
         tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     sust_energy_rating_source_link: {
-        category: Category.WaterGreenInfrastructure,
+        category: Category.EnergyPerformance,
         title: "Source link",
         tooltip: null,
         example: "",
