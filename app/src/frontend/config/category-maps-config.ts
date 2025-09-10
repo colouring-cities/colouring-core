@@ -228,7 +228,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: "#f7af1d", text: 'E' },
                     { color: "#ed6823", text: 'F' },
                     { color: "#e31d23", text: 'G' },
-                    { color: "#c0c0c0", text: 'No EPC identified or non-residential.' },
+                    { color: "#909090", text: 'No EPC identified or non-residential.' },
                 ]
             },
         },
