@@ -1113,6 +1113,32 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: null,
         example: "",
     },
+    sust_aggregate_estimate_epc_source_type: {
+        category: Category.EnergyPerformance,
+        title: "Source type",
+        tooltip: null,
+        example: "",
+        items: commonSourceTypes
+    },
+    sust_aggregate_estimate_epc_source_link: {
+        category: Category.EnergyPerformance,
+        title: "Source link",
+        tooltip: null,
+        example: "",
+    },
+    sust_dec_source_type: {
+        category: Category.EnergyPerformance,
+        title: "Source type",
+        tooltip: null,
+        example: "",
+        items: commonSourceTypes
+    },
+    sust_dec_source_link: {
+        category: Category.EnergyPerformance,
+        title: "Source link",
+        tooltip: null,
+        example: "",
+    },
     sust_retrofit_date: {
         category: Category.WaterGreenInfrastructure,
         title: "Date of last significant retrofit",
