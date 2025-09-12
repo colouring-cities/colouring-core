@@ -1101,14 +1101,40 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "",
     },
     sust_energy_rating_source_type: {
-        category: Category.WaterGreenInfrastructure,
+        category: Category.EnergyPerformance,
         title: "Source type",
         tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     sust_energy_rating_source_link: {
-        category: Category.WaterGreenInfrastructure,
+        category: Category.EnergyPerformance,
+        title: "Source link",
+        tooltip: null,
+        example: "",
+    },
+    sust_aggregate_estimate_epc_source_type: {
+        category: Category.EnergyPerformance,
+        title: "Source type",
+        tooltip: null,
+        example: "",
+        items: commonSourceTypes
+    },
+    sust_aggregate_estimate_epc_source_link: {
+        category: Category.EnergyPerformance,
+        title: "Source link",
+        tooltip: null,
+        example: "",
+    },
+    sust_dec_source_type: {
+        category: Category.EnergyPerformance,
+        title: "Source type",
+        tooltip: null,
+        example: "",
+        items: commonSourceTypes
+    },
+    sust_dec_source_link: {
+        category: Category.EnergyPerformance,
         title: "Source link",
         tooltip: null,
         example: "",
