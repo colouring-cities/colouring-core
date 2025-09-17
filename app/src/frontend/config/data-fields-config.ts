@@ -1100,19 +1100,6 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Energy Performance Certificate (EPC) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher may be rented",
         example: "",
     },
-    sust_energy_rating_source_type: {
-        category: Category.EnergyPerformance,
-        title: "Source type",
-        tooltip: null,
-        example: "",
-        items: commonSourceTypes
-    },
-    sust_energy_rating_source_link: {
-        category: Category.EnergyPerformance,
-        title: "Source link",
-        tooltip: null,
-        example: "",
-    },
     sust_aggregate_estimate_epc_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
