@@ -154,7 +154,6 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     style={{zIndex: 300}}
                 >
                     <ConservationAreaBoundaryLayer/>
-                    <CityBoundaryLayer/>
                     <HistoricDataLayer revisionId={revisionId} />
                     <HistoricMapLayer />
                     <HistoricMapLayerWithoutFill mapColourScale={mapColourScale}/>
