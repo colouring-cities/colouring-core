@@ -226,7 +226,7 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
                         {(parcel === 'enabled')? 'Click to hide sample land parcel data' : 'Click to show sample land parcel data'}
                     </button>
             </DataEntryGroup>
-            <DataEntryGroup name="Original Use" collapsed={subcat==null || subcat!="4"}>
+            <DataEntryGroup name="Original (Historical) Use" collapsed={subcat==null || subcat!="4"}>
                 {(props.mapColourScale != "original_landuse") ? 
                     <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToLandUseMapStyle}>
                         {"Click here to see original land use."}
