@@ -76,7 +76,7 @@ const frontendRoute = asyncController(async (req: express.Request, res: express.
 
 function renderHTML(context, data, req, res) {
     const markup = renderToString(
-        <StaticRouter context={context} location={req.url}>
+        <StaticRouter basename={process.env.SUBDIRECTORY??''}context={context} location={req.url}>
             <App
                 user={data.user}
                 building={data.building}
