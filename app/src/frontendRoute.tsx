@@ -76,7 +76,7 @@ const frontendRoute = asyncController(async (req: express.Request, res: express.
 
 function renderHTML(context, data, req, res) {
     const markup = renderToString(
-        <StaticRouter basename={process.env.SUBDIRECTORY??''}context={context} location={req.url}>
+        <StaticRouter basename={process.env.SUBDIRECTORY??''} context={context} location={req.url}>
             <App
                 user={data.user}
                 building={data.building}
@@ -118,8 +118,8 @@ function renderHTML(context, data, req, res) {
         <style>
           @font-face {
             font-family: 'glacial_cl';
-            src: url('/fonts/glacialindifference-regular-webfont.woff2') format('woff2'),
-            url('/fonts/glacialindifference-regular-webfont.woff') format('woff');
+            src: url('${process.env.SUBDIRECTORY??''}/fonts/glacialindifference-regular-webfont.woff2') format('woff2'),
+            url('${process.env.SUBDIRECTORY??''}/fonts/glacialindifference-regular-webfont.woff') format('woff');
             font-weight: normal;
             font-style: normal;
           }
