@@ -30,7 +30,7 @@ const LandUseView: React.FunctionComponent<CategoryViewProps> = (props) => {
     
     return (
         <Fragment>
-            <DataEntryGroup name="Specific Land Use/s" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Current Land Use/s" collapsed={subcat==null || subcat!="1"}>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         Can you help us identify residential, non-residential and mixed use buildings (and verify these too)? 
