@@ -2,6 +2,7 @@
     <Style name="base_light">
         <Rule>
             <PolygonSymbolizer fill="#cccccc" />
+            <LineSymbolizer stroke="#cccccc" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <LineSymbolizer stroke="#222222aa" stroke-width="0.5" />
@@ -10,6 +11,7 @@
     <Style name="base_night">
         <Rule>
             <PolygonSymbolizer fill="#303044" />
+            <LineSymbolizer stroke="#303044" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <LineSymbolizer stroke="#ccccccaa" stroke-width="0.5" />
@@ -115,22 +117,27 @@
         <Rule>
             <Filter>[location_info_count] &gt;= 8</Filter>
             <PolygonSymbolizer fill="#084081" />
+            <LineSymbolizer stroke="#084081" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[location_info_count] &gt;= 6 and [location_info_count] &lt; 8</Filter>
             <PolygonSymbolizer fill="#0868ac" />
+            <LineSymbolizer stroke="#0868ac" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[location_info_count] &gt;= 4 and [location_info_count] &lt; 6</Filter>
             <PolygonSymbolizer fill="#43a2ca" />
+            <LineSymbolizer stroke="#43a2ca" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[location_info_count] &gt;= 2 and [location_info_count] &lt; 4</Filter>
             <PolygonSymbolizer fill="#7bccc4" />
+            <LineSymbolizer stroke="#7bccc4" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[location_info_count] &gt; 0 and [location_info_count] &lt; 2</Filter>
             <PolygonSymbolizer fill="#bae4bc" />
+            <LineSymbolizer stroke="#bae4bc" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -148,22 +155,27 @@
         <Rule>
             <Filter>[team_info_count] &gt;= 8</Filter>
             <PolygonSymbolizer fill="#994d00" />
+            <LineSymbolizer stroke="#994d00" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[team_info_count] &gt;= 6 and [team_info_count] &lt; 8</Filter>
             <PolygonSymbolizer fill="#e67300" />
+            <LineSymbolizer stroke="#e67300" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[team_info_count] &gt;= 4 and [team_info_count] &lt; 6</Filter>
             <PolygonSymbolizer fill="#ff9933" />
+            <LineSymbolizer stroke="#ff9933" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[team_info_count] &gt;= 2 and [team_info_count] &lt; 4</Filter>
             <PolygonSymbolizer fill="#ffbf80" />
+            <LineSymbolizer stroke="#ffbf80" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[team_info_count] &gt; 0 and [team_info_count] &lt; 2</Filter>
             <PolygonSymbolizer fill="#ffe6cc" />
+            <LineSymbolizer stroke="#ffe6cc" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -181,6 +193,7 @@
         <Rule>
             <Filter>[team_known_designer] = true</Filter>
             <PolygonSymbolizer fill="#6bb1e3" />
+            <LineSymbolizer stroke="#6bb1e3" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -198,22 +211,27 @@
         <Rule>
             <Filter>[size_storeys] &gt;= 40</Filter>
             <PolygonSymbolizer fill="#ffffcc" />
+            <LineSymbolizer stroke="#ffffcc" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_storeys] &gt;= 20 and [size_storeys] &lt; 40</Filter>
             <PolygonSymbolizer fill="#fed976" />
+            <LineSymbolizer stroke="#fed976" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_storeys] &gt;= 10 and [size_storeys] &lt; 20</Filter>
             <PolygonSymbolizer fill="#fd8d3c" />
+            <LineSymbolizer stroke="#fd8d3c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_storeys] &gt;= 6 and [size_storeys] &lt; 10</Filter>
             <PolygonSymbolizer fill="#e31a1c" />
+            <LineSymbolizer stroke="#e31a1c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_storeys] &gt;= 1 and [size_storeys] &lt; 6</Filter>
             <PolygonSymbolizer fill="#800026" />
+            <LineSymbolizer stroke="#800026" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -231,34 +249,42 @@
         <Rule>
             <Filter>[size_height] &lt; 5.55</Filter>
             <PolygonSymbolizer fill="#f7f4f9" />
+            <LineSymbolizer stroke="#f7f4f9" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_height] &gt;= 5.55 and [size_height] &lt; 7.73</Filter>
             <PolygonSymbolizer fill="#e7e1ef" />
+            <LineSymbolizer stroke="#e7e1ef" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_height] &gt;= 7.73 and [size_height] &lt; 11.38</Filter>
             <PolygonSymbolizer fill="#d4b9da" />
+            <LineSymbolizer stroke="#d4b9da" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_height] &gt;= 11.38 and [size_height] &lt; 18.45</Filter>
             <PolygonSymbolizer fill="#c994c7" />
+            <LineSymbolizer stroke="#c994c7" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_height] &gt;= 18.45 and [size_height] &lt; 35.05</Filter>
             <PolygonSymbolizer fill="#df65b0" />
+            <LineSymbolizer stroke="#df65b0" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_height] &gt;= 35.05 and [size_height] &lt; 89.30</Filter>
             <PolygonSymbolizer fill="#e7298a" />
+            <LineSymbolizer stroke="#e7298a" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_height] &gt;= 89.30 and [size_height] &lt; 152</Filter>
             <PolygonSymbolizer fill="#ce1256" />
+            <LineSymbolizer stroke="#ce1256" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_height] &gt;= 152</Filter>
             <PolygonSymbolizer fill="#980043" />
+            <LineSymbolizer stroke="#980043" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -276,34 +302,42 @@
         <Rule>
             <Filter>[size_total_floors] &gt;= 1 and [size_total_floors] &lt; 2</Filter>
             <PolygonSymbolizer fill="#f7f4f9" />
+            <LineSymbolizer stroke="#f7f4f9" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_total_floors] &gt;= 2 and [size_total_floors] &lt; 3</Filter>
             <PolygonSymbolizer fill="#e7e1ef" />
+            <LineSymbolizer stroke="#e7e1ef" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_total_floors] &gt;= 3 and [size_total_floors] &lt; 5</Filter>
             <PolygonSymbolizer fill="#d4b9da" />
+            <LineSymbolizer stroke="#d4b9da" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_total_floors] &gt;= 5 and [size_total_floors] &lt; 6</Filter>
             <PolygonSymbolizer fill="#c994c7" />
+            <LineSymbolizer stroke="#c994c7" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_total_floors] &gt;= 6 and [size_total_floors] &lt; 11</Filter>
             <PolygonSymbolizer fill="#df65b0" />
+            <LineSymbolizer stroke="#df65b0" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_total_floors] &gt;= 11 and [size_total_floors] &lt; 21</Filter>
             <PolygonSymbolizer fill="#e7298a" />
+            <LineSymbolizer stroke="#e7298a" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_total_floors] &gt;= 21 and [size_total_floors] &lt; 35</Filter>
             <PolygonSymbolizer fill="#ce1256" />
+            <LineSymbolizer stroke="#ce1256" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_total_floors] &gt;= 35</Filter>
             <PolygonSymbolizer fill="#980043" />
+            <LineSymbolizer stroke="#980043" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -321,18 +355,22 @@
         <Rule>
             <Filter>[size_storeys_basement] &gt;= 1 and [size_storeys_basement] &lt; 2</Filter>
             <PolygonSymbolizer fill="#f7f4f9" />
+            <LineSymbolizer stroke="#f7f4f9" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_storeys_basement] &gt;= 2 and [size_storeys_basement] &lt; 3</Filter>
             <PolygonSymbolizer fill="#d4b9da" />
+            <LineSymbolizer stroke="#d4b9da" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_storeys_basement] &gt;= 3 and [size_storeys_basement] &lt; 4</Filter>
             <PolygonSymbolizer fill="#df65b0" />
+            <LineSymbolizer stroke="#df65b0" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_storeys_basement] &gt;= 4</Filter>
             <PolygonSymbolizer fill="#ce1256" />
+            <LineSymbolizer stroke="#ce1256" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -350,34 +388,42 @@
         <Rule>
             <Filter>[size_floor_area_ground] &gt;= 0.1 and [size_floor_area_ground] &lt; 25</Filter>
             <PolygonSymbolizer fill="#f7f4f9" />
+            <LineSymbolizer stroke="#f7f4f9" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_floor_area_ground] &gt;= 25 and [size_floor_area_ground] &lt; 50</Filter>
             <PolygonSymbolizer fill="#e7e1ef" />
+            <LineSymbolizer stroke="#e7e1ef" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_floor_area_ground] &gt;= 50 and [size_floor_area_ground] &lt; 100</Filter>
             <PolygonSymbolizer fill="#d4b9da" />
+            <LineSymbolizer stroke="#d4b9da" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_floor_area_ground] &gt;= 100 and [size_floor_area_ground] &lt; 250</Filter>
             <PolygonSymbolizer fill="#c994c7" />
+            <LineSymbolizer stroke="#c994c7" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_floor_area_ground] &gt;= 250 and [size_floor_area_ground] &lt; 500</Filter>
             <PolygonSymbolizer fill="#df65b0" />
+            <LineSymbolizer stroke="#df65b0" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_floor_area_ground] &gt;= 500 and [size_floor_area_ground] &lt; 1000</Filter>
             <PolygonSymbolizer fill="#e7298a" />
+            <LineSymbolizer stroke="#e7298a" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_floor_area_ground] &gt;= 1000 and [size_floor_area_ground] &lt; 2000</Filter>
             <PolygonSymbolizer fill="#ce1256" />
+            <LineSymbolizer stroke="#ce1256" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[size_floor_area_ground] &gt;= 2000</Filter>
             <PolygonSymbolizer fill="#980043" />
+            <LineSymbolizer stroke="#980043" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -395,34 +441,42 @@
         <Rule>
             <Filter>[construction_core_material] = "Wood"</Filter>
             <PolygonSymbolizer fill="#b5a859" />
+            <LineSymbolizer stroke="#b5a859" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_core_material] = "Stone"</Filter>
             <PolygonSymbolizer fill="#ffffe3" />
+            <LineSymbolizer stroke="#ffffe3" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_core_material] = "Brick"</Filter>
             <PolygonSymbolizer fill="#f5d96b" />
+            <LineSymbolizer stroke="#f5d96b" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_core_material] = "Steel"</Filter>
             <PolygonSymbolizer fill="#beffe8" />
+            <LineSymbolizer stroke="#beffe8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_core_material] = "Reinforced Concrete"</Filter>
             <PolygonSymbolizer fill="#fca89d" />
+            <LineSymbolizer stroke="#fca89d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_core_material] = "Other Metal"</Filter>
             <PolygonSymbolizer fill="#5c8970" />
+            <LineSymbolizer stroke="#5c8970" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_core_material] = "Other Natural Material"</Filter>
             <PolygonSymbolizer fill="#96613b" />
+            <LineSymbolizer stroke="#96613b" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_core_material] = "Other Man-Made Material"</Filter>
             <PolygonSymbolizer fill="#c48a85" />
+            <LineSymbolizer stroke="#c48a85" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <MaxScaleDenominator>17061</MaxScaleDenominator>
@@ -439,14 +493,17 @@
         <Rule>
             <Filter>[construction_structural_system] = "Solid masonry walls supporting the roof"</Filter>
             <PolygonSymbolizer fill="#b5a859" />
+            <LineSymbolizer stroke="#b5a859" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_structural_system] = "A lateral load resisting structure (e.g. concrete or wooden frame)"</Filter>
             <PolygonSymbolizer fill="#ffffe3" />
+            <LineSymbolizer stroke="#ffffe3" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_structural_system] = "Other"</Filter>
             <PolygonSymbolizer fill="#f5d96b" />
+            <LineSymbolizer stroke="#f5d96b" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <MaxScaleDenominator>17061</MaxScaleDenominator>
@@ -463,22 +520,27 @@
         <Rule>
             <Filter>[construction_foundation] = "Shallow foundations with no lateral support"</Filter>
             <PolygonSymbolizer fill="#b5a859" />
+            <LineSymbolizer stroke="#b5a859" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_foundation] = "Shallow foundations with lateral support"</Filter>
             <PolygonSymbolizer fill="#ffffe3" />
+            <LineSymbolizer stroke="#ffffe3" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_foundation] = "Deep foundations with no lateral support"</Filter>
             <PolygonSymbolizer fill="#f5d96b" />
+            <LineSymbolizer stroke="#f5d96b" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_foundation] = "Deep Foundations with lateral support"</Filter>
             <PolygonSymbolizer fill="#beffe8" />
+            <LineSymbolizer stroke="#beffe8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_foundation] = "Other"</Filter>
             <PolygonSymbolizer fill="#fca89d" />
+            <LineSymbolizer stroke="#fca89d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <MaxScaleDenominator>17061</MaxScaleDenominator>
@@ -495,42 +557,52 @@
         <Rule>
             <Filter>[construction_roof_shape] = "Flat"</Filter>
             <PolygonSymbolizer fill="#b5a859" />
+            <LineSymbolizer stroke="#b5a859" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_shape] = "Pitched with gable ends"</Filter>
             <PolygonSymbolizer fill="#ffffe3" />
+            <LineSymbolizer stroke="#ffffe3" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_shape] = "Pitched and hipped"</Filter>
             <PolygonSymbolizer fill="#f5d96b" />
+            <LineSymbolizer stroke="#f5d96b" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_shape] = "Pitched with dormers"</Filter>
             <PolygonSymbolizer fill="#beffe8" />
+            <LineSymbolizer stroke="#beffe8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_shape] = "Monopitch"</Filter>
             <PolygonSymbolizer fill="#fca89d" />
+            <LineSymbolizer stroke="#fca89d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_shape] = "Sawtooth"</Filter>
             <PolygonSymbolizer fill="#5c8970" />
+            <LineSymbolizer stroke="#5c8970" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_shape] = "Curved"</Filter>
             <PolygonSymbolizer fill="#96613b" />
+            <LineSymbolizer stroke="#96613b" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_shape] = "Complex regular"</Filter>
             <PolygonSymbolizer fill="#c48a85" />
+            <LineSymbolizer stroke="#c48a85" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_shape] = "Complex irregular"</Filter>
             <PolygonSymbolizer fill="#7bccc4" />
+            <LineSymbolizer stroke="#7bccc4" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_shape] = "Other"</Filter>
             <PolygonSymbolizer fill="#bae4bc" />
+            <LineSymbolizer stroke="#bae4bc" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <MaxScaleDenominator>17061</MaxScaleDenominator>
@@ -547,34 +619,42 @@
         <Rule>
             <Filter>[construction_roof_covering] = "Slate"</Filter>
             <PolygonSymbolizer fill="#b5a859" />
+            <LineSymbolizer stroke="#b5a859" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_covering] = "Clay Tile"</Filter>
             <PolygonSymbolizer fill="#ffffe3" />
+            <LineSymbolizer stroke="#ffffe3" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_covering] = "Wood"</Filter>
             <PolygonSymbolizer fill="#f5d96b" />
+            <LineSymbolizer stroke="#f5d96b" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_covering] = "Asphalt"</Filter>
             <PolygonSymbolizer fill="#beffe8" />
+            <LineSymbolizer stroke="#beffe8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_covering] = "Iron or Steel"</Filter>
             <PolygonSymbolizer fill="#fca89d" />
+            <LineSymbolizer stroke="#fca89d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_covering] = "Other Metal"</Filter>
             <PolygonSymbolizer fill="#5c8970" />
+            <LineSymbolizer stroke="#5c8970" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_covering] = "Other Natural Material"</Filter>
             <PolygonSymbolizer fill="#96613b" />
+            <LineSymbolizer stroke="#96613b" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_covering] = "Other Man-Made Material"</Filter>
             <PolygonSymbolizer fill="#c48a85" />
+            <LineSymbolizer stroke="#c48a85" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -592,62 +672,77 @@
         <Rule>
             <Filter>[date_year] &gt;= 2020</Filter>
             <PolygonSymbolizer fill="#fff9b8" />
+            <LineSymbolizer stroke="#fff9b8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 2000 and [date_year] &lt; 2020</Filter>
             <PolygonSymbolizer fill="#fae269" />
+            <LineSymbolizer stroke="#fae269" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1980 and [date_year] &lt; 2000</Filter>
             <PolygonSymbolizer fill="#fbaf27" />
+            <LineSymbolizer stroke="#fbaf27" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1960 and [date_year] &lt; 1980</Filter>
             <PolygonSymbolizer fill="#e6711d" />
+            <LineSymbolizer stroke="#e6711d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1940 and [date_year] &lt; 1960</Filter>
             <PolygonSymbolizer fill="#cc1212" />
+            <LineSymbolizer stroke="#cc1212" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1920 and [date_year] &lt; 1940</Filter>
             <PolygonSymbolizer fill="#8f0303" />
+            <LineSymbolizer stroke="#8f0303" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1900 and [date_year] &lt; 1920</Filter>
             <PolygonSymbolizer fill="#8f5385" />
+            <LineSymbolizer stroke="#8f5385" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1880 and [date_year] &lt; 1900</Filter>
             <PolygonSymbolizer fill="#c3e1eb" />
+            <LineSymbolizer stroke="#c3e1eb" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1860 and [date_year] &lt; 1880</Filter>
             <PolygonSymbolizer fill="#6a9dba" />
+            <LineSymbolizer stroke="#6a9dba" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1840 and [date_year] &lt; 1860</Filter>
             <PolygonSymbolizer fill="#3b74a3" />
+            <LineSymbolizer stroke="#3b74a3" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1820 and [date_year] &lt; 1840</Filter>
             <PolygonSymbolizer fill="#95ded8" />
+            <LineSymbolizer stroke="#95ded8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1800 and [date_year] &lt; 1820</Filter>
             <PolygonSymbolizer fill="#68aba5" />
+            <LineSymbolizer stroke="#68aba5" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1750 and [date_year] &lt; 1800</Filter>
             <PolygonSymbolizer fill="#acc98f" />
+            <LineSymbolizer stroke="#acc98f" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1700 and [date_year] &lt; 1750</Filter>
             <PolygonSymbolizer fill="#6d8a51" />
+            <LineSymbolizer stroke="#6d8a51" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &lt; 1700</Filter>
             <PolygonSymbolizer fill="#d0c291" />
+            <LineSymbolizer stroke="#d0c291" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -665,62 +760,77 @@
         <Rule>
             <Filter>[date_year] &gt;= 2020</Filter>
             <PolygonSymbolizer fill="#fff9b8" />
+            <LineSymbolizer stroke="#fff9b8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 2000 and [date_year] &lt; 2020</Filter>
             <PolygonSymbolizer fill="#fae269" />
+            <LineSymbolizer stroke="#fae269" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1980 and [date_year] &lt; 2000</Filter>
             <PolygonSymbolizer fill="#fbaf27" />
+            <LineSymbolizer stroke="#fbaf27" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1960 and [date_year] &lt; 1980</Filter>
             <PolygonSymbolizer fill="#e6711d" />
+            <LineSymbolizer stroke="#e6711d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1940 and [date_year] &lt; 1960</Filter>
             <PolygonSymbolizer fill="#cc1212" />
+            <LineSymbolizer stroke="#cc1212" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1920 and [date_year] &lt; 1940</Filter>
             <PolygonSymbolizer fill="#8f0303" />
+            <LineSymbolizer stroke="#8f0303" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1900 and [date_year] &lt; 1920</Filter>
             <PolygonSymbolizer fill="#8f5385" />
+            <LineSymbolizer stroke="#8f5385" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1880 and [date_year] &lt; 1900</Filter>
             <PolygonSymbolizer fill="#c3e1eb" />
+            <LineSymbolizer stroke="#c3e1eb" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1860 and [date_year] &lt; 1880</Filter>
             <PolygonSymbolizer fill="#6a9dba" />
+            <LineSymbolizer stroke="#6a9dba" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1840 and [date_year] &lt; 1860</Filter>
             <PolygonSymbolizer fill="#3b74a3" />
+            <LineSymbolizer stroke="#3b74a3" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1820 and [date_year] &lt; 1840</Filter>
             <PolygonSymbolizer fill="#95ded8" />
+            <LineSymbolizer stroke="#95ded8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1800 and [date_year] &lt; 1820</Filter>
             <PolygonSymbolizer fill="#68aba5" />
+            <LineSymbolizer stroke="#68aba5" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1750 and [date_year] &lt; 1800</Filter>
             <PolygonSymbolizer fill="#acc98f" />
+            <LineSymbolizer stroke="#acc98f" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1700 and [date_year] &lt; 1750</Filter>
             <PolygonSymbolizer fill="#6d8a51" />
+            <LineSymbolizer stroke="#6d8a51" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &lt; 1700</Filter>
             <PolygonSymbolizer fill="#d0c291" />
+            <LineSymbolizer stroke="#d0c291" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -738,62 +848,77 @@
         <Rule>
             <Filter>[date_year] &gt;= 2020</Filter>
             <PolygonSymbolizer fill="#fff9b8" />
+            <LineSymbolizer stroke="#fff9b8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 2000 and [date_year] &lt; 2020</Filter>
             <PolygonSymbolizer fill="#fae269" />
+            <LineSymbolizer stroke="#fae269" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1980 and [date_year] &lt; 2000</Filter>
             <PolygonSymbolizer fill="#fbaf27" />
+            <LineSymbolizer stroke="#fbaf27" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1960 and [date_year] &lt; 1980</Filter>
             <PolygonSymbolizer fill="#e6711d" />
+            <LineSymbolizer stroke="#e6711d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1940 and [date_year] &lt; 1960</Filter>
             <PolygonSymbolizer fill="#cc1212" />
+            <LineSymbolizer stroke="#cc1212" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1920 and [date_year] &lt; 1940</Filter>
             <PolygonSymbolizer fill="#8f0303" />
+            <LineSymbolizer stroke="#8f0303" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1900 and [date_year] &lt; 1920</Filter>
             <PolygonSymbolizer fill="#8f5385" />
+            <LineSymbolizer stroke="#8f5385" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1880 and [date_year] &lt; 1900</Filter>
             <PolygonSymbolizer fill="#c3e1eb" />
+            <LineSymbolizer stroke="#c3e1eb" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1860 and [date_year] &lt; 1880</Filter>
             <PolygonSymbolizer fill="#6a9dba" />
+            <LineSymbolizer stroke="#6a9dba" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1840 and [date_year] &lt; 1860</Filter>
             <PolygonSymbolizer fill="#3b74a3" />
+            <LineSymbolizer stroke="#3b74a3" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1820 and [date_year] &lt; 1840</Filter>
             <PolygonSymbolizer fill="#95ded8" />
+            <LineSymbolizer stroke="#95ded8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1800 and [date_year] &lt; 1820</Filter>
             <PolygonSymbolizer fill="#68aba5" />
+            <LineSymbolizer stroke="#68aba5" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1750 and [date_year] &lt; 1800</Filter>
             <PolygonSymbolizer fill="#acc98f" />
+            <LineSymbolizer stroke="#acc98f" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1700 and [date_year] &lt; 1750</Filter>
             <PolygonSymbolizer fill="#6d8a51" />
+            <LineSymbolizer stroke="#6d8a51" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &lt; 1700</Filter>
             <PolygonSymbolizer fill="#d0c291" />
+            <LineSymbolizer stroke="#d0c291" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -811,62 +936,77 @@
         <Rule>
             <Filter>[date_year] &gt;= 2020</Filter>
             <PolygonSymbolizer fill="#fff9b8" />
+            <LineSymbolizer stroke="#fff9b8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 2000 and [date_year] &lt; 2020</Filter>
             <PolygonSymbolizer fill="#fae269" />
+            <LineSymbolizer stroke="#fae269" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1980 and [date_year] &lt; 2000</Filter>
             <PolygonSymbolizer fill="#fbaf27" />
+            <LineSymbolizer stroke="#fbaf27" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1960 and [date_year] &lt; 1980</Filter>
             <PolygonSymbolizer fill="#e6711d" />
+            <LineSymbolizer stroke="#e6711d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1940 and [date_year] &lt; 1960</Filter>
             <PolygonSymbolizer fill="#cc1212" />
+            <LineSymbolizer stroke="#cc1212" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1920 and [date_year] &lt; 1940</Filter>
             <PolygonSymbolizer fill="#8f0303" />
+            <LineSymbolizer stroke="#8f0303" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1900 and [date_year] &lt; 1920</Filter>
             <PolygonSymbolizer fill="#8f5385" />
+            <LineSymbolizer stroke="#8f5385" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1880 and [date_year] &lt; 1900</Filter>
             <PolygonSymbolizer fill="#c3e1eb" />
+            <LineSymbolizer stroke="#c3e1eb" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1860 and [date_year] &lt; 1880</Filter>
             <PolygonSymbolizer fill="#6a9dba" />
+            <LineSymbolizer stroke="#6a9dba" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1840 and [date_year] &lt; 1860</Filter>
             <PolygonSymbolizer fill="#3b74a3" />
+            <LineSymbolizer stroke="#3b74a3" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1820 and [date_year] &lt; 1840</Filter>
             <PolygonSymbolizer fill="#95ded8" />
+            <LineSymbolizer stroke="#95ded8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1800 and [date_year] &lt; 1820</Filter>
             <PolygonSymbolizer fill="#68aba5" />
+            <LineSymbolizer stroke="#68aba5" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1750 and [date_year] &lt; 1800</Filter>
             <PolygonSymbolizer fill="#acc98f" />
+            <LineSymbolizer stroke="#acc98f" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &gt;= 1700 and [date_year] &lt; 1750</Filter>
             <PolygonSymbolizer fill="#6d8a51" />
+            <LineSymbolizer stroke="#6d8a51" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[date_year] &lt; 1700</Filter>
             <PolygonSymbolizer fill="#d0c291" />
+            <LineSymbolizer stroke="#d0c291" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -883,6 +1023,7 @@
     <Style name="conservation_area">
         <Rule>
             <PolygonSymbolizer fill="#73ebaf" />
+            <LineSymbolizer stroke="#73ebaf" stroke-width="2.0"/>
         </Rule>
     </Style>
     <Style name="planning_applications_status_all">
@@ -1052,30 +1193,37 @@
         <Rule>
             <Filter>[sust_dec] = A</Filter>
             <PolygonSymbolizer fill="#007f3d" />
+            <LineSymbolizer stroke="#007f3d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_dec] = B</Filter>
             <PolygonSymbolizer fill="#2c9f29" />
+            <LineSymbolizer stroke="#2c9f29" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_dec] = C</Filter>
             <PolygonSymbolizer fill="#9dcb3c" />
+            <LineSymbolizer stroke="#9dcb3c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_dec] = D</Filter>
             <PolygonSymbolizer fill="#fff200" />
+            <LineSymbolizer stroke="#fff200" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_dec] = E</Filter>
             <PolygonSymbolizer fill="#f7af1d" />
+            <LineSymbolizer stroke="#f7af1d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_dec] = F</Filter>
             <PolygonSymbolizer fill="#ed6823" />
+            <LineSymbolizer stroke="#ed6823" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[sust_dec] = G</Filter>
             <PolygonSymbolizer fill="#e31d23" />
+            <LineSymbolizer stroke="#e31d23" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1093,18 +1241,22 @@
         <Rule>
             <Filter>[building_attachment_form] = "Detached"</Filter>
             <PolygonSymbolizer fill="#f2a2b9" />
+            <LineSymbolizer stroke="#f2a2b9" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[building_attachment_form] = "Semi-Detached"</Filter>
             <PolygonSymbolizer fill="#ab8fb0" />
+            <LineSymbolizer stroke="#ab8fb0" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[building_attachment_form] = "End-Terrace"</Filter>
             <PolygonSymbolizer fill="#3891d1" />
+            <LineSymbolizer stroke="#3891d1" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[building_attachment_form] = "Mid-Terrace"</Filter>
             <PolygonSymbolizer fill="#226291" />
+            <LineSymbolizer stroke="#226291" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1122,14 +1274,17 @@
         <Rule>
             <Filter>[is_domestic] = "yes"</Filter>
             <PolygonSymbolizer fill="#f7ec25" />
+            <LineSymbolizer stroke="#f7ec25" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[is_domestic] = "mixed domestic/non-domestic"</Filter>
             <PolygonSymbolizer fill="#fc9b2a" />
+            <LineSymbolizer stroke="#fc9b2a" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[is_domestic] = "no"</Filter>
             <PolygonSymbolizer fill="#ff2121" />
+            <LineSymbolizer stroke="#ff2121" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <MaxScaleDenominator>17061</MaxScaleDenominator>
@@ -1146,18 +1301,22 @@
         <Rule>
             <Filter>[survival_status] = "Same as Historical Map (Unchanged)"</Filter>
             <PolygonSymbolizer fill="#6ded45" />
+            <LineSymbolizer stroke="#6ded45" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[survival_status] = "Similar to Historical Map (Some Changes)"</Filter>
             <PolygonSymbolizer fill="#f7c725" />
+            <LineSymbolizer stroke="#f7c725" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[survival_status] = "Historical Building(s) Demolished"</Filter>
             <PolygonSymbolizer fill="#ff2121" />
+            <LineSymbolizer stroke="#ff2121" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[survival_status] = "Current Building on Previous Green Space"</Filter>
             <PolygonSymbolizer fill="#CF26DF" />
+            <LineSymbolizer stroke="#CF26DF" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <MaxScaleDenominator>17061</MaxScaleDenominator>
@@ -1174,30 +1333,37 @@
         <Rule>
             <Filter>[likes] &gt;= 100</Filter>
             <PolygonSymbolizer fill="#bd0026" />
+            <LineSymbolizer stroke="#bd0026" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[likes] &gt;= 50 and [likes] &lt; 100</Filter>
             <PolygonSymbolizer fill="#e31a1c" />
+            <LineSymbolizer stroke="#e31a1c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[likes] &gt;= 20 and [likes] &lt; 50</Filter>
             <PolygonSymbolizer fill="#fc4e2a" />
+            <LineSymbolizer stroke="#fc4e2a" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[likes] &gt;= 10 and [likes] &lt; 20</Filter>
             <PolygonSymbolizer fill="#fd8d3c" />
+            <LineSymbolizer stroke="#fd8d3c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[likes] &gt;= 3 and [likes] &lt; 10</Filter>
             <PolygonSymbolizer fill="#feb24c" />
+            <LineSymbolizer stroke="#feb24c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[likes] = 2</Filter>
             <PolygonSymbolizer fill="#fed976" />
+            <LineSymbolizer stroke="#fed976" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[likes] = 1</Filter>
             <PolygonSymbolizer fill="#ffe8a9" />
+            <LineSymbolizer stroke="#ffe8a9" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1215,30 +1381,37 @@
         <Rule>
             <Filter>[likes] &gt;= 100</Filter>
             <PolygonSymbolizer fill="#bd0026" />
+            <LineSymbolizer stroke="#bd0026" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[likes] &gt;= 50 and [likes] &lt; 100</Filter>
             <PolygonSymbolizer fill="#e31a1c" />
+            <LineSymbolizer stroke="#e31a1c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[likes] &gt;= 20 and [likes] &lt; 50</Filter>
             <PolygonSymbolizer fill="#fc4e2a" />
+            <LineSymbolizer stroke="#fc4e2a" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[likes] &gt;= 10 and [likes] &lt; 20</Filter>
             <PolygonSymbolizer fill="#fd8d3c" />
+            <LineSymbolizer stroke="#fd8d3c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[likes] &gt;= 3 and [likes] &lt; 10</Filter>
             <PolygonSymbolizer fill="#feb24c" />
+            <LineSymbolizer stroke="#feb24c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[likes] = 2</Filter>
             <PolygonSymbolizer fill="#fed976" />
+            <LineSymbolizer stroke="#fed976" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[likes] = 1</Filter>
             <PolygonSymbolizer fill="#ffe8a9" />
+            <LineSymbolizer stroke="#ffe8a9" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1256,22 +1429,27 @@
         <Rule>
             <Filter>[community_building_hominess_avg] &gt; 4</Filter>
             <PolygonSymbolizer fill="#00d924" />
+            <LineSymbolizer stroke="#00d924" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_hominess_avg] &gt; 3 and [community_building_hominess_avg] &lt;= 4</Filter>
             <PolygonSymbolizer fill="#3efa5e" />
+            <LineSymbolizer stroke="#3efa5e" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_hominess_avg] &gt; 2 and [community_building_hominess_avg] &lt;= 3</Filter>
             <PolygonSymbolizer fill="#7dfa92" />
+            <LineSymbolizer stroke="#7dfa92" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_hominess_avg] &gt; 1 and [community_building_hominess_avg] &lt;= 2</Filter>
             <PolygonSymbolizer fill="#a8fab5" />
+            <LineSymbolizer stroke="#a8fab5" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_hominess_avg] &lt;= 1</Filter>
             <PolygonSymbolizer fill="#e1fce5" />
+            <LineSymbolizer stroke="#e1fce5" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1289,22 +1467,27 @@
         <Rule>
             <Filter>[community_building_fascination_avg] &gt; 4</Filter>
             <PolygonSymbolizer fill="#b300fa" />
+            <LineSymbolizer stroke="#b300fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_fascination_avg] &gt; 3 and [community_building_fascination_avg] &lt;= 4</Filter>
             <PolygonSymbolizer fill="#c33efa" />
+            <LineSymbolizer stroke="#c33efa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_fascination_avg] &gt; 2 and [community_building_fascination_avg] &lt;= 3</Filter>
             <PolygonSymbolizer fill="#d97dfa" />
+            <LineSymbolizer stroke="#d97dfa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_fascination_avg] &gt; 1 and [community_building_fascination_avg] &lt;= 2</Filter>
             <PolygonSymbolizer fill="#e8bbfa" />
+            <LineSymbolizer stroke="#e8bbfa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_fascination_avg] &lt;= 1</Filter>
             <PolygonSymbolizer fill="#f1e1f7" />
+            <LineSymbolizer stroke="#f1e1f7" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1322,22 +1505,27 @@
         <Rule>
             <Filter>[community_building_coherence_avg] &gt; 4</Filter>
             <PolygonSymbolizer fill="#005efa" />
+            <LineSymbolizer stroke="#005efa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_coherence_avg] &gt; 3 and [community_building_coherence_avg] &lt;= 4</Filter>
             <PolygonSymbolizer fill="#3e86fa" />
+            <LineSymbolizer stroke="#3e86fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_coherence_avg] &gt; 2 and [community_building_coherence_avg] &lt;= 3</Filter>
             <PolygonSymbolizer fill="#7dabfa" />
+            <LineSymbolizer stroke="#7dabfa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_coherence_avg] &gt; 1 and [community_building_coherence_avg] &lt;= 2</Filter>
             <PolygonSymbolizer fill="#bbd3fa" />
+            <LineSymbolizer stroke="#bbd3fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_coherence_avg] &lt;= 1</Filter>
             <PolygonSymbolizer fill="#e1ebfc" />
+            <LineSymbolizer stroke="#e1ebfc" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1355,22 +1543,27 @@
         <Rule>
             <Filter>[community_building_neuroaesthetic_avg] &gt; 4</Filter>
             <PolygonSymbolizer fill="#00ced9" />
+            <LineSymbolizer stroke="#00ced9" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_neuroaesthetic_avg] &gt; 3 and [community_building_neuroaesthetic_avg] &lt;= 4</Filter>
             <PolygonSymbolizer fill="#3cf0fa" />
+            <LineSymbolizer stroke="#3cf0fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_neuroaesthetic_avg] &gt; 2 and [community_building_neuroaesthetic_avg] &lt;= 3</Filter>
             <PolygonSymbolizer fill="#7df4fa" />
+            <LineSymbolizer stroke="#7df4fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_neuroaesthetic_avg] &gt; 1 and [community_building_neuroaesthetic_avg] &lt;= 2</Filter>
             <PolygonSymbolizer fill="#bbf7fa" />
+            <LineSymbolizer stroke="#bbf7fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_building_neuroaesthetic_avg] &lt;= 1</Filter>
             <PolygonSymbolizer fill="#fafafa" />
+            <LineSymbolizer stroke="#fafafa" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1388,30 +1581,37 @@
         <Rule>
             <Filter>[community_local_significance_total] &gt;= 100</Filter>
             <PolygonSymbolizer fill="#bd0026" />
+            <LineSymbolizer stroke="#bd0026" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_local_significance_total] &gt;= 50 and [community_local_significance_total] &lt; 100</Filter>
             <PolygonSymbolizer fill="#e31a1c" />
+            <LineSymbolizer stroke="#e31a1c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_local_significance_total] &gt;= 20 and [community_local_significance_total] &lt; 50</Filter>
             <PolygonSymbolizer fill="#fc4e2a" />
+            <LineSymbolizer stroke="#fc4e2a" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_local_significance_total] &gt;= 10 and [community_local_significance_total] &lt; 20</Filter>
             <PolygonSymbolizer fill="#fd8d3c" />
+            <LineSymbolizer stroke="#fd8d3c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_local_significance_total] &gt;= 3 and [community_local_significance_total] &lt; 10</Filter>
             <PolygonSymbolizer fill="#feb24c" />
+            <LineSymbolizer stroke="#feb24c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_local_significance_total] = 2</Filter>
             <PolygonSymbolizer fill="#fed976" />
+            <LineSymbolizer stroke="#fed976" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_local_significance_total] = 1</Filter>
             <PolygonSymbolizer fill="#ffe8a9" />
+            <LineSymbolizer stroke="#ffe8a9" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1429,22 +1629,27 @@
         <Rule>
             <Filter>[community_streetscape_hominess_avg] &gt; 4</Filter>
             <PolygonSymbolizer fill="#7fd900" />
+            <LineSymbolizer stroke="#7fd900" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_hominess_avg] &gt; 3 and [community_streetscape_hominess_avg] &lt;= 4</Filter>
             <PolygonSymbolizer fill="#acfa3e" />
+            <LineSymbolizer stroke="#acfa3e" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_hominess_avg] &gt; 2 and [community_streetscape_hominess_avg] &lt;= 3</Filter>
             <PolygonSymbolizer fill="#c6fa7d" />
+            <LineSymbolizer stroke="#c6fa7d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_hominess_avg] &gt; 1 and [community_streetscape_hominess_avg] &lt;= 2</Filter>
             <PolygonSymbolizer fill="#d8faa8" />
+            <LineSymbolizer stroke="#d8faa8" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_hominess_avg] &lt;= 1</Filter>
             <PolygonSymbolizer fill="#f0fcde" />
+            <LineSymbolizer stroke="#f0fcde" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1462,22 +1667,27 @@
         <Rule>
             <Filter>[community_streetscape_fascination_avg] &gt; 4</Filter>
             <PolygonSymbolizer fill="#fa0060" />
+            <LineSymbolizer stroke="#fa0060" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_fascination_avg] &gt; 3 and [community_streetscape_fascination_avg] &lt;= 4</Filter>
             <PolygonSymbolizer fill="#fa3e86" />
+            <LineSymbolizer stroke="#fa3e86" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_fascination_avg] &gt; 2 and [community_streetscape_fascination_avg] &lt;= 3</Filter>
             <PolygonSymbolizer fill="#fa7dad" />
+            <LineSymbolizer stroke="#fa7dad" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_fascination_avg] &gt; 1 and [community_streetscape_fascination_avg] &lt;= 2</Filter>
             <PolygonSymbolizer fill="#fabbd3" />
+            <LineSymbolizer stroke="#fabbd3" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_fascination_avg] &lt;= 1</Filter>
             <PolygonSymbolizer fill="#fce8f0" />
+            <LineSymbolizer stroke="#fce8f0" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1495,22 +1705,27 @@
         <Rule>
             <Filter>[community_streetscape_coherence_avg] &gt; 4</Filter>
             <PolygonSymbolizer fill="#00e5fa" />
+            <LineSymbolizer stroke="#00e5fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_coherence_avg] &gt; 3 and [community_streetscape_coherence_avg] &lt;= 4</Filter>
             <PolygonSymbolizer fill="#3eeafa" />
+            <LineSymbolizer stroke="#3eeafa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_coherence_avg] &gt; 2 and [community_streetscape_coherence_avg] &lt;= 3</Filter>
             <PolygonSymbolizer fill="#7df0fa" />
+            <LineSymbolizer stroke="#7df0fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_coherence_avg] &gt; 1 and [community_streetscape_coherence_avg] &lt;= 2</Filter>
             <PolygonSymbolizer fill="#bbf5fa " />
+            <LineSymbolizer stroke="#bbf5fa " stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_coherence_avg] &lt;= 1</Filter>
             <PolygonSymbolizer fill="#e3fafc" />
+            <LineSymbolizer stroke="#e3fafc" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1528,22 +1743,27 @@
         <Rule>
             <Filter>[community_streetscape_neuroaesthetic_avg] &gt; 4</Filter>
             <PolygonSymbolizer fill="#00ced9" />
+            <LineSymbolizer stroke="#00ced9" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_neuroaesthetic_avg] &gt; 3 and [community_streetscape_neuroaesthetic_avg] &lt;= 4</Filter>
             <PolygonSymbolizer fill="#3cf0fa" />
+            <LineSymbolizer stroke="#3cf0fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_neuroaesthetic_avg] &gt; 2 and [community_streetscape_neuroaesthetic_avg] &lt;= 3</Filter>
             <PolygonSymbolizer fill="#7df4fa" />
+            <LineSymbolizer stroke="#7df4fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_neuroaesthetic_avg] &gt; 1 and [community_streetscape_neuroaesthetic_avg] &lt;= 2</Filter>
             <PolygonSymbolizer fill="#bbf7fa" />
+            <LineSymbolizer stroke="#bbf7fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_streetscape_neuroaesthetic_avg] &lt;= 1</Filter>
             <PolygonSymbolizer fill="#fafafa" />
+            <LineSymbolizer stroke="#fafafa" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1561,30 +1781,37 @@
         <Rule>
             <Filter>[community_expected_planning_application_total] &gt;= 100</Filter>
             <PolygonSymbolizer fill="#bd0026" />
+            <LineSymbolizer stroke="#bd0026" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_expected_planning_application_total] &gt;= 50 and [community_expected_planning_application_total] &lt; 100</Filter>
             <PolygonSymbolizer fill="#e31a1c" />
+            <LineSymbolizer stroke="#e31a1c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_expected_planning_application_total] &gt;= 20 and [community_expected_planning_application_total] &lt; 50</Filter>
             <PolygonSymbolizer fill="#fc4e2a" />
+            <LineSymbolizer stroke="#fc4e2a" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_expected_planning_application_total] &gt;= 10 and [community_expected_planning_application_total] &lt; 20</Filter>
             <PolygonSymbolizer fill="#fd8d3c" />
+            <LineSymbolizer stroke="#fd8d3c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_expected_planning_application_total] &gt;= 3 and [community_expected_planning_application_total] &lt; 10</Filter>
             <PolygonSymbolizer fill="#feb24c" />
+            <LineSymbolizer stroke="#feb24c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_expected_planning_application_total] = 2</Filter>
             <PolygonSymbolizer fill="#fed976" />
+            <LineSymbolizer stroke="#fed976" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[community_expected_planning_application_total] = 1</Filter>
             <PolygonSymbolizer fill="#ffe8a9" />
+            <LineSymbolizer stroke="#ffe8a9" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1602,10 +1829,12 @@
         <Rule>
             <Filter>[in_public_ownership] = true</Filter>
             <PolygonSymbolizer fill="#1166ff" />
+            <LineSymbolizer stroke="#1166ff" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[in_public_ownership] = false</Filter>
             <PolygonSymbolizer fill="#ffaaa0" />
+            <LineSymbolizer stroke="#ffaaa0" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1623,66 +1852,82 @@
         <Rule>
             <Filter>[current_landuse_order] = "Agriculture And Fisheries"</Filter>
             <PolygonSymbolizer fill="#73ccd1" />
+            <LineSymbolizer stroke="#73ccd1" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Minerals"</Filter>
             <PolygonSymbolizer fill="#45cce3" />
+            <LineSymbolizer stroke="#45cce3" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Unclassified, presumed non-residential"</Filter>
             <PolygonSymbolizer fill="#6c6f8e" />
+            <LineSymbolizer stroke="#6c6f8e" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Recreation And Leisure"</Filter>
             <PolygonSymbolizer fill="#ffbfbf" />
+            <LineSymbolizer stroke="#ffbfbf" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Transport"</Filter>
             <PolygonSymbolizer fill="#b3de69" />
+            <LineSymbolizer stroke="#b3de69" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Utilities And Infrastructure"</Filter>
             <PolygonSymbolizer fill="#cccccc" />
+            <LineSymbolizer stroke="#cccccc" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Residential" and not ([current_landuse_group] = "Garden buildings") and not ([current_landuse_group] = "Hotels, boarding and guest houses") and not ([current_landuse_verified])</Filter>
             <PolygonSymbolizer fill="#252aa6" />
+            <LineSymbolizer stroke="#252aa6" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Residential" and not ([current_landuse_group] = "Garden buildings") and not ([current_landuse_group] = "Hotels, boarding and guest houses") and ([current_landuse_verified])</Filter>
             <PolygonSymbolizer fill="#7025a6" />
+            <LineSymbolizer stroke="#7025a6" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Residential" and [current_landuse_group] = "Hotels, boarding and guest houses"</Filter>
             <PolygonSymbolizer fill="#3c4194" />
+            <LineSymbolizer stroke="#3c4194" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Residential" and [current_landuse_group] = "Garden buildings" </Filter>
             <PolygonSymbolizer fill="#1157fa" />
+            <LineSymbolizer stroke="#1157fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Community Services"</Filter>
             <PolygonSymbolizer fill="#fa667d" />
+            <LineSymbolizer stroke="#fa667d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Retail"</Filter>
             <PolygonSymbolizer fill="#ff8c00" />
+            <LineSymbolizer stroke="#ff8c00" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Industry And Business"</Filter>
             <PolygonSymbolizer fill="#f5f58f" />
+            <LineSymbolizer stroke="#f5f58f" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Vacant And Derelict"</Filter>
             <PolygonSymbolizer fill="#ffffff" />
+            <LineSymbolizer stroke="#ffffff" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Defence"</Filter>
             <PolygonSymbolizer fill="#898944" />
+            <LineSymbolizer stroke="#898944" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[current_landuse_order] = "Mixed Use"</Filter>
             <PolygonSymbolizer fill="#e5050d" />
+            <LineSymbolizer stroke="#e5050d" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1700,66 +1945,82 @@
         <Rule>
             <Filter>[typology_original_use_order] = "Agriculture And Fisheries"</Filter>
             <PolygonSymbolizer fill="#73ccd1" />
+            <LineSymbolizer stroke="#73ccd1" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Minerals"</Filter>
             <PolygonSymbolizer fill="#45cce3" />
+            <LineSymbolizer stroke="#45cce3" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Unclassified, presumed non-residential"</Filter>
             <PolygonSymbolizer fill="#6c6f8e" />
+            <LineSymbolizer stroke="#6c6f8e" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Recreation And Leisure"</Filter>
             <PolygonSymbolizer fill="#ffbfbf" />
+            <LineSymbolizer stroke="#ffbfbf" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Transport"</Filter>
             <PolygonSymbolizer fill="#b3de69" />
+            <LineSymbolizer stroke="#b3de69" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Utilities And Infrastructure"</Filter>
             <PolygonSymbolizer fill="#cccccc" />
+            <LineSymbolizer stroke="#cccccc" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Residential" and not ([typology_original_use_order] = "Garden buildings") and not ([typology_original_use_order] = "Hotels, boarding and guest houses") and not ([typology_original_use_verified])</Filter>
             <PolygonSymbolizer fill="#252aa6" />
+            <LineSymbolizer stroke="#252aa6" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Residential" and not ([typology_original_use_order] = "Garden buildings") and not ([typology_original_use_order] = "Hotels, boarding and guest houses") and ([typology_original_use_verified])</Filter>
             <PolygonSymbolizer fill="#7025a6" />
+            <LineSymbolizer stroke="#7025a6" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Residential" and [typology_original_use_order] = "Hotels, boarding and guest houses"</Filter>
             <PolygonSymbolizer fill="#3c4194" />
+            <LineSymbolizer stroke="#3c4194" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Residential" and [typology_original_use_order] = "Garden buildings" </Filter>
             <PolygonSymbolizer fill="#1157fa" />
+            <LineSymbolizer stroke="#1157fa" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Community Services"</Filter>
             <PolygonSymbolizer fill="#fa667d" />
+            <LineSymbolizer stroke="#fa667d" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Retail"</Filter>
             <PolygonSymbolizer fill="#ff8c00" />
+            <LineSymbolizer stroke="#ff8c00" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Industry And Business"</Filter>
             <PolygonSymbolizer fill="#f5f58f" />
+            <LineSymbolizer stroke="#f5f58f" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Vacant And Derelict"</Filter>
             <PolygonSymbolizer fill="#ffffff" />
+            <LineSymbolizer stroke="#ffffff" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Defence"</Filter>
             <PolygonSymbolizer fill="#898944" />
+            <LineSymbolizer stroke="#898944" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_original_use_order] = "Mixed Use"</Filter>
             <PolygonSymbolizer fill="#e5050d" />
+            <LineSymbolizer stroke="#e5050d" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1777,98 +2038,121 @@
         <Rule>
             <Filter>[disaster_severity] = "Building destroyed"</Filter>
             <PolygonSymbolizer fill="#bd0026" />
+            <LineSymbolizer stroke="#bd0026" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[disaster_severity] = "Very severe"</Filter>
             <PolygonSymbolizer fill="#e31a1c" />
+            <LineSymbolizer stroke="#e31a1c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[disaster_severity] = "Severe"</Filter>
             <PolygonSymbolizer fill="#fc4e2a" />
+            <LineSymbolizer stroke="#fc4e2a" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[disaster_severity] = "Moderate"</Filter>
             <PolygonSymbolizer fill="#fd8d3c" />
+            <LineSymbolizer stroke="#fd8d3c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[disaster_severity] = "Minimal"</Filter>
             <PolygonSymbolizer fill="#feb24c" />
+            <LineSymbolizer stroke="#feb24c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[disaster_severity] = "No damage visible"</Filter>
             <PolygonSymbolizer fill="#fed976" />
+            <LineSymbolizer stroke="#fed976" stroke-width="2.0"/>
         </Rule>
     </Style>
     <Style name="dynamics_demolished_count">
         <Rule>
             <Filter>[dynamics_has_demolished_buildings] = false</Filter>
             <PolygonSymbolizer fill="#0C7BDC" />
+            <LineSymbolizer stroke="#0C7BDC" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[demolished_buildings_count] &gt;= 7</Filter>
             <PolygonSymbolizer fill="#bd0026" />
+            <LineSymbolizer stroke="#bd0026" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[demolished_buildings_count] = 6</Filter>
             <PolygonSymbolizer fill="#e31a1c" />
+            <LineSymbolizer stroke="#e31a1c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[demolished_buildings_count] = 5</Filter>
             <PolygonSymbolizer fill="#fc4e2a" />
+            <LineSymbolizer stroke="#fc4e2a" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[demolished_buildings_count] = 4</Filter>
             <PolygonSymbolizer fill="#fd8d3c" />
+            <LineSymbolizer stroke="#fd8d3c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[demolished_buildings_count] = 3</Filter>
             <PolygonSymbolizer fill="#feb24c" />
+            <LineSymbolizer stroke="#feb24c" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[demolished_buildings_count] = 2</Filter>
             <PolygonSymbolizer fill="#fed976" />
+            <LineSymbolizer stroke="#fed976" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[demolished_buildings_count] = 1</Filter>
             <PolygonSymbolizer fill="#ffe8a9" />
+            <LineSymbolizer stroke="#ffe8a9" stroke-width="2.0"/>
         </Rule>
     </Style>
     <Style name="typology_classification">
         <Rule>
             <Filter>[typology_classification] = "Low-rise: Not part of a group/cluster (1-3 core floors- excluding extensions)"</Filter>
             <PolygonSymbolizer fill="#0311AB" />
+            <LineSymbolizer stroke="#0311AB" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_classification] = "Low-rise: Part of dense block/row/terrace"</Filter>
             <PolygonSymbolizer fill="#3845D4" />
+            <LineSymbolizer stroke="#3845D4" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_classification] = "Low-rise: Part of group of widely spaced blocks (includes semi-detached houses)"</Filter>
             <PolygonSymbolizer fill="#6D79FD" />
+            <LineSymbolizer stroke="#6D79FD" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_classification] = "Mid-rise: Not part of a group/cluster (4-7 core floors)"</Filter>
             <PolygonSymbolizer fill="#FF5D00" />
+            <LineSymbolizer stroke="#FF5D00" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_classification] = "Mid-rise: Part of group of densely spaced blocks"</Filter>
             <PolygonSymbolizer fill="#FF8000" />
+            <LineSymbolizer stroke="#FF8000" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_classification] = "Mid-rise: Part of group of widely spaced blocks"</Filter>
             <PolygonSymbolizer fill="#FFA200" />
+            <LineSymbolizer stroke="#FFA200" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_classification] = "High rise: Not part of a group/cluster"</Filter>
             <PolygonSymbolizer fill="#AB1303" />
+            <LineSymbolizer stroke="#AB1303" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_classification] = "High-rise: Part of group of densely spaced blocks (8 + core floors)"</Filter>
             <PolygonSymbolizer fill="#D43A29" />
+            <LineSymbolizer stroke="#D43A29" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_classification] = "High-rise: Part of group of widely spaced blocks"</Filter>
             <PolygonSymbolizer fill="#FC604F" />
+            <LineSymbolizer stroke="#FC604F" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1886,46 +2170,57 @@
         <Rule>
             <Filter>[typology_style_period] = "43AD-410 (Roman)"</Filter>
             <PolygonSymbolizer fill="#dadada" />
+            <LineSymbolizer stroke="#dadada" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "410-1485 (Medieval)"</Filter>
             <PolygonSymbolizer fill="#a9a695" />
+            <LineSymbolizer stroke="#a9a695" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "1485-1603 (Tudor)"</Filter>
             <PolygonSymbolizer fill="#d0c291" />
+            <LineSymbolizer stroke="#d0c291" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "1603-1714 (Stuart)"</Filter>
             <PolygonSymbolizer fill="#6d8a51" />
+            <LineSymbolizer stroke="#6d8a51" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "1714-1837 (Georgian)"</Filter>
             <PolygonSymbolizer fill="#acc98f" />
+            <LineSymbolizer stroke="#acc98f" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "1837-1901 (Victorian)"</Filter>
             <PolygonSymbolizer fill="#6a9dba" />
+            <LineSymbolizer stroke="#6a9dba" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "1901-1914 (Edwardian)"</Filter>
             <PolygonSymbolizer fill="#c3e1eb" />
+            <LineSymbolizer stroke="#c3e1eb" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "1914-1945 (WWI-WWII)"</Filter>
             <PolygonSymbolizer fill="#8f5385" />
+            <LineSymbolizer stroke="#8f5385" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "1946-1979 (Post war)"</Filter>
             <PolygonSymbolizer fill="#cc1212" />
+            <LineSymbolizer stroke="#cc1212" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "1980-1999 (Late 20th Century)"</Filter>
             <PolygonSymbolizer fill="#fbaf27" />
+            <LineSymbolizer stroke="#fbaf27" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_style_period] = "2000-2025 (Early 21st Century)"</Filter>
             <PolygonSymbolizer fill="#fae269" />
+            <LineSymbolizer stroke="#fae269" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1943,14 +2238,17 @@
         <Rule>
             <Filter>[typology_dynamic_classification] = "Small, often repetitive plots, mainly residential"</Filter>
             <PolygonSymbolizer fill="#FF7F11" />
+            <LineSymbolizer stroke="#FF7F11" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_dynamic_classification] = "Linear non-domestic, i.e. high streets"</Filter>
             <PolygonSymbolizer fill="#FF1B1C" />
+            <LineSymbolizer stroke="#FF1B1C" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[typology_dynamic_classification] = "Large plots with internal roads"</Filter>
             <PolygonSymbolizer fill="#40E0D0" />
+            <LineSymbolizer stroke="#40E0D0" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1968,6 +2266,7 @@
         <Rule>
             <Filter>[context_back_garden] = true</Filter>
             <PolygonSymbolizer fill="#7cbf39" />
+            <LineSymbolizer stroke="#7cbf39" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -1985,6 +2284,7 @@
         <Rule>
             <Filter>[designer_awards] = true</Filter>
             <PolygonSymbolizer fill="#f7ec25" />
+            <LineSymbolizer stroke="#f7ec25" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -2002,6 +2302,7 @@
         <Rule>
             <Filter>[energy_solar] = true</Filter>
             <PolygonSymbolizer fill="#6bb1e3" />
+            <LineSymbolizer stroke="#6bb1e3" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -2019,6 +2320,7 @@
         <Rule>
             <Filter>[energy_green_roof] = true</Filter>
             <PolygonSymbolizer fill="#7cbf39" />
+            <LineSymbolizer stroke="#7cbf39" stroke-width="2.0"/>
         </Rule>
 
         <Rule>
@@ -2071,8 +2373,14 @@
         <Rule>
             <Filter>[sust_aggregate_estimate_epc] is null</Filter>
             <PolygonSymbolizer fill="#c0c0c0" />
+            <LineSymbolizer stroke="#c0c0c0" stroke-width="2.0"/>
         </Rule>
 
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
         <Rule>
             <MaxScaleDenominator>4264</MaxScaleDenominator>
             <MinScaleDenominator>0</MinScaleDenominator>
