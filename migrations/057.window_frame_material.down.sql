@@ -1,0 +1,3 @@
+ALTER TABLE buildings DROP COLUMN IF EXISTS construction_material_window_frame;
+ALTER TABLE buildings DROP COLUMN IF EXISTS construction_material_window_frame_source_type;
+ALTER TABLE buildings DROP COLUMN IF EXISTS construction_material_window_frame_source_links;
