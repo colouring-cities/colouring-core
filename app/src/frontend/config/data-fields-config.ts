@@ -634,8 +634,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: "Wood",
         items: [
             "Wood",
-            "Plastic",
             "Metal",
+            "Plastic",
             "Other",
             "No windows"
         ]
