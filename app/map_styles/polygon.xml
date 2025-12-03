@@ -465,8 +465,8 @@
         </Rule>
         <Rule>
             <Filter>[construction_core_material] = "Other Metal"</Filter>
-            <PolygonSymbolizer fill="#5c8970" />
-            <LineSymbolizer stroke="#5c8970" stroke-width="2.0"/>
+            <PolygonSymbolizer fill="#8fc3a0" />
+            <LineSymbolizer stroke="#8fc3a0" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_core_material] = "Other Natural Material"</Filter>
@@ -643,8 +643,8 @@
         </Rule>
         <Rule>
             <Filter>[construction_roof_covering] = "Other Metal"</Filter>
-            <PolygonSymbolizer fill="#5c8970" />
-            <LineSymbolizer stroke="#5c8970" stroke-width="2.0"/>
+            <PolygonSymbolizer fill="#8fc3a0" />
+            <LineSymbolizer stroke="#8fc3a0" stroke-width="2.0"/>
         </Rule>
         <Rule>
             <Filter>[construction_roof_covering] = "Other Natural Material"</Filter>

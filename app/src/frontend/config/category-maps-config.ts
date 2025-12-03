@@ -114,7 +114,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: "#f5d96b", text: "Brick" },
                     { color: "#beffe8", text: "Steel" },
                     { color: "#fca89d", text: "Reinforced Concrete" },
-                    { color: "#5c8970", text: "Other Metal" },
+                    { color: "#8fc3a0", text: "Other Metal" },
                     { color: "#96613b", text: "Other Natural Material" },
                     { color: "#c48a85", text: "Other Man-Made Material" }
                 ]
@@ -172,7 +172,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: "#f5d96b", text: "Brick" },
                     { color: "#beffe8", text: "Steel" },
                     { color: "#fca89d", text: "Reinforced Concrete" },
-                    { color: "#5c8970", text: "Other Metal" },
+                    { color: "#8fc3a0", text: "Other Metal" },
                     { color: "#96613b", text: "Other Natural Material" },
                     { color: "#c48a85", text: "Other Man-Made Material" }
                 ]
