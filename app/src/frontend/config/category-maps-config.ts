@@ -179,6 +179,19 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         },
         {
+            mapStyle: 'construction_material_window_frame',
+            legend: {
+                title: 'Window frame material',
+                elements: [
+                    { color: "#b5a859", text: "Wood" },
+                    { color: "#8fc3a0", text: "Metal" },
+                    { color: "#ff3939", text: "Plastic" },
+                    { color: "#8080ff", text: "Other" },
+                    { color: "#ffffff", text: "No windows" }
+                ]
+            },
+        },
+        {
             mapStyle: 'team',
             legend: {
                 title: 'Team',

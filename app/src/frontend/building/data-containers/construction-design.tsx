@@ -44,6 +44,10 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
         e.preventDefault();
         props.onMapColourScale('construction_roof_covering')
     }
+    const switchToWindowFrameMaterialMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('construction_material_window_frame')
+    }
     
     return (
         <Fragment>
@@ -518,6 +522,13 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                         }
 
                         <hr/>
+                        {(props.mapColourScale != "construction_material_window_frame") ? 
+                            <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToWindowFrameMaterialMapStyle}>
+                                {"Click to view findow frame data."}
+                            </button>
+                            :
+                            <></>
+                        }
                         <SelectDataEntry
                             title={dataFields.construction_material_window_frame.title}
                             slug="construction_material_window_frame"
