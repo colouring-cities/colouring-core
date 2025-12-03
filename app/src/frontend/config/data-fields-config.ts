@@ -627,6 +627,32 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: 100.5,
         tooltip: "i.e. the highest part of the roof (in meters).",
     },
+    construction_material_window_frame: {
+        category: Category.ConstructionDesign,
+        title: "What is the material used for most of the window frames?",
+        tooltip: null,
+        example: "Wood",
+        items: [
+            "Wood",
+            "Metal",
+            "Plastic",
+            "Other",
+            "No windows"
+        ]
+    },
+    construction_material_window_frame_source_type: {
+        category: Category.ConstructionDesign,
+        title: "Source type",
+        tooltip: null,
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_material_window_frame_source_links: {
+        category: Category.ConstructionDesign,
+        title: "Source links",
+        tooltip: null,
+        example: ["", "", ""],
+    },
     size_height_apex_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
