@@ -17,6 +17,7 @@ export type BuildingMapTileset =
     'construction_foundation' |
     'construction_roof_shape' |
     'construction_roof_covering' |
+    'construction_material_window_frame' |
     'location' |
     'is_domestic' |
     'likes' |
