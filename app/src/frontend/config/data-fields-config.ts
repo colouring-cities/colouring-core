@@ -641,14 +641,14 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         ]
     },
     construction_material_window_frame_source_type: {
-        category: Category.PlanningConservation,
+        category: Category.ConstructionDesign,
         title: "Source type",
         tooltip: null,
         example: "",
         items: commonSourceTypes
     },
     construction_material_window_frame_source_links: {
-        category: Category.PlanningConservation,
+        category: Category.ConstructionDesign,
         title: "Source links",
         tooltip: null,
         example: ["", "", ""],
