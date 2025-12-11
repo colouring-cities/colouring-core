@@ -1311,7 +1311,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_world_heritage_site: {
         category: Category.UrbanInfrastructure,
-        title: "Is the building on a World Heritage Site?",
+        title: "Is the building part of a World Heritage Site?",
         tooltip: "Is the building on a UNESCO <a href=\"https://www.unesco.org/en\" target=\"_blank\">World Heritage Site</a>",
         example: true,
     },
