@@ -349,7 +349,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#ffbea1', text: 'Grade II Listed'},
                     { color: '#85ffd4', text: 'Heritage at Risk'},
                     { color: '#858ed4', text: 'Locally Listed'},
-                    { color: '#858eff', text: 'In World Heritage Site'},
+                    { color: '#0bbf12', text: 'In World Heritage Site'},
                     { color: '#8500d4', text: 'In Archaeological Priority Area'},
                 ]
             },

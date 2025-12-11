@@ -524,7 +524,7 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                         <hr/>
                         {(props.mapColourScale != "construction_material_window_frame") ? 
                             <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToWindowFrameMaterialMapStyle}>
-                                {"Click to view findow frame data."}
+                                {"Click to view window frame data."}
                             </button>
                             :
                             <></>
