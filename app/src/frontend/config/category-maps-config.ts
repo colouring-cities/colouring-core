@@ -179,6 +179,19 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         },
         {
+            mapStyle: 'construction_material_window_frame',
+            legend: {
+                title: 'Window frame material',
+                elements: [
+                    { color: "#b5a859", text: "Wood" },
+                    { color: "#8fc3a0", text: "Metal" },
+                    { color: "#ff3939", text: "Plastic" },
+                    { color: "#8080ff", text: "Other" },
+                    { color: "#ffffff", text: "No windows" }
+                ]
+            },
+        },
+        {
             mapStyle: 'team',
             legend: {
                 title: 'Team',
@@ -336,7 +349,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                     { color: '#ffbea1', text: 'Grade II Listed'},
                     { color: '#85ffd4', text: 'Heritage at Risk'},
                     { color: '#858ed4', text: 'Locally Listed'},
-                    { color: '#858eff', text: 'In World Heritage Site'},
+                    { color: '#0bbf12', text: 'In World Heritage Site'},
                     { color: '#8500d4', text: 'In Archaeological Priority Area'},
                 ]
             },

@@ -668,6 +668,44 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="construction_material_window_frame">
+        <Rule>
+            <Filter>[construction_material_window_frame] = "Wood"</Filter>
+            <PolygonSymbolizer fill="#b5a859" />
+            <LineSymbolizer stroke="#b5a859" stroke-width="2.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[construction_material_window_frame] = "Metal"</Filter>
+            <PolygonSymbolizer fill="#8fc3a0" />
+            <LineSymbolizer stroke="#8fc3a0" stroke-width="2.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[construction_material_window_frame] = "Plastic"</Filter>
+            <PolygonSymbolizer fill="#ff3939" />
+            <LineSymbolizer stroke="#ff3939" stroke-width="2.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[construction_material_window_frame] = "Other"</Filter>
+            <PolygonSymbolizer fill="#8080ff" />
+            <LineSymbolizer stroke="#8080ff" stroke-width="2.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[construction_material_window_frame] = "No windows"</Filter>
+            <PolygonSymbolizer fill="#ffffff" />
+            <LineSymbolizer stroke="#ffffff" stroke-width="2.0"/>
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="date_year">
         <Rule>
             <Filter>[date_year] &gt;= 2020</Filter>
@@ -1126,34 +1164,42 @@
         <Rule>
             <Filter>[planning_in_conservation_area] = true</Filter>
             <PolygonSymbolizer fill="#95beba"/>
+            <LineSymbolizer stroke="#95beba" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[listing_type] = "Grade I Listed"</Filter>
             <PolygonSymbolizer fill="#c72e08"/>
+            <LineSymbolizer stroke="#c72e08" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[listing_type] = "Grade II* Listed"</Filter>
             <PolygonSymbolizer fill="#e75b42"/>
+            <LineSymbolizer stroke="#e75b42" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[listing_type] = "Grade II Listed"</Filter>
             <PolygonSymbolizer fill="#ffbea1"/>
+            <LineSymbolizer stroke="#ffbea1" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[listing_type] = "Locally Listed"</Filter>
             <PolygonSymbolizer fill="#858ed4"/>
+            <LineSymbolizer stroke="#858ed4" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[listing_type] = "Heritage at Risk"</Filter>
             <PolygonSymbolizer fill="#85ffd4"/>
+            <LineSymbolizer stroke="#85ffd4" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[listing_type] = "In World Heritage Site"</Filter>
-            <PolygonSymbolizer fill="#858eff"/>
+            <PolygonSymbolizer fill="#0bbf12"/>
+            <LineSymbolizer stroke="#0bbf12" stroke-width="1.75" />
         </Rule>
         <Rule>
             <Filter>[listing_type] = "In Archaeological Priority Area"</Filter>
             <PolygonSymbolizer fill="#8500d4"/>
+            <LineSymbolizer stroke="#8500d4" stroke-width="1.75" />
         </Rule>
 
         <Rule>
