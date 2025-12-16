@@ -63,6 +63,10 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
         e.preventDefault();
         props.onMapColourScale('planning_combined')
     }
+    const switchToBuildingProtectionWorldHeritageMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('planning_world_heritage_buildings')
+    }
     const switchToAllPlanningApplicationsMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('planning_applications_status_all')
@@ -465,6 +469,13 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                             verified_count={props.building.verified.planning_world_list_id}
                         />
                     </>
+                }
+                {props.mapColourScale != "planning_world_heritage_buildings" ?
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingProtectionWorldHeritageMapStyle}>
+                        {'Click to see buildings within World Heritage Sites'}
+                    </button>
+                    :
+                    <></>
                 }
                 <hr/>
                 <LogicalDataEntry
