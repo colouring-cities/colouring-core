@@ -84,7 +84,7 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
         props.onMapColourScale('community_local_significance_total')
     }
 
-    const { housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, conservation, conservationSwitchOnClick, darkLightTheme } = useDisplayPreferences();
+    const { housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, conservation, conservationSwitchOnClick, worldHeritageSites, worldHeritageSitesSwitchOnClick, darkLightTheme } = useDisplayPreferences();
     
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     const currentYear = new Date().getFullYear();
@@ -477,6 +477,9 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                     :
                     <></>
                 }
+                <button className={`map-switcher-inline ${worldHeritageSites}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={worldHeritageSitesSwitchOnClick}>
+                    {(worldHeritageSites === 'enabled')? 'Click to hide World Heritage Sites Boundaries' : 'Click to see World Heritage Sites Boundaries'}
+                </button>
                 <hr/>
                 <LogicalDataEntry
                     slug='planning_listed'
