@@ -9,7 +9,7 @@ export const VistaSwitcher: React.FC<{}> = () => {
     <form className={`map-button ${vista}-state ${darkLightTheme}`} onSubmit={vistaSwitch}>
         <button className="btn btn-outline btn-outline-dark"
             type="submit">
-            {(vista === 'enabled')? 'Protected Vistas on' : 'Protected Vistas off'}
+            {(vista === 'enabled')? 'Protected Vistas [on]' : 'Protected Vistas [off]'}
         </button>
     </form>
     );

@@ -9,7 +9,7 @@ export const CreativeSwitcher: React.FC<{}> = () => {
         <form className={`map-button ${creative}-state ${darkLightTheme}`} onSubmit={creativeSwitch}>
             <button className="btn btn-outline btn-outline-dark"
                 type="submit">
-                {(creative === 'enabled')? 'Enterprise Zones on' : 'Creative Enterprise Zones off'}
+                {(creative === 'enabled')? 'Enterprise Zones [on]' : 'Creative Enterprise Zones [off]'}
             </button>
         </form>
     );
