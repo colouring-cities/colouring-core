@@ -17,7 +17,7 @@ export function WorldHeritageSitesLayer() {
     if(worldHeritageSites == "enabled") {
         return worldHeritageSitesGeojson &&
         <GeoJSON 
-        attribution='TODO attribution'
+        attribution='<a href="https://historicengland.org.uk/terms/website-terms-conditions/open-data-hub/">Historic England - Open Government Licence.</a>'
         data={worldHeritageSitesGeojson}
         style={{color: '#80ff80', fill: true, weight: 1, opacity: 1, fillOpacity: 0.5}}
     />;
