@@ -9,7 +9,7 @@ export const HousingSwitcher: React.FC<{}> = () => {
     <form className={`map-button ${housing}-state ${darkLightTheme}`} onSubmit={housingSwitch}>
         <button className="btn btn-outline btn-outline-dark"
             type="submit">
-            {(housing === 'enabled')? 'Housing Zones on' : 'Housing Zones off'}
+            {(housing === 'enabled')? 'Housing Zones [on]' : 'Housing Zones [off]'}
         </button>
     </form>
     );
