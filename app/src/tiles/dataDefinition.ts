@@ -481,7 +481,7 @@ const LAYER_QUERIES = {
         FROM buildings
         WHERE
             planning_world_list_id IS NOT NULL
-            `,    
+            `,
     team_known_designer: `
             SELECT
                 geometry_id,
