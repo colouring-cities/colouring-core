@@ -162,6 +162,14 @@ const LAYER_QUERIES = {
             buildings
         WHERE
             construction_roof_covering IS NOT NULL`,
+    construction_material_window_frame: `
+        SELECT
+            geometry_id,
+            construction_material_window_frame
+        FROM
+            buildings
+        WHERE
+            construction_material_window_frame IS NOT NULL`,
     location: `
         SELECT blds_with_data.* 
         FROM (

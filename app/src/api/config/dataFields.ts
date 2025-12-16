@@ -279,6 +279,18 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
         edit: true,
         verify: true,
     },
+    construction_material_window_frame: {
+        edit: true,
+        verify: true,
+    },
+    construction_material_window_frame_source_type: {
+        edit: true,
+        verify: true,
+    },
+    construction_material_window_frame_source_links: {
+        edit: true,
+        verify: true,
+    },
     construction_core_material: {
         edit: true,
         verify: true,
@@ -563,11 +575,19 @@ export const buildingAttributesConfig = valueType<DataFieldConfig>()({ /* eslint
     sust_aggregate_estimate_epc: {
         edit: true,
     },
-    sust_energy_rating_source_type: {
+    sust_aggregate_estimate_epc_source_type: {
         edit: true,
         verify: true
     },
-    sust_energy_rating_source_link: {
+    sust_aggregate_estimate_epc_source_link: {
+        edit: true,
+        verify: true
+    },
+    sust_dec_source_type: {
+        edit: true,
+        verify: true
+    },
+    sust_dec_source_link: {
         edit: true,
         verify: true
     },

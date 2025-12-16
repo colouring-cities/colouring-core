@@ -9,7 +9,7 @@ export const FloodSwitcher: React.FC<{}> = () => {
         <form className={`map-button ${flood}-state ${darkLightTheme}`} onSubmit={floodSwitch}>
             <button className="btn btn-outline btn-outline-dark"
                 type="submit">
-                {(flood === 'enabled')? 'Flood Zones on' : 'Flood Zones off'}
+                {(flood === 'enabled')? 'Flood Zones [on]' : 'Flood Zones [off]'}
             </button>
         </form>
     );

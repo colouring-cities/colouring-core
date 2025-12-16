@@ -627,6 +627,32 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         example: 100.5,
         tooltip: "i.e. the highest part of the roof (in meters).",
     },
+    construction_material_window_frame: {
+        category: Category.ConstructionDesign,
+        title: "What is the material used for most of the window frames?",
+        tooltip: null,
+        example: "Wood",
+        items: [
+            "Wood",
+            "Metal",
+            "Plastic",
+            "Other",
+            "No windows"
+        ]
+    },
+    construction_material_window_frame_source_type: {
+        category: Category.ConstructionDesign,
+        title: "Source type",
+        tooltip: null,
+        example: "",
+        items: commonSourceTypes
+    },
+    construction_material_window_frame_source_links: {
+        category: Category.ConstructionDesign,
+        title: "Source links",
+        tooltip: null,
+        example: ["", "", ""],
+    },
     size_height_apex_source_type: {
         category: Category.EnergyPerformance,
         title: "Source type",
@@ -1100,15 +1126,28 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: "Energy Performance Certificate (EPC) Any premises sold or rented is required to have an EPC to show how energy efficient it is. Only buildings rate grade E or higher may be rented",
         example: "",
     },
-    sust_energy_rating_source_type: {
-        category: Category.WaterGreenInfrastructure,
+    sust_aggregate_estimate_epc_source_type: {
+        category: Category.EnergyPerformance,
         title: "Source type",
         tooltip: null,
         example: "",
         items: commonSourceTypes
     },
-    sust_energy_rating_source_link: {
-        category: Category.WaterGreenInfrastructure,
+    sust_aggregate_estimate_epc_source_link: {
+        category: Category.EnergyPerformance,
+        title: "Source link",
+        tooltip: null,
+        example: "",
+    },
+    sust_dec_source_type: {
+        category: Category.EnergyPerformance,
+        title: "Source type",
+        tooltip: null,
+        example: "",
+        items: commonSourceTypes
+    },
+    sust_dec_source_link: {
+        category: Category.EnergyPerformance,
         title: "Source link",
         tooltip: null,
         example: "",

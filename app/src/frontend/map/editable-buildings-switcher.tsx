@@ -9,7 +9,7 @@ export const EditableBuildingsSwitcher: React.FC<{}> = () => {
         <form className={`map-button ${editableBuildings}-state ${darkLightTheme}`} onSubmit={editableBuildingsSwitch}>
             <button className="btn btn-outline btn-outline-dark"
                 type="submit">
-                {(editableBuildings === 'enabled')? 'Editable Buildings on' : 'Editable Buildings off'}
+                {(editableBuildings === 'enabled')? 'Editable Buildings [on]' : 'Editable Buildings [off]'}
             </button>
         </form>
     );

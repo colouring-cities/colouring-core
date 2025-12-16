@@ -44,6 +44,10 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
         e.preventDefault();
         props.onMapColourScale('construction_roof_covering')
     }
+    const switchToWindowFrameMaterialMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('construction_material_window_frame')
+    }
     
     return (
         <Fragment>
@@ -516,6 +520,63 @@ const ConstructionDesignView: React.FunctionComponent<CategoryViewProps> = (prop
                                 />
                             </>
                         }
+
+                        <hr/>
+                        {(props.mapColourScale != "construction_material_window_frame") ? 
+                            <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToWindowFrameMaterialMapStyle}>
+                                {"Click to view window frame data."}
+                            </button>
+                            :
+                            <></>
+                        }
+                        <SelectDataEntry
+                            title={dataFields.construction_material_window_frame.title}
+                            slug="construction_material_window_frame"
+                            value={props.building.construction_material_window_frame}
+                            tooltip={dataFields.construction_material_window_frame.tooltip}
+                            options={dataFields.construction_material_window_frame.items}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                        />
+                        <Verification
+                            slug="construction_material_window_frame"
+                            allow_verify={props.user !== undefined && props.building.construction_material_window_frame !== null && !props.edited}
+                            onVerify={props.onVerify}
+                            user_verified={props.user_verified.hasOwnProperty("construction_material_window_frame")}
+                            user_verified_as={props.user_verified.construction_material_window_frame}
+                            verified_count={props.building.verified.construction_material_window_frame}
+                        />
+                        <SelectDataEntry
+                            title={dataFields.construction_material_window_frame_source_type.title}
+                            slug="construction_material_window_frame_source_type"
+                            value={props.building.construction_material_window_frame_source_type}
+                            mode={props.mode}
+                            copy={props.copy}
+                            onChange={props.onChange}
+                            tooltip={dataFields.construction_material_window_frame_source_type.tooltip}
+                            placeholder={dataFields.construction_material_window_frame_source_type.example}
+                            options={dataFields.construction_material_window_frame_source_type.items}
+                            />
+                        {(props.building.construction_material_window_frame_source_type == commonSourceTypes[0] ||
+                            props.building.construction_material_window_frame_source_type == commonSourceTypes[1] ||
+                            props.building.construction_material_window_frame_source_type == null) ? <></> :
+                            <>
+                                <MultiDataEntry
+                                    title={dataFields.construction_material_window_frame_source_links.title}
+                                    slug="construction_material_window_frame_source_links"
+                                    value={props.building.construction_material_window_frame_source_links}
+                                    mode={props.mode}
+                                    copy={props.copy}
+                                    onChange={props.onChange}
+                                    tooltip={dataFields.construction_material_window_frame_source_links.tooltip}
+                                    placeholder="https://..."
+                                    editableEntries={true}
+                                    isUrl={true}
+                                />
+                            </>
+                        }
+
                     </DataEntryGroup>
                     <DataEntryGroup name="Decorative Features"  collapsed={subcat==null || subcat!="3"}>
                         <LogicalDataEntry
