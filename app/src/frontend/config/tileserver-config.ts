@@ -37,6 +37,7 @@ export type BuildingMapTileset =
     'planning_applications_status_recent' |
     'planning_applications_status_very_recent' |
     'planning_combined' |
+    'planning_world_heritage_buildings' |
     'sust_dec' |
     'building_attachment_form' |
     'landuse' |

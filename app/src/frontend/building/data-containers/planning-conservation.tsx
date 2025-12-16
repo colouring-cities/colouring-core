@@ -63,6 +63,10 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
         e.preventDefault();
         props.onMapColourScale('planning_combined')
     }
+    const switchToBuildingProtectionWorldHeritageMapStyle = (e) => {
+        e.preventDefault();
+        props.onMapColourScale('planning_world_heritage_buildings')
+    }
     const switchToAllPlanningApplicationsMapStyle = (e) => {
         e.preventDefault();
         props.onMapColourScale('planning_applications_status_all')
@@ -80,7 +84,7 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
         props.onMapColourScale('community_local_significance_total')
     }
 
-    const { housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, conservation, conservationSwitchOnClick, darkLightTheme } = useDisplayPreferences();
+    const { housing, housingSwitchOnClick, creative, creativeSwitchOnClick, vista, vistaSwitchOnClick, conservation, conservationSwitchOnClick, worldHeritageSites, worldHeritageSitesSwitchOnClick, darkLightTheme } = useDisplayPreferences();
     
     const communityLinkUrl = `/${props.mode}/${Category.Community}/${props.building.building_id}`;
     const currentYear = new Date().getFullYear();
@@ -466,6 +470,16 @@ const PlanningConservationView: React.FunctionComponent<CategoryViewProps> = (pr
                         />
                     </>
                 }
+                {props.mapColourScale != "planning_world_heritage_buildings" ?
+                    <button className={`map-switcher-inline disabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToBuildingProtectionWorldHeritageMapStyle}>
+                        {'Click to see buildings within World Heritage Sites'}
+                    </button>
+                    :
+                    <></>
+                }
+                <button className={`map-switcher-inline ${worldHeritageSites}-state btn btn-outline btn-outline-dark ${darkLightTheme}`} onClick={worldHeritageSitesSwitchOnClick}>
+                    {(worldHeritageSites === 'enabled')? 'Click to hide World Heritage Sites Boundaries' : 'Click to see World Heritage Sites Boundaries'}
+                </button>
                 <hr/>
                 <LogicalDataEntry
                     slug='planning_listed'

@@ -469,6 +469,19 @@ const LAYER_QUERIES = {
             OR planning_heritage_at_risk_url <> ''
             OR planning_in_apa_url <> ''
             `,
+    planning_world_heritage_buildings: `
+        SELECT
+            geometry_id,
+            (
+                CASE
+                    WHEN planning_world_list_id IS NOT NULL THEN 'In World Heritage Site'
+                    ELSE 'None'
+                END
+            ) AS listing_type
+        FROM buildings
+        WHERE
+            planning_world_list_id IS NOT NULL
+            `,
     team_known_designer: `
             SELECT
                 geometry_id,

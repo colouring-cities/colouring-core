@@ -355,6 +355,16 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         },
         {
+            mapStyle: 'planning_world_heritage_buildings',
+            legend: {
+                title: 'Buildings in World Heritage Sites (official and crowdsourced data)',
+                disclaimer: 'All data relating to designated buildings should be checked against the National Heritage List for England and local authority websites. Designation data is currently incomplete.',
+                elements: [
+                    { color: '#0bbf12', text: 'In World Heritage Site'},
+                ]
+            },
+        },
+        {
             mapStyle: 'community_local_significance_total',
             legend: {
                 title: 'Local Interest',
