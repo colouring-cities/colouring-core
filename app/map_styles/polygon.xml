@@ -1367,7 +1367,7 @@
             <LineSymbolizer stroke="#ff2121" stroke-width="2.0"/>
         </Rule>
         <Rule>
-            <Filter>[survival_status] = "Current Building on Previous Green Space"</Filter>
+            <Filter>[survival_status] = "Current Building on previously Unbuilt-on Site"</Filter>
             <PolygonSymbolizer fill="#CF26DF" />
             <LineSymbolizer stroke="#CF26DF" stroke-width="2.0"/>
         </Rule>
