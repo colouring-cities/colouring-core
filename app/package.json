@@ -28,7 +28,7 @@
     "express-session": "^1.18.1",
     "geojson": "^0.5.0",
     "leaflet": "^1.7.1",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "mapnik": "^4.5.9",
     "markdown-to-jsx": "^7.4.0",
     "node-fs": "^0.1.7",
