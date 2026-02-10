@@ -44,15 +44,32 @@ export const ageLegend = [
 export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = {
     [Category.AgeHistory]: [
         {
+            mapStyle: 'age_amalgamated',
+            legend: {
+                disclaimer: 'This map prioritises crowdsourced age data, provided mainly by local historians. It also uses automatically inferred data, and official data to fill in gaps.',
+                title: 'Age (Amalgamated methods)',
+                elements: ageLegend,
+            },
+        },
+        {
             mapStyle: 'date_year',
             legend: {
-                title: 'Age',
+                title: 'Age (Crowdsourced)',
+                elements: ageLegend,
+            },
+        },
+        {
+            mapStyle: 'age_inferred',
+            legend: {
+                disclaimer: 'This map shows age data that has been automatically inferred from other kinds of data. For example, for London, historical street networks data are used.',
+                title: 'Age (Automatically inferred)',
                 elements: ageLegend,
             },
         },
         {
             mapStyle: 'typology_style_period',
             legend: {
+                disclaimer: 'This shows data automatically derived from our "Age (Amalgamated methods)" map, and grouped into historical periods. Contributors can also directly choose an historical period to represent the age of a given building if the exact date is not known.',
                 title: 'Historical Period',
                 elements: [
                     { color: '#fae269', text: '2000-2025 (Early C21)' },
