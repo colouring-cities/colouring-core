@@ -109,10 +109,16 @@
 }
 
 .key-button {
+    color: #141619;
     background-color: paleturquoise !important;
 }
 
+.key-button:hover, .key-button-disabled:hover {
+    color: #141619;
+}
+
 .key-button-disabled {
+    color: #141619;
     background-color: lightgrey !important;
 }
 
