@@ -61,7 +61,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'age_inferred',
             legend: {
-                disclaimer: 'This map shows age data that has been automatically inferred from other kind of data. For example, for London, historical street networks data are used.',
+                disclaimer: 'This map shows age data that has been automatically inferred from other kinds of data. For example, for London, historical street networks data are used.',
                 title: 'Age (Automatically inferred)',
                 elements: ageLegend,
             },
