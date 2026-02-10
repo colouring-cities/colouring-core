@@ -44,6 +44,14 @@ export const ageLegend = [
 export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = {
     [Category.AgeHistory]: [
         {
+            mapStyle: 'age_amalgamated',
+            legend: {
+                disclaimer: 'This map shows age based on various sources, preferring higher-quality ones',
+                title: 'Age (Amalgamated)',
+                elements: ageLegend,
+            },
+        },
+        {
             mapStyle: 'date_year',
             legend: {
                 title: 'Age',

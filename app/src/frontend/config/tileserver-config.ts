@@ -4,6 +4,7 @@
  */
 
 export type BuildingMapTileset = 
+    'age_amalgamated' |
     'date_year' | 
     'age_inferred' |
     'cladding_year' | 
