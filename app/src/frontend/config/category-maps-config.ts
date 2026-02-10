@@ -46,7 +46,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'age_amalgamated',
             legend: {
-                disclaimer: 'This map prioritises crowdsourced age data, provided mainly by local historians. It also uses automatically inferred data, and EPC/energy data to fill in gaps.',
+                disclaimer: 'This map prioritises crowdsourced age data, provided mainly by local historians. It also uses automatically inferred data, and official data to fill in gaps.',
                 title: 'Age (Amalgamated methods)',
                 elements: ageLegend,
             },
