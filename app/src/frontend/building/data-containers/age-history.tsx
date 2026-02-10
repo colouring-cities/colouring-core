@@ -233,6 +233,14 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     tooltip={dataFields.date_year_inferred.tooltip}
                     disabled={true}
                     />
+                <Verification
+                    slug="date_year_inferred"
+                    allow_verify={props.user !== undefined && props.building.date_year_inferred !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("date_year_inferred")}
+                    user_verified_as={props.user_verified.date_year_inferred}
+                    verified_count={props.building.verified.date_year_inferred}
+                    />
                 <hr/>
                 <NumericDataEntry
                     title={dataFields.facade_year.title}
