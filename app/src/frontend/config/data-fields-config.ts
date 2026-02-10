@@ -573,8 +573,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_year_inferred: {
         category: Category.AgeHistory,
-        title: "Year construction started (inferred from other data, may be inaccurate)",
-        tooltip: "May be inferred for example from when street appeared.",
+        title: "Year construction started (automatically inferred from other data)",
+        tooltip: null,
         example: 1924,
     },
     facade_year: {

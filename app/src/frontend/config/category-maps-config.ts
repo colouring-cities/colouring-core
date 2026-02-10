@@ -46,22 +46,22 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'age_amalgamated',
             legend: {
-                disclaimer: 'This map shows age based on various sources, preferring higher-quality ones',
-                title: 'Age (Amalgamated)',
+                disclaimer: 'This map prioritises crowdsourced age data, provided mainly by local historians. It also uses automatically inferred data, and EPC/energy data to fill in gaps.',
+                title: 'Age (Amalgamated methods)',
                 elements: ageLegend,
             },
         },
         {
             mapStyle: 'date_year',
             legend: {
-                title: 'Age',
+                title: 'Age (Crowdsourced)',
                 elements: ageLegend,
             },
         },
         {
             mapStyle: 'age_inferred',
             legend: {
-                disclaimer: 'This map shows age based on official 2025 EPC data, required for new, sold and rented residential buildings.',
+                disclaimer: 'This map shows age data that has been automatically inferred from other kind of data. For example, for London, historical street networks data are used.',
                 title: 'Age (Automatically inferred)',
                 elements: ageLegend,
             },
@@ -69,6 +69,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         {
             mapStyle: 'typology_style_period',
             legend: {
+                disclaimer: 'This shows data automatically derived from our "Age (Amalgamated methods)" map, and grouped into historical periods. Contributors can also directly choose an historical period to represent the age of a given building if the exact date is not known.',
                 title: 'Historical Period',
                 elements: [
                     { color: '#fae269', text: '2000-2025 (Early C21)' },
