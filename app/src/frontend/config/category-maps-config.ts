@@ -51,6 +51,14 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             },
         },
         {
+            mapStyle: 'age_inferred',
+            legend: {
+                disclaimer: 'This map shows age based on official 2025 EPC data, required for new, sold and rented residential buildings.',
+                title: 'Age (Automatically inferred)',
+                elements: ageLegend,
+            },
+        },
+        {
             mapStyle: 'typology_style_period',
             legend: {
                 title: 'Historical Period',

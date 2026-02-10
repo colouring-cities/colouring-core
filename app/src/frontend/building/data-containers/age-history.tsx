@@ -58,6 +58,10 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
         switchToMapStyleHideHistoricMaps(event, 'date_year')
     }
 
+    const switchToAgeInferredMapStyle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        switchToMapStyleHideHistoricMaps(event, 'age_inferred')
+    }
+
     const switchToAgeCladdingMapStyle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         switchToMapStyleHideHistoricMaps(event, 'cladding_year')
     }
@@ -208,6 +212,25 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     step={1}
                     min={0}
                     disabled={true}
+                    />
+                {(props.mapColourScale != "age_inferred") ? 
+                        <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeInferredMapStyle}>
+                            Click to show inferred building age.
+                        </button>
+                :
+                    <></>
+                }
+                <NumericDataEntry
+                    title={dataFields.date_year_inferred.title}
+                    slug="date_year_inferred"
+                    value={props.building.date_year_inferred}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={1}
+                    max={props.building.date_year_inferred}
+                    tooltip={dataFields.date_year_inferred.tooltip}
                     />
                 <hr/>
                 <NumericDataEntry

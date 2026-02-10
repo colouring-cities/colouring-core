@@ -5,6 +5,7 @@
 
 export type BuildingMapTileset = 
     'date_year' | 
+    'age_inferred' |
     'cladding_year' | 
     'extension_year' | 
     'retrofit_year' | 
