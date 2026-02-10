@@ -231,6 +231,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     min={1}
                     max={props.building.date_year_inferred}
                     tooltip={dataFields.date_year_inferred.tooltip}
+                    disabled={true}
                     />
                 <hr/>
                 <NumericDataEntry
