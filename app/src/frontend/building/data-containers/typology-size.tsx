@@ -297,7 +297,7 @@ const TypologySizeView: React.FunctionComponent<CategoryViewProps> = (props) => 
             </DataEntryGroup>
 
             <DataEntryGroup name="Building Form" collapsed={subcat==null || subcat!="1"}>
-                <DataEntryGroup name="National Historical Description" collapsed={subcat==null || subcat!="2"}>
+                <DataEntryGroup name="Historical Period/Description" collapsed={subcat==null || subcat!="2"}>
                     <SelectDataEntry
                         title={dataFields.typology_style_period.title}
                         slug="typology_style_period"

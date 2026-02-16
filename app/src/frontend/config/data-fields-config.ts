@@ -555,8 +555,8 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_year_completed: {
         category: Category.AgeHistory,
-        title: "Year construction completed (best estimate)",
-        tooltip: "Best estimate for the year that construction completed on this building.",
+        title: "Year construction completed if known",
+        tooltip: null,
         example: 1925,
     },
     date_lower: {
@@ -592,7 +592,7 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     date_source_links: {
         category: Category.AgeHistory,
-        title: "Alternative Source link(s)",
+        title: "Additional Source link(s)",
         tooltip: null,
         example: ["", "", ""],
     },
