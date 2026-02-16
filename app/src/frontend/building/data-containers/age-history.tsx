@@ -85,19 +85,12 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
         props.onMapColourScale(map_style);
     }
 
-    let construction_length = null;
-
-    if (props.building.date_year != null && props.building.date_year_completed != null) {
-        construction_length = props.building.date_year_completed - props.building.date_year;
-        construction_length = Math.max(construction_length, 1);
-    }
-
     const queryParameters = new URLSearchParams(window.location.search);
     const subcat = queryParameters.get("sc");
 
     return (
         <Fragment>
-            <DataEntryGroup name="National Historical Description" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Historical Period/Description" collapsed={subcat==null || subcat!="2"}>
                 {(props.mapColourScale != "typology_style_period") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToHistoricalPeriodMapStyle}>
                         Click to show historical period.
@@ -200,18 +193,6 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified={props.user_verified.hasOwnProperty("date_year_completed")}
                     user_verified_as={props.user_verified.date_year_completed}
                     verified_count={props.building.verified.date_year_completed}
-                    />
-                <NumericDataEntry
-                    title="Estimated duration of construction (years)"
-                    slug="size_total_floors"
-                    value={construction_length}
-                    mode={props.mode}
-                    copy={props.copy}
-                    tooltip="Length of building construction (calculated from above values)."
-                    onChange={props.onChange}
-                    step={1}
-                    min={0}
-                    disabled={true}
                     />
                 {(props.mapColourScale != "age_inferred") ? 
                         <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeInferredMapStyle}>
