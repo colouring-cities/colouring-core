@@ -1294,9 +1294,9 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
     },
     planning_list_id: {
         category: Category.UrbanInfrastructure,
-        title: "If the building is on a national heritage register, please add the ID:",
+        title: "Please add the ID from the NHLE if the building is listed:",
         example: "121436",
-        tooltip: "e.g. National Heritage List for England (NHLE)",
+        tooltip: "National Heritage List for England (NHLE)",
     },
     planning_list_grade: {
         category: Category.UrbanInfrastructure,
