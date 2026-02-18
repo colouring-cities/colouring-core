@@ -194,34 +194,6 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.date_year_completed}
                     verified_count={props.building.verified.date_year_completed}
                     />
-                {(props.mapColourScale != "age_inferred") ? 
-                        <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeInferredMapStyle}>
-                            Click to show inferred building age.
-                        </button>
-                :
-                    <></>
-                }
-                <NumericDataEntry
-                    title={dataFields.date_year_inferred.title}
-                    slug="date_year_inferred"
-                    value={props.building.date_year_inferred}
-                    mode={props.mode}
-                    copy={props.copy}
-                    onChange={props.onChange}
-                    step={1}
-                    min={1}
-                    max={props.building.date_year_inferred}
-                    tooltip={dataFields.date_year_inferred.tooltip}
-                    disabled={true}
-                    />
-                <Verification
-                    slug="date_year_inferred"
-                    allow_verify={props.user !== undefined && props.building.date_year_inferred !== null && !props.edited}
-                    onVerify={props.onVerify}
-                    user_verified={props.user_verified.hasOwnProperty("date_year_inferred")}
-                    user_verified_as={props.user_verified.date_year_inferred}
-                    verified_count={props.building.verified.date_year_inferred}
-                    />
                 <hr/>
                 <NumericDataEntry
                     title={dataFields.facade_year.title}
@@ -275,6 +247,34 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                 }
             </DataEntryGroup>
             <DataEntryGroup name="Inferred Data" collapsed={subcat==null || subcat!="3"}>
+            {(props.mapColourScale != "age_inferred") ? 
+                        <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeInferredMapStyle}>
+                            Click to show inferred building age.
+                        </button>
+                :
+                    <></>
+                }
+                <NumericDataEntry
+                    title={dataFields.date_year_inferred.title}
+                    slug="date_year_inferred"
+                    value={props.building.date_year_inferred}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={1}
+                    max={props.building.date_year_inferred}
+                    tooltip={dataFields.date_year_inferred.tooltip}
+                    disabled={true}
+                    />
+                <Verification
+                    slug="date_year_inferred"
+                    allow_verify={props.user !== undefined && props.building.date_year_inferred !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("date_year_inferred")}
+                    user_verified_as={props.user_verified.date_year_inferred}
+                    verified_count={props.building.verified.date_year_inferred}
+                    />
             </DataEntryGroup>
             <DataEntryGroup name="Official Data and CCRP Bulk Upload Data" collapsed={subcat==null || subcat!="4"}>
             </DataEntryGroup>
