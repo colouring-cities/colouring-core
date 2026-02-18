@@ -90,7 +90,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
 
     return (
         <Fragment>
-            <DataEntryGroup name="Historical Period/Description" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Historical Period/Description" collapsed={subcat==null || subcat!="1"}>
                 {(props.mapColourScale != "typology_style_period") ? 
                     <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToHistoricalPeriodMapStyle}>
                         Click to show historical period.
@@ -146,7 +146,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Building Age/Construction Date (Crowdsourced)" collapsed={subcat==null || subcat!="1"}>
+            <DataEntryGroup name="Building Age/Construction Date (Crowdsourced)" collapsed={subcat==null || subcat!="2"}>
                 {(props.mapColourScale != "date_year") ? 
                         <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeMapStyle}>
                             Click to show building age.
@@ -274,7 +274,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Cladding, Extensions & Retrofits" collapsed={subcat==null || subcat!="3"}>
+            <DataEntryGroup name="Cladding, Extensions & Retrofits" collapsed={subcat==null || subcat!="5"}>
                 {(props.mapColourScale != "cladding_year") ? 
                         <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeCladdingMapStyle}>
                             Click to show cladding date.
@@ -446,7 +446,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Lifespan & Site History" collapsed={subcat==null || subcat!="4"}>
+            <DataEntryGroup name="Lifespan & Site History" collapsed={subcat==null || subcat!="6"}>
                 <DataEntryGroup name="Constructions & Demolitions on this Site" collapsed={subcat==null || subcat!="4"}>
                     <DynamicsBuildingPane>
                         <label>Current building (building age data editable above)</label>
@@ -529,7 +529,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     }
                 </DataEntryGroup>
             </DataEntryGroup>
-            <DataEntryGroup name="Survival Tracking" collapsed={subcat==null || subcat!="5"}>
+            <DataEntryGroup name="Survival Tracking" collapsed={subcat==null || subcat!="7"}>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         Can you help us create a map that shows how many buildings in this area have survived since the 1890s? 
@@ -593,7 +593,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Historical Map Data Options" collapsed={subcat==null || subcat!="6"}>
+            <DataEntryGroup name="Historical Map Data Options" collapsed={subcat==null || subcat!="8"}>
                 <div className={`alert alert-dark`} role="alert" style={{ fontSize: 13, backgroundColor: "#f6f8f9" }}>
                     <i>
                         This section provides links to open digitised historical maps/mapping data that we are using in the Colouring Cities platform.
