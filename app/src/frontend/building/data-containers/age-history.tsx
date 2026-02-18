@@ -274,6 +274,10 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
+            <DataEntryGroup name="Inferred Data" collapsed={subcat==null || subcat!="3"}>
+            </DataEntryGroup>
+            <DataEntryGroup name="Official Data and CCRP Bulk Upload Data" collapsed={subcat==null || subcat!="4"}>
+            </DataEntryGroup>
             <DataEntryGroup name="Cladding, Extensions & Retrofits" collapsed={subcat==null || subcat!="5"}>
                 {(props.mapColourScale != "cladding_year") ? 
                         <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeCladdingMapStyle}>
