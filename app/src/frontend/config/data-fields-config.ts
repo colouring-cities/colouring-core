@@ -577,6 +577,18 @@ export const dataFields = { /* eslint-disable @typescript-eslint/camelcase */
         tooltip: null,
         example: 1924,
     },
+    date_year_inferred_lower: {
+        category: Category.AgeHistory,
+        title: "Best estimate for the earliest year in which construction could have started (automatically inferred from other data)",
+        tooltip: null,
+        example: 1920,
+    },
+    date_year_inferred_upper: {
+        category: Category.AgeHistory,
+        title: "This should be the latest year in which building could have started (automatically inferred from other data)",
+        tooltip: null,
+        example: 1935,
+    },
     facade_year: {
         category: Category.AgeHistory,
         title: "Date of front of building (best estimate)",
