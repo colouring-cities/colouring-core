@@ -39,10 +39,10 @@ const LAYER_QUERIES = {
     age_amalgamated: `
         SELECT
             geometry_id,
-            COALESCE(date_year, date_year_inferred) AS date_year
+            COALESCE(date_year, date_year_inferred, (date_year_inferred_upper + date_year_inferred_lower)/2) AS date_year
         FROM
             buildings
-        WHERE COALESCE(date_year, date_year_inferred) IS NOT NULL`,
+        WHERE COALESCE(date_year, date_year_inferred, date_year_inferred_upper + date_year_inferred_lower) IS NOT NULL`,
     date_year: `
         SELECT
             geometry_id,
@@ -53,10 +53,10 @@ const LAYER_QUERIES = {
     age_inferred: `
         SELECT
             geometry_id,
-            date_year_inferred AS date_year
+            COALESCE(date_year_inferred, (date_year_inferred_upper + date_year_inferred_lower)/2) AS date_year
         FROM
             buildings
-        WHERE date_year_inferred IS NOT NULL`,
+        WHERE COALESCE(date_year_inferred, date_year_inferred_upper + date_year_inferred_lower) IS NOT NULL`,
     date_year_completed: `
         SELECT
             geometry_id,

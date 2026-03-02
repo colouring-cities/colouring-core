@@ -275,6 +275,45 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     user_verified_as={props.user_verified.date_year_inferred}
                     verified_count={props.building.verified.date_year_inferred}
                     />
+                <NumericDataEntry
+                    title={dataFields.date_year_inferred_lower.title}
+                    slug="date_year_inferred_lower"
+                    value={props.building.date_year_inferred_lower}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    min={1}
+                    tooltip={dataFields.date_year_inferred_lower.tooltip}
+                    disabled={true}
+                    />
+                <Verification
+                    slug="date_year_inferred_lower"
+                    allow_verify={props.user !== undefined && props.building.date_year_inferred_lower !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("date_year_inferred_lower")}
+                    user_verified_as={props.user_verified.date_year_inferred_lower}
+                    verified_count={props.building.verified.date_year_inferred_lower}
+                    />
+                <NumericDataEntry
+                    title={dataFields.date_year_inferred_upper.title}
+                    slug="date_year_inferred_upper"
+                    value={props.building.date_year_inferred_upper}
+                    mode={props.mode}
+                    copy={props.copy}
+                    onChange={props.onChange}
+                    step={1}
+                    tooltip={dataFields.date_year_inferred_upper.tooltip}
+                    disabled={true}
+                    />
+                <Verification
+                    slug="date_year_inferred_upper"
+                    allow_verify={props.user !== undefined && props.building.date_year_inferred_upper !== null && !props.edited}
+                    onVerify={props.onVerify}
+                    user_verified={props.user_verified.hasOwnProperty("date_year_inferred_upper")}
+                    user_verified_as={props.user_verified.date_year_inferred_upper}
+                    verified_count={props.building.verified.date_year_inferred_upper}
+                    />
             </DataEntryGroup>
             <DataEntryGroup name="Official Data and CCRP Bulk Upload Data" collapsed={subcat==null || subcat!="4"}>
             </DataEntryGroup>
