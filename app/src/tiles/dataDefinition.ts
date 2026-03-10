@@ -224,14 +224,14 @@ const LAYER_QUERIES = {
                         case when community_streetscape_coherence_count > 0 THEN 1 else 0 end +
                         case when community_streetscape_fascination_count > 0 THEN 1 else 0 end +
 
-                        case when planning_heritage_at_risk_url = '' then 0 else 1 end +
-                        case when planning_in_apa_url = '' then 0 else 1 end +
-                        case when planning_local_list_url = '' then 0 else 1 end +
-                        case when planning_historic_area_assessment_url = '' then 0 else 1 end +
-                        case when planning_glher_url = '' then 0 else 1 end +
-                        case when planning_crowdsourced_planning_id = '' then 0 else 1 end +
-                        case when planning_in_conservation_area_id = '' then 0 else 1 end +
-                        case when planning_conservation_area_name = '' then 0 else 1 end +
+                        case when COALESCE(planning_heritage_at_risk_url, '') = '' then 0 else 1 end +
+                        case when COALESCE(planning_in_apa_url, '') = '' then 0 else 1 end +
+                        case when COALESCE(planning_local_list_url, '') = '' then 0 else 1 end +
+                        case when COALESCE(planning_historic_area_assessment_url, '') = '' then 0 else 1 end +
+                        case when COALESCE(planning_glher_url, '') = '' then 0 else 1 end +
+                        case when COALESCE(planning_crowdsourced_planning_id, '') = '' then 0 else 1 end +
+                        case when COALESCE(planning_in_conservation_area_id, '') = '' then 0 else 1 end +
+                        case when COALESCE(planning_conservation_area_name, '') = '' then 0 else 1 end +
 
                         case when location_name IS NULL then 0 else 1 end +
                         case when location_name_link IS NULL then 0 else 1 end +
