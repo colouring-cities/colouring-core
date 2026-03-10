@@ -151,6 +151,64 @@
             <LineSymbolizer stroke="#888" stroke-width="3.0"/>
         </Rule>
     </Style>
+    <Style name="count_crowdsourced">
+        <Rule>
+            <Filter>[location_info_count] &gt;= 9</Filter>
+            <PolygonSymbolizer fill="#ff006e" />
+            <LineSymbolizer stroke="#ff006e" stroke-width="2.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] = 8</Filter>
+            <PolygonSymbolizer fill="#fb5607" />
+            <LineSymbolizer stroke="#fb5607" stroke-width="2.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] = 7</Filter>
+            <PolygonSymbolizer fill="#ff9500" />
+            <LineSymbolizer stroke="#ff9500" stroke-width="2.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] = 6</Filter>
+            <PolygonSymbolizer fill="#ffbe0b" />
+            <LineSymbolizer stroke="#ffbe0b" stroke-width="2.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] = 5</Filter>
+            <PolygonSymbolizer fill="#ffe566" />
+            <LineSymbolizer stroke="#ffe566" stroke-width="2.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] = 4</Filter>
+            <PolygonSymbolizer fill="#caffbf" />
+            <LineSymbolizer stroke="#caffbf" stroke-width="2.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] = 3</Filter>
+            <PolygonSymbolizer fill="#9bf6ff" />
+            <LineSymbolizer stroke="#9bf6ff" stroke-width="2.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] = 2</Filter>
+            <PolygonSymbolizer fill="#74b9ff" />
+            <LineSymbolizer stroke="#74b9ff" stroke-width="2.0"/>
+        </Rule>
+        <Rule>
+            <Filter>[location_info_count] = 1</Filter>
+            <PolygonSymbolizer fill="#a29bfe" />
+            <LineSymbolizer stroke="#a29bfe" stroke-width="2.0"/>
+        </Rule>
+
+        <Rule>
+            <MaxScaleDenominator>17061</MaxScaleDenominator>
+            <MinScaleDenominator>4264</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="1.0"/>
+        </Rule>
+        <Rule>
+            <MaxScaleDenominator>4264</MaxScaleDenominator>
+            <MinScaleDenominator>0</MinScaleDenominator>
+            <LineSymbolizer stroke="#888" stroke-width="3.0"/>
+        </Rule>
+    </Style>
     <Style name="team">
         <Rule>
             <Filter>[team_info_count] &gt;= 8</Filter>

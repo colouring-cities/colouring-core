@@ -21,6 +21,7 @@ export type BuildingMapTileset =
     'construction_roof_covering' |
     'construction_material_window_frame' |
     'location' |
+    'count_crowdsourced' |
     'is_domestic' |
     'likes' |
     'typology_likes' |
