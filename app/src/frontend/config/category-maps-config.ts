@@ -413,6 +413,24 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         },
     }],
     [Category.Community]: [
+        {
+            mapStyle: 'count_crowdsourced',
+            legend: {
+                title: 'Community help',
+                description: 'crowdsourced entries',
+                elements: [
+                    { color: '#ff006e', text: '9+' },
+                    { color: '#fb5607', text: '8' },
+                    { color: '#ff9500', text: '7' },
+                    { color: '#ffbe0b', text: '6' },
+                    { color: '#ffe566', text: '5' },
+                    { color: '#caffbf', text: '4' },
+                    { color: '#9bf6ff', text: '3' },
+                    { color: '#74b9ff', text: '2' },
+                    { color: '#a29bfe', text: '1' },
+                ]
+            },
+        },
         /*
         {
             mapStyle: 'likes',
