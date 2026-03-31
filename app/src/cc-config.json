@@ -1,19 +1,19 @@
 {
-    "cityName": "Cities",
-    "institution": "The Alan Turing Institute",
-    "projectBlurb": "Colouring {City Name} is part of Colouring Cities.",
+    "cityName": "Montréal",
+    "institution": "Concordia University",
+    "projectBlurb": "Colouring Montréal is part of Colouring Cities.",
     
-    "githubURL": "https://github.com/colouring-cities/colouring-core",
+    "githubURL": "https://github.com/colouring-cities/colouring-montreal",
     "manualURL": "https://github.com/colouring-cities/manual/wiki/COLOURING-BRITAIN",
     "privacyStatement": "{Privacy statement goes here}",
 
-    "initialMapPosition": [ 51.5245255, -0.1338422 ],
+    "initialMapPosition": [45.6065330076487, -73.66463593777928],
     "initialZoomLevel": 16,
 
     "postcode": "Postcode",
     "energy_rating": "Building Research Establishment Environmental Assessment Method (BREEAM) rating [<a href='https://bregroup.com/products/breeam/how-breeam-works'>More info</a>]",
 
-    "bbox": [-61149.622628, 6667754.851372, 37183, 6744803.375884],
+    "bbox": [-8267298.183704086, 5657796.984760356, -8133321.340426856, 5777240.026987869],
 
     "basemapTileUrl": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
     "baseAttribution": "Building attribute data is © Colouring Cities contributors. Basemap © <a href=https://www.openstreetmap.org/copyright>OpenStreetMap contributors</a>. Building © MODIFY TO PROVIDE RELEVANT INFO"

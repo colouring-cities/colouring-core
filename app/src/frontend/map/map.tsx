@@ -45,6 +45,7 @@ import { EditableBuildingsSwitcher } from './editable-buildings-switcher';
 import { BuildingMapTileset } from '../config/tileserver-config';
 import { useDisplayPreferences } from '../displayPreferences-context';
 import { CategoryMapDefinition } from '../config/category-maps-config';
+import { CustomZoomControl} from './layers/custom-zoom-control'
 
 interface ColouringMapProps {
     selectedBuildingId: number;
@@ -110,7 +111,7 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     style={{zIndex: 50}}
                 >
                     <CityBaseMapLayer theme={darkLightTheme} />
-                    <BuildingBaseLayer theme={darkLightTheme} />
+                    {/* <BuildingBaseLayer theme={darkLightTheme} /> */}
                 </Pane>
 
                 <Pane
@@ -158,7 +159,8 @@ export const ColouringMap : FC<ColouringMapProps> = ({
                     <BoroughLabelLayer/>
                 </Pane>
 
-                <ZoomControl position="topright" />
+                {/* <ZoomControl position="topright" /> */}
+                 <CustomZoomControl/>
                 <AttributionControl prefix=""/>
             </MapContainer>
             {

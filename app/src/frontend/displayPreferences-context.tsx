@@ -127,7 +127,7 @@ export const DisplayPreferencesProvider: React.FC<{}> = ({children}) => {
     const defaultFlood = 'disabled'
     const defaultCreative = 'disabled'
     const defaultHousing = 'disabled'
-    const defaultBorough = 'enabled'
+    const defaultBorough = 'disabled'
     const defaultParcel = 'disabled'
     const defaultConservation = 'disabled'
     const defaultWorldHeritageSites = 'disabled'

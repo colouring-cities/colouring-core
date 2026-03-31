@@ -34,3 +34,47 @@
         display: block;
     }
 }
+
+
+.tile-loading-bar {
+    height: 100%;
+    background: #2f80ed;
+    transition: width 0.2s ease;
+}
+.tile-loading-overlay {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1200;
+}
+
+.tile-loading-bar-wrapper {
+    width: 280px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.tile-loading-bar {
+    height: 100%;
+    background: #2f80ed;
+    transition: width 0.2s ease;
+}
+
+.tile-loading-timer {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+    z-index: 2000;
+}
+
+
