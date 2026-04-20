@@ -26,7 +26,7 @@ async function apiRequest(
         jsonReviver?: JsonReviver
     }
 ): Promise<any> {
-    const res = await fetch(path, {
+    const res = await fetch(`${process.env.SUBDIRECTORY??''}${path}`, {
         method: method,
         credentials: 'same-origin',
         headers: {
