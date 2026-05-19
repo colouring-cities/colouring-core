@@ -146,7 +146,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                     </>
                 }
             </DataEntryGroup>
-            <DataEntryGroup name="Construction Year/Building Age" collapsed={subcat==null || subcat!="2"}>
+            <DataEntryGroup name="Construction Year/Building Age" collapsed={subcat==null || (subcat!="2" && subcat!="3" && subcat!="4")}>
                 <DataEntryGroup name="Crowdsourced" collapsed={subcat==null || subcat!="2"}>
                     {(props.mapColourScale != "date_year") ? 
                             <button className={`map-switcher-inline enabled-state btn btn-outline btn-outline-dark key-button`} onClick={switchToAgeMapStyle}>
