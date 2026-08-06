@@ -7,6 +7,7 @@ import InfoBox from '../components/info-box';
 import { allFieldsConfig } from '../config/data-fields-config';
 
 import DataEntry from './data-components/data-entry';
+import { Console } from 'console';
 
 interface MultiEditProps {
     category: string;
@@ -14,7 +15,7 @@ interface MultiEditProps {
 
 const MultiEdit: React.FC<MultiEditProps> = (props) => {
     const [data, error] = useMultiEditData();
-
+    console.log(data);
     return (
         <section className='data-section'>
             <header className={`section-header view ${props.category} background-${props.category}`}>
