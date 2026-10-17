@@ -1,5 +1,3 @@
-const CopyPlugin = require('copy-webpack-plugin');
-
 module.exports = {
     plugins: [
         {
@@ -12,8 +10,8 @@ module.exports = {
         },
     ],
     modifyWebpackConfig({ env: { target, dev }, webpackConfig }) {
-        // load webfonts
         webpackConfig.module.rules = webpackConfig.module.rules || [];
+
         // import file contents as a string with '?raw', as in Vite
         for (const rule of webpackConfig.module.rules) {
             // Razzle's catch-all file-loader rule would otherwise turn it into a URL
@@ -25,17 +23,12 @@ module.exports = {
             resourceQuery: /raw/,
             type: 'asset/source'
         });
+
+        // load webfonts
         webpackConfig.module.rules.push({
             test: /\.(eot|svg|ttf|woff|woff2)$/,
             type: 'asset/resource'
         });
-
-        // add the map_styles directory to the build output
-        const plugins = webpackConfig.plugins || [];
-        plugins.push(new CopyPlugin({
-            patterns: [ {from: 'map_styles', to: 'map_styles'}]
-        }));
-        webpackConfig.plugins = plugins;
 
         return webpackConfig;
     },
