@@ -1,6 +1,7 @@
 import mapnik from "mapnik";
-import path from 'path';
 import { promisify } from "util";
+
+import polygonStyle from '../../../map_styles/polygon.xml?raw';
 
 import { TableDefinitionFunction, VariablesFunction, Tile, TileParams } from "../types";
 import { getBbox, TILE_SIZE } from "../util";
@@ -52,9 +53,7 @@ async function renderDataSourceTile(
     layer.datasource = postgis;
     layer.styles = [tileset];
 
-    const stylePath = path.join(__dirname, 'map_styles', 'polygon.xml');
-
-    map = await promisify(map.load.bind(map))(stylePath, { strict: true });
+    map = await promisify(map.fromString.bind(map))(polygonStyle, { strict: true });
 
     map.add_layer(layer);
     const im = new mapnik.Image(map.width, map.height);
