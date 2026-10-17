@@ -16,6 +16,7 @@
         "./src/client.tsx"
     ],
     "include": [
+        "./src/types/**/*.d.ts",
         "./src/**/*.test.*",
         "./src/**/*.spec.*"
     ]

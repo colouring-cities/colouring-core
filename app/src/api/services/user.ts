@@ -2,6 +2,7 @@
  * User data access
  *
  */
+import { Session, SessionData } from 'express-session';
 import { errors } from 'pg-promise';
 import { promisify } from 'util';
 
@@ -183,7 +184,7 @@ async function deleteUser(id: string) {
     }
 }
 
-function logout(session: Express.Session): Promise<void> {
+function logout(session: Session & Partial<SessionData>): Promise<void> {
     session.user_id = undefined;
 
     return promisify(session.destroy.bind(session))();
