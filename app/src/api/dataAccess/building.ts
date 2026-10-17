@@ -1,11 +1,14 @@
 
-import { errors, ITask } from 'pg-promise';
+import pg, { ITask } from 'pg-promise';
 import _ from 'lodash';
 
 import db from '../../db';
 import { allAttributesConfig, buildingUserAttributesConfig } from '../config/dataFields';
 import { BaseBuilding, BuildingAttributes, BuildingUserAttributes } from '../models/building';
 import { ArgumentError, DatabaseError } from '../errors/general';
+
+// pg-promise is a CommonJS module, so named imports are not available in the Vite dev server
+const { errors } = pg;
 
 export async function getBuildingData(
     buildingId: number,
