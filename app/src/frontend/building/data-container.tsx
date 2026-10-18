@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import Confetti from 'canvas-confetti';
 import _ from 'lodash';
@@ -27,7 +27,6 @@ interface DataContainerProps {
     cat: string;
     intro: string;
     help: string;
-    inactive?: boolean;
 
     user?: User;
     mode: 'view' | 'edit';
@@ -335,7 +334,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                     : null
                 }
                 {
-                    this.props.building != undefined && !this.props.inactive ?
+                    this.props.building != undefined ?
                         <>
                             <CopyControl
                                 cat={this.props.cat}
@@ -376,23 +375,6 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                     building={this.props.building}
                 />
                 {
-                    this.props.inactive ?
-                        <Fragment>
-                            <WrappedComponent
-                                intro={this.props.intro}
-                                building={this.props.building}
-                                mode={this.props.mode}
-                                edited={false}
-                                copy={copy}
-                                onChange={undefined}
-                                onVerify={undefined}
-                                onSaveAdd={undefined}
-                                onSaveChange={undefined}
-                                user_verified={[]}
-                                mapColourScale={undefined}
-                                onMapColourScale={undefined}
-                            />
-                        </Fragment> :
                         this.props.building != undefined ?
                             <form
                                 action={`/edit/${this.props.cat}/${this.props.building.building_id}`}
@@ -401,7 +383,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                     {/* this disabled button prevents form submission on enter - see https://stackoverflow.com/a/51507806/1478817 */}
                                     <button type="submit" disabled style={{display: 'none'}}></button>
                                 {
-                                    (this.props.mode === 'edit' && !this.props.inactive) ?
+                                    this.props.mode === 'edit' ?
                                         <div className='edit-bar'>
                                             <ErrorBox msg={this.state.error} />
                                             {
