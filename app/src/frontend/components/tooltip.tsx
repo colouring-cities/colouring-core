@@ -23,7 +23,7 @@ function markdownLinkToAnchor(link: string) {
 
 function interweave(arr1: any[], arr2: any[]): any[] {
     const commonLen = Math.min(arr1.length, arr2.length);
-    const arr = [];
+    const arr: any[] = [];
     for(let i=0; i<commonLen; i++) {
         arr.push(arr1[i], arr2[i]);
     }
