@@ -15,7 +15,7 @@ export async function getLandUseGroupFromClass(classes: string[]): Promise<strin
     )).map(x => x.description);
 }
 
-export async function getLandUseOrderFromGroup(groups: string[]): Promise<string> {
+export async function getLandUseOrderFromGroup(groups: string[]): Promise<string | null> {
     if(groups.length === 0) return null;
 
     const orders = (await db.many(

@@ -16,7 +16,7 @@ jest.mock('../../../dataAccess/landUse', () => ({
     getLandUseOrderFromGroup: jest.fn((groups: string[]) => {
         const orders = _.chain(groups).map(g => testGroupToOrder[g]).uniq().value();
 
-        let result: string;
+        let result: string | null;
         if(orders.length == 0) result = null;
         else if(orders.length == 1) result = orders[0];
         else result = 'Mixed Use';

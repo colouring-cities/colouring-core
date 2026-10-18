@@ -5,7 +5,7 @@ import { ArgumentError } from '../../errors/general';
 
 export interface LandUseState {
     landUseGroup: string[];
-    landUseOrder: string;
+    landUseOrder: string | null;
 }
 
 export async function updateLandUse(landUse: LandUseState, landUseUpdate: Partial<LandUseState>): Promise<LandUseState> {
