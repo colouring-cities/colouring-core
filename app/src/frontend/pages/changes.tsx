@@ -23,7 +23,7 @@ function getNavigationUrl(options: {
     deletions?: string
 }) {
     let query = '?';
-    let params = [];
+    let params: string[] = [];
     if(options == undefined) return query;
 
     if(options.afterId != undefined) params.push(`after_id=${options.afterId}`);
