@@ -14,7 +14,7 @@ interface DataExtract {
     download_path: string;
 }
 
-async function listDataExtracts(): Promise<DataExtract[]> {
+async function listDataExtracts(): Promise<DataExtract[] | undefined> {
     try {
         const extractRecords = await db.manyOrNone<DataExtractRow>(
             `SELECT
@@ -30,7 +30,7 @@ async function listDataExtracts(): Promise<DataExtract[]> {
     }
 }
 
-async function getDataExtractById(extractId: number): Promise<DataExtract> {
+async function getDataExtractById(extractId: number): Promise<DataExtract | undefined> {
     try {
         const extractRecord = await db.one<DataExtractRow>(
             `SELECT 
