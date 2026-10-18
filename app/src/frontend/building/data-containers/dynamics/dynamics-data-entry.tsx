@@ -21,7 +21,7 @@ export const DynamicsBuildingPane: React.FC<{className?: string}> = ({children, 
     </div>
 );
 
-function lifespan(a: number, b: number): number {
+function lifespan(a: number | undefined, b: number | undefined): number | undefined {
     if(a == undefined || b == undefined) return undefined;
 
     const diff = a - b;
@@ -29,7 +29,7 @@ function lifespan(a: number, b: number): number {
     return Math.max(diff, 0);
 }
 
-function formatRange(minSpan: number, maxSpan: number): string {
+function formatRange(minSpan: number | undefined, maxSpan: number | undefined): string {
     if(minSpan == undefined || maxSpan == undefined) return '';
 
     if(minSpan === maxSpan) return minSpan + '';
@@ -157,7 +157,7 @@ interface DynamicsDataEntryProps extends BaseDataEntryProps {
     hasEdits: boolean;
 }
 
-function isValid(val: DemolishedBuilding) {
+function isValid(val: DemolishedBuilding | undefined) {
     if(val == undefined) return false;
 
     if(typeof val.year_constructed?.min !== 'number') return false;
