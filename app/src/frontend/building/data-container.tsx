@@ -40,11 +40,11 @@ interface DataContainerProps {
 }
 
 interface DataContainerState {
-    error: string;
+    error: string | undefined;
     copying: boolean;
     keys_to_copy: {[key: string]: boolean};
-    currentBuildingId: number;
-    currentBuildingRevisionId: number;
+    currentBuildingId: number | undefined;
+    currentBuildingRevisionId: number | undefined;
     buildingEdits: BuildingEdits;
     mapColourScale: BuildingMapTileset;
     onMapColourScale: (x: BuildingMapTileset) => void;
@@ -87,7 +87,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
             this.toggleCopyAttribute = this.toggleCopyAttribute.bind(this);
         }
 
-        static getDerivedStateFromProps(props, state): DataContainerState {
+        static getDerivedStateFromProps(props, state): DataContainerState | null {
             const newBuildingId = props.building == undefined ? undefined : props.building.building_id;
             const newBuildingRevisionId = props.building == undefined ? undefined : props.building.revision_id;
 
