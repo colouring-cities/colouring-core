@@ -517,7 +517,7 @@ const AgeHistoryView: React.FunctionComponent<CategoryViewProps> = (props) => {
                                 <DataEntry
                                     slug=''
                                     title='Lifespan to date'
-                                    value={ (thisYear - currentBuildingConstructionYear) + ''}
+                                    value={currentBuildingConstructionYear == undefined ? undefined : (thisYear - currentBuildingConstructionYear) + ''}
                                     disabled={true}
                                     mode='view'
                                 />
