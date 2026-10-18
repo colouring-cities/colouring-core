@@ -20,7 +20,7 @@ export function CreativeBoundaryLayer() {
         data={boundaryGeojson}
         style={{color: '#f0f', fill: true, weight: 1, opacity: 0.6}}
     />;
-    } else if (creative == "disabled") {
+    } else {
         return <div></div>
     }
 }
