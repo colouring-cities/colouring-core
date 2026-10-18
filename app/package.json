@@ -10,6 +10,7 @@
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
     "lint": "eslint --ext .tsx --ext .ts .",
+    "typecheck": "tsc --noEmit -p .",
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
