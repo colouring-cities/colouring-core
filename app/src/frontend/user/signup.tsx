@@ -44,7 +44,7 @@ export const SignUp: React.FC = () => {
                 <p>
                     Create an account to start colouring in.
                 </p>
-                <ErrorBox msg={error} />
+                {error && <ErrorBox msg={error} />}
                 <form onSubmit={onSubmit}>
                     <label htmlFor="username">Username*</label>
                     <input name="username" id="username"

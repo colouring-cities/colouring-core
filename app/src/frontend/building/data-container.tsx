@@ -385,7 +385,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                                 {
                                     this.props.mode === 'edit' ?
                                         <div className='edit-bar'>
-                                            <ErrorBox msg={this.state.error} />
+                                            {this.state.error && <ErrorBox msg={this.state.error} />}
                                             {
                                                 this.props.cat !== 'like' && // special-case for likes
                                                     <div className="buttons-container with-space">
