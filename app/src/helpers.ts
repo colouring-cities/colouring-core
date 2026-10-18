@@ -52,10 +52,10 @@ export function numDesc<T, V extends number | bigint>(accessor: AccessorFunction
  * which then doesn't transpile the null conditional/coalescing operators and breaks on Node 12
  * So BigInt(1) needs to be used here
  * */ 
-export function incBigInt(bigStr: string): string {
+export function incBigInt(bigStr: string | undefined): string | undefined {
     return bigStr == undefined ? bigStr : String(BigInt(bigStr) + BigInt(1));
 }
-export function decBigInt(bigStr: string): string {
+export function decBigInt(bigStr: string | undefined): string | undefined {
     return bigStr == undefined ? bigStr : String(BigInt(bigStr) - BigInt(1));
 }
 
