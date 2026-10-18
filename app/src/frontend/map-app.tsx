@@ -155,7 +155,7 @@ export const MapApp: React.FC<MapAppProps> = props => {
                             </Route>
                             <Route exact path="/:mode/:cat/:building?">
                                 <BuildingView
-                                    mode={viewEditMode}
+                                    mode={viewEditMode ?? 'view'}
                                     cat={displayCategory}
                                     building={building}
                                     user_verified={userVerified ?? {}}
