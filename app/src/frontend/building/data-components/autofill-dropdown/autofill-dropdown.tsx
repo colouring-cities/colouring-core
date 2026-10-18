@@ -7,7 +7,7 @@ import { apiGet } from '../../../apiHelpers';
 
 interface AutofillDropdownProps {
     fieldName: string;
-    fieldValue: string;
+    fieldValue?: string;
     showAllOptionsOnEmpty?: boolean;
     editing: boolean;
     onSelect: (val: string) => void;
