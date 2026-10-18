@@ -21,7 +21,7 @@ interface AutofillOption {
 }
 
 export const AutofillDropdown: React.FC<AutofillDropdownProps> =  props => {
-    const [options, setOptions] = useState<AutofillOption[]>(null);
+    const [options, setOptions] = useState<AutofillOption[] | null>(null);
 
     // use both throttled and debounced field value as trigger for update
     const throttledFieldValue = useThrottle(props.fieldValue, 1000);
