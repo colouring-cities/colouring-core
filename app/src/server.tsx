@@ -20,7 +20,11 @@ const server = express();
 server.disable('x-powered-by');
 
 // serve static files
-server.use(express.static(process.env.RAZZLE_PUBLIC_DIR));
+const publicDir = process.env.RAZZLE_PUBLIC_DIR;
+if (publicDir == undefined) {
+    throw new Error('RAZZLE_PUBLIC_DIR is not set');
+}
+server.use(express.static(publicDir));
 
 // handle user sessions
 const pgSession = pgConnect(session);
