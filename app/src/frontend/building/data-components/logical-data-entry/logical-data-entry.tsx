@@ -8,7 +8,7 @@ import { DataTitleCopyable } from '../data-title';
 interface ToggleButtonProps {
     value: string;
     checked: boolean;
-    disabled: boolean;
+    disabled?: boolean;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
     checkedClassName: string;
     uncheckedClassName: string;
