@@ -17,8 +17,7 @@ const Categories: React.FC<CategoriesProps> = (props) => (
             const {
                 name,
                 slug,
-                aboutUrl,
-                inactive = false
+                aboutUrl
             } = categoriesConfig[category];
 
             return <CategoryLink
@@ -26,7 +25,6 @@ const Categories: React.FC<CategoriesProps> = (props) => (
                 title={name}
                 slug={slug}
                 help={aboutUrl}
-                inactive={inactive}
                 mode={props.mode}
                 building_id={props.building_id}
             />

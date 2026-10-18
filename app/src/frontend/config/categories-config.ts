@@ -38,7 +38,6 @@ export const categoriesOrder: Category[] = [
 ];
 
 interface CategoryDefinition {
-    inactive?: boolean;
     slug: string;
     name: string;
     aboutUrl: string;
