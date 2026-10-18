@@ -56,7 +56,7 @@ const getBuildingById = asyncController(async (req: express.Request, res: expres
         if(!userId) {
             return res.send({ error: 'Must be logged in' });
         }
-        userDataOptions = { userId: req.session.user_id, userAttributes: true};
+        userDataOptions = { userId: userId, userAttributes: true};
     }
 
     try {
