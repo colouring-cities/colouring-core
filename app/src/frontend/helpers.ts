@@ -57,7 +57,11 @@ function arrayToDictionary<T>(arr: T[], keyAccessor: (obj: T) => string): {[key:
  * @returns a JS Date object with the UTC time encoded
  */
 function parseDate(isoUtcDate: string): Date {
-    const [year, month, day, hour, minute, second, millisecond] = isoUtcDate.match(/^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d).(\d{3})Z$/)
+    const match = isoUtcDate.match(/^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d).(\d{3})Z$/);
+    if(match == null) {
+        throw new Error(`Not an ISO8601 UTC date: ${isoUtcDate}`);
+    }
+    const [year, month, day, hour, minute, second, millisecond] = match
         .splice(1)
         .map(x => parseInt(x, 10));
     return new Date(Date.UTC(year, month-1, day, hour, minute, second, millisecond));
