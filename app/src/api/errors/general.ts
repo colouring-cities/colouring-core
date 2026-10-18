@@ -7,7 +7,7 @@ export class UserError extends Error {
 
 export class ArgumentError extends UserError {
     public argumentName: string;
-    constructor(message?: string, argumentName?: string) {
+    constructor(message: string, argumentName: string) {
         super(message);
         this.name = 'ArgumentError';
         this.argumentName = argumentName;
@@ -23,7 +23,7 @@ export class InvalidOperationError extends UserError {
 
 export class InvalidFieldError extends UserError {
     public fieldName: string;
-    constructor(message?: string, fieldName?: string) {
+    constructor(message: string, fieldName: string) {
         super(message);
         this.name = 'InvalidFieldError';
         this.fieldName = fieldName;
@@ -32,7 +32,7 @@ export class InvalidFieldError extends UserError {
 
 export class FieldTypeError extends UserError {
     public fieldName: string;
-    constructor(message?: string, fieldName?: string) {
+    constructor(message: string, fieldName: string) {
         super(message);
         this.name = 'FieldTypeError';
         this.fieldName = fieldName;

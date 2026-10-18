@@ -85,10 +85,10 @@ export const fieldSchemaConfig: { [key in keyof typeof allAttributesConfig]?: So
         },
         additionalProperties: false
     } as JSONSchemaType<{
-        external_design: boolean,
-        internal_design: boolean,
-        adaptable: boolean,
-        other: boolean
+        external_design?: boolean,
+        internal_design?: boolean,
+        adaptable?: boolean,
+        other?: boolean
     }>
 
 } as const;

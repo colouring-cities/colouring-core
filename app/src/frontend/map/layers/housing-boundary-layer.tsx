@@ -20,7 +20,7 @@ export function HousingBoundaryLayer() {
         data={boundaryGeojson}
         style={{color: '#FF8000', fill: true, weight: 1, opacity: 0.6}}
     />;
-    } else if (housing == "disabled") {
+    } else {
         return <div></div>
     }
 }

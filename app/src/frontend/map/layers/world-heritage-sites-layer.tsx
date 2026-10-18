@@ -21,7 +21,7 @@ export function WorldHeritageSitesLayer() {
         data={worldHeritageSitesGeojson}
         style={{color: '#80ff80', fill: true, weight: 1, opacity: 1, fillOpacity: 0.5}}
     />;
-    } else if (worldHeritageSites == "disabled") {
+    } else {
         return <div></div>
     }
 }

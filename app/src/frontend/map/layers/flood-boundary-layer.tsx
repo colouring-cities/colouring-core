@@ -20,7 +20,7 @@ export function FloodBoundaryLayer() {
         data={boundaryGeojson}
         style={{color: '#00f', fill: true, weight: 1, opacity: 0.6}}
     />;
-    } else if (flood == "disabled") {
+    } else {
         return <div></div>
     }
 }
