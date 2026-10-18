@@ -9,8 +9,8 @@ interface SliderDataEntryProps extends BaseDataEntryProps {
     value?: number;
     placeholder?: string;
     dots?: boolean;
-    max?: number;
-    min?: number;
+    max: number;
+    min: number;
     votes?: number;
     average?: number;
     onChange: (key: string, value: number) => void;
