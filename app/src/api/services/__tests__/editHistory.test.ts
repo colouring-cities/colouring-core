@@ -25,10 +25,10 @@ describe('getGlobalEditHistory()', () => {
     afterEach(() => jest.clearAllMocks());
 
     it.each([
-        [null, null],
-        ['100', null],
-        [null, '100']
-    ])('Should error when requesting non-positive number of records', async (beforeId: string, afterId: string) => {
+        [undefined, undefined],
+        ['100', undefined],
+        [undefined, '100']
+    ])('Should error when requesting non-positive number of records', async (beforeId: string | undefined, afterId: string | undefined) => {
         let resultPromise = getGlobalEditHistory(beforeId, afterId, 0);
         await expect(resultPromise).rejects.toBeInstanceOf(ArgumentError);
         await expect(resultPromise).rejects.toHaveProperty('argumentName', 'count');
@@ -37,59 +37,59 @@ describe('getGlobalEditHistory()', () => {
     describe('getting history before a point', () => {
 
         it('should return latest history if no ID specified', async () => {
-            const result = await getGlobalEditHistory(null, null, 5);
+            const result = await getGlobalEditHistory(undefined, undefined, 5);
 
             expect(result.history.map(x => x.revision_id)).toEqual(['119', '118', '117', '116', '115']);
         });
 
         it.each(
             [
-                [null, 3, ['119', '118', '117']],
-                [null, 6, ['119', '118', '117', '116', '115', '114']],
+                [undefined, 3, ['119', '118', '117']],
+                [undefined, 6, ['119', '118', '117', '116', '115', '114']],
                 ['118', 1, ['117']],
                 ['104', 10, ['103', '102','101', '100']],
                 ['100', 2, []]
             ]
         )('should return the N records before the specified ID in descending order [beforeId: %p, count: %p]', async (
-            beforeId: string, count: number, ids: string[]
+            beforeId: string | undefined, count: number, ids: string[]
         ) => {
-            const result = await getGlobalEditHistory(beforeId, null, count);
+            const result = await getGlobalEditHistory(beforeId, undefined, count);
 
             expect(result.history.map(h => h.revision_id)).toEqual(ids);
         });
 
         it.each([
-            [null, 4, null],
-            [null, 10, null],
-            [null, 20, null],
-            [null, 30, null],
+            [undefined, 4, null],
+            [undefined, 10, null],
+            [undefined, 20, null],
+            [undefined, 30, null],
             ['50', 10, '99'],
             ['100', 10, '99'],
             ['130', 10, null],
             ['105', 2, '104'],
             ['120', 20, null],
         ])('should detect if there are any newer records left [beforeId: %p, count: %p]', async (
-            beforeId: string, count: number, idForNewerQuery: string
+            beforeId: string | undefined, count: number, idForNewerQuery: string | null
         ) => {
-            const result = await getGlobalEditHistory(beforeId, null, count);
+            const result = await getGlobalEditHistory(beforeId, undefined, count);
 
             expect(result.paging.id_for_newer_query).toBe(idForNewerQuery);
         });
 
         it.each([
-            [null, 4, '116'],
-            [null, 10, '110'],
-            [null, 20, null],
-            [null, 30, null],
+            [undefined, 4, '116'],
+            [undefined, 10, '110'],
+            [undefined, 20, null],
+            [undefined, 30, null],
             ['50', 10, null],
             ['100', 10, null],
             ['130', 10, '110'],
             ['105', 2, '103'],
             ['120', 20, null],
         ])('should detect if there are any older records left [beforeId: %p, count: %p]', async (
-            beforeId: string, count: number, idForOlderQuery: string
+            beforeId: string | undefined, count: number, idForOlderQuery: string | null
         ) => {
-            const result = await getGlobalEditHistory(beforeId, null, count);
+            const result = await getGlobalEditHistory(beforeId, undefined, count);
 
             expect(result.paging.id_for_older_query).toBe(idForOlderQuery);
         });
@@ -105,7 +105,7 @@ describe('getGlobalEditHistory()', () => {
         ])('should return N records after requested ID in descending order [afterId: %p, count: %p]', async (
             afterId: string, count: number, expected: string[]
         ) => {
-            const result = await getGlobalEditHistory(null, afterId, count);
+            const result = await getGlobalEditHistory(undefined, afterId, count);
 
             expect(result.history.map(x => x.revision_id)).toEqual(expected);
         });
@@ -116,9 +116,9 @@ describe('getGlobalEditHistory()', () => {
             ['119', 20, null],
             ['99', 20, null],
         ])('should detect if there are any newer records left [afterId: %p, count: %p]', async (
-            afterId: string, count: number, idForNewerQuery: string
+            afterId: string, count: number, idForNewerQuery: string | null
         ) => {
-            const result = await getGlobalEditHistory(null, afterId, count);
+            const result = await getGlobalEditHistory(undefined, afterId, count);
 
             expect(result.paging.id_for_newer_query).toBe(idForNewerQuery);
         });
@@ -129,9 +129,9 @@ describe('getGlobalEditHistory()', () => {
             ['119', 20, '120'],
             ['99', 20, null],
         ])('should detect if there are any older records left [afterId: %p, count: %p]', async (
-            afterId: string, count: number, idForOlderQuery: string
+            afterId: string, count: number, idForOlderQuery: string | null
         ) => {
-            const result = await getGlobalEditHistory(null, afterId, count);
+            const result = await getGlobalEditHistory(undefined, afterId, count);
 
             expect(result.paging.id_for_older_query).toBe(idForOlderQuery);
         });
@@ -141,11 +141,11 @@ describe('getGlobalEditHistory()', () => {
     describe('result count limit', () => {
 
         it.each([
-            [null, null],
-            [null, '100'],
-            ['300', null]
+            [undefined, undefined],
+            [undefined, '100'],
+            ['300', undefined]
         ])('should not return more than 100 entries (beforeId: %p, afterId: %p)', async (
-            beforeId: string, afterId: string
+            beforeId: string | undefined, afterId: string | undefined
         ) => {
             mockedEditHistoryData.__setHistory(
                 generateHistory(200)
@@ -157,11 +157,11 @@ describe('getGlobalEditHistory()', () => {
         });
 
         it.each([
-            [null, null],
-            [null, '100'],
-            ['300', null]
+            [undefined, undefined],
+            [undefined, '100'],
+            ['300', undefined]
         ])('should default to 100 entries', async (
-            beforeId: string, afterId: string
+            beforeId: string | undefined, afterId: string | undefined
         ) => {
             mockedEditHistoryData.__setHistory(
                 generateHistory(200)
@@ -188,7 +188,7 @@ describe('getGlobalEditHistory()', () => {
             mockData[4].reverse_patch = { 'test_field': 'test1'};
             mockedEditHistoryData.__setHistory(mockData);
 
-            const result = await getGlobalEditHistory(null, null, 10, true);
+            const result = await getGlobalEditHistory(undefined, undefined, 10, true);
 
             expect(result.history.map(x => x.revision_id)).toEqual(['103', '100']);
         });
