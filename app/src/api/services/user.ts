@@ -143,7 +143,7 @@ async function getNewUserAPIKey(id: string) {
     }
 }
 
-async function authAPIUser(key: string): Promise<string> {
+async function authAPIUser(key: string): Promise<string | undefined> {
     try {
         const { user_id } = await db.one(
             `SELECT
