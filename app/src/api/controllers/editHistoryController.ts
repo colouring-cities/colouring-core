@@ -9,10 +9,10 @@ import * as editHistoryService from '../services/editHistory';
 const getGlobalEditHistory = asyncController(async (req: express.Request, res: express.Response) => {
 
     const revisionIdRegex = /^[1-9]\d*$/;
-    const afterId: string = processParam(req.query, 'after_id', x => checkRegexParam(x, revisionIdRegex));
-    const beforeId: string = processParam(req.query, 'before_id', x => checkRegexParam(x, revisionIdRegex));
-    const count: number = processParam(req.query, 'count', parsePositiveIntParam);
-    const filterDeletions: boolean = processParam(req.query, 'deletions', parseBooleanParam);
+    const afterId: string | undefined = processParam(req.query, 'after_id', x => checkRegexParam(x, revisionIdRegex));
+    const beforeId: string | undefined = processParam(req.query, 'before_id', x => checkRegexParam(x, revisionIdRegex));
+    const count: number | undefined = processParam(req.query, 'count', parsePositiveIntParam);
+    const filterDeletions: boolean | undefined = processParam(req.query, 'deletions', parseBooleanParam);
 
     if(afterId != undefined && beforeId != undefined) {
         throw new ApiUserError('Cannot specify both after_id and before_id parameters');
