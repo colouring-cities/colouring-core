@@ -15,7 +15,7 @@ async function processCurrentLandUseClassifications(
     buildingId: number,
     buildingUpdate: Partial<BuildingAttributes>,
     t?: ITask<any>
-): Promise<any> {
+): Promise<Partial<BuildingAttributes>> {
     const currentBuildingData = await getBuildingData(buildingId);
 
     try {
@@ -47,7 +47,7 @@ async function processOriginalLandUseClassifications(
     buildingId: number,
     buildingUpdate: Partial<BuildingAttributes>,
     t?: ITask<any>
-): Promise<any> {
+): Promise<Partial<BuildingAttributes>> {
     const currentBuildingData = await getBuildingData(buildingId);
 
     try {
