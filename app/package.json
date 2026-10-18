@@ -100,5 +100,9 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}"
     ]
+  },
+  "allowScripts": {
+    "mapnik@4.5.9": true,
+    "sharp@0.32.6": true
   }
 }
