@@ -214,7 +214,7 @@ export const DynamicsDataEntry: React.FC<DynamicsDataEntryProps> = (props) => {
                             <label>Please supply sources for any edits of existing records</label>
                         </> :
 
-                        <DataTitleCopyable slug={props.slug} title={props.title} tooltip={null}/>
+                        <DataTitleCopyable slug={props.slug} title={props.title} tooltip={undefined}/>
                 }
                 <ul className="data-entry-list">
                     {
