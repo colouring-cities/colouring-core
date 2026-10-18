@@ -88,7 +88,7 @@ async function createPasswordResetToken(userId: string) {
  * @param token password reset token to verify and use
  * @returns the UUID of the user whose token was used
  */
-async function verifyPasswordResetToken(token: string): Promise<string> {
+async function verifyPasswordResetToken(token: string): Promise<string | undefined> {
     try {
         // verify and deactivate the token in one operation
         const usedToken = await db.one(
