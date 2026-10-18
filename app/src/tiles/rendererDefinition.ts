@@ -42,8 +42,13 @@ if(!allLayersCacheSwitch) {
 const MIN_ZOOM_FOR_RENDERING_TILES = 9
 const MAX_ZOOM_FOR_RENDERING_TILES = 19
 
+const tileCachePath = process.env.TILECACHE_PATH;
+if (tileCachePath == undefined) {
+    throw new Error('TILECACHE_PATH is not set');
+}
+
 const tileCache = new TileCache(
-    process.env.TILECACHE_PATH,
+    tileCachePath,
     {
         tilesets: getBuildingLayerNames(),
         minZoom: MIN_ZOOM_FOR_RENDERING_TILES,
