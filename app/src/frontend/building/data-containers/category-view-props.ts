@@ -1,5 +1,5 @@
 import { Building, BuildingAttributes } from '../../models/building';
-import { BuildingMapTileset } from '../config/tileserver-config';
+import { BuildingMapTileset } from '../../config/tileserver-config';
 
 interface CopyProps {
     copying: boolean;
