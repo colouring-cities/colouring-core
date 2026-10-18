@@ -5,7 +5,7 @@ import * as autofillService from '../services/autofill';
 const getAutofillOptions = asyncController(async (req, res) => {
     const fieldName = processParam(req.query, 'field_name', x => x, true);
     const { field_value: fieldValue } = req.query;
-    const allValues = processParam(req.query, 'all_values', parseBooleanParam);
+    const allValues = processParam(req.query, 'all_values', parseBooleanParam) ?? false;
 
     const options = await autofillService.getAutofillOptions(fieldName, fieldValue, allValues);
 

@@ -138,7 +138,7 @@ export async function updateBuildingUserData(
     buildingId: number,
     userId: string,
     forwardPatch: object,
-    t?: ITask<any>
+    t: ITask<any>
 ) : Promise<BuildingUserAttributes> {
     await ensureBuildingUserRecord(buildingId, userId, t);
 
@@ -146,7 +146,7 @@ export async function updateBuildingUserData(
     const sets = db.$config.pgp.helpers.sets(forwardPatch, columnConfig);
 
     try {
-        const buildingUserRow: BuildingUserAttributesRow = await (t || db).one(
+        const buildingUserRow: BuildingUserAttributesRow = await t.one(
             `UPDATE
                     building_user_attributes
                 SET
