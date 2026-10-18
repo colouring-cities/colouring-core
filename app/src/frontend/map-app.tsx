@@ -102,7 +102,7 @@ export const MapApp: React.FC<MapAppProps> = props => {
     const colourBuilding = useCallback(async (building: Building) => {
         const buildingId = building?.building_id;
 
-        if(buildingId != undefined && multiEditError == undefined) {
+        if(buildingId != undefined && multiEditData != undefined && multiEditError == undefined) {
             try {
                 const updatedBuilding = await sendBuildingUpdate(buildingId, multiEditData);
                 updateRevisionId(updatedBuilding.revision_id);
