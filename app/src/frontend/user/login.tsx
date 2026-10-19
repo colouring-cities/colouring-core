@@ -38,7 +38,7 @@ export const Login: React.FC = () => {
                     <br/>Please <a href={discussURL}>discuss suggestions for improvements</a> and {' '}
                     <a href={issuesURL}>report issues or problems</a>.
                 </InfoBox>
-                <ErrorBox msg={error} />
+                {error && <ErrorBox msg={error} />}
                 <form onSubmit={onSubmit}>
                     <label htmlFor="username">Username*</label>
                     <input name="username" id="username"

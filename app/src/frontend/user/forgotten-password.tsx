@@ -62,7 +62,7 @@ export default class ForgottenPassword extends React.Component<{}, ForgottenPass
                 <section className="main-col">
                     <h1 className="h2">Forgotten password</h1>
                     <p>Please provide the e-mail address associated with your account. A password reset link will be sent to your mailbox.</p>
-                    <ErrorBox msg={this.state.error} />
+                    {this.state.error && <ErrorBox msg={this.state.error} />}
                     <InfoBox msg="">
                         {this.state.success ?
                             `If the email address is registered on Colouring ${config.cityName}, a password reset link will be sent to ${this.state.emailUsed}. Please check your inbox.` :
