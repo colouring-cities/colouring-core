@@ -12,9 +12,9 @@ interface ExtractViewModel {
 }
 
 interface DataExtractsState {
-    extracts: ExtractViewModel[];
-    latestExtract: ExtractViewModel;
-    previousExtracts: ExtractViewModel[];
+    extracts: ExtractViewModel[] | undefined;
+    latestExtract: ExtractViewModel | undefined;
+    previousExtracts: ExtractViewModel[] | undefined;
 }
 
 export default class DataExtracts extends React.Component<{}, DataExtractsState> {

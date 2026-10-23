@@ -47,7 +47,7 @@ import { useDisplayPreferences } from '../displayPreferences-context';
 import { CategoryMapDefinition } from '../config/category-maps-config';
 
 interface ColouringMapProps {
-    selectedBuildingId: number;
+    selectedBuildingId?: number;
     mode: 'basic' | 'view' | 'edit' | 'multi-edit';
     revisionId: string;
     onBuildingAction: (building: Building) => void;

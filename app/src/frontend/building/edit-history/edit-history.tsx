@@ -14,7 +14,7 @@ interface EditHistoryProps {
 }
 
 const EditHistory: React.FunctionComponent<EditHistoryProps> = (props) => {
-    const [history, setHistory] = useState<EditHistoryEntry[]>(undefined);
+    const [history, setHistory] = useState<EditHistoryEntry[] | undefined>(undefined);
 
     useEffect(() => {
         const fetchData = async () => {

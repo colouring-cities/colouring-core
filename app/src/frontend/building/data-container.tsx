@@ -46,8 +46,6 @@ interface DataContainerState {
     currentBuildingId: number | undefined;
     currentBuildingRevisionId: number | undefined;
     buildingEdits: BuildingEdits;
-    mapColourScale: BuildingMapTileset;
-    onMapColourScale: (x: BuildingMapTileset) => void;
 }
 
 export type DataContainerType = React.ComponentType<DataContainerProps>;
@@ -71,9 +69,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                 keys_to_copy: {},
                 buildingEdits: {},
                 currentBuildingId: undefined,
-                currentBuildingRevisionId: undefined,
-                mapColourScale: undefined,
-                onMapColourScale: undefined
+                currentBuildingRevisionId: undefined
             };
 
             this.handleChange = this.handleChange.bind(this);
@@ -118,9 +114,7 @@ const withCopyEdit: (wc: React.ComponentType<CategoryViewProps>) => DataContaine
                     keys_to_copy: categoryKeys,
                     buildingEdits: {},
                     currentBuildingId: newBuildingId,
-                    currentBuildingRevisionId: newBuildingRevisionId,
-                    mapColourScale: props.mapColourScale,
-                    onMapColourScale: props.onMapColourScale
+                    currentBuildingRevisionId: newBuildingRevisionId
                 };
             }
 
