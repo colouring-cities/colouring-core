@@ -18,7 +18,7 @@ export default class ForgottenPassword extends React.Component<{}, ForgottenPass
         super(props);
         this.state = {
             error: undefined,
-            success: undefined,
+            success: false,
             email: undefined,
             emailUsed: undefined
         };
@@ -31,7 +31,7 @@ export default class ForgottenPassword extends React.Component<{}, ForgottenPass
 
     async handleSubmit(event: FormEvent) {
         event.preventDefault();
-        this.setState({ error: undefined, success: undefined });
+        this.setState({ error: undefined, success: false });
 
         const emailSent = this.state.email;
         try {
