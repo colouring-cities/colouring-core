@@ -8,9 +8,9 @@ let config: CCConfig = require('../../cc-config.json')
 
 interface ForgottenPasswordState {
     success: boolean;
-    error: string;
+    error: string | undefined;
     email: string;
-    emailUsed: string;
+    emailUsed: string | undefined;
 }
 
 export default class ForgottenPassword extends React.Component<{}, ForgottenPasswordState> {
