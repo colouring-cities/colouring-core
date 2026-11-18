@@ -8,7 +8,7 @@ import { DataTitleCopyable } from '../data-title';
 import { CloseIcon, SaveIcon } from '../../../components/icons';
 
 interface MultiDataEntryProps extends BaseDataEntryProps, TextDataEntryInputProps {
-    value: string[];
+    value?: string[];
     copyable?: boolean;
     editableEntries?: boolean;
     confirmOnEnter?: boolean;
