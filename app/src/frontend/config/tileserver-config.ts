@@ -61,7 +61,6 @@ export type BuildingMapTileset =
     'energy_green_roof' |
     'sust_aggregate_estimate_epc';
     
-
 export type SpecialMapTileset = 'base_light' | 'base_night' | 'base_night_outlines' | 'highlight' | 'number_labels' | 'base_boroughs';
 
 export type MapTileset = BuildingMapTileset | SpecialMapTileset;

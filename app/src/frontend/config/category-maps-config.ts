@@ -126,14 +126,14 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Core material',
                 elements: [
-                    { color: "#b5a859", text: "Wood" },
-                    { color: "#ffffe3", text: "Stone" },
-                    { color: "#f5d96b", text: "Brick" },
-                    { color: "#beffe8", text: "Steel" },
-                    { color: "#fca89d", text: "Reinforced Concrete" },
-                    { color: "#8fc3a0", text: "Other Metal" },
-                    { color: "#96613b", text: "Other Natural Material" },
-                    { color: "#c48a85", text: "Other Man-Made Material" }
+                    { color: '#b5a859', text: 'Wood' },
+                    { color: '#ffffe3', text: 'Stone' },
+                    { color: '#f5d96b', text: 'Brick' },
+                    { color: '#beffe8', text: 'Steel' },
+                    { color: '#fca89d', text: 'Reinforced Concrete' },
+                    { color: '#8fc3a0', text: 'Other Metal' },
+                    { color: '#96613b', text: 'Other Natural Material' },
+                    { color: '#c48a85', text: 'Other Man-Made Material' }
                 ]
             },
         },
@@ -142,9 +142,9 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Structural system',
                 elements: [
-                    { color: "#b5a859", text: "Solid masonry walls supporting the roof" },
-                    { color: "#ffffe3", text: "A lateral load resisting structure (e.g. concrete or wooden frame)" },
-                    { color: "#f5d96b", text: "Other" },
+                    { color: '#b5a859', text: 'Solid masonry walls supporting the roof' },
+                    { color: '#ffffe3', text: 'A lateral load resisting structure (e.g. concrete or wooden frame)' },
+                    { color: '#f5d96b', text: 'Other' },
                 ]
             },
         },
@@ -153,11 +153,11 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Foundations',
                 elements: [
-                    { color: "#b5a859", text: "Shallow foundations with no lateral support" },
-                    { color: "#ffffe3", text: "Shallow foundations with lateral support" },
-                    { color: "#f5d96b", text: "Deep foundations with no lateral support" },
-                    { color: "#beffe8", text: "Deep Foundations with lateral support" },
-                    { color: "#fca89d", text: "Other" },
+                    { color: '#b5a859', text: 'Shallow foundations with no lateral support' },
+                    { color: '#ffffe3', text: 'Shallow foundations with lateral support' },
+                    { color: '#f5d96b', text: 'Deep foundations with no lateral support' },
+                    { color: '#beffe8', text: 'Deep Foundations with lateral support' },
+                    { color: '#fca89d', text: 'Other' },
                 ]
             },
         },
@@ -166,16 +166,16 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Roof shape',
                 elements: [
-                    { color: "#b5a859", text: "Flat" },
-                    { color: "#ffffe3", text: "Pitched with gable ends" },
-                    { color: "#f5d96b", text: "Pitched and hipped" },
-                    { color: "#beffe8", text: "Pitched with dormers" },
-                    { color: "#fca89d", text: "Monopitch" },
-                    { color: "#5c8970", text: "Sawtooth" },
-                    { color: "#96613b", text: "Curved" },
-                    { color: "#c48a85", text: "Complex regular" },
-                    { color: "#7bccc4", text: "Complex irregular" },
-                    { color: "#bae4bc", text: "Other" }
+                    { color: '#b5a859', text: 'Flat' },
+                    { color: '#ffffe3', text: 'Pitched with gable ends' },
+                    { color: '#f5d96b', text: 'Pitched and hipped' },
+                    { color: '#beffe8', text: 'Pitched with dormers' },
+                    { color: '#fca89d', text: 'Monopitch' },
+                    { color: '#5c8970', text: 'Sawtooth' },
+                    { color: '#96613b', text: 'Curved' },
+                    { color: '#c48a85', text: 'Complex regular' },
+                    { color: '#7bccc4', text: 'Complex irregular' },
+                    { color: '#bae4bc', text: 'Other' }
                 ]
             },
         },
@@ -184,14 +184,14 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Roof covering',
                 elements: [
-                    { color: "#b5a859", text: "Wood" },
-                    { color: "#ffffe3", text: "Stone" },
-                    { color: "#f5d96b", text: "Brick" },
-                    { color: "#beffe8", text: "Steel" },
-                    { color: "#fca89d", text: "Reinforced Concrete" },
-                    { color: "#8fc3a0", text: "Other Metal" },
-                    { color: "#96613b", text: "Other Natural Material" },
-                    { color: "#c48a85", text: "Other Man-Made Material" }
+                    { color: '#b5a859', text: 'Wood' },
+                    { color: '#ffffe3', text: 'Stone' },
+                    { color: '#f5d96b', text: 'Brick' },
+                    { color: '#beffe8', text: 'Steel' },
+                    { color: '#fca89d', text: 'Reinforced Concrete' },
+                    { color: '#8fc3a0', text: 'Other Metal' },
+                    { color: '#96613b', text: 'Other Natural Material' },
+                    { color: '#c48a85', text: 'Other Man-Made Material' }
                 ]
             },
         },
@@ -200,11 +200,11 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Window frame material',
                 elements: [
-                    { color: "#b5a859", text: "Wood" },
-                    { color: "#8fc3a0", text: "Metal" },
-                    { color: "#ff3939", text: "Plastic" },
-                    { color: "#8080ff", text: "Other" },
-                    { color: "#ffffff", text: "No windows" }
+                    { color: '#b5a859', text: 'Wood' },
+                    { color: '#8fc3a0', text: 'Metal' },
+                    { color: '#ff3939', text: 'Plastic' },
+                    { color: '#8080ff', text: 'Other' },
+                    { color: '#ffffff', text: 'No windows' }
                 ]
             },
         },
@@ -251,14 +251,14 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 description: 'Residential energy rating (EPC Rating)',
                 disclaimer: 'This map shows official 2025 EPC data, required for new, sold and rented buildings. Please note EPC ratings may be out-of-date, as retrofit may have occurred since certification.',
                 elements: [
-                    { color: "#007f3d", text: 'A' },
-                    { color: "#2c9f29", text: 'B' },
-                    { color: "#9dcb3c", text: 'C' },
-                    { color: "#fff200", text: 'D' },
-                    { color: "#f7af1d", text: 'E' },
-                    { color: "#ed6823", text: 'F' },
-                    { color: "#e31d23", text: 'G' },
-                    { color: "#909090", text: 'No EPC identified or non-residential.' },
+                    { color: '#007f3d', text: 'A' },
+                    { color: '#2c9f29', text: 'B' },
+                    { color: '#9dcb3c', text: 'C' },
+                    { color: '#fff200', text: 'D' },
+                    { color: '#f7af1d', text: 'E' },
+                    { color: '#ed6823', text: 'F' },
+                    { color: '#e31d23', text: 'G' },
+                    { color: '#909090', text: 'No EPC identified or non-residential.' },
                 ]
             },
         },
@@ -268,13 +268,13 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 title: 'Energy rating (non-residential)',
                 description: 'Non-residential energy rating (DEC Rating)',
                 elements: [
-                    { color: "#007f3d", text: 'A' },
-                    { color: "#2c9f29", text: 'B' },
-                    { color: "#9dcb3c", text: 'C' },
-                    { color: "#fff200", text: 'D' },
-                    { color: "#f7af1d", text: 'E' },
-                    { color: "#ed6823", text: 'F' },
-                    { color: "#e31d23", text: 'G' },
+                    { color: '#007f3d', text: 'A' },
+                    { color: '#2c9f29', text: 'B' },
+                    { color: '#9dcb3c', text: 'C' },
+                    { color: '#fff200', text: 'D' },
+                    { color: '#f7af1d', text: 'E' },
+                    { color: '#ed6823', text: 'F' },
+                    { color: '#e31d23', text: 'G' },
                 ]
             },
         },
@@ -603,14 +603,14 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
     ],
     [Category.UrbanInfrastructure]: [
         {
-            mapStyle: "context_walkability_index",
+            mapStyle: 'context_walkability_index',
             legend: {
                 title: 'Walkability Index',
                 elements: []
             },
         },
         {
-            mapStyle: "context_street_width",
+            mapStyle: 'context_street_width',
             legend: {
                 title: 'Street width',
                 elements: []
@@ -688,7 +688,7 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             }
         },
         {
-        mapStyle: 'original_landuse',
+            mapStyle: 'original_landuse',
             legend: {
                 title: 'Original Land Use',
                 elements: [
@@ -715,10 +715,10 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
             legend: {
                 title: 'Attachment/Adjacency',
                 elements: [
-                    { color: "#f2a2b9", text: "Detached" },
-                    { color: "#ab8fb0", text: "Semi-Detached" },
-                    { color: "#3891d1", text: "End-Terrace" },
-                    { color: "#226291", text: "Mid-Terrace" }
+                    { color: '#f2a2b9', text: 'Detached' },
+                    { color: '#ab8fb0', text: 'Semi-Detached' },
+                    { color: '#3891d1', text: 'End-Terrace' },
+                    { color: '#226291', text: 'Mid-Terrace' }
                 ]
             },
         },

@@ -67,7 +67,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         slug: 'water-green-infrastructure',
         name: 'Green/Water Infrastructure Context',
         aboutUrl: 'https://github.com/colouring-cities/manual/wiki/E1.--DATA#10-energy-performance',
-        intro: "This section provides open data on the building's water supply and any green infrastructure.",
+        intro: 'This section provides open data on the building\'s water supply and any green infrastructure.',
     },
     [Category.LandUse]: {
         slug: 'land-use',
@@ -103,7 +103,7 @@ export const categoriesConfig: {[key in Category]: CategoryDefinition} = {
         slug: 'retrofit-condition',
         name: 'Retrofit & Condition',
         aboutUrl: 'https://github.com/colouring-cities/manual/wiki/E1.--DATA#7-street-context',
-        intro: "This section provides open data on the condition of the building and its retrofit history.",
+        intro: 'This section provides open data on the condition of the building and its retrofit history.',
     },
     [Category.EnergyPerformance]: {
         slug: 'energy-performance',
