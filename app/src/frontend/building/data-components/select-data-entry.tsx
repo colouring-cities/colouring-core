@@ -11,7 +11,7 @@ interface SelectOption {
 }
 
 interface SelectDataEntryProps extends BaseDataEntryProps {
-    value: string;
+    value?: string;
     placeholder?: string;
     options: (string | SelectOption)[];
 }
