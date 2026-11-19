@@ -47,12 +47,12 @@ interface MapAppProps {
 }
 
 /** Returns first argument, unless it's equal to the second argument - then returns undefined */
-function unless<V extends string, U extends V>(value: V, unlessValue: U): Exclude<V, U> {
+function unless<V extends string, U extends V>(value: V | undefined, unlessValue: U): Exclude<V, U> | undefined {
     return value === unlessValue ? undefined : value as Exclude<V, U>;
 }
 
 /** Returns the new value, unless it is equal to the current value - then returns undefined */
-function setOrToggle<T>(currentValue: T, newValue: T): T {
+function setOrToggle<T>(currentValue: T | undefined, newValue: T | undefined): T | undefined {
     if(newValue == undefined || newValue === currentValue){
         return undefined;
     } else {

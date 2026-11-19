@@ -1,58 +1,48 @@
 import { strictParseInt } from '../parse';
 
-import { ApiParamError, ApiParamInvalidFormatError, ApiParamRequiredError } from './errors/api';
+import { ApiParamInvalidFormatError, ApiParamRequiredError } from './errors/api';
 
 
 /**
  * Processing functions return undefined only for a missing parameter,
  * so a required parameter is never undefined.
  */
-export function processParam<T>(params: object, paramName: string, processingFn: (x: string | undefined) => T, required: true): NonNullable<T>;
-export function processParam<T>(params: object, paramName: string, processingFn: (x: string | undefined) => T, required?: boolean): T;
-export function processParam<T>(params: object, paramName: string, processingFn: (x: string | undefined) => T, required: boolean = false) {
+export function processParam<T>(params: object, paramName: string, processingFn: (x: string | undefined, paramName: string) => T, required: true): NonNullable<T>;
+export function processParam<T>(params: object, paramName: string, processingFn: (x: string | undefined, paramName: string) => T, required?: boolean): T;
+export function processParam<T>(params: object, paramName: string, processingFn: (x: string | undefined, paramName: string) => T, required: boolean = false) {
     const stringValue = params[paramName];
 
     if(stringValue == undefined && required) {
-        const err = new ApiParamRequiredError('Parameter required but not supplied');
-        err.paramName = paramName;
-        throw err;
+        throw new ApiParamRequiredError('Parameter required but not supplied', paramName);
     }
 
-    try {
-        return processingFn(stringValue);
-    } catch(error) {
-        if(error instanceof ApiParamError) {
-            error.paramName = paramName;
-        }
-        
-        throw error;
-    }
+    return processingFn(stringValue, paramName);
 }
 
-export function parsePositiveIntParam(param: string | undefined) {
+export function parsePositiveIntParam(param: string | undefined, paramName: string) {
     if(param == undefined) return undefined;
     
     const result = strictParseInt(param);
     if (isNaN(result)) {
-        throw new ApiParamInvalidFormatError('Invalid format: not a positive integer');
+        throw new ApiParamInvalidFormatError('Invalid format: not a positive integer', paramName);
     }
     return result;
 }
 
-export function parseBooleanParam(param: string | undefined) {
+export function parseBooleanParam(param: string | undefined, paramName: string) {
     if(param == undefined) return undefined;
 
     if(param === 'true') return true;
     if(param === 'false') return false;
 
-    throw new ApiParamInvalidFormatError('Invalid format: not a true/false value');
+    throw new ApiParamInvalidFormatError('Invalid format: not a true/false value', paramName);
 }
 
-export function checkRegexParam(param: string | undefined, regex: RegExp): string | undefined {
+export function checkRegexParam(param: string | undefined, paramName: string, regex: RegExp): string | undefined {
     if(param == undefined) return undefined;
 
     if(param.match(regex) == undefined) {
-        throw new ApiParamInvalidFormatError(`Invalid format: does not match regular expression ${regex}`);
+        throw new ApiParamInvalidFormatError(`Invalid format: does not match regular expression ${regex}`, paramName);
     }
     
     return param;

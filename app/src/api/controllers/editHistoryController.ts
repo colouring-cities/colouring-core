@@ -9,8 +9,8 @@ import * as editHistoryService from '../services/editHistory';
 const getGlobalEditHistory = asyncController(async (req: express.Request, res: express.Response) => {
 
     const revisionIdRegex = /^[1-9]\d*$/;
-    const afterId: string | undefined = processParam(req.query, 'after_id', x => checkRegexParam(x, revisionIdRegex));
-    const beforeId: string | undefined = processParam(req.query, 'before_id', x => checkRegexParam(x, revisionIdRegex));
+    const afterId: string | undefined = processParam(req.query, 'after_id', (x, paramName) => checkRegexParam(x, paramName, revisionIdRegex));
+    const beforeId: string | undefined = processParam(req.query, 'before_id', (x, paramName) => checkRegexParam(x, paramName, revisionIdRegex));
     const count: number | undefined = processParam(req.query, 'count', parsePositiveIntParam);
     const filterDeletions: boolean | undefined = processParam(req.query, 'deletions', parseBooleanParam);
 
@@ -23,7 +23,7 @@ const getGlobalEditHistory = asyncController(async (req: express.Request, res: e
         res.send(result);
     } catch(error) {
         if(error instanceof ArgumentError && error.argumentName === 'count') {
-            throw new ApiParamError(error.message, error, 'count');
+            throw new ApiParamError(error.message, 'count', error);
         }
 
         throw error;

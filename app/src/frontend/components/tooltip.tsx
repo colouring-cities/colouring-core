@@ -18,6 +18,9 @@ const linkRegex = /\[([^[]+?)\]\(([^(]+?)\)/;
 
 function markdownLinkToAnchor(link: string) {
     const m = link.match(linkRegex);
+    if(m == null) {
+        throw new Error(`Not a markdown link: ${link}`);
+    }
         return (<a href={m[2]} target="_blank">{m[1]}</a>);
 }
 
@@ -35,7 +38,7 @@ function interweave(arr1: any[], arr2: any[]): any[] {
 function tooltipTextToComponents(text: string): any[] {
     let betweenLinks = text.split(nonCaptureLingRegex);
     if(betweenLinks.length <= 1) return [text];
-    let links = text.match(new RegExp(linkRegex, 'g')).map(markdownLinkToAnchor);
+    let links = (text.match(new RegExp(linkRegex, 'g')) ?? []).map(markdownLinkToAnchor);
 
     return interweave(betweenLinks, links);
 }

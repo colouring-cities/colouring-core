@@ -47,15 +47,15 @@ export function numDesc<T, V extends number | bigint>(accessor: AccessorFunction
     return (a: T, b: T) => Number(accessor(b) - accessor(a));
 }
 
-/** 
- * As of Jan 2020, bigint literals e.g. 1n can only be used with TS target esnext
- * which then doesn't transpile the null conditional/coalescing operators and breaks on Node 12
- * So BigInt(1) needs to be used here
- * */ 
-export function incBigInt(bigStr: string): string {
+/**
+ * Bigint literals such as 1n need TS target ES2020 or newer. That target leaves
+ * optional chaining and nullish coalescing untranspiled, and the Terser 4 used
+ * by Razzle 4 for minification fails to parse them, so BigInt(1) is used here.
+ */
+export function incBigInt(bigStr: string | undefined): string | undefined {
     return bigStr == undefined ? bigStr : String(BigInt(bigStr) + BigInt(1));
 }
-export function decBigInt(bigStr: string): string {
+export function decBigInt(bigStr: string | undefined): string | undefined {
     return bigStr == undefined ? bigStr : String(BigInt(bigStr) - BigInt(1));
 }
 

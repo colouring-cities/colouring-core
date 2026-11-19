@@ -27,7 +27,11 @@ const milisecondsInYear = 1000 * 60 * 60 * 24 * 365;
 // but it is using timestamp as input, while this one
 // uses lower accuracy (as actual data is using the same accuracy)
 function parseDateSpecifiedWithDailyAccuracy(isoUtcDate: string): Date {
-    const [year, month, day] = isoUtcDate.match(/^(\d{4})-(\d\d)-(\d\d)$/)
+    const match = isoUtcDate.match(/^(\d{4})-(\d\d)-(\d\d)$/);
+    if(match == null) {
+        throw new Error(`Not an ISO8601 date: ${isoUtcDate}`);
+    }
+    const [year, month, day] = match
         .splice(1)
         .map(x => parseInt(x, 10));
     return new Date(Date.UTC(year, month-1, day));
