@@ -602,20 +602,6 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
         }
     ],
     [Category.UrbanInfrastructure]: [
-        {
-            mapStyle: 'context_walkability_index',
-            legend: {
-                title: 'Walkability Index',
-                elements: []
-            },
-        },
-        {
-            mapStyle: 'context_street_width',
-            legend: {
-                title: 'Street width',
-                elements: []
-            },
-        }
     ],
     [Category.WaterGreenInfrastructure]: [
         {
