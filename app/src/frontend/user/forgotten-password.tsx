@@ -19,7 +19,7 @@ export default class ForgottenPassword extends React.Component<{}, ForgottenPass
         this.state = {
             error: undefined,
             success: false,
-            email: undefined,
+            email: '',
             emailUsed: undefined
         };
     }

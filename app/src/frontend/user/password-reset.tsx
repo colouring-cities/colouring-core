@@ -23,8 +23,8 @@ export default class PasswordReset extends React.Component<RouteComponentProps, 
             error: undefined,
             success: false,
             token: undefined,
-            password: undefined,
-            confirmPassword: undefined
+            password: '',
+            confirmPassword: ''
         };
     }
 
