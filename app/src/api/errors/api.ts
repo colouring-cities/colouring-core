@@ -6,7 +6,7 @@
  */
 
 export class ApiUserError extends Error {
-    public originalError: Error;
+    public originalError?: Error;
     constructor(message?: string, originalError?: Error) {
         super(message);
         this.name = 'ApiUserError';
