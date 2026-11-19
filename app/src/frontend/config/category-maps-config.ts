@@ -24,7 +24,7 @@ export interface CategoryMapDefinition {
 export const defaultMapCategory = Category.AgeHistory;
 
 export const ageLegend = [
-    { color: '#fff9b8', text: '>2020' },
+    { color: '#fff9b8', text: '>2019' },
     { color: '#fae269', text: '2000-2019' },
     { color: '#fbaf27', text: '1980-1999' },
     { color: '#e6711d', text: '1960-1979' },
