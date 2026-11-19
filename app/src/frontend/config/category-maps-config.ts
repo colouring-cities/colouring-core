@@ -24,25 +24,45 @@ export interface CategoryMapDefinition {
 export const defaultMapCategory = Category.AgeHistory;
 
 export const ageLegend = [
-    { color: '#fff9b8', text: '>2020' },
+    { color: '#fff9b8', text: '>2019' },
     { color: '#fae269', text: '2000-2019' },
     { color: '#fbaf27', text: '1980-1999' },
     { color: '#e6711d', text: '1960-1979' },
     { color: '#cc1212', text: '1940-1959' },
     { color: '#8f0303', text: '1920-1939' },
-    { color: '#8f5385', text: '1900-1919' },
-    { color: '#c3e1eb', text: '1880-1899' },
-    { color: '#6a9dba', text: '1860-1879' },
-    { color: '#3b74a3', text: '1840-1859' },
-    { color: '#95ded8', text: '1820-1839' },
-    { color: '#68aba5', text: '1800-1819' },
-    { color: '#acc98f', text: '1750-1799' },
-    { color: '#6d8a51', text: '1700-1749' },
-    { color: '#d0c291', text: '<1700' },
+    { color: '#d400b1', text: '1900-1919' },
+    { color: '#fe4ce9', text: '1880-1899' },
+    { color: '#f47ae6', text: '1860-1879' },
+    { color: '#f4c3ee', text: '1840-1859' },
+    { color: '#affe10', text: '1820-1839' },
+    { color: '#73fe10', text: '1800-1819' },
+    { color: '#54da00', text: '1750-1799' },
+    { color: '#4cb40b', text: '1700-1749' },
+    { color: '#40ded1', text: '<1700' },
 ]
 
 export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = {
     [Category.AgeHistory]: [
+        {
+            mapStyle: 'typology_style_period',
+            legend: {
+                disclaimer: 'This shows data automatically derived from our "Age (Amalgamated methods)" map, and grouped into historical periods. Contributors can also directly choose an historical period to represent the age of a given building if the exact date is not known.',
+                title: 'Historical Period',
+                elements: [
+                    { color: '#fae269', text: '2000-2025 (Early C21)' },
+                    { color: '#fbaf27', text: '1980-1999 (Late C20)' },
+                    { color: '#cc1212', text: '1946-1979 (Post war)' },
+                    { color: '#8f0303', text: '1914-1945 (WWI-WWII)' },
+                    { color: '#d400b1', text: '1901-1914 (Edwardian)' },
+                    { color: '#f47ae6', text: '1837-1901 (Victorian)' },
+                    { color: '#73fe10', text: '1714-1837 (Georgian)' },
+                    { color: '#90ece5', text: '1603-1714 (Stuart)' },
+                    { color: '#40ded1', text: '1485-1603 (Tudor)' },
+                    { color: '#00b0f0', text: '410-1485 (Medieval)' },
+                    { color: '#1a01ff', text: '43AD-410 (Roman)' },
+                ]
+            }
+        },
         {
             mapStyle: 'age_amalgamated',
             legend: {
@@ -65,26 +85,6 @@ export const categoryMapsConfig: {[key in Category]: CategoryMapDefinition[]} = 
                 title: 'Age (Automatically inferred)',
                 elements: ageLegend,
             },
-        },
-        {
-            mapStyle: 'typology_style_period',
-            legend: {
-                disclaimer: 'This shows data automatically derived from our "Age (Amalgamated methods)" map, and grouped into historical periods. Contributors can also directly choose an historical period to represent the age of a given building if the exact date is not known.',
-                title: 'Historical Period',
-                elements: [
-                    { color: '#fae269', text: '2000-2025 (Early C21)' },
-                    { color: '#fbaf27', text: '1980-1999 (Late C20)' },
-                    { color: '#cc1212', text: '1946-1979 (Post war)' },
-                    { color: '#8f5385', text: '1914-1945 (WWI-WWII)' },
-                    { color: '#c3e1eb', text: '1901-1914 (Edwardian)' },
-                    { color: '#6a9dba', text: '1837-1901 (Victorian)' },
-                    { color: '#acc98f', text: '1714-1837 (Georgian)' },
-                    { color: '#6d8a51', text: '1603-1714 (Stuart)' },
-                    { color: '#d0c291', text: '1485-1603 (Tudor)' },
-                    { color: '#a9a695', text: '410-1485 (Medieval)' },
-                    { color: '#dadada', text: '43AD-410 (Roman)' },
-                ]
-            }
         },
         {
             mapStyle: 'cladding_year',
