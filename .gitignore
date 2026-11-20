@@ -8,6 +8,10 @@ ecosystem.config.js
 app/start.sh
 html/norton*.html
 .vscode
+.env
+
+# Local IDE files
+**/.idea
 
 # Data
 etl/

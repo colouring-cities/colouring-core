@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rm -rf build",
     "start": "razzle start",
-    "build": "razzle build",
+    "build": "razzle build --noninteractive",
     "test": "razzle test --env=jsdom",
     "lint": "eslint --ext .tsx --ext .ts .",
     "typecheck": "tsc --noEmit -p .",
