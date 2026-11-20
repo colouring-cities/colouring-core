@@ -19,7 +19,7 @@ def generate_address(site_name, site_number, street_name, secondary_street_name)
     if site_name is not None:
         site_name = site_name.strip()
     if site_number is not None:
-        site_number = site_number.strip()
+        site_number = str(site_number).strip()
     if street_name is not None:
         street_name = street_name.strip()
     if secondary_street_name is not None:
