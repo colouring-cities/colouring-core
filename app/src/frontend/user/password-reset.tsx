@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import ErrorBox from '../components/error-box';
 
 interface PasswordResetState {
-    error: string;
+    error: string | undefined;
     success: boolean;
-    token: string;
+    token: string | undefined;
     password: string;
     confirmPassword: string;
 }
@@ -21,10 +21,10 @@ export default class PasswordReset extends React.Component<RouteComponentProps, 
 
         this.state = {
             error: undefined,
-            success: undefined,
+            success: false,
             token: undefined,
-            password: undefined,
-            confirmPassword: undefined
+            password: '',
+            confirmPassword: ''
         };
     }
 

@@ -1,4 +1,4 @@
-import { parseBooleanExact } from '../helpers';
+import { parseOptionalBooleanEnv } from '../helpers';
 import { getAllLayerNames, getBuildingLayerNames, getDataConfig, getLayerVariables } from "./dataDefinition";
 import { createBlankTile } from "./renderers/createBlankTile";
 import { getTileWithCaching } from "./renderers/getTileWithCaching";
@@ -26,8 +26,8 @@ const STITCH_THRESHOLD = 12;
  */
 const EXTENT_BBOX: BoundingBox = config.bbox;
 
-const allLayersCacheSwitch = parseBooleanExact(process.env.CACHE_TILES) ?? true;
-const dataLayersCacheSwitch = parseBooleanExact(process.env.CACHE_DATA_TILES) ?? true;
+const allLayersCacheSwitch = parseOptionalBooleanEnv('CACHE_TILES', true);
+const dataLayersCacheSwitch = parseOptionalBooleanEnv('CACHE_DATA_TILES', true);
 let shouldCacheFn: (t: TileParams) => boolean;
 
 if(!allLayersCacheSwitch) {

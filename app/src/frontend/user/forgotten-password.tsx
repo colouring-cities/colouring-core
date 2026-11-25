@@ -8,9 +8,9 @@ let config: CCConfig = require('../../cc-config.json')
 
 interface ForgottenPasswordState {
     success: boolean;
-    error: string;
+    error: string | undefined;
     email: string;
-    emailUsed: string;
+    emailUsed: string | undefined;
 }
 
 export default class ForgottenPassword extends React.Component<{}, ForgottenPasswordState> {
@@ -18,8 +18,8 @@ export default class ForgottenPassword extends React.Component<{}, ForgottenPass
         super(props);
         this.state = {
             error: undefined,
-            success: undefined,
-            email: undefined,
+            success: false,
+            email: '',
             emailUsed: undefined
         };
     }
@@ -31,7 +31,7 @@ export default class ForgottenPassword extends React.Component<{}, ForgottenPass
 
     async handleSubmit(event: FormEvent) {
         event.preventDefault();
-        this.setState({ error: undefined, success: undefined });
+        this.setState({ error: undefined, success: false });
 
         const emailSent = this.state.email;
         try {

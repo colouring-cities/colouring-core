@@ -65,6 +65,20 @@ export function parseBooleanExact(val: string) {
     return null;
 }
 
+/**
+ * Read an optional boolean environment variable.
+ * Unset gives defaultValue, any value other than 'true' or 'false' is an error.
+ */
+export function parseOptionalBooleanEnv(name: string, defaultValue: boolean): boolean {
+    const raw = process.env[name];
+    if (raw === undefined) return defaultValue;
+    const parsed = parseBooleanExact(raw);
+    if (parsed === null) {
+        throw new Error(`${name} must be 'true' or 'false', got '${raw}'`);
+    }
+    return parsed;
+}
+
 export function pickFields(obj: any, fieldWhitelist: Set<string>) {
     const subObject = {};
     for (let [key, value] of Object.entries(obj)) {
