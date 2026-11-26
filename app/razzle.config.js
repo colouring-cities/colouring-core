@@ -10,25 +10,26 @@ module.exports = {
         },
     ],
     modifyWebpackConfig({ env: { target, dev }, webpackConfig }) {
-        webpackConfig.module.rules = webpackConfig.module.rules || [];
-
-        // import file contents as a string with '?raw', as in Vite
-        for (const rule of webpackConfig.module.rules) {
-            // Razzle's catch-all file-loader rule would otherwise turn it into a URL
-            if (rule.exclude && !rule.test) {
-                rule.resourceQuery = { not: [/raw/] };
-            }
-        }
-        webpackConfig.module.rules.unshift({
-            resourceQuery: /raw/,
-            type: 'asset/source'
-        });
+        const rules = webpackConfig.module.rules || [];
 
         // load webfonts
-        webpackConfig.module.rules.push({
+        rules.push({
             test: /\.(eot|svg|ttf|woff|woff2)$/,
             type: 'asset/resource'
         });
+
+        // import file contents as a string with '?raw', as in Vite.
+        // oneOf stops at the first match, so a '?raw' import is never also
+        // handled by babel, url-loader, file-loader or the webfont rule
+        webpackConfig.module.rules = [{
+            oneOf: [
+                {
+                    resourceQuery: /^\?raw$/,
+                    type: 'asset/source'
+                },
+                { rules }
+            ]
+        }];
 
         return webpackConfig;
     },
