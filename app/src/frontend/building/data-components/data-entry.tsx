@@ -35,7 +35,7 @@ const DataEntry: React.FC<DataEntryProps> = (props) => {
             />
             <DataEntryInput
                 slug={props.slug}
-                name={props.slug + props.slugModifier ?? ''}
+                name={props.slug + (props.slugModifier ?? '')}
                 value={props.value}
                 onChange={props.onChange}
                 disabled={props.mode === 'view' || props.disabled}

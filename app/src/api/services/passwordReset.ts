@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { errors } from 'pg-promise';
+import pg from 'pg-promise';
 import url, { URL } from 'url';
 
 import db from '../../db';
@@ -10,6 +10,9 @@ import * as userService from './user';
 
 import { CCConfig } from '../../cc-config';
 let config: CCConfig = require('../../cc-config.json')
+
+// pg-promise is a CommonJS module, so named imports are not available in the Vite dev server
+const { errors } = pg;
 
 
 /**

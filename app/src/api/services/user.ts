@@ -3,7 +3,6 @@
  *
  */
 import { Session, SessionData } from 'express-session';
-import { errors } from 'pg-promise';
 import { promisify } from 'util';
 
 import db from '../../db';
