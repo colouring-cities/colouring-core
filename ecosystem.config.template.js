@@ -7,7 +7,10 @@ module.exports = {
     apps: [
         {
             name: "colouringlondon",
-            script: "./app/build/server.js",
+            // the build serves static files from the relative path build/public,
+            // so the app must run with app/ as its working directory
+            cwd: "./app",
+            script: "./build/server.js",
             instances: 2,
             env: {
                 NODE_ENV: "production",
