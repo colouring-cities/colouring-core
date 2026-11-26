@@ -1,4 +1,5 @@
 import mapnik from "mapnik";
+import path from 'path';
 import { promisify } from "util";
 
 import polygonStyle from '../../../map_styles/polygon.xml?raw';
@@ -6,6 +7,10 @@ import polygonStyle from '../../../map_styles/polygon.xml?raw';
 import { TableDefinitionFunction, VariablesFunction, Tile, TileParams } from "../types";
 import { getBbox, TILE_SIZE } from "../util";
 
+
+// polygon.xml is bundled as a string, so tell mapnik where relative file
+// references in it should resolve from (server runs as app/build/server.js)
+const MAP_STYLES_DIR = path.join(__dirname, '..', 'map_styles');
 
 const TILE_BUFFER_SIZE = 64;
 const PROJ4_STRING = '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over';
@@ -53,7 +58,7 @@ async function renderDataSourceTile(
     layer.datasource = postgis;
     layer.styles = [tileset];
 
-    map = await promisify(map.fromString.bind(map))(polygonStyle, { strict: true });
+    map = await promisify(map.fromString.bind(map))(polygonStyle, { strict: true, base: MAP_STYLES_DIR });
 
     map.add_layer(layer);
     const im = new mapnik.Image(map.width, map.height);
