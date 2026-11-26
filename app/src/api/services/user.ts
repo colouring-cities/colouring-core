@@ -3,14 +3,10 @@
  *
  */
 import { Session, SessionData } from 'express-session';
-import pg from 'pg-promise';
 import { promisify } from 'util';
 
 import db from '../../db';
 import { validatePassword, validateUsername, ValidationError } from '../validation';
-
-// pg-promise is a CommonJS module, so named imports are not available in the Vite dev server
-const { errors } = pg;
 
 
 async function createUser(user) {
